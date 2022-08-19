@@ -331,7 +331,7 @@ public class Order_JDBCDAO implements Order_DAO_interface {
 
 		// 新增
 		Order_VO orderVO1 = new Order_VO();
-		orderVO1.setMem_no(6);
+		orderVO1.setMem_no(4);
 		orderVO1.setCoupon_no(2);
 		orderVO1.setOrder_time(java.sql.Timestamp.valueOf("2022-08-08 08:08:08"));
 		orderVO1.setSold_time(java.sql.Timestamp.valueOf("2022-08-08 08:08:08"));

@@ -50,7 +50,7 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 			pstmt.setTimestamp(6, order_detailVO.getComment_time());
 			pstmt.setInt(7, order_detailVO.getComment_star());
 			pstmt.setString(8, order_detailVO.getComment_content());
-			InputStream is = getPictureStream("jigger1.jpg");
+			InputStream is = getPictureStream("src/main/webapp/back-end/cart/images/jigger1.jpg");
 			pstmt.setBlob(9, is);
 
 			pstmt.executeUpdate();
@@ -99,7 +99,7 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 			pstmt.setTimestamp(4, order_detailVO.getComment_time());
 			pstmt.setInt(5, order_detailVO.getComment_star());
 			pstmt.setString(6, order_detailVO.getComment_content());
-			InputStream is = getPictureStream("Familia_Torres1.png");
+			InputStream is = getPictureStream("src/main/webapp/back-end/cart/images/Familia_Torres1.png");
 			pstmt.setBlob(7, is);
 			pstmt.setInt(8, order_detailVO.getOrder_no());
 			pstmt.setInt(9, order_detailVO.getProd_no());
@@ -315,8 +315,8 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 
 		// 新增
 		Order_detail_VO order_detailVO1 = new Order_detail_VO();
-		order_detailVO1.setOrder_no(4);
-		order_detailVO1.setProd_no(4);
+		order_detailVO1.setOrder_no(7);
+		order_detailVO1.setProd_no(7);
 		order_detailVO1.setProd_qty(50);
 		order_detailVO1.setProd_price(50000);
 		order_detailVO1.setMem_no(100289);

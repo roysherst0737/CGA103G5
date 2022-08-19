@@ -55,7 +55,7 @@ public class Prod_pic_DAO implements Prod_pic_DAO_interface{
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, prod_picVO.getProd_no());
-			InputStream is = getPictureStream("jigger1.jpg");
+			InputStream is = getPictureStream("src/main/webapp/back-end/cart/images/images/jigger1.jpg");
 			pstmt.setBlob(2, is);
 			pstmt.setString(3, prod_picVO.getProd_pic_name());
 
@@ -95,7 +95,7 @@ public class Prod_pic_DAO implements Prod_pic_DAO_interface{
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setInt(1, prod_picVO.getProd_no());
-			InputStream is = getPictureStream("Familia_Torres1.png");
+			InputStream is = getPictureStream("src/main/webapp/back-end/cart/images/Familia_Torres1.png");
 			pstmt.setBlob(2, is);
 			pstmt.setString(3, prod_picVO.getProd_pic_name());
 			pstmt.setInt(4, prod_picVO.getProd_pic_no());

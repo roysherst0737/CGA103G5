@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
         
-    <wb-module deploy-name="LonelyBar-1">
+    <wb-module deploy-name="CGA103G5ALL">
                 
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
                 
@@ -10,7 +10,7 @@
                 
         <property name="java-output-path" value="/CGA103G5ALL/build/classes"/>
                 
-        <property name="context-root" value="LonelyBar"/>
+        <property name="context-root" value="CGA103G5ALL"/>
             
     </wb-module>
     

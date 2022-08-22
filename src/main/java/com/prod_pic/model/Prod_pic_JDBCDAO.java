@@ -2,9 +2,7 @@ package com.prod_pic.model;
 
 import static com.util.Common.*;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -25,14 +23,9 @@ public class Prod_pic_JDBCDAO implements Prod_pic_DAO_interface{
 		"DELETE FROM prod_pic where prod_pic_no = ?";
 	private static final String UPDATE = 
 		"UPDATE prod_pic set prod_no=?, prod_pic=?, prod_pic_name=? where prod_pic_no = ?";
-	
-	public static InputStream getPictureStream(String path) throws IOException {
-		FileInputStream fis = new FileInputStream(path);
-		return fis;
-	}
 
 	@Override
-	public void insert(Prod_pic_VO prod_picVO) throws IOException {
+	public void insert(Prod_pic_VO prod_picVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -43,8 +36,7 @@ public class Prod_pic_JDBCDAO implements Prod_pic_DAO_interface{
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			pstmt.setInt(1, prod_picVO.getProd_no());
-			InputStream is = getPictureStream("src/main/webapp/back-end/cart/images/jigger1.jpg");
-			pstmt.setBlob(2, is);
+			pstmt.setBlob(2, prod_picVO.getProd_pic());
 			pstmt.setString(3, prod_picVO.getProd_pic_name());
 
 			pstmt.executeUpdate();
@@ -78,7 +70,7 @@ public class Prod_pic_JDBCDAO implements Prod_pic_DAO_interface{
 
 
 	@Override
-	public void update(Prod_pic_VO prod_picVO) throws IOException {
+	public void update(Prod_pic_VO prod_picVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -89,8 +81,7 @@ public class Prod_pic_JDBCDAO implements Prod_pic_DAO_interface{
 			pstmt = con.prepareStatement(UPDATE);
 			
 			pstmt.setInt(1, prod_picVO.getProd_no());
-			InputStream is = getPictureStream("src/main/webapp/back-end/cart/images/Familia_Torres1.png");
-			pstmt.setBlob(2, is);
+			pstmt.setBlob(2, prod_picVO.getProd_pic());
 			pstmt.setString(3, prod_picVO.getProd_pic_name());
 			pstmt.setInt(4, prod_picVO.getProd_pic_no());
 			
@@ -294,7 +285,7 @@ public class Prod_pic_JDBCDAO implements Prod_pic_DAO_interface{
 		// 新增
 		Prod_pic_VO prod_picVO1 = new Prod_pic_VO();
 		prod_picVO1.setProd_no(4);
-//		prod_picVO1.setProd_pic(null);
+		prod_picVO1.setProd_pic(null);
 		prod_picVO1.setProd_pic_name(null);
 		dao.insert(prod_picVO1);
 
@@ -302,7 +293,7 @@ public class Prod_pic_JDBCDAO implements Prod_pic_DAO_interface{
 		Prod_pic_VO prod_picVO2 = new Prod_pic_VO();
 		prod_picVO2.setProd_pic_no(6);
 		prod_picVO2.setProd_no(1005);
-//		prod_picVO2.setProd_pic(null);
+		prod_picVO2.setProd_pic(null);
 		prod_picVO2.setProd_pic_name(null);
 		dao.update(prod_picVO2);
 

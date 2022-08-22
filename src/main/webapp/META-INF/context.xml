@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+<Resource auth="Container" 
+    driverClassName="com.mysql.cj.jdbc.Driver" 
+    maxIdle="10" maxTotal="20" maxWaitMillis="-1" 
+    name="jdbc/DBPool" password="123qweqwe" 
+    type="javax.sql.DataSource" 
+    url="jdbc:mysql://localhost:3306/lonelybar?useUnicode=yes&amp;characterEncoding=utf8&amp;useSSL=true&amp;serverTimezone=Asia/Taipei" username="cga10305"/>
+</Context>

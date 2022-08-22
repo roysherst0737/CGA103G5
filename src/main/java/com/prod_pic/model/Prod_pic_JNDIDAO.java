@@ -1,8 +1,5 @@
 package com.prod_pic.model;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,14 +35,9 @@ public class Prod_pic_JNDIDAO implements Prod_pic_DAO_interface{
 		"DELETE FROM prod_pic where prod_pic_no = ?";
 	private static final String UPDATE = 
 		"UPDATE prod_pic set prod_no=?, prod_pic=?, prod_pic_name=? where prod_pic_no = ?";
-	
-	public static InputStream getPictureStream(String path) throws IOException {
-		FileInputStream fis = new FileInputStream(path);
-		return fis;
-	}
 
 	@Override
-	public void insert(Prod_pic_VO prod_picVO) throws IOException {
+	public void insert(Prod_pic_VO prod_picVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -55,8 +47,7 @@ public class Prod_pic_JNDIDAO implements Prod_pic_DAO_interface{
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, prod_picVO.getProd_no());
-			InputStream is = getPictureStream("src/main/webapp/back-end/cart/images/jigger1.jpg");
-			pstmt.setBlob(2, is);
+			pstmt.setBlob(2, prod_picVO.getProd_pic());
 			pstmt.setString(3, prod_picVO.getProd_pic_name());
 
 			pstmt.executeUpdate();
@@ -85,7 +76,7 @@ public class Prod_pic_JNDIDAO implements Prod_pic_DAO_interface{
 	}
 
 	@Override
-	public void update(Prod_pic_VO prod_picVO) throws IOException {
+	public void update(Prod_pic_VO prod_picVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -95,8 +86,7 @@ public class Prod_pic_JNDIDAO implements Prod_pic_DAO_interface{
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setInt(1, prod_picVO.getProd_no());
-			InputStream is = getPictureStream("src/main/webapp/back-end/cart/images/Familia_Torres1.png");
-			pstmt.setBlob(2, is);
+			pstmt.setBlob(2, prod_picVO.getProd_pic());
 			pstmt.setString(3, prod_picVO.getProd_pic_name());
 			pstmt.setInt(4, prod_picVO.getProd_pic_no());
 

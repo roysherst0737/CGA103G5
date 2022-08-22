@@ -1,6 +1,5 @@
 package com.order_detail.model;
 
-import java.io.IOException;
 import java.sql.Blob;
 import java.sql.Timestamp;
 import java.util.List;
@@ -13,7 +12,7 @@ public class Order_detail_Service {
 		dao = new Order_detail_DAO();
 	}
 	
-	public Order_detail_VO addOrder_detail(Integer order_no, Integer prod_no, Integer prod_qty, Integer prod_price, Integer mem_no, Timestamp comment_time, Integer comment_star, String comment_content, Blob comment_pic) throws IOException {
+	public Order_detail_VO addOrder_detail(Integer order_no, Integer prod_no, Integer prod_qty, Integer prod_price, Integer mem_no, Timestamp comment_time, Integer comment_star, String comment_content, Blob comment_pic) {
 		
 		Order_detail_VO order_detailVO= new Order_detail_VO();
 		
@@ -31,7 +30,7 @@ public class Order_detail_Service {
 		return order_detailVO;		
 	}
 	
-	public Order_detail_VO updateOrder_detail(Integer order_no, Integer prod_no, Integer prod_qty, Integer prod_price, Integer mem_no, Timestamp comment_time, Integer comment_star, String comment_content, Blob comment_pic) throws IOException {
+	public Order_detail_VO updateOrder_detail(Integer order_no, Integer prod_no, Integer prod_qty, Integer prod_price, Integer mem_no, Timestamp comment_time, Integer comment_star, String comment_content, Blob comment_pic) {
 		
 		Order_detail_VO order_detailVO= new Order_detail_VO();
 		

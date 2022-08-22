@@ -1,8 +1,5 @@
 package com.order_detail.model;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -38,14 +35,9 @@ public class Order_detail_DAO implements Order_detail_DAO_interface{
 		"DELETE FROM order_detail where order_no = ? AND prod_no = ?";
 	private static final String UPDATE = 
 		"UPDATE order_detail set prod_qty=?, prod_price=?, mem_no=?, comment_time=?, comment_star=?, comment_content=?, comment_pic=? where order_no = ? AND prod_no=?";
-	
-	public static InputStream getPictureStream(String path) throws IOException {
-		FileInputStream fis = new FileInputStream(path);
-		return fis;
-	}
 
 	@Override
-	public void insert(Order_detail_VO order_detailVO) throws IOException {
+	public void insert(Order_detail_VO order_detailVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -62,8 +54,7 @@ public class Order_detail_DAO implements Order_detail_DAO_interface{
 			pstmt.setTimestamp(6, order_detailVO.getComment_time());
 			pstmt.setInt(7, order_detailVO.getComment_star());
 			pstmt.setString(8, order_detailVO.getComment_content());
-			InputStream is = getPictureStream("src/main/webapp/back-end/cart/images/jigger1.jpg");
-			pstmt.setBlob(9, is);
+			pstmt.setBlob(9, order_detailVO.getComment_pic());
 
 			pstmt.executeUpdate();
 
@@ -91,7 +82,7 @@ public class Order_detail_DAO implements Order_detail_DAO_interface{
 	}
 
 	@Override
-	public void update(Order_detail_VO order_detailVO) throws IOException {
+	public void update(Order_detail_VO order_detailVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -106,8 +97,7 @@ public class Order_detail_DAO implements Order_detail_DAO_interface{
 			pstmt.setTimestamp(4, order_detailVO.getComment_time());
 			pstmt.setInt(5, order_detailVO.getComment_star());
 			pstmt.setString(6, order_detailVO.getComment_content());
-			InputStream is = getPictureStream("src/main/webapp/back-end/cart/images/Familia_Torres1.png");
-			pstmt.setBlob(7, is);
+			pstmt.setBlob(7, order_detailVO.getComment_pic());
 			pstmt.setInt(8, order_detailVO.getOrder_no());
 			pstmt.setInt(9, order_detailVO.getProd_no());
 

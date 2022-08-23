@@ -376,27 +376,27 @@ public class Mem_JDBCDAO implements Mem_DAO_interface {
 //		dao.insert(memVO1);
 
 		// 修改
-		Mem_VO memVO2 = new Mem_VO();
-
-		memVO2.setMem_account("qwe123");
-		memVO2.setMem_password("asd321");
-		memVO2.setMem_gender(1);
-		memVO2.setMem_last_name("葉");
-		memVO2.setMem_first_name("柏宇");
-		memVO2.setMem_nickname("阿葉");
-		memVO2.setMem_tel_no("02-12345678");
-		memVO2.setMem_cel_no("0912345678");
-		memVO2.setMem_email("puvonote@altmails.com");
-		memVO2.setMem_id("Z263574483");	
-		memVO2.setMem_birth(java.sql.Date.valueOf("1992-01-11"));
-		memVO2.setMem_addr("新北市新莊區新豐街217號");
-		memVO2.setMem_permission(0);
-		memVO2.setStatus(0);
-		memVO2.setMem_build_time(java.sql.Timestamp.valueOf("2022-08-18 15:53:13"));
-		memVO2.setMem_cert_status(1);
-		memVO2.setMem_no(1);
-		dao.update(memVO2);
-		System.out.println("update success!");
+//		Mem_VO memVO2 = new Mem_VO();
+//
+//		memVO2.setMem_account("qwe123");
+//		memVO2.setMem_password("asd321");
+//		memVO2.setMem_gender(1);
+//		memVO2.setMem_last_name("葉");
+//		memVO2.setMem_first_name("柏宇");
+//		memVO2.setMem_nickname("阿葉");
+//		memVO2.setMem_tel_no("02-12345678");
+//		memVO2.setMem_cel_no("0912345678");
+//		memVO2.setMem_email("puvonote@altmails.com");
+//		memVO2.setMem_id("Z263574483");	
+//		memVO2.setMem_birth(java.sql.Date.valueOf("1992-01-11"));
+//		memVO2.setMem_addr("新北市新莊區新豐街217號");
+//		memVO2.setMem_permission(0);
+//		memVO2.setStatus(0);
+//		memVO2.setMem_build_time(java.sql.Timestamp.valueOf("2022-08-18 15:53:13"));
+//		memVO2.setMem_cert_status(1);
+//		memVO2.setMem_no(1);
+//		dao.update(memVO2);
+//		System.out.println("update success!");
 
 //		// 刪除
 //		dao.delete(1);

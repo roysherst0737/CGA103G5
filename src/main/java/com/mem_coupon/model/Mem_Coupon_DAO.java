@@ -49,7 +49,7 @@ public class Mem_Coupon_DAO implements Mem_Coupon_DAO_interface{
 
 			pstmt.setInt(1, memCouponVO.getCoupon_no());
 			pstmt.setInt(2, memCouponVO.getMem_no());
-			pstmt.setInt(3, memCouponVO.getRenaim_amount());
+			pstmt.setInt(3, memCouponVO.getRemain_amount());
 
 			pstmt.executeUpdate();
 
@@ -88,7 +88,7 @@ public class Mem_Coupon_DAO implements Mem_Coupon_DAO_interface{
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1, memCouponVO.getRenaim_amount());
+			pstmt.setInt(1, memCouponVO.getRemain_amount());
 			pstmt.setInt(2, memCouponVO.getMem_no());
 			pstmt.setInt(3, memCouponVO.getCoupon_no());
 
@@ -182,7 +182,7 @@ public class Mem_Coupon_DAO implements Mem_Coupon_DAO_interface{
 				memCouponVO = new Mem_Coupon_VO();
 				memCouponVO.setCoupon_no(rs.getInt("coupon_no"));
 				memCouponVO.setMem_no(rs.getInt("mem_no"));
-				memCouponVO.setRenaim_amount(rs.getInt("renaim_amount"));
+				memCouponVO.setRemain_amount(rs.getInt("Remain_amount"));
 
 			}
 
@@ -237,7 +237,7 @@ public class Mem_Coupon_DAO implements Mem_Coupon_DAO_interface{
 				memCouponVO = new Mem_Coupon_VO();
 				memCouponVO.setCoupon_no(rs.getInt("coupon_no"));
 				memCouponVO.setMem_no(rs.getInt("mem_no"));
-				memCouponVO.setRenaim_amount(rs.getInt("renaim_amount"));
+				memCouponVO.setRemain_amount(rs.getInt("Remain_amount"));
 
 				list.add(memCouponVO); // Store the row in the list
 			}

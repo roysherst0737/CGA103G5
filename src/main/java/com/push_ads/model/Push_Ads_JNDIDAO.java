@@ -26,19 +26,19 @@ public class Push_Ads_JNDIDAO implements Push_Ads_DAO_interface{
 	}
 
 	private static final String INSERT_STMT = 
-			"INSERT INTO push_ads (prod_no, ads_content, act_no,"
-			+ " pub_no, ads_pic, weights) VALUES (?, ?, ?, ?, ?, ?)";
-		private static final String GET_ALL_STMT = 
-			"SELECT ads_no, prod_no, ads_content, act_no,"
-			+ " pub_no, ads_pic, weights FROM push_ads order by ads_no";
-		private static final String GET_ONE_STMT = 
-			"SELECT ads_no, prod_no, ads_content, act_no,"
-			+ " pub_no, ads_pic, weights FROM push_ads where ads_no = ?";
-		private static final String DELETE = 
-			"DELETE FROM push_ads where ads_no = ?";
-		private static final String UPDATE = 
-			"UPDATE push_ads set prod_no=?, ads_content=?, act_no=?,"
-			+ " pub_no=?, ads_pic=?, weights=? where ads_no = ?";
+		"INSERT INTO push_ads (ads_content, prod_no, act_no,"
+		+ " pub_no, ads_pic, weights) VALUES (?, ?, ?, ?, ?, ?)";
+	private static final String GET_ALL_STMT = 
+		"SELECT ads_no, ads_content , prod_no , act_no,"
+		+ " pub_no, ads_pic, weights FROM push_ads order by ads_no";
+	private static final String GET_ONE_STMT = 
+		"SELECT ads_no,ads_content , prod_no , act_no,"
+		+ " pub_no, ads_pic, weights FROM push_ads where ads_no = ?";
+	private static final String DELETE = 
+		"DELETE FROM push_ads where ads_no = ?";
+	private static final String UPDATE = 
+		"UPDATE push_ads set ads_content=? , prod_no=?, act_no=?,"
+		+ " pub_no=?, ads_pic=?, weights=? where ads_no = ?";
 
 	@Override
 	public void insert(Push_Ads_VO pushAdsVO) {
@@ -51,8 +51,9 @@ public class Push_Ads_JNDIDAO implements Push_Ads_DAO_interface{
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setInt(1, pushAdsVO.getProd_no());
-			pstmt.setString(2, pushAdsVO.getAds_content());
+			
+			pstmt.setString(1, pushAdsVO.getAds_content());
+			pstmt.setInt(2, pushAdsVO.getProd_no());
 			pstmt.setInt(3, pushAdsVO.getAct_no());
 			pstmt.setInt(4, pushAdsVO.getPub_no());
 			pstmt.setBlob(5, pushAdsVO.getAds_pic());
@@ -95,8 +96,8 @@ public class Push_Ads_JNDIDAO implements Push_Ads_DAO_interface{
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1, pushAdsVO.getProd_no());
-			pstmt.setString(2, pushAdsVO.getAds_content());
+			pstmt.setString(1, pushAdsVO.getAds_content());
+			pstmt.setInt(2, pushAdsVO.getProd_no());
 			pstmt.setInt(3, pushAdsVO.getAct_no());
 			pstmt.setInt(4, pushAdsVO.getPub_no());
 			pstmt.setBlob(5, pushAdsVO.getAds_pic());
@@ -189,8 +190,8 @@ public class Push_Ads_JNDIDAO implements Push_Ads_DAO_interface{
 				// empVo 也稱為 Domain objects
 				pushAdsVO = new Push_Ads_VO();
 				pstmt.setInt(1, pushAdsVO.getAds_no());
-				pstmt.setInt(2, pushAdsVO.getProd_no());
-				pstmt.setString(3, pushAdsVO.getAds_content());
+				pstmt.setString(2, pushAdsVO.getAds_content());
+				pstmt.setInt(3, pushAdsVO.getProd_no());
 				pstmt.setInt(4, pushAdsVO.getAct_no());
 				pstmt.setInt(5, pushAdsVO.getPub_no());
 				pstmt.setBlob(6, pushAdsVO.getAds_pic());
@@ -248,8 +249,8 @@ public class Push_Ads_JNDIDAO implements Push_Ads_DAO_interface{
 				// empVO 也稱為 Domain objects
 				pushAdsVO = new Push_Ads_VO();
 				pstmt.setInt(1, pushAdsVO.getAds_no());
-				pstmt.setInt(2, pushAdsVO.getProd_no());
-				pstmt.setString(3, pushAdsVO.getAds_content());
+				pstmt.setString(2, pushAdsVO.getAds_content());
+				pstmt.setInt(3, pushAdsVO.getProd_no());
 				pstmt.setInt(4, pushAdsVO.getAct_no());
 				pstmt.setInt(5, pushAdsVO.getPub_no());
 				pstmt.setBlob(6, pushAdsVO.getAds_pic());

@@ -26,15 +26,15 @@ public class Mem_Coupon_JNDIDAO implements Mem_Coupon_DAO_interface{
 	}
 
 	private static final String INSERT_STMT = 
-			"INSERT INTO mem_coupon (coupon_no, mem_no, remain_amount) VALUES (?, ?, ?)";
-		private static final String GET_ALL_STMT = 
-			"SELECT coupon_no, mem_no, remain_amount FROM mem_coupon order by mem_no, coupon_no";
-		private static final String GET_ONE_STMT = 
-			"SELECT coupon_no, mem_no, remain_amount FROM mem_coupon where mem_no = ? AND coupon_no = ?";
-		private static final String DELETE = 
-			"DELETE FROM mem_coupon where mem_no = ? AND coupon_no = ?";
-		private static final String UPDATE = 
-			"UPDATE mem_coupon remain_amount? where mem_no = ? AND coupon_no = ?";
+		"INSERT INTO mem_coupon (coupon_no, mem_no, remain_amount) VALUES (?, ?, ?)";
+	private static final String GET_ALL_STMT = 
+		"SELECT coupon_no, mem_no, remain_amount FROM mem_coupon order by mem_no, coupon_no";
+	private static final String GET_ONE_STMT = 
+		"SELECT coupon_no, mem_no, remain_amount FROM mem_coupon where mem_no = ? AND coupon_no = ?";
+	private static final String DELETE = 
+		"DELETE FROM mem_coupon where mem_no = ? AND coupon_no = ?";
+	private static final String UPDATE = 
+		"UPDATE mem_coupon remain_amount? where mem_no = ? AND coupon_no = ?";
 
 	@Override
 	public void insert(Mem_Coupon_VO memCouponVO) {
@@ -49,7 +49,7 @@ public class Mem_Coupon_JNDIDAO implements Mem_Coupon_DAO_interface{
 
 			pstmt.setInt(1, memCouponVO.getCoupon_no());
 			pstmt.setInt(2, memCouponVO.getMem_no());
-			pstmt.setInt(3, memCouponVO.getRenaim_amount());
+			pstmt.setInt(3, memCouponVO.getRemain_amount());
 
 			pstmt.executeUpdate();
 
@@ -88,7 +88,7 @@ public class Mem_Coupon_JNDIDAO implements Mem_Coupon_DAO_interface{
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1, memCouponVO.getRenaim_amount());
+			pstmt.setInt(1, memCouponVO.getRemain_amount());
 			pstmt.setInt(2, memCouponVO.getMem_no());
 			pstmt.setInt(3, memCouponVO.getCoupon_no());
 
@@ -182,7 +182,7 @@ public class Mem_Coupon_JNDIDAO implements Mem_Coupon_DAO_interface{
 				memCouponVO = new Mem_Coupon_VO();
 				memCouponVO.setCoupon_no(rs.getInt("coupon_no"));
 				memCouponVO.setMem_no(rs.getInt("mem_no"));
-				memCouponVO.setRenaim_amount(rs.getInt("renaim_amount"));
+				memCouponVO.setRemain_amount(rs.getInt("Remain_amount"));
 
 			}
 
@@ -237,7 +237,7 @@ public class Mem_Coupon_JNDIDAO implements Mem_Coupon_DAO_interface{
 				memCouponVO = new Mem_Coupon_VO();
 				memCouponVO.setCoupon_no(rs.getInt("coupon_no"));
 				memCouponVO.setMem_no(rs.getInt("mem_no"));
-				memCouponVO.setRenaim_amount(rs.getInt("renaim_amount"));
+				memCouponVO.setRemain_amount(rs.getInt("Remain_amount"));
 
 				list.add(memCouponVO); // Store the row in the list
 			}

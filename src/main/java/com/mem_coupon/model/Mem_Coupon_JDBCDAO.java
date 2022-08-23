@@ -40,7 +40,7 @@ public class Mem_Coupon_JDBCDAO implements Mem_Coupon_DAO_interface{
 
 			pstmt.setInt(1, memCouponVO.getCoupon_no());
 			pstmt.setInt(2, memCouponVO.getMem_no());
-			pstmt.setInt(3, memCouponVO.getRenaim_amount());
+			pstmt.setInt(3, memCouponVO.getRemain_amount());
 
 
 			pstmt.executeUpdate();
@@ -85,7 +85,7 @@ public class Mem_Coupon_JDBCDAO implements Mem_Coupon_DAO_interface{
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1, memCouponVO.getRenaim_amount());
+			pstmt.setInt(1, memCouponVO.getRemain_amount());
 			pstmt.setInt(2, memCouponVO.getMem_no());
 			pstmt.setInt(3, memCouponVO.getCoupon_no());
 
@@ -189,7 +189,7 @@ public class Mem_Coupon_JDBCDAO implements Mem_Coupon_DAO_interface{
 				memCouponVO = new Mem_Coupon_VO();
 				memCouponVO.setCoupon_no(rs.getInt("coupon_no"));
 				memCouponVO.setMem_no(rs.getInt("mem_no"));
-				memCouponVO.setRenaim_amount(rs.getInt("renaim_amount"));
+				memCouponVO.setRemain_amount(rs.getInt("remain_amount"));
 
 			}
 
@@ -249,7 +249,7 @@ public class Mem_Coupon_JDBCDAO implements Mem_Coupon_DAO_interface{
 				memCouponVO = new Mem_Coupon_VO();
 				memCouponVO.setCoupon_no(rs.getInt("coupon_no"));
 				memCouponVO.setMem_no(rs.getInt("mem_no"));
-				memCouponVO.setRenaim_amount(rs.getInt("renaim_amount"));
+				memCouponVO.setRemain_amount(rs.getInt("renaim_amount"));
 
 				list.add(memCouponVO); // Store the row in the list
 			}
@@ -293,52 +293,40 @@ public class Mem_Coupon_JDBCDAO implements Mem_Coupon_DAO_interface{
 
 		Mem_Coupon_JDBCDAO dao = new Mem_Coupon_JDBCDAO();
 
-		// 新增
-		EmpVO empVO1 = new EmpVO();
-		empVO1.setEname("吳永志1");
-		empVO1.setJob("MANAGER");
-		empVO1.setHiredate(java.sql.Date.valueOf("2005-01-01"));
-		empVO1.setSal(new Double(50000));
-		empVO1.setComm(new Double(500));
-		empVO1.setDeptno(10);
-		dao.insert(empVO1);
-
-		// 修改
-		EmpVO empVO2 = new EmpVO();
-		empVO2.setEmpno(7001);
-		empVO2.setEname("吳永志2");
-		empVO2.setJob("MANAGER2");
-		empVO2.setHiredate(java.sql.Date.valueOf("2002-01-01"));
-		empVO2.setSal(new Double(20000));
-		empVO2.setComm(new Double(200));
-		empVO2.setDeptno(20);
-		dao.update(empVO2);
-
-		// 刪除
-		dao.delete(7014);
-
+//		// 新增
+//		Mem_Coupon_VO memCouponVO1 = new Mem_Coupon_VO();
+//		memCouponVO1.setCoupon_no(1);
+//		memCouponVO1.setMem_no(1);
+//		memCouponVO1.setRemain_amount(2);
+//
+//		dao.insert(memCouponVO1);
+//
+//		// 修改
+//		Mem_Coupon_VO memCouponVO2 = new Mem_Coupon_VO();
+//		memCouponVO2.setCoupon_no(1);
+//		memCouponVO2.setMem_no(1);
+//		memCouponVO2.setRemain_amount(2);
+//		dao.update(memCouponVO2);
+//
+//		// 刪除
+//		dao.delete(1,1);
+//
 		// 查詢
-		EmpVO empVO3 = dao.findByPrimaryKey(7001);
-		System.out.print(empVO3.getEmpno() + ",");
-		System.out.print(empVO3.getEname() + ",");
-		System.out.print(empVO3.getJob() + ",");
-		System.out.print(empVO3.getHiredate() + ",");
-		System.out.print(empVO3.getSal() + ",");
-		System.out.print(empVO3.getComm() + ",");
-		System.out.println(empVO3.getDeptno());
+		Mem_Coupon_VO memCouponVO3 = dao.findByPrimaryKey(1,1);
+		System.out.print(memCouponVO3.getCoupon_no() + ",");
+		System.out.print(memCouponVO3.getMem_no() + ",");
+		System.out.print(memCouponVO3.getRemain_amount() + ",");
+
 		System.out.println("---------------------");
 
 		// 查詢
-		List<EmpVO> list = dao.getAll();
-		for (EmpVO aEmp : list) {
-			System.out.print(aEmp.getEmpno() + ",");
-			System.out.print(aEmp.getEname() + ",");
-			System.out.print(aEmp.getJob() + ",");
-			System.out.print(aEmp.getHiredate() + ",");
-			System.out.print(aEmp.getSal() + ",");
-			System.out.print(aEmp.getComm() + ",");
-			System.out.print(aEmp.getDeptno());
-			System.out.println();
-		}
+//		List<Mem_Coupon_VO> list = dao.getAll();
+//		for (Mem_Coupon_VO aEmp : list) {
+//			System.out.print(aEmp.getCoupon_no() + ",");
+//			System.out.print(aEmp.getMem_no() + ",");
+//			System.out.print(aEmp.getRemain_amount() + ",");
+//
+//			System.out.println();
+//		}
 	}
 }

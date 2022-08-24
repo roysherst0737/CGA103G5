@@ -1,28 +1,19 @@
 package com.act_sign_up.model;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
 
-public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
-
-	private static DataSource ds = null;
-	static {
-		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/lonelybar");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
+public class Act_sign_up_JDBCDAO implements Act_sign_up_DAO_interface {
+	String driver = "com.mysql.cj.jdbc.Driver";
+	String url = "jdbc:mysql://localhost:3306/lonelybar?serverTimezone=Asia/Taipei";
+	String userid = "cga10305";
+	String passwd = "123qweqwe";
 
 	private static final String INSERT_STMT = "INSERT INTO act_sign_up (act_no, mem_no, accompany_count, sign_up_status) VALUES (?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT sign_up_no, act_no, mem_no, sign_up_time, accompany_count, sign_up_status FROM act_sign_up order by sign_up_no";
@@ -37,7 +28,8 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, act_sign_up_VO.getAct_no());
@@ -51,6 +43,9 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -77,7 +72,8 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setInt(1, act_sign_up_VO.getAct_no());
@@ -92,6 +88,9 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -118,7 +117,8 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, sign_up_no);
@@ -129,6 +129,9 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -157,7 +160,8 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setInt(1, sign_up_no);
@@ -180,6 +184,9 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try {
@@ -217,7 +224,8 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
@@ -237,6 +245,9 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try {
@@ -261,6 +272,56 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 			}
 		}
 		return list;
+	}
+
+	public static void main(String[] args) {
+
+		Act_sign_up_JDBCDAO dao = new Act_sign_up_JDBCDAO();
+
+		// 新增
+		Act_sign_up_VO act_sign_up_VO01 = new Act_sign_up_VO();
+		act_sign_up_VO01.setAct_no(1);
+		act_sign_up_VO01.setMem_no(1);
+		act_sign_up_VO01.setAccompany_count(0);
+		act_sign_up_VO01.setSign_up_status(0);
+
+		dao.insert(act_sign_up_VO01);
+
+		// 修改
+		Act_sign_up_VO act_sign_up_VO02 = new Act_sign_up_VO();
+		act_sign_up_VO01.setAct_no(1);
+		act_sign_up_VO01.setMem_no(1);
+		act_sign_up_VO01.setAccompany_count(0);
+		act_sign_up_VO01.setSign_up_status(0);
+		act_sign_up_VO02.setSign_up_no(1);
+
+		dao.update(act_sign_up_VO02);
+
+		// 刪除
+		dao.delete(1);
+
+		// 查詢
+
+		Act_sign_up_VO act_sign_up_VO03 = dao.findByPrimaryKey(1);
+		System.out.print(act_sign_up_VO03.getSign_up_no() + ",");
+		System.out.print(act_sign_up_VO03.getAct_no() + ",");
+		System.out.print(act_sign_up_VO03.getMem_no() + ",");
+		System.out.print(act_sign_up_VO03.getSign_up_time() + ",");
+		System.out.print(act_sign_up_VO03.getAccompany_count() + ",");
+		System.out.print(act_sign_up_VO03.getSign_up_status());
+		System.out.println("---------------------");
+
+		// 查詢
+		List<Act_sign_up_VO> list = dao.getAll();
+		for (Act_sign_up_VO aAct_sign_up : list) {
+			System.out.print(aAct_sign_up.getSign_up_no() + ",");
+			System.out.print(aAct_sign_up.getAct_no() + ",");
+			System.out.print(aAct_sign_up.getMem_no() + ",");
+			System.out.print(aAct_sign_up.getSign_up_time() + ",");
+			System.out.print(aAct_sign_up.getAccompany_count() + ",");
+			System.out.print(aAct_sign_up.getSign_up_status());
+			System.out.println();
+		}
 	}
 
 }

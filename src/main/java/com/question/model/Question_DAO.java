@@ -159,7 +159,7 @@ public class Question_DAO implements Question_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVO ä¹Ÿç¨±ç‚º Domain objects
 				question_VO = new Question_VO();
 				question_VO.setQuestion_no(rs.getInt("question_no"));
 				question_VO.setQue(rs.getString("que"));
@@ -212,7 +212,7 @@ public class Question_DAO implements Question_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ä¹Ÿç¨±ç‚º Domain objects
 				question_VO = new Question_VO();
 				question_VO.setQuestion_no(rs.getInt("question_no"));
 				question_VO.setQue(rs.getString("que"));

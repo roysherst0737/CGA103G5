@@ -182,7 +182,7 @@ public class Act_JNDIDAO implements Act_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVO ä¹Ÿç¨±ç‚º Domain objects
 				act_VO = new Act_VO();
 				act_VO.setAct_no(rs.getInt("empno"));
 				act_VO.setPub_no(rs.getInt("ename"));
@@ -250,7 +250,7 @@ public class Act_JNDIDAO implements Act_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ä¹Ÿç¨±ç‚º Domain objects
 				act_VO = new Act_VO();
 				act_VO.setAct_no(rs.getInt("empno"));
 				act_VO.setPub_no(rs.getInt("ename"));

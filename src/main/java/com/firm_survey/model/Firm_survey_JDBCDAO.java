@@ -1,28 +1,18 @@
 package com.firm_survey.model;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
-public class Firm_survey_DAO implements Firm_survey_DAO_interface {
-
-	private static DataSource ds = null;
-	static {
-		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/lonelybar");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
+public class Firm_survey_JDBCDAO implements Firm_survey_DAO_interface {
+	String driver = "com.mysql.cj.jdbc.Driver";
+	String url = "jdbc:mysql://localhost:3306/lonelybar?serverTimezone=Asia/Taipei";
+	String userid = "cga10305";
+	String passwd = "123qweqwe";
 
 	private static final String INSERT_STMT = "INSERT INTO firm_survey (act_no) VALUES (?)";
 	private static final String GET_ALL_STMT = "SELECT firm_survey_no, act_no, survey_build_time, survey_revise_time FROM firm_survey order by firm_survey_no";
@@ -37,7 +27,8 @@ public class Firm_survey_DAO implements Firm_survey_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, firm_survey_VO.getAct_no());
@@ -48,6 +39,9 @@ public class Firm_survey_DAO implements Firm_survey_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -74,7 +68,8 @@ public class Firm_survey_DAO implements Firm_survey_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setInt(1, firm_survey_VO.getAct_no());
@@ -86,6 +81,9 @@ public class Firm_survey_DAO implements Firm_survey_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -112,7 +110,8 @@ public class Firm_survey_DAO implements Firm_survey_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, firm_survey_no);
@@ -123,6 +122,9 @@ public class Firm_survey_DAO implements Firm_survey_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -151,7 +153,8 @@ public class Firm_survey_DAO implements Firm_survey_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setInt(1, firm_survey_no);
@@ -172,6 +175,9 @@ public class Firm_survey_DAO implements Firm_survey_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try {
@@ -209,7 +215,8 @@ public class Firm_survey_DAO implements Firm_survey_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
@@ -227,6 +234,9 @@ public class Firm_survey_DAO implements Firm_survey_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try {
@@ -251,6 +261,46 @@ public class Firm_survey_DAO implements Firm_survey_DAO_interface {
 			}
 		}
 		return list;
+	}
+
+	public static void main(String[] args) {
+
+		Firm_survey_JDBCDAO dao = new Firm_survey_JDBCDAO();
+
+		// 新增
+		Firm_survey_VO firm_survey_VO01 = new Firm_survey_VO();
+		firm_survey_VO01.setAct_no(1);
+
+		dao.insert(firm_survey_VO01);
+
+		// 修改
+		Firm_survey_VO firm_survey_VO02 = new Firm_survey_VO();
+		firm_survey_VO02.setAct_no(1);
+		firm_survey_VO02.setFirm_survey_no(1);
+
+		dao.update(firm_survey_VO02);
+
+		// 刪除
+		dao.delete(1);
+
+		// 查詢
+
+		Firm_survey_VO firm_survey_VO03 = dao.findByPrimaryKey(1);
+		System.out.print(firm_survey_VO03.getFirm_survey_no() + ",");
+		System.out.print(firm_survey_VO03.getAct_no() + ",");
+		System.out.print(firm_survey_VO03.getSurvey_build_time() + ",");
+		System.out.print(firm_survey_VO03.getSurvey_revise_time());
+		System.out.println("---------------------");
+
+		// 查詢
+		List<Firm_survey_VO> list = dao.getAll();
+		for (Firm_survey_VO afirm_survey : list) {
+			System.out.print(afirm_survey.getFirm_survey_no() + ",");
+			System.out.print(afirm_survey.getAct_no() + ",");
+			System.out.print(afirm_survey.getSurvey_build_time() + ",");
+			System.out.print(afirm_survey.getSurvey_revise_time());
+			System.out.println();
+		}
 	}
 
 }

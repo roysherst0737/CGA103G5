@@ -1,49 +1,37 @@
-package com.act_sign_up.model;
+package com.question.model;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+public class Question_JDBCDAO implements Question_DAO_interface {
+	String driver = "com.mysql.cj.jdbc.Driver";
+	String url = "jdbc:mysql://localhost:3306/lonelybar?serverTimezone=Asia/Taipei";
+	String userid = "cga10305";
+	String passwd = "123qweqwe";
 
-public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
-
-	private static DataSource ds = null;
-	static {
-		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/lonelybar");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private static final String INSERT_STMT = "INSERT INTO act_sign_up (act_no, mem_no, accompany_count, sign_up_status) VALUES (?, ?, ?, ?)";
-	private static final String GET_ALL_STMT = "SELECT sign_up_no, act_no, mem_no, sign_up_time, accompany_count, sign_up_status FROM act_sign_up order by sign_up_no";
-	private static final String GET_ONE_STMT = "SELECT sign_up_no, act_no, mem_no, sign_up_time, accompany_count, sign_up_status FROM act_sign_up where sign_up_no = ?";
-	private static final String DELETE = "DELETE FROM act_sign_up where sign_up_no = ?";
-	private static final String UPDATE = "UPDATE act_sign_up set act_no = ?, mem_no = ?, accompany_count = ?, sign_up_status = ? where sign_up_no = ?";
+	private static final String INSERT_STMT = "INSERT INTO question (que) VALUES (?)";
+	private static final String GET_ALL_STMT = "SELECT question_no, que FROM question order by question_no";
+	private static final String GET_ONE_STMT = "SELECT question_no, que FROM question where question_no = ?";
+	private static final String DELETE = "DELETE FROM question where question_no = ?";
+	private static final String UPDATE = "UPDATE question set que = ? where question_no = ?";
 
 	@Override
-	public void insert(Act_sign_up_VO act_sign_up_VO) {
+	public void insert(Question_VO question_VO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
-			pstmt.setInt(1, act_sign_up_VO.getAct_no());
-			pstmt.setInt(2, act_sign_up_VO.getMem_no());
-			pstmt.setInt(3, act_sign_up_VO.getAccompany_count());
-			pstmt.setInt(4, act_sign_up_VO.getSign_up_status());
+			pstmt.setString(1, question_VO.getQue());
 
 			pstmt.executeUpdate();
 
@@ -51,6 +39,9 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -71,20 +62,18 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 	}
 
 	@Override
-	public void update(Act_sign_up_VO act_sign_up_VO) {
+	public void update(Question_VO question_VO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1, act_sign_up_VO.getAct_no());
-			pstmt.setInt(2, act_sign_up_VO.getMem_no());
-			pstmt.setInt(3, act_sign_up_VO.getAccompany_count());
-			pstmt.setInt(4, act_sign_up_VO.getSign_up_status());
-			pstmt.setInt(5, act_sign_up_VO.getSign_up_no());
+			pstmt.setString(1, question_VO.getQue());
+			pstmt.setInt(2, question_VO.getQuestion_no());
 
 			pstmt.executeUpdate();
 
@@ -92,6 +81,9 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -112,16 +104,17 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 	}
 
 	@Override
-	public void delete(Integer sign_up_no) {
+	public void delete(Integer question_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(DELETE);
 
-			pstmt.setInt(1, sign_up_no);
+			pstmt.setInt(1, question_no);
 
 			pstmt.executeUpdate();
 
@@ -129,6 +122,9 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -149,30 +145,27 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 	}
 
 	@Override
-	public Act_sign_up_VO findByPrimaryKey(Integer sign_up_no) {
-		Act_sign_up_VO act_sign_up_VO = null;
+	public Question_VO findByPrimaryKey(Integer question_no) {
+		Question_VO question_VO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			pstmt.setInt(1, sign_up_no);
+			pstmt.setInt(1, question_no);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
-				act_sign_up_VO = new Act_sign_up_VO();
-				act_sign_up_VO.setSign_up_no(rs.getInt("sign_up_no"));
-				act_sign_up_VO.setAct_no(rs.getInt("act_no"));
-				act_sign_up_VO.setMem_no(rs.getInt("mem_no"));
-				act_sign_up_VO.setSign_up_time(rs.getTimestamp("sign_up_time"));
-				act_sign_up_VO.setAccompany_count(rs.getInt("accompany_count"));
-				act_sign_up_VO.setSign_up_status(rs.getInt("sign_up_status"));
+				question_VO = new Question_VO();
+				question_VO.setQuestion_no(rs.getInt("question_no"));
+				question_VO.setQue(rs.getString("que"));
 
 			}
 
@@ -180,6 +173,9 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try {
@@ -203,13 +199,13 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 				}
 			}
 		}
-		return act_sign_up_VO;
+		return question_VO;
 	}
 
 	@Override
-	public List<Act_sign_up_VO> getAll() {
-		List<Act_sign_up_VO> list = new ArrayList<Act_sign_up_VO>();
-		Act_sign_up_VO act_sign_up_VO = null;
+	public List<Question_VO> getAll() {
+		List<Question_VO> list = new ArrayList<Question_VO>();
+		Question_VO question_VO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -217,26 +213,27 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				// empVO 也稱為 Domain objects
-				act_sign_up_VO = new Act_sign_up_VO();
-				act_sign_up_VO.setSign_up_no(rs.getInt("sign_up_no"));
-				act_sign_up_VO.setAct_no(rs.getInt("act_no"));
-				act_sign_up_VO.setMem_no(rs.getInt("mem_no"));
-				act_sign_up_VO.setSign_up_time(rs.getTimestamp("sign_up_time"));
-				act_sign_up_VO.setAccompany_count(rs.getInt("accompany_count"));
-				act_sign_up_VO.setSign_up_status(rs.getInt("sign_up_status"));
-				list.add(act_sign_up_VO); // Store the row in the list
+				question_VO = new Question_VO();
+				question_VO.setQuestion_no(rs.getInt("question_no"));
+				question_VO.setQue(rs.getString("que"));
+
+				list.add(question_VO); // Store the row in the list
 			}
 
 			// Handle any driver errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try {
@@ -261,6 +258,43 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 			}
 		}
 		return list;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Question_JDBCDAO dao = new Question_JDBCDAO();
+
+		// 新增
+		Question_VO question_VO01 = new Question_VO();
+		question_VO01.setQue("問題");
+
+		dao.insert(question_VO01);
+
+		// 修改
+		Question_VO question_VO02 = new Question_VO();
+		question_VO02.setQue("問題");
+		question_VO02.setQuestion_no(1);
+
+		dao.update(question_VO02);
+
+		// 刪除
+		dao.delete(1);
+
+		// 查詢
+
+		Question_VO question_VO03 = dao.findByPrimaryKey(1);
+		System.out.print(question_VO03.getQuestion_no() + ",");
+		System.out.print(question_VO03.getQue());
+		System.out.println("---------------------");
+
+		// 查詢
+		List<Question_VO> list = dao.getAll();
+		for (Question_VO aQuestion : list) {
+			System.out.print(aQuestion.getQuestion_no() + ",");
+			System.out.print(aQuestion.getQue());
+			System.out.println();
+		}
 	}
 
 }

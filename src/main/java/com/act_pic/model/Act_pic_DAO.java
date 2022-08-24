@@ -159,7 +159,7 @@ public class Act_pic_DAO implements Act_pic_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVO ä¹Ÿç¨±ç‚º Domain objects
 				act_pic_VO = new Act_pic_VO();
 				act_pic_VO.setAct_pic_no(rs.getInt("act_pic_no"));
 				act_pic_VO.setAct_no(rs.getInt("act_no"));
@@ -214,7 +214,7 @@ public class Act_pic_DAO implements Act_pic_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ä¹Ÿç¨±ç‚º Domain objects
 				act_pic_VO = new Act_pic_VO();
 				act_pic_VO.setAct_pic_no(rs.getInt("act_pic_no"));
 				act_pic_VO.setAct_no(rs.getInt("act_no"));

@@ -168,7 +168,7 @@ public class Ans_list_JNDIDAO implements Ans_list_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVO ä¹Ÿç¨±ç‚º Domain objects
 				ans_list_VO = new Ans_list_VO();
 				ans_list_VO.setQuestion_no(rs.getInt("question_no"));
 				ans_list_VO.setFirm_survey_no(rs.getInt("firm_survey_no"));
@@ -223,7 +223,7 @@ public class Ans_list_JNDIDAO implements Ans_list_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ä¹Ÿç¨±ç‚º Domain objects
 				ans_list_VO = new Ans_list_VO();
 				ans_list_VO.setQuestion_no(rs.getInt("question_no"));
 				ans_list_VO.setFirm_survey_no(rs.getInt("firm_survey_no"));

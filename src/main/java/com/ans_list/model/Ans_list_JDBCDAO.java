@@ -1,28 +1,18 @@
 package com.ans_list.model;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
-public class Ans_list_DAO implements Ans_list_DAO_interface {
-
-	private static DataSource ds = null;
-	static {
-		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/lonelybar");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
+public class Ans_list_JDBCDAO implements Ans_list_DAO_interface {
+	String driver = "com.mysql.cj.jdbc.Driver";
+	String url = "jdbc:mysql://localhost:3306/lonelybar?serverTimezone=Asia/Taipei";
+	String userid = "cga10305";
+	String passwd = "123qweqwe";
 
 	private static final String INSERT_STMT = "INSERT INTO ans_list (question_no, firm_survey_no, mem_no, ans) VALUES (?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT question_no, firm_survey_no, mem_no, ans FROM ans_list order by question_no";
@@ -37,7 +27,8 @@ public class Ans_list_DAO implements Ans_list_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, ans_list_VO.getQuestion_no());
@@ -51,6 +42,9 @@ public class Ans_list_DAO implements Ans_list_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -77,7 +71,8 @@ public class Ans_list_DAO implements Ans_list_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, ans_list_VO.getAns());
@@ -91,6 +86,9 @@ public class Ans_list_DAO implements Ans_list_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -117,7 +115,8 @@ public class Ans_list_DAO implements Ans_list_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, question_no);
@@ -130,6 +129,9 @@ public class Ans_list_DAO implements Ans_list_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -158,7 +160,8 @@ public class Ans_list_DAO implements Ans_list_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setInt(1, question_no);
@@ -181,6 +184,9 @@ public class Ans_list_DAO implements Ans_list_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try {
@@ -218,7 +224,8 @@ public class Ans_list_DAO implements Ans_list_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
@@ -236,6 +243,9 @@ public class Ans_list_DAO implements Ans_list_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try {
@@ -260,6 +270,51 @@ public class Ans_list_DAO implements Ans_list_DAO_interface {
 			}
 		}
 		return list;
+	}
+
+	public static void main(String[] args) {
+
+		Ans_list_JDBCDAO dao = new Ans_list_JDBCDAO();
+
+		// 新增
+		Ans_list_VO ans_list_VO01 = new Ans_list_VO();
+		ans_list_VO01.setQuestion_no(1);
+		ans_list_VO01.setFirm_survey_no(1);
+		ans_list_VO01.setMem_no(1);
+		ans_list_VO01.setAns("回答");
+
+		dao.insert(ans_list_VO01);
+
+		// 修改
+		Ans_list_VO ans_list_VO02 = new Ans_list_VO();
+		ans_list_VO02.setAns("回答");
+		ans_list_VO02.setQuestion_no(1);
+		ans_list_VO02.setFirm_survey_no(1);
+		ans_list_VO02.setMem_no(1);
+
+		dao.update(ans_list_VO02);
+
+		// 刪除
+		dao.delete(1, 1, 1);
+
+		// 查詢
+
+		Ans_list_VO ans_list_VO03 = dao.findByPrimaryKey(1, 1, 1);
+		System.out.print(ans_list_VO03.getQuestion_no() + ",");
+		System.out.print(ans_list_VO03.getFirm_survey_no() + ",");
+		System.out.print(ans_list_VO03.getMem_no() + ",");
+		System.out.println(ans_list_VO03.getAns());
+		System.out.println("---------------------");
+
+		// 查詢
+		List<Ans_list_VO> list = dao.getAll();
+		for (Ans_list_VO aAns_list : list) {
+			System.out.print(aAns_list.getQuestion_no() + ",");
+			System.out.print(aAns_list.getFirm_survey_no() + ",");
+			System.out.print(aAns_list.getMem_no() + ",");
+			System.out.println(aAns_list.getAns());
+			System.out.println();
+		}
 	}
 
 }

@@ -1,24 +1,18 @@
 package com.act.model;
 
-import java.util.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-
-public class Act_DAO implements Act_DAO_interface {
-
-	private static DataSource ds = null;
-	static {
-		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/lonelybar");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
+public class Act_JDBCDAO implements Act_DAO_interface {
+	String driver = "com.mysql.cj.jdbc.Driver";
+	String url = "jdbc:mysql://localhost:3306/lonelybar?serverTimezone=Asia/Taipei";
+	String userid = "cga10305";
+	String passwd = "123qweqwe";
 
 	private static final String INSERT_STMT = "INSERT INTO act (pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status, apply_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT act_no, pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status, apply_time, apply_status FROM act order by act_no";
@@ -33,7 +27,8 @@ public class Act_DAO implements Act_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, act_VO.getPub_no());
@@ -58,6 +53,9 @@ public class Act_DAO implements Act_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -84,7 +82,8 @@ public class Act_DAO implements Act_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setInt(1, act_VO.getPub_no());
@@ -110,6 +109,9 @@ public class Act_DAO implements Act_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -136,7 +138,8 @@ public class Act_DAO implements Act_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, act_no);
@@ -147,6 +150,9 @@ public class Act_DAO implements Act_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -175,7 +181,8 @@ public class Act_DAO implements Act_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setInt(1, act_no);
@@ -183,7 +190,7 @@ public class Act_DAO implements Act_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo 也稱為 Domain objects
+				// empVO 也稱為 Domain objects
 				act_VO = new Act_VO();
 				act_VO.setAct_no(rs.getInt("act_no"));
 				act_VO.setPub_no(rs.getInt("pub_no"));
@@ -209,6 +216,9 @@ public class Act_DAO implements Act_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try {
@@ -246,12 +256,13 @@ public class Act_DAO implements Act_DAO_interface {
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo 也稱為 Domain objects
+				// empVO 也稱為 Domain objects
 				act_VO = new Act_VO();
 				act_VO.setAct_no(rs.getInt("act_no"));
 				act_VO.setPub_no(rs.getInt("pub_no"));
@@ -277,6 +288,9 @@ public class Act_DAO implements Act_DAO_interface {
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try {
@@ -301,6 +315,100 @@ public class Act_DAO implements Act_DAO_interface {
 			}
 		}
 		return list;
+	}
+
+	public static void main(String[] args) {
+
+		Act_JDBCDAO dao = new Act_JDBCDAO();
+
+		// 新增
+		Act_VO act_VO01 = new Act_VO();
+		act_VO01.setPub_no(1);
+		act_VO01.setAct_name("我想死");
+		act_VO01.setAct_detail("揪團自殺");
+		act_VO01.setAct_loc("懸崖邊");
+		act_VO01.setAct_launch_time(java.sql.Timestamp.valueOf("2022-10-10 10:10:10"));
+		act_VO01.setAct_off_time(java.sql.Timestamp.valueOf("2022-10-10 10:10:10"));
+		act_VO01.setCurrent_count(0);
+		act_VO01.setMax_count(30);
+		act_VO01.setMin_count(10);
+		act_VO01.setSign_up_begin_time(java.sql.Timestamp.valueOf("2022-10-10 10:10:10"));
+		act_VO01.setSign_up_end_time(java.sql.Timestamp.valueOf("2022-10-10 10:10:10"));
+		act_VO01.setAct_start_time(java.sql.Timestamp.valueOf("2022-10-10 10:10:10"));
+		act_VO01.setAct_end_time(java.sql.Timestamp.valueOf("2022-10-10 10:10:10"));
+		act_VO01.setAct_status(0);
+		act_VO01.setApply_status(0);
+
+		dao.insert(act_VO01);
+
+		// 修改
+		Act_VO act_VO02 = new Act_VO();
+		act_VO02.setPub_no(1);
+		act_VO02.setAct_name("我想死");
+		act_VO02.setAct_detail("揪團自殺");
+		act_VO02.setAct_loc("懸崖邊");
+		act_VO02.setAct_launch_time(java.sql.Timestamp.valueOf("2022-10-10 10:10:10"));
+		act_VO02.setAct_off_time(java.sql.Timestamp.valueOf("2022-10-10 10:10:10"));
+		act_VO02.setCurrent_count(0);
+		act_VO02.setMax_count(30);
+		act_VO02.setMin_count(10);
+		act_VO02.setSign_up_begin_time(java.sql.Timestamp.valueOf("2022-10-10 10:10:10"));
+		act_VO02.setSign_up_end_time(java.sql.Timestamp.valueOf("2022-10-10 10:10:10"));
+		act_VO02.setAct_start_time(java.sql.Timestamp.valueOf("2022-10-10 10:10:10"));
+		act_VO02.setAct_end_time(java.sql.Timestamp.valueOf("2022-10-10 10:10:10"));
+		act_VO02.setAct_status(0);
+		act_VO02.setApply_status(0);
+		act_VO02.setAct_no(1);
+
+		dao.update(act_VO02);
+
+		// 刪除
+		dao.delete(1);
+
+		// 查詢
+
+		Act_VO act_VO03 = dao.findByPrimaryKey(1);
+		System.out.print(act_VO03.getAct_no() + ",");
+		System.out.print(act_VO03.getPub_no() + ",");
+		System.out.print(act_VO03.getAct_name() + ",");
+		System.out.print(act_VO03.getAct_detail() + ",");
+		System.out.print(act_VO03.getAct_loc() + ",");
+		System.out.print(act_VO03.getAct_launch_time() + ",");
+		System.out.print(act_VO03.getAct_off_time() + ",");
+		System.out.print(act_VO03.getCurrent_count() + ",");
+		System.out.print(act_VO03.getMax_count() + ",");
+		System.out.print(act_VO03.getMin_count() + ",");
+		System.out.print(act_VO03.getSign_up_begin_time() + ",");
+		System.out.print(act_VO03.getSign_up_end_time() + ",");
+		System.out.print(act_VO03.getAct_start_time() + ",");
+		System.out.print(act_VO03.getAct_end_time() + ",");
+		System.out.print(act_VO03.getAct_status() + ",");
+		System.out.print(act_VO03.getApply_time() + ",");
+		System.out.println(act_VO03.getApply_status());
+		System.out.println("---------------------");
+
+		// 查詢
+		List<Act_VO> list = dao.getAll();
+		for (Act_VO aAct : list) {
+			System.out.print(aAct.getAct_no() + ",");
+			System.out.print(aAct.getPub_no() + ",");
+			System.out.print(aAct.getAct_name() + ",");
+			System.out.print(aAct.getAct_detail() + ",");
+			System.out.print(aAct.getAct_loc() + ",");
+			System.out.print(aAct.getAct_launch_time() + ",");
+			System.out.print(aAct.getAct_off_time() + ",");
+			System.out.print(aAct.getCurrent_count() + ",");
+			System.out.print(aAct.getMax_count() + ",");
+			System.out.print(aAct.getMin_count() + ",");
+			System.out.print(aAct.getSign_up_begin_time() + ",");
+			System.out.print(aAct.getSign_up_end_time() + ",");
+			System.out.print(aAct.getAct_start_time() + ",");
+			System.out.print(aAct.getAct_end_time() + ",");
+			System.out.print(aAct.getAct_status() + ",");
+			System.out.print(aAct.getApply_time() + ",");
+			System.out.println(aAct.getApply_status());
+			System.out.println();
+		}
 	}
 
 }

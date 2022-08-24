@@ -13,6 +13,6 @@ public interface Act_sign_up_DAO_interface {
 	public Act_sign_up_VO findByPrimaryKey(Integer sign_up_no);
 
 	public List<Act_sign_up_VO> getAll();
-	// ¸U¥Î½Æ¦X¬d¸ß(¶Ç¤J°Ñ¼Æ«¬ºAMap)(¦^¶Ç List)
+	//è¬ç”¨è¤‡åˆæŸ¥è©¢(å‚³å…¥åƒæ•¸å‹æ…‹Map)(å›å‚³ List)
 //  public List<EmpVO> getAll(Map<String, String[]> map); 
 }

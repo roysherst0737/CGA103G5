@@ -13,6 +13,6 @@ public interface Act_pic_DAO_interface {
 	public Act_pic_VO findByPrimaryKey(Integer act_pic_no);
 
 	public List<Act_pic_VO> getAll();
-	// ¸U¥Î½Æ¦X¬d¸ß(¶Ç¤J°Ñ¼Æ«¬ºAMap)(¦^¶Ç List)
+	//è¬ç”¨è¤‡åˆæŸ¥è©¢(å‚³å…¥åƒæ•¸å‹æ…‹Map)(å›å‚³ List)
 //  public List<EmpVO> getAll(Map<String, String[]> map); 
 }

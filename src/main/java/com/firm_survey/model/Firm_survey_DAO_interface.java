@@ -13,7 +13,7 @@ public interface Firm_survey_DAO_interface {
 	public Firm_survey_VO findByPrimaryKey(Integer firm_survey_no);
 
 	public List<Firm_survey_VO> getAll();
-	// ¸U¥Î½Æ¦X¬d¸ß(¶Ç¤J°Ñ¼Æ«¬ºAMap)(¦^¶Ç List)
+	//è¬ç”¨è¤‡åˆæŸ¥è©¢(å‚³å…¥åƒæ•¸å‹æ…‹Map)(å›å‚³ List)
 //  public List<EmpVO> getAll(Map<String, String[]> map); 
 
 }

@@ -159,7 +159,7 @@ public class Firm_survey_JNDIDAO implements Firm_survey_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVO ä¹Ÿç¨±ç‚º Domain objects
 				firm_survey_VO = new Firm_survey_VO();
 				firm_survey_VO.setFirm_survey_no(rs.getInt("firm_survey_no"));
 				firm_survey_VO.setAct_no(rs.getInt("act_no"));
@@ -214,7 +214,7 @@ public class Firm_survey_JNDIDAO implements Firm_survey_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ä¹Ÿç¨±ç‚º Domain objects
 				firm_survey_VO = new Firm_survey_VO();
 				firm_survey_VO.setFirm_survey_no(rs.getInt("firm_survey_no"));
 				firm_survey_VO.setAct_no(rs.getInt("act_no"));

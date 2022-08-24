@@ -3,22 +3,34 @@ package com.customer_feedback.model;
 import java.util.*;
 import java.sql.*;
 
-public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interface {
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/lonelybar?serverTimezone=Asia/Taipei";
-	String userid = "root";
-	String passwd = "1005";
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+public class Customer_feedback_JNDIDAO implements Customer_feedback_DAO_interface {
+
+	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB2");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO customer_feedback (mem_no,order_no,prod_no,pub_no,act_no,mng_no,feedback_status) VALUES (?, ?, ?, ?, ?, ?, ?)";
-	private static final String GET_ALL_CUSTOMER_FEEDBACK_STMT = 
-		"SELECT SN,mem_no,order_no,prod_no,pub_no,act_no,mng_no,feedback_status FROM customer_feedback order by SN";
-	private static final String GET_ONE_STMT = 
-		"SELECT SN,mem_no,order_no,prod_no,pub_no,act_no,mng_no,feedback_status FROM customer_feedback where SN = ?";
-	private static final String DELETE = 
-		"DELETE FROM customer_feedback where mng_no = ?";
-	private static final String UPDATE = 
-		"UPDATE customer_feedback set mem_no=?, order_no=?, prod_no=?, pub_no=?, act_no=?, mng_no=?, feedback_status=? where SN = ?";
+			"INSERT INTO customer_feedback (mem_no,order_no,prod_no,pub_no,act_no,mng_no,feedback_status) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		private static final String GET_ALL_CUSTOMER_FEEDBACK_STMT = 
+			"SELECT SN,mem_no,order_no,prod_no,pub_no,act_no,mng_no,feedback_status FROM customer_feedback order by SN";
+		private static final String GET_ONE_STMT = 
+			"SELECT SN,mem_no,order_no,prod_no,pub_no,act_no,mng_no,feedback_status FROM customer_feedback where SN = ?";
+		private static final String DELETE = 
+			"DELETE FROM customer_feedback where mng_no = ?";
+		private static final String UPDATE = 
+			"UPDATE customer_feedback set mem_no=?, order_no=?, prod_no=?, pub_no=?, act_no=?, mng_no=?, feedback_status=? where SN = ?";
 
 	@Override
 	public void insert(Customer_feedback_VO customer_feedback_VO) {
@@ -28,8 +40,7 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, customer_feedback_VO.getMem_no());
@@ -42,14 +53,9 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 
 			pstmt.executeUpdate();
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
 			if (pstmt != null) {
@@ -78,8 +84,7 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setInt(1, customer_feedback_VO.getMem_no());
@@ -94,13 +99,8 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
 			if (pstmt != null) {
@@ -129,8 +129,7 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, SN);
@@ -138,13 +137,8 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
 			if (pstmt != null) {
@@ -175,8 +169,7 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setInt(1, SN);
@@ -184,7 +177,7 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// customer_feedback_Vo 也稱為 Domain objects
+				// manager_authfunc_Vo 也稱為 Domain objects
 				customer_feedback_VO = new Customer_feedback_VO();
 				customer_feedback_VO.setSN(rs.getInt("SN"));
 				customer_feedback_VO.setMem_no(rs.getInt("mem_no"));
@@ -197,13 +190,8 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
 			if (rs != null) {
@@ -242,13 +230,12 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_CUSTOMER_FEEDBACK_STMT);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// customer_feedback_Vo 也稱為 Domain objects
+				// manager_authfunc_Vo 也稱為 Domain objects
 				customer_feedback_VO = new Customer_feedback_VO();
 				customer_feedback_VO.setSN(rs.getInt("SN"));
 				customer_feedback_VO.setMem_no(rs.getInt("mem_no"));
@@ -262,13 +249,8 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
 			if (rs != null) {
@@ -294,62 +276,5 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 			}
 		}
 		return list;
-	}
-
-	public static void main(String[] args) {
-
-		Customer_feedback_JDBCDAO dao = new Customer_feedback_JDBCDAO();
-
-		// 新增
-//		Customer_feedback_VO customer_feedback_VO1 = new Customer_feedback_VO();
-//		customer_feedback_VO1.setMem_no(1);
-//		customer_feedback_VO1.setOrder_no(1);
-//		customer_feedback_VO2.setProd_no(1);
-//		customer_feedback_VO1.setPub_no(1);
-//		customer_feedback_VO1.setAct_no(1);
-//		customer_feedback_VO1.setMng_no(1);
-//		customer_feedback_VO1.setFeedback_status(1);
-//		dao.insert(customer_feedback_VO1);
-
-		// 修改
-		Customer_feedback_VO customer_feedback_VO2 = new Customer_feedback_VO();
-		customer_feedback_VO2.setSN(1);
-		customer_feedback_VO2.setMem_no(2);
-		customer_feedback_VO2.setOrder_no(1);
-		customer_feedback_VO2.setProd_no(2);
-		customer_feedback_VO2.setPub_no(2);
-		customer_feedback_VO2.setAct_no(1);
-		customer_feedback_VO2.setMng_no(2);
-		customer_feedback_VO2.setFeedback_status(0);
-		dao.update(customer_feedback_VO2);
-
-		// 刪除
-//		dao.delete(3);
-
-		// 查詢
-		Customer_feedback_VO customer_feedback_VO3 = dao.findByPrimaryKey(1);
-		System.out.print(customer_feedback_VO3.getSN() + ",");
-		System.out.print(customer_feedback_VO3.getMem_no() + ",");
-		System.out.print(customer_feedback_VO3.getOrder_no() + ",");
-		System.out.print(customer_feedback_VO3.getProd_no() + ",");
-		System.out.print(customer_feedback_VO3.getPub_no() + ",");
-		System.out.print(customer_feedback_VO3.getAct_no() + ",");
-		System.out.print(customer_feedback_VO3.getMng_no() + ",");
-		System.out.println(customer_feedback_VO3.getFeedback_status());
-		System.out.println("---------------------");
-
-		// 查詢
-		List<Customer_feedback_VO> list = dao.getCustomer_feedbackAll();
-		for (Customer_feedback_VO aCustomer_feedback : list) {
-			System.out.print(aCustomer_feedback.getSN() + ",");
-			System.out.print(aCustomer_feedback.getMem_no() + ",");
-			System.out.print(aCustomer_feedback.getOrder_no() + ",");
-			System.out.print(aCustomer_feedback.getProd_no() + ",");
-			System.out.print(aCustomer_feedback.getPub_no() + ",");
-			System.out.print(aCustomer_feedback.getAct_no() + ",");
-			System.out.print(aCustomer_feedback.getMng_no() + ",");
-			System.out.print(aCustomer_feedback.getFeedback_status());
-			System.out.println();
-		}
 	}
 }

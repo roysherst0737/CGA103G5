@@ -7,7 +7,7 @@ public interface Customer_chat_room_DAO_interface {
     public void update(Customer_chat_room_VO Customer_chat_room_VO);
     public void delete(Integer SN);
     public Customer_chat_room_VO findByPrimaryKey(Integer SN);
-    public List<Customer_chat_room_VO> getAll();
-    //¸U¥Î½Æ¦X¬d¸ß(¶Ç¤J°Ñ¼Æ«¬ºAMap)(¦^¶Ç List)
+    public List<Customer_chat_room_VO> getCustomer_chat_roomAll();
+    //è¬ç”¨è¤‡åˆæŸ¥è©¢(å‚³å…¥åƒæ•¸å‹æ…‹Map)(å›å‚³ List)
 //  public List<Manager_VO> getAll(Map<String, String[]> map);
 }

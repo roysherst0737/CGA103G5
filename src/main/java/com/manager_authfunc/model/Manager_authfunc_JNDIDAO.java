@@ -3,22 +3,35 @@ package com.manager_authfunc.model;
 import java.util.*;
 import java.sql.*;
 
-public class Manager_authfunc_JDBCDAO implements Manager_authfunc_DAO_interface {
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/lonelybar?serverTimezone=Asia/Taipei";
-	String userid = "root";
-	String passwd = "1005";
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+public class Manager_authfunc_JNDIDAO implements Manager_authfunc_DAO_interface {
+
+	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB2");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO manager_authfunc (mng_authfunc_no,mng_authfunc_name) VALUES (?, ?)";
+		"INSERT INTO manager_authfunc_authfunc (mng_authfunc_no,mng_authfunc_name) VALUES (?, ?)";
 	private static final String GET_ALL_MANAGER_AUTHFUNC_STMT = 
-		"SELECT mng_authfunc_no,mng_authfunc_name FROM manager_authfunc order by mng_authfunc_no";
+		"SELECT mng_authfunc_no,mng_authfunc_name FROM manager_authfunc_authfunc order by mng_authfunc_no";
 	private static final String GET_ONE_STMT = 
-		"SELECT mng_authfunc_no,mng_authfunc_name FROM manager_authfunc where mng_authfunc_no = ?";
+		"SELECT mng_authfunc_no,mng_authfunc_name FROM manager_authfunc_authfunc where mng_authfunc_no = ?";
 	private static final String DELETE = 
-		"DELETE FROM manager_authfunc where mng_authfunc_no = ?";
+		"DELETE FROM manager_authfunc_authfunc where mng_authfunc_no = ?";
 	private static final String UPDATE = 
-		"UPDATE manager_authfunc set mng_authfunc_name=? where mng_authfunc_no=?";
+		"UPDATE manager_authfunc_authfunc set mng_authfunc_name=? where mng_authfunc_no=?";
+
 
 	@Override
 	public void insert(Manager_authfunc_VO manager_authfunc_VO) {
@@ -28,8 +41,7 @@ public class Manager_authfunc_JDBCDAO implements Manager_authfunc_DAO_interface 
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, manager_authfunc_VO.getMng_authfunc_no());
@@ -37,10 +49,6 @@ public class Manager_authfunc_JDBCDAO implements Manager_authfunc_DAO_interface 
 
 			pstmt.executeUpdate();
 
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
@@ -73,8 +81,7 @@ public class Manager_authfunc_JDBCDAO implements Manager_authfunc_DAO_interface 
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, manager_authfunc_VO.getMng_authfunc_name());
@@ -83,10 +90,6 @@ public class Manager_authfunc_JDBCDAO implements Manager_authfunc_DAO_interface 
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -118,8 +121,7 @@ public class Manager_authfunc_JDBCDAO implements Manager_authfunc_DAO_interface 
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, mng_authfunc_no);
@@ -127,10 +129,6 @@ public class Manager_authfunc_JDBCDAO implements Manager_authfunc_DAO_interface 
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -164,8 +162,7 @@ public class Manager_authfunc_JDBCDAO implements Manager_authfunc_DAO_interface 
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setInt(1, mng_authfunc_no);
@@ -180,10 +177,6 @@ public class Manager_authfunc_JDBCDAO implements Manager_authfunc_DAO_interface 
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -225,8 +218,7 @@ public class Manager_authfunc_JDBCDAO implements Manager_authfunc_DAO_interface 
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ALL_MANAGER_AUTHFUNC_STMT);
 			rs = pstmt.executeQuery();
 
@@ -239,10 +231,6 @@ public class Manager_authfunc_JDBCDAO implements Manager_authfunc_DAO_interface 
 			}
 
 			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -271,39 +259,5 @@ public class Manager_authfunc_JDBCDAO implements Manager_authfunc_DAO_interface 
 			}
 		}
 		return list;
-	}
-
-	public static void main(String[] args) {
-
-		Manager_authfunc_JDBCDAO dao = new Manager_authfunc_JDBCDAO();
-
-		// 新增
-//		Manager_authfunc_VO manager_authfunc_VO1 = new Manager_authfunc_VO();
-//		manager_authfunc_VO1.setMng_authfunc_no(5);
-//		manager_authfunc_VO1.setMng_authfunc_name("活動網站管理");
-//		dao.insert(manager_authfunc_VO1);
-
-		// 修改
-//		Manager_authfunc_VO manager_authfunc_VO2 = new Manager_authfunc_VO();
-//		manager_authfunc_VO2.setMng_authfunc_no(4);
-//		manager_authfunc_VO2.setMng_authfunc_name("後台網站管理");
-//		dao.update(manager_authfunc_VO2);
-
-		// 刪除
-//		dao.delete(5);
-
-		// 查詢
-		Manager_authfunc_VO manager_authfunc_VO3 = dao.findByPrimaryKey(4);
-		System.out.print(manager_authfunc_VO3.getMng_authfunc_no() + ",");
-		System.out.println(manager_authfunc_VO3.getMng_authfunc_name());
-		System.out.println("---------------------");
-
-		// 查詢
-		List<Manager_authfunc_VO> list = dao.getManager_authfuncAll();
-		for (Manager_authfunc_VO aManager_authfunc : list) {
-			System.out.print(aManager_authfunc.getMng_authfunc_no() + ",");
-			System.out.print(aManager_authfunc.getMng_authfunc_name());
-			System.out.println();
-		}
 	}
 }

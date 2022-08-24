@@ -1,6 +1,8 @@
 package com.customer_chat_room.model;
 
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
@@ -14,7 +16,7 @@ public class Customer_chat_room_VO implements java.io.Serializable {
 	private String message;
 	final Base64.Encoder encoder = Base64.getEncoder();
 	private byte[] mem_question_pic;
-	private Date message_chat_time;
+	private Timestamp message_chat_time;
 	private Integer chat_direction;
 	public Integer getSN() {
 		return SN;
@@ -54,10 +56,11 @@ public class Customer_chat_room_VO implements java.io.Serializable {
 	public void setMem_question_pic(byte[] mem_question_pic) {
 		this.mem_question_pic = mem_question_pic;
 	}
-	public Date getMessage_chat_time() {
+
+	public Timestamp getMessage_chat_time() {
 		return message_chat_time;
 	}
-	public void setMessage_chat_time(Date message_chat_time) {
+	public void setMessage_chat_time(Timestamp message_chat_time) {
 		this.message_chat_time = message_chat_time;
 	}
 	public Integer getChat_direction() {

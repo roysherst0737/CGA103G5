@@ -8,6 +8,6 @@ public interface Manager_authfunc_DAO_interface {
     public void delete(Integer mng_authfunc_no);
     public Manager_authfunc_VO findByPrimaryKey(Integer mng_authfunc_no);
     public List<Manager_authfunc_VO> getManager_authfuncAll();
-    //�U�νƦX�d��(�ǤJ�Ѽƫ��AMap)(�^�� List)
+    //萬用複合查詢(傳入參數型態Map)(回傳 List)
 //  public List<Manager_VO> getAll(Map<String, String[]> map);
 }

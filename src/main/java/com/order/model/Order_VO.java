@@ -21,7 +21,6 @@ public class Order_VO implements Serializable {
 	private String receiver_name;
 	private String receiver_address;
 	private String receiver_phone;
-	private Timestamp pickup_time;
 	
 	public Integer getOrder_no() {
 		return order_no;
@@ -112,11 +111,5 @@ public class Order_VO implements Serializable {
 	}
 	public void setReceiver_phone(String receiver_phone) {
 		this.receiver_phone = receiver_phone;
-	}
-	public Timestamp getPickup_time() {
-		return pickup_time;
-	}
-	public void setPickup_time(Timestamp pickup_time) {
-		this.pickup_time = pickup_time;
 	}
 }

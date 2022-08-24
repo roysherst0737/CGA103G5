@@ -1,7 +1,6 @@
 package com.cart.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 public class Cart_VO implements Serializable {
 
@@ -9,7 +8,6 @@ public class Cart_VO implements Serializable {
 	private Integer mem_no;
 	private Integer prod_no;
 	private Integer prod_qty;
-	private Timestamp add_time;
 	
 	public Integer getMem_no() {
 		return mem_no;
@@ -28,11 +26,5 @@ public class Cart_VO implements Serializable {
 	}
 	public void setProd_qty(Integer prod_qty) {
 		this.prod_qty = prod_qty;
-	}
-	public Timestamp getAdd_time() {
-		return add_time;
-	}
-	public void setAdd_time(Timestamp add_time) {
-		this.add_time = add_time;
 	}
 }

@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.cart.model.*"%>
-<%-- ╕╧╜╤╫m╡ъ╠д╔н EL ╙╨╪g╙k╗З╜х --%>
+<%-- Ф╜╓И═│Г╥╢Г©▓Ф▌║Г■╗ EL Г └Е╞╚ФЁ∙Е▐√Е─╪ --%>
 
 <%
     Cart_Service cartSvc = new Cart_Service();
@@ -13,7 +13,7 @@
 
 <html>
 <head>
-<title>╘р╕Ёай╙╚╗╝╦Й╝ф - listAllCart.jsp</title>
+<title>Ф┴─Ф°┴ХЁ╪Г┴╘Х╩┼ХЁ┤Ф√≥ - listAllCart.jsp</title>
 
 <style>
   table#table-1 {
@@ -51,20 +51,18 @@
 </head>
 <body bgcolor='white'>
 
-<h4>╕╧╜╤╫m╡ъ╠д╔н EL ╙╨╪g╙k╗З╜х:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>╘р╕Ёай╙╚╗╝╦Й╝ф - listAllCart.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">╕^╜╨╜╤</a></h4>
+		 <h3>Ф┴─Ф°┴ХЁ╪Г┴╘Х╩┼ХЁ┤Ф√≥ - listAllCart.jsp</h3>
+		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">Е⌡·И╕√И═│</a></h4>
 	</td></tr>
 </table>
 
 <table>
 	<tr>
-		<th>╥|╜Ш╫s╦╧</th>
-		<th>╟с╚~╫s╦╧</th>
-		<th>╟с╚~╪ф╤q</th>
-		<th>╔[╓Jай╙╚╗╝╝и╤║</th>
+		<th>Ф°┐Е⌠║Г╥╗Х≥÷</th>
+		<th>Е∙├Е⌠│Г╥╗Х≥÷</th>
+		<th>Е∙├Е⌠│Ф∙╦И┤▐</th>
 	</tr>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="Cart_VO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
@@ -73,16 +71,15 @@
 			<td>${cartVO.mem_no}</td>
 			<td>${cartVO.prod_no}</td>
 			<td>${cartVO.prod_qty}</td>
-			<td>${cartVO.add_time}</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/cart/cart.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="╜в╖О">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/cart/cart.do" style="margin-bottom: 0px;">
+			     <input type="submit" value="Д©╝Ф■╧">
 			     <input type="hidden" name="empno"  value="${cartVO.mem_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="╖R╟ё">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/cart/cart.do" style="margin-bottom: 0px;">
+			     <input type="submit" value="Е┬╙И≥╓">
 			     <input type="hidden" name="empno"  value="${cartVO.mem_no}">
 			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>

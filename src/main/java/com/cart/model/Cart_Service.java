@@ -1,6 +1,5 @@
 package com.cart.model;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 public class Cart_Service {
@@ -11,27 +10,25 @@ public class Cart_Service {
 		dao = new Cart_DAO();
 	}
 	
-	public Cart_VO addCart(Integer mem_no, Integer prod_no, Integer prod_qty, Timestamp add_time) {
+	public Cart_VO addCart(Integer mem_no, Integer prod_no, Integer prod_qty) {
 		
 		Cart_VO cartVO = new Cart_VO();
 		
 		cartVO.setMem_no(mem_no);
 		cartVO.setProd_no(prod_no);
 		cartVO.setProd_qty(prod_qty);
-		cartVO.setAdd_time(add_time);		
 		dao.insert(cartVO);
 		
 		return cartVO;
 	}
 	
-	public Cart_VO updateCart(Integer mem_no, Integer prod_no, Integer prod_qty, Timestamp add_time) {
+	public Cart_VO updateCart(Integer mem_no, Integer prod_no, Integer prod_qty) {
 		
 		Cart_VO cartVO = new Cart_VO();
 		
 		cartVO.setMem_no(mem_no);
 		cartVO.setProd_no(prod_no);
 		cartVO.setProd_qty(prod_qty);
-		cartVO.setAdd_time(add_time);
 		dao.update(cartVO);
 		
 		return cartVO;

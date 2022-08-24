@@ -26,7 +26,7 @@ public class Prod_JNDIDAO implements Prod_DAO_interface{
 	}
 	
 	private static final String INSERT_STMT = 
-		"INSERT INTO prod (prod_type,prod_name,prod_price,prod_status,launch_time,off_time,prod_stock,prod_detail) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		"INSERT INTO prod (prod_type,prod_name,prod_price,prod_status,off_time,prod_stock,prod_detail) VALUES (?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
 		"SELECT prod_no,prod_type,prod_name,prod_price,prod_status,launch_time,off_time,prod_stock,prod_detail FROM prod order by prod_no";
 	private static final String GET_ONE_STMT = 
@@ -34,7 +34,7 @@ public class Prod_JNDIDAO implements Prod_DAO_interface{
 	private static final String DELETE = 
 		"DELETE FROM prod where prod_no = ?";
 	private static final String UPDATE = 
-		"UPDATE prod set prod_no=?, prod_type=?, prod_name=?, prod_price=?, prod_status=?, launch_time=?, off_time=?, prod_stock=?, prod_detail=? where prod_no = ?";
+		"UPDATE prod set prod_type=?, prod_name=?, prod_price=?, prod_status=?, launch_time=?, off_time=?, prod_stock=?, prod_detail=? where prod_no = ?";
 
 	@Override
 	public void insert(Prod_VO prodVO) {
@@ -45,15 +45,13 @@ public class Prod_JNDIDAO implements Prod_DAO_interface{
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
-
 			pstmt.setString(1, prodVO.getProd_type());
 			pstmt.setString(2, prodVO.getProd_name());
 			pstmt.setInt(3, prodVO.getProd_price());
 			pstmt.setInt(4, prodVO.getProd_status());
-			pstmt.setTimestamp(5, prodVO.getLaunch_time());
-			pstmt.setTimestamp(6, prodVO.getOff_time());
-			pstmt.setInt(7, prodVO.getProd_stock());
-			pstmt.setString(8, prodVO.getProd_detail());
+			pstmt.setTimestamp(5, prodVO.getOff_time());
+			pstmt.setInt(6, prodVO.getProd_stock());
+			pstmt.setString(7, prodVO.getProd_detail());
 
 			pstmt.executeUpdate();
 
@@ -90,15 +88,15 @@ public class Prod_JNDIDAO implements Prod_DAO_interface{
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(UPDATE);
 
-				pstmt.setInt(1, prodVO.getProd_no());
-				pstmt.setString(2, prodVO.getProd_type());
-				pstmt.setString(3, prodVO.getProd_name());
-				pstmt.setInt(4, prodVO.getProd_price());
-				pstmt.setInt(5, prodVO.getProd_status());
-				pstmt.setTimestamp(6, prodVO.getLaunch_time());
-				pstmt.setTimestamp(7, prodVO.getOff_time());
-				pstmt.setInt(8, prodVO.getProd_stock());
-				pstmt.setString(9, prodVO.getProd_detail());
+				pstmt.setString(1, prodVO.getProd_type());
+				pstmt.setString(2, prodVO.getProd_name());
+				pstmt.setInt(3, prodVO.getProd_price());
+				pstmt.setInt(4, prodVO.getProd_status());
+				pstmt.setTimestamp(5, prodVO.getLaunch_time());
+				pstmt.setTimestamp(6, prodVO.getOff_time());
+				pstmt.setInt(7, prodVO.getProd_stock());
+				pstmt.setString(8, prodVO.getProd_detail());
+				pstmt.setInt(9, prodVO.getProd_no());
 
 				pstmt.executeUpdate();
 

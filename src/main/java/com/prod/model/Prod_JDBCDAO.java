@@ -13,7 +13,7 @@ import java.util.List;
 public class Prod_JDBCDAO implements Prod_DAO_interface{
 	
 	private static final String INSERT_STMT = 
-		"INSERT INTO prod (prod_type,prod_name,prod_price,prod_status,launch_time,off_time,prod_stock,prod_detail) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		"INSERT INTO prod (prod_type,prod_name,prod_price,prod_status,off_time,prod_stock,prod_detail) VALUES (?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
 		"SELECT prod_no,prod_type,prod_name,prod_price,prod_status,launch_time,off_time,prod_stock,prod_detail FROM prod order by prod_no";
 	private static final String GET_ONE_STMT = 
@@ -39,10 +39,9 @@ public class Prod_JDBCDAO implements Prod_DAO_interface{
 			pstmt.setString(2, prodVO.getProd_name());
 			pstmt.setInt(3, prodVO.getProd_price());
 			pstmt.setInt(4, prodVO.getProd_status());
-			pstmt.setTimestamp(5, prodVO.getLaunch_time());
-			pstmt.setTimestamp(6, prodVO.getOff_time());
-			pstmt.setInt(7, prodVO.getProd_stock());
-			pstmt.setString(8, prodVO.getProd_detail());
+			pstmt.setTimestamp(5, prodVO.getOff_time());
+			pstmt.setInt(6, prodVO.getProd_stock());
+			pstmt.setString(7, prodVO.getProd_detail());
 
 			pstmt.executeUpdate();
 			
@@ -306,7 +305,6 @@ public class Prod_JDBCDAO implements Prod_DAO_interface{
 		prodVO1.setProd_name("水晶杯");
 		prodVO1.setProd_price(50000);
 		prodVO1.setProd_status(0);
-		prodVO1.setLaunch_time(java.sql.Timestamp.valueOf("2022-01-01 10:10:10"));
 		prodVO1.setOff_time(java.sql.Timestamp.valueOf("2022-01-01 10:10:10"));
 		prodVO1.setProd_stock(1000);
 		prodVO1.setProd_detail("掉到地上都不會破的水晶杯喔喔喔！");

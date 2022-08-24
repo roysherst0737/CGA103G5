@@ -18,7 +18,7 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 	private static final String GET_ALL_STMT = 
 		"SELECT order_no,prod_no,prod_qty,prod_price,mem_no,comment_time,comment_star,comment_content,comment_pic FROM order_detail order by order_no";
 	private static final String GET_ONE_STMT = 
-		"SELECT order_no,prod_no,prod_qty,prod_price,mem_no,comment_time,comment_star,comment_content,comment_pic FROM order_detail where order_no = ?";
+		"SELECT order_no,prod_no,prod_qty,prod_price,mem_no,comment_time,comment_star,comment_content,comment_pic FROM order_detail where order_no = ? AND prod_no=?";
 	private static final String DELETE = 
 		"DELETE FROM order_detail where order_no = ? AND prod_no = ?";
 	private static final String UPDATE = 
@@ -168,7 +168,7 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 	}
 
 	@Override
-	public Order_detail_VO findByPrimaryKey(Integer order_no) {
+	public Order_detail_VO findByPrimaryKey(Integer order_no, Integer prod_no) {
 		Order_detail_VO order_detailVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -335,7 +335,7 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 		
 
 		// 查詢
-		Order_detail_VO order_detailVO3 = dao.findByPrimaryKey(3);
+		Order_detail_VO order_detailVO3 = dao.findByPrimaryKey(3, 3);
 		System.out.print(order_detailVO3.getOrder_no() + ",");
 		System.out.print(order_detailVO3.getProd_no() + ",");
 		System.out.print(order_detailVO3.getProd_qty() + ",");

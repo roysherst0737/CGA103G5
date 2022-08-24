@@ -21,15 +21,15 @@ public class Cart_DAO implements Cart_DAO_interface {
 	}
 	
 	private static final String INSERT_STMT = 
-		"INSERT INTO cart (prod_no,prod_qty,add_time) VALUES (?, ?, ?)";
+		"INSERT INTO cart (mem_no,prod_no,prod_qty) VALUES (?, ?, ?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT mem_no,prod_no,prod_qty,add_time FROM cart order by mem_no";
+		"SELECT mem_no,prod_no,prod_qty FROM cart order by mem_no";
 	private static final String GET_ONE_STMT = 
-		"SELECT mem_no,prod_no,prod_qty,add_time FROM cart where mem_no = ?";
+		"SELECT mem_no,prod_no,prod_qty FROM cart where mem_no = ?";
 	private static final String DELETE = 
 		"DELETE FROM cart where mem_no = ?";
 	private static final String UPDATE = 
-		"UPDATE cart set prod_no=?, prod_qty=?, add_time=? where mem_no = ?";
+		"UPDATE cart set prod_no=?, prod_qty=? where mem_no = ?";
 	
 	@Override
 	public void insert(Cart_VO cartVO) {
@@ -42,9 +42,9 @@ public class Cart_DAO implements Cart_DAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
-			pstmt.setInt(1, cartVO.getProd_no());
-			pstmt.setInt(2, cartVO.getProd_qty());
-			pstmt.setTimestamp(3, cartVO.getAdd_time());
+			pstmt.setInt(1, cartVO.getMem_no());
+			pstmt.setInt(2, cartVO.getProd_no());
+			pstmt.setInt(3, cartVO.getProd_qty());
 
 			pstmt.executeUpdate();
 			
@@ -82,8 +82,7 @@ public class Cart_DAO implements Cart_DAO_interface {
 			
 			pstmt.setInt(1, cartVO.getProd_no());
 			pstmt.setInt(2, cartVO.getProd_qty());
-			pstmt.setTimestamp(3, cartVO.getAdd_time());
-			pstmt.setInt(4, cartVO.getMem_no());
+			pstmt.setInt(3, cartVO.getMem_no());
 
 			pstmt.executeUpdate();
 			
@@ -168,7 +167,6 @@ public class Cart_DAO implements Cart_DAO_interface {
 				cartVO.setMem_no(rs.getInt("mem_no"));
 				cartVO.setProd_no(rs.getInt("prod_no"));
 				cartVO.setProd_qty(rs.getInt("prod_qty"));
-				cartVO.setAdd_time(rs.getTimestamp("add_time"));
 			}
 
 			// Handle any driver errors
@@ -223,7 +221,6 @@ public class Cart_DAO implements Cart_DAO_interface {
 				cartVO.setMem_no(rs.getInt("mem_no"));
 				cartVO.setProd_no(rs.getInt("prod_no"));
 				cartVO.setProd_qty(rs.getInt("prod_qty"));
-				cartVO.setAdd_time(rs.getTimestamp("add_time"));
 				
 				list.add(cartVO); // Store the row in the list
 			}

@@ -26,15 +26,15 @@ public class Order_detail_JNDIDAO implements Order_detail_DAO_interface{
 	}
 
 	private static final String INSERT_STMT = 
-			"INSERT INTO order_detail (order_no,prod_no,prod_qty,prod_price,mem_no,comment_time,comment_star,comment_content,comment_pic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		private static final String GET_ALL_STMT = 
-			"SELECT order_no,prod_no,prod_qty,prod_price,mem_no,comment_time,comment_star,comment_content,comment_pic FROM order_detail order by order_no";
-		private static final String GET_ONE_STMT = 
-			"SELECT order_no,prod_no,prod_qty,prod_price,mem_no,comment_time,comment_star,comment_content,comment_pic FROM order_detail where order_no = ?";
-		private static final String DELETE = 
-			"DELETE FROM order_detail where order_no = ? AND prod_no = ?";
-		private static final String UPDATE = 
-			"UPDATE order_detail set prod_qty=?, prod_price=?, mem_no=?, comment_time=?, comment_star=?, comment_content=?, comment_pic=? where order_no = ? AND prod_no=?";
+		"INSERT INTO order_detail (order_no,prod_no,prod_qty,prod_price,mem_no,comment_time,comment_star,comment_content,comment_pic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String GET_ALL_STMT = 
+		"SELECT order_no,prod_no,prod_qty,prod_price,mem_no,comment_time,comment_star,comment_content,comment_pic FROM order_detail order by order_no";
+	private static final String GET_ONE_STMT = 
+		"SELECT order_no,prod_no,prod_qty,prod_price,mem_no,comment_time,comment_star,comment_content,comment_pic FROM order_detail where order_no = ? AND prod_no=?";
+	private static final String DELETE = 
+		"DELETE FROM order_detail where order_no = ? AND prod_no = ?";
+	private static final String UPDATE = 
+		"UPDATE order_detail set prod_qty=?, prod_price=?, mem_no=?, comment_time=?, comment_star=?, comment_content=?, comment_pic=? where order_no = ? AND prod_no=?";
 
 	@Override
 	public void insert(Order_detail_VO order_detailVO) {
@@ -165,7 +165,7 @@ public class Order_detail_JNDIDAO implements Order_detail_DAO_interface{
 	}
 
 	@Override
-	public Order_detail_VO findByPrimaryKey(Integer order_no) {
+	public Order_detail_VO findByPrimaryKey(Integer order_no, Integer prod_no) {
 		Order_detail_VO order_detailVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;

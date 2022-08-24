@@ -52,8 +52,8 @@ public class Order_detail_Service {
 		dao.delete(order_no, prod_no);
 	}
 	
-	public Order_detail_VO getOneOrder_detail(Integer order_no) {
-		return dao.findByPrimaryKey(order_no);
+	public Order_detail_VO getOneOrder_detail(Integer order_no, Integer prod_no) {
+		return dao.findByPrimaryKey(order_no, prod_no);
 	}
 	
 	public List<Order_detail_VO> getAll() {

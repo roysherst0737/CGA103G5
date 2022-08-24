@@ -11,7 +11,7 @@ public class Prod_Service {
 		dao = new Prod_DAO();
 	}
 	
-	public Prod_VO addProd(String prod_type, String prod_name, Integer prod_price, Integer prod_status, Timestamp launch_time, Timestamp off_time, Integer prod_stock, String prod_detail) {
+	public Prod_VO addProd(String prod_type, String prod_name, Integer prod_price, Integer prod_status, Timestamp off_time, Integer prod_stock, String prod_detail) {
 		
 		Prod_VO prodVO = new Prod_VO();
 		
@@ -19,7 +19,6 @@ public class Prod_Service {
 		prodVO.setProd_name(prod_name);
 		prodVO.setProd_price(prod_price);
 		prodVO.setProd_status(prod_status);
-		prodVO.setLaunch_time(launch_time);
 		prodVO.setOff_time(off_time);
 		prodVO.setProd_stock(prod_stock);
 		prodVO.setProd_detail(prod_detail);

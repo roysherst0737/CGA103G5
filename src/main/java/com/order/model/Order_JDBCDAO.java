@@ -13,16 +13,16 @@ import java.util.List;
 public class Order_JDBCDAO implements Order_DAO_interface {
 	
 	private static final String INSERT_STMT = 
-		"INSERT INTO `order` (mem_no,coupon_no,order_time,sold_time,order_price_total,dis_price_total,order_status,payment_method,pickup_method,shipping_fee,tracking_no,receiver_name,receiver_address,receiver_phone,pickup_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		"INSERT INTO `order` (mem_no,coupon_no,sold_time,order_price_total,dis_price_total,order_status,payment_method,pickup_method,shipping_fee,tracking_no,receiver_name,receiver_address,receiver_phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT order_no,mem_no,coupon_no,order_time,sold_time,order_price_total,dis_price_total,order_status,payment_method,pickup_method,shipping_fee,tracking_no,receiver_name,receiver_address,receiver_phone,pickup_time FROM `order` order by order_no";
+		"SELECT order_no,mem_no,coupon_no,order_time,sold_time,order_price_total,dis_price_total,order_status,payment_method,pickup_method,shipping_fee,tracking_no,receiver_name,receiver_address,receiver_phone FROM `order` order by order_no";
 	private static final String GET_ONE_STMT = 
-		"SELECT order_no,mem_no,coupon_no,order_time,sold_time,order_price_total,dis_price_total,order_status,payment_method,pickup_method,shipping_fee,tracking_no,receiver_name,receiver_address,receiver_phone,pickup_time FROM `order` where order_no = ?";
+		"SELECT order_no,mem_no,coupon_no,order_time,sold_time,order_price_total,dis_price_total,order_status,payment_method,pickup_method,shipping_fee,tracking_no,receiver_name,receiver_address,receiver_phone FROM `order` where order_no = ?";
 	private static final String DELETE = 
 		"DELETE FROM `order` where order_no = ?";
 	private static final String UPDATE = 
-		"UPDATE `order` set mem_no=?, coupon_no=?, order_time=?, sold_time=?, order_price_total=?, dis_price_total=?, order_status=?, payment_method=?, pickup_method=?, shipping_fee=?, tracking_no=?, receiver_name=?, receiver_address=?, receiver_phone=?, pickup_time=? where order_no = ?";
-
+		"UPDATE `order` set mem_no=?, coupon_no=?, order_time=?, sold_time=?, order_price_total=?, dis_price_total=?, order_status=?, payment_method=?, pickup_method=?, shipping_fee=?, tracking_no=?, receiver_name=?, receiver_address=?, receiver_phone=? where order_no = ?";
+	
 	@Override
 	public void insert(Order_VO orderVO) {
 		Connection con = null;
@@ -36,19 +36,17 @@ public class Order_JDBCDAO implements Order_DAO_interface {
 			
 			pstmt.setInt(1, orderVO.getMem_no());
 			pstmt.setInt(2, orderVO.getCoupon_no());
-			pstmt.setTimestamp(3, orderVO.getOrder_time());
-			pstmt.setTimestamp(4, orderVO.getSold_time());
-			pstmt.setInt(5, orderVO.getOrder_price_total());
-			pstmt.setInt(6, orderVO.getDis_price_total());
-			pstmt.setInt(7, orderVO.getOrder_status());
-			pstmt.setInt(8, orderVO.getPayment_method());
-			pstmt.setInt(9, orderVO.getPickup_method());
-			pstmt.setInt(10, orderVO.getShipping_fee());
-			pstmt.setInt(11, orderVO.getTracking_no());
-			pstmt.setString(12, orderVO.getReceiver_name());
-			pstmt.setString(13, orderVO.getReceiver_address());
-			pstmt.setString(14, orderVO.getReceiver_phone());
-			pstmt.setTimestamp(15, orderVO.getPickup_time());
+			pstmt.setTimestamp(3, orderVO.getSold_time());
+			pstmt.setInt(4, orderVO.getOrder_price_total());
+			pstmt.setInt(5, orderVO.getDis_price_total());
+			pstmt.setInt(6, orderVO.getOrder_status());
+			pstmt.setInt(7, orderVO.getPayment_method());
+			pstmt.setInt(8, orderVO.getPickup_method());
+			pstmt.setInt(9, orderVO.getShipping_fee());
+			pstmt.setInt(10, orderVO.getTracking_no());
+			pstmt.setString(11, orderVO.getReceiver_name());
+			pstmt.setString(12, orderVO.getReceiver_address());
+			pstmt.setString(13, orderVO.getReceiver_phone());
 
 			pstmt.executeUpdate();
 			
@@ -104,8 +102,7 @@ public class Order_JDBCDAO implements Order_DAO_interface {
 			pstmt.setString(12, orderVO.getReceiver_name());
 			pstmt.setString(13, orderVO.getReceiver_address());
 			pstmt.setString(14, orderVO.getReceiver_phone());
-			pstmt.setTimestamp(15, orderVO.getPickup_time());
-			pstmt.setInt(16, orderVO.getOrder_no());
+			pstmt.setInt(15, orderVO.getOrder_no());
 
 			pstmt.executeUpdate();
 			
@@ -213,7 +210,6 @@ public class Order_JDBCDAO implements Order_DAO_interface {
 				orderVO.setReceiver_name(rs.getString("receiver_name"));
 				orderVO.setReceiver_address(rs.getString("receiver_address"));
 				orderVO.setReceiver_phone(rs.getString("receiver_phone"));
-				orderVO.setPickup_time(rs.getTimestamp("pickup_time"));
 			}
 			
 			// Handle any driver errors
@@ -285,7 +281,6 @@ public class Order_JDBCDAO implements Order_DAO_interface {
 				orderVO.setReceiver_name(rs.getString("receiver_name"));
 				orderVO.setReceiver_address(rs.getString("receiver_address"));
 				orderVO.setReceiver_phone(rs.getString("receiver_phone"));
-				orderVO.setPickup_time(rs.getTimestamp("pickup_time"));
 				
 				list.add(orderVO); // Store the row in the list
 			}
@@ -333,7 +328,6 @@ public class Order_JDBCDAO implements Order_DAO_interface {
 		Order_VO orderVO1 = new Order_VO();
 		orderVO1.setMem_no(3);
 		orderVO1.setCoupon_no(2);
-		orderVO1.setOrder_time(java.sql.Timestamp.valueOf("2022-08-08 08:08:08"));
 		orderVO1.setSold_time(java.sql.Timestamp.valueOf("2022-08-08 08:08:08"));
 		orderVO1.setOrder_price_total(10000);
 		orderVO1.setDis_price_total(8888);
@@ -345,7 +339,6 @@ public class Order_JDBCDAO implements Order_DAO_interface {
 		orderVO1.setReceiver_name("吳小志");
 		orderVO1.setReceiver_address("你心裡");
 		orderVO1.setReceiver_phone("091234567");
-		orderVO1.setPickup_time(null);
 		dao.insert(orderVO1);
 
 		// 修改
@@ -365,7 +358,6 @@ public class Order_JDBCDAO implements Order_DAO_interface {
 		orderVO2.setReceiver_name("有大志");
 		orderVO2.setReceiver_address("大家的心裡");
 		orderVO2.setReceiver_phone("097654321");
-		orderVO2.setPickup_time(null);
 		dao.update(orderVO2);
 
 		// 刪除
@@ -389,7 +381,6 @@ public class Order_JDBCDAO implements Order_DAO_interface {
 		System.out.print(orderVO3.getReceiver_name() + ",");
 		System.out.print(orderVO3.getReceiver_address() + ",");
 		System.out.print(orderVO3.getReceiver_phone() + ",");
-		System.out.print(orderVO3.getPickup_time() + ",");
 		System.out.println();
 		System.out.println("-------------------------------------------");
 
@@ -411,7 +402,6 @@ public class Order_JDBCDAO implements Order_DAO_interface {
 			System.out.print(allOrder.getReceiver_name() + ",");
 			System.out.print(allOrder.getReceiver_address() + ",");
 			System.out.print(allOrder.getReceiver_phone() + ",");
-			System.out.print(allOrder.getPickup_time() + ",");
 			System.out.println();
 		}
 	}

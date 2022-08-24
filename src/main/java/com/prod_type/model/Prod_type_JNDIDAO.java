@@ -1,15 +1,20 @@
-package com.cart.model;
+package com.prod_type.model;
 
-import java.util.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class Cart_JNDIDAO implements Cart_DAO_interface {
+public class Prod_type_JNDIDAO implements Prod_type_DAO_interface {
 	
+	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
 	private static DataSource ds = null;
 	static {
 		try {
@@ -19,35 +24,33 @@ public class Cart_JNDIDAO implements Cart_DAO_interface {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private static final String INSERT_STMT = 
-		"INSERT INTO cart (mem_no,prod_no,prod_qty) VALUES (?, ?, ?)";
+		"INSERT INTO prod_type (prod_type_name) VALUES (?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT mem_no,prod_no,prod_qty FROM cart order by mem_no";
+		"SELECT prod_type_no,prod_type_name FROM prod_type order by prod_type_no";
 	private static final String GET_ONE_STMT = 
-		"SELECT mem_no,prod_no,prod_qty FROM cart where mem_no = ?";
+		"SELECT prod_type_no,prod_type_name FROM prod_type where prod_type_no = ?";
 	private static final String DELETE = 
-		"DELETE FROM cart where mem_no = ?";
+		"DELETE FROM prod_type where prod_type_no = ?";
 	private static final String UPDATE = 
-		"UPDATE cart set prod_no=?, prod_qty=? where mem_no = ?";
+		"UPDATE prod_type set prod_type_name = ? where prod_type_no = ?";
 	
 	@Override
-	public void insert(Cart_VO cartVO) {
-		
+	public void insert(Prod_type_VO prod_typeVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
+
 		try {
-			
+
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
-			
-			pstmt.setInt(1, cartVO.getMem_no());
-			pstmt.setInt(2, cartVO.getProd_no());
-			pstmt.setInt(3, cartVO.getProd_qty());
+
+			pstmt.setString(1, prod_typeVO.getProd_type_name());
 
 			pstmt.executeUpdate();
-			
+
+			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -67,25 +70,25 @@ public class Cart_JNDIDAO implements Cart_DAO_interface {
 					e.printStackTrace(System.err);
 				}
 			}
-		}
+		}	
 	}
 
 	@Override
-	public void update(Cart_VO cartVO) {
+	public void update(Prod_type_VO prod_typeVO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		
+
 		try {
-			
+
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
-			
-			pstmt.setInt(1, cartVO.getProd_no());
-			pstmt.setInt(2, cartVO.getProd_qty());
-			pstmt.setInt(3, cartVO.getMem_no());
+
+			pstmt.setString(1, prod_typeVO.getProd_type_name());
+			pstmt.setInt(2, prod_typeVO.getProd_type_no());
 
 			pstmt.executeUpdate();
-			
+
+			// Handle any SQL errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -105,11 +108,11 @@ public class Cart_JNDIDAO implements Cart_DAO_interface {
 					e.printStackTrace(System.err);
 				}
 			}
-		}
+		}			
 	}
 
 	@Override
-	public void delete(Integer mem_no) {
+	public void delete(Integer prod_type_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -118,7 +121,7 @@ public class Cart_JNDIDAO implements Cart_DAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
-			pstmt.setInt(1, mem_no);
+			pstmt.setInt(1, prod_type_no);
 
 			pstmt.executeUpdate();
 
@@ -142,12 +145,12 @@ public class Cart_JNDIDAO implements Cart_DAO_interface {
 					e.printStackTrace(System.err);
 				}
 			}
-		}
+		}		
 	}
-	
+
 	@Override
-	public Cart_VO findByForeignKey(Integer mem_no) {
-		Cart_VO cartVO = null;
+	public Prod_type_VO findByPrimaryKey(Integer prod_type_no) {
+		Prod_type_VO prod_typeVO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -157,16 +160,14 @@ public class Cart_JNDIDAO implements Cart_DAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
-			pstmt.setInt(1, mem_no);
+			pstmt.setInt(1, prod_type_no);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-
-				cartVO = new Cart_VO();
-				cartVO.setMem_no(rs.getInt("mem_no"));
-				cartVO.setProd_no(rs.getInt("prod_no"));
-				cartVO.setProd_qty(rs.getInt("prod_qty"));
+				prod_typeVO = new Prod_type_VO();
+				prod_typeVO.setProd_type_no(rs.getInt("prod_type_no"));
+				prod_typeVO.setProd_type_name(rs.getString("prod_type_name"));
 			}
 
 			// Handle any driver errors
@@ -197,13 +198,13 @@ public class Cart_JNDIDAO implements Cart_DAO_interface {
 				}
 			}
 		}
-		return cartVO;
+		return prod_typeVO;
 	}
 
 	@Override
-	public List<Cart_VO> getAll() {
-		List<Cart_VO> list = new ArrayList<Cart_VO>();
-		Cart_VO cartVO = null;
+	public List<Prod_type_VO> getAll() {
+		List<Prod_type_VO> list = new ArrayList<Prod_type_VO>();
+		Prod_type_VO prod_typeVO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -217,12 +218,11 @@ public class Cart_JNDIDAO implements Cart_DAO_interface {
 
 			while (rs.next()) {
 
-				cartVO = new Cart_VO();
-				cartVO.setMem_no(rs.getInt("mem_no"));
-				cartVO.setProd_no(rs.getInt("prod_no"));
-				cartVO.setProd_qty(rs.getInt("prod_qty"));
+				prod_typeVO = new Prod_type_VO();
+				prod_typeVO.setProd_type_no(rs.getInt("prod_type_no"));
+				prod_typeVO.setProd_type_name(rs.getString("prod_type_name"));
 				
-				list.add(cartVO); // Store the row in the list
+				list.add(prod_typeVO); // Store the row in the list
 			}
 
 			// Handle any driver errors

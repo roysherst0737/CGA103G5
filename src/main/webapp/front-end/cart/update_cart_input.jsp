@@ -81,11 +81,6 @@ Cart_VO cartVO = (Cart_VO) request.getAttribute("cartVO");
 		<td><input type="TEXT" name="prod_qty" size="45"
 			 value="<%= (cartVO==null)? "10" : cartVO.getProd_qty()%>" /></td>
 	</tr>
-	<tr>
-		<td>加入購物車時間:</td>
-		<td><input type="TEXT" name="sal" size="45"
-			 value="<%= (cartVO==null)? "2022-06-06 08:08:08" : cartVO.getAdd_time()%>" /></td>
-	</tr>
 
 </table>
 <br>

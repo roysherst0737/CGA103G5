@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.cart.model.*"%>
 
@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>╜Ш╓u╦Й╝ф╥s╪W - addEmp.jsp</title>
+<title>ХЁ╪Г┴╘Х╩┼ХЁ┤Ф√≥Ф√╟Е╒· - addCart.jsp</title>
 
 <style>
   table#table-1 {
@@ -48,16 +48,16 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>ай╙╚╗╝╦Й╝ф╥s╪W - addCart.jsp</h3></td><td>
-		 <h4><a href="select_page.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">╕^╜╨╜╤</a></h4>
+		 <h3>ХЁ╪Г┴╘Х╩┼ХЁ┤Ф√≥Ф√╟Е╒· - addCart.jsp</h3></td><td>
+		 <h4><a href="select_page.jsp">Е⌡·И╕√И═│</a></h4>
 	</td></tr>
 </table>
 
-<h3>╦Й╝ф╥s╪W:</h3>
+<h3>ХЁ┤Ф√≥Ф√╟Е╒·:</h3>
 
-<%-- ©Ы╩~╙М╕C --%>
+<%-- И▄╞Х╙╓Х║╗Е┬≈ --%>
 <c:if test="${not empty errorMsgs}">
-	<font style="color:red">╫п╜в╔©╔H╓U©Ы╩~:</font>
+	<font style="color:red">Х╚▀Д©╝Ф╜ёД╩╔Д╦▀И▄╞Х╙╓:</font>
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li style="color:red">${message}</li>
@@ -68,27 +68,23 @@
 <FORM METHOD="post" ACTION="cart.do" name="form1">
 <table>
 	<tr>
-		<td>╥|╜Ш╫s╦╧:</td>
+		<td>Ф°┐Е⌠║Г╥╗Х≥÷:</td>
 		<td><input type="TEXT" name="mem_no" size="45" 
 			 value="<%= (cartVO==null)? "1" : cartVO.getMem_no()%>" /></td>
 	</tr>
 	<tr>
-		<td>╟с╚~╫s╦╧:</td>
+		<td>Е∙├Е⌠│Г╥╗Х≥÷:</td>
 		<td><input type="TEXT" name="prod_no" size="45"
 			 value="<%= (cartVO==null)? "1" : cartVO.getProd_no()%>" /></td>
 	</tr>
 	<tr>
-		<td>╟с╚~╪ф╤q:</td>
+		<td>Е∙├Е⌠│Ф∙╦И┤▐:</td>
 		<td><input type="TEXT" name="prod_qty" size="45"
 			 value="<%= (cartVO==null)? "10" : cartVO.getProd_qty()%>" /></td>
 	</tr>
-	<tr>
-		<td>╔[╓Jай╙╚╗╝╝и╤║:</td>
-		<td><input type="TEXT" name="sal" size="45"
-			 value="<%= (cartVO==null)? "2022-06-06 08:08:08" : cartVO.getAdd_time()%>" /></td>
 
 </table>
 <br>
 <input type="hidden" name="action" value="insert">
-<input type="submit" value="╟e╔X╥s╪W"></FORM>
+<input type="submit" value="И─│Е┤╨Ф√╟Е╒·"></FORM>
 </body>

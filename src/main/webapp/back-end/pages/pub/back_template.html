@@ -19,10 +19,8 @@
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script>
     let path = window.location.pathname;
-    path1 = path.substring(0, path.lastIndexOf("/"));
-    path2 = path.substring(0, path1.lastIndexOf("/"));
-    let path3 = path.substring(0, path2.lastIndexOf("/"));</script>
-
+	path = path.substring(0, path.indexOf("back-end") + 8);
+    </script>
 </head>
 
 <body>
@@ -42,7 +40,7 @@
       <!-- 引入sidebar 用JQ方式 -->
       <script>
         $(function () {
-          $("#sidebar").load(window.location.origin + path3 + "/partials/_sidebar.html");
+          $("#sidebar").load(window.location.origin + path + "/partials/_sidebar.html");
         });
       </script>
       <!-- partial -->
@@ -60,7 +58,7 @@
         <footer class="footer"></footer>
         <script>
           $(function () {
-            $(".footer").load(window.location.origin + path3 + "/partials/_footer.html");
+            $(".footer").load(window.location.origin + path + "/partials/_footer.html");
           });
         </script>
         <!-- partial -->

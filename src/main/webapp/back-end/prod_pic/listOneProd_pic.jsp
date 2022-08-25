@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
 <%@ page import="com.prod_pic.model.*"%>
 
 <%
@@ -59,12 +61,20 @@
 		<th>商品照片</th>
 		<th>商品照片名稱</th>
 	</tr>
-	<tr>
-		<td><%=prod_picVO.getProd_pic_no()%></td>
-		<td><%=prod_picVO.getProd_no()%></td>
-		<td><%=prod_picVO.getProd_pic()%></td>
-		<td><%=prod_picVO.getProd_pic_name()%></td>
-	</tr>
+			<tr>
+				<td>${prod_picVO.prod_pic_no}</td>
+				<td>${prod_picVO.prod_no}</td>
+				<td>
+					<c:choose>
+						<c:when test="${prod_picVO.prod_pic != null}">
+							<img src="<%=request.getContextPath()%>/prod_pic?prod_pic_no=${prod_picVO.prod_pic_no}&action=getOnePic">
+						</c:when>
+						<c:when test="${prod_picVO.prod_pic == null}">
+							<img src="<%=request.getContextPath()%>/backend/prod_pic/images/APACHE_Badge.ico" class="no-img">
+						</c:when>
+					</c:choose>
+				</td>
+				<td>${prod_picVO.prod_pic_name}</td>
 </table>
 
 </body>

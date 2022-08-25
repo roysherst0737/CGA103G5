@@ -1,12 +1,12 @@
 package com.prod_pic.controller;
 
-import java.io.IOException;
-import java.sql.Blob;
-import java.util.LinkedList;
-import java.util.List;
+import java.io.*;
+import java.sql.*;
+import java.util.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -83,6 +83,27 @@ public class Prod_pic_Servlet extends HttpServlet {
 				successView.forward(req, res);
 		}
 		
+		if ("getOnePic".equals(action)) {
+	          
+			/*************************** 1.接收請求參數 ****************************************/
+	        Integer prod_pic_no = Integer.valueOf(req.getParameter("prod_pic_no").trim());
+
+	        /*************************** 2.開始查詢資料 ****************************************/
+	        Prod_pic_Service prod_picSvc = new Prod_pic_Service();
+	        Prod_pic_VO prod_picVO = prod_picSvc.getOneProd_pic(prod_pic_no);
+
+	        /*************************** 3.輸出圖片 ************/
+	        Blob prod_pic = null;
+			try {
+				prod_pic = prod_picVO.getProd_pic();
+				ServletOutputStream out = res.getOutputStream();
+//		        out.write(prod_pic);
+		        out.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		}
+		
 		
 		if ("getOne_For_Update".equals(action)) {
 
@@ -123,8 +144,8 @@ public class Prod_pic_Servlet extends HttpServlet {
 					errorMsgs.add("商品編號請填數字");
 				}
 				
-				Blob prod_pic = null;
-				
+				Blob prod_pic = null;			
+						
 				String prod_pic_name = req.getParameter("prod_pic_name");
 				String prod_pic_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (prod_pic_name == null ||prod_pic_name.trim().length() == 0) {
@@ -173,10 +194,10 @@ public class Prod_pic_Servlet extends HttpServlet {
 				} catch (NumberFormatException e) {
 					prod_no = 0;
 					errorMsgs.add("商品編號請填數字");
-				}
-			
+				}			
+				
 				Blob prod_pic = null;
-			
+
 				String prod_pic_name = req.getParameter("prod_pic_name");
 				String prod_pic_nameReg = "^[(\\u4e00-\\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (prod_pic_name == null ||prod_pic_name.trim().length() == 0) {

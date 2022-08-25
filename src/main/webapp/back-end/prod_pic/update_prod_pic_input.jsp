@@ -70,28 +70,28 @@
 	<tr>
 		<td>商品照片編號:</td>
 		<td><input type="TEXT" name="prod_pic_no" size="45" 
-			 value="<%= (prod_picVO==null)? "4" : prod_picVO.getProd_no()%>" /></td>
+			 value="<%= (prod_picVO==null)? "3" : prod_picVO.getProd_no()%>" /></td>
 	</tr>
 	<tr>
 		<td>商品編號:</td>
 		<td><input type="TEXT" name="prod_no" size="45" 
-			 value="<%= (prod_picVO==null)? "4" : prod_picVO.getProd_no()%>" /></td>
+			 value="<%= (prod_picVO==null)? "3" : prod_picVO.getProd_no()%>" /></td>
 	</tr>
 	<tr>
 		<td>商品照片:</td>
 		<td><input type="file" name="prod_pic" size="45"
-			 value="<%= (prod_picVO==null)? "MANAGER" : prod_picVO.getProd_pic()%>" /></td>
+			 value="<%= (prod_picVO==null)? "" : prod_picVO.getProd_pic()%>" /></td>
 	</tr>
 	<tr>
 		<td>商品照片名稱:</td>
 		<td><input type="TEXT" name="prod_pic_name" size="45"
-			 value="<%= (prod_picVO==null)? "10000" : prod_picVO.getProd_pic_name()%>" /></td>
+			 value="<%= (prod_picVO==null)? "高級烈酒" : prod_picVO.getProd_pic_name()%>" /></td>
 	</tr>
 </table>
 
 <br>
 <input type="hidden" name="action" value="update">
-<input type="hidden" name="empno" value="<%=prod_picVO.getProd_pic_no()%>">
+<input type="hidden" name="prod_pic_no" value="<%=prod_picVO.getProd_pic_no()%>">
 <input type="submit" value="送出修改"></FORM>
 </body>
 </html>

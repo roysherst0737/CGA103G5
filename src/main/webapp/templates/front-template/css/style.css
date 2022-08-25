@@ -1627,9 +1627,10 @@ ul.cart-list>li.total>.btn:hover {
 }
 
 .newsletter-box button {
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 500;
+    color: rgb(11, 11, 11);
+    position: middle;
+    font-size: 12px;
+    font-weight: 1000;
 
 }
 

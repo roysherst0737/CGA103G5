@@ -46,4 +46,20 @@
 		<servlet-name>pubServlet</servlet-name>
 		<url-pattern>/pub.do</url-pattern>
 	</servlet-mapping>
+  <servlet>
+    <servlet-name>Forum_Servlet</servlet-name>
+    <servlet-class>com.forum.controller.Forum_Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Forum_Servlet</servlet-name>
+    <url-pattern>/back-end/forum/forum.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Forum_article_Servlet</servlet-name>
+    <servlet-class>com.forum_article.controller.Forum_article_Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Forum_article_Servlet</servlet-name>
+    <url-pattern>/CGA103G5ALL/back-end/forum/forum.do</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -5,7 +5,7 @@
  <session-factory>
   <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
   <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/JAVA_FRAMEWORK?serverTimezone=Asia/Taipei</property>
-  <property name="hibernate.connection.username">root</property>
+  <property name="hibernate.connection.username">cga10305</property>
   <property name="hibernate.connection.password">123qweqwe</property>
   
   

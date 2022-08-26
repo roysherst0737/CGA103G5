@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
 <%@ page import="com.prod_pic.model.*"%>
 
 <%
@@ -28,7 +30,7 @@
 
 <style>
   table {
-	width: 600px;
+	width: 650px;
 	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -59,12 +61,13 @@
 		<th>商品照片</th>
 		<th>商品照片名稱</th>
 	</tr>
-	<tr>
-		<td><%=prod_picVO.getProd_pic_no()%></td>
-		<td><%=prod_picVO.getProd_no()%></td>
-		<td><%=prod_picVO.getProd_pic()%></td>
-		<td><%=prod_picVO.getProd_pic_name()%></td>
-	</tr>
+			<tr>
+				<td>${prod_picVO.prod_pic_no}</td>
+				<td>${prod_picVO.prod_no}</td>
+				<td>
+					<img src="<%=request.getContextPath()%>/Show_Images_Servlet?prod_pic_no=${prod_picVO.prod_pic_no}" width=300px height=200px>
+				</td>
+				<td>${prod_picVO.prod_pic_name}</td>
 </table>
 
 </body>

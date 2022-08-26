@@ -1,6 +1,5 @@
 package com.prod_pic.model;
 
-import java.sql.Blob;
 import java.util.List;
 
 public class Prod_pic_Service {
@@ -11,7 +10,7 @@ public class Prod_pic_Service {
 		dao = new Prod_pic_DAO();
 	}
 	
-	public Prod_pic_VO addProd_pic(Integer prod_no, Blob prod_pic, String prod_pic_name) {
+	public Prod_pic_VO addProd_pic(Integer prod_no, byte[] prod_pic, String prod_pic_name) {
 		
 		Prod_pic_VO prod_picVO = new Prod_pic_VO();
 		
@@ -23,7 +22,7 @@ public class Prod_pic_Service {
 		return prod_picVO;
 	}
 	
-	public Prod_pic_VO updateProd_pic(Integer prod_pic_no, Integer prod_no, Blob prod_pic, String prod_pic_name) {
+	public Prod_pic_VO updateProd_pic(Integer prod_pic_no, Integer prod_no, byte[] prod_pic, String prod_pic_name) {
 		
 		Prod_pic_VO prod_picVO = new Prod_pic_VO();
 		

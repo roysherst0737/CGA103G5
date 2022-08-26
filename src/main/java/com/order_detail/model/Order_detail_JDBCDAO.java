@@ -43,7 +43,7 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 			pstmt.setTimestamp(6, order_detailVO.getComment_time());
 			pstmt.setInt(7, order_detailVO.getComment_star());
 			pstmt.setString(8, order_detailVO.getComment_content());
-			pstmt.setBlob(9, order_detailVO.getComment_pic());
+			pstmt.setBytes(9, order_detailVO.getComment_pic());
 
 			pstmt.executeUpdate();
 			
@@ -91,7 +91,7 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 			pstmt.setTimestamp(4, order_detailVO.getComment_time());
 			pstmt.setInt(5, order_detailVO.getComment_star());
 			pstmt.setString(6, order_detailVO.getComment_content());
-			pstmt.setBlob(7, order_detailVO.getComment_pic());
+			pstmt.setBytes(7, order_detailVO.getComment_pic());
 			pstmt.setInt(8, order_detailVO.getOrder_no());
 			pstmt.setInt(9, order_detailVO.getProd_no());
 
@@ -195,7 +195,7 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 				order_detailVO.setComment_time(rs.getTimestamp("comment_time"));
 				order_detailVO.setComment_star(rs.getInt("comment_star"));
 				order_detailVO.setComment_content(rs.getString("comment_content"));
-				order_detailVO.setComment_pic(rs.getBlob("comment_pic"));
+				order_detailVO.setComment_pic(rs.getBytes("comment_pic"));
 			}
 			
 			// Handle any driver errors
@@ -260,7 +260,7 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 				order_detailVO.setComment_time(rs.getTimestamp("comment_time"));
 				order_detailVO.setComment_star(rs.getInt("comment_star"));
 				order_detailVO.setComment_content(rs.getString("comment_content"));
-				order_detailVO.setComment_pic(rs.getBlob("comment_pic"));
+				order_detailVO.setComment_pic(rs.getBytes("comment_pic"));
 				
 				list.add(order_detailVO); // Store the row in the list
 			}

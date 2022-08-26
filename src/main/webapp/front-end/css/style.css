@@ -191,7 +191,7 @@ p {
     width: 32px;
     height: 32px;
     text-align: center;
-    line-height: 5px;
+    line-height: 16px;
     background: #f5c242;
     color: #ffffff;
     cursor: pointer;
@@ -1564,7 +1564,7 @@ ul.cart-list>li.total>.btn:hover {
 
 /*------------------------------------------------------------------ Footer Main -------------------------------------------------------------------*/
 .footer-main {
-    padding: 70px 0px;
+    padding: 45px 0px;
     background: #010101;
 }
 
@@ -1693,7 +1693,7 @@ ul.cart-list>li.total>.btn:hover {
     color: #cccccc;
     font-weight: 400;
     font-size: 14px;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
 }
 
 /* .footer-link {} */
@@ -1728,7 +1728,7 @@ ul.cart-list>li.total>.btn:hover {
     display: block;
     line-height: 32px;
     position: relative;
-    padding-left: 15px;
+    padding-left: 2px;
     transition: all .3s ease-in-out;
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
@@ -1738,7 +1738,7 @@ ul.cart-list>li.total>.btn:hover {
 
 .footer-link ul li a::before {
     font-family: FontAwesome;
-    content: "\f105";
+    /* content: "\f105"; */
     position: absolute;
     left: 5px;
     line-height: 35px;
@@ -1792,7 +1792,7 @@ ul.cart-list>li.total>.btn:hover {
 }
 
 .footer-link-contact ul li p {
-    padding-left: 25px;
+    padding-left: 5px;
     color: #cccccc;
     position: relative;
 }
@@ -1802,7 +1802,7 @@ ul.cart-list>li.total>.btn:hover {
     color: #cccccc;
     font-weight: 300;
     padding-right: 16px;
-    line-height: 24px;
+    line-height: 23.9px;
 }
 
 .footer-link-contact ul li p a {

@@ -5,6 +5,7 @@ import java.util.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import com.prod_pic.model.Prod_pic_Service;
 import com.prod_pic.model.Prod_pic_VO;
 
 @WebServlet("/Prod_pic_Servlet")
+@MultipartConfig
 public class Prod_pic_Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     public Prod_pic_Servlet() {
@@ -122,7 +124,13 @@ public class Prod_pic_Servlet extends HttpServlet {
 					errorMsgs.add("商品編號請填數字");
 				}
 				
-				byte[] prod_pic = null;			
+				byte[] prod_pic = null;      
+				try {
+					prod_pic = req.getPart("prod_pic").getInputStream().readAllBytes();
+				} catch (Exception e) {
+					errorMsgs.add("請上傳正確格式的檔案");
+					System.out.println(prod_pic);
+				}			
 						
 				String prod_pic_name = req.getParameter("prod_pic_name");
 				String prod_pic_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
@@ -178,7 +186,13 @@ public class Prod_pic_Servlet extends HttpServlet {
 					}
 				}
 						        		
-				byte[] prod_pic = null;       
+				byte[] prod_pic = null;      
+				try {
+					prod_pic = req.getPart("prod_pic").getInputStream().readAllBytes();
+				} catch (Exception e) {
+					errorMsgs.add("請上傳正確格式的檔案");
+					System.out.println(prod_pic);
+				}
 
 				String prod_pic_name = req.getParameter("prod_pic_name");
 				String prod_pic_nameReg = "^[(\\u4e00-\\u9fa5)(a-zA-Z0-9_)]{2,10}$";
@@ -189,8 +203,8 @@ public class Prod_pic_Servlet extends HttpServlet {
 				}
 
 				Prod_pic_VO prod_picVO = new Prod_pic_VO();
-				prod_picVO.setProd_no(prod_no);
-				prod_picVO.setProd_pic(prod_pic);
+				prod_picVO.setProd_no(prod_no);				
+				prod_picVO.setProd_pic(prod_pic);						
 				prod_picVO.setProd_pic_name(prod_pic_name);
 
 				// Send the use back to the form, if there were errors

@@ -65,7 +65,7 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="prod_pic.do" name="form1">
+<FORM METHOD="post" ACTION="prod_pic.do" name="form1" enctype="multipart/form-data">
 <table>
 	<tr>
 		<td>商品照片編號:</td>
@@ -77,10 +77,9 @@
 		<td><input type="TEXT" name="prod_no" size="45" 
 			 value="<%= (prod_picVO==null)? "3" : prod_picVO.getProd_no()%>" /></td>
 	</tr>
-	<tr>
-		<td>商品照片:</td>				
-		<td><input type="FILE" name="prod_pic" size="45" 
-			 value="<%= (prod_picVO==null)? "" : prod_picVO.getProd_pic()%>" /></td>
+	<tr>		
+		<td>商品照片:</td>
+		<td><input type="file" name="prod_pic" size="45" /></td>
 	</tr>
 	<tr>
 		<td>商品照片名稱:</td>

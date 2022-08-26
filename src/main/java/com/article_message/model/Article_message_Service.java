@@ -3,7 +3,6 @@ package com.article_message.model;
 import java.sql.Timestamp;
 import java.util.List;
 
-
 public class Article_message_Service {
 	private Article_message_DAO_interface dao;
 
@@ -39,6 +38,9 @@ public class Article_message_Service {
 
 		return article_message_VO;
 	}
+//	public void updateArticle_message(Article_message_VO article_message_VO) {
+//		dao.update(article_message_VO);
+//	}
 
 	public void deleteArticle_message(Integer art_msg_no) {
 		dao.delete(art_msg_no);

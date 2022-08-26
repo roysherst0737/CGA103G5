@@ -20,22 +20,22 @@ public class Forum_article_report_DAO implements Forum_article_report_DAO_interf
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/LonglyBar");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	
 	}
 	private static final String INSERT_STMT = 
-			"INSERT INTO forum_article_report (frm_art_rpt_no,mem_no,frm_art_no,rpt_time,rpt_content,mng_no,rpt_done_time,rpt_status,rpt_result,rpt_note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		private static final String GET_ALL_STMT = 
-			"SELECT frm_art_rpt_no,mem_no,frm_art_no,rpt_time,rpt_content,mng_no,rpt_done_time,rpt_status,rpt_result,rpt_note FROM forum_article_report order by frm_art_rpt_no";
-		private static final String GET_ONE_STMT = 
-			"SELECT frm_art_rpt_no,mem_no,frm_art_no,rpt_time,rpt_content,mng_no,rpt_done_time,rpt_status,rpt_result,rpt_note FROM forum_article_report where frm_art_rpt_no = ?";
-		private static final String DELETE = 
-			"DELETE FROM forum_article where frm_art_no = ?";
-		private static final String UPDATE = 
-			"UPDATE forum_article set frm_art_rpt_no = ?,mem_no = ?,frm_art_no = ?,rpt_time = ?,rpt_content = ?,mng_no = ?,rpt_done_time = ?,rpt_status = ?,rpt_result = ?,rpt_note = ?";
+		"INSERT INTO forum_article_report (mem_no,frm_art_no,rpt_time,rpt_content,mng_no,rpt_done_time,rpt_status,rpt_result,rpt_note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String GET_ALL_STMT = 
+		"SELECT frm_art_rpt_no,mem_no,frm_art_no,rpt_time,rpt_content,mng_no,rpt_done_time,rpt_status,rpt_result,rpt_note FROM forum_article_report order by frm_art_rpt_no";
+	private static final String GET_ONE_STMT = 
+		"SELECT frm_art_rpt_no,mem_no,frm_art_no,rpt_time,rpt_content,mng_no,rpt_done_time,rpt_status,rpt_result,rpt_note FROM forum_article_report where frm_art_rpt_no = ?";
+	private static final String DELETE = 
+		"DELETE FROM forum_article where frm_art_rpt_no = ?";
+	private static final String UPDATE = 
+		"UPDATE forum_article set frm_art_rpt_no = ?,mem_no = ?,frm_art_no = ?,rpt_time = ?,rpt_content = ?,mng_no = ?,rpt_done_time = ?,rpt_status = ?,rpt_result = ?,rpt_note = ? where frm_art_rpt_no = ?";
 	
 	@Override
 	public void insert(Forum_article_report_VO forum_article_report_VO) {
@@ -48,7 +48,7 @@ public class Forum_article_report_DAO implements Forum_article_report_DAO_interf
 			pstmt = con.prepareStatement(INSERT_STMT);
 			
 			
-			pstmt.setInt(1, forum_article_report_VO.getFrm_art_rpt_no());
+//			pstmt.setInt(1, forum_article_report_VO.getFrm_art_rpt_no());
 			pstmt.setInt(2, forum_article_report_VO.getMem_no());
 			pstmt.setInt(3, forum_article_report_VO.getFrm_art_no());
 			pstmt.setTimestamp(4, forum_article_report_VO.getRpt_time());
@@ -96,7 +96,7 @@ public class Forum_article_report_DAO implements Forum_article_report_DAO_interf
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1, forum_article_report_VO.getFrm_art_rpt_no());
+//			pstmt.setInt(1, forum_article_report_VO.getFrm_art_rpt_no());
 			pstmt.setInt(2, forum_article_report_VO.getMem_no());
 			pstmt.setInt(3, forum_article_report_VO.getFrm_art_no());
 			pstmt.setTimestamp(4, forum_article_report_VO.getRpt_time());
@@ -203,8 +203,6 @@ public class Forum_article_report_DAO implements Forum_article_report_DAO_interf
 				forum_article_report_VO.setRpt_status(rs.getInt("rpt_status"));
 				forum_article_report_VO.setRpt_result(rs.getInt("rpt_result"));
 				forum_article_report_VO.setRpt_note(rs.getString("rpt_note"));
-				
-				
 				
 			}
 

@@ -3,8 +3,6 @@ package com.article_message_report.model;
 import java.sql.Timestamp;
 import java.util.List;
 
-
-
 public class Article_message_report_Service {
 	private Article_message_report_DAO_interface dao;
 
@@ -54,6 +52,11 @@ public class Article_message_report_Service {
 
 		return article_message_report_VO;
 	}
+	
+//	public void updateArticle_message_report(Article_message_report_VO article_message_report_VO) {
+//		dao.update(article_message_report_VO);
+//	}
+
 
 	public void deleteArticle_message_report(Integer art_msg_rpt) {
 		dao.delete(art_msg_rpt);

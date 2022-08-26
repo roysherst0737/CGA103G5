@@ -43,4 +43,5 @@ public class Article_message_VO implements java.io.Serializable{
 		this.msg_content = msg_content;
 	}
 	
+	
 }

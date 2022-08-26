@@ -20,22 +20,22 @@ public class Latest_news_JNDI_DAO implements Latest_news_DAO_interface{
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/LonglyBar");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	
 	}
 	private static final String INSERT_STMT = 
-			"INSERT INTO latest_news (news_content,news_status) VALUES (?, ?)";
-		private static final String GET_ALL_STMT = 
-			"SELECT latest_news_no,news_content,news_status order by latest_news_no";
-		private static final String GET_ONE_STMT = 
-			"SELECT latest_news_no,news_content,news_status FROM latest_news where latest_news_no = ?";
-		private static final String DELETE = 
-			"DELETE FROM latest_news where latest_news_no = ?";
-		private static final String UPDATE = 
-			"UPDATE latest_news set latest_news_no = ?,news_content = ?,news_status = ?";
+		"INSERT INTO latest_news (news_content,news_status) VALUES (?, ?)";
+	private static final String GET_ALL_STMT = 
+		"SELECT latest_news_no,news_content,news_status order by latest_news_no";
+	private static final String GET_ONE_STMT = 
+		"SELECT latest_news_no,news_content,news_status FROM latest_news where latest_news_no = ?";
+	private static final String DELETE = 
+		"DELETE FROM latest_news where latest_news_no = ?";
+	private static final String UPDATE = 
+		"UPDATE latest_news set latest_news_no = ?,news_content = ?,news_status = ? where latest_news_no = ?";
 	
 	@Override
 	public void insert(Latest_news_VO latest_news_VO) {

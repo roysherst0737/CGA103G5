@@ -1,55 +1,40 @@
 package com.article_message_report.model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.sql.*;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
+import static com.util.Common.*;
 
+public class Article_message_report_JDBC_DAO implements Article_message_report_DAO_interface {
 
+//	String driver = "com.mysql.cj.jdbc.Driver";
+//	String url = "jdbc:mysql://localhost:3306/lonelybar?useUnicode=yes&characterEncoding=utf8&useSSL=true&serverTimezone=Asia/Taipei";
+//	String userid = "cga10305";
+//	String passwd = "123qweqwe";
 
-
-
-public class Article_message_report_JDBC_DAO implements Article_message_report_DAO_interface{
-	
-	private static DataSource ds = null;
-	static {
-		try {
-			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/LonglyBar");
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	
-	}
 	private static final String INSERT_STMT = 
-			"INSERT INTO article_message_report (mem_no,art_msg_no,rpt_time,rpt_msg_content,mng_no,msg_done_time,msg_states,msg_result,msg_note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		private static final String GET_ALL_STMT = 
-			"SELECT art_msg_rpt,mem_no,art_msg_no,rpt_time,rpt_msg_content,mng_no,msg_done_time,msg_states,msg_result,msg_note FROM article_message_report order by art_msg_rpt";
-		private static final String GET_ONE_STMT = 
-			"SELECT art_msg_rpt,mem_no,art_msg_no,rpt_time,rpt_msg_content,mng_no,msg_done_time,msg_states,msg_result,msg_note FROM article_message_report where art_msg_rpt = ?";
-		private static final String DELETE = 
-			"DELETE FROM article_message_report where art_msg_rpt = ?";
-		private static final String UPDATE = 
-			"UPDATE article_message_report set mem_no = ?,art_msg_no = ?,rpt_time = ?,rpt_msg_content = ?,mng_no = ?,msg_done_time = ?,msg_states = ?,msg_result = ?,msg_note = ? where art_msg_rpt = ?";
-	
+		"INSERT INTO article_message_report (mem_no,art_msg_no,rpt_time,rpt_msg_content,mng_no,msg_done_time,msg_states,msg_result,msg_note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String GET_ALL_STMT = 
+		"SELECT art_msg_rpt,mem_no,art_msg_no,rpt_time,rpt_msg_content,mng_no,msg_done_time,msg_states,msg_result,msg_note FROM article_message_report order by art_msg_rpt";
+	private static final String GET_ONE_STMT = 
+		"SELECT art_msg_rpt,mem_no,art_msg_no,rpt_time,rpt_msg_content,mng_no,msg_done_time,msg_states,msg_result,msg_note FROM article_message_report where art_msg_rpt = ?";
+	private static final String DELETE = 
+		"DELETE FROM article_message_report where art_msg_rpt = ?";
+	private static final String UPDATE = 
+		"UPDATE article_message_report set mem_no = ?,art_msg_no = ?,rpt_time = ?,rpt_msg_content = ?,mng_no = ?,msg_done_time = ?,msg_states = ?,msg_result = ?,msg_note = ? where art_msg_rpt = ?";
+
 	@Override
 	public void insert(Article_message_report_VO article_message_report_VO) {
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
-		
-			con = ds.getConnection();
+
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(INSERT_STMT);
-			
-			
+
 			pstmt.setInt(1, article_message_report_VO.getMem_no());
 			pstmt.setInt(2, article_message_report_VO.getArt_msg_no());
 			pstmt.setTimestamp(3, article_message_report_VO.getRpt_time());
@@ -59,15 +44,16 @@ public class Article_message_report_JDBC_DAO implements Article_message_report_D
 			pstmt.setInt(7, article_message_report_VO.getMsg_states());
 			pstmt.setInt(8, article_message_report_VO.getMsg_result());
 			pstmt.setString(9, article_message_report_VO.getMsg_note());
-			
 
 			pstmt.executeUpdate();
 
-	
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-			
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -85,17 +71,18 @@ public class Article_message_report_JDBC_DAO implements Article_message_report_D
 			}
 		}
 
-		
 	}
 
 	@Override
 	public void update(Article_message_report_VO article_message_report_VO) {
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setInt(1, article_message_report_VO.getMem_no());
@@ -107,13 +94,16 @@ public class Article_message_report_JDBC_DAO implements Article_message_report_D
 			pstmt.setInt(7, article_message_report_VO.getMsg_states());
 			pstmt.setInt(8, article_message_report_VO.getMsg_result());
 			pstmt.setString(9, article_message_report_VO.getMsg_note());
+
 			pstmt.executeUpdate();
 
-	
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-			
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -131,29 +121,31 @@ public class Article_message_report_JDBC_DAO implements Article_message_report_D
 			}
 		}
 
-		
-		
 	}
 
 	@Override
 	public void delete(Integer art_msg_rpt) {
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, art_msg_rpt);
 
 			pstmt.executeUpdate();
 
-		
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-		
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -171,11 +163,11 @@ public class Article_message_report_JDBC_DAO implements Article_message_report_D
 			}
 		}
 
-		
 	}
 
 	@Override
 	public Article_message_report_VO findByPrimaryKey(Integer art_msg_rpt) {
+
 		Article_message_report_VO article_message_report_VO = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -183,7 +175,8 @@ public class Article_message_report_JDBC_DAO implements Article_message_report_D
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setInt(1, art_msg_rpt);
@@ -191,7 +184,7 @@ public class Article_message_report_JDBC_DAO implements Article_message_report_D
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-			
+				// empVo ‰πüÁ®±ÁÇ∫ Domain objects
 				article_message_report_VO = new Article_message_report_VO();
 				article_message_report_VO.setArt_msg_rpt(rs.getInt("art_msg_rpt"));
 				article_message_report_VO.setMem_no(rs.getInt("mem_no"));
@@ -203,16 +196,15 @@ public class Article_message_report_JDBC_DAO implements Article_message_report_D
 				article_message_report_VO.setMsg_states(rs.getInt("msg_states"));
 				article_message_report_VO.setMsg_result(rs.getInt("msg_result"));
 				article_message_report_VO.setMsg_note(rs.getString("msg_note"));
-				
-				
-				
 			}
 
-			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-		
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
 		} finally {
 			if (rs != null) {
 				try {
@@ -236,7 +228,7 @@ public class Article_message_report_JDBC_DAO implements Article_message_report_D
 				}
 			}
 		}
-		return null;
+		return article_message_report_VO;
 	}
 
 	@Override
@@ -250,11 +242,13 @@ public class Article_message_report_JDBC_DAO implements Article_message_report_D
 
 		try {
 
-			con = ds.getConnection();
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
+				// empVo ‰πüÁ®±ÁÇ∫ Domain objects
 				article_message_report_VO = new Article_message_report_VO();
 				article_message_report_VO.setArt_msg_rpt(rs.getInt("art_msg_rpt"));
 				article_message_report_VO.setMem_no(rs.getInt("mem_no"));
@@ -266,15 +260,17 @@ public class Article_message_report_JDBC_DAO implements Article_message_report_D
 				article_message_report_VO.setMsg_states(rs.getInt("msg_states"));
 				article_message_report_VO.setMsg_result(rs.getInt("msg_result"));
 				article_message_report_VO.setMsg_note(rs.getString("msg_note"));
-				
-				list.add(article_message_report_VO); 
+				;
+				list.add(article_message_report_VO); // Store the row in the list
 			}
 
-			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-		
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
 		} finally {
 			if (rs != null) {
 				try {
@@ -300,56 +296,70 @@ public class Article_message_report_JDBC_DAO implements Article_message_report_D
 		}
 		return list;
 	}
-//	public static void main(String[] args) {
-//
-//		Article_message_report_JDBC_DAO dao = new Article_message_report_JDBC_DAO();
-//
-//		// ∑sºW
-//		Article_message_report_VO empVO1 = newArticle_message_reportVO();
-//		empVO1.setEname("ßd•√ß”1");
-//		empVO1.setJob("MANAGER");
-//		empVO1.setHiredate(java.sql.Date.valueOf("2005-01-01"));
-//		empVO1.setSal(new Double(50000));
-//		empVO1.setComm(new Double(500));
-//		empVO1.setDeptno(10);
-//		dao.insert(empVO1);
-//
-//		// ≠◊ßÔ
-//		EmpVO empVO2 = new EmpVO();
-//		empVO2.setEmpno(7001);
-//		empVO2.setEname("ßd•√ß”2");
-//		empVO2.setJob("MANAGER2");
-//		empVO2.setHiredate(java.sql.Date.valueOf("2002-01-01"));
-//		empVO2.setSal(new Double(20000));
-//		empVO2.setComm(new Double(200));
-//		empVO2.setDeptno(20);
-//		dao.update(empVO2);
-//
-//		// ßR∞£
-//		dao.delete(7014);
-//
-//		// ¨d∏ﬂ
-//		EmpVO empVO3 = dao.findByPrimaryKey(7001);
-//		System.out.print(empVO3.getEmpno() + ",");
-//		System.out.print(empVO3.getEname() + ",");
-//		System.out.print(empVO3.getJob() + ",");
-//		System.out.print(empVO3.getHiredate() + ",");
-//		System.out.print(empVO3.getSal() + ",");
-//		System.out.print(empVO3.getComm() + ",");
-//		System.out.println(empVO3.getDeptno());
-//		System.out.println("---------------------");
-//
-//		// ¨d∏ﬂ
-//		List<EmpVO> list = dao.getAll();
-//		for (EmpVO aEmp : list) {
-//			System.out.print(aEmp.getEmpno() + ",");
-//			System.out.print(aEmp.getEname() + ",");
-//			System.out.print(aEmp.getJob() + ",");
-//			System.out.print(aEmp.getHiredate() + ",");
-//			System.out.print(aEmp.getSal() + ",");
-//			System.out.print(aEmp.getComm() + ",");
-//			System.out.print(aEmp.getDeptno());
-//			System.out.println();
-//		}
-//	}
+
+	public static void main(String[] args) {
+
+		Article_message_report_JDBC_DAO dao = new Article_message_report_JDBC_DAO();
+
+		// Êñ∞Â¢û
+		Article_message_report_VO article_message_report_VO1 = new Article_message_report_VO();
+		article_message_report_VO1.setArt_msg_rpt(1);
+		article_message_report_VO1.setMem_no(1);
+		article_message_report_VO1.setArt_msg_no(123);
+		article_message_report_VO1.setRpt_time(java.sql.Timestamp.valueOf("2022-05-07 01:23:45"));
+		article_message_report_VO1.setRpt_msg_content("‰ªáÊÅ®Ë®ÄË´ñ");
+		article_message_report_VO1.setMng_no(1);
+		article_message_report_VO1.setMsg_done_time(java.sql.Timestamp.valueOf("null"));
+		article_message_report_VO1.setMsg_states(0);
+		article_message_report_VO1.setMsg_result(0);
+		article_message_report_VO1.setMsg_note("ÂæÖÂØ©Ê†∏");
+		dao.insert(article_message_report_VO1);
+
+		// ‰øÆÊîπ
+		Article_message_report_VO article_message_report_VO2 = new Article_message_report_VO();
+		article_message_report_VO2.setArt_msg_rpt(1);
+		article_message_report_VO2.setMem_no(1);
+		article_message_report_VO2.setArt_msg_no(123);
+		article_message_report_VO2.setRpt_time(java.sql.Timestamp.valueOf("2022-05-07 01:23:45"));
+		article_message_report_VO2.setRpt_msg_content("‰ªáÊÅ®Ë®ÄË´ñ");
+		article_message_report_VO2.setMng_no(1);
+		article_message_report_VO2.setMsg_done_time(java.sql.Timestamp.valueOf("2022-05-07 12:20:45"));
+		article_message_report_VO2.setMsg_states(1);
+		article_message_report_VO2.setMsg_result(1);
+		article_message_report_VO2.setMsg_note("Â∑≤ÂØ©Ê†∏");
+		dao.insert(article_message_report_VO2);
+
+		// Âà™Èô§
+		dao.delete(7014);
+
+		// Êü•Ë©¢
+		Article_message_report_VO article_message_report_VO3 = dao.findByPrimaryKey(7001);
+		System.out.print(article_message_report_VO3.getArt_msg_rpt() + ",");
+		System.out.print(article_message_report_VO3.getMem_no() + ",");
+		System.out.print(article_message_report_VO3.getArt_msg_no() + ",");
+		System.out.print(article_message_report_VO3.getRpt_time() + ",");
+		System.out.print(article_message_report_VO3.getRpt_msg_content() + ",");
+		System.out.print(article_message_report_VO3.getMng_no() + ",");
+		System.out.println(article_message_report_VO3.getMsg_done_time());
+		System.out.print(article_message_report_VO3.getMsg_states() + ",");
+		System.out.print(article_message_report_VO3.getMsg_result() + ",");
+		System.out.println(article_message_report_VO3.getMsg_note());
+		System.out.println("---------------------");
+
+		// Êü•Ë©¢
+		List<Article_message_report_VO> list = dao.getAll();
+		for (Article_message_report_VO aArticle_message_report : list) {
+			System.out.print(aArticle_message_report.getArt_msg_rpt() + ",");
+			System.out.print(aArticle_message_report.getMem_no() + ",");
+			System.out.print(aArticle_message_report.getArt_msg_no() + ",");
+			System.out.print(aArticle_message_report.getRpt_time() + ",");
+			System.out.print(aArticle_message_report.getRpt_msg_content() + ",");
+			System.out.print(aArticle_message_report.getMng_no() + ",");
+			System.out.print(aArticle_message_report.getMsg_done_time());
+			System.out.print(aArticle_message_report.getMsg_states() + ",");
+			System.out.print(aArticle_message_report.getMsg_result() + ",");
+			System.out.print(aArticle_message_report.getMsg_note());
+			System.out.println();
+		}
+	}
 }

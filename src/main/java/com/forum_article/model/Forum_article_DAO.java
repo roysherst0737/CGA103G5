@@ -20,22 +20,22 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/LonglyBar");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	
 	}
 	private static final String INSERT_STMT = 
-			"INSERT INTO forum_article (frm_no,mem_no,art_time,art_title,art_content,art_img,art_status) VALUES (?, ?, ?, ?, ?, ?, ?)";
-		private static final String GET_ALL_STMT = 
-			"SELECT frm_art_no,frm_no,mem_no,art_time,art_title,art_content,art_img,art_status FROM forum_article order by frm_art_no";
-		private static final String GET_ONE_STMT = 
-			"SELECT frm_art_no,frm_no,mem_no,art_time,art_title,art_content,art_img,art_status FROM forum_article FROM forum where frm_art_no = ?";
-		private static final String DELETE = 
-			"DELETE FROM forum_article where frm_art_no = ?";
-		private static final String UPDATE = 
-			"UPDATE forum set frm_no = ?,mem_no = ?,art_time = ?,art_title = ?,art_content = ?,art_img = ?,art_status = ? where frm_art_no = ?";
+		"INSERT INTO forum_article (frm_no,mem_no,art_time,art_title,art_content,art_img,art_status) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	private static final String GET_ALL_STMT = 
+		"SELECT frm_art_no,frm_no,mem_no,art_time,art_title,art_content,art_img,art_status FROM forum_article order by frm_art_no";
+	private static final String GET_ONE_STMT = 
+		"SELECT frm_art_no,frm_no,mem_no,art_time,art_title,art_content,art_img,art_status FROM forum_article FROM forum where frm_art_no = ?";
+	private static final String DELETE = 
+		"DELETE FROM forum_article where frm_art_no = ?";
+	private static final String UPDATE = 
+		"UPDATE forum set frm_no = ?,mem_no = ?,art_time = ?,art_title = ?,art_content = ?,art_img = ?,art_status = ? where frm_art_no = ?";
 	
 	@Override
 	public void insert(Forum_article_VO forum_article_VO) {
@@ -52,7 +52,7 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 			pstmt.setTimestamp(3, forum_article_VO.getArt_time());
 			pstmt.setString(4, forum_article_VO.getArt_title());
 			pstmt.setString(5, forum_article_VO.getArt_content());
-			pstmt.setByte(6, forum_article_VO.getArt_img());
+			pstmt.setBytes(6, forum_article_VO.getArt_img());
 			pstmt.setInt(7, forum_article_VO.getArt_status());
 			
 			
@@ -99,7 +99,7 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 			pstmt.setTimestamp(3, forum_article_VO.getArt_time());
 			pstmt.setString(4, forum_article_VO.getArt_title());
 			pstmt.setString(5, forum_article_VO.getArt_content());
-			pstmt.setByte(6, forum_article_VO.getArt_img());
+			pstmt.setBytes(6, forum_article_VO.getArt_img());
 			pstmt.setInt(7, forum_article_VO.getArt_status());
 			pstmt.executeUpdate();
 
@@ -193,7 +193,7 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 				forum_article_VO.setArt_time(rs.getTimestamp("art_time"));
 				forum_article_VO.setArt_title(rs.getString("art_title"));
 				forum_article_VO.setArt_content(rs.getString("art_content"));
-				forum_article_VO.setArt_img(rs.getByte("art_img"));
+				forum_article_VO.setArt_img(rs.getBytes("art_img"));
 				forum_article_VO.setArt_status(rs.getInt("art_status"));
 				
 			}
@@ -252,7 +252,7 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 				forum_article_VO.setArt_time(rs.getTimestamp("art_time"));
 				forum_article_VO.setArt_title(rs.getString("art_title"));
 				forum_article_VO.setArt_content(rs.getString("art_content"));
-				forum_article_VO.setArt_img(rs.getByte("art_img"));
+				forum_article_VO.setArt_img(rs.getBytes("art_img"));
 				forum_article_VO.setArt_status(rs.getInt("art_status"));
 				
 				list.add(forum_article_VO); 

@@ -2,10 +2,6 @@ package com.forum.model;
 
 import java.util.List;
 
-//import com.forum.model.Forum_DAO;
-//import com.forum.model.Forum_DAO_interface;
-//import com.forum.model.Forum_VO;
-
 public class Forum_Service {
 	private Forum_DAO_interface dao;
 
@@ -15,26 +11,30 @@ public class Forum_Service {
 
 	public Forum_VO addForum(Integer frm_no, String frm_name_no, Integer frm_status) {
 
-		Forum_VO forumVO = new Forum_VO();
+		Forum_VO forum_VO = new Forum_VO();
 
-		forumVO.setFrm_no(frm_no);
-		forumVO.setFrm_name_no(frm_name_no);
-		forumVO.setFrm_status(frm_status);
-		dao.insert(forumVO);
+//		forumVO.setFrm_no(frm_no);
+		forum_VO.setFrm_name_no(frm_name_no);
+		forum_VO.setFrm_status(frm_status);
+		dao.insert(forum_VO);
 
-		return forumVO;
+		return forum_VO;
 	}
 
 	public Forum_VO updateForum(Integer frm_no, String frm_name_no, Integer frm_status) {
 
-		Forum_VO forumVO = new Forum_VO();
+		Forum_VO forum_VO = new Forum_VO();
 
-		forumVO.setFrm_no(frm_no);
-		forumVO.setFrm_name_no(frm_name_no);
-		forumVO.setFrm_status(frm_status);
-		dao.update(forumVO);
+		forum_VO.setFrm_no(frm_no);
+		forum_VO.setFrm_name_no(frm_name_no);
+		forum_VO.setFrm_status(frm_status);
+		dao.update(forum_VO);
 
-		return forumVO;
+		return forum_VO;
+	}
+	
+	public void updateForum(Forum_VO forum_VO) {
+		dao.update(forum_VO);
 	}
 
 	public void deleteForum(Integer frm_no) {

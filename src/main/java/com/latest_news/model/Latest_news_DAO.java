@@ -20,7 +20,7 @@ public class Latest_news_DAO implements Latest_news_DAO_interface{
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/LonglyBar");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -35,7 +35,7 @@ public class Latest_news_DAO implements Latest_news_DAO_interface{
 		private static final String DELETE = 
 			"DELETE FROM latest_news where latest_news_no = ?";
 		private static final String UPDATE = 
-			"UPDATE latest_news set latest_news_no = ?,news_content = ?,news_status = ?";
+			"UPDATE latest_news set latest_news_no = ?,news_content = ?,news_status = ? where latest_news_no = ?";
 	
 	@Override
 	public void insert(Latest_news_VO latest_news_VO) {

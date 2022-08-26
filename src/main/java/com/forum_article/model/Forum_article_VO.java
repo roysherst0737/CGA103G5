@@ -14,7 +14,7 @@ public class Forum_article_VO implements java.io.Serializable{
 	private Timestamp art_time;
 	private String art_title;
 	private String art_content;
-	private Byte art_img;
+	private byte[] art_img;
 	private Integer art_status;
 	public Integer getFrm_art_no() {
 		return frm_art_no;
@@ -52,10 +52,10 @@ public class Forum_article_VO implements java.io.Serializable{
 	public void setArt_content(String art_content) {
 		this.art_content = art_content;
 	}
-	public Byte getArt_img() {
+	public byte[] getArt_img() {
 		return art_img;
 	}
-	public void setArt_img(Byte art_img) {
+	public void setArt_img(byte[] art_img) {
 		this.art_img = art_img;
 	}
 	public Integer getArt_status() {

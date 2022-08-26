@@ -17,12 +17,12 @@
     const nav = document.createElement('nav');
     nav.classList.add('navbar', 'col-lg-12', 'col-12', 'p-0', 'fixed-top', 'd-flex', 'flex-row');
     // <!-- partial:partials/_navbar.html -->
-    let path_nav = window.location.pathname;
-    let path1 = path_nav.substring(0, path_nav.indexOf("back-end")+8);
+	let path_nav = window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/"));
+	path1 = path_nav.substring(0, path_nav.lastIndexOf("/"));
     nav.innerHTML = `
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a class="navbar-brand brand-logo" href="`+path1+`/index_back.html"><img src="`+path1+`/images/logo2.png" alt="logo"  style="height: auto;padding: 20px" /></a>
-            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="`+path1+`/images/logo2.png"
+            <a class="navbar-brand brand-logo" href="`+path1+`/back-end/index_back.html"><img src="`+path1+`/back-end/images/logo2.png" alt="logo"  style="height: auto;padding: 20px" /></a>
+            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="`+path1+`/back-end/images/logo2.png"
                 alt="logo" /></a>
             <button class="navbar-toggler navbar-toggler align-self-center d-none d-lg-flex" type="button"
                 data-toggle="minimize">
@@ -64,7 +64,7 @@
                         <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
                         <a class="dropdown-item preview-item">
                             <div class="preview-thumbnail">
-                                <img src="`+path1+`/images/faces/face4.jpg" alt="image" class="profile-pic">
+                                <img src="`+path1+`/back-end/images/faces/face4.jpg" alt="image" class="profile-pic">
                             </div>
                             <div class="preview-item-content flex-grow">
                                 <h6 class="preview-subject ellipsis font-weight-normal">David
@@ -76,7 +76,7 @@
                         </a>
                         <a class="dropdown-item preview-item">
                             <div class="preview-thumbnail">
-                                <img src="`+path1+`/images/faces/face2.jpg" alt="image" class="profile-pic">
+                                <img src="`+path1+`/back-end/images/faces/face2.jpg" alt="image" class="profile-pic">
                             </div>
                             <div class="preview-item-content flex-grow">
                                 <h6 class="preview-subject ellipsis font-weight-normal">Tim Cook
@@ -88,7 +88,7 @@
                         </a>
                         <a class="dropdown-item preview-item">
                             <div class="preview-thumbnail">
-                                <img src="`+path1+`/images/faces/face3.jpg" alt="image" class="profile-pic">
+                                <img src="`+path1+`/back-end/images/faces/face3.jpg" alt="image" class="profile-pic">
                             </div>
                             <div class="preview-item-content flex-grow">
                                 <h6 class="preview-subject ellipsis font-weight-normal"> Johnson

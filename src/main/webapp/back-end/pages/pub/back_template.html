@@ -18,9 +18,25 @@
   <link rel="shortcut icon" href="../../images/favicon.png" />
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script>
-    let path = window.location.pathname;
-	path = path.substring(0, path.indexOf("back-end") + 8);
-    </script>
+    document.querySelector(".btn-outline-secondary").addEventListener(() => {
+      var table = $('#example').DataTable();
+
+      table.columns().flatten().each(function (colIdx) {
+        // Create the select list and search operation
+        var select = $('<select />')
+          .appendTo(
+            table.column(colIdx).footer()
+          )
+          .on('change', function () {
+            table
+              .column(colIdx)
+              .search($(this).val())
+              .draw();
+          });
+      })
+      let path = window.location.pathname;
+      path = path.substring(0, path.indexOf("back-end") + 8);
+  </script>
 </head>
 
 <body>
@@ -39,9 +55,9 @@
       </nav>
       <!-- 引入sidebar 用JQ方式 -->
       <script>
-        $(function () {
-          $("#sidebar").load(window.location.origin + path + "/partials/_sidebar.html");
-        });
+      $(function () {
+        $("#sidebar").load(window.location.origin + path + "/partials/_sidebar.html");
+      });
       </script>
       <!-- partial -->
       <div class="main-panel">
@@ -57,9 +73,9 @@
         <!-- 引入footer 用JQ方式 -->
         <footer class="footer"></footer>
         <script>
-          $(function () {
-            $(".footer").load(window.location.origin + path + "/partials/_footer.html");
-          });
+      $(function () {
+        $(".footer").load(window.location.origin + path + "/partials/_footer.html");
+      });
         </script>
         <!-- partial -->
       </div>

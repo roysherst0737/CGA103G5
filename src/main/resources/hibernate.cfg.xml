@@ -4,7 +4,7 @@
 <hibernate-configuration>
  <session-factory>
   <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/JAVA_FRAMEWORK?serverTimezone=Asia/Taipei</property>
+  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/lonelybar?serverTimezone=Asia/Taipei</property>
   <property name="hibernate.connection.username">cga10305</property>
   <property name="hibernate.connection.password">123qweqwe</property>
   
@@ -17,10 +17,9 @@
   <property name="hibernate.show_sql">true</property>
   <property name="hibernate.format_sql">true</property>
 
-
-  <mapping class="web.member.entity.Member" />
-  <mapping class="web.order.entity.Customer" />
-  <mapping class="web.order.entity.Order" />
+  <mapping class="com.pub.model.Pub" />
+<!--   <mapping class="web.order.entity.Customer" /> -->
+<!--   <mapping class="web.order.entity.Order" /> -->
 
  </session-factory>
 </hibernate-configuration>

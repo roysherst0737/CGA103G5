@@ -17,26 +17,7 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="../../images/favicon.png" />
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script>
-    document.querySelector(".btn-outline-secondary").addEventListener(() => {
-      var table = $('#example').DataTable();
-
-      table.columns().flatten().each(function (colIdx) {
-        // Create the select list and search operation
-        var select = $('<select />')
-          .appendTo(
-            table.column(colIdx).footer()
-          )
-          .on('change', function () {
-            table
-              .column(colIdx)
-              .search($(this).val())
-              .draw();
-          });
-      })
-      let path = window.location.pathname;
-      path = path.substring(0, path.indexOf("back-end") + 8);
-  </script>
+  
 </head>
 
 <body>

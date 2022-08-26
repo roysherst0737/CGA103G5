@@ -19,7 +19,7 @@ public class Prod_pic_DAO implements Prod_pic_DAO_interface{
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/lonelybar");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -47,7 +47,7 @@ public class Prod_pic_DAO implements Prod_pic_DAO_interface{
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, prod_picVO.getProd_no());
-			pstmt.setBlob(2, prod_picVO.getProd_pic());
+			pstmt.setBytes(2, prod_picVO.getProd_pic());
 			pstmt.setString(3, prod_picVO.getProd_pic_name());
 
 			pstmt.executeUpdate();
@@ -86,7 +86,7 @@ public class Prod_pic_DAO implements Prod_pic_DAO_interface{
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setInt(1, prod_picVO.getProd_no());
-			pstmt.setBlob(2, prod_picVO.getProd_pic());
+			pstmt.setBytes(2, prod_picVO.getProd_pic());
 			pstmt.setString(3, prod_picVO.getProd_pic_name());
 			pstmt.setInt(4, prod_picVO.getProd_pic_no());
 
@@ -173,7 +173,7 @@ public class Prod_pic_DAO implements Prod_pic_DAO_interface{
 				prod_picVO = new Prod_pic_VO();
 				prod_picVO.setProd_pic_no(rs.getInt("prod_pic_no"));
 				prod_picVO.setProd_no(rs.getInt("prod_no"));
-				prod_picVO.setProd_pic(rs.getBlob("prod_pic"));
+				prod_picVO.setProd_pic(rs.getBytes("prod_pic"));
 				prod_picVO.setProd_pic_name(rs.getString("prod_pic_name"));
 			}
 
@@ -228,7 +228,7 @@ public class Prod_pic_DAO implements Prod_pic_DAO_interface{
 				prod_picVO = new Prod_pic_VO();
 				prod_picVO.setProd_pic_no(rs.getInt("prod_pic_no"));
 				prod_picVO.setProd_no(rs.getInt("prod_no"));
-				prod_picVO.setProd_pic(rs.getBlob("prod_pic"));
+				prod_picVO.setProd_pic(rs.getBytes("prod_pic"));
 				prod_picVO.setProd_pic_name(rs.getString("prod_pic_name"));
 				
 				list.add(prod_picVO); // Store the row in the list

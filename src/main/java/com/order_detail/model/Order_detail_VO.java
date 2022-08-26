@@ -1,7 +1,6 @@
 package com.order_detail.model;
 
 import java.io.Serializable;
-import java.sql.Blob;
 import java.sql.Timestamp;
 
 public class Order_detail_VO implements Serializable{
@@ -15,7 +14,7 @@ public class Order_detail_VO implements Serializable{
 	private Timestamp comment_time;
 	private Integer comment_star;
 	private String comment_content;
-	private Blob comment_pic;
+	private byte[] comment_pic;
 	
 	public Integer getOrder_no() {
 		return order_no;
@@ -65,10 +64,10 @@ public class Order_detail_VO implements Serializable{
 	public void setComment_content(String comment_content) {
 		this.comment_content = comment_content;
 	}
-	public Blob getComment_pic() {
+	public byte[] getComment_pic() {
 		return comment_pic;
 	}
-	public void setComment_pic(Blob comment_pic) {
+	public void setComment_pic(byte[] comment_pic) {
 		this.comment_pic = comment_pic;
 	}
 }

@@ -1,18 +1,18 @@
 package com.prod_pic.controller;
 
 import java.io.*;
-import java.sql.*;
 import java.util.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.prod_pic.model.Prod_pic_Service;
 import com.prod_pic.model.Prod_pic_VO;
 
+@WebServlet("/Prod_pic_Servlet")
 public class Prod_pic_Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     public Prod_pic_Servlet() {
@@ -81,29 +81,7 @@ public class Prod_pic_Servlet extends HttpServlet {
 				String url = "/back-end/prod_pic/listOneProd_pic.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
-		}
-		
-		if ("getOnePic".equals(action)) {
-	          
-			/*************************** 1.接收請求參數 ****************************************/
-	        Integer prod_pic_no = Integer.valueOf(req.getParameter("prod_pic_no").trim());
-
-	        /*************************** 2.開始查詢資料 ****************************************/
-	        Prod_pic_Service prod_picSvc = new Prod_pic_Service();
-	        Prod_pic_VO prod_picVO = prod_picSvc.getOneProd_pic(prod_pic_no);
-
-	        /*************************** 3.輸出圖片 ************/
-	        Blob prod_pic = null;
-			try {
-				prod_pic = prod_picVO.getProd_pic();
-				ServletOutputStream out = res.getOutputStream();
-//		        out.write(prod_pic);
-		        out.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-		}
-		
+		}		
 		
 		if ("getOne_For_Update".equals(action)) {
 
@@ -144,7 +122,7 @@ public class Prod_pic_Servlet extends HttpServlet {
 					errorMsgs.add("商品編號請填數字");
 				}
 				
-				Blob prod_pic = null;			
+				byte[] prod_pic = null;			
 						
 				String prod_pic_name = req.getParameter("prod_pic_name");
 				String prod_pic_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
@@ -188,15 +166,19 @@ public class Prod_pic_Servlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
-				Integer prod_no = null;
-				try {
-					prod_no = Integer.valueOf(req.getParameter("prod_no").trim());
-				} catch (NumberFormatException e) {
-					prod_no = 0;
-					errorMsgs.add("商品編號請填數字");
-				}			
-				
-				Blob prod_pic = null;
+				Integer prod_no = 1;
+				if (prod_no == 0) {
+					errorMsgs.add("商品照片編號最小為1");
+				} else {
+					try {
+						prod_no = Integer.valueOf(req.getParameter("prod_no").trim());
+					} catch (NumberFormatException e) {
+						prod_no = 1;
+						errorMsgs.add("商品編號請填數字");
+					}
+				}
+						        		
+				byte[] prod_pic = null;       
 
 				String prod_pic_name = req.getParameter("prod_pic_name");
 				String prod_pic_nameReg = "^[(\\u4e00-\\u9fa5)(a-zA-Z0-9_)]{2,10}$";
@@ -227,9 +209,9 @@ public class Prod_pic_Servlet extends HttpServlet {
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				String url = "/back-end/prod_pic/listAllProd_pic.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, res);				
+				successView.forward(req, res);
 		}
-		
+        
 		
 		if ("delete".equals(action)) {
 

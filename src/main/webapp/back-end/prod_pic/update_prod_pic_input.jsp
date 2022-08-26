@@ -78,14 +78,14 @@
 			 value="<%= (prod_picVO==null)? "3" : prod_picVO.getProd_no()%>" /></td>
 	</tr>
 	<tr>
-		<td>商品照片:</td>
-		<td><input type="file" name="prod_pic" size="45"
+		<td>商品照片:</td>				
+		<td><input type="FILE" name="prod_pic" size="45" 
 			 value="<%= (prod_picVO==null)? "" : prod_picVO.getProd_pic()%>" /></td>
 	</tr>
 	<tr>
 		<td>商品照片名稱:</td>
 		<td><input type="TEXT" name="prod_pic_name" size="45"
-			 value="<%= (prod_picVO==null)? "高級烈酒" : prod_picVO.getProd_pic_name()%>" /></td>
+			 value="<%= (prod_picVO==null)? "" : prod_picVO.getProd_pic_name()%>" /></td>
 	</tr>
 </table>
 

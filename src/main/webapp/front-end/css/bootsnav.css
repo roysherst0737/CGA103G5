@@ -199,7 +199,8 @@ li.close-full-menu{
 =================================*/
 .attr-nav{
     float: right;
-    display: inline-block;
+    /* display: inline-block; */
+    direction: rtl;
     margin-left: 13px;
     margin-right: -15px;
 }
@@ -1001,8 +1002,9 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
     }
     
     nav.navbar.bootsnav .navbar-toggle {
-        display: inline-block;
+        /* display: inline-block; */
         float: left;
+        direction: rtl;
         margin-right: -200px;
         margin-top: 10px;
     }
@@ -1252,8 +1254,9 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
     }
     
     nav.bootsnav.navbar-full .navbar-toggle {
-        display: inline-block;
+        /* display: inline-block; */
         float: right;
+        direction: rtl;
         margin-right: 0;
         margin-top: 10px;
     }
@@ -1273,7 +1276,7 @@ nav.navbar.bootsnav ul.dropdown-menu.megamenu-content .content ul.menu-col li a:
     /* Tabs
     =================================*/ 
     nav.navbar.bootsnav .megamenu-content.tabbed{
-        padding-left: 0 !mportant;
+        padding-left: 0 !important;
     }
     
     nav.navbar.bootsnav .tabbed > li{

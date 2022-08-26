@@ -20,22 +20,22 @@ public class Article_message_report_DAO implements Article_message_report_DAO_in
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/LonglyBar");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	
 	}
 	private static final String INSERT_STMT = 
-			"INSERT INTO article_message_report (mem_no,art_msg_no,rpt_time,rpt_msg_content,mng_no,msg_done_time,msg_states,msg_result,msg_note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		private static final String GET_ALL_STMT = 
-			"SELECT art_msg_rpt,mem_no,art_msg_no,rpt_time,rpt_msg_content,mng_no,msg_done_time,msg_states,msg_result,msg_note FROM article_message_report order by art_msg_rpt";
-		private static final String GET_ONE_STMT = 
-			"SELECT art_msg_rpt,mem_no,art_msg_no,rpt_time,rpt_msg_content,mng_no,msg_done_time,msg_states,msg_result,msg_note FROM article_message_report where art_msg_rpt = ?";
-		private static final String DELETE = 
-			"DELETE FROM article_message_report where art_msg_rpt = ?";
-		private static final String UPDATE = 
-			"UPDATE article_message_report set mem_no = ?,art_msg_no = ?,rpt_time = ?,rpt_msg_content = ?,mng_no = ?,msg_done_time = ?,msg_states = ?,msg_result = ?,msg_note = ? where art_msg_rpt = ?";
+		"INSERT INTO article_message_report (mem_no,art_msg_no,rpt_time,rpt_msg_content,mng_no,msg_done_time,msg_states,msg_result,msg_note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String GET_ALL_STMT = 
+		"SELECT art_msg_rpt,mem_no,art_msg_no,rpt_time,rpt_msg_content,mng_no,msg_done_time,msg_states,msg_result,msg_note FROM article_message_report order by art_msg_rpt";
+	private static final String GET_ONE_STMT = 
+		"SELECT art_msg_rpt,mem_no,art_msg_no,rpt_time,rpt_msg_content,mng_no,msg_done_time,msg_states,msg_result,msg_note FROM article_message_report where art_msg_rpt = ?";
+	private static final String DELETE = 
+		"DELETE FROM article_message_report where art_msg_rpt = ?";
+	private static final String UPDATE = 
+		"UPDATE article_message_report set mem_no = ?,art_msg_no = ?,rpt_time = ?,rpt_msg_content = ?,mng_no = ?,msg_done_time = ?,msg_states = ?,msg_result = ?,msg_note = ? where art_msg_rpt = ?";
 	
 	@Override
 	public void insert(Article_message_report_VO article_message_report_VO) {

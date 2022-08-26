@@ -20,22 +20,22 @@ public class Article_message_JNDI_DAO implements Article_message_DAO_interface{
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/LonglyBar");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	
 	}
 	private static final String INSERT_STMT = 
-			"INSERT INTO article_message (mem_no,frm_art_no,msg_time,msg_content) VALUES (?, ?, ?, ?)";
-		private static final String GET_ALL_STMT = 
-			"SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content FROM article_message order by art_msg_no";
-		private static final String GET_ONE_STMT = 
-			"SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content FROM article_message where art_msg_no = ?";
-		private static final String DELETE = 
-			"DELETE FROM article_message where art_msg_no = ?";
-		private static final String UPDATE = 
-			"UPDATE article_message set art_msg_no = ?,mem_no = ?,frm_art_no = ?,msg_time = ?,msg_content = ?";
+		"INSERT INTO article_message (mem_no,frm_art_no,msg_time,msg_content) VALUES (?, ?, ?, ?)";
+	private static final String GET_ALL_STMT = 
+		"SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content FROM article_message order by art_msg_no";
+	private static final String GET_ONE_STMT = 
+		"SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content FROM article_message where art_msg_no = ?";
+	private static final String DELETE = 
+		"DELETE FROM article_message where art_msg_no = ?";
+	private static final String UPDATE = 
+		"UPDATE article_message set art_msg_no = ?,mem_no = ?,frm_art_no = ?,msg_time = ?,msg_content = ? where art_msg_no = ?";
 	
 	@Override
 	public void insert(Article_message_VO article_message_VO) {

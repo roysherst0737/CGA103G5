@@ -9,6 +9,7 @@
     pageContext.setAttribute("list",list);
 %>
 
+<!DOCTYPE html>
 <html lang="zh">
 
 <head>
@@ -18,43 +19,50 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>朧醴 LonelyBar【後端】</title>
 <!-- base:css -->
-<script type="text/javascript">
-	let path = window.location.pathname.substring(0, window.location.pathname
-			.lastIndexOf("/"));
-	path = path.substring(0, path.lastIndexOf("/"));
-</script>
-
-<link rel="stylesheet" href="../vendors/typicons.font/font/typicons.css">
-<link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/back-end/vendors/typicons.font/font/typicons.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/back-end/vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
 <!-- endinject -->
 <!-- plugin css for this page -->
 <!-- End plugin css for this page -->
 <!-- inject:css -->
-<link rel="stylesheet" href="../css/vertical-layout-light/style.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/back-end/css/vertical-layout-light/style.css">
 <!-- endinject -->
-<link rel="shortcut icon" href="../images/favicon.png" />
+<link rel="shortcut icon"
+	href="<%=request.getContextPath()%>/back-end/images/favicon.png" />
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-
+<script>
+	let path = window.location.pathname.substring(0, window.location.pathname
+			.lastIndexOf("/"));
+	path = path.substring(0, path.lastIndexOf("/"));
+</script>
 </head>
 
 <body>
 	<!-- 主頁面 -->
 	<div class="container-scroller">
 		<!-- 引入nav(頂部含廣告) -->
-		<script src="../js/nav.js"></script>
+		<script src="<%=request.getContextPath()%>/back-end/js/nav.js"></script>
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_settings-panel.html -->
-			<
 			<!-- 引入浮動視窗 -->
-			<script src="../js/floating_window.js"></script>
+			<script
+				src="<%=request.getContextPath()%>/back-end/js/floating_window.js"></script>
 			<!-- partial -->
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar"></nav>
 			<!-- 引入sidebar 用JQ方式 -->
 			<script>
 				$(function() {
-					$("#sidebar").load("../partials/_sidebar.html");
+					$("#sidebar").load(
+							window.location.pathname.substring(0,
+									window.location.pathname.indexOf('/', 2))
+									+ "/back-end/partials/_sidebar.html");
 				});
 			</script>
 			<!-- partial -->
@@ -104,8 +112,7 @@
 							<div class="card">
 								<div class="card-body">
 									<h4 class="card-title">商品圖片管理</h4>
-									<div class="table-responsive">
-										<table class="table table-striped">
+										<table id="dataTables" class="stripe table-hover" style="width: 100%">
 											<thead>
 												<tr>
 													<th>商品照片編號</th>
@@ -119,13 +126,13 @@
 											<%@ include file="page1.file"%>
 											<c:forEach var="prod_picVO" items="${list}"
 												begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-
+											<br>
 												<tr>
 													<td>${prod_picVO.prod_pic_no}</td>
 													<td>${prod_picVO.prod_no}</td>
 													<td><img
 														src="<%=request.getContextPath()%>/Show_Prod_pic_Servlet?prod_pic_no=${prod_picVO.prod_pic_no}"
-														width=300px height=200px></td>
+														width=150px height=100px></td>
 													<td>${prod_picVO.prod_pic_name}</td>
 													<td>
 														<FORM METHOD="post"
@@ -156,10 +163,8 @@
 							</div>
 						</div>
 					</div>
-				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
-				<!-- 引入footer 用JQ方式 -->
 				<footer class="footer"></footer>
 				<script>
 					$(function() {

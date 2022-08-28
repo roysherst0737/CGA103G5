@@ -3,124 +3,73 @@
 <!-- Basic(head都不用動) -->
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<!-- Mobile Metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Site Metas -->
+<title>朧醴 LonelyBar</title>
+<meta name="keywords" content="LonelyBar Index">
+<meta name="description" content="This is template from Theme Wagon.">
+<meta name="author" content="Theme Wagon">
 
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Site Icons -->
+<link rel="shortcut icon" href="./images/favicon.ico"
+	type="image/x-icon">
+<link rel="lonelybar-icon" href="./images/Logo2.png">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<!-- Site CSS -->
+<link rel="stylesheet" href="css/style.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="css/responsive.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="css/custom.css">
 
-    <!-- Site Metas -->
-    <title>朧醴 LonelyBar</title>
-    <meta name="keywords" content="LonelyBar Index">
-    <meta name="description" content="This is template from Theme Wagon.">
-    <meta name="author" content="Theme Wagon">
 
-    <!-- Site Icons -->
-    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
-    <link rel="lonelybar-icon" href="./images/Logo2.png">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css">
 
 </head>
 
 <body>
+	<!-- !!!!!! 可修改部分：從第142行開始到footer !!!!!!-->
 
-    <!-- !!!!!! 可修改部分：從第142行開始到footer !!!!!!-->
+	<div id=top_nav_benner>></div>
+	<script>
+		$(function() {
+			$("#top_nav_benner").load("partials/_mainTop.html");
+		});
+	</script>
 
-    <!-- Start Main Top -->
-    <div class="main-top">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="right-phone-box">
-                        <p>Call US : <a href="#"> +886 912 123 456</a></p>
-                    </div>
-                    <div class="our-link">
-                        <ul>
-                            <li><a href="my-account.html"><i class="fa fa-user s_color"></i> 會員專區 </a></li>
-                            <li><a href="about.html"><i class="fas fa-location-arrow"></i> 我們的地址 </a></li>
-                            <li><a href="contact-us.html"><i class="fas fa-headset"></i> 聯絡我們 </a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <button type="button" class="btn btn-warning"><a href="my-account.html" style="color:black">註冊</a></button>
-                        <button type="button" class="btn btn-outline-light me-2"><a href="my-account.html" style="color:white">登入</a></button>
-                    <div class="text-slid-box">
-                        <div id="offer-box" class="carouselTicker">
-                            <ul class="offer-box">
-                                <li>
-                                    <i class="fab fa-opencart"></i> 全新基酒上架 快來選購！
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 調酒材料5~8折，不要錯過！
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 琳瑯滿目的調酒器材8折起！
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 世外桃源酒吧新開幕 經典調酒6折起！
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 法國原裝進口葡萄酒 盡在商品專區
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 室外調酒趴踢 熱烈舉行！
-                                </li>
-                                <li>
-                                    <i class="fab fa-opencart"></i> 寂寞嗎？來討論區揪團喝酒^^
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Main Top -->
+	<!-- !!!!!! 從以下開始修改到footer !!!!!!-->
 
-    <!-- Start Main Top -->
-    <header class="main-header">
-        <!-- Start Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
-            <div class="container">
-                <!-- Start Header Navigation -->
-                <div class="navbar-header">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fa fa-bars"></i>
-                </button>
-                    <a class="navbar-brand" href="index.html"><img src="images/Logo3.png" width="200px" height="80px" class="logo" alt=""></a>
-                </div>
-                <!-- End Header Navigation -->
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="navbar-menu">
-                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item active"><a class="nav-link" href="index.html">首頁</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">關於我們</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="nav-link dropdown" data-toggle="dropdown" style="font-weight: 1000;">購物專區</a>
-                            <ul class="dropdown-menu">
-								<li><a href="shop.html">商品總覽</a></li>
-								<li><a href="shop-detail.html">商品詳情</a></li>
-                                <li><a href="cart.html">購物車</a></li>
-                                <li><a href="checkout.html">前往結帳</a></li>
-                                <li><a href="my-account.html">會員專區</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">酒吧地圖</a></li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">活動專區</a></li>
-                        <li class="nav-item"><a class="nav-link" href="gallery.html">討論園地</a></li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
+	<!-- Start Categories  -->
+	<div class="categories-shop">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="shop-cat-box">
+						<img class="img-fluid" src="images/cocktail-party.jpg" alt="" />
+						<a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="shop-cat-box">
+						<img class="img-fluid" src="images/latest-news.jpg" alt="" /> <a
+							class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+					<div class="shop-cat-box">
+						<img class="img-fluid" src="images/cocktail.jpg" alt="" /> <a
+							class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Categories -->
 
                 <!-- Start Atribute Navigation -->
                 <div class="attr-nav">
@@ -242,327 +191,272 @@
 		</div>
 	</div>
 
-    <!-- Start Products  -->
-    <div class="products-box">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="title-all text-center">
-                        <h1>Fruits & Vegetables</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="special-menu text-center">
-                        <div class="button-group filter-button-group">
-                            <button class="active" data-filter="*">All</button>
-                            <button data-filter=".top-featured">Top featured</button>
-                            <button data-filter=".best-seller">Best seller</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row special-list">
-                <div class="col-lg-3 col-md-6 special-grid best-seller">
-                    <div class="products-single fix">
-                        <div class="box-img-hover">
-                            <div class="type-lb">
-                                <p class="sale">Sale</p>
-                            </div>
-                            <img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
-                            <div class="mask-icon">
-                                <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                </ul>
-                                <a class="cart" href="#">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="why-text">
-                            <h4>Lorem ipsum dolor sit amet</h4>
-                            <h5> $7.79</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 special-grid top-featured">
-                    <div class="products-single fix">
-                        <div class="box-img-hover">
-                            <div class="type-lb">
-                                <p class="new">New</p>
-                            </div>
-                            <img src="images/img-pro-02.jpg" class="img-fluid" alt="Image">
-                            <div class="mask-icon">
-                                <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                </ul>
-                                <a class="cart" href="#">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="why-text">
-                            <h4>Lorem ipsum dolor sit amet</h4>
-                            <h5> $9.79</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 special-grid top-featured">
-                    <div class="products-single fix">
-                        <div class="box-img-hover">
-                            <div class="type-lb">
-                                <p class="sale">Sale</p>
-                            </div>
-                            <img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
-                            <div class="mask-icon">
-                                <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                </ul>
-                                <a class="cart" href="#">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="why-text">
-                            <h4>Lorem ipsum dolor sit amet</h4>
-                            <h5> $10.79</h5>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6 special-grid best-seller">
-                    <div class="products-single fix">
-                        <div class="box-img-hover">
-                            <div class="type-lb">
-                                <p class="sale">Sale</p>
-                            </div>
-                            <img src="images/img-pro-04.jpg" class="img-fluid" alt="Image">
-                            <div class="mask-icon">
-                                <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                </ul>
-                                <a class="cart" href="#">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="why-text">
-                            <h4>Lorem ipsum dolor sit amet</h4>
-                            <h5> $15.79</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Products  -->
-
-    <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
-        <div class="main-instagram owl-carousel owl-theme">
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-01.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-02.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-03.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-04.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-06.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-07.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-08.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-09.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Instagram Feed  -->
-
-
-    <!-- !!!!!!此行以下都不要修改!!!!!!-->
-    <!-- Start Footer  -->
-    <footer>
-        <div class="footer-main">
-            <div class="container">
-				<div class="row">
-					<div class="col-lg-4 col-md-12 col-sm-12">
-						<div class="footer-top-box">
-							<h3>營業時間</h3>
-							<ul class="list-time">
-								<li>Monday - Friday: 08.00am to 05.00pm</li> <li>Saturday: 10.00am to 08.00pm</li> <li>Sunday: <span>Closed</span></li>
-							</ul>
-						</div>
+	<!-- Start Products  -->
+	<div class="products-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="title-all text-center">
+						<h1>Fruits & Vegetables</h1>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+							Sed sit amet lacus enim.</p>
 					</div>
-					<div class="col-lg-4 col-md-12 col-sm-12">
-						<div class="footer-top-box">
-							<h3>訂閱電子報</h3>
-							<form class="newsletter-box">
-								<div class="form-group">
-									<input class="" type="email" name="Email" placeholder="Email Address*" />
-									<i class="fa fa-envelope"></i>
-								</div>
-								<button class="btn hvr-hover" type="submit">訂閱</button>
-							</form>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-12 col-sm-12">
-						<div class="footer-top-box">
-							<h3>社群媒體</h3>
-							<p>點擊關注我們(非真實連結，僅供展示用)</p>
-							<ul>
-                                <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
-                            </ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="special-menu text-center">
+						<div class="button-group filter-button-group">
+							<button class="active" data-filter="*">All</button>
+							<button data-filter=".top-featured">Top featured</button>
+							<button data-filter=".best-seller">Best seller</button>
 						</div>
 					</div>
 				</div>
-				<hr>
-                <div class="row">
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-widget">
-                            <h4>關於朧醴 LonelyBar</h4>
-                            <p>因近期疫情影響，酒吧/餐酒館營運受到極大的挑戰，再加上居家防疫風氣的興起，室內派對逐漸成為潮流。</p>                                 
-                            <p>為提振品酒行業的景氣，同時讓人在家也能享受調酒體驗，朧醴LonelyBar「線上酒吧」的概念順勢而生。</p>
-							<p style="color:brown; font-size: 14px; font-weight: bold;">【此網站僅供軟體專案成果展示使用，並非真實公司】</p> 							
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-link">
-                            <h4>Information</h4>
-                            <ul>
-                                <li><a href="about.html">● 關  於  我  們</a></li>
-                                <li><a href="#">● 客  服  連  結</a></li>
-                                <li><a href="#">● 網 站 規 劃 資 訊</a></li>
-                                <li><a href="https://github.com/roysherst0737/CGA103G5.git">● G i t H u b 連 結</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12">
-                        <div class="footer-link-contact">
-                            <h4>聯絡我們</h4>
-                            <ul>
-                                <li>
-                                    <p><i class="fas fa-map-marker-alt" style="position: sticky;"></i> 桃園市中壢區復興路46號9樓</p>
-                                </li>
-                                <li>
-                                    <p><i class="fas fa-phone-square"  style="position: sticky;"></i> 連絡電話: <a href="tel:+1-888705770">+886 912 123 456</a></p>
-                                </li>
-                                <li>
-                                    <p><i class="fas fa-envelope" style="position: sticky;"></i> Email: <a href="mailto:contactinfo@gmail.com">roysherst@gmail.com</a></p>
-                                </li>
-                                <li>
-                                    <p style="color:brown; font-size: 14px; font-weight: bold;">【以上資訊純屬虛構，並非真實聯繫方式】</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- End Footer  -->
+			</div>
 
-    <!-- Start copyright  -->
-    <div class="footer-copyright">
-        <p class="footer-company">All Rights Reserved. &copy; 2022 <a href="#">LonelyBar</a> Design By :
-            <a href="https://html.design/">CGA103G5</a></p>
-    </div>
-    <!-- End copyright  -->
+			<div class="row special-list">
+				<div class="col-lg-3 col-md-6 special-grid best-seller">
+					<div class="products-single fix">
+						<div class="box-img-hover">
+							<div class="type-lb">
+								<p class="sale">Sale</p>
+							</div>
+							<img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
+							<div class="mask-icon">
+								<ul>
+									<li><a href="#" data-toggle="tooltip"
+										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+									<li><a href="#" data-toggle="tooltip"
+										data-placement="right" title="Compare"><i
+											class="fas fa-sync-alt"></i></a></li>
+									<li><a href="#" data-toggle="tooltip"
+										data-placement="right" title="Add to Wishlist"><i
+											class="far fa-heart"></i></a></li>
+								</ul>
+								<a class="cart" href="#">Add to Cart</a>
+							</div>
+						</div>
+						<div class="why-text">
+							<h4>Lorem ipsum dolor sit amet</h4>
+							<h5>$7.79</h5>
+						</div>
+					</div>
+				</div>
 
-    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+				<div class="col-lg-3 col-md-6 special-grid top-featured">
+					<div class="products-single fix">
+						<div class="box-img-hover">
+							<div class="type-lb">
+								<p class="new">New</p>
+							</div>
+							<img src="images/img-pro-02.jpg" class="img-fluid" alt="Image">
+							<div class="mask-icon">
+								<ul>
+									<li><a href="#" data-toggle="tooltip"
+										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+									<li><a href="#" data-toggle="tooltip"
+										data-placement="right" title="Compare"><i
+											class="fas fa-sync-alt"></i></a></li>
+									<li><a href="#" data-toggle="tooltip"
+										data-placement="right" title="Add to Wishlist"><i
+											class="far fa-heart"></i></a></li>
+								</ul>
+								<a class="cart" href="#">Add to Cart</a>
+							</div>
+						</div>
+						<div class="why-text">
+							<h4>Lorem ipsum dolor sit amet</h4>
+							<h5>$9.79</h5>
+						</div>
+					</div>
+				</div>
 
-    <!-- ALL JS FILES -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- ALL PLUGINS -->
-    <script src="js/jquery.superslides.min.js"></script>
-    <script src="js/bootstrap-select.js"></script>
-    <script src="js/inewsticker.js"></script>
-    <script src="js/bootsnav.js."></script>
-    <script src="js/images-loded.min.js"></script>
-    <script src="js/isotope.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/baguetteBox.min.js"></script>
-    <script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>
-    <script src="js/custom.js"></script>
+				<div class="col-lg-3 col-md-6 special-grid top-featured">
+					<div class="products-single fix">
+						<div class="box-img-hover">
+							<div class="type-lb">
+								<p class="sale">Sale</p>
+							</div>
+							<img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
+							<div class="mask-icon">
+								<ul>
+									<li><a href="#" data-toggle="tooltip"
+										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+									<li><a href="#" data-toggle="tooltip"
+										data-placement="right" title="Compare"><i
+											class="fas fa-sync-alt"></i></a></li>
+									<li><a href="#" data-toggle="tooltip"
+										data-placement="right" title="Add to Wishlist"><i
+											class="far fa-heart"></i></a></li>
+								</ul>
+								<a class="cart" href="#">Add to Cart</a>
+							</div>
+						</div>
+						<div class="why-text">
+							<h4>Lorem ipsum dolor sit amet</h4>
+							<h5>$10.79</h5>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6 special-grid best-seller">
+					<div class="products-single fix">
+						<div class="box-img-hover">
+							<div class="type-lb">
+								<p class="sale">Sale</p>
+							</div>
+							<img src="images/img-pro-04.jpg" class="img-fluid" alt="Image">
+							<div class="mask-icon">
+								<ul>
+									<li><a href="#" data-toggle="tooltip"
+										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+									<li><a href="#" data-toggle="tooltip"
+										data-placement="right" title="Compare"><i
+											class="fas fa-sync-alt"></i></a></li>
+									<li><a href="#" data-toggle="tooltip"
+										data-placement="right" title="Add to Wishlist"><i
+											class="far fa-heart"></i></a></li>
+								</ul>
+								<a class="cart" href="#">Add to Cart</a>
+							</div>
+						</div>
+						<div class="why-text">
+							<h4>Lorem ipsum dolor sit amet</h4>
+							<h5>$15.79</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Products  -->
+
+	<!-- Start Instagram Feed  -->
+	<div class="instagram-box">
+			<div class="main-instagram owl-carousel owl-theme">
+					<div class="item">
+						<div class="ins-inner-box">
+							<img src="images/instagram-img-01.jpg" alt="" />
+							<div class="hov-in">
+								<a href="#"><i class="fab fa-instagram"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ins-inner-box">
+							<img src="images/instagram-img-02.jpg" alt="" />
+							<div class="hov-in">
+								<a href="#"><i class="fab fa-instagram"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ins-inner-box">
+							<img src="images/instagram-img-03.jpg" alt="" />
+							<div class="hov-in">
+								<a href="#"><i class="fab fa-instagram"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ins-inner-box">
+							<img src="images/instagram-img-04.jpg" alt="" />
+							<div class="hov-in">
+								<a href="#"><i class="fab fa-instagram"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ins-inner-box">
+							<img src="images/instagram-img-05.jpg" alt="" />
+							<div class="hov-in">
+								<a href="#"><i class="fab fa-instagram"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ins-inner-box">
+							<img src="images/instagram-img-06.jpg" alt="" />
+							<div class="hov-in">
+								<a href="#"><i class="fab fa-instagram"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ins-inner-box">
+							<img src="images/instagram-img-07.jpg" alt="" />
+							<div class="hov-in">
+								<a href="#"><i class="fab fa-instagram"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ins-inner-box">
+							<img src="images/instagram-img-08.jpg" alt="" />
+							<div class="hov-in">
+								<a href="#"><i class="fab fa-instagram"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ins-inner-box">
+							<img src="images/instagram-img-09.jpg" alt="" />
+							<div class="hov-in">
+								<a href="#"><i class="fab fa-instagram"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ins-inner-box">
+							<img src="images/instagram-img-05.jpg" alt="" />
+							<div class="hov-in">
+								<a href="#"><i class="fab fa-instagram"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+	</div>
+	<!-- End Instagram Feed  -->
+
+
+	<!-- !!!!!!此行以下都不要修改!!!!!!-->
+	<!-- Start Footer  -->
+	<div id=footer></div>
+	<footer> </footer>
+	<script>
+		$(function() {
+			$("#footer").load("partials/_footer.html");
+		});
+	</script>
+	<!-- End Footer  -->
+
+	<!-- Start copyright  -->
+	<div class="footer-copyright">
+		<p class="footer-company">
+			All Rights Reserved. &copy; 2022 <a href="#">LonelyBar</a> Design By
+			: <a href="https://html.design/">CGA103G5</a>
+		</p>
+	</div>
+	<!-- End copyright  -->
+
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+	<!-- ALL JS FILES -->
+	<script src="js/popper.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+	<!-- ALL PLUGINS -->
+	<script src="js/contact-form-script.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/form-validator.min.js"></script>
+	<script src="js/bootsnav.js"></script>
+	<script src="js/baguetteBox.min.js"></script>
+	<script src="js/inewsticker.js"></script>
+	<script src="js/isotope.min.js"></script>
+	<script src="js/jquery.superslides.min.js"></script>
+	<script src="js/bootstrap-select.js"></script>
+	<script src="js/images-loded.min.js"></script>
 </body>
 
 </html>

@@ -74,11 +74,17 @@ Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
 							<div class="d-flex align-items-center justify-content-md-end">
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
-										<button style="margin-right:10px;">
-										<a href="listAllProd_pic.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
+										<button style="margin-right: 10px;">
+											<a href="listAllProd_pic.jsp"><img
+												src="./images/home.png" width="30px" height="30px"></a>
 										</button>
-										<button style="margin-right:10px;">
-										<a href="select_page.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
+										<button style="margin-right: 10px;">
+											<a href='addProd_pic.jsp'><img src="./images/plus.png"
+												width="30px" height="30px"></a>
+										</button>
+										<button style="margin-right: 10px;">
+											<a href="select_page.jsp"><img src="./images/search2.png"
+												width="30px" height="30px"></a>
 										</button>
 										<button
 											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
@@ -150,50 +156,55 @@ Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
 											<input type="submit" value="送出新增">
 										</FORM>
 									</table>
-									<!-- content-wrapper ends -->
-									<!-- partial:partials/_footer.html -->
-									<footer class="footer"></footer>
-									<script>
-										$(function() {
-											$(".footer").load(
-													"../partials/_footer.html");
-										});
-									</script>
-									<!-- partial -->
 								</div>
-								<!-- main-panel ends -->
 							</div>
-							<!-- page-body-wrapper ends -->
 						</div>
-						<!-- container-scroller -->
-						<!-- base:js -->
+					</div>
+				</div>
+				<!-- content-wrapper ends -->
+				<!-- partial:partials/_footer.html -->
+				<footer class="footer"></footer>
+				<script>
+					$(function() {
+						$(".footer").load(
+								"../partials/_footer.html");
+					});
+				</script>
+				<!-- partial -->
+			</div>
+			<!-- main-panel ends -->
+		</div>
+		<!-- page-body-wrapper ends -->
+	</div>
+	<!-- container-scroller -->
+	<!-- base:js -->
 
-						<script>
+	<script>
 							function getContextPath() {
 								return window.location.pathname.substring(0,
 										window.location.pathname
 												.indexOf('/', 2));
 							}
 						</script>
-						<script src="../vendors/js/vendor.bundle.base.js"></script>
-						<!-- endinject -->
-						<!-- Plugin js for this page-->
-						<!-- End plugin js for this page-->
-						<!-- inject:js -->
-						<script src="../js/off-canvas.js"></script>
-						<script src="../js/hoverable-collapse.js"></script>
-						<script src="../js/template.js"></script>
-						<script src="../js/settings.js"></script>
-						<script src="../js/todolist.js"></script>
-						<!-- endinject -->
-						<!-- plugin js for this page -->
-						<script src="../vendors/progressbar.js/progressbar.min.js"></script>
-						<script src="../vendors/chart.js/Chart.min.js"></script>
-						<!-- End plugin js for this page -->
-						<!-- Custom js for this page-->
+	<script src="../vendors/js/vendor.bundle.base.js"></script>
+	<!-- endinject -->
+	<!-- Plugin js for this page-->
+	<!-- End plugin js for this page-->
+	<!-- inject:js -->
+	<script src="../js/off-canvas.js"></script>
+	<script src="../js/hoverable-collapse.js"></script>
+	<script src="../js/template.js"></script>
+	<script src="../js/settings.js"></script>
+	<script src="../js/todolist.js"></script>
+	<!-- endinject -->
+	<!-- plugin js for this page -->
+	<script src="../vendors/progressbar.js/progressbar.min.js"></script>
+	<script src="../vendors/chart.js/Chart.min.js"></script>
+	<!-- End plugin js for this page -->
+	<!-- Custom js for this page-->
 
-						<script src="../js/dashboard.js"></script>
-						<!-- End custom js for this page-->
+	<script src="../js/dashboard.js"></script>
+	<!-- End custom js for this page-->
 </body>
 
 </html>

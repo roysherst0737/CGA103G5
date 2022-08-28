@@ -79,6 +79,9 @@ Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
 										<a href="listAllProd_pic.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right:10px;">
+										<a href='addProd_pic.jsp'><img src="./images/plus.png" width="30px" height="30px"></a>
+										</button>
+										<button style="margin-right:10px;">
 										<a href="select_page.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
 										</button>
 										<button

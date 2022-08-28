@@ -66,6 +66,9 @@
 										<a href="listAllProd_pic.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right:10px;">
+										<a href='addProd_pic.jsp'><img src="./images/plus.png" width="30px" height="30px"></a>
+										</button>
+										<button style="margin-right:10px;">
 										<a href="select_page.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
 										</button>
 										<button
@@ -144,12 +147,6 @@
 													value="getOne_For_Display"> <input type="submit"
 													value="送出">
 											</FORM>
-
-										<h3>商品照片管理</h3>
-
-										<ul>
-											<li><a href='addProd_pic.jsp'>Add</a> a new Prod_pic.</li>
-										</ul>
 									</div>
 								</div>
 							</div>

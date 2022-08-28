@@ -1,12 +1,12 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.prod.model.*"%>
 
 <%
-	Prod_Service_H prodSvc = new Prod_Service_H();
-	List<Prod> list = prodSvc.getAll();
-	pageContext.setAttribute("list",list);
+Prod_Service prodSvc = new Prod_Service();
+List<Prod_VO> list = prodSvc.getAll();
+pageContext.setAttribute("list", list);
 %>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>ÄgÄ¿ LonelyBar¡i«áºİ¡j</title>
+<title>æœ§é†´ LonelyBarã€å¾Œç«¯ã€‘</title>
 <!-- base:css -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/back-end/vendors/typicons.font/font/typicons.css">
@@ -43,20 +43,20 @@
 </head>
 
 <body>
-	<!-- ¥D­¶­± -->
+	<!-- ä¸»é é¢ -->
 	<div class="container-scroller">
-		<!-- ¤Ş¤Jnav(³»³¡§t¼s§i) -->
+		<!-- å¼•å…¥nav(é ‚éƒ¨å«å»£å‘Š) -->
 		<script src="<%=request.getContextPath()%>/back-end/js/nav.js"></script>
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_settings-panel.html -->
-			<!-- ¤Ş¤J¯B°Êµøµ¡ -->
+			<!-- å¼•å…¥æµ®å‹•è¦–çª— -->
 			<script
 				src="<%=request.getContextPath()%>/back-end/js/floating_window.js"></script>
 			<!-- partial -->
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar"></nav>
-			<!-- ¤Ş¤Jsidebar ¥ÎJQ¤è¦¡ -->
+			<!-- å¼•å…¥sidebar ç”¨JQæ–¹å¼ -->
 			<script>
 				$(function() {
 					$("#sidebar").load(
@@ -68,77 +68,115 @@
 			<!-- partial -->
 			<div class="main-panel">
 				<div class="content-wrapper">
-					<!--§A­n¼gªº­¶­±  -->
-					<table id="dataTables" class="stripe" style="width: 100%" enctype="multipart/form-data">
-						<thead>
-							<tr>
-								<th>°Ó«~½s¸¹</th>
-								<th>°Ó«~ºØÃş</th>
-								<th>°Ó«~¦WºÙ</th>
-								<th>°Ó«~·Ó¤ù</th>
-								<th>°Ó«~³æ»ù</th>
-								<th>®w¦s¼Æ¶q</th>
-								<th>°Ó«~ª¬ºA</th>
-								<th>¤W¬[®É¶¡</th>
-								<th>¤U¬[®É¶¡</th>
-								<th>ºŞ ²z</th>	
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="prod" items="${list}">
-								<tr>
-									<td>${prod.prod_no}</td>
-									<td>${prod.prod_typeVO.prod_type}</td>
-									<td>${prod.prod_name}</td>
-									<td>${prod.prod_picVO.prod_pic}</td>
-									<td>${prod.prod_stock}</td>
-									<td>${prod.prod_price}</td>
-									<td>${prod.prod_status?"¤W¬[":"¤U¬["}</td>
-									<td>${prod.launch_time}</td>
-									<td>${prod.off_time}</td>
-									<td>			  
-									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/pages/prod/prod.do" style="margin-bottom: 0px;">
-			     						<input type="submit" value="ºŞ²z">
-			     						<input type="hidden" name="prod_no"  value="${prod.prod_no}">
-			     						<input type="hidden" name="action"	value="getOne_For_Update">
-			     					</FORM>
-			     					</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th>°Ó«~½s¸¹</th>
-								<th>°Ó«~ºØÃş</th>
-								<th>°Ó«~¦WºÙ</th>
-								<th>°Ó«~·Ó¤ù</th>
-								<th>°Ó«~³æ»ù</th>
-								<th>®w¦s¼Æ¶q</th>
-								<th>°Ó«~ª¬ºA</th>
-								<th>¤W¬[®É¶¡</th>
-								<th>¤U¬[®É¶¡</th>
-								<th>ºŞ ²z</th>
-							</tr>
-						</tfoot>
-					</table>
-
-					<script>
-						$(document).ready(function() {
-							$('#dataTables').DataTable();
-						});
-					</script>
+					<div class="row">
+						<div class="col-sm-6">
+							<h3 class="mb-0 font-weight-bold">å•†å“ç®¡ç†å“¡</h3>
+							<p>ä¸Šæ¬¡ç™»å…¥ï¼š21å°æ™‚å‰Â</p>
+						</div>
+						<div class="col-sm-6">
+							<div class="d-flex align-items-center justify-content-md-end">
+								<div class="mb-3 mb-xl-0 pr-1">
+									<div class="dropdown">
+										<button style="margin-right: 10px;">
+											<a href="listAllProd_pic.jsp"><img
+												src="./images/home.png" width="30px" height="30px"></a>
+										</button>
+										<button style="margin-right: 10px;">
+											<a href='addProd_pic.jsp'><img src="./images/plus.png"
+												width="30px" height="30px"></a>
+										</button>
+										<button style="margin-right: 10px;">
+											<a href="select_page.jsp"><img src="./images/search2.png"
+												width="30px" height="30px"></a>
+										</button>
+										<button
+											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
+											type="button" id="dropdownMenu3" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false">
+											<i class="typcn typcn-calendar-outline mr-2"></i>Last 7 days
+										</button>
+										<div class="dropdown-menu"
+											aria-labelledby="dropdownMenuSizeButton3"
+											data-x-placement="top-start">
+											<h6 class="dropdown-header">Last 14 days</h6>
+											<a class="dropdown-item" href="#">Last 21 days</a> <a
+												class="dropdown-item" href="#">Last 28 days</a>
+										</div>
+									</div>
+								</div>
+								<div class="pr-1 mb-3 mr-2 mb-xl-0">
+									<button type="button"
+										class="btn btn-sm bg-white btn-icon-text border">
+										<i class="typcn typcn-arrow-forward-outline mr-2"></i>Export
+									</button>
+								</div>
+								<div class="pr-1 mb-3 mb-xl-0">
+									<button type="button"
+										class="btn btn-sm bg-white btn-icon-text border">
+										<i class="typcn typcn-info-large-outline mr-2"></i>info
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row  mt-3">
+						<div class="col-lg-12 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">å•†å“åœ–ç‰‡ç®¡ç†</h4>
+									<table id="dataTables" class="stripe table-hover"
+										style="width: 100%">
+										<thead>
+											<tr>
+												<th>å•†å“ç·¨è™Ÿ</th>
+												<!-- <th>å•†å“ç¨®é¡</th> -->
+												<th>å•†å“åç¨±</th>
+												<!--<th>å•†å“ç…§ç‰‡</th> -->
+												<th>å•†å“å–®åƒ¹</th>
+												<th>åº«å­˜æ•¸é‡</th>
+												<th>å•†å“ç‹€æ…‹</th>
+												<th>ä¸Šæ¶æ™‚é–“</th>
+												<th>ä¸‹æ¶æ™‚é–“</th>
+												<th>ç®¡ ç†</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="prod" items="${list}">
+												<tr>
+													<td>${prod.prod_no}</td>
+													<%--<td>${prod.prod_typeVO.prod_type}</td>  --%>
+													<td>${prod.prod_name}</td>
+													<%--<td>${prod.prod_picVO.prod_pic}</td>    --%>
+													<td>${prod.prod_stock}</td>
+													<td>${prod.prod_price}</td>
+													<td>${prod.prod_status}</td>
+													<td>${prod.launch_time}</td>
+													<td>${prod.off_time}</td>
+													<td>
+														<FORM METHOD="post"
+															ACTION="<%=request.getContextPath()%>/back-end/pages/prod/prod.do"
+															style="margin-bottom: 0px;">
+															<input type="submit" value="ç®¡ç†"> <input
+																type="hidden" name="prod_no" value="${prod.prod_no}">
+															<input type="hidden" name="action"
+																value="getOne_For_Update">
+														</FORM>
+													</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
-				<!-- ¤Ş¤Jfooter ¥ÎJQ¤è¦¡ -->
 				<footer class="footer"></footer>
 				<script>
 					$(function() {
-						$(".footer").load(
-								window.location.pathname.substring(0,
-										window.location.pathname
-												.indexOf('/', 2))
-										+ "/back-end/partials/_footer.html");
+						$(".footer").load("../partials/_footer.html");
 					});
 				</script>
 				<!-- partial -->
@@ -149,30 +187,31 @@
 	</div>
 	<!-- container-scroller -->
 	<!-- base:js -->
-	<script
-		src="<%=request.getContextPath()%>/back-end/vendors/js/vendor.bundle.base.js"></script>
+
+	<script>
+		function getContextPath() {
+			return window.location.pathname.substring(0,
+					window.location.pathname.indexOf('/', 2));
+		}
+	</script>
+	<script src="../vendors/js/vendor.bundle.base.js"></script>
 	<!-- endinject -->
 	<!-- Plugin js for this page-->
 	<!-- End plugin js for this page-->
 	<!-- inject:js -->
-	<script src="<%=request.getContextPath()%>/back-end/js/off-canvas.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/back-end/js/hoverable-collapse.js"></script>
-	<script src="<%=request.getContextPath()%>/back-end/js/template.js"></script>
-	<script src="<%=request.getContextPath()%>/back-end/js/settings.js"></script>
-	<script src="<%=request.getContextPath()%>/back-end/js/todolist.js"></script>
+	<script src="../js/off-canvas.js"></script>
+	<script src="../js/hoverable-collapse.js"></script>
+	<script src="../js/template.js"></script>
+	<script src="../js/settings.js"></script>
+	<script src="../js/todolist.js"></script>
 	<!-- endinject -->
 	<!-- plugin js for this page -->
-	<script
-		src="<%=request.getContextPath()%>/back-end/vendors/progressbar.js/progressbar.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/back-end/vendors/chart.js/Chart.min.js"></script>
+	<script src="../vendors/progressbar.js/progressbar.min.js"></script>
+	<script src="../vendors/chart.js/Chart.min.js"></script>
 	<!-- End plugin js for this page -->
 	<!-- Custom js for this page-->
 
-	<script src="<%=request.getContextPath()%>/back-end/js/dashboard.js"></script>
-	<script
-		src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<script src="../js/dashboard.js"></script>
 	<!-- End custom js for this page-->
 </body>
 

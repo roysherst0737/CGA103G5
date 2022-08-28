@@ -15,7 +15,7 @@ public class Prod_DAO_H_impl implements Prod_DAO_H {
 
 	@Override
 	public void insert(Prod prod) {
-		Session session = com.util.HibernateUtil.getSessionFactory().getCurrentSession();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
 			session.beginTransaction();
 			session.saveOrUpdate(prod);

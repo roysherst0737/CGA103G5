@@ -62,8 +62,12 @@
 							<div class="d-flex align-items-center justify-content-md-end">
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
-										<a href="listAllProd_pic.jsp"><img src="./images/home.png"></a>
-										<a href="select_page.jsp"><img src="./images/search.png"></a>
+										<button style="margin-right:10px;">
+										<a href="listAllProd_pic.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
+										</button>
+										<button style="margin-right:10px;">
+										<a href="select_page.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
+										</button>
 										<button
 											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
 											type="button" id="dropdownMenu3" data-toggle="dropdown"

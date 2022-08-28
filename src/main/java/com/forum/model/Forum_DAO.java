@@ -27,15 +27,15 @@ public class Forum_DAO implements Forum_DAO_interface{
 	
 	}
 	private static final String INSERT_STMT = 
-			"INSERT INTO forum (frm_name_no,frm_status) VALUES (?, ?, ?)";
-		private static final String GET_ALL_STMT = 
-			"SELECT frm_no,frm_name_no,frm_status FROM forum order by frm_no";
-		private static final String GET_ONE_STMT = 
-			"SELECT frm_no,frm_name_no,frm_status FROM forum where frm_no = ?";
-		private static final String DELETE = 
-			"DELETE FROM forum where frm_no = ?";
-		private static final String UPDATE = 
-			"UPDATE forum set frm_name_no = ?,frm_status = ? where frm_no = ?";
+		"INSERT INTO forum (frm_name_no,frm_status) VALUES (?, ?, ?)";
+	private static final String GET_ALL_STMT = 
+		"SELECT frm_no,frm_name_no,frm_status FROM forum order by frm_no";
+	private static final String GET_ONE_STMT = 
+		"SELECT frm_no,frm_name_no,frm_status FROM forum where frm_no = ?";
+	private static final String DELETE = 
+		"DELETE FROM forum where frm_no = ?";
+	private static final String UPDATE = 
+		"UPDATE forum set frm_name_no = ?,frm_status = ? where frm_no = ?";
 	
 	@Override
 	public void insert(Forum_VO forum_VO) {

@@ -3,6 +3,7 @@ package com.coupon.model;
 import java.sql.Timestamp;
 
 public class Coupon_VO implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	private Integer coupon_no; 
 	private String coupon_name; 

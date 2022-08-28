@@ -3,6 +3,8 @@ package com.push_ads.model;
 import oracle.sql.BLOB;
 
 public class Push_Ads_VO implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private Integer ads_no; 
 	private Integer prod_no; 
 	private String ads_content;

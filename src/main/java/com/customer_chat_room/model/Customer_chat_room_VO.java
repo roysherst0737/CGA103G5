@@ -1,10 +1,6 @@
 package com.customer_chat_room.model;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 
 public class Customer_chat_room_VO implements java.io.Serializable {

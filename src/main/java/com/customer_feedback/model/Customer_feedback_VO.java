@@ -1,10 +1,5 @@
 package com.customer_feedback.model;
 
-import java.sql.Date;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.util.Base64;
-
 public class Customer_feedback_VO implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer SN;

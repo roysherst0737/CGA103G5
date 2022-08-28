@@ -161,7 +161,7 @@ public class Prod_pic_Servlet extends HttpServlet {
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("prod_picVO", prod_picVO);
-				String url = "/back-end/prod_pic/listOneProd_pic.jsp";
+				String url = "/back-end/prod_pic/listAllProd_pic.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 		}

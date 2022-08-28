@@ -1,4 +1,4 @@
-package com.util;
+package com.prod_pic.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,38 +14,37 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.prod.model.Prod;
+import com.prod_pic.model.Prod_pic;
+import com.util.HibernateUtil;
 
-public class CompositeQuery {
+public class Prod_pic_CompositeQuery {
 	
 	@SuppressWarnings("removal")
-	public static Predicate get_aPredicate_For_AnyDB(CriteriaBuilder builder, Root<Prod> root, String columnName, String value) {
+	public static Predicate get_aPredicate_For_AnyDB(CriteriaBuilder builder, Root<Prod_pic> root, String columnName, String value) {
 
 		Predicate predicate = null;
 
-		if ("prod_no".equals(columnName)) // 用於Integer
+		if ("prod_pic_no".equals(columnName)) // 用於Integer
 			predicate = builder.equal(root.get(columnName), new Integer(value));
-		else if ("prod_type".equals(columnName)||"prod_name".equals(columnName)) // 用於varchar
+		else if ("prod_pic_name".equals(columnName)) // 用於varchar
 			predicate = builder.like(root.get(columnName), "%" + value + "%");
-		else if ("launch_time".equals(columnName) || "off_time".equals(columnName)) // 用於date
-			predicate = builder.equal(root.get(columnName), java.sql.Date.valueOf(value));
-
+		
 		return predicate;
 	}
 
 	@SuppressWarnings("unchecked")
-	public static List<Prod> getAllC(Map<String, String[]> map) {
+	public static List<Prod_pic> getAllC(Map<String, String[]> map) {
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = session.beginTransaction();
-		List<Prod> list = null;
+		List<Prod_pic> list = null;
 		try {
 			// 【●創建 CriteriaBuilder】
 			CriteriaBuilder builder = session.getCriteriaBuilder();
 			// 【●創建 CriteriaQuery】
-			CriteriaQuery<Prod> criteriaQuery = builder.createQuery(Prod.class);
+			CriteriaQuery<Prod_pic> criteriaQuery = builder.createQuery(Prod_pic.class);
 			// 【●創建 Root】
-			Root<Prod> root = criteriaQuery.from(Prod.class);
+			Root<Prod_pic> root = criteriaQuery.from(Prod_pic.class);
 
 			List<Predicate> predicateList = new ArrayList<Predicate>();
 			

@@ -1,4 +1,4 @@
-package com.prod.service;
+package com.prod_pic.service;
 
 import java.util.List;
 import java.util.Map;
@@ -7,7 +7,7 @@ import org.hibernate.Session;
 
 import static com.util.HibernateUtil.*;
 
-public interface CoreDao<P, I> {
+public interface Prod_pic_CoreDao<P, I> {
 	
 	default Session getSession() {
 		return getSessionFactory().getCurrentSession();

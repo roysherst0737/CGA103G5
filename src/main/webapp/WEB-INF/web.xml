@@ -12,6 +12,12 @@
 		<welcome-file>default.jsp</welcome-file>
 		<welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
+	<resource-ref>
+		<description>DB Connection</description>
+		<res-ref-name>jdbc/DBPool</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
 	<servlet>
 		<servlet-name>Act_pic_Servlet</servlet-name>
 		<servlet-class>com.act_pic.controller.act_pic_Servlet</servlet-class>
@@ -39,6 +45,15 @@
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>Prod_Servlet</servlet-name>
+		<servlet-class>com.prod.controller.Prod_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Prod_Servlet</servlet-name>
+		<url-pattern>/back-end/pages/prod/prod.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
 		<servlet-name>pubServlet</servlet-name>
 		<servlet-class>com.pub.controller.PubServlet</servlet-class>
 	</servlet>
@@ -46,20 +61,20 @@
 		<servlet-name>pubServlet</servlet-name>
 		<url-pattern>/pub.do</url-pattern>
 	</servlet-mapping>
-  <servlet>
-    <servlet-name>Forum_Servlet</servlet-name>
-    <servlet-class>com.forum.controller.Forum_Servlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Forum_Servlet</servlet-name>
-    <url-pattern>/back-end/forum/forum.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>Forum_article_Servlet</servlet-name>
-    <servlet-class>com.forum_article.controller.Forum_article_Servlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Forum_article_Servlet</servlet-name>
-    <url-pattern>/CGA103G5ALL/back-end/forum/forum.do</url-pattern>
-  </servlet-mapping>
+	<servlet>
+		<servlet-name>Forum_Servlet</servlet-name>
+		<servlet-class>com.forum.controller.Forum_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Forum_Servlet</servlet-name>
+		<url-pattern>/back-end/forum/forum.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Forum_article_Servlet</servlet-name>
+		<servlet-class>com.forum_article.controller.Forum_article_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Forum_article_Servlet</servlet-name>
+		<url-pattern>/CGA103G5ALL/back-end/forum/forum.do</url-pattern>
+	</servlet-mapping>
 </web-app>

@@ -1,6 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.prod.model.*"%>
+
+<%
+	Prod_Service_H prodSvc = new Prod_Service_H();
+	List<Prod> list = prodSvc.getAll();
+	pageContext.setAttribute("list",list);
+%>
+
 <!DOCTYPE html>
 <html lang="zh">
 
@@ -9,7 +17,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>朧醴 LonelyBar【後端】</title>
+<title>�gĿ LonelyBar�i��ݡj</title>
 <!-- base:css -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/back-end/vendors/typicons.font/font/typicons.css">
@@ -35,20 +43,20 @@
 </head>
 
 <body>
-	<!-- 主頁面 -->
+	<!-- �D���� -->
 	<div class="container-scroller">
-		<!-- 引入nav(頂部含廣告) -->
+		<!-- �ޤJnav(�����t�s�i) -->
 		<script src="<%=request.getContextPath()%>/back-end/js/nav.js"></script>
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_settings-panel.html -->
-			<!-- 引入浮動視窗 -->
+			<!-- �ޤJ�B�ʵ��� -->
 			<script
 				src="<%=request.getContextPath()%>/back-end/js/floating_window.js"></script>
 			<!-- partial -->
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar"></nav>
-			<!-- 引入sidebar 用JQ方式 -->
+			<!-- �ޤJsidebar ��JQ�覡 -->
 			<script>
 				$(function() {
 					$("#sidebar").load(
@@ -60,50 +68,56 @@
 			<!-- partial -->
 			<div class="main-panel">
 				<div class="content-wrapper">
-					<!--你要寫的頁面  -->
-					<table id="dataTables" class="stripe" style="width: 100%">
+					<!--�A�n�g������  -->
+					<table id="dataTables" class="stripe" style="width: 100%" enctype="multipart/form-data">
 						<thead>
 							<tr>
-								<th>商品編號</th>
-								<th>商品種類</th>
-								<th>商品名稱</th>
-								<th>商品照片</th>
-								<th>商品單價</th>
-								<th>庫存數量</th>
-								<th>商品狀態</th>
-								<th>上架時間</th>
-								<th>下架時間</th>
-								<th>管 理</th>	
+								<th>�ӫ~�s��</th>
+								<th>�ӫ~����</th>
+								<th>�ӫ~�W��</th>
+								<th>�ӫ~�Ӥ�</th>
+								<th>�ӫ~���</th>
+								<th>�w�s�ƶq</th>
+								<th>�ӫ~���A</th>
+								<th>�W�[�ɶ�</th>
+								<th>�U�[�ɶ�</th>
+								<th>�� �z</th>	
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="prodVO" items="${prodList}">
+							<c:forEach var="prod" items="${list}">
 								<tr>
-									<td>${prodVO.prod_no}</td>
-									<td>${prodVO.prod_type}</td>
-									<td>${prodVO.prod_name}</td>
-									<td>${prodVO.prod_pic}</td>
-									<td>${prodVO.prod_stock}</td>
-									<td>${prodVO.prod_price}</td>
-									<td>${prodVO.prod_status?"上架":"下架"}</td>
-									<td>${prodVO.launch_time}</td>
-									<td>${prodVO.off_time}</td>
-									<td>${prodVO.prod__no}</td>
+									<td>${prod.prod_no}</td>
+									<td>${prod.prod_typeVO.prod_type}</td>
+									<td>${prod.prod_name}</td>
+									<td>${prod.prod_picVO.prod_pic}</td>
+									<td>${prod.prod_stock}</td>
+									<td>${prod.prod_price}</td>
+									<td>${prod.prod_status?"�W�[":"�U�["}</td>
+									<td>${prod.launch_time}</td>
+									<td>${prod.off_time}</td>
+									<td>			  
+									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/pages/prod/prod.do" style="margin-bottom: 0px;">
+			     						<input type="submit" value="�޲z">
+			     						<input type="hidden" name="prod_no"  value="${prod.prod_no}">
+			     						<input type="hidden" name="action"	value="getOne_For_Update">
+			     					</FORM>
+			     					</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 						<tfoot>
 							<tr>
-								<th>商品編號</th>
-								<th>商品種類</th>
-								<th>商品名稱</th>
-								<th>商品照片</th>
-								<th>商品單價</th>
-								<th>庫存數量</th>
-								<th>商品狀態</th>
-								<th>上架時間</th>
-								<th>下架時間</th>
-								<th>管 理</th>
+								<th>�ӫ~�s��</th>
+								<th>�ӫ~����</th>
+								<th>�ӫ~�W��</th>
+								<th>�ӫ~�Ӥ�</th>
+								<th>�ӫ~���</th>
+								<th>�w�s�ƶq</th>
+								<th>�ӫ~���A</th>
+								<th>�W�[�ɶ�</th>
+								<th>�U�[�ɶ�</th>
+								<th>�� �z</th>
 							</tr>
 						</tfoot>
 					</table>
@@ -116,7 +130,7 @@
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
-				<!-- 引入footer 用JQ方式 -->
+				<!-- �ޤJfooter ��JQ�覡 -->
 				<footer class="footer"></footer>
 				<script>
 					$(function() {

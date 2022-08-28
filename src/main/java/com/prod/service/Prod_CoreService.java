@@ -4,7 +4,7 @@ import org.hibernate.Transaction;
 
 import static com.util.HibernateUtil.*;
 
-public interface CoreService {
+public interface Prod_CoreService {
 	default Transaction beginTransaction() {
 		return getSession().beginTransaction();
 	}

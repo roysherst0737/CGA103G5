@@ -1,11 +1,9 @@
 package com.prod.controller;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
+import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -24,6 +22,7 @@ public class Prod_Servlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);
 	}
+	@SuppressWarnings("null")
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
@@ -113,44 +112,84 @@ public class Prod_Servlet extends HttpServlet{
 			req.setAttribute("errorMsgs", errorMsgs);
 		
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-				Integer prod_pic_no = Integer.valueOf(req.getParameter("prod_no").trim());
+				Integer prod_no = Integer.valueOf(req.getParameter("prod_no").trim());
 				
-				Integer prod_no = null;
+				Integer prod_type_no = null;
 				try {
-					prod_no = Integer.valueOf(req.getParameter("prod_no").trim());
+					prod_type_no = Integer.valueOf(req.getParameter("prod_type_no").trim());
 				} catch (NumberFormatException e) {
-					prod_no = 0;
-					errorMsgs.add("商品編號請填數字");
+					prod_type_no = 0;
+					errorMsgs.add("商品種類編號請填數字");
 				}	
 						
-				String prod_name = req.getParameter("prod_pic_name");
+				String prod_name = req.getParameter("prod_name");
 				String prod_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (prod_name == null ||prod_name.trim().length() == 0) {
 					errorMsgs.add("商品照片名稱: 請勿空白");
 				} else if(!prod_name.trim().matches(prod_nameReg)) {
 					errorMsgs.add("商品照片名稱: 只能是中、英文字母、數字和底線, 且長度必需在2到10之間");
 	            }
+				
+				Integer prod_pic_no = null;
+				try {
+					prod_pic_no = Integer.valueOf(req.getParameter("prod_pic_no").trim());
+				} catch (NumberFormatException e) {
+					prod_pic_no = 0;
+					errorMsgs.add("商品照片編號請填數字");
+				}
+				
+				Integer prod_price = null;
+				try {
+					prod_price = Integer.valueOf(req.getParameter("prod_price").trim());
+				} catch (NumberFormatException e) {
+					prod_price = 0;
+					errorMsgs.add("商品價格請填數字");
+				}
+				
+				Integer prod_stock = null;
+				try {
+					prod_stock = Integer.valueOf(req.getParameter("prod_stock").trim());
+				} catch (NumberFormatException e) {
+					prod_stock = 0;
+					errorMsgs.add("商品庫存請填數字");
+				}
+				
+				Integer prod_status = null;
+				if (prod_status != 0 || prod_status != 1) {
+					errorMsgs.add("商品狀態請填0或1");
+				} 
+				
+				Timestamp off_time = null;
+				
+				String prod_detail = null;				
 
 				Prod_VO prodVO = new Prod_VO();
-				prodVO.setProd_no(prod_pic_no);
-				prodVO.setProd_name(prod_no);
+				prodVO.setProd_no(prod_no);
+				prodVO.setProd_type_no(prod_type_no);
+				prodVO.setProd_name(prod_name);
+				prodVO.setProd_pic_no(prod_pic_no);
+				prodVO.setProd_price(prod_price);
+				prodVO.setProd_stock(prod_stock);
+				prodVO.setProd_status(prod_status);
+				prodVO.setOff_time(off_time);
+				prodVO.setProd_detail(prod_detail);
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("prodVO", prodVO);
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/prod_pic/updateProd.jsp");
+							.getRequestDispatcher("/back-end/prod/updateProd.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
 				
 				/***************************2.開始修改資料*****************************************/
-				ProdService prodSvc = new Prod_Service();
-				prodVO = prodSvc.updateProd(prod_no, prod_no, prod_pic, prod_pic_name);
+				Prod_Service prodSvc = new Prod_Service();
+				prodVO = prodSvc.updateProd(prod_no, prod_type_no, prod_name, prod_pic_no, prod_price, prod_stock, prod_status, off_time, prod_detail);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("prod_picVO", prod_picVO);
-				String url = "/back-end/prod_pic/listAllProd_pic.jsp";
+				req.setAttribute("prodVO", prodVO);
+				String url = "/back-end/prod/listAllProd.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 		}
@@ -163,51 +202,72 @@ public class Prod_Servlet extends HttpServlet{
 			req.setAttribute("errorMsgs", errorMsgs);
 
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
-				Integer prod_no = 1;
-				if (prod_no == 0) {
-					errorMsgs.add("商品照片編號最小為1");
-				} else {
-					try {
-						prod_no = Integer.valueOf(req.getParameter("prod_no").trim());
-					} catch (NumberFormatException e) {
-						prod_no = 1;
-						errorMsgs.add("商品編號請填數字");
-					}
-				}
-						        		
-				byte[] prod_pic = null;      
-				try {
-					prod_pic = req.getPart("prod_pic").getInputStream().readAllBytes();
-				} catch (Exception e) {
-					errorMsgs.add("請上傳正確格式的檔案");
-					System.out.println(prod_pic);
-				}
 
-				String prod_pic_name = req.getParameter("prod_pic_name");
-				String prod_pic_nameReg = "^[(\\u4e00-\\u9fa5)(a-zA-Z0-9_)]{2,10}$";
-				if (prod_pic_name == null ||prod_pic_name.trim().length() == 0) {
-					errorMsgs.add("商品照片名稱: 請勿空白");
-				} else if(!prod_pic_name.trim().matches(prod_pic_nameReg)) {
-					errorMsgs.add("商品照片名稱: 只能是中、英文字母、數字和底線, 且長度必需在2到10之間");
-				}
+			Integer prod_type_no = null;
+			try {
+				prod_type_no = Integer.valueOf(req.getParameter("prod_type_no").trim());
+			} catch (NumberFormatException e) {
+				prod_type_no = 0;
+				errorMsgs.add("商品種類編號請填數字");
+			}	
+					
+			String prod_name = req.getParameter("prod_name");
+			String prod_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+			if (prod_name == null ||prod_name.trim().length() == 0) {
+				errorMsgs.add("商品照片名稱: 請勿空白");
+			} else if(!prod_name.trim().matches(prod_nameReg)) {
+				errorMsgs.add("商品照片名稱: 只能是中、英文字母、數字和底線, 且長度必需在2到10之間");
+            }
+			
+			Integer prod_pic_no = null;
+			try {
+				prod_pic_no = Integer.valueOf(req.getParameter("prod_pic_no").trim());
+			} catch (NumberFormatException e) {
+				prod_pic_no = 0;
+				errorMsgs.add("商品照片編號請填數字");
+			}
+			
+			Integer prod_price = null;
+			try {
+				prod_price = Integer.valueOf(req.getParameter("prod_price").trim());
+			} catch (NumberFormatException e) {
+				prod_price = 0;
+				errorMsgs.add("商品價格請填數字");
+			}
+			
+			Integer prod_stock = null;
+			try {
+				prod_stock = Integer.valueOf(req.getParameter("prod_stock").trim());
+			} catch (NumberFormatException e) {
+				prod_stock = 0;
+				errorMsgs.add("商品庫存請填數字");
+			}
+			
+			Timestamp off_time = null;
+			
+			String prod_detail = null;
 
-				Prod_pic_VO prod_picVO = new Prod_pic_VO();
-				prod_picVO.setProd_no(prod_no);				
-				prod_picVO.setProd_pic(prod_pic);						
-				prod_picVO.setProd_pic_name(prod_pic_name);
+				Prod_VO prodVO = new Prod_VO();
+				prodVO.setProd_type_no(prod_type_no);
+				prodVO.setProd_name(prod_name);
+				prodVO.setProd_pic_no(prod_pic_no);
+				prodVO.setProd_price(prod_price);
+				prodVO.setProd_stock(prod_stock);
+				prodVO.setOff_time(off_time);
+				prodVO.setProd_detail(prod_detail);
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("prod_picVO", prod_picVO);
+					req.setAttribute("prodVO", prodVO);
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/prod_pic/addProd_pic.jsp");
+							.getRequestDispatcher("/back-end/prod/addProd.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 				
 				/***************************2.開始新增資料***************************************/
-				Prod_pic_Service prod_picSvc = new Prod_pic_Service();
-				prod_picVO = prod_picSvc.addProd_pic(prod_no, prod_pic, prod_pic_name);
+				Prod_Service prodSvc = new Prod_Service();
+				prodVO = prodSvc.addProd(prod_type_no, prod_name, prod_pic_no, prod_price, prod_stock, off_time, prod_detail);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				String url = "/back-end/prod_pic/listAllProd_pic.jsp";
@@ -224,14 +284,14 @@ public class Prod_Servlet extends HttpServlet{
 			req.setAttribute("errorMsgs", errorMsgs);
 	
 				/***************************1.接收請求參數***************************************/
-				Integer prod_pic_no = Integer.valueOf(req.getParameter("prod_pic_no"));
+				Integer prod_no = Integer.valueOf(req.getParameter("prod_no"));
 				
 				/***************************2.開始刪除資料***************************************/
-				Prod_pic_Service prod_picSvc = new Prod_pic_Service();
-				prod_picSvc.deleteProd_pic(prod_pic_no);
+				Prod_Service prodSvc = new Prod_Service();
+				prodSvc.delete(prod_no);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/back-end/prod_pic/listAllProd_pic.jsp";
+				String url = "/back-end/prod/listAllProd.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 		}

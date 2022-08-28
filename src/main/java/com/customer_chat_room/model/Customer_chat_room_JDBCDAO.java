@@ -2,8 +2,6 @@ package com.customer_chat_room.model;
 
 import java.util.*;
 import java.sql.*;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Customer_chat_room_JDBCDAO implements Customer_chat_room_DAO_interface {
 	String driver = "com.mysql.cj.jdbc.Driver";

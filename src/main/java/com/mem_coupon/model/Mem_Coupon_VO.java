@@ -1,6 +1,8 @@
 package com.mem_coupon.model;
 
 public class Mem_Coupon_VO implements java.io.Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private Integer coupon_no ;
 	private Integer mem_no;
 	private Integer remain_amount;

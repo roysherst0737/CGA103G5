@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-@WebServlet("/Show_Images_Servlet")
-public class Show_Images_Servlet extends HttpServlet {
+@WebServlet("/Show_Prod_pic_Servlet")
+public class Show_Prod_pic_Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	Connection con;
@@ -44,7 +44,7 @@ public class Show_Images_Servlet extends HttpServlet {
 				in.close();
 				
 			} else {
-				InputStream in = getServletContext().getResourceAsStream("/back-end/prod_pic/images/coming soon.jpg");
+				InputStream in = getServletContext().getResourceAsStream("/back-end/prod_pic/images/coming_soon.jpg");
 				byte[] b = new byte[in.available()];
 				in.read(b);
 				out.write(b);
@@ -53,7 +53,7 @@ public class Show_Images_Servlet extends HttpServlet {
 			rs.close();
 			stmt.close();
 		} catch (Exception e) {
-			InputStream in = getServletContext().getResourceAsStream("/back-end/prod_pic/images/coming soon.jpg");
+			InputStream in = getServletContext().getResourceAsStream("/back-end/prod_pic/images/coming_soon_2.jpg");
 			byte[] b = new byte[in.available()];
 			in.read(b);
 			out.write(b);

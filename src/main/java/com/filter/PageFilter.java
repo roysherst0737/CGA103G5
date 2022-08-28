@@ -1,6 +1,5 @@
 package com.filter;
 
-import static com.util.Constants.PREFIX_WEB_INF;
 
 import java.io.IOException;
 
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebFilter(filterName = "PageFilter", urlPatterns = "/front-end/pub/*")
+//@WebFilter(filterName = "PageFilter", urlPatterns = "/front-end/pub/*")
 public class PageFilter extends HttpFilter {
 	private static final long serialVersionUID = 1L;
 

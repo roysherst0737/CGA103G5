@@ -6,8 +6,18 @@
 
           <img src="" alt="image" id="mem_img">
           <script>
+            try {
+              getContextPath()
+            } catch (error) {
+              function getContextPath() {
+                let path = "http://";
+                let hostname = window.location.host;
+                let pathname = window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2));
+                return path + hostname + pathname;
+              }
+            }
             document.querySelector("#mem_img").setAttribute("src",
-              path + "/back-end/images/faces/face29.png")
+              getContextPath() + "/back-end/images/faces/face29.png")
           </script>
           <span class="sidebar-status-indicator"></span>
         </div>
@@ -109,9 +119,10 @@
     <li class="nav-item"><a class="nav-link" href="pages/documentation/documentation.html"> <i
           class="typcn typcn-document-text menu-icon"></i> <span class="menu-title">Documentation</span>
       </a></li>
-      
+
     <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#prod" aria-expanded="false"
-        aria-controls="prod"> <i class="typcn typcn-user-add-outline menu-icon"></i> <span class="menu-title">商品管理</span>
+        aria-controls="prod"> <i class="typcn typcn-user-add-outline menu-icon"></i> <span
+          class="menu-title">商品管理</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="prod">
@@ -121,12 +132,12 @@
           <li class="nav-item"><a id="prod_pic" class="nav-link" href=""> 商品圖片管理 </a></li>
           <script>
             document.querySelector("#prod_list").setAttribute("href",
-            		 window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2)) + "/back-end/prod/listAllProd.jsp");
+              getContextPath() + "/back-end/prod/listAllProd.jsp");
             document.querySelector("#prod_type").setAttribute("href",
-           		 window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2)) + "/back-end/prod_type/listAllProd_type.jsp");
+              getContextPath() + "/back-end/prod_type/listAllProd_type.jsp");
             document.querySelector("#prod_pic").setAttribute("href",
-              		 window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2)) + "/back-end/prod_pic/listAllProd_pic.jsp");        
-            </script>
+              getContextPath() + "/back-end/prod_pic/listAllProd_pic.jsp");        
+          </script>
         </ul>
       </div>
     </li>
@@ -141,11 +152,11 @@
           <li class="nav-item"><a id="pub_list" class="nav-link" href="/pages/samples/register.html"> 酒吧清單 </a></li>
           <script>
             document.querySelector("#pub_list").setAttribute("href",
-            		 window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2)) + "/pub/getlist");
+              getContextPath() + "/pub/getlist");
             document.querySelector("#pub_check").setAttribute("href",
-           		 window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2)) + "/pub/pub_check");
-         
-            </script>
+              getContextPath() + "/pub/pub_check");
+
+          </script>
         </ul>
       </div>
     </li>

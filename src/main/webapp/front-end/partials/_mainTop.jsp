@@ -56,7 +56,7 @@
 					aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
 					<i class="fa fa-bars"></i>
 				</button>
-				<a class="navbar-brand" href="<%=request.getContextPath()%>/front-end/index.html"><img id="logo3" src="<%=request.getContextPath()%>/front-end/images/Logo3.png" width="200px"
+				<a class="navbar-brand" href="<%=request.getContextPath()%>/front-end/index.jsp"><img id="logo3" src="<%=request.getContextPath()%>/front-end/images/Logo3.png" width="200px"
 						height="80px" class="logo" alt=""></a>
 			</div>
 			<!-- End Header Navigation -->
@@ -64,7 +64,7 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="navbar-menu">
 				<ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-					<li class="nav-item active"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/index.html">首頁</a></li>
+					<li class="nav-item active"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/index.jsp">首頁</a></li>
 					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/about.html">關於我們</a></li>
 					<li class="dropdown"><a href="<%=request.getContextPath()%>/front-end/#" class="nav-link dropdown" data-toggle="dropdown"
 							style="font-weight: 1000;">購物專區</a>
@@ -77,7 +77,7 @@
 						</ul>
 					</li>
 					<li class="nav-item"><a id="pub_map" class="nav-link"
-							href="<%=request.getContextPath()%>/front-end/pages/pub/pub_map.jsp">酒吧地圖</a></li>
+							href="<%=request.getContextPath()%>/PubMap">酒吧地圖</a></li>
 					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/gallery.html">活動專區</a></li>
 					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/gallery.html">討論園地</a></li>
 				</ul>

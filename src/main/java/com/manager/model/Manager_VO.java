@@ -1,9 +1,6 @@
 package com.manager.model;
 
 import java.sql.Date;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.util.Base64;
 
 public class Manager_VO implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
@@ -12,7 +9,6 @@ public class Manager_VO implements java.io.Serializable {
 	private String mng_password;
 	private String mng_name;
 	private String mng_phone;
-	final Base64.Encoder encoder = Base64.getEncoder();
 	private byte[] mng_pic;
 	private Integer mng_status;
 	
@@ -46,10 +42,8 @@ public class Manager_VO implements java.io.Serializable {
 	public void setMng_phone(String mng_phone) {
 		this.mng_phone = mng_phone;
 	}
-	public String getMng_pic() {
-		if(mng_pic!=null) {String encodedText = encoder.encodeToString(mng_pic);
-		return encodedText;}
-		return null;
+	public byte[] getMng_pic() {
+		return mng_pic;
 	}
 	public void setMng_pic(byte[] mng_pic) {
 		this.mng_pic = mng_pic;

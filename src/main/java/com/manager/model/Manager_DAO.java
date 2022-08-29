@@ -1,6 +1,7 @@
 package com.manager.model;
 
 import java.util.*;
+import java.io.IOException;
 import java.sql.*;
 
 import javax.naming.Context;
@@ -48,7 +49,7 @@ public class Manager_DAO implements Manager_DAO_interface {
 			pstmt.setString(2, manager_VO.getMng_password());
 			pstmt.setString(3, manager_VO.getMng_name());
 			pstmt.setString(4, manager_VO.getMng_phone());
-			pstmt.setString(5, manager_VO.getMng_pic());
+			pstmt.setBytes(5, manager_VO.getMng_pic());
 			pstmt.setInt(6, manager_VO.getMng_status());
 
 			pstmt.executeUpdate();
@@ -92,7 +93,7 @@ public class Manager_DAO implements Manager_DAO_interface {
 			pstmt.setString(2, manager_VO.getMng_password());
 			pstmt.setString(3, manager_VO.getMng_name());
 			pstmt.setString(4, manager_VO.getMng_phone());
-			pstmt.setString(5, manager_VO.getMng_pic());
+			pstmt.setBytes(5, manager_VO.getMng_pic());
 			pstmt.setInt(6, manager_VO.getMng_status());
 			pstmt.setInt(7, manager_VO.getMng_no());
 
@@ -222,7 +223,7 @@ public class Manager_DAO implements Manager_DAO_interface {
 	}
 
 	@Override
-	public List<Manager_VO> getManagerAll() {
+	public List<Manager_VO> getAllManager() {
 		List<Manager_VO> list = new ArrayList<Manager_VO>();
 		Manager_VO manager_VO = null;
 

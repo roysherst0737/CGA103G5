@@ -1,5 +1,6 @@
 package com.manager.model;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Manager_Service {
@@ -51,7 +52,7 @@ public class Manager_Service {
 		return dao.findByPrimaryKey(mng_no);
 	}
 
-	public List<Manager_VO> getManagerAll() {
-		return dao.getManagerAll();
+	public List<Manager_VO> getAllManager() {
+		return dao.getAllManager();
 	}
 }

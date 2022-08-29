@@ -109,6 +109,27 @@
     <li class="nav-item"><a class="nav-link" href="pages/documentation/documentation.html"> <i
           class="typcn typcn-document-text menu-icon"></i> <span class="menu-title">Documentation</span>
       </a></li>
+      
+    <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#prod" aria-expanded="false"
+        aria-controls="prod"> <i class="typcn typcn-user-add-outline menu-icon"></i> <span class="menu-title">商品管理</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="prod">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"><a id="prod_list" class="nav-link" href=""> 商品清單管理 </a></li>
+          <li class="nav-item"><a id="prod_type" class="nav-link" href=""> 商品類別管理 </a></li>
+          <li class="nav-item"><a id="prod_pic" class="nav-link" href=""> 商品圖片管理 </a></li>
+          <script>
+            document.querySelector("#prod_list").setAttribute("href",
+            		 window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2)) + "/back-end/prod/listAllProd.jsp");
+            document.querySelector("#prod_type").setAttribute("href",
+           		 window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2)) + "/back-end/prod_type/listAllProd_type.jsp");
+            document.querySelector("#prod_pic").setAttribute("href",
+              		 window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2)) + "/back-end/prod_pic/listAllProd_pic.jsp");        
+            </script>
+        </ul>
+      </div>
+    </li>
 
     <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#pub" aria-expanded="false"
         aria-controls="pub"> <i class="typcn typcn-user-add-outline menu-icon"></i> <span class="menu-title">酒吧管理</span>

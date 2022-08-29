@@ -124,13 +124,10 @@ public class Prod_pic_Servlet extends HttpServlet {
 					errorMsgs.add("商品編號請填數字");
 				}
 				
-				byte[] prod_pic = null;      
-				try {
-					prod_pic = req.getPart("prod_pic").getInputStream().readAllBytes();
-				} catch (Exception e) {
-					errorMsgs.add("請上傳正確格式的檔案");
-					System.out.println(prod_pic);
-				}			
+				byte[] prod_pic = req.getPart("prod_pic").getInputStream().readAllBytes();      
+				if(prod_pic.length==0) {
+					prod_pic = null;
+				}	
 						
 				String prod_pic_name = req.getParameter("prod_pic_name");
 				String prod_pic_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
@@ -186,12 +183,9 @@ public class Prod_pic_Servlet extends HttpServlet {
 					}
 				}
 						        		
-				byte[] prod_pic = null;      
-				try {
-					prod_pic = req.getPart("prod_pic").getInputStream().readAllBytes();
-				} catch (Exception e) {
-					errorMsgs.add("請上傳正確格式的檔案");
-					System.out.println(prod_pic);
+				byte[] prod_pic = req.getPart("prod_pic").getInputStream().readAllBytes();      
+				if(prod_pic.length==0) {
+					prod_pic = null;
 				}
 
 				String prod_pic_name = req.getParameter("prod_pic_name");

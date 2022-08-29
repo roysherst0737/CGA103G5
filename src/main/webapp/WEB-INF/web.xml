@@ -50,7 +50,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Prod_Servlet</servlet-name>
-		<url-pattern>/back-end/pages/prod/prod.do</url-pattern>
+		<url-pattern>/back-end/prod/prod.do</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

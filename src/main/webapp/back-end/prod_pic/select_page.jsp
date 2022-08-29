@@ -105,7 +105,7 @@
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">商品圖片修改</h4>
+									<h4 class="card-title">商品圖片搜尋</h4>
 									<div class="table-responsive">
 										<%-- 錯誤表列 --%>
 										<c:if test="${not empty errorMsgs}">

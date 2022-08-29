@@ -78,15 +78,15 @@ pageContext.setAttribute("list", list);
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
 										<button style="margin-right: 10px;">
-											<a href="listAllProd_pic.jsp"><img
+											<a href="listAllProd.jsp"><img
 												src="./images/home.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right: 10px;">
-											<a href='addProd_pic.jsp'><img src="./images/plus.png"
+											<a href='addProd.jsp'><img src="./images/plus.png"
 												width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right: 10px;">
-											<a href="select_page.jsp"><img src="./images/search2.png"
+											<a href="selectProd.jsp"><img src="./images/search2.png"
 												width="30px" height="30px"></a>
 										</button>
 										<button
@@ -124,8 +124,7 @@ pageContext.setAttribute("list", list);
 							<div class="card">
 								<div class="card-body">
 									<h4 class="card-title">商品圖片管理</h4>
-									<table id="dataTables" class="stripe table-hover"
-										style="width: 100%">
+									<table id="dataTables" class="stripe table-hover" style="width: 100%">
 										<thead>
 											<tr>
 												<th>商品編號</th>
@@ -154,7 +153,7 @@ pageContext.setAttribute("list", list);
 													<td>${prod.off_time}</td>
 													<td>
 														<FORM METHOD="post"
-															ACTION="<%=request.getContextPath()%>/back-end/pages/prod/prod.do"
+															ACTION="<%=request.getContextPath()%>/back-end/prod/prod.do"
 															style="margin-bottom: 0px;">
 															<input type="submit" value="管理"> <input
 																type="hidden" name="prod_no" value="${prod.prod_no}">

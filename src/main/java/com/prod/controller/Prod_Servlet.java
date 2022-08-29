@@ -270,7 +270,7 @@ public class Prod_Servlet extends HttpServlet{
 				prodVO = prodSvc.addProd(prod_type_no, prod_name, prod_pic_no, prod_price, prod_stock, off_time, prod_detail);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/back-end/prod_pic/listAllProd_pic.jsp";
+				String url = "/back-end/prod_pic/listAllProd.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 		}

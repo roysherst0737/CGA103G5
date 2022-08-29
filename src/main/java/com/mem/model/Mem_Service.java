@@ -12,7 +12,7 @@ public class Mem_Service {
 		dao = new Mem_DAO();
 	}
 
-	public Mem_VO addEmp(String mem_account,String mem_password,Integer mem_gender,String mem_last_name,
+	public Mem_VO addMem(String mem_account,String mem_password,Integer mem_gender,String mem_last_name,
 			String mem_first_name,String mem_nickname,String mem_tel_no,String mem_cel_no,String mem_email,
 			String mem_id,Date mem_birth,String mem_addr,Integer mem_permission,Integer status,
 			Timestamp mem_build_time,Integer mem_cert_status) {
@@ -40,7 +40,7 @@ public class Mem_Service {
 		return memVO;
 	}
 
-	public Mem_VO updateEmp(String mem_account,String mem_password,Integer mem_gender,String mem_last_name,
+	public Mem_VO updateMem(String mem_account,String mem_password,Integer mem_gender,String mem_last_name,
 			String mem_first_name,String mem_nickname,String mem_tel_no,String mem_cel_no,String mem_email,
 			String mem_id,Date mem_birth,String mem_addr,Integer mem_permission,Integer status,
 			Timestamp mem_build_time,Integer mem_cert_status,Integer mem_no) {
@@ -69,16 +69,20 @@ public class Mem_Service {
 		return memVO;
 	}
 
-	public void deleteEmp(Integer mem_no) {
+	public void deleteMem(Integer mem_no) {
 		dao.delete(mem_no);
 	}
 
-	public Mem_VO getOneEmp(Integer mem_no) {
+	public Mem_VO getOneMem(Integer mem_no) {
 		return dao.findByPrimaryKey(mem_no);
 	}
 
 	public List<Mem_VO> getAll() {
 		return dao.getAll();
+	}
+	
+	public Mem_VO loginMem(String mem_account,String mem_password) {
+		return dao.login(mem_account, mem_password);
 	}
 }
 

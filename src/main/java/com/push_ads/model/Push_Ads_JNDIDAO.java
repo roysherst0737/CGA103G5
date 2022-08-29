@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 public class Push_Ads_JNDIDAO implements Push_Ads_DAO_interface{
 
-	// ¤@­ÓÀ³¥Îµ{¦¡¤¤,°w¹ï¤@­Ó¸ê®Æ®w ,¦@¥Î¤@­ÓDataSource§Y¥i
+	// ä¸€å€‹æ‡‰ç”¨ç¨‹å¼ä¸­,é‡å°ä¸€å€‹è³‡æ–™åº« ,å…±ç”¨ä¸€å€‹DataSourceå³å¯
 	private static DataSource ds = null;
 	static {
 		try {
@@ -187,7 +187,7 @@ public class Push_Ads_JNDIDAO implements Push_Ads_DAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVo ä¹Ÿç¨±ç‚º Domain objects
 				pushAdsVO = new Push_Ads_VO();
 				pstmt.setInt(1, pushAdsVO.getAds_no());
 				pstmt.setString(2, pushAdsVO.getAds_content());
@@ -246,7 +246,7 @@ public class Push_Ads_JNDIDAO implements Push_Ads_DAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ä¹Ÿç¨±ç‚º Domain objects
 				pushAdsVO = new Push_Ads_VO();
 				pstmt.setInt(1, pushAdsVO.getAds_no());
 				pstmt.setString(2, pushAdsVO.getAds_content());

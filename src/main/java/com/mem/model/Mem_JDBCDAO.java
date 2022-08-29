@@ -14,7 +14,7 @@ public class Mem_JDBCDAO implements Mem_DAO_interface {
 	String url = "jdbc:mysql://localhost:3306/lonelybar?serverTimezone=Asia/Taipei";
 	String userid = "root";
 	String passwd = "208127";
-
+	private int  result = 0;
 	private static final String INSERT_STMT = 
 			"INSERT INTO mem (mem_account, mem_password, mem_gender, mem_last_name, "
 			+ "mem_first_name, mem_nickname, mem_tel_no, mem_cel_no, mem_email, mem_id, mem_birth,"
@@ -34,7 +34,12 @@ public class Mem_JDBCDAO implements Mem_DAO_interface {
 			"UPDATE mem set mem_account=?, mem_password=?, mem_gender=?, mem_last_name=?, mem_first_name=?,"
 			+ " mem_nickname=?, mem_tel_no=?, mem_cel_no=?, mem_email=?, mem_id=?, mem_birth=?, mem_addr=?, mem_permission=?,"
 			+ " status=?, mem_build_time=?, mem_cert_status=? where mem_no = ?";
-
+		
+		private static final String LOGIN = 
+			"SELECT mem_no, mem_account, mem_password, mem_gender, mem_last_name, mem_first_name,"
+			+ " mem_nickname, mem_tel_no, mem_cel_no, mem_email, mem_id, mem_birth, mem_addr,"
+			+ " mem_permission, status, mem_build_time, mem_cert_status  FROM mem where mem_account =? and mem_password =?";
+		
 	@Override
 	public void insert(Mem_VO memVO) {
 
@@ -221,7 +226,7 @@ public class Mem_JDBCDAO implements Mem_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo §]∫Ÿ¨∞ Domain objects
+				// empVo ‰πüÁ®±ÁÇ∫ Domain objects
 				memVO = new Mem_VO();
 				memVO.setMem_no(rs.getInt("mem_no"));
 				memVO.setMem_account(rs.getString("mem_account"));
@@ -294,7 +299,7 @@ public class Mem_JDBCDAO implements Mem_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO §]∫Ÿ¨∞ Domain objects
+				// empVO ‰πüÁ®±ÁÇ∫ Domain objects
 				memVO = new Mem_VO();
 				memVO.setMem_no(rs.getInt("mem_no"));
 				memVO.setMem_account(rs.getString("mem_account"));
@@ -351,45 +356,121 @@ public class Mem_JDBCDAO implements Mem_DAO_interface {
 		return list;
 	}
 
+	
+	@Override
+    public Mem_VO login(String mem_account,String mem_password) {
+		Mem_VO memVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(LOGIN);
+
+			pstmt.setString(1, mem_account);
+			pstmt.setString(2, mem_password);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// empVo ‰πüÁ®±ÁÇ∫ Domain objects
+				memVO = new Mem_VO();
+				memVO.setMem_no(rs.getInt("mem_no"));
+				memVO.setMem_account(rs.getString("mem_account"));
+				memVO.setMem_password(rs.getString("mem_password"));
+				memVO.setMem_gender(rs.getInt("mem_gender"));
+				memVO.setMem_last_name(rs.getString("mem_last_name"));
+				memVO.setMem_first_name(rs.getString("mem_first_name"));
+				memVO.setMem_nickname(rs.getString("mem_nickname"));
+				memVO.setMem_tel_no(rs.getString("mem_tel_no"));
+				memVO.setMem_cel_no(rs.getString("mem_cel_no"));
+				memVO.setMem_email(rs.getString("mem_email"));
+				memVO.setMem_id(rs.getString("mem_id"));
+				memVO.setMem_birth(rs.getDate("mem_birth"));
+				memVO.setMem_addr(rs.getString("mem_addr"));
+				memVO.setMem_permission(rs.getInt("mem_permission"));
+				memVO.setStatus(rs.getInt("status"));
+				memVO.setMem_build_time(rs.getTimestamp("mem_build_time"));
+				memVO.setMem_cert_status(rs.getInt("mem_cert_status"));
+			}
+				
+		}catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return memVO;
+	}
+	
 	public static void main(String[] args) {
 
 		Mem_JDBCDAO dao = new Mem_JDBCDAO();
 
-//		// ∑sºW
+//		// Êñ∞Â¢û
 //		Mem_VO memVO1 = new Mem_VO();
 //		memVO1.setMem_account("qwe123");
 //		memVO1.setMem_password("asd321");
 //		memVO1.setMem_gender(1);
-//		memVO1.setMem_last_name("∏≠");
-//		memVO1.setMem_first_name("¨f¶t");
-//		memVO1.setMem_nickname("™¸∏≠");
+//		memVO1.setMem_last_name("Ëëâ");
+//		memVO1.setMem_first_name("ÊüèÂÆá");
+//		memVO1.setMem_nickname("ÈòøËëâ");
 //		memVO1.setMem_tel_no("02-12345678");
 //		memVO1.setMem_cel_no("0912345678");
 //		memVO1.setMem_email("puvonote@altmails.com");
 //		memVO1.setMem_id("Z263574483");	
 //		memVO1.setMem_birth(java.sql.Date.valueOf("1992-01-11"));
-//		memVO1.setMem_addr("∑s•_•´∑s≤¯∞œ∑s¬◊µÛ217∏π");
+//		memVO1.setMem_addr("Êñ∞ÂåóÂ∏ÇÊñ∞ËéäÂçÄÊñ∞Ë±êË°ó217Ëôü");
 //		memVO1.setMem_permission(0);
 //		memVO1.setStatus(0);
 //		memVO1.setMem_build_time(java.sql.Timestamp.valueOf("2022-08-18 15:53:13"));
 //		memVO1.setMem_cert_status(1);
 //		dao.insert(memVO1);
 
-		// ≠◊ßÔ
+		// ‰øÆÊîπ
 //		Mem_VO memVO2 = new Mem_VO();
 //
 //		memVO2.setMem_account("qwe123");
 //		memVO2.setMem_password("asd321");
 //		memVO2.setMem_gender(1);
-//		memVO2.setMem_last_name("∏≠");
-//		memVO2.setMem_first_name("¨f¶t");
-//		memVO2.setMem_nickname("™¸∏≠");
+//		memVO2.setMem_last_name("Ëëâ");
+//		memVO2.setMem_first_name("ÊüèÂÆá");
+//		memVO2.setMem_nickname("ÈòøËëâ");
 //		memVO2.setMem_tel_no("02-12345678");
 //		memVO2.setMem_cel_no("0912345678");
 //		memVO2.setMem_email("puvonote@altmails.com");
 //		memVO2.setMem_id("Z263574483");	
 //		memVO2.setMem_birth(java.sql.Date.valueOf("1992-01-11"));
-//		memVO2.setMem_addr("∑s•_•´∑s≤¯∞œ∑s¬◊µÛ217∏π");
+//		memVO2.setMem_addr("Êñ∞ÂåóÂ∏ÇÊñ∞ËéäÂçÄÊñ∞Ë±êË°ó217Ëôü");
 //		memVO2.setMem_permission(0);
 //		memVO2.setStatus(0);
 //		memVO2.setMem_build_time(java.sql.Timestamp.valueOf("2022-08-18 15:53:13"));
@@ -398,10 +479,10 @@ public class Mem_JDBCDAO implements Mem_DAO_interface {
 //		dao.update(memVO2);
 //		System.out.println("update success!");
 
-//		// ßR∞£
+//		// Âà™Èô§
 //		dao.delete(1);
 
-		// ¨d∏ﬂ
+		// Êü•Ë©¢
 		Mem_VO memVO3 = dao.findByPrimaryKey(2);
 		System.out.print(memVO3.getMem_no() + ",");
 		System.out.print(memVO3.getMem_account() + ",");
@@ -422,7 +503,7 @@ public class Mem_JDBCDAO implements Mem_DAO_interface {
 		System.out.println(memVO3.getMem_cert_status());
 		System.out.println("---------------------");
 
-		// ¨d∏ﬂ
+		// Êü•Ë©¢
 		List<Mem_VO> list = dao.getAll();
 		for (Mem_VO aEmp : list) {
 			System.out.print(aEmp.getMem_no() + ",");

@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 public class Mem_Coupon_DAO implements Mem_Coupon_DAO_interface{
 
-	// ¤@­ÓÀ³¥Îµ{¦¡¤¤,°w¹ï¤@­Ó¸ê®Æ®w ,¦@¥Î¤@­ÓDataSource§Y¥i
+	// ä¸€å€‹æ‡‰ç”¨ç¨‹å¼ä¸­,é‡å°ä¸€å€‹è³‡æ–™åº« ,å…±ç”¨ä¸€å€‹DataSourceå³å¯
 	private static DataSource ds = null;
 	static {
 		try {
@@ -178,7 +178,7 @@ public class Mem_Coupon_DAO implements Mem_Coupon_DAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVo ä¹Ÿç¨±ç‚º Domain objects
 				memCouponVO = new Mem_Coupon_VO();
 				memCouponVO.setCoupon_no(rs.getInt("coupon_no"));
 				memCouponVO.setMem_no(rs.getInt("mem_no"));
@@ -233,7 +233,7 @@ public class Mem_Coupon_DAO implements Mem_Coupon_DAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ä¹Ÿç¨±ç‚º Domain objects
 				memCouponVO = new Mem_Coupon_VO();
 				memCouponVO.setCoupon_no(rs.getInt("coupon_no"));
 				memCouponVO.setMem_no(rs.getInt("mem_no"));

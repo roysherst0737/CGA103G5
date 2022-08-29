@@ -194,7 +194,7 @@ public class Push_Ads_JDBCDAO implements Push_Ads_DAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo §]∫Ÿ¨∞ Domain objects
+				// empVo ‰πüÁ®±ÁÇ∫ Domain objects
 				pushAdsVO = new Push_Ads_VO();
 				pstmt.setInt(1, pushAdsVO.getAds_no());
 				pstmt.setString(2, pushAdsVO.getAds_content());
@@ -258,7 +258,7 @@ public class Push_Ads_JDBCDAO implements Push_Ads_DAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO §]∫Ÿ¨∞ Domain objects
+				// empVO ‰πüÁ®±ÁÇ∫ Domain objects
 				pushAdsVO = new Push_Ads_VO();
 				pstmt.setInt(1, pushAdsVO.getAds_no());
 				pstmt.setString(2, pushAdsVO.getAds_content());
@@ -309,9 +309,9 @@ public class Push_Ads_JDBCDAO implements Push_Ads_DAO_interface{
 
 		Push_Ads_JDBCDAO dao = new Push_Ads_JDBCDAO();
 
-		// ∑sºW
+		// Êñ∞Â¢û
 		Push_Ads_VO pushAdsVO1 = new Push_Ads_VO();
-		pushAdsVO1.setAds_content("∞”´~");
+		pushAdsVO1.setAds_content("ÂïÜÂìÅ");
 		pushAdsVO1.setProd_no(1);
 		pushAdsVO1.setAct_no(null);
 		pushAdsVO1.setPub_no(null);
@@ -320,9 +320,9 @@ public class Push_Ads_JDBCDAO implements Push_Ads_DAO_interface{
 
 		dao.insert(pushAdsVO1);
 
-		// ≠◊ßÔ
+		// ‰øÆÊîπ
 		Push_Ads_VO pushAdsVO2 = new Push_Ads_VO();
-		pushAdsVO2.setAds_content("∞”´~");
+		pushAdsVO2.setAds_content("ÂïÜÂìÅ");
 		pushAdsVO2.setProd_no(1);
 		pushAdsVO2.setAct_no(null);
 		pushAdsVO2.setPub_no(null);
@@ -332,10 +332,10 @@ public class Push_Ads_JDBCDAO implements Push_Ads_DAO_interface{
 		
 		dao.update(pushAdsVO2);
 
-		// ßR∞£
+		// Âà™Èô§
 		dao.delete(1);
 
-		// ¨d∏ﬂ
+		// Êü•Ë©¢
 		Push_Ads_VO Push_Ads_VO3 = dao.findByPrimaryKey(1);
 		System.out.print(Push_Ads_VO3.getAds_no() + ",");
 		System.out.print(Push_Ads_VO3.getAds_content() + ",");
@@ -347,7 +347,7 @@ public class Push_Ads_JDBCDAO implements Push_Ads_DAO_interface{
 
 		System.out.println("---------------------");
 
-		// ¨d∏ﬂ
+		// Êü•Ë©¢
 		List<Push_Ads_VO> list = dao.getAll();
 		for (Push_Ads_VO aEmp : list) {
 			System.out.print(aEmp.getAds_no() + ",");

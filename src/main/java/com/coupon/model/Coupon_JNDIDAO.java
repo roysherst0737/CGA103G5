@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 public class Coupon_JNDIDAO implements Coupon_DAO_interface {
 
-	// ¤@­ÓÀ³¥Îµ{¦¡¤¤,°w¹ï¤@­Ó¸ê®Æ®w ,¦@¥Î¤@­ÓDataSource§Y¥i
+	// ä¸€å€‹æ‡‰ç”¨ç¨‹å¼ä¸­,é‡å°ä¸€å€‹è³‡æ–™åº« ,å…±ç”¨ä¸€å€‹DataSourceå³å¯
 	private static DataSource ds = null;
 	static {
 		try {
@@ -196,7 +196,7 @@ public class Coupon_JNDIDAO implements Coupon_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVo ä¹Ÿç¨±ç‚º Domain objects
 				couponVO = new Coupon_VO();
 				couponVO.setCoupon_no(rs.getInt("coupon_no"));
 				couponVO.setCoupon_name(rs.getString("coupon_name"));
@@ -257,7 +257,7 @@ public class Coupon_JNDIDAO implements Coupon_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ä¹Ÿç¨±ç‚º Domain objects
 				couponVO = new Coupon_VO();
 				couponVO.setCoupon_no(rs.getInt("coupon_no"));
 				couponVO.setCoupon_name(rs.getString("coupon_name"));

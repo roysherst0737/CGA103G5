@@ -10,6 +10,7 @@ public interface Mem_DAO_interface {
     public void delete(Integer mem_no);
     public Mem_VO findByPrimaryKey(Integer mem_no);
     public List<Mem_VO> getAll();
-    //¸U¥Î½Æ¦X¬d¸ß(¶Ç¤J°Ñ¼Æ«¬ºAMap)(¦^¶Ç List)
+    public Mem_VO login(String mem_account,String mem_password);
+    //è¬ç”¨è¤‡åˆæŸ¥è©¢(å‚³å…¥åƒæ•¸å‹æ…‹Map)(å›å‚³ List)
 //  public List<EmpVO> getAll(Map<String, String[]> map); 
 }

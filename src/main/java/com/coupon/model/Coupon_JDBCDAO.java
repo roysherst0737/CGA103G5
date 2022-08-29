@@ -201,7 +201,7 @@ public class Coupon_JDBCDAO implements Coupon_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVo ä¹Ÿç¨±ç‚º Domain objects
 				couponVO = new Coupon_VO();
 				couponVO.setCoupon_no(rs.getInt("coupon_no"));
 				couponVO.setCoupon_name(rs.getString("coupon_name"));
@@ -267,7 +267,7 @@ public class Coupon_JDBCDAO implements Coupon_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ä¹Ÿç¨±ç‚º Domain objects
 				couponVO = new Coupon_VO();
 				couponVO.setCoupon_no(rs.getInt("coupon_no"));
 				couponVO.setCoupon_name(rs.getString("coupon_name"));
@@ -321,11 +321,11 @@ public class Coupon_JDBCDAO implements Coupon_DAO_interface {
 
 		Coupon_JDBCDAO dao = new Coupon_JDBCDAO();
 
-		// ·s¼W
+		// æ–°å¢
 		Coupon_VO couponVO1 = new Coupon_VO();
-		couponVO1.setCoupon_name("¥b»ùÀu´f¨é");
+		couponVO1.setCoupon_name("åŠåƒ¹å„ªæƒ åˆ¸");
 		couponVO1.setCoupon_code("ABCDE123");
-		couponVO1.setCoupon_content("°w¹ï°sÃş°Ó«~¥ş­±¥b»ù");
+		couponVO1.setCoupon_content("é‡å°é…’é¡å•†å“å…¨é¢åŠåƒ¹");
 		couponVO1.setCoupon_discount(0.5);
 		couponVO1.setCoupon_amount(50);
 		couponVO1.setLaunch_time(java.sql.Timestamp.valueOf("2022-10-10 00:00:00"));
@@ -335,12 +335,12 @@ public class Coupon_JDBCDAO implements Coupon_DAO_interface {
 
 		dao.insert(couponVO1);
 
-		// ­×§ï
+		// ä¿®æ”¹
 		Coupon_VO couponVO2 = new Coupon_VO();
 
-		couponVO2.setCoupon_name("¥b»ùÀu´f¨é");
+		couponVO2.setCoupon_name("åŠåƒ¹å„ªæƒ åˆ¸");
 		couponVO2.setCoupon_code("ABCDE123");
-		couponVO2.setCoupon_content("°w¹ï°sÃş°Ó«~¥ş­±¥b»ù");
+		couponVO2.setCoupon_content("é‡å°é…’é¡å•†å“å…¨é¢åŠåƒ¹");
 		couponVO2.setCoupon_discount(0.5);
 		couponVO2.setCoupon_amount(50);
 		couponVO2.setLaunch_time(java.sql.Timestamp.valueOf("2022-10-10 00:00:00"));
@@ -351,10 +351,10 @@ public class Coupon_JDBCDAO implements Coupon_DAO_interface {
 		dao.update(couponVO2);
 		System.out.println("update success!");
 
-		// §R°£
+		// åˆªé™¤
 		dao.delete(1);
 
-		// ¬d¸ß
+		// æŸ¥è©¢
 		Coupon_VO couponVO3 = dao.findByPrimaryKey(2);
 		System.out.print(couponVO3.getCoupon_no() + ",");
 		System.out.print(couponVO3.getCoupon_name() + ",");
@@ -370,7 +370,7 @@ public class Coupon_JDBCDAO implements Coupon_DAO_interface {
 
 		System.out.println("---------------------");
 
-		// ¬d¸ß
+		// æŸ¥è©¢
 		List<Coupon_VO> list = dao.getAll();
 		for (Coupon_VO aEmp : list) {
 			System.out.print(aEmp.getCoupon_no() + ",");

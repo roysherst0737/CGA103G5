@@ -10,7 +10,7 @@ import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//@WebFilter(filterName = "PageFilter", urlPatterns = "/front-end/pub/*")
+@WebFilter(filterName = "PageFilter", urlPatterns = "/*")
 public class PageFilter extends HttpFilter {
 	private static final long serialVersionUID = 1L;
 
@@ -20,8 +20,8 @@ public class PageFilter extends HttpFilter {
 		System.out.println(requestPath);
 		System.out.println(request.getContextPath());
 		if (!requestPath.contains(request.getContextPath())
-				&& (requestPath.endsWith(".html") || requestPath.endsWith(".css") || requestPath.endsWith(".js"))) {
-			request.getRequestDispatcher("/front-end").forward(request, response);
+				&& (requestPath.endsWith(".html") || requestPath.endsWith(".css") || requestPath.endsWith(".js")|| requestPath.endsWith(".png")|| requestPath.endsWith(".jpg"))) {
+			request.getRequestDispatcher(requestPath).forward(request, response);
 		} else {
 			chain.doFilter(request, response);
 		}

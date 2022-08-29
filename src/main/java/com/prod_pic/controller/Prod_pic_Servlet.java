@@ -124,9 +124,13 @@ public class Prod_pic_Servlet extends HttpServlet {
 					errorMsgs.add("商品編號請填數字");
 				}
 				
+				// 若要在修改時沒上傳圖片，可以保有原本的圖片，必須要查詢後給值
+				Prod_pic_Service prod_picSvc2 = new Prod_pic_Service();
+				Prod_pic_VO prod_picVO2 = prod_picSvc2.getOneProd_pic(prod_pic_no);
+				
 				byte[] prod_pic = req.getPart("prod_pic").getInputStream().readAllBytes();      
 				if(prod_pic.length==0) {
-					prod_pic = null;
+					prod_pic = prod_picVO2.getProd_pic();
 				}	
 						
 				String prod_pic_name = req.getParameter("prod_pic_name");

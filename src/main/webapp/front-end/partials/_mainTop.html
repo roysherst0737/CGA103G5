@@ -58,8 +58,8 @@
 					aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
 					<i class="fa fa-bars"></i>
 				</button>
-				<a class="navbar-brand" href="index.html"><img src="images/Logo3.png" width="200px" height="80px"
-						class="logo" alt=""></a>
+				<a class="navbar-brand" href="index.html"><img id="logo3" src="images/Logo3.png" width="200px"
+						height="80px" class="logo" alt=""></a>
 			</div>
 			<!-- End Header Navigation -->
 
@@ -78,7 +78,8 @@
 							<li><a href="my-account.html">會員專區</a></li>
 						</ul>
 					</li>
-					<li class="nav-item"><a id="pub_map" class="nav-link" href="../front-end/pages/pub/pub_map.html">酒吧地圖</a></li>
+					<li class="nav-item"><a id="pub_map" class="nav-link"
+							href="../front-end/pages/pub/pub_map.jsp">酒吧地圖</a></li>
 					<li class="nav-item"><a class="nav-link" href="gallery.html">活動專區</a></li>
 					<li class="nav-item"><a class="nav-link" href="gallery.html">討論園地</a></li>
 				</ul>
@@ -88,11 +89,12 @@
 			<!-- Start Atribute Navigation -->
 			<div class="attr-nav">
 				<ul>
-					<li class="user"><a href="my-account.html"><img src="./images/user.png" width="28px"
+					<li class="user"><a href="my-account.html"><img id="user" src="./images/user.png" width="28px"
 								height="28px" /></a></li>
-					<li class="side-menu"><a href="cart.html"><img src="./images/shopping-cart.png" width="35px"
-								height="35px" /></a></li>
-					<li class="search"><a href="#"><img src="./images/search2.png" width="35px" height="35px" /></a>
+					<li class="side-menu"><a href="cart.html"><img id="shopping" src="./images/shopping-cart.png"
+								width="35px" height="35px" /></a></li>
+					<li class="search"><a href="#"><img id="search" src="./images/search2.png" width="35px"
+								height="35px" /></a>
 					</li>
 				</ul>
 			</div>
@@ -103,4 +105,17 @@
 <!-- End Navigation -->
 
 <!-- 該文件需部屬較慢 -->
-<script src="js/custom.js"></script>
+<!-- <script id="customjs" src="js/custom.js"></script> -->
+<script>
+	let path = "http://";
+	let hostname = window.location.host;
+	let pathname = window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2));
+	let script = document.createElement('script')
+	script.setAttribute("src", path + hostname + pathname + "/front-end/js/custom.js");
+	let main_header = document.querySelector(".main-header")
+	main_header.insertBefore(script, main_header.lastChild);
+	document.querySelector("#logo3").setAttribute("src", path + hostname + pathname + "/front-end/images/Logo3.png")
+	document.querySelector("#user").setAttribute("src", path + hostname + pathname + "/front-end/images/user.png")
+	document.querySelector("#shopping").setAttribute("src", path + hostname + pathname + "/front-end/images/shopping-cart.png")
+	document.querySelector("#search").setAttribute("src", path + hostname + pathname + "/front-end/images/search2.png")
+</script>

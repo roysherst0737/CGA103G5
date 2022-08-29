@@ -67,7 +67,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Forum_Servlet</servlet-name>
-		<url-pattern>/back-end/forum/forum.do</url-pattern>
+		<url-pattern>/front-end/forum/forum.do</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>Forum_article_Servlet</servlet-name>
@@ -75,6 +75,6 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Forum_article_Servlet</servlet-name>
-		<url-pattern>/CGA103G5ALL/back-end/forum/forum.do</url-pattern>
+		<url-pattern>/front-end/forum/forum.do</url-pattern>
 	</servlet-mapping>
 </web-app>

@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-Hant">
 <!-- Basic(head都不用動) -->
 
 <head>
     <meta charset="utf-8">
+
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,20 +21,20 @@
     <link rel="lonelybar-icon" href="./images/Logo2.png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Site CSS -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/responsive.css">
+    <link rel="stylesheet" href="css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/custom.css">
+    <link rel="stylesheet" href="css/custom.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 
 <body>
 
     <!-- !!!!!! 可修改部分：從第142行開始到footer !!!!!!-->
-		<div id=top_nav_banner>
+	<div id=top_nav_banner>
 		<%@ include file="/front-end/partials/_mainTop.jsp"%>
 	</div>
     <!-- !!!!!! 從以下開始修改到footer !!!!!!-->
@@ -87,7 +87,7 @@
                             <div class="type-lb">
                                 <p class="sale">Sale</p>
                             </div>
-                            <img src="<%=request.getContextPath()%>/front-end/images/gallery-img-01.jpg" class="img-fluid" alt="Image">
+                            <img src="images/gallery-img-01.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -103,7 +103,7 @@
                 <div class="col-lg-3 col-md-6 special-grid fruits">
                     <div class="products-single fix">
                         <div class="box-img-hover">
-                            <img src="<%=request.getContextPath()%>/front-end/images/gallery-img-02.jpg" class="img-fluid" alt="Image">
+                            <img src="images/gallery-img-02.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -118,7 +118,7 @@
                 <div class="col-lg-3 col-md-6 special-grid bulbs">
                     <div class="products-single fix">
                         <div class="box-img-hover">
-                            <img src="<%=request.getContextPath()%>/front-end/images/gallery-img-03.jpg" class="img-fluid" alt="Image">
+                            <img src="images/gallery-img-03.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -133,7 +133,7 @@
                 <div class="col-lg-3 col-md-6 special-grid fruits">
                     <div class="products-single fix">
                         <div class="box-img-hover">                            
-                            <img src="<%=request.getContextPath()%>/front-end/images/gallery-img-04.jpg" class="img-fluid" alt="Image">
+                            <img src="images/gallery-img-04.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -147,7 +147,7 @@
 				<div class="col-lg-3 col-md-6 special-grid bulbs">
                     <div class="products-single fix">
                         <div class="box-img-hover">
-                            <img src="<%=request.getContextPath()%>/front-end/images/gallery-img-05.jpg" class="img-fluid" alt="Image">
+                            <img src="images/gallery-img-05.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -162,7 +162,7 @@
                 <div class="col-lg-3 col-md-6 special-grid fruits">
                     <div class="products-single fix">
                         <div class="box-img-hover">                            
-                            <img src="<%=request.getContextPath()%>/front-end/images/gallery-img-06.jpg" class="img-fluid" alt="Image">
+                            <img src="images/gallery-img-06.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -177,7 +177,7 @@
                 <div class="col-lg-3 col-md-6 special-grid podded-vegetables">
                     <div class="products-single fix">
                         <div class="box-img-hover">
-                            <img src="<%=request.getContextPath()%>/front-end/images/gallery-img-07.jpg" class="img-fluid" alt="Image">
+                            <img src="images/gallery-img-07.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -192,7 +192,7 @@
                 <div class="col-lg-3 col-md-6 special-grid root-and-tuberous">
                     <div class="products-single fix">
                         <div class="box-img-hover">                            
-                            <img src="<%=request.getContextPath()%>/front-end/images/gallery-img-08.jpg" class="img-fluid" alt="Image">
+                            <img src="images/gallery-img-08.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -207,7 +207,7 @@
 				<div class="col-lg-3 col-md-6 special-grid root-and-tuberous">
                     <div class="products-single fix">
                         <div class="box-img-hover">                            
-                            <img src="<%=request.getContextPath()%>/front-end/images/gallery-img-09.jpg" class="img-fluid" alt="Image">
+                            <img src="images/gallery-img-09.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -222,7 +222,7 @@
                 <div class="col-lg-3 col-md-6 special-grid podded-vegetables">
                     <div class="products-single fix">
                         <div class="box-img-hover">
-                            <img src="<%=request.getContextPath()%>/front-end/images/gallery-img-10.jpg" class="img-fluid" alt="Image">
+                            <img src="images/gallery-img-10.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -237,7 +237,7 @@
                 <div class="col-lg-3 col-md-6 special-grid root-and-tuberous">
                     <div class="products-single fix">
                         <div class="box-img-hover">                           
-                            <img src="<%=request.getContextPath()%>/front-end/images/gallery-img-11.jpg" class="img-fluid" alt="Image">
+                            <img src="images/gallery-img-11.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -252,7 +252,7 @@
                 <div class="col-lg-3 col-md-6 special-grid podded-vegetables">
                     <div class="products-single fix">
                         <div class="box-img-hover">
-                            <img src="<%=request.getContextPath()%>/front-end/images/gallery-img-12.jpg" class="img-fluid" alt="Image">
+                            <img src="images/gallery-img-12.jpg" class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
                                     <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
@@ -273,7 +273,7 @@
         <div class="main-instagram owl-carousel owl-theme">
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-01.jpg" alt="" />
+                    <img src="images/instagram-img-01.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -281,7 +281,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-02.jpg" alt="" />
+                    <img src="images/instagram-img-02.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -289,7 +289,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-03.jpg" alt="" />
+                    <img src="images/instagram-img-03.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -297,7 +297,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-04.jpg" alt="" />
+                    <img src="images/instagram-img-04.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -305,7 +305,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-05.jpg" alt="" />
+                    <img src="images/instagram-img-05.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -313,7 +313,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-06.jpg" alt="" />
+                    <img src="images/instagram-img-06.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -321,7 +321,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-07.jpg" alt="" />
+                    <img src="images/instagram-img-07.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -329,7 +329,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-08.jpg" alt="" />
+                    <img src="images/instagram-img-08.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -337,7 +337,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-09.jpg" alt="" />
+                    <img src="images/instagram-img-09.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -345,7 +345,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-05.jpg" alt="" />
+                    <img src="images/instagram-img-05.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -369,23 +369,32 @@
     </div>
     <!-- End copyright  -->
 
-    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+   <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
-    <!-- ALL JS FILES -->
-    <script src="<%=request.getContextPath()%>/front-end/js/popper.min.js"></script>
-    <script src="<%=request.getContextPath()%>/front-end/js/bootstrap.min.js"></script>
-    <!-- ALL PLUGINS -->
-    <script src="<%=request.getContextPath()%>/front-end/js/jquery.superslides.min.js"></script>
-    <script src="<%=request.getContextPath()%>/front-end/js/bootstrap-select.js"></script>
-    <script src="<%=request.getContextPath()%>/front-end/js/inewsticker.js"></script>
-    <script src="<%=request.getContextPath()%>/front-end/js/bootsnav.js"></script>
-    <script src="<%=request.getContextPath()%>/front-end/js/images-loded.min.js"></script>
-    <script src="<%=request.getContextPath()%>/front-end/js/isotope.min.js"></script>
-    <script src="<%=request.getContextPath()%>/front-end/js/owl.carousel.min.js"></script>
-    <script src="<%=request.getContextPath()%>/front-end/js/baguetteBox.min.js"></script>
-    <script src="<%=request.getContextPath()%>/front-end/js/form-validator.min.js"></script>
-    <script src="<%=request.getContextPath()%>/front-end/js/contact-form-script.js"></script>
-    <script id="customjs"
+	<!-- ALL JS FILES -->
+	<script src="<%=request.getContextPath()%>/front-end/js/popper.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+	<!-- ALL PLUGINS -->
+	<script
+		src="<%=request.getContextPath()%>/front-end/js/owl.carousel.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/front-end/js/form-validator.min.js"></script>
+	<script src="<%=request.getContextPath()%>/front-end/js/bootsnav.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/front-end/js/baguetteBox.min.js"></script>
+	<script src="<%=request.getContextPath()%>/front-end/js/inewsticker.js"></script>
+	<script src="<%=request.getContextPath()%>/front-end/js/isotope.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/front-end/js/jquery.superslides.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/front-end/js/bootstrap-select.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/front-end/js/images-loded.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/front-end/js/contact-form-script.js"></script>
+	<!-- 該文件需部屬較慢 -->
+	<script id="customjs"
 		src="<%=request.getContextPath()%>/front-end/js/custom.js"></script>
 </body>
 

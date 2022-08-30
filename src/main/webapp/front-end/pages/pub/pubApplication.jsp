@@ -23,7 +23,7 @@
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/front-end/css/bootstrap.min.css">
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 <!-- Site CSS -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/front-end/css/style.css">
@@ -35,6 +35,13 @@
 	href="<%=request.getContextPath()%>/front-end/css/custom.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/front-end/css/pub.css">
+
+<!-- plugin css for this page -->
+<!-- End plugin css for this page -->
+<!-- inject:css -->
+
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/back-end/css/vertical-layout-light/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
 a.booking {
@@ -61,15 +68,14 @@ a.booking:hover {
 		<%@ include file="/front-end/partials/_mainTop.jsp"%>
 	</div>
 	<!-- !!!!!! 從以下開始修改到footer !!!!!!-->
-
 	<!-- Start All Title Box -->
 	<div class="all-title-box">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h2>酒吧地圖</h2>
+					<h2>酒吧註冊申請</h2>
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item active">酒吧地圖</li>
+						<li class="breadcrumb-item active">酒吧註冊申請</li>
 						<li class="breadcrumb-item"><a
 							href="<%=request.getContextPath()%>/front-end">首頁</a></li>
 					</ul>
@@ -91,319 +97,106 @@ a.booking:hover {
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="special-menu text-center">
-						<div class="button-group filter-button-group">
-							<button class="active" data-filter="*">All</button>
-							<c:forEach var="pubAddress" items="${pubAddress}">
-								<button data-filter=".${pubAddress}">${pubAddress}</button>
-							</c:forEach>
-							<!-- 							<button data-filter=".bulbs">Bulbs</button> -->
-							<!-- 							<button data-filter=".fruits">Fruits</button> -->
-							<!-- 							<button data-filter=".podded-vegetables">Podded	vegetables</button> -->
-							<!-- 							<button data-filter=".root-and-tuberous">Root and tuberous</button> -->
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row special-list">
-				<c:forEach var="pubVO" items="${pubList}">
-					<div class="col-lg-3 col-md-6 special-grid ${pubVO.pub_address.substring(0, 3)}">
-						<div class="products-single fix">
-							<div class="box-img-hover">
-								<div class="type-lb">
-									<p class="openType">營業中</p>
-								</div>
-								<img
-									src="<%=request.getContextPath()%>/back-end/images/noPic.png"
-									class="img-fluid" alt="Image">
-								<div class="mask-icon">
-									<ul>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="right" title="Compare"><i
-												class="fas fa-sync-alt"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="right" title="Add to Wishlist"><i
-												class="far fa-heart"></i></a></li>
-									</ul>
-									<a class="cart" href="#">預約訂位</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-				<div class="col-lg-3 col-md-6 special-grid bulbs">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<div class="type-lb">
-								<p class="sale">Sale</p>
-							</div>
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-01.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-								<a class="cart" href="#">Add to Cart</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid fruits">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-02.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid bulbs">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-03.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid fruits">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-04.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 special-grid bulbs">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-05.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid fruits">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-06.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid podded-vegetables">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-07.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid root-and-tuberous">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-08.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid root-and-tuberous">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-09.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid podded-vegetables">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-10.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid root-and-tuberous">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-11.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid podded-vegetables">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-12.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
+		<!-- 主內容 -->
+		<div class="main-panel">
+			<div class="content-wrapper">
+				<form class="forms-sample">
+					<div class="row">
+						<div class="col-md-6 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">廠商申請表單</h4>
+									<p class="card-description">酒吧基本資料</p>
+									<div class="form-floating mb-3">
+										<input type="text" class="form-control" id="fpub_nop"
+											placeholder="pub_nop"> <label for="fpub_nop">酒吧可接受預約人數</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input type="text" class="form-control" id="fpub_address"
+											placeholder="pub_address"> <label for="fpub_address">pub_address</label>
+									</div>
+									<div class="form-floating mb-3">
+										<input type="text" class="form-control" id="fpub_open"
+											placeholder="pub_open"> <label for="fpub_open">pub_open</label>
+									</div>
+									<div class="form-floating">
+										<textarea class="form-control" placeholder="pub_detail"
+											id="fpub_detail" style="height: 100px"></textarea>
+										<label for="fpub_detail">pub_detail</label>
+									</div>
+									<div class="form-check form-check-flat form-check-primary">
+										<label class="form-check-label"> <input
+											type="checkbox" class="form-check-input"> Remember me
+										</label>
+									</div>
+									<button type="submit" class="btn btn-primary mr-2">Submit</button>
+									<button class="btn btn-light">Cancel</button>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Horizontal Form</h4>
+									<p class="card-description">Horizontal form layout</p>
+
+									<div class="form-group row">
+										<label for="exampleInputUsername2"
+											class="col-sm-3 col-form-label">Email</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control"
+												id="exampleInputUsername2" placeholder="Username">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="exampleInputEmail2"
+											class="col-sm-3 col-form-label">Email</label>
+										<div class="col-sm-9">
+											<input type="email" class="form-control"
+												id="exampleInputEmail2" placeholder="Email">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="exampleInputMobile"
+											class="col-sm-3 col-form-label">Mobile</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control"
+												id="exampleInputMobile" placeholder="Mobile number">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="exampleInputPassword2"
+											class="col-sm-3 col-form-label">Password</label>
+										<div class="col-sm-9">
+											<input type="password" class="form-control"
+												id="exampleInputPassword2" placeholder="Password">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="exampleInputConfirmPassword2"
+											class="col-sm-3 col-form-label">Re Password</label>
+										<div class="col-sm-9">
+											<input type="password" class="form-control"
+												id="exampleInputConfirmPassword2" placeholder="Password">
+										</div>
+									</div>
+									<div class="form-check form-check-flat form-check-primary">
+										<label class="form-check-label"> <input
+											type="checkbox" class="form-check-input"> Remember me
+										</label>
+									</div>
+									<button type="submit" class="btn btn-primary mr-2">Submit</button>
+									<button class="btn btn-light">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<!-- content-wrapper ends -->
+		</div>
+
 	</div>
 	<!-- End Gallery  -->
 
@@ -556,6 +349,7 @@ a.booking:hover {
 		src="<%=request.getContextPath()%>/front-end/js/contact-form-script.js"></script>
 	<script id="customjs"
 		src="<%=request.getContextPath()%>/front-end/js/custom.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/template.js"></script>
 </body>
 
 </html>

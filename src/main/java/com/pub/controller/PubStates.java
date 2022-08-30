@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import static com.pub.service.PubConstants.SERVICE;
 import com.pub.model.Pub;
-@WebServlet("/PubMap")
-public class PubGetAllServlet_Front extends HttpServlet{
+@WebServlet("/PubStates")
+public class PubStates extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
@@ -25,7 +25,7 @@ public class PubGetAllServlet_Front extends HttpServlet{
 		pubList.forEach(e->{pubAddress.add(e.getPub_address().substring(0, 3));});
 		request.setAttribute("pubList", pubList);
 		request.setAttribute("pubAddress", pubAddress);
-		request.getRequestDispatcher("/front-end/pages/pub/pub_map.jsp").forward(request, response);
+		request.getRequestDispatcher("/front-end/pages/pub/pubStates.jsp").forward(request, response);
 	}
 
 }

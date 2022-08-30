@@ -1,0 +1,28 @@
+a.booking {
+    background: #f5c242;
+    position: absolute;
+    bottom: 0;
+    left: 0px;
+    padding: 10px 20px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+a.booking:hover {
+    background: #000000;
+    color: #ffffff;
+}
+
+.openType {
+    background: #f5c242;
+    color: #ffffff;
+    padding: 2px 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.img-fluid {
+    max-height: 225px;
+    min-height: 225px;
+
+}

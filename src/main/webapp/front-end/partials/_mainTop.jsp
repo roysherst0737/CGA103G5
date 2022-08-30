@@ -76,8 +76,15 @@
 							<li><a href="<%=request.getContextPath()%>/front-end/my-account.html">會員專區</a></li>
 						</ul>
 					</li>
-					<li class="nav-item"><a id="pub_map" class="nav-link"
-							href="<%=request.getContextPath()%>/PubMap">酒吧地圖</a></li>
+					<li class="nav-item dropdown"><a id="pub_map" class="nav-link"
+							href="<%=request.getContextPath()%>/PubMap">酒吧地圖</a>
+							<ul class="dropdown-menu">
+							<li><a href="<%=request.getContextPath()%>/PubMap">酒吧地圖</a></li>
+							<li><a href="<%=request.getContextPath()%>/PubApplication">酒吧註冊申請</a></li>
+							<li><a href="<%=request.getContextPath()%>/PubStates">酒吧狀態</a></li>
+						</ul>
+							
+					</li>
 					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/gallery.html">活動專區</a></li>
 					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/gallery.html">討論園地</a></li>
 				</ul>

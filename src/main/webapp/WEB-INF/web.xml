@@ -75,6 +75,6 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Forum_article_Servlet</servlet-name>
-		<url-pattern>/front-end/forum/forum.do</url-pattern>
+		<url-pattern>/front-end/forum/forum_article.do</url-pattern>
 	</servlet-mapping>
 </web-app>

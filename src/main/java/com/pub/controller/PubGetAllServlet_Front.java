@@ -1,7 +1,9 @@
 package com.pub.controller;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,7 +21,11 @@ public class PubGetAllServlet_Front extends HttpServlet{
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Pub> pubList = SERVICE.getAll();
+		pubList.removeIf(e->e.getPub_status()==false);
+		Set<String> pubAddress = new HashSet<String>() ;
+		pubList.forEach(e->{pubAddress.add(e.getPub_address().substring(0, 3));});
 		request.setAttribute("pubList", pubList);
+		request.setAttribute("pubAddress", pubAddress);
 		request.getRequestDispatcher("/front-end/pages/pub/pub_map.jsp").forward(request, response);
 	}
 

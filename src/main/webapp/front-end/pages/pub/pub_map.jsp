@@ -33,7 +33,25 @@
 <!-- Custom CSS -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/front-end/css/custom.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/front-end/css/pub.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<style>
+a.booking {
+	background: #f5c242;
+	position: absolute;
+	bottom: 0;
+	left: 0px;
+	padding: 10px 20px;
+	font-weight: 700;
+	color: #ffffff;
+}
+
+a.booking:hover {
+	background: #000000;
+	color: #ffffff;
+}
+</style>
 </head>
 
 <body>
@@ -78,18 +96,46 @@
 					<div class="special-menu text-center">
 						<div class="button-group filter-button-group">
 							<button class="active" data-filter="*">All</button>
-							<button data-filter=".bulbs">Bulbs</button>
-							<button data-filter=".fruits">Fruits</button>
-							<button data-filter=".podded-vegetables">Podded
-								vegetables</button>
-							<button data-filter=".root-and-tuberous">Root and
-								tuberous</button>
+							<c:forEach var="pubAddress" items="${pubAddress}">
+								<button data-filter=".${pubAddress}">${pubAddress}</button>
+							</c:forEach>
+							<!-- 							<button data-filter=".bulbs">Bulbs</button> -->
+							<!-- 							<button data-filter=".fruits">Fruits</button> -->
+							<!-- 							<button data-filter=".podded-vegetables">Podded	vegetables</button> -->
+							<!-- 							<button data-filter=".root-and-tuberous">Root and tuberous</button> -->
 						</div>
 					</div>
 				</div>
 			</div>
 
 			<div class="row special-list">
+				<c:forEach var="pubVO" items="${pubList}">
+					<div class="col-lg-3 col-md-6 special-grid ${pubVO.pub_address.substring(0, 3)}">
+						<div class="products-single fix">
+							<div class="box-img-hover">
+								<div class="type-lb">
+									<p class="openType">營業中</p>
+								</div>
+								<img
+									src="<%=request.getContextPath()%>/back-end/images/noPic.png"
+									class="img-fluid" alt="Image">
+								<div class="mask-icon">
+									<ul>
+										<li><a href="#" data-toggle="tooltip"
+											data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+										<li><a href="#" data-toggle="tooltip"
+											data-placement="right" title="Compare"><i
+												class="fas fa-sync-alt"></i></a></li>
+										<li><a href="#" data-toggle="tooltip"
+											data-placement="right" title="Add to Wishlist"><i
+												class="far fa-heart"></i></a></li>
+									</ul>
+									<a class="cart" href="#">預約訂位</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
 				<div class="col-lg-3 col-md-6 special-grid bulbs">
 					<div class="products-single fix">
 						<div class="box-img-hover">

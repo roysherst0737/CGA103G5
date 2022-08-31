@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Start Main Top -->
 <div class="main-top">
 	<div class="container-fluid">
@@ -21,12 +22,30 @@
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-				<button type="button" class="btn btn-warning">
-					<a href="<%=request.getContextPath()%>/front-end/my-account.html" style="color: black">註冊</a>
-				</button>
-				<button type="button" class="btn btn-outline-light me-2">
-					<a href="<%=request.getContextPath()%>/front-end/login.jsp" style="color: white">登入</a>
-				</button>
+	<!-- 以下為註冊/登入-->
+					<c:choose>
+
+						<c:when test="${empty  sessionScope.user}"> 
+							<button type="button" class="btn btn-warning">
+								<a href="my-account.html" style="color: black">註冊</a>
+							</button>
+							<button type="button" class="btn btn-outline-light me-2">
+								<a href="login.jsp" style="color: white">登入</a>
+							</button>
+						</c:when>
+
+						<c:otherwise> 
+<!-- 							<button type="submit" class="btn btn-warning"> -->
+<%-- 								<a href="my-account.jsp" style="color: black">${sessionScope.user.getMem_nickname()}</a> --%>
+<!-- 							</button> -->
+							<form action="MemLogoutServlet" method="post">
+								<input type="submit" class="btn btn-warning" value="${sessionScope.user.getMem_nickname()}" />
+								<input type="hidden" name="Logout" value="Mem_Logout">
+							</form>
+						</c:otherwise>
+
+					</c:choose>
+	<!-- 以上為註冊/登入-->
 				<div class="text-slid-box">
 					<div id="offer-box" class="carouselTicker">
 						<ul class="offer-box">

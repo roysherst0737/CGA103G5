@@ -41,30 +41,6 @@
 
 	<!-- !!!!!! 從以下開始修改到"Start Instagram Feed" !!!!!!-->
 	
-	<!-- 以上為註冊/登入-->
-					<c:choose>
-
-						<c:when test="${empty  sessionScope.user}"> 
-							<button type="button" class="btn btn-warning">
-								<a href="my-account.html" style="color: black">註冊</a>
-							</button>
-							<button type="button" class="btn btn-outline-light me-2">
-								<a href="login.jsp" style="color: white">登入</a>
-							</button>
-						</c:when>
-
-						<c:otherwise> 
-<!-- 							<button type="submit" class="btn btn-warning"> -->
-<%-- 								<a href="my-account.jsp" style="color: black">${sessionScope.user.getMem_nickname()}</a> --%>
-<!-- 							</button> -->
-							<form action="MemLogoutServlet" method="post">
-								<input type="submit" class="btn btn-warning" value="${sessionScope.user.getMem_nickname()}" />
-								<input type="hidden" name="Logout" value="Mem_Logout">
-							</form>
-						</c:otherwise>
-
-					</c:choose>
-	<!-- 以上為註冊/登入-->
 
 	<!-- Start Categories  -->
 	<div class="categories-shop">

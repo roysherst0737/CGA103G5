@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class Mem_JDBCDAO implements Mem_DAO_interface {
 	String driver = "com.mysql.cj.jdbc.Driver";
 	String url = "jdbc:mysql://localhost:3306/lonelybar?serverTimezone=Asia/Taipei";

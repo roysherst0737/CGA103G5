@@ -3,6 +3,7 @@ package com.mem.model;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+
 public class Mem_VO implements java.io.Serializable{
 
 	private Integer mem_no; 

@@ -69,11 +69,11 @@
 					<li class="dropdown"><a href="<%=request.getContextPath()%>/front-end/#" class="nav-link dropdown" data-toggle="dropdown"
 							style="font-weight: 1000;">購物專區</a>
 						<ul class="dropdown-menu">
-							<li><a href="<%=request.getContextPath()%>/front-end/shop.html">商品總覽</a></li>
-							<li><a href="<%=request.getContextPath()%>/front-end/shop-detail.html">商品詳情</a></li>
-							<li><a href="<%=request.getContextPath()%>/front-end/cart.html">購物車</a></li>
-							<li><a href="<%=request.getContextPath()%>/front-end/checkout.html">前往結帳</a></li>
-							<li><a href="<%=request.getContextPath()%>/front-end/my-account.html">會員專區</a></li>
+							<li><a href="<%=request.getContextPath()%>/front-end/shop.html" style="color: white;">商品總覽</a></li>
+							<li><a href="<%=request.getContextPath()%>/front-end/shop-detail.html" style="color: white;">商品詳情</a></li>
+							<li><a href="<%=request.getContextPath()%>/front-end/cart.html" style="color: white;">購物車</a></li>
+							<li><a href="<%=request.getContextPath()%>/front-end/checkout.html" style="color: white;">前往結帳</a></li>
+							<li><a href="<%=request.getContextPath()%>/front-end/my-account.html" style="color: white;">會員專區</a></li>
 						</ul>
 					</li>
 					<li class="nav-item dropdown"><a id="pub_map" class="nav-link"

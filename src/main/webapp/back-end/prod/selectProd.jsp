@@ -4,8 +4,8 @@
 <%@ page import="com.prod.model.*"%>
 
 <%
-	Prod_Service_H prodSvc = new Prod_Service_H();
-	List<Prod> list = prodSvc.getAll();
+	Prod_Service prodSvc = new Prod_Service();
+	List<Prod_VO> list = prodSvc.getAll();
 	pageContext.setAttribute("list",list);
 %>
 
@@ -88,12 +88,12 @@
 							<c:forEach var="prod" items="${list}">
 								<tr>
 									<td>${prod.prod_no}</td>
-									<td>${prod.prod_typeVO.prod_type}</td>
+									<td>${prod.prod_type_no}</td>
 									<td>${prod.prod_name}</td>
 									<td>${prod.prod_picVO.prod_pic}</td>
 									<td>${prod.prod_stock}</td>
 									<td>${prod.prod_price}</td>
-									<td>${prod.prod_status?"¤W¬[":"¤U¬["}</td>
+									<td>${prod.prod_status}</td>
 									<td>${prod.launch_time}</td>
 									<td>${prod.off_time}</td>
 									<td>			  

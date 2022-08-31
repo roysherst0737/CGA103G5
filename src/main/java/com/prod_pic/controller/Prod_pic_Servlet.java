@@ -6,14 +6,12 @@ import java.util.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.prod_pic.model.Prod_pic_Service;
 import com.prod_pic.model.Prod_pic_VO;
 
-@WebServlet("/Prod_pic_Servlet")
 @MultipartConfig
 public class Prod_pic_Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -38,31 +36,7 @@ public class Prod_pic_Servlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
-				String str = req.getParameter("prod_pic_no");
-				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("請輸入商品照片編號");
-				}
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/prod_pic/select_page.jsp");
-					failureView.forward(req, res);
-					return;//程式中斷
-				}
-				
-				Integer prod_pic_no = null;
-				try {
-					prod_pic_no = Integer.valueOf(str);
-				} catch (Exception e) {
-					errorMsgs.add("商品照片編號格式不正確");
-				}
-				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/prod_pic/select_page.jsp");
-					failureView.forward(req, res);
-					return;//程式中斷
-				}
+				Integer prod_pic_no = Integer.valueOf(req.getParameter("prod_pic_no"));
 				
 				/***************************2.開始查詢資料*****************************************/
 				Prod_pic_Service prod_picSvc = new Prod_pic_Service();

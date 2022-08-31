@@ -9,7 +9,6 @@ public class Prod_VO implements Serializable {
 	private Integer prod_no;
 	private Integer prod_type_no;
 	private String prod_name;
-	private Integer prod_pic_no;
 	private Integer prod_price;
 	private Integer prod_stock;
 	private Integer prod_status;
@@ -39,14 +38,6 @@ public class Prod_VO implements Serializable {
 
 	public void setProd_name(String prod_name) {
 		this.prod_name = prod_name;
-	}
-
-	public Integer getProd_pic_no() {
-		return prod_pic_no;
-	}
-
-	public void setProd_pic_no(Integer prod_pic_no) {
-		this.prod_pic_no = prod_pic_no;
 	}
 
 	public Integer getProd_price() {

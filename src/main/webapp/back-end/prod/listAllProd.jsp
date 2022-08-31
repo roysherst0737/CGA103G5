@@ -138,7 +138,7 @@ pageContext.setAttribute("list", list);
 												<th>商品狀態</th>
 												<th>上架時間</th>
 												<th>下架時間</th>
-												<th>管 理</th>
+												<th>商品管理</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -152,9 +152,23 @@ pageContext.setAttribute("list", list);
 														width=150px height=100px></td>
 													<td>${prod.prod_price}</td>
 													<td>${prod.prod_stock}</td>
-													<td>${prod.prod_status}</td>
+													<td>
+														<c:if test="${prod.prod_status == 1}">
+															<div>已上架</div>
+														</c:if>
+														<c:if test="${prod.prod_status == 0}">
+															<div>已下架</div>
+														</c:if>
+													</td>
 													<td>${prod.launch_time}</td>
-													<td>${prod.off_time}</td>
+													<td>
+														<c:if test="${empty prod.off_time}">
+															<div>暫無下架時間</div>
+														</c:if>
+														<c:if test="${not empty prod.off_time}">
+															<div>${prod.off_time}</div>
+														</c:if>
+													</td>
 													<td>
 														<FORM METHOD="post"
 															ACTION="<%=request.getContextPath()%>/back-end/prod/prod.do"

@@ -128,14 +128,6 @@ public class Prod_Servlet extends HttpServlet{
 					errorMsgs.add("商品照片名稱: 只能是中、英文字母、數字和底線, 且長度必需在2到10之間");
 	            }
 				
-				Integer prod_pic_no = null;
-				try {
-					prod_pic_no = Integer.valueOf(req.getParameter("prod_pic_no").trim());
-				} catch (NumberFormatException e) {
-					prod_pic_no = 0;
-					errorMsgs.add("商品照片編號請填數字");
-				}
-				
 				Integer prod_price = null;
 				try {
 					prod_price = Integer.valueOf(req.getParameter("prod_price").trim());
@@ -165,7 +157,6 @@ public class Prod_Servlet extends HttpServlet{
 				prodVO.setProd_no(prod_no);
 				prodVO.setProd_type_no(prod_type_no);
 				prodVO.setProd_name(prod_name);
-				prodVO.setProd_pic_no(prod_pic_no);
 				prodVO.setProd_price(prod_price);
 				prodVO.setProd_stock(prod_stock);
 				prodVO.setProd_status(prod_status);
@@ -183,7 +174,7 @@ public class Prod_Servlet extends HttpServlet{
 				
 				/***************************2.開始修改資料*****************************************/
 				Prod_Service prodSvc = new Prod_Service();
-				prodVO = prodSvc.updateProd(prod_no, prod_type_no, prod_name, prod_pic_no, prod_price, prod_stock, prod_status, off_time, prod_detail);
+				prodVO = prodSvc.updateProd(prod_no, prod_type_no, prod_name, prod_price, prod_stock, prod_status, off_time, prod_detail);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("prodVO", prodVO);
@@ -214,8 +205,6 @@ public class Prod_Servlet extends HttpServlet{
 				errorMsgs.add("商品照片名稱: 只能是中、英文字母、數字和底線, 且長度必需在2到10之間");
             }
 			
-			Integer prod_pic_no = null;
-			
 			Integer prod_price = null;
 			if (prod_price == null) {
 				errorMsgs.add("商品單價: 請勿空白");
@@ -236,7 +225,6 @@ public class Prod_Servlet extends HttpServlet{
 				Prod_VO prodVO = new Prod_VO();
 				prodVO.setProd_type_no(prod_type_no);
 				prodVO.setProd_name(prod_name);
-				prodVO.setProd_pic_no(prod_pic_no);
 				prodVO.setProd_price(prod_price);
 				prodVO.setProd_stock(prod_stock);
 				prodVO.setOff_time(off_time);
@@ -253,7 +241,7 @@ public class Prod_Servlet extends HttpServlet{
 				
 				/***************************2.開始新增資料***************************************/
 				Prod_Service prodSvc = new Prod_Service();
-				prodVO = prodSvc.addProd(prod_type_no, prod_name, prod_pic_no, prod_price, prod_stock, off_time, prod_detail);
+				prodVO = prodSvc.addProd(prod_type_no, prod_name, prod_price, prod_stock, off_time, prod_detail);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				String url = "/back-end/prod_pic/listAllProd.jsp";

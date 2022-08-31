@@ -37,7 +37,7 @@ public class MemLoginServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = request
-							.getRequestDispatcher("/front-template/login.jsp");
+							.getRequestDispatcher("/front-end/login.jsp");
 					failureView.forward(request, response);
 					return;//程式中斷
 				}
@@ -53,14 +53,14 @@ public class MemLoginServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = request
-							.getRequestDispatcher("/front-template/login.jsp");
+							.getRequestDispatcher("/front-end/login.jsp");
 					failureView.forward(request, response);
 					return;//程式中斷
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				session.setAttribute("user",user );
-				String url = "/front-template/index.jsp"; 
+				String url = "/front-end/index.jsp"; 
 				RequestDispatcher successView = request.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(request, response);
 		}

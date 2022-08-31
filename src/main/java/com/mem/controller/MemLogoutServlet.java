@@ -19,7 +19,7 @@ public class MemLogoutServlet extends HttpServlet {
 
 		if ("Mem_Logout".equals(Logout)) {
 			session.removeAttribute("user");
-			String url = "/front-template/index.jsp";
+			String url = "/front-end/index.jsp";
 			RequestDispatcher successView = request.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 			successView.forward(request, response);
 		}

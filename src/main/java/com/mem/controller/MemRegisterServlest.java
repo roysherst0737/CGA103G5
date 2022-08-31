@@ -85,6 +85,7 @@ public class MemRegisterServlest extends HttpServlet {
 						.getRequestDispatcher("/front-template/sign-up.jsp");
 				failureView.forward(request, response);
 				return;//程式中斷
+				
 			}
 		}
 	}

@@ -69,9 +69,9 @@ a.booking:hover {
 				<div class="col-lg-12">
 					<h2>酒吧地圖</h2>
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item active">酒吧地圖</li>
-						<li class="breadcrumb-item"><a
-							href="<%=request.getContextPath()%>/front-end">首頁</a></li>
+						<li class="breadcrumb-item active">酒吧地圖 /</li>
+						<li><li	>
+						<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/front-end">首頁</a></li>
 					</ul>
 				</div>
 			</div>

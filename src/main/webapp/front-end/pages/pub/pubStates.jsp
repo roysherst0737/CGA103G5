@@ -67,9 +67,10 @@ a.booking:hover {
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h2>酒吧地圖</h2>
+					<h2>酒吧狀態查詢</h2>
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item active">酒吧地圖</li>
+						<li class="breadcrumb-item active">酒吧狀態查詢 /</li>
+						<li></li>
 						<li class="breadcrumb-item"><a
 							href="<%=request.getContextPath()%>/front-end">首頁</a></li>
 					</ul>
@@ -110,7 +111,8 @@ a.booking:hover {
 
 			<div class="row special-list">
 				<c:forEach var="pubVO" items="${pubList}">
-					<div class="col-lg-3 col-md-6 special-grid ${pubVO.pub_address.substring(0, 3)}">
+					<div
+						class="col-lg-3 col-md-6 special-grid ${pubVO.pub_address.substring(0, 3)}">
 						<div class="products-single fix">
 							<div class="box-img-hover">
 								<div class="type-lb">

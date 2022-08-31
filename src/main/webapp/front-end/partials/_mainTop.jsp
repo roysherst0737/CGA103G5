@@ -25,7 +25,7 @@
 					<a href="<%=request.getContextPath()%>/front-end/my-account.html" style="color: black">註冊</a>
 				</button>
 				<button type="button" class="btn btn-outline-light me-2">
-					<a href="<%=request.getContextPath()%>/front-end/my-account.html" style="color: white">登入</a>
+					<a href="<%=request.getContextPath()%>/front-end/login.jsp" style="color: white">登入</a>
 				</button>
 				<div class="text-slid-box">
 					<div id="offer-box" class="carouselTicker">

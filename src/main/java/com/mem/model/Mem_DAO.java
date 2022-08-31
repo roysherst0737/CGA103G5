@@ -26,6 +26,7 @@ public class Mem_DAO implements Mem_DAO_interface{
 		}
 	}
 
+	
 	private static final String INSERT_STMT = 
 		"INSERT INTO mem (mem_account, mem_password, mem_gender, mem_last_name, "
 		+ "mem_first_name, mem_nickname, mem_tel_no, mem_cel_no, mem_email, mem_id, mem_birth,"

@@ -40,6 +40,8 @@
 	</div>
 
 	<!-- !!!!!! 從以下開始修改到"Start Instagram Feed" !!!!!!-->
+	
+	<!-- 以上為註冊/登入-->
 					<c:choose>
 
 						<c:when test="${empty  sessionScope.user}"> 
@@ -62,6 +64,7 @@
 						</c:otherwise>
 
 					</c:choose>
+	<!-- 以上為註冊/登入-->
 
 	<!-- Start Categories  -->
 	<div class="categories-shop">

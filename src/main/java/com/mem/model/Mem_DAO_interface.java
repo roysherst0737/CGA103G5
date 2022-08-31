@@ -10,8 +10,7 @@ public interface Mem_DAO_interface {
     public void delete(Integer mem_no);
     public Mem_VO findByPrimaryKey(Integer mem_no);
     public List<Mem_VO> getAll();
-    public Mem_VO login(String mem_account,String mem_password);
-    
+    public Mem_VO login(String mem_account,String mem_password);    
     //萬用複合查詢(傳入參數型態Map)(回傳 List)
 //  public List<EmpVO> getAll(Map<String, String[]> map); 
 }

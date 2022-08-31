@@ -123,11 +123,7 @@
 										<FORM METHOD="post" ACTION="prod_pic.do" name="form1"
 											enctype="multipart/form-data">
 											<table class="table table-striped">
-												<tr>
-													<td>商品照片編號:</td>
-													<td><input type="TEXT" name="prod_pic_no" size="45"
-														value="<%=(prod_picVO == null) ? "3" : prod_picVO.getProd_no()%>" /></td>
-												</tr>
+
 												<tr>
 													<td>商品編號:</td>
 													<td><input type="TEXT" name="prod_no" size="45"

@@ -7,7 +7,6 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.prod.model.Prod_Service;
 import com.prod.model.Prod_VO;
 
-@WebServlet("/Prod_Servlet")
 @MultipartConfig
 public class Prod_Servlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -204,11 +202,8 @@ public class Prod_Servlet extends HttpServlet{
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 
 			Integer prod_type_no = null;
-			try {
-				prod_type_no = Integer.valueOf(req.getParameter("prod_type_no").trim());
-			} catch (NumberFormatException e) {
-				prod_type_no = 0;
-				errorMsgs.add("商品種類編號請填數字");
+			if (prod_type_no == null) {
+				errorMsgs.add("商品種類編號: 請勿空白");
 			}	
 					
 			String prod_name = req.getParameter("prod_name");
@@ -220,32 +215,23 @@ public class Prod_Servlet extends HttpServlet{
             }
 			
 			Integer prod_pic_no = null;
-			try {
-				prod_pic_no = Integer.valueOf(req.getParameter("prod_pic_no").trim());
-			} catch (NumberFormatException e) {
-				prod_pic_no = 0;
-				errorMsgs.add("商品照片編號請填數字");
-			}
 			
 			Integer prod_price = null;
-			try {
-				prod_price = Integer.valueOf(req.getParameter("prod_price").trim());
-			} catch (NumberFormatException e) {
-				prod_price = 0;
-				errorMsgs.add("商品價格請填數字");
+			if (prod_price == null) {
+				errorMsgs.add("商品單價: 請勿空白");
 			}
 			
 			Integer prod_stock = null;
-			try {
-				prod_stock = Integer.valueOf(req.getParameter("prod_stock").trim());
-			} catch (NumberFormatException e) {
-				prod_stock = 0;
-				errorMsgs.add("商品庫存請填數字");
+			if (prod_stock == null) {
+				errorMsgs.add("商品庫存：請勿空白");
 			}
 			
 			Timestamp off_time = null;
 			
 			String prod_detail = null;
+			if (prod_detail == null ||prod_detail.trim().length() == 0) {
+				errorMsgs.add("商品敘述: 請勿空白");
+			}
 
 				Prod_VO prodVO = new Prod_VO();
 				prodVO.setProd_type_no(prod_type_no);

@@ -121,15 +121,59 @@ Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
+								<jsp:useBean id="prod_picSvc" scope="page" class="com.prod_pic.model.Prod_pic_Service" />
+								<jsp:useBean id="prod_typeSvc" scope="page" class="com.prod_type.model.Prod_type_Service" />
 									<h4 class="card-title">新增商品</h4>
 									<table id="dataTables" class="stripe table-hover" style="width: 100%">
 										<FORM METHOD="post" ACTION="prod.do" name="form1" enctype="multipart/form-data">
 											<table>
 												<tr>
+													<td>商品種類編號:</td>
+													<td><select size="1" name="prod_type_no">
+														<c:forEach var="prod_typeVO" items="${prod_typeSvc.all}">
+															<option value="${prod_typeVO.prod_type_no}">${prod_typeVO.prod_type_no}
+														</c:forEach>
+													</select></td>
+												</tr>											
+												<tr>
 													<td>商品名稱:</td>
 													<td><input type="TEXT" name="prod_name" size="45"
 														value="<%=(prodVO == null) ? "" : prodVO.getProd_name()%>" /></td>
 												</tr>
+												
+												<tr>
+													<td>商品照片編號:</td>
+													<td><select size="1" name="prod_pic_no">
+														<c:forEach var="prod_picVO" items="${prod_picSvc.all}">
+															<option value="${prod_picVO.prod_pic_no}">${prod_picVO.prod_pic_no}
+														</c:forEach>
+													</select></td>
+												</tr>
+												
+												<tr>
+													<td>商品單價:</td>
+													<td><input type="TEXT" name="prod_price" size="45"
+														value="<%=(prodVO == null) ? "" : prodVO.getProd_price()%>" /></td>
+												</tr>
+												
+												<tr>
+													<td>商品庫存:</td>
+													<td><input type="TEXT" name="prod_stock" size="45"
+														value="<%=(prodVO == null) ? "" : prodVO.getProd_stock()%>" /></td>
+												</tr>
+												
+												<tr>
+													<td>下架時間:</td>
+													<td><input type="TEXT" name="off_time" size="45"
+														value="<%=(prodVO == null) ? "" : prodVO.getOff_time()%>" /></td>
+												</tr>
+												
+												<tr>
+													<td>商品敘述:</td>
+													<td><input type="TEXT" name="prod_detail" size="45"
+														value="<%=(prodVO == null) ? "" : prodVO.getProd_detail()%>" /></td>
+												</tr>
+												
 											</table>
 
 											<br> <input type="hidden" name="action" value="insert">

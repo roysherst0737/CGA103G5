@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.manager.model.*"%>
-<%-- ¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È --%>
+<%-- æ­¤é ç·´ç¿’æ¡ç”¨ EL çš„å¯«æ³•å–å€¼ --%>
 
 <%
     Manager_Service manager_Svc = new Manager_Service();
@@ -13,7 +13,7 @@
 
 <html>
 <head>
-<title>©Ò¦³ºŞ²z­û¸ê®Æ - listAllManager.jsp</title>
+<title>æ‰€æœ‰ç®¡ç†å“¡è³‡æ–™ - listAllManager.jsp</title>
 
 <style>
   table#table-1 {
@@ -51,25 +51,25 @@
 </head>
 <body bgcolor='white'>
 
-<h4>¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È:</h4>
+<h4>æ­¤é ç·´ç¿’æ¡ç”¨ EL çš„å¯«æ³•å–å€¼:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>©Ò¦³ºŞ²z­û¸ê®Æ - listAllManager.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a></h4>
+		 <h3>æ‰€æœ‰ç®¡ç†å“¡è³‡æ–™ - listAllManager.jsp</h3>
+		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">å›é¦–é </a></h4>
 	</td></tr>
 </table>
 
 <table>
 	<tr>
-		<th>ºŞ²z­û½s¸¹</th>
-		<th>ºŞ²z­û±b¸¹</th>
-		<th>ºŞ²z­û±K½X</th>
-		<th>ºŞ²z­û©m¦W</th>
-		<th>ºŞ²z­û¤â¾÷</th>
-		<th>ºŞ²z­û·Ó¤ù</th>
-		<th>ºŞ²z­ûª¬ºA</th>
-		<th>­×§ï</th>
-		<th>§R°£</th>
+		<th>ç®¡ç†å“¡ç·¨è™Ÿ</th>
+		<th>ç®¡ç†å“¡å¸³è™Ÿ</th>
+		<th>ç®¡ç†å“¡å¯†ç¢¼</th>
+		<th>ç®¡ç†å“¡å§“å</th>
+		<th>ç®¡ç†å“¡æ‰‹æ©Ÿ</th>
+		<th>ç®¡ç†å“¡ç…§ç‰‡</th>
+		<th>ç®¡ç†å“¡ç‹€æ…‹</th>
+		<th>ä¿®æ”¹</th>
+		<th>åˆªé™¤</th>
 	</tr>
 	<%@ include file="page1.file" %> 
 	<c:forEach var="manager_VO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
@@ -84,13 +84,13 @@
 			<td>${manager_VO.mng_status}</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/manager/manager.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="­×§ï">
+			     <input type="submit" value="ä¿®æ”¹">
 			     <input type="hidden" name="mng_no"  value="${manager_VO.mng_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/manager/manager.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="§R°£">
+			     <input type="submit" value="åˆªé™¤">
 			     <input type="hidden" name="mng_no"  value="${manager_VO.mng_no}">
 			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>

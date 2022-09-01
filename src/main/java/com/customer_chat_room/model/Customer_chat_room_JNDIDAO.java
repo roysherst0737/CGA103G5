@@ -20,7 +20,7 @@ public class Customer_chat_room_JNDIDAO implements Customer_chat_room_DAO_interf
 		static {
 			try {
 				Context ctx = new InitialContext();
-				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB2");
+				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 			} catch (NamingException e) {
 				e.printStackTrace();
 			}

@@ -35,6 +35,7 @@ DROP TABLE IF EXISTS order_detail;
 DROP TABLE IF EXISTS `order`;
 DROP TABLE IF EXISTS prod_pic;
 DROP TABLE IF EXISTS prod;
+DROP TABLE IF EXISTS prod_type;
 
 -- ------ Arick34：酒吧相關表格 ------
 DROP TABLE IF EXISTS pub_pics;
@@ -145,18 +146,27 @@ CREATE TABLE `pub_reservation` (
   CONSTRAINT `pub_reservation.pub_no_FK` FOREIGN KEY (`pub_no`) REFERENCES `pub` (`pub_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- 建立 商品種類 表格
+CREATE TABLE `prod_type` (
+  `prod_type_no` int NOT NULL AUTO_INCREMENT,
+  `prod_type_name` varchar(20) NOT NULL,
+  PRIMARY KEY (`prod_type_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 --  建立 商品 表格
 CREATE TABLE `prod` (
   `prod_no` int NOT NULL AUTO_INCREMENT,
-  `prod_type` varchar(20) NOT NULL,
+  `prod_type_no` int NOT NULL,
   `prod_name` varchar(100) NOT NULL,
   `prod_price` int NOT NULL,
-  `prod_status` tinyint NOT NULL DEFAULT '1',
-  `launch_time` datetime DEFAULT CURRENT_TIMESTAMP,
-  `off_time` datetime DEFAULT NULL,
   `prod_stock` int NOT NULL,
+  `prod_status` tinyint NOT NULL DEFAULT '1',
+  `launch_time` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `off_time` timestamp DEFAULT NULL,
   `prod_detail` varchar(1000) NOT NULL,
-  PRIMARY KEY (`prod_no`)
+  PRIMARY KEY (`prod_no`),
+  KEY `prod_type_no_FK_idx` (`prod_type_no`),
+  CONSTRAINT `prod_type_no_FK` FOREIGN KEY (`prod_type_no`) REFERENCES `lonelybar`.`prod_type` (`prod_type_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- 建立 商品照片 表格
@@ -178,8 +188,8 @@ CREATE TABLE `coupon` (
   `coupon_content` varchar(100) NOT NULL,
   `coupon_discount` double NOT NULL,
   `coupon_amount` tinyint NOT NULL,
-  `launch_time` datetime DEFAULT NULL,
-  `off_time` datetime DEFAULT NULL,
+  `launch_time` timestamp DEFAULT NULL,
+  `off_time` timestamp DEFAULT NULL,
   `coupon_build_time` datetime DEFAULT CURRENT_TIMESTAMP,
   `status` tinyint NOT NULL,
   PRIMARY KEY (`coupon_no`)
@@ -190,8 +200,8 @@ CREATE TABLE `order` (
   `order_no` int NOT NULL AUTO_INCREMENT,
   `mem_no` int NOT NULL,
   `coupon_no` int DEFAULT NULL,
-  `order_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `sold_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `order_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `sold_time` timestamp,
   `order_price_total` int NOT NULL,
   `dis_price_total` int NOT NULL,
   `order_status` tinyint NOT NULL DEFAULT '0',
@@ -202,7 +212,6 @@ CREATE TABLE `order` (
   `receiver_name` varchar(15) NOT NULL,
   `receiver_address` varchar(100) NOT NULL,
   `receiver_phone` varchar(15) NOT NULL,
-  `pickup_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`order_no`),
   KEY `mem_no_idx` (`mem_no`),
   KEY `coupon_no_idx` (`coupon_no`),
@@ -217,7 +226,7 @@ CREATE TABLE `order_detail` (
   `prod_qty` int DEFAULT NULL,
   `prod_price` int DEFAULT NULL,
   `mem_no` int NOT NULL,
-  `comment_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `comment_time` timestamp,
   `comment_star` tinyint DEFAULT NULL,
   `comment_content` varchar(100) DEFAULT NULL,
   `comment_pic` longblob,
@@ -232,7 +241,6 @@ CREATE TABLE `cart` (
   `mem_no` int NOT NULL,
   `prod_no` int NOT NULL,
   `prod_qty` int DEFAULT NULL,
-  `add_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   KEY `mem_no_idx` (`mem_no`),
   KEY `prod_no_idx` (`prod_no`),
   CONSTRAINT `cart_mem_no_FK` FOREIGN KEY (`mem_no`) REFERENCES `mem` (`mem_no`),
@@ -671,60 +679,69 @@ pub_available,
 pub_reservation_date) 
 VALUES (1,"00000000000000","2022-08-20");
 
+-- 建立 商品種類 假資料
+INSERT INTO prod_type (
+prod_type_name)
+VALUES ("威士忌");
+INSERT INTO prod_type (
+prod_type_name)
+VALUES ("紅酒");
+INSERT INTO prod_type (
+prod_type_name)
+VALUES ("調酒器材");
+
 -- 建立 商品 假資料
 INSERT INTO prod (
-prod_type,
+prod_type_no,
 prod_name,
 prod_price,
-prod_status,
-launch_time,
-off_time,
 prod_stock,
+off_time,
 prod_detail )
-VALUES ("Whiskey", "Macallan", 10000, 1, "2021-10-10 05:10:10", null, 10, "自始至終堅持培養自家雪莉桶的麥卡倫，不惜迢迢萬里路，堅持從西班牙製桶再將橡木桶運回蘇格蘭，顯然是對奢華有「絕對潔癖」的精神。我們也飛往西班牙抽絲剝繭追尋雪莉桶的價值，或許可找到「誰最珍貴」的正解。來自蘇格蘭斯佩塞的經典風土，雪莉桶威士忌嚐來好似沉甸甸野餐籃裡的果乾、果醬與生薑巧克力，十足討人喜歡！當「雪莉桶風味」威士忌成為一種流行，麥卡倫的「正統」色彩便立於威士忌迷心中不可撼動的地位。");
+VALUES (1, "Macallan", 10000, 10, null, "自始至終堅持培養自家雪莉桶的麥卡倫，不惜迢迢萬里路，堅持從西班牙製桶再將橡木桶運回蘇格蘭，顯然是對奢華有「絕對潔癖」的精神。我們也飛往西班牙抽絲剝繭追尋雪莉桶的價值，或許可找到「誰最珍貴」的正解。來自蘇格蘭斯佩塞的經典風土，雪莉桶威士忌嚐來好似沉甸甸野餐籃裡的果乾、果醬與生薑巧克力，十足討人喜歡！當「雪莉桶風味」威士忌成為一種流行，麥卡倫的「正統」色彩便立於威士忌迷心中不可撼動的地位。");
 INSERT INTO prod (
-prod_type,
+prod_type_no,
 prod_name,
 prod_price,
-prod_status,
-launch_time,
-off_time,
 prod_stock,
+off_time,
 prod_detail )
-VALUES ("Wine", "Familia Torres", 5000, 1, "1995-01-01 08:10:10", "2023-01-01 08:10:10", 6, "Miguel Torres Carbo (1909-1991) 對於品質的堅持與開拓國際市場的遠見都是讓TORRES成功蛻變成為國際知名酒廠的大功臣之一。他從幫忙送酒給餐廳的基層工作做起，經歷了西班牙內戰與二次世界大戰對酒廠造成的損害，1939年酒廠甚至受到了炸彈的攻擊，在一片殘破磚瓦當中Miguel Torres Carbo與妻子Dona Margarita一步一步讓TORRES酒廠重新振作。在Miguel Torres Carbo經營期間，他不但擴張了葡萄園的面積，也開始自己裝瓶，更創造了許多有名的系列像是Vina Sol、Gran Vina Sol、Sangre de Toro、Coronas 還有在台灣非常受到歡迎的Esmeralda。");
+VALUES (2, "Familia Torres", 5000, 6, "2023-01-01 08:10:10", "Miguel Torres Carbo (1909-1991) 對於品質的堅持與開拓國際市場的遠見都是讓TORRES成功蛻變成為國際知名酒廠的大功臣之一。他從幫忙送酒給餐廳的基層工作做起，經歷了西班牙內戰與二次世界大戰對酒廠造成的損害，1939年酒廠甚至受到了炸彈的攻擊，在一片殘破磚瓦當中Miguel Torres Carbo與妻子Dona Margarita一步一步讓TORRES酒廠重新振作。在Miguel Torres Carbo經營期間，他不但擴張了葡萄園的面積，也開始自己裝瓶，更創造了許多有名的系列像是Vina Sol、Gran Vina Sol、Sangre de Toro、Coronas 還有在台灣非常受到歡迎的Esmeralda。");
 INSERT INTO prod (
-prod_type,
+prod_type_no,
 prod_name,
 prod_price,
-prod_status,
-launch_time,
-off_time,
 prod_stock,
+off_time,
 prod_detail )
-VALUES ("Jigger", "Leopold", 1000, 1, "2019-01-01 06:10:10", null, 50, "Cocktail Kingdom offers their signature Leopold jiggers in two sizes and a number of different finishes. A one-ounce/two-ounce jigger is the go-to for many bartenders, so we’d recommend opting for the 30-milliliter/60-milliliter size.");
+VALUES (3, "Leopold", 1000, 50, null, "Cocktail Kingdom offers their signature Leopold jiggers in two sizes and a number of different finishes. A one-ounce/two-ounce jigger is the go-to for many bartenders, so we’d recommend opting for the 30-milliliter/60-milliliter size.");
 
 -- 建立 商品照片 假資料
 INSERT INTO prod_pic (
 prod_no,
 prod_pic,
 prod_pic_name )
-VALUES (1, null, "麥卡倫照片1");
+VALUES (1, LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/cocktail.jpg"), "麥卡倫照片1");
 INSERT INTO prod_pic (
 prod_no,
 prod_pic,
 prod_pic_name )
-VALUES (2, null, "紅酒照片1");
+VALUES (2, LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/wine.jpg"), "紅酒照片1");
 INSERT INTO prod_pic (
 prod_no,
 prod_pic,
 prod_pic_name )
-VALUES (3, null, "Jigger照片1");
+VALUES (3, LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/jigger.jpg"), "Jigger照片1");
+INSERT INTO prod_pic (
+prod_no,
+prod_pic,
+prod_pic_name )
+VALUES (3, null, "無照片");
 
 -- 建立 訂單 假資料
 INSERT INTO `order` (
 mem_no, 
 coupon_no,
-order_time,
 sold_time,
 order_price_total,
 dis_price_total,
@@ -735,13 +752,11 @@ shipping_fee,
 tracking_no,
 receiver_name,
 receiver_address,
-receiver_phone,
-pickup_time )
-VALUES (1, 1, "2022-08-08 08:08:08", "2022-08-08 08:08:08", 1776, 888, 0, 1, 2, 0, 123456, "韋小寶", "鹿頂街38號", "091234567", null);
+receiver_phone)
+VALUES (1, 1, null, 1776, 888, 0, 1, 2, 0, 123456, "韋小寶", "鹿頂街38號", "091234567");
 INSERT INTO `order` (
 mem_no, 
 coupon_no,
-order_time,
 sold_time,
 order_price_total,
 dis_price_total,
@@ -752,13 +767,11 @@ shipping_fee,
 tracking_no,
 receiver_name,
 receiver_address,
-receiver_phone,
-pickup_time )
-VALUES (2, 2, "2022-10-10 08:08:08", "2022-10-10 08:08:08", 17766, 8883, 0, 1, 2, 0, 123456, "韋大寶", "妳心裡", "097654321", null);
+receiver_phone)
+VALUES (2, 2, null, 17766, 8883, 0, 1, 2, 0, 123456, "韋大寶", "妳心裡", "097654321");
 INSERT INTO `order` (
 mem_no, 
 coupon_no,
-order_time,
 sold_time,
 order_price_total,
 dis_price_total,
@@ -769,9 +782,8 @@ shipping_fee,
 tracking_no,
 receiver_name,
 receiver_address,
-receiver_phone,
-pickup_time )
-VALUES (3, 3, "2022-06-06 06:06:06", "2022-06-06 06:06:06", 17776, 8888, 0, 1, 2, 0, 123456, "你老婆", "隔壁小王的床上", "0988888888", null);
+receiver_phone)
+VALUES (3, 3, null, 17776, 8888, 0, 1, 2, 0, 123456, "你老婆", "隔壁小王的床上", "0988888888");
 
 -- 建立 訂單明細 假資料
 INSERT INTO order_detail (
@@ -784,7 +796,7 @@ comment_time,
 comment_star,
 comment_content,
 comment_pic )
-VALUES (1, 1, 10, 10000, 1, "2022-08-08 08:08:08", 5, "OMG太好喝了吧", null);
+VALUES (1, 1, 10, 10000, 1, "2022-08-08 08:08:08", 5, "OMG太好喝了吧", LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/home.png"));
 INSERT INTO order_detail (
 order_no,
 prod_no,
@@ -795,7 +807,7 @@ comment_time,
 comment_star,
 comment_content,
 comment_pic )
-VALUES (2, 2, 100, 1000, 2, "2022-06-06 06:06:06", 2, "這什麼啦嘰東西啦！", null);
+VALUES (2, 2, 100, 1000, 2, "2022-06-06 06:06:06", 2, "這什麼啦嘰東西啦！", LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/search2.png"));
 INSERT INTO order_detail (
 order_no,
 prod_no,
@@ -806,27 +818,24 @@ comment_time,
 comment_star,
 comment_content,
 comment_pic )
-VALUES (3, 3, 88888, 88888, 3, "2022-08-08 08:08:08", 3, "我就是土豪花錢不手軟，咬我啊！", null);
+VALUES (3, 3, 88888, 88888, 3, "2022-08-08 08:08:08", 3, "我就是土豪花錢不手軟，咬我啊！", LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/shopping-cart.png"));
 
 -- 建立 購物車 假資料
 INSERT INTO cart (
 mem_no,
 prod_no,
-prod_qty,
-add_time )
-VALUES (1, 1, 10, "2022-06-06 08:08:08");
+prod_qty)
+VALUES (1, 1, 10);
 INSERT INTO cart (
 mem_no,
 prod_no,
-prod_qty,
-add_time )
-VALUES (2, 2, 100, "2022-06-06 08:08:08");
+prod_qty)
+VALUES (2, 2, 100);
 INSERT INTO cart (
 mem_no,
 prod_no,
-prod_qty,
-add_time )
-VALUES (3, 3, 88888, "2022-06-06 08:08:08");
+prod_qty)
+VALUES (3, 3, 88888);
 
 -- 建立 管理員 假資料
 INSERT INTO manager(
@@ -963,13 +972,13 @@ pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_co
 -- 建立 活動照片 假資料
 INSERT INTO act_pic(
 act_no, act_pic, act_pic_name
-)values(1,"","累");
+)values(1,null,"累");
 INSERT INTO act_pic(
 act_no, act_pic, act_pic_name
-)values(2,"","死");
+)values(2,null,"死");
 INSERT INTO act_pic(
 act_no, act_pic, act_pic_name
-)values(3,"","了");
+)values(3,null,"了");
 
 -- 建立 活動報名 假資料
 INSERT INTO act_sign_up(

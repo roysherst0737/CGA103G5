@@ -117,16 +117,7 @@
 											</ul>
 										</c:if>
 
-
-											<FORM METHOD="post" ACTION="prod_pic.do">
-												<b>輸入商品照片編號:</b> <input type="text" name="prod_pic_no">
-												<input type="hidden" name="action"
-													value="getOne_For_Display"> <input type="submit"
-													value="送出">
-											</FORM>
-
-										<jsp:useBean id="prod_picSvc" scope="page"
-											class="com.prod_pic.model.Prod_pic_Service" />
+										<jsp:useBean id="prod_picSvc" scope="page" class="com.prod_pic.model.Prod_pic_Service" />
 
 											<FORM METHOD="post" ACTION="prod_pic.do">
 												<b>選擇商品照片編號:</b> <select size="1" name="prod_pic_no">
@@ -137,6 +128,17 @@
 													value="getOne_For_Display"> <input type="submit"
 													value="送出">
 											</FORM>
+
+											<FORM METHOD="post" ACTION="prod_pic.do">
+												<b>選擇商品編號:</b> <select size="1" name="prod_pic_no">
+													<c:forEach var="prod_picVO" items="${prod_picSvc.all}">
+														<option value="${prod_picVO.prod_pic_no}">${prod_picVO.prod_no}
+													</c:forEach>
+												</select> <input type="hidden" name="action"
+													value="getOne_For_Display"> <input type="submit"
+													value="送出">
+											</FORM>
+										
 
 											<FORM METHOD="post" ACTION="prod_pic.do">
 												<b>選擇商品照片名稱:</b> <select size="1" name="prod_pic_no">

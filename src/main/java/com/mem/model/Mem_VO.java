@@ -4,8 +4,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Mem_VO implements java.io.Serializable{
-	private static final long serialVersionUID = 1L;
-	
+
 	private Integer mem_no; 
 	private String mem_account; 
 	private String mem_password;

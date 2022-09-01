@@ -14,18 +14,19 @@ import javax.sql.DataSource;
 
 public class Mem_DAO implements Mem_DAO_interface{
 
-
-	// §@≠”¿≥•Œµ{¶°§§,∞wπÔ§@≠”∏ÍÆ∆Æw ,¶@•Œ§@≠”DataSourceßY•i
+	// ‰∏ÄÂÄãÊáâÁî®Á®ãÂºè‰∏≠,ÈáùÂ∞ç‰∏ÄÂÄãË≥áÊñôÂ∫´ ,ÂÖ±Áî®‰∏ÄÂÄãDataSourceÂç≥ÂèØ
 	private static DataSource ds = null;
+	private int  result = 0;
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/lonelybar");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	}
 
+	
 	private static final String INSERT_STMT = 
 		"INSERT INTO mem (mem_account, mem_password, mem_gender, mem_last_name, "
 		+ "mem_first_name, mem_nickname, mem_tel_no, mem_cel_no, mem_email, mem_id, mem_birth,"
@@ -46,6 +47,11 @@ public class Mem_DAO implements Mem_DAO_interface{
 		+ " mem_nickname=?, mem_tel_no=?, mem_cel_no=?, mem_email=?, mem_id=?, mem_birth=?, mem_addr=?, mem_permission=?,"
 		+ " status=?, mem_build_time=?, mem_cert_status=? where mem_no = ?";
 
+	private static final String LOGIN = 
+			"SELECT mem_no, mem_account, mem_password, mem_gender, mem_last_name, mem_first_name,"
+			+ " mem_nickname, mem_tel_no, mem_cel_no, mem_email, mem_id, mem_birth, mem_addr,"
+			+ " mem_permission, status, mem_build_time, mem_cert_status  FROM mem where mem_account =? and mem_password =?";
+	
 	@Override
 	public void insert(Mem_VO memVO) {
 
@@ -216,7 +222,7 @@ public class Mem_DAO implements Mem_DAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo §]∫Ÿ¨∞ Domain objects
+				// empVo ‰πüÁ®±ÁÇ∫ Domain objects
 				memVO = new Mem_VO();
 				memVO.setMem_no(rs.getInt("mem_no"));
 				memVO.setMem_account(rs.getString("mem_account"));
@@ -284,7 +290,7 @@ public class Mem_DAO implements Mem_DAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO §]∫Ÿ¨∞ Domain objects
+				// empVO ‰πüÁ®±ÁÇ∫ Domain objects
 				memVO = new Mem_VO();
 				memVO.setMem_no(rs.getInt("mem_no"));
 				memVO.setMem_account(rs.getString("mem_account"));
@@ -335,5 +341,75 @@ public class Mem_DAO implements Mem_DAO_interface{
 			}
 		}
 		return list;
+	}
+	
+	@Override
+    public Mem_VO login(String mem_account,String mem_password) {
+		Mem_VO memVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(LOGIN);
+
+			pstmt.setString(1, mem_account);
+			pstmt.setString(2, mem_password);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// empVo ‰πüÁ®±ÁÇ∫ Domain objects
+				memVO = new Mem_VO();
+				memVO.setMem_no(rs.getInt("mem_no"));
+				memVO.setMem_account(rs.getString("mem_account"));
+				memVO.setMem_password(rs.getString("mem_password"));
+				memVO.setMem_gender(rs.getInt("mem_gender"));
+				memVO.setMem_last_name(rs.getString("mem_last_name"));
+				memVO.setMem_first_name(rs.getString("mem_first_name"));
+				memVO.setMem_nickname(rs.getString("mem_nickname"));
+				memVO.setMem_tel_no(rs.getString("mem_tel_no"));
+				memVO.setMem_cel_no(rs.getString("mem_cel_no"));
+				memVO.setMem_email(rs.getString("mem_email"));
+				memVO.setMem_id(rs.getString("mem_id"));
+				memVO.setMem_birth(rs.getDate("mem_birth"));
+				memVO.setMem_addr(rs.getString("mem_addr"));
+				memVO.setMem_permission(rs.getInt("mem_permission"));
+				memVO.setStatus(rs.getInt("status"));
+				memVO.setMem_build_time(rs.getTimestamp("mem_build_time"));
+				memVO.setMem_cert_status(rs.getInt("mem_cert_status"));
+			}
+				
+		}catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return memVO;
 	}
 }

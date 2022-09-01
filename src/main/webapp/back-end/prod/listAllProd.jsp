@@ -123,34 +123,52 @@ pageContext.setAttribute("list", list);
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
+								<jsp:useBean id="prod_picSvc" scope="page" class="com.prod_pic.model.Prod_pic_Service" />
+								<jsp:useBean id="prod_typeSvc" scope="page" class="com.prod_type.model.Prod_type_Service" />
 									<h4 class="card-title">商品圖片管理</h4>
 									<table id="dataTables" class="stripe table-hover" style="width: 100%">
 										<thead>
 											<tr>
 												<th>商品編號</th>
-												<!-- <th>商品種類</th> -->
+												<th>商品種類</th>
 												<th>商品名稱</th>
-												<!--<th>商品照片</th> -->
+												<th>商品照片</th>
 												<th>商品單價</th>
 												<th>庫存數量</th>
 												<th>商品狀態</th>
 												<th>上架時間</th>
 												<th>下架時間</th>
-												<th>管 理</th>
+												<th>商品管理</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach var="prod" items="${list}">
 												<tr>
 													<td>${prod.prod_no}</td>
-													<%--<td>${prod.prod_typeVO.prod_type}</td>  --%>
+													<td>${prod_typeVO.prod_type}</td>
 													<td>${prod.prod_name}</td>
-													<%--<td>${prod.prod_picVO.prod_pic}</td>    --%>
-													<td>${prod.prod_stock}</td>
+													<td><img
+														src="<%=request.getContextPath()%>/ShowProd_picForProd?prod_no=${prod_picVO.prod_no}"
+														width=150px height=100px></td>
 													<td>${prod.prod_price}</td>
-													<td>${prod.prod_status}</td>
+													<td>${prod.prod_stock}</td>
+													<td>
+														<c:if test="${prod.prod_status == 1}">
+															<div>已上架</div>
+														</c:if>
+														<c:if test="${prod.prod_status == 0}">
+															<div>已下架</div>
+														</c:if>
+													</td>
 													<td>${prod.launch_time}</td>
-													<td>${prod.off_time}</td>
+													<td>
+														<c:if test="${empty prod.off_time}">
+															<div>暫無下架時間</div>
+														</c:if>
+														<c:if test="${not empty prod.off_time}">
+															<div>${prod.off_time}</div>
+														</c:if>
+													</td>
 													<td>
 														<FORM METHOD="post"
 															ACTION="<%=request.getContextPath()%>/back-end/prod/prod.do"

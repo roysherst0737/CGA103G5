@@ -2,6 +2,8 @@ package com.util;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
 import static com.util.Constants.GSON;
 import static com.util.Constants.JSON_MIME_TYPE;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +18,8 @@ public class CommonUtil {
 //		return DATASOURCE.getConnection();
 //	}
 
-	public static <P> P json2Pojo(HttpServletRequest request, Class<P> classOfPojo) {
+	public static <P> P json2Pojo(HttpServletRequest request, Class<P> classOfPojo) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("UTF-8");
 		try (BufferedReader br = request.getReader()) {
 			return GSON.fromJson(br, classOfPojo);
 		} catch (Exception e) {

@@ -74,7 +74,7 @@ a.booking:hover {
 			<div class="row">
 				<div class="col-lg-12">
 					<h2>酒吧註冊申請</h2>
-
+			
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item active">酒吧註冊申請 /</li>
 						<li></li>
@@ -103,7 +103,7 @@ a.booking:hover {
 		<!-- 主內容 -->
 		<div class="main-panel">
 			<div class="content-wrapper">
-				<%-- 				<form class="forms-sample"  action="<%=request.getContextPath()%>/PubRegister" method="post"> --%>
+<%-- 				<form class="forms-sample"  action="<%=request.getContextPath()%>/PubRegister" method="post"> --%>
 				<form class="forms-sample">
 					<div class="row">
 						<div class="col-md-6 grid-margin stretch-card">
@@ -111,21 +111,19 @@ a.booking:hover {
 								<div class="card-body">
 									<h4 class="card-title">廠商申請表單</h4>
 									<p class="card-description">酒吧基本資料</p>
-									<div class="form-floating mb-3">
+											<div class="form-floating mb-3">
 										<input type="text" class="form-control" id="fpub_name"
 											value="1" placeholder="pub_name"> <label
 											for="fpub_name">酒吧名稱</label>
 									</div>
 									<div class="form-floating mb-3">
 										<input type="number" class="form-control" id="fpub_nop"
-											value="1" placeholder="pub_nop"> <label
-											for="fpub_nop">酒吧可接受預約人數</label>
-
+											placeholder="pub_nop"> <label for="fpub_nop">酒吧可接受預約人數</label>
+									
 									</div>
 									<div class="form-floating mb-3">
 										<input type="text" class="form-control" id="fpub_address"
-											value="台北市" placeholder="pub_address"> <label
-											for="fpub_address">酒吧地址</label>
+											placeholder="pub_address"> <label for="fpub_address">酒吧地址</label>
 									</div>
 
 									<div class="container px-4">
@@ -133,15 +131,13 @@ a.booking:hover {
 											<div class="col">
 												<div class="form-floating mb-3">
 													<input type="text" class="form-control" id="fpub_lng"
-														value="1" placeholder="pub_lng"> <label
-														for="fpub_lng">經度</label>
+														placeholder="pub_lng"> <label for="fpub_lng">經度</label>
 												</div>
 											</div>
 											<div class="col">
 												<div class="form-floating mb-3">
 													<input type="text" class="form-control" id="fpub_lat"
-														value="2" placeholder="pub_lat"> <label
-														for="fpub_lat">緯度</label>
+														placeholder="pub_lat"> <label for="fpub_lat">緯度</label>
 												</div>
 											</div>
 										</div>
@@ -149,12 +145,11 @@ a.booking:hover {
 
 									<div class="form-floating mb-3">
 										<input type="text" class="form-control" id="fpub_open"
-											value="111" placeholder="pub_open"> <label
-											for="fpub_open">營業時間</label>
+											placeholder="pub_open"> <label for="fpub_open">營業時間</label>
 									</div>
 									<div class="form-group">
-										<label>酒吧圖片</label> <input id="pub_img" type="file"
-											name="img[]" class="file-upload-default">
+										<label>酒吧圖片</label> <input id ="pub_img"type="file" name="img[]"
+											class="file-upload-default">
 										<div class="input-group col-xs-12">
 											<input type="text" class="form-control file-upload-info"
 												disabled placeholder="Upload Image"> <span
@@ -166,7 +161,7 @@ a.booking:hover {
 									</div>
 									<div class="form-floating">
 										<textarea class="form-control" placeholder="pub_detail"
-											id="fpub_detail" style="height: 100px">detail</textarea>
+											id="fpub_detail" style="height: 100px"></textarea>
 										<label for="fpub_detail">酒吧描述</label>
 									</div>
 								</div>
@@ -179,45 +174,50 @@ a.booking:hover {
 									<p class="card-description">廠商基本資料</p>
 
 									<div class="form-group row">
-										<label for="firm_name" class="col-sm-3 col-form-label">廠商名稱</label>
+										<label for="firm_name"
+											class="col-sm-3 col-form-label">廠商名稱</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" value="酒吧"
+											<input type="text" class="form-control"
 												id="firm_name" placeholder="廠商名稱">
 										</div>
 									</div>
 									<div class="form-group row">
-										<label for="firm_addr" class="col-sm-3 col-form-label">廠商地址</label>
+										<label for="firm_addr"
+											class="col-sm-3 col-form-label">廠商地址</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" value="台北111"
+											<input type="text" class="form-control"
 												id="firm_addr" placeholder="廠商地址">
 										</div>
 									</div>
 									<div class="form-group row">
-										<label for="firm_tel_no" class="col-sm-3 col-form-label">廠商電話</label>
+										<label for="firm_tel_no"
+											class="col-sm-3 col-form-label">廠商電話</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" value="0111111111"
+											<input type="text" class="form-control"
 												id="firm_tel_no" placeholder="廠商電話">
 										</div>
 									</div>
 									<div class="form-group row">
-										<label for="firm_email" class="col-sm-3 col-form-label">廠商電子郵件</label>
+										<label for="firm_email"
+											class="col-sm-3 col-form-label">廠商電子郵件</label>
 										<div class="col-sm-9">
-											<input type="email" class="form-control" value="0@a.a"
+											<input type="email" class="form-control"
 												id="firm_email" placeholder="廠商電子郵件">
 										</div>
 									</div>
 									<div class="form-group row">
-										<label for="firm_tax_id" class="col-sm-3 col-form-label">廠商統一編號</label>
+										<label for="firm_tax_id"
+											class="col-sm-3 col-form-label">廠商統一編號</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" value="23225229"
+											<input type="text" class="form-control"
 												id="firm_tax_id" placeholder="廠商統一編號">
 										</div>
 									</div>
-									<!-- 									<div class="form-check form-check-flat form-check-primary"> -->
-									<!-- 										<label class="form-check-label"> <input -->
-									<!-- 											type="checkbox" class="form-check-input"> Remember me -->
-									<!-- 										</label> -->
-									<!-- 									</div> -->
+<!-- 									<div class="form-check form-check-flat form-check-primary"> -->
+<!-- 										<label class="form-check-label"> <input -->
+<!-- 											type="checkbox" class="form-check-input"> Remember me -->
+<!-- 										</label> -->
+<!-- 									</div> -->
 									<button id="btn" type="button" class="btn btn-primary mr-2">確認送出</button>
 									<button type="reset" class="btn btn-light">重填</button>
 								</div>
@@ -383,8 +383,7 @@ a.booking:hover {
 		src="<%=request.getContextPath()%>/front-end/js/custom.js"></script>
 	<script src="<%=request.getContextPath()%>/back-end/js/template.js"></script>
 	<script src="<%=request.getContextPath()%>/back-end/js/file-upload.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/front-end/pages/pub/js/register.js"></script>
+	<script src="<%=request.getContextPath()%>/front-end/pages/pub/js/register.js"></script>
 </body>
 
 </html>

@@ -16,6 +16,7 @@ public class Pub extends Core{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer pub_no;
 	private Integer mem_no;
+	@Column(insertable = false)
 	private Boolean pub_status;
 	private Integer pub_nop;
 	@Column(insertable = false)
@@ -24,25 +25,18 @@ public class Pub extends Core{
 	private Integer pub_ratetotal;
 	@Column(insertable = false)
 	private Date pub_time;
+	@Column(insertable = false)
 	private Integer pub_application;
 	private String pub_address;
-	@Column(insertable = false)
 	private String pub_open;
 	private String pub_detail;
 	private String pub_name;
-	@Column(insertable = false)
 	private Double pub_lng;
-	@Column(insertable = false)
 	private Double pub_lat;
-	@Column(insertable = false)
 	private String firm_name;
-	@Column(insertable = false)
 	private String firm_addr;
-	@Column(insertable = false)
 	private String firm_tel_no;
-	@Column(insertable = false)
 	private String firm_email;
-	@Column(insertable = false)
 	private String firm_tax_id;
 	public Integer getPub_no() {
 		return pub_no;

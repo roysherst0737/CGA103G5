@@ -1,16 +1,15 @@
 package com.customer_chat_room.model;
 
 import java.sql.Timestamp;
-import java.util.Base64;
+import java.io.Serializable;
 
-public class Customer_chat_room_VO implements java.io.Serializable {
+public class Customer_chat_room_VO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer SN;
 	private Integer mng_no;
 	private Integer mem_no;
 	private Integer prod_no;
 	private String message;
-	final Base64.Encoder encoder = Base64.getEncoder();
 	private byte[] mem_question_pic;
 	private Timestamp message_chat_time;
 	private Integer chat_direction;
@@ -44,15 +43,12 @@ public class Customer_chat_room_VO implements java.io.Serializable {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public String getMem_question_pic() {
-		if(mem_question_pic!=null) {String encodedText = encoder.encodeToString(mem_question_pic);
-		return encodedText;}
-		return null;
+	public byte[] getMem_question_pic() {
+		return mem_question_pic;
 	}
 	public void setMem_question_pic(byte[] mem_question_pic) {
 		this.mem_question_pic = mem_question_pic;
 	}
-
 	public Timestamp getMessage_chat_time() {
 		return message_chat_time;
 	}

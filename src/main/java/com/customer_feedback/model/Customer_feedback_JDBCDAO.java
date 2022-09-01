@@ -1,13 +1,17 @@
 package com.customer_feedback.model;
 
-import java.util.*;
-import java.sql.*;
+import static com.util.Common.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interface {
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/lonelybar?serverTimezone=Asia/Taipei";
-	String userid = "root";
-	String passwd = "1005";
 
 	private static final String INSERT_STMT = 
 		"INSERT INTO customer_feedback (mem_no,order_no,prod_no,pub_no,act_no,mng_no,feedback_status) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -28,8 +32,8 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, customer_feedback_VO.getMem_no());
@@ -78,8 +82,8 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setInt(1, customer_feedback_VO.getMem_no());
@@ -129,8 +133,8 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, SN);
@@ -175,8 +179,8 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setInt(1, SN);
@@ -232,7 +236,7 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 	}
 
 	@Override
-	public List<Customer_feedback_VO> getCustomer_feedbackAll() {
+	public List<Customer_feedback_VO> getAllCustomer_feedback() {
 		List<Customer_feedback_VO> list = new ArrayList<Customer_feedback_VO>();
 		Customer_feedback_VO customer_feedback_VO = null;
 
@@ -242,8 +246,8 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(GET_ALL_CUSTOMER_FEEDBACK_STMT);
 			rs = pstmt.executeQuery();
 
@@ -339,7 +343,7 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 		System.out.println("---------------------");
 
 		// 查詢
-		List<Customer_feedback_VO> list = dao.getCustomer_feedbackAll();
+		List<Customer_feedback_VO> list = dao.getAllCustomer_feedback();
 		for (Customer_feedback_VO aCustomer_feedback : list) {
 			System.out.print(aCustomer_feedback.getSN() + ",");
 			System.out.print(aCustomer_feedback.getMem_no() + ",");
@@ -351,5 +355,10 @@ public class Customer_feedback_JDBCDAO implements Customer_feedback_DAO_interfac
 			System.out.print(aCustomer_feedback.getFeedback_status());
 			System.out.println();
 		}
+	}
+	@Override
+	public List<Customer_feedback_VO> getAllCustomer_feedback(Map<String, String[]> map) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

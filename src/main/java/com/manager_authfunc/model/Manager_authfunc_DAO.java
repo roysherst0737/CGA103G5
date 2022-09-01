@@ -8,6 +8,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.manager.model.Manager_VO;
+
 public class Manager_authfunc_DAO implements Manager_authfunc_DAO_interface {
 
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
@@ -15,7 +17,7 @@ public class Manager_authfunc_DAO implements Manager_authfunc_DAO_interface {
 		static {
 			try {
 				Context ctx = new InitialContext();
-				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB2");
+				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 			} catch (NamingException e) {
 				e.printStackTrace();
 			}
@@ -208,7 +210,7 @@ public class Manager_authfunc_DAO implements Manager_authfunc_DAO_interface {
 		}
 
 		@Override
-		public List<Manager_authfunc_VO> getManager_authfuncAll() {
+		public List<Manager_authfunc_VO> getAllManager_authfunc() {
 			List<Manager_authfunc_VO> list = new ArrayList<Manager_authfunc_VO>();
 			Manager_authfunc_VO manager_authfunc_VO = null;
 
@@ -259,5 +261,11 @@ public class Manager_authfunc_DAO implements Manager_authfunc_DAO_interface {
 				}
 			}
 			return list;
+		}
+		
+		@Override
+		public List<Manager_authfunc_VO> getAllManager_authfunc(Map<String, String[]> map) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 }

@@ -2,6 +2,7 @@ package com.customer_chat_room.model;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 public class Customer_chat_room_Service {
 
@@ -54,7 +55,10 @@ public class Customer_chat_room_Service {
 		return dao.findByPrimaryKey(SN);
 	}
 
-	public List<Customer_chat_room_VO> getCustomer_chat_roomAll() {
-		return dao.getCustomer_chat_roomAll();
+	public List<Customer_chat_room_VO> getAllCustomer_chat_room() {
+		return dao.getAllCustomer_chat_room();
+	}
+	public List<Customer_chat_room_VO> getAllCustomer_chat_room(Map<String, String[]> map) {
+		return dao.getAllCustomer_chat_room(map);
 	}
 }

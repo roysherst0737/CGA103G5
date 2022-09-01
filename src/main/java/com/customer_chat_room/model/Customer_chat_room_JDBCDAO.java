@@ -1,13 +1,20 @@
 package com.customer_chat_room.model;
 
-import java.util.*;
-import java.sql.*;
+import static com.util.Common.DRIVER;
+import static com.util.Common.PASSWORD;
+import static com.util.Common.URL;
+import static com.util.Common.USERNAME;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class Customer_chat_room_JDBCDAO implements Customer_chat_room_DAO_interface {
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/lonelybar?serverTimezone=Asia/Taipei";
-	String userid = "root";
-	String passwd = "1005";
 
 	private static final String INSERT_STMT = 
 		"INSERT INTO customer_chat_room (mng_no,mem_no,prod_no,message,mem_question_pic,message_chat_time,chat_direction) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -28,15 +35,15 @@ public class Customer_chat_room_JDBCDAO implements Customer_chat_room_DAO_interf
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, customer_chat_room_VO.getMng_no());
 			pstmt.setInt(2, customer_chat_room_VO.getMem_no());
 			pstmt.setInt(3, customer_chat_room_VO.getProd_no());
 			pstmt.setString(4, customer_chat_room_VO.getMessage());
-			pstmt.setString(5, customer_chat_room_VO.getMem_question_pic());
+			pstmt.setBytes(5, customer_chat_room_VO.getMem_question_pic());
 			pstmt.setTimestamp(6, customer_chat_room_VO.getMessage_chat_time());
 			pstmt.setInt(7, customer_chat_room_VO.getChat_direction());
 
@@ -78,15 +85,15 @@ public class Customer_chat_room_JDBCDAO implements Customer_chat_room_DAO_interf
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setInt(1, customer_chat_room_VO.getMng_no());
 			pstmt.setInt(2, customer_chat_room_VO.getMem_no());
 			pstmt.setInt(3, customer_chat_room_VO.getProd_no());
 			pstmt.setString(4, customer_chat_room_VO.getMessage());
-			pstmt.setString(5, customer_chat_room_VO.getMem_question_pic());
+			pstmt.setBytes(5, customer_chat_room_VO.getMem_question_pic());
 			pstmt.setTimestamp(6, customer_chat_room_VO.getMessage_chat_time());
 			pstmt.setInt(7, customer_chat_room_VO.getChat_direction());
 			pstmt.setInt(8, customer_chat_room_VO.getSN());
@@ -129,8 +136,8 @@ public class Customer_chat_room_JDBCDAO implements Customer_chat_room_DAO_interf
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, SN);
@@ -175,8 +182,8 @@ public class Customer_chat_room_JDBCDAO implements Customer_chat_room_DAO_interf
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setInt(1, SN);
@@ -232,7 +239,7 @@ public class Customer_chat_room_JDBCDAO implements Customer_chat_room_DAO_interf
 	}
 
 	@Override
-	public List<Customer_chat_room_VO> getCustomer_chat_roomAll() {
+	public List<Customer_chat_room_VO> getAllCustomer_chat_room() {
 		List<Customer_chat_room_VO> list = new ArrayList<Customer_chat_room_VO>();
 		Customer_chat_room_VO customer_chat_room_VO = null;
 
@@ -242,8 +249,8 @@ public class Customer_chat_room_JDBCDAO implements Customer_chat_room_DAO_interf
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(GET_ALL_CUSTOMER_CHAT_ROOM_STMT);
 			rs = pstmt.executeQuery();
 
@@ -296,9 +303,9 @@ public class Customer_chat_room_JDBCDAO implements Customer_chat_room_DAO_interf
 		return list;
 	}
 
-	public static void main(String[] args) {
-
-		Customer_chat_room_JDBCDAO dao = new Customer_chat_room_JDBCDAO();
+//	public static void main(String[] args) {
+//
+//		Customer_chat_room_JDBCDAO dao = new Customer_chat_room_JDBCDAO();
 
 		// 新增
 //		Customer_chat_room_VO customer_chat_room_VO1 = new Customer_chat_room_VO();
@@ -327,29 +334,35 @@ public class Customer_chat_room_JDBCDAO implements Customer_chat_room_DAO_interf
 //		dao.delete(4);
 
 		// 查詢
-		Customer_chat_room_VO customer_chat_room_VO3 = dao.findByPrimaryKey(1);
-		System.out.print(customer_chat_room_VO3.getSN() + ",");
-		System.out.print(customer_chat_room_VO3.getMng_no() + ",");
-		System.out.print(customer_chat_room_VO3.getMem_no() + ",");
-		System.out.print(customer_chat_room_VO3.getProd_no() + ",");
-		System.out.print(customer_chat_room_VO3.getMessage() + ",");
-		System.out.print(customer_chat_room_VO3.getMem_question_pic() + ",");
-		System.out.print(customer_chat_room_VO3.getMessage_chat_time() + ",");
-		System.out.println(customer_chat_room_VO3.getChat_direction());
-		System.out.println("---------------------");
+//		Customer_chat_room_VO customer_chat_room_VO3 = dao.findByPrimaryKey(1);
+//		System.out.print(customer_chat_room_VO3.getSN() + ",");
+//		System.out.print(customer_chat_room_VO3.getMng_no() + ",");
+//		System.out.print(customer_chat_room_VO3.getMem_no() + ",");
+//		System.out.print(customer_chat_room_VO3.getProd_no() + ",");
+//		System.out.print(customer_chat_room_VO3.getMessage() + ",");
+//		System.out.print(customer_chat_room_VO3.getMem_question_pic() + ",");
+//		System.out.print(customer_chat_room_VO3.getMessage_chat_time() + ",");
+//		System.out.println(customer_chat_room_VO3.getChat_direction());
+//		System.out.println("---------------------");
 
 		// 查詢
-		List<Customer_chat_room_VO> list = dao.getCustomer_chat_roomAll();
-		for (Customer_chat_room_VO aCustomer_chat_room_VO : list) {
-			System.out.print(aCustomer_chat_room_VO.getSN() + ",");
-			System.out.print(aCustomer_chat_room_VO.getMng_no() + ",");
-			System.out.print(aCustomer_chat_room_VO.getMem_no() + ",");
-			System.out.print(aCustomer_chat_room_VO.getProd_no() + ",");
-			System.out.print(aCustomer_chat_room_VO.getMessage() + ",");
-			System.out.print(aCustomer_chat_room_VO.getMem_question_pic() + ",");
-			System.out.print(aCustomer_chat_room_VO.getMessage_chat_time() + ",");
-			System.out.print(aCustomer_chat_room_VO.getChat_direction());
-			System.out.println();
-		}
+//		List<Customer_chat_room_VO> list = dao.getAllCustomer_chat_room();
+//		for (Customer_chat_room_VO aCustomer_chat_room_VO : list) {
+//			System.out.print(aCustomer_chat_room_VO.getSN() + ",");
+//			System.out.print(aCustomer_chat_room_VO.getMng_no() + ",");
+//			System.out.print(aCustomer_chat_room_VO.getMem_no() + ",");
+//			System.out.print(aCustomer_chat_room_VO.getProd_no() + ",");
+//			System.out.print(aCustomer_chat_room_VO.getMessage() + ",");
+//			System.out.print(aCustomer_chat_room_VO.getMem_question_pic() + ",");
+//			System.out.print(aCustomer_chat_room_VO.getMessage_chat_time() + ",");
+//			System.out.print(aCustomer_chat_room_VO.getChat_direction());
+//			System.out.println();
+//		}
+//	}
+	
+	@Override
+	public List<Customer_chat_room_VO> getAllCustomer_chat_room(Map<String, String[]> map) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -1,8 +1,12 @@
 package com.manager.model;
 
-import java.util.*;
-import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -16,7 +20,7 @@ public class Manager_JNDIDAO implements Manager_DAO_interface {
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB2");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/lonelybar");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -279,5 +283,11 @@ public class Manager_JNDIDAO implements Manager_DAO_interface {
 			}
 		}
 		return list;
+	}
+	
+	@Override
+	public List<Manager_VO> getAllManager(Map<String, String[]> map) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

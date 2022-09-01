@@ -89,9 +89,7 @@
 	</tr>
 	<tr>
 		<td>管理員圖片:</td>
-		<td colspan="3"><input class="btn btn-default"type="file" name="mng_pic"> <br> 
-		<img class="img-rounded" width=100%	
-			src="${manager_VO.mng_pic}"></td>
+		<td colspan="3"><input class="btn btn-default" type="file" name="mng_pic"><td> 
 	</tr>
     <tr>
 		<td>管理員狀態:</td>

@@ -1,7 +1,12 @@
 package com.customer_chat_room.model;
 
-import java.util.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -15,7 +20,7 @@ public class Customer_chat_room_DAO implements Customer_chat_room_DAO_interface 
 			static {
 				try {
 					Context ctx = new InitialContext();
-					ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB2");
+					ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 				} catch (NamingException e) {
 					e.printStackTrace();
 				}
@@ -48,7 +53,7 @@ public class Customer_chat_room_DAO implements Customer_chat_room_DAO_interface 
 					pstmt.setInt(2, customer_chat_room_VO.getMem_no());
 					pstmt.setInt(3, customer_chat_room_VO.getProd_no());
 					pstmt.setString(4, customer_chat_room_VO.getMessage());
-					pstmt.setString(5, customer_chat_room_VO.getMem_question_pic());
+					pstmt.setBytes(5, customer_chat_room_VO.getMem_question_pic());
 					pstmt.setTimestamp(6, customer_chat_room_VO.getMessage_chat_time());
 					pstmt.setInt(7, customer_chat_room_VO.getChat_direction());
 
@@ -93,7 +98,7 @@ public class Customer_chat_room_DAO implements Customer_chat_room_DAO_interface 
 					pstmt.setInt(2, customer_chat_room_VO.getMem_no());
 					pstmt.setInt(3, customer_chat_room_VO.getProd_no());
 					pstmt.setString(4, customer_chat_room_VO.getMessage());
-					pstmt.setString(5, customer_chat_room_VO.getMem_question_pic());
+					pstmt.setBytes(5, customer_chat_room_VO.getMem_question_pic());
 					pstmt.setTimestamp(6, customer_chat_room_VO.getMessage_chat_time());
 					pstmt.setInt(7, customer_chat_room_VO.getChat_direction());
 					pstmt.setInt(8, customer_chat_room_VO.getSN());
@@ -224,7 +229,7 @@ public class Customer_chat_room_DAO implements Customer_chat_room_DAO_interface 
 			}
 
 			@Override
-			public List<Customer_chat_room_VO> getCustomer_chat_roomAll() {
+			public List<Customer_chat_room_VO> getAllCustomer_chat_room () {
 				List<Customer_chat_room_VO> list = new ArrayList<Customer_chat_room_VO>();
 				Customer_chat_room_VO customer_chat_room_VO = null;
 
@@ -280,5 +285,10 @@ public class Customer_chat_room_DAO implements Customer_chat_room_DAO_interface 
 					}
 				}
 				return list;
+			}
+			@Override
+			public List<Customer_chat_room_VO> getAllCustomer_chat_room(Map<String, String[]> map) {
+				// TODO Auto-generated method stub
+				return null;
 			}
 		}

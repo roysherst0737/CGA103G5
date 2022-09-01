@@ -9,5 +9,5 @@ public interface Manager_DAO_interface {
     public Manager_VO findByPrimaryKey(Integer mng_no);
     public List<Manager_VO> getAllManager();
     //萬用複合查詢(傳入參數型態Map)(回傳 List)
-//  public List<Manager_VO> getAll(Map<String, String[]> map);
+  public List<Manager_VO> getAllManager(Map<String, String[]> map);
 }

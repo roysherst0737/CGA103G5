@@ -1,7 +1,7 @@
 package com.manager.model;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class Manager_Service {
 
@@ -54,5 +54,9 @@ public class Manager_Service {
 
 	public List<Manager_VO> getAllManager() {
 		return dao.getAllManager();
+	}
+	
+	public List<Manager_VO> getAllManager(Map<String, String[]> map) {
+		return dao.getAllManager(map);
 	}
 }

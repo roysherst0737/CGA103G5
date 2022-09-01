@@ -1,17 +1,23 @@
 package com.manager_auth.model;
 
-import java.util.*;
-import java.sql.*;
+import static com.util.Common.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import com.manager.model.Manager_VO;
 
 public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/lonelybar?serverTimezone=Asia/Taipei";
-	String userid = "root";
-	String passwd = "1005";
 
 	private static final String INSERT_STMT = 
 		"INSERT INTO manager_auth (mng_no,mng_authfunc_no) VALUES (?, ?)";
-	private static final String GET_ALL_MANAGER_STMT = 
+	private static final String GET_ALL_MANAGER_AUTH_STMT = 
 		"SELECT * FROM manager_auth order by mng_no";
 	private static final String GET_ALL_MANAGER_AUTHFUNC_STMT = 
 		"SELECT * FROM manager_auth order by mng_authfunc_no";
@@ -30,8 +36,8 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, manager_auth_VO.getMng_no());
@@ -75,8 +81,8 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setInt(1, manager_auth_VO.getMng_authfunc_no());
@@ -120,8 +126,8 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, mng_no);
@@ -167,8 +173,8 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setInt(1, mng_no);
@@ -219,7 +225,7 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 	}
 
 	@Override
-	public List<Manager_auth_VO> getManagerAll(Integer mng_no) {
+	public List<Manager_auth_VO> getAllManager_auth(Integer mng_no) {
 		List<Manager_auth_VO> list = new ArrayList<Manager_auth_VO>();
 		Manager_auth_VO manager_auth_VO = null;
 
@@ -229,9 +235,9 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(GET_ALL_MANAGER_STMT);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			pstmt = con.prepareStatement(GET_ALL_MANAGER_AUTH_STMT);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -278,7 +284,7 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 	}
 		
 		@Override
-		public List<Manager_auth_VO> getManager_authfuncAll(Integer mng_authfunc_no) {
+		public List<Manager_auth_VO> getAllManager_authfunc(Integer mng_authfunc_no) {
 			List<Manager_auth_VO> list = new ArrayList<Manager_auth_VO>();
 			Manager_auth_VO manager_auth_VO = null;
 
@@ -288,8 +294,8 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 
 			try {
 
-				Class.forName(driver);
-				con = DriverManager.getConnection(url, userid, passwd);
+				Class.forName(DRIVER);
+				con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 				pstmt = con.prepareStatement(GET_ALL_MANAGER_AUTHFUNC_STMT);
 				rs = pstmt.executeQuery();
 
@@ -336,9 +342,9 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 			return list;
 	}
 
-	public static void main(String[] args) {
-
-		Manager_auth_JDBCDAO dao = new Manager_auth_JDBCDAO();
+//	public static void main(String[] args) {
+//
+//		Manager_auth_JDBCDAO dao = new Manager_auth_JDBCDAO();
 
 		// 新增
 //		Manager_auth_VO manager_auth_VO1 = new Manager_auth_VO();
@@ -353,28 +359,33 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 //		dao.update(Manager_auth_VO2);
 
 		// 刪除
-		dao.delete(3,2);
+//		dao.delete(3,2);
 
 		// 查詢
-		Manager_auth_VO manager_auth_VO3 = dao.findByPrimaryKey(1,1);
-		System.out.print(manager_auth_VO3.getMng_no() + ",");
-		System.out.println(manager_auth_VO3.getMng_authfunc_no());
-		System.out.println("---------------------");
+//		Manager_auth_VO manager_auth_VO3 = dao.findByPrimaryKey(1,1);
+//		System.out.print(manager_auth_VO3.getMng_no() + ",");
+//		System.out.println(manager_auth_VO3.getMng_authfunc_no());
+//		System.out.println("---------------------");
 
 		// 查詢
-		List<Manager_auth_VO> list1 = dao.getManagerAll(1);
-		for (Manager_auth_VO aManager_auth : list1) {
-			System.out.print(aManager_auth.getMng_no() + ",");
-			System.out.print(aManager_auth.getMng_authfunc_no());
-			System.out.println();
-		}
+//		List<Manager_auth_VO> list1 = dao.getAllManager_auth(1);
+//		for (Manager_auth_VO aManager_auth : list1) {
+//			System.out.print(aManager_auth.getMng_no() + ",");
+//			System.out.print(aManager_auth.getMng_authfunc_no());
+//			System.out.println();
+//		}
 		
-		List<Manager_auth_VO> list2 = dao.getManager_authfuncAll(1);
-		for (Manager_auth_VO aManager_auth : list2) {
-			System.out.print(aManager_auth.getMng_no() + ",");
-			System.out.print(aManager_auth.getMng_authfunc_no());
-			System.out.println();
-		}
+//		List<Manager_auth_VO> list2 = dao.getManager_authfuncAll(1);
+//		for (Manager_auth_VO aManager_auth : list2) {
+//			System.out.print(aManager_auth.getMng_no() + ",");
+//			System.out.print(aManager_auth.getMng_authfunc_no());
+//			System.out.println();
+//		}
 		
-	}
+//	}
+		@Override
+		public List<Manager_auth_VO> getAllManager_auth(Map<String, String[]> map) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 }

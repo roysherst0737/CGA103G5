@@ -1,12 +1,19 @@
 package com.manager_authfunc.model;
 
-import java.util.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import com.manager.model.Manager_VO;
 
 public class Manager_authfunc_JNDIDAO implements Manager_authfunc_DAO_interface {
 
@@ -15,7 +22,7 @@ public class Manager_authfunc_JNDIDAO implements Manager_authfunc_DAO_interface 
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB2");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/lonelybar");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -208,7 +215,7 @@ public class Manager_authfunc_JNDIDAO implements Manager_authfunc_DAO_interface 
 	}
 
 	@Override
-	public List<Manager_authfunc_VO> getManager_authfuncAll() {
+	public List<Manager_authfunc_VO> getAllManager_authfunc() {
 		List<Manager_authfunc_VO> list = new ArrayList<Manager_authfunc_VO>();
 		Manager_authfunc_VO manager_authfunc_VO = null;
 
@@ -259,5 +266,11 @@ public class Manager_authfunc_JNDIDAO implements Manager_authfunc_DAO_interface 
 			}
 		}
 		return list;
+	}
+	
+	@Override
+	public List<Manager_authfunc_VO> getAllManager_authfunc(Map<String, String[]> map) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

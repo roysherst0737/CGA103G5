@@ -1,6 +1,9 @@
 package com.manager_auth.model;
 
 import java.util.List;
+import java.util.Map;
+
+import com.manager.model.Manager_VO;
 
 public class Manager_auth_Service {
 
@@ -46,7 +49,10 @@ public class Manager_auth_Service {
 		return dao.findByPrimaryKey(mng_no, mng_authfunc_no);
 	}
 
-	public List<Manager_auth_VO> getManagerAll(Integer mng_no) {
-		return dao.getManagerAll(mng_no);
+	public List<Manager_auth_VO> getAllManager_auth(Integer mng_no) {
+		return dao.getAllManager_auth(mng_no);
+	}
+	public List<Manager_auth_VO> getAllManager_auth(Map<String, String[]> map) {
+		return dao.getAllManager_auth(map);
 	}
 }

@@ -7,7 +7,7 @@ public interface Manager_authfunc_DAO_interface {
     public void update(Manager_authfunc_VO manager_VO);
     public void delete(Integer mng_authfunc_no);
     public Manager_authfunc_VO findByPrimaryKey(Integer mng_authfunc_no);
-    public List<Manager_authfunc_VO> getManager_authfuncAll();
+    public List<Manager_authfunc_VO> getAllManager_authfunc();
     //萬用複合查詢(傳入參數型態Map)(回傳 List)
-//  public List<Manager_VO> getAll(Map<String, String[]> map);
+  public List<Manager_authfunc_VO> getAllManager_authfunc(Map<String, String[]> map);
 }

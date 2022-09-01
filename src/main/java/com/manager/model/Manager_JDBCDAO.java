@@ -1,14 +1,17 @@
 package com.manager.model;
 
-import java.util.*;
-import java.io.IOException;
-import java.sql.*;
+import static com.util.Common.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class Manager_JDBCDAO implements Manager_DAO_interface {
-	String driver = "com.mysql.cj.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/lonelybar?serverTimezone=Asia/Taipei";
-	String userid = "root";
-	String passwd = "1005";
 
 	private static final String INSERT_STMT = 
 		"INSERT INTO manager (mng_account,mng_password,mng_name,mng_phone,mng_pic,mng_status) VALUES (?, ?, ?, ?, ?, ?)";
@@ -29,8 +32,8 @@ public class Manager_JDBCDAO implements Manager_DAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setString(1, manager_VO.getMng_account());
@@ -78,8 +81,8 @@ public class Manager_JDBCDAO implements Manager_DAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, manager_VO.getMng_account());
@@ -128,8 +131,8 @@ public class Manager_JDBCDAO implements Manager_DAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, mng_no);
@@ -174,8 +177,8 @@ public class Manager_JDBCDAO implements Manager_DAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setInt(1, mng_no);
@@ -243,8 +246,8 @@ public class Manager_JDBCDAO implements Manager_DAO_interface {
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(GET_ALL_MANAGER_STMT);
 			rs = pstmt.executeQuery();
 
@@ -296,9 +299,9 @@ public class Manager_JDBCDAO implements Manager_DAO_interface {
 		return list;
 	}
 
-	public static void main(String[] args) {
-
-		Manager_JDBCDAO dao = new Manager_JDBCDAO();
+//	public static void main(String[] args) {
+//
+//		Manager_JDBCDAO dao = new Manager_JDBCDAO();
 
 //		// 新增
 //		Manager_VO manager_VO1 = new Manager_VO();
@@ -325,26 +328,32 @@ public class Manager_JDBCDAO implements Manager_DAO_interface {
 //		dao.delete(5);
 
 		// 查詢
-		Manager_VO manager_VO3 = dao.findByPrimaryKey(1);
-		System.out.print(manager_VO3.getMng_no() + ",");
-		System.out.print(manager_VO3.getMng_account() + ",");
-		System.out.print(manager_VO3.getMng_password() + ",");
-		System.out.print(manager_VO3.getMng_phone() + ",");
-		System.out.print(manager_VO3.getMng_pic() + ",");
-		System.out.println(manager_VO3.getMng_status());
-		System.out.println("---------------------");
+//		Manager_VO manager_VO3 = dao.findByPrimaryKey(1);
+//		System.out.print(manager_VO3.getMng_no() + ",");
+//		System.out.print(manager_VO3.getMng_account() + ",");
+//		System.out.print(manager_VO3.getMng_password() + ",");
+//		System.out.print(manager_VO3.getMng_phone() + ",");
+//		System.out.print(manager_VO3.getMng_pic() + ",");
+//		System.out.println(manager_VO3.getMng_status());
+//		System.out.println("---------------------");
 
 		// 查詢
-		List<Manager_VO> list = dao.getAllManager();
-		for (Manager_VO aManager : list) {
-			System.out.print(aManager.getMng_no() + ",");
-			System.out.print(aManager.getMng_account() + ",");
-			System.out.print(aManager.getMng_password() + ",");
-			System.out.print(aManager.getMng_name() + ",");
-			System.out.print(aManager.getMng_phone() + ",");
-			System.out.print(aManager.getMng_pic() + ",");
-			System.out.print(aManager.getMng_status());
-			System.out.println();
-		}
+//		List<Manager_VO> list = dao.getAllManager();
+//		for (Manager_VO aManager : list) {
+//			System.out.print(aManager.getMng_no() + ",");
+//			System.out.print(aManager.getMng_account() + ",");
+//			System.out.print(aManager.getMng_password() + ",");
+//			System.out.print(aManager.getMng_name() + ",");
+//			System.out.print(aManager.getMng_phone() + ",");
+//			System.out.print(aManager.getMng_pic() + ",");
+//			System.out.print(aManager.getMng_status());
+//			System.out.println();
+//		}
+//	}
+	
+	@Override
+	public List<Manager_VO> getAllManager(Map<String, String[]> map) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -1,12 +1,19 @@
 package com.manager_auth.model;
 
-import java.util.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import com.manager.model.Manager_VO;
 
 public class Manager_auth_JNDIDAO implements Manager_auth_DAO_interface {
 
@@ -15,7 +22,7 @@ public class Manager_auth_JNDIDAO implements Manager_auth_DAO_interface {
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB2");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/lonelybar");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -23,7 +30,7 @@ public class Manager_auth_JNDIDAO implements Manager_auth_DAO_interface {
 
 	private static final String INSERT_STMT = 
 		"INSERT INTO manager_auth (mng_no,mng_authfunc_no) VALUES (?, ?)";
-	private static final String GET_ALL_MANAGER_STMT = 
+	private static final String GET_ALL_MANAGER_AUTH_STMT = 
 		"SELECT * FROM manager_auth order by mng_no";
 	private static final String GET_ALL_MANAGER_AUTHFUNC_STMT = 
 		"SELECT * FROM manager_auth order by mng_authfunc_no";
@@ -212,7 +219,7 @@ public class Manager_auth_JNDIDAO implements Manager_auth_DAO_interface {
 	}
 
 	@Override
-	public List<Manager_auth_VO> getManagerAll(Integer mng_no) {
+	public List<Manager_auth_VO> getAllManager_auth(Integer mng_no) {
 		List<Manager_auth_VO> list = new ArrayList<Manager_auth_VO>();
 		Manager_auth_VO manager_auth_VO = null;
 
@@ -223,7 +230,7 @@ public class Manager_auth_JNDIDAO implements Manager_auth_DAO_interface {
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ALL_MANAGER_STMT);
+			pstmt = con.prepareStatement(GET_ALL_MANAGER_AUTH_STMT);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -266,7 +273,7 @@ public class Manager_auth_JNDIDAO implements Manager_auth_DAO_interface {
 	}
 	
 	@Override
-	public List<Manager_auth_VO> getManager_authfuncAll(Integer mng_authfunc_no) {
+	public List<Manager_auth_VO> getAllManager_authfunc(Integer mng_authfunc_no) {
 		List<Manager_auth_VO> list = new ArrayList<Manager_auth_VO>();
 		Manager_auth_VO manager_auth_VO = null;
 
@@ -317,5 +324,11 @@ public class Manager_auth_JNDIDAO implements Manager_auth_DAO_interface {
 			}
 		}
 		return list;
+	}
+	
+	@Override
+	public List<Manager_auth_VO> getAllManager_auth(Map<String, String[]> map) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -1,11 +1,8 @@
 package com.manager_auth.model;
 
-import java.sql.Date;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
-import java.util.Base64;
+import java.io.Serializable;
 
-public class Manager_auth_VO implements java.io.Serializable {
+public class Manager_auth_VO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer mng_no;
 	private Integer mng_authfunc_no;

@@ -77,4 +77,16 @@
 		<servlet-name>Forum_article_Servlet</servlet-name>
 		<url-pattern>/CGA103G5ALL/back-end/forum/forum.do</url-pattern>
 	</servlet-mapping>
+	  <servlet>
+    <servlet-name>ManagerServlet</servlet-name>
+    <servlet-class>com.manager.controller.ManagerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagerServlet</servlet-name>
+    <url-pattern>/back-end/manager/manager.do</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ManagerImage</servlet-name>
+    <url-pattern>/ManagerImage.do</url-pattern>
+  </servlet-mapping>
 </web-app>

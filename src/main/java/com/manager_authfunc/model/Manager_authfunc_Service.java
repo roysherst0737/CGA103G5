@@ -1,6 +1,9 @@
 package com.manager_authfunc.model;
 
 import java.util.List;
+import java.util.Map;
+
+import com.manager.model.Manager_VO;
 
 public class Manager_authfunc_Service {
 
@@ -40,6 +43,9 @@ public class Manager_authfunc_Service {
 	}
 
 	public List<Manager_authfunc_VO> getManager_authfuncAll() {
-		return dao.getManager_authfuncAll();
+		return dao.getAllManager_authfunc();
+	}
+	public List<Manager_authfunc_VO> getAllManager_authfunc(Map<String, String[]> map) {
+		return dao.getAllManager_authfunc(map);
 	}
 }

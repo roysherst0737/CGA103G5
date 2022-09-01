@@ -1,8 +1,8 @@
 package com.manager.model;
 
-import java.sql.Date;
+import java.io.Serializable;
 
-public class Manager_VO implements java.io.Serializable {
+public class Manager_VO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer mng_no;
 	private String mng_account;

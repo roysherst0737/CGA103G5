@@ -1,6 +1,9 @@
 package com.customer_feedback.model;
 
 import java.util.List;
+import java.util.Map;
+
+import com.manager.model.Manager_VO;
 
 public class Customer_feedback_Service {
 
@@ -53,7 +56,10 @@ public class Customer_feedback_Service {
 		return dao.findByPrimaryKey(SN);
 	}
 
-	public List<Customer_feedback_VO> getCustomer_feedbackAll() {
-		return dao.getCustomer_feedbackAll();
+	public List<Customer_feedback_VO> getAllCustomer_feedback() {
+		return dao.getAllCustomer_feedback();
+	}
+	public List<Customer_feedback_VO> getAllCustomer_feedback(Map<String, String[]> map) {
+		return dao.getAllCustomer_feedback(map);
 	}
 }

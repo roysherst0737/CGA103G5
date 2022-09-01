@@ -1,6 +1,8 @@
 package com.customer_feedback.model;
 
-public class Customer_feedback_VO implements java.io.Serializable {
+import java.io.Serializable;
+
+public class Customer_feedback_VO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer SN;
 	private Integer mem_no;

@@ -75,7 +75,8 @@ a.booking:hover {
 				<div class="col-lg-12">
 					<h2>酒吧註冊申請</h2>
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item active">酒吧註冊申請</li>
+						<li class="breadcrumb-item active">酒吧註冊申請 /</li>
+						<li></li>
 						<li class="breadcrumb-item"><a
 							href="<%=request.getContextPath()%>/front-end">首頁</a></li>
 					</ul>
@@ -91,9 +92,9 @@ a.booking:hover {
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="title-all text-center">
-						<h1>適度飲酒</h1>
-						<p>一、飲酒勿開車。</p>
-						<p>二、未滿十八歲者，禁止飲酒。</p>
+						<h1>酒吧申請</h1>
+						<p>一、請確實填寫資料。</p>
+						<p>二、經審核後即可上架。</p>
 					</div>
 				</div>
 			</div>
@@ -101,7 +102,7 @@ a.booking:hover {
 		<!-- 主內容 -->
 		<div class="main-panel">
 			<div class="content-wrapper">
-				<form class="forms-sample">
+				<form class="forms-sample"  action="<%=request.getContextPath()%>/PubRegister" method="post">
 					<div class="row">
 						<div class="col-md-6 grid-margin stretch-card">
 							<div class="card">
@@ -114,80 +115,103 @@ a.booking:hover {
 									</div>
 									<div class="form-floating mb-3">
 										<input type="text" class="form-control" id="fpub_address"
-											placeholder="pub_address"> <label for="fpub_address">pub_address</label>
+											placeholder="pub_address"> <label for="fpub_address">酒吧地址</label>
 									</div>
+
+									<div class="container px-4">
+										<div class="row gx-5">
+											<div class="col">
+												<div class="form-floating mb-3">
+													<input type="text" class="form-control" id="fpub_lng"
+														placeholder="pub_lng"> <label for="fpub_lng">經度</label>
+												</div>
+											</div>
+											<div class="col">
+												<div class="form-floating mb-3">
+													<input type="text" class="form-control" id="fpub_lat"
+														placeholder="pub_lat"> <label for="fpub_lat">緯度</label>
+												</div>
+											</div>
+										</div>
+									</div>
+
 									<div class="form-floating mb-3">
 										<input type="text" class="form-control" id="fpub_open"
-											placeholder="pub_open"> <label for="fpub_open">pub_open</label>
+											placeholder="pub_open"> <label for="fpub_open">營業時間</label>
+									</div>
+									<div class="form-group">
+										<label>酒吧圖片</label> <input type="file" name="img[]"
+											class="file-upload-default">
+										<div class="input-group col-xs-12">
+											<input type="text" class="form-control file-upload-info"
+												disabled placeholder="Upload Image"> <span
+												class="input-group-append">
+												<button class="file-upload-browse btn btn-primary"
+													type="button">上傳</button>
+											</span>
+										</div>
 									</div>
 									<div class="form-floating">
 										<textarea class="form-control" placeholder="pub_detail"
 											id="fpub_detail" style="height: 100px"></textarea>
-										<label for="fpub_detail">pub_detail</label>
+										<label for="fpub_detail">酒吧描述</label>
 									</div>
-									<div class="form-check form-check-flat form-check-primary">
-										<label class="form-check-label"> <input
-											type="checkbox" class="form-check-input"> Remember me
-										</label>
-									</div>
-									<button type="submit" class="btn btn-primary mr-2">Submit</button>
-									<button class="btn btn-light">Cancel</button>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-6 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">Horizontal Form</h4>
-									<p class="card-description">Horizontal form layout</p>
+									<h4 class="card-title"></h4>
+									<p class="card-description">廠商基本資料</p>
 
 									<div class="form-group row">
-										<label for="exampleInputUsername2"
-											class="col-sm-3 col-form-label">Email</label>
+										<label for="firm_name"
+											class="col-sm-3 col-form-label">廠商名稱</label>
 										<div class="col-sm-9">
 											<input type="text" class="form-control"
-												id="exampleInputUsername2" placeholder="Username">
+												id="firm_name" placeholder="廠商名稱">
 										</div>
 									</div>
 									<div class="form-group row">
-										<label for="exampleInputEmail2"
-											class="col-sm-3 col-form-label">Email</label>
+										<label for="firm_addr"
+											class="col-sm-3 col-form-label">廠商地址</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control"
+												id="firm_addr" placeholder="廠商地址">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="firm_tel_no"
+											class="col-sm-3 col-form-label">廠商電話</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control"
+												id="firm_tel_no" placeholder="廠商電話">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label for="firm_email"
+											class="col-sm-3 col-form-label">廠商電子郵件</label>
 										<div class="col-sm-9">
 											<input type="email" class="form-control"
-												id="exampleInputEmail2" placeholder="Email">
+												id="firm_email" placeholder="廠商電子郵件">
 										</div>
 									</div>
 									<div class="form-group row">
-										<label for="exampleInputMobile"
-											class="col-sm-3 col-form-label">Mobile</label>
+										<label for="firm_tax_id"
+											class="col-sm-3 col-form-label">廠商統一編號</label>
 										<div class="col-sm-9">
 											<input type="text" class="form-control"
-												id="exampleInputMobile" placeholder="Mobile number">
+												id="firm_tax_id" placeholder="廠商統一編號">
 										</div>
 									</div>
-									<div class="form-group row">
-										<label for="exampleInputPassword2"
-											class="col-sm-3 col-form-label">Password</label>
-										<div class="col-sm-9">
-											<input type="password" class="form-control"
-												id="exampleInputPassword2" placeholder="Password">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label for="exampleInputConfirmPassword2"
-											class="col-sm-3 col-form-label">Re Password</label>
-										<div class="col-sm-9">
-											<input type="password" class="form-control"
-												id="exampleInputConfirmPassword2" placeholder="Password">
-										</div>
-									</div>
-									<div class="form-check form-check-flat form-check-primary">
-										<label class="form-check-label"> <input
-											type="checkbox" class="form-check-input"> Remember me
-										</label>
-									</div>
-									<button type="submit" class="btn btn-primary mr-2">Submit</button>
-									<button class="btn btn-light">Cancel</button>
+<!-- 									<div class="form-check form-check-flat form-check-primary"> -->
+<!-- 										<label class="form-check-label"> <input -->
+<!-- 											type="checkbox" class="form-check-input"> Remember me -->
+<!-- 										</label> -->
+<!-- 									</div> -->
+									<button type="submit" class="btn btn-primary mr-2">確認送出</button>
+									<button type="reset" class="btn btn-light">重填</button>
 								</div>
 							</div>
 						</div>
@@ -350,6 +374,7 @@ a.booking:hover {
 	<script id="customjs"
 		src="<%=request.getContextPath()%>/front-end/js/custom.js"></script>
 	<script src="<%=request.getContextPath()%>/back-end/js/template.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/file-upload.js"></script>
 </body>
 
 </html>

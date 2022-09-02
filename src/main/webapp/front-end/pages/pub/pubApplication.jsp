@@ -219,7 +219,9 @@ a.booking:hover {
 									<!-- 										</label> -->
 									<!-- 									</div> -->
 									<button id="btn" type="button" class="btn btn-primary mr-2">確認送出</button>
+									<button type="button" class="btn btn-light" onclick="submitForm()">重填</button>
 									<button type="reset" class="btn btn-light">重填</button>
+									
 								</div>
 							</div>
 						</div>
@@ -353,6 +355,10 @@ a.booking:hover {
 			: <a href="https://html.design/">CGA103G5</a>
 		</p>
 	</div>
+	<script>			
+		function 123() {	Alert(123);}
+	</script>
+	
 	<!-- End copyright  -->
 
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>

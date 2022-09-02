@@ -218,16 +218,42 @@ a.booking:hover {
 									<!-- 											type="checkbox" class="form-check-input"> Remember me -->
 									<!-- 										</label> -->
 									<!-- 									</div> -->
-									<button id="btn" type="button" class="btn btn-primary mr-2">確認送出</button>
-									<button type="button" class="btn btn-light" onclick="submitForm()">重填</button>
-									<button type="reset" class="btn btn-light">重填</button>
-									
+									<button id="btn" type="button" class="btn btn-primary mr-2" >確認送出</button>
+									<button type="reset" class="btn btn-light" >重填</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</form>
+
+
+				<!-- Modal -->
+				<div class="modal fade" id="exampleModal" tabindex="-1"
+					role="dialog" aria-labelledby="exampleModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Lonely Bar</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">...</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">取消</button>
+								<a style=" width: auto;height: auto;"
+								 class="btn btn-primary"href="<%=request.getContextPath()%>/PubStates">確認</a>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
+
+
+
 			<!-- content-wrapper ends -->
 		</div>
 
@@ -339,6 +365,8 @@ a.booking:hover {
 			</div>
 		</div>
 	</div>
+
+
 	<!-- End Instagram Feed  -->
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
@@ -355,10 +383,6 @@ a.booking:hover {
 			: <a href="https://html.design/">CGA103G5</a>
 		</p>
 	</div>
-	<script>			
-		function 123() {	Alert(123);}
-	</script>
-	
 	<!-- End copyright  -->
 
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>

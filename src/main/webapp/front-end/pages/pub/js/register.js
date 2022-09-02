@@ -57,13 +57,16 @@
             //            errormsg(firm_tax_id, this.msgTax)
             return;
         }
+        btn.setAttribute("data-toggle", "modal");
+        btn.setAttribute("data-target", "#exampleModal");
+
         fetch('PubRegister', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-				pub_name: pub_name.value,
+                pub_name: pub_name.value,
                 pub_nop: pub_nop.value,
                 pub_address: pub_address.value,
                 pub_lng: pub_lng.value,
@@ -80,36 +83,35 @@
         })
             .then(resp => resp.json())
             .then(body => {
-                if (body.ok) {
-                    console.log('ok')
-                } else {
-                    console.log('ng')
-
-                }
-
-
                 const { successful } = body;
+                const { message } = body;
                 if (successful) {
-                    // for (let input of inputs) {
-                    //     input.disabled = true;
-                    // }
-                    btn.disabled = true;
-                    msg.className = 'info';
-                    msg.textContent = '註冊成功';
+                    document.querySelector('.modal-body').innerHTML = message + `<br>請等候管理員審核，點擊確認跳轉`
                 } else {
-                    msg.className = 'error';
-                    msg.textContent = '註冊失敗';
+                    document.querySelector('.modal-body').innerHTML = message + `<br>請聯繫客服協助處理`
                 }
+                btn.removeAttribute("data-toggle");
+                btn.removeAttribute("data-target");
             });
     });
 
 })();
+
 function errormsg(e, msgtext) {
     e.classList.add('is-invalid');
     e.focus();
+    e.addEventListener('change', e1 => {
+        if (e.parentElement.children.length > 1) {
+            e.parentElement.removeChild(e.parentElement.lastChild);
+        }
+        e.classList.remove('is-invalid');
+    });
     const msg = document.createElement('div')
     msg.style.color = "red";
     msg.textContent = msgtext;
+    if (e.parentElement.children.length > 1) {
+        e.parentElement.removeChild(e.parentElement.lastChild);
+    }
     e.parentElement.appendChild(msg);
 }
 

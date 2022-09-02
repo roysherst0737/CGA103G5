@@ -154,7 +154,7 @@ a.booking:hover {
 									</div>
 									<div class="form-group">
 										<label>酒吧圖片</label> <input id="pub_img" type="file"
-											name="img[]" class="file-upload-default">
+											name="img[]" class="file-upload-default" accept="image/gif, image/jpeg, image/png">
 										<div class="input-group col-xs-12">
 											<input type="text" class="form-control file-upload-info"
 												disabled placeholder="Upload Image"> <span

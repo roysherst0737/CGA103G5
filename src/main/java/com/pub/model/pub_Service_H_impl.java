@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.pub_pics.model.model.Pub_pics_DAO_H_impl;
+import com.util.GetBase64;
 
 public class pub_Service_H_impl implements pub_Service_H{
 	private Pub_DAO_H_impl_forWEB dao;
@@ -72,7 +73,8 @@ public class pub_Service_H_impl implements pub_Service_H{
 			final int resultCount = dao.insert(pub);
 			Pub_pics pic= new Pub_pics();
 			pic.setPub(pub);
-			pic.setPub_pic(null);
+//			GetBase64.StringToBlob(pub.getImg());
+			pic.setPub_pic(GetBase64.getBlob(pub.getImg()));
 			final int pic_resultCount = pic_dao.insert(pic);
 			if (resultCount < 1) {
 				pub.setMessage("註冊錯誤，請聯絡管理員!");

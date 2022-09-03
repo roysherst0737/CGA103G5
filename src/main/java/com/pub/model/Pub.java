@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import com.pub.service.Core;
 @Entity
@@ -40,6 +41,8 @@ public class Pub extends Core{
 	private String firm_tel_no;
 	private String firm_email;
 	private String firm_tax_id;
+	@Transient
+	private String img;
 	@OneToMany
 	private List<Pub_pics> pub_pics;
 	public Integer getPub_no() {
@@ -161,6 +164,12 @@ public class Pub extends Core{
 	}
 	public void setPub_pics(List<Pub_pics> pub_pics) {
 		this.pub_pics = pub_pics;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
 	}
 	
 }

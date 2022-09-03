@@ -21,7 +21,10 @@ public class CommonUtil {
 	public static <P> P json2Pojo(HttpServletRequest request, Class<P> classOfPojo) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("UTF-8");
 		try (BufferedReader br = request.getReader()) {
-			
+//			String str = null;
+//		      while((str = br.readLine()) != null){
+//		      System.out.println(str);//此時str就儲存了一行字串
+//		}
 			return GSON.fromJson(br, classOfPojo);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -14,6 +14,7 @@
 	const firm_email = document.querySelector('#firm_email');
 	const firm_tax_id = document.querySelector('#firm_tax_id');
 	const file_check = false;
+	
 	btn.addEventListener('click', async () => {
 		if (pub_name.value.length < 1) {
 			errormsg(pub_name, '酒吧名稱不得為空')
@@ -76,7 +77,7 @@
 			pub_lng: pub_lng.value,
 			pub_lat: pub_lat.value,
 			pub_open: pub_open.value,
-			pub_pics: img,
+			img: img,
 			pub_detail: pub_detail.value,
 			firm_name: firm_name.value,
 			firm_addr: firm_addr.value,

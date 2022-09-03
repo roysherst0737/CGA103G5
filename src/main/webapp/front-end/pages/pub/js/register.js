@@ -75,9 +75,7 @@
 			firm_email: firm_email.value,
 			firm_tax_id: firm_tax_id.value,
 		});
-		console.log(form_data);
 		if (window.form_data.get('blob')) {
-			console.log(window.form_data.get('blob'));
 			json = { ...json, pub_img: window.form_data.get('blob') };
 			console.log(json);
 		}

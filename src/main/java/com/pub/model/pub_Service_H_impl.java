@@ -1,19 +1,19 @@
 package com.pub.model;
 
-import java.io.Console;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.pub_pics.model.model.Pub_pics_DAO_H_impl;
+
 public class pub_Service_H_impl implements pub_Service_H{
 	private Pub_DAO_H_impl_forWEB dao;
-
+	private Pub_pics_DAO_H_impl pic_dao;
 	public pub_Service_H_impl() {
 		dao = new Pub_DAO_H_impl_forWEB();
+		pic_dao = new Pub_pics_DAO_H_impl();
 	}
 	@Override
 	public Pub register(Pub pub) {
-		System.out.println(pub.getFirm_addr());
-		System.out.println(pub.getPub_name());
 		if (pub.getPub_name() == null) {
 			pub.setMessage("酒吧名稱未輸入");
 			pub.setSuccessful(false);
@@ -70,11 +70,17 @@ public class pub_Service_H_impl implements pub_Service_H{
 		try {
 			pub.setMem_no(1);
 			final int resultCount = dao.insert(pub);
-			System.out.println(resultCount);
+			Pub_pics pic= new Pub_pics();
+			pic.setPub(pub);
+			pic.setPub_pic(null);
+			final int pic_resultCount = pic_dao.insert(pic);
 			if (resultCount < 1) {
 				pub.setMessage("註冊錯誤，請聯絡管理員!");
 				pub.setSuccessful(false);
-				//rollback();
+				return pub;
+			}if (pic_resultCount < 1) {
+				pub.setMessage("照片寫入錯誤，請聯絡管理員!");
+				pub.setSuccessful(false);
 				return pub;
 			}
 			//commit();

@@ -13,8 +13,8 @@
 	const firm_tel_no = document.querySelector('#firm_tel_no');
 	const firm_email = document.querySelector('#firm_email');
 	const firm_tax_id = document.querySelector('#firm_tax_id');
-	const form_data = null;
-	btn.addEventListener('click', () => {
+	const file_check = false;
+	btn.addEventListener('click', async () => {
 		if (pub_name.value.length < 1) {
 			errormsg(pub_name, '酒吧名稱不得為空')
 			return;
@@ -58,8 +58,17 @@
 			//            errormsg(firm_tax_id, this.msgTax)
 			return;
 		}
+		if (!window.file_check) {
+			errormsg(pub_img, '只能傳送JPG,JPEG,PNG,且不得為空');
+			return
+		}
+		let img = null;
 		btn.setAttribute("data-toggle", "modal");
 		btn.setAttribute("data-target", "#exampleModal");
+		if (pub_img.files[0]) {
+			img = await convertBase64(pub_img.files[0])
+			//			json = { ...json, pub_img: img };
+		}
 		let json = JSON.stringify({
 			pub_name: pub_name.value,
 			pub_nop: pub_nop.value,
@@ -67,7 +76,7 @@
 			pub_lng: pub_lng.value,
 			pub_lat: pub_lat.value,
 			pub_open: pub_open.value,
-			// pub_img: pub_img.value,
+			pub_pics: img,
 			pub_detail: pub_detail.value,
 			firm_name: firm_name.value,
 			firm_addr: firm_addr.value,
@@ -75,10 +84,8 @@
 			firm_email: firm_email.value,
 			firm_tax_id: firm_tax_id.value,
 		});
-		if (window.form_data.get('blob')) {
-			json = { ...json, pub_img: window.form_data.get('blob') };
+
 			console.log(json);
-		}
 		fetch('PubRegister', {
 			method: 'POST',
 			headers: {
@@ -104,16 +111,16 @@
 
 pub_img.addEventListener('change', function(e) {
 	var file_id = e.target.id;
-	for (i = 0; i < $("#" + file_id).prop("files").length; i++) {
-		form_data = new FormData();
-		if (check_multifile_logo($("#" + file_id).prop("files")[i]['name'])) {
-			form_data.append("blob", pub_img.files[0], $("#" + file_id).prop("files")[i]['name'])
-		} else {
-			errormsg(pub_img, "只能傳送JPG,JPEG,PNG");
-		}
-
-
+	file_check = check_multifile_logo($("#" + file_id).prop("files")[0]['name']);
+	//    多檔案使用
+	//    for (i = 0; i < $("#" + file_id).prop("files").length; i++) {
+	if (file_check) {
+	} else {
+		errormsg(pub_img, "只能傳送JPG,JPEG,PNG");
 	}
+
+
+	//    }
 });
 
 
@@ -149,9 +156,32 @@ function errormsg(e, msgtext) {
 	const msg = document.createElement('div')
 	msg.style.color = "red";
 	msg.textContent = msgtext;
+	if (e == pub_img) {
+		if (e.parentElement.children.length > 3) {
+			e.parentElement.removeChild(e.parentElement.lastChild);
+		}
+	} else {
+		if (e.parentElement.children.length > 1) {
+			e.parentElement.removeChild(e.parentElement.lastChild);
+		}
+
+	}
 	e.parentElement.appendChild(msg);
 }
+const convertBase64 = (file) => {
+	return new Promise((resolve, reject) => {
+		const fileReader = new FileReader();
+		fileReader.readAsDataURL(file);
 
+		fileReader.onload = () => {
+			resolve(fileReader.result);
+		};
+
+		fileReader.onerror = () => {
+			reject(false);
+		};
+	});
+};
 function isTax(tax) {
 	const cx = [1, 2, 1, 2, 1, 2, 4, 1];
 	const cnum = tax.value.split('');

@@ -5,17 +5,22 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.pub.service.Core;
 @Entity
+@Table(name="Pub")
 public class Pub extends Core{
 	private static final long serialVersionUID = 1L;
 	@Id
+	@Column(name="pub_no")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer pub_no;
 	private Integer mem_no;
@@ -43,11 +48,13 @@ public class Pub extends Core{
 	private String firm_tax_id;
 	@Transient
 	private String img;
-	@OneToMany
+	@OneToMany(fetch=FetchType.LAZY)
+	@JoinColumn(name="pub_no")
 	private List<Pub_pics> pub_pics;
 	public Integer getPub_no() {
 		return pub_no;
 	}
+
 	public void setPub_no(Integer pub_no) {
 		this.pub_no = pub_no;
 	}
@@ -171,5 +178,12 @@ public class Pub extends Core{
 	public void setImg(String img) {
 		this.img = img;
 	}
+	
+}
+class PubID{
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer pub_no;
+
+
 	
 }

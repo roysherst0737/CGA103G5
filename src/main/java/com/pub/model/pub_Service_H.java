@@ -12,6 +12,7 @@ public interface pub_Service_H extends CoreService{
 	Pub updateOpen(Pub pub) ;
 	Pub updateApplication(Pub pub) ;
 	Pub findByPrimaryKey(Pub pub) ;
+	List<Pub> getMemALL(Integer mem_no);
 	List<Pub> getAll();
 	List<Pub> check (Integer state);//(2:審核失敗1:審核通過0:待審核)
 

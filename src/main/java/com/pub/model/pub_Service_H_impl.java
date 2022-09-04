@@ -73,8 +73,7 @@ public class pub_Service_H_impl implements pub_Service_H{
 			final int resultCount = dao.insert(pub);
 			Pub_pics pic= new Pub_pics();
 			pic.setPub(pub);
-//			GetBase64.StringToBlob(pub.getImg());
-			pic.setPub_pic(GetBase64.getBlob(pub.getImg()));
+			pic.setPub_pic(pub.getImg());
 			final int pic_resultCount = pic_dao.insert(pic);
 			if (resultCount < 1) {
 				pub.setMessage("註冊錯誤，請聯絡管理員!");
@@ -133,6 +132,10 @@ public class pub_Service_H_impl implements pub_Service_H{
 	@Override
 	public List<Pub> check(Integer i) {
 		return dao.selectAll().stream().filter(e->e.getPub_application()==i).collect(Collectors.toList());
+	}
+	@Override
+	public List<Pub> getMemALL(Integer mem_no) {
+		return dao.selectAll();
 	}
 
 }

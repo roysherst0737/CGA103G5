@@ -125,7 +125,7 @@ pageContext.setAttribute("list", list);
 								<div class="card-body">
 								<jsp:useBean id="prod_picSvc" scope="page" class="com.prod_pic.model.Prod_pic_Service" />
 								<jsp:useBean id="prod_typeSvc" scope="page" class="com.prod_type.model.Prod_type_Service" />
-									<h4 class="card-title">商品圖片管理</h4>
+									<h4 class="card-title">商品清單管理</h4>
 									<table id="dataTables" class="stripe table-hover" style="width: 100%">
 										<thead>
 											<tr>
@@ -142,31 +142,31 @@ pageContext.setAttribute("list", list);
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="prod" items="${list}">
+											<c:forEach var="prodVO" items="${list}">
 												<tr>
-													<td>${prod.prod_no}</td>
-													<td>${prod_typeVO.prod_type}</td>
-													<td>${prod.prod_name}</td>
+													<td>${prodVO.prod_no}</td>
+													<td>${prodVO.prod_typeVO.prod_type_name}</td>
+													<td>${prodVO.prod_name}</td>
 													<td><img
-														src="<%=request.getContextPath()%>/ShowProd_picForProd?prod_no=${prod_picVO.prod_no}"
+														src="<%=request.getContextPath()%>/ShowProd_picForProd?prod_no=${prodVO.prod_picVO.prod_pic}"
 														width=150px height=100px></td>
-													<td>${prod.prod_price}</td>
-													<td>${prod.prod_stock}</td>
+													<td>${prodVO.prod_price}</td>
+													<td>${prodVO.prod_stock}</td>
 													<td>
-														<c:if test="${prod.prod_status == 1}">
+														<c:if test="${prodVO.prod_status == 1}">
 															<div>已上架</div>
 														</c:if>
-														<c:if test="${prod.prod_status == 0}">
+														<c:if test="${prodVO.prod_status == 0}">
 															<div>已下架</div>
 														</c:if>
 													</td>
-													<td>${prod.launch_time}</td>
+													<td>${prodVO.launch_time}</td>
 													<td>
-														<c:if test="${empty prod.off_time}">
+														<c:if test="${empty prodVO.off_time}">
 															<div>暫無下架時間</div>
 														</c:if>
-														<c:if test="${not empty prod.off_time}">
-															<div>${prod.off_time}</div>
+														<c:if test="${not empty prodVO.off_time}">
+															<div>${prodVO.off_time}</div>
 														</c:if>
 													</td>
 													<td>

@@ -125,7 +125,7 @@ Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 								<jsp:useBean id="prod_typeSvc" scope="page" class="com.prod_type.model.Prod_type_Service" />
 									<h4 class="card-title">新增商品</h4>
 									<table id="dataTables" class="stripe table-hover" style="width: 100%">
-										<FORM METHOD="post" ACTION="prod.do" name="form1" enctype="multipart/form-data">
+										<FORM METHOD="post" ACTION="prod.do" name="form1">
 											<table>
 												<tr>
 													<td>商品種類編號:</td>
@@ -139,15 +139,6 @@ Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 													<td>商品名稱:</td>
 													<td><input type="TEXT" name="prod_name" size="45"
 														value="<%=(prodVO == null) ? "" : prodVO.getProd_name()%>" /></td>
-												</tr>
-												
-												<tr>
-													<td>商品照片編號:</td>
-													<td><select size="1" name="prod_pic_no">
-														<c:forEach var="prod_picVO" items="${prod_picSvc.all}">
-															<option value="${prod_picVO.prod_pic_no}">${prod_picVO.prod_pic_no}
-														</c:forEach>
-													</select></td>
 												</tr>
 												
 												<tr>

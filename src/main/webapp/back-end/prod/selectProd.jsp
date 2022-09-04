@@ -1,13 +1,7 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.prod.model.*"%>
-
-<%
-	Prod_Service prodSvc = new Prod_Service();
-	List<Prod_VO> list = prodSvc.getAll();
-	pageContext.setAttribute("list",list);
-%>
 
 <!DOCTYPE html>
 <html lang="zh">
@@ -17,7 +11,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>ÄgÄ¿ LonelyBar¡i«áºİ¡j</title>
+<title>æœ§é†´ LonelyBarã€å¾Œç«¯ã€‘</title>
 <!-- base:css -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/back-end/vendors/typicons.font/font/typicons.css">
@@ -43,20 +37,20 @@
 </head>
 
 <body>
-	<!-- ¥D­¶­± -->
+	<!-- ä¸»é é¢ -->
 	<div class="container-scroller">
-		<!-- ¤Ş¤Jnav(³»³¡§t¼s§i) -->
+		<!-- å¼•å…¥nav(é ‚éƒ¨å«å»£å‘Š) -->
 		<script src="<%=request.getContextPath()%>/back-end/js/nav.js"></script>
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_settings-panel.html -->
-			<!-- ¤Ş¤J¯B°Êµøµ¡ -->
+			<!-- å¼•å…¥æµ®å‹•è¦–çª— -->
 			<script
 				src="<%=request.getContextPath()%>/back-end/js/floating_window.js"></script>
 			<!-- partial -->
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar"></nav>
-			<!-- ¤Ş¤Jsidebar ¥ÎJQ¤è¦¡ -->
+			<!-- å¼•å…¥sidebar ç”¨JQæ–¹å¼ -->
 			<script>
 				$(function() {
 					$("#sidebar").load(
@@ -66,71 +60,115 @@
 				});
 			</script>
 			<!-- partial -->
+			<!-- partial -->
 			<div class="main-panel">
 				<div class="content-wrapper">
-					<!--§A­n¼gªº­¶­±  -->
-					<table id="dataTables" class="stripe" style="width: 100%" enctype="multipart/form-data">
-						<thead>
-							<tr>
-								<th>°Ó«~½s¸¹</th>
-								<th>°Ó«~ºØÃş</th>
-								<th>°Ó«~¦WºÙ</th>
-								<th>°Ó«~·Ó¤ù</th>
-								<th>°Ó«~³æ»ù</th>
-								<th>®w¦s¼Æ¶q</th>
-								<th>°Ó«~ª¬ºA</th>
-								<th>¤W¬[®É¶¡</th>
-								<th>¤U¬[®É¶¡</th>
-								<th>ºŞ ²z</th>	
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="prod" items="${list}">
-								<tr>
-									<td>${prod.prod_no}</td>
-									<td>${prod.prod_type_no}</td>
-									<td>${prod.prod_name}</td>
-									<td>${prod.prod_picVO.prod_pic}</td>
-									<td>${prod.prod_stock}</td>
-									<td>${prod.prod_price}</td>
-									<td>${prod.prod_status}</td>
-									<td>${prod.launch_time}</td>
-									<td>${prod.off_time}</td>
-									<td>			  
-									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/pages/prod/prod.do" style="margin-bottom: 0px;">
-			     						<input type="submit" value="ºŞ²z">
-			     						<input type="hidden" name="prod_no"  value="${prod.prod_no}">
-			     						<input type="hidden" name="action"	value="getOne_For_Update">
-			     					</FORM>
-			     					</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th>°Ó«~½s¸¹</th>
-								<th>°Ó«~ºØÃş</th>
-								<th>°Ó«~¦WºÙ</th>
-								<th>°Ó«~·Ó¤ù</th>
-								<th>°Ó«~³æ»ù</th>
-								<th>®w¦s¼Æ¶q</th>
-								<th>°Ó«~ª¬ºA</th>
-								<th>¤W¬[®É¶¡</th>
-								<th>¤U¬[®É¶¡</th>
-								<th>ºŞ ²z</th>
-							</tr>
-						</tfoot>
-					</table>
+					<div class="row">
+						<div class="col-sm-6">
+							<h3 class="mb-0 font-weight-bold">å•†å“ç®¡ç†å“¡</h3>
+							<p>ä¸Šæ¬¡ç™»å…¥ï¼š21å°æ™‚å‰Â</p>
+						</div>
+						<div class="col-sm-6">
+							<div class="d-flex align-items-center justify-content-md-end">
+								<div class="mb-3 mb-xl-0 pr-1">
+									<div class="dropdown">
+										<button style="margin-right:10px;">
+										<a href="listAllProd.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
+										</button>
+										<button style="margin-right:10px;">
+										<a href='add.jsp'><img src="./images/plus.png" width="30px" height="30px"></a>
+										</button>
+										<button style="margin-right:10px;">
+										<a href="select.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
+										</button>
+										<button
+											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
+											type="button" id="dropdownMenu3" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false">
+											<i class="typcn typcn-calendar-outline mr-2"></i>Last 7 days
+										</button>
+										<div class="dropdown-menu"
+											aria-labelledby="dropdownMenuSizeButton3"
+											data-x-placement="top-start">
+											<h6 class="dropdown-header">Last 14 days</h6>
+											<a class="dropdown-item" href="#">Last 21 days</a> <a
+												class="dropdown-item" href="#">Last 28 days</a>
+										</div>
+									</div>
+								</div>
+								<div class="pr-1 mb-3 mr-2 mb-xl-0">
+									<button type="button"
+										class="btn btn-sm bg-white btn-icon-text border">
+										<i class="typcn typcn-arrow-forward-outline mr-2"></i>Export
+									</button>
+								</div>
+								<div class="pr-1 mb-3 mb-xl-0">
+									<button type="button"
+										class="btn btn-sm bg-white btn-icon-text border">
+										<i class="typcn typcn-info-large-outline mr-2"></i>info
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row  mt-3">
+						<div class="col-lg-12 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">å•†å“æœå°‹</h4>
+									<div class="table-responsive">
+										<%-- éŒ¯èª¤è¡¨åˆ— --%>
+										<c:if test="${not empty errorMsgs}">
+											<font style="color: red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
+											<ul>
+												<c:forEach var="message" items="${errorMsgs}">
+													<li style="color: red">${message}</li>
+												</c:forEach>
+											</ul>
+										</c:if>
 
-					<script>
-						$(document).ready(function() {
-							$('#dataTables').DataTable();
-						});
-					</script>
+										<jsp:useBean id="prodSvc" scope="page" class="com.prod.model.Prod_Service" />
+										<jsp:useBean id="prod_typeSvc" scope="page" class="com.prod_type.model.Prod_type_Service" />
+
+											<FORM METHOD="post" ACTION="prod.do">
+												<b>é¸æ“‡å•†å“ç·¨è™Ÿ:</b> <select size="1" name="prod_no">
+													<c:forEach var="prod_picVO" items="${prodSvc.all}">
+														<option value="${prodVO.prod_no}">${prodVO.prod_no}
+													</c:forEach>
+												</select> <input type="hidden" name="action"
+													value="getOne_For_Display"> <input type="submit"
+													value="é€å‡º">
+											</FORM>
+
+											<FORM METHOD="post" ACTION="prod.do">
+												<b>é¸æ“‡å•†å“é¡åˆ¥:</b> <select size="1" name="prod_no">
+													<c:forEach var="prodVO" items="${prodSvc.all}">
+														<option value="${prod_typeVO.prod_type_no}">${prod_typeVO.prod_type_name}
+													</c:forEach>
+												</select> <input type="hidden" name="action"
+													value="getOne_For_Display"> <input type="submit"
+													value="é€å‡º">
+											</FORM>
+										
+
+											<FORM METHOD="post" ACTION="prod.do">
+												<b>é¸æ“‡å•†å“åç¨±:</b> <select size="1" name="prod_no">
+													<c:forEach var="prodVO" items="${prodSvc.all}">
+														<option value="${prodVO.prod_no}">${prodVO.prod_name}
+													</c:forEach>
+												</select> <input type="hidden" name="action"
+													value="getOne_For_Display"> <input type="submit"
+													value="é€å‡º">
+											</FORM>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
-				<!-- ¤Ş¤Jfooter ¥ÎJQ¤è¦¡ -->
+				<!-- å¼•å…¥footer ç”¨JQæ–¹å¼ -->
 				<footer class="footer"></footer>
 				<script>
 					$(function() {

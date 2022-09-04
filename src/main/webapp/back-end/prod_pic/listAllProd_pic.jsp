@@ -133,8 +133,7 @@
 												</tr>
 											</thead>
 											<%@ include file="page1.file"%>
-											<c:forEach var="prod_picVO" items="${list}"
-												begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+											<c:forEach var="prod_picVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 											<br>
 												<tr>
 													<td>${prod_picVO.prod_pic_no}</td>

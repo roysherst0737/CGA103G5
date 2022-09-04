@@ -130,13 +130,16 @@
           <li class="nav-item"><a id="prod_list" class="nav-link" href=""> 商品清單管理 </a></li>
           <li class="nav-item"><a id="prod_type" class="nav-link" href=""> 商品類別管理 </a></li>
           <li class="nav-item"><a id="prod_pic" class="nav-link" href=""> 商品圖片管理 </a></li>
+          <li class="nav-item"><a id="order_list" class="nav-link" href=""> 商品訂單明細 </a></li>
           <script>
             document.querySelector("#prod_list").setAttribute("href",
-              getContextPath() + "/back-end/prod/listAllProd.jsp");
+            	getContextPath() + "/back-end/prod/listAllProd.jsp");
             document.querySelector("#prod_type").setAttribute("href",
-              getContextPath() + "/back-end/prod_type/listAllProd_type.jsp");
+            	getContextPath() + "/back-end/prod_type/listAllProd_type.jsp");
             document.querySelector("#prod_pic").setAttribute("href",
-              getContextPath() + "/back-end/prod_pic/listAllProd_pic.jsp");        
+            	getContextPath() + "/back-end/prod_pic/listAllProd_pic.jsp");
+            document.querySelector("#order_list").setAttribute("href",
+            	getContextPath() + "/back-end/order/listAllOrder.jsp");   
           </script>
         </ul>
       </div>

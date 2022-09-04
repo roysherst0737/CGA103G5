@@ -1,6 +1,9 @@
 package com.prod_type.model;
 
 import java.util.List;
+import java.util.Set;
+
+import com.prod.model.Prod_VO;
 
 public class Prod_type_Service {
 	
@@ -28,7 +31,7 @@ public class Prod_type_Service {
 		prod_typeVO.setProd_type_name(prod_type_name);
 		dao.update(prod_typeVO);
 		
-		return prod_typeVO;
+		return dao.findByPrimaryKey(prod_type_no);
 	}
 	
 	public void deleteProd_type(Integer prod_type_no) {
@@ -41,5 +44,9 @@ public class Prod_type_Service {
 	
 	public List<Prod_type_VO> getAll() {
 		return dao.getAll();
-	}	
+	}
+	
+	public Set<Prod_VO>getProdsByProd_type_no(Integer prod_type_no) {
+		return dao.getProdsByProd_type_no(prod_type_no);
+	}
 }

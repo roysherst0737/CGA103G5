@@ -166,8 +166,8 @@ Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
 				<footer class="footer"></footer>
 				<script>
 					$(function() {
-						$(".footer").load(
-								"../partials/_footer.html");
+						$(".footer").load(window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2))
+							+ "/back-end/partials/_footer.html");
 					});
 				</script>
 				<!-- partial -->

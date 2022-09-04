@@ -148,8 +148,4 @@
     <servlet-name>ManagerServlet</servlet-name>
     <url-pattern>/back-end/manager/manager.do</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ManagerImage</servlet-name>
-    <url-pattern>/back-end/ManagerImage.do</url-pattern>
-  </servlet-mapping>
 </web-app>

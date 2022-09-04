@@ -18,6 +18,7 @@
   <property name="hibernate.format_sql">true</property>
 
   <mapping class="com.pub.model.Pub" />
+  <mapping class="com.pub.model.Pub_pics" />
 <!--   <mapping class="web.order.entity.Customer" /> -->
 <!--   <mapping class="web.order.entity.Order" /> -->
 

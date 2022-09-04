@@ -6,7 +6,7 @@ import com.pub.service.CoreService;
 
 public interface pub_Service_H extends CoreService{
 
-	Pub insert(Pub pub) ;
+	Pub register(Pub pub) ;
 	Pub update(Pub pub) ;
 	Pub updateRate(Pub pub) ;
 	Pub updateOpen(Pub pub) ;

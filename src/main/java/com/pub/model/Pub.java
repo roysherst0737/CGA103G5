@@ -1,12 +1,15 @@
 package com.pub.model;
 
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import com.pub.service.Core;
 @Entity
@@ -16,6 +19,7 @@ public class Pub extends Core{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer pub_no;
 	private Integer mem_no;
+	@Column(insertable = false)
 	private Boolean pub_status;
 	private Integer pub_nop;
 	@Column(insertable = false)
@@ -24,26 +28,23 @@ public class Pub extends Core{
 	private Integer pub_ratetotal;
 	@Column(insertable = false)
 	private Date pub_time;
+	@Column(insertable = false)
 	private Integer pub_application;
 	private String pub_address;
-	@Column(insertable = false)
 	private String pub_open;
 	private String pub_detail;
 	private String pub_name;
-	@Column(insertable = false)
 	private Double pub_lng;
-	@Column(insertable = false)
 	private Double pub_lat;
-	@Column(insertable = false)
 	private String firm_name;
-	@Column(insertable = false)
 	private String firm_addr;
-	@Column(insertable = false)
 	private String firm_tel_no;
-	@Column(insertable = false)
 	private String firm_email;
-	@Column(insertable = false)
 	private String firm_tax_id;
+	@Transient
+	private String img;
+	@OneToMany
+	private List<Pub_pics> pub_pics;
 	public Integer getPub_no() {
 		return pub_no;
 	}
@@ -158,5 +159,17 @@ public class Pub extends Core{
 	public void setFirm_tax_id(String firm_tax_id) {
 		this.firm_tax_id = firm_tax_id;
 	}
-
+	public List<Pub_pics> getPub_pics() {
+		return pub_pics;
+	}
+	public void setPub_pics(List<Pub_pics> pub_pics) {
+		this.pub_pics = pub_pics;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	
 }

@@ -19,5 +19,5 @@ public class Manager_authfunc_VO implements Serializable {
 	public void setMng_authfunc_name(String mng_authfunc_name) {
 		this.mng_authfunc_name = mng_authfunc_name;
 	}
-	
+
 }

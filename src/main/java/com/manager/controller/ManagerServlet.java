@@ -1,23 +1,16 @@
 package com.manager.controller;
 
-
 import java.io.*;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.*;
 
-import javax.naming.Context;
-import javax.naming.NamingException;
 import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
-import javax.sql.DataSource;
 
 import com.manager.model.*;
 @MultipartConfig
 public class ManagerServlet extends HttpServlet {
-
-
+	private static final long serialVersionUID = 1L;
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		doPost(req, res);

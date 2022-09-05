@@ -45,12 +45,12 @@
 		<url-pattern>/front-end/MemLogoutServlet</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>MemRegisterServlest</servlet-name>
-		<servlet-class>com.mem.controller.MemRegisterServlest</servlet-class>
+		<servlet-name>MemRegisterServlet</servlet-name>
+		<servlet-class>com.mem.controller.MemRegisterServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>MemRegisterServlest</servlet-name>
-		<url-pattern>/front-end/MemRegisterServlest</url-pattern>
+		<servlet-name>MemRegisterServlet</servlet-name>
+		<url-pattern>/front-end/MemRegisterServlet</url-pattern>
 	</servlet-mapping>
 
 	<servlet>

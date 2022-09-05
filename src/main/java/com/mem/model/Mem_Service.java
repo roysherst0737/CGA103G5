@@ -14,8 +14,7 @@ public class Mem_Service {
 
 	public Mem_VO addMem(String mem_account,String mem_password,Integer mem_gender,String mem_last_name,
 			String mem_first_name,String mem_nickname,String mem_tel_no,String mem_cel_no,String mem_email,
-			String mem_id,Date mem_birth,String mem_addr,Integer mem_permission,Integer status,
-			Timestamp mem_build_time,Integer mem_cert_status) {
+			String mem_id,Date mem_birth,String mem_addr,Integer mem_permission) {
 
 		Mem_VO memVO = new Mem_VO();
 
@@ -32,9 +31,7 @@ public class Mem_Service {
 		memVO.setMem_birth(mem_birth);
 		memVO.setMem_addr(mem_addr);
 		memVO.setMem_permission(mem_permission);
-		memVO.setStatus(status);
-		memVO.setMem_build_time(mem_build_time);
-		memVO.setMem_cert_status(mem_cert_status);
+
 		dao.insert(memVO);
 
 		return memVO;

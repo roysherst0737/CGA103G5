@@ -18,8 +18,8 @@ public class Mem_JDBCDAO implements Mem_DAO_interface {
 	private static final String INSERT_STMT = 
 			"INSERT INTO mem (mem_account, mem_password, mem_gender, mem_last_name, "
 			+ "mem_first_name, mem_nickname, mem_tel_no, mem_cel_no, mem_email, mem_id, mem_birth,"
-			+ " mem_addr, mem_permission, status, mem_build_time, mem_cert_status)"
-			+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			+ " mem_addr, mem_permission)"
+			+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		private static final String GET_ALL_STMT = 
 			"SELECT mem_no, mem_account, mem_password, mem_gender, mem_last_name, mem_first_name,"
 			+ " mem_nickname, mem_tel_no, mem_cel_no, mem_email, mem_id, mem_birth, mem_addr,"
@@ -65,13 +65,6 @@ public class Mem_JDBCDAO implements Mem_DAO_interface {
 			pstmt.setDate(11, memVO.getMem_birth());
 			pstmt.setString(12, memVO.getMem_addr());
 			pstmt.setInt(13, memVO.getMem_permission());
-			pstmt.setInt(14, memVO.getStatus());
-			pstmt.setTimestamp(15, memVO.getMem_build_time());
-			pstmt.setInt(16, memVO.getMem_cert_status());
-
-
-
-
 
 			pstmt.executeUpdate();
 

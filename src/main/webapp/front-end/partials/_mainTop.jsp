@@ -27,7 +27,7 @@
 
 						<c:when test="${empty sessionScope.user}"> 
 							<button type="button" class="btn btn-warning">
-								<a href="my-account.jsp" style="color: black">註冊</a>
+								<a href="register.jsp" style="color: black">註冊</a>
 							</button>
 							<button type="button" class="btn btn-outline-light me-2">
 								<a href="login.jsp" style="color: white">登入</a>

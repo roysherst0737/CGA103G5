@@ -10,15 +10,13 @@ public class Act_sign_up_Service {
 		dao = new Act_sign_up_DAO();
 	}
 
-	public Act_sign_up_VO addAct_sign_up(Integer act_no, Integer mem_no, Integer accompany_count,
-			Integer sign_up_status) {
+	public Act_sign_up_VO addAct_sign_up(Integer act_no, Integer mem_no, Integer accompany_count) {
 
 		Act_sign_up_VO act_sign_up_VO = new Act_sign_up_VO();
 
 		act_sign_up_VO.setAct_no(act_no);
 		act_sign_up_VO.setMem_no(mem_no);
 		act_sign_up_VO.setAccompany_count(accompany_count);
-		act_sign_up_VO.setSign_up_status(sign_up_status);
 
 		dao.insert(act_sign_up_VO);
 

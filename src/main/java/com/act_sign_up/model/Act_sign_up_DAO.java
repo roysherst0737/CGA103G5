@@ -18,13 +18,13 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/lonelybar");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private static final String INSERT_STMT = "INSERT INTO act_sign_up (act_no, mem_no, accompany_count, sign_up_status) VALUES (?, ?, ?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO act_sign_up (act_no, mem_no, accompany_count) VALUES (?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT sign_up_no, act_no, mem_no, sign_up_time, accompany_count, sign_up_status FROM act_sign_up order by sign_up_no";
 	private static final String GET_ONE_STMT = "SELECT sign_up_no, act_no, mem_no, sign_up_time, accompany_count, sign_up_status FROM act_sign_up where sign_up_no = ?";
 	private static final String DELETE = "DELETE FROM act_sign_up where sign_up_no = ?";
@@ -43,7 +43,6 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 			pstmt.setInt(1, act_sign_up_VO.getAct_no());
 			pstmt.setInt(2, act_sign_up_VO.getMem_no());
 			pstmt.setInt(3, act_sign_up_VO.getAccompany_count());
-			pstmt.setInt(4, act_sign_up_VO.getSign_up_status());
 
 			pstmt.executeUpdate();
 

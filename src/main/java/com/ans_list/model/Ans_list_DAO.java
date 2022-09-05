@@ -18,7 +18,7 @@ public class Ans_list_DAO implements Ans_list_DAO_interface {
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/lonelybar");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}

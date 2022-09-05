@@ -14,7 +14,7 @@ public class Act_pic_JNDIDAO implements Act_pic_DAO_interface {
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/lonelybar");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -37,7 +37,7 @@ public class Act_pic_JNDIDAO implements Act_pic_DAO_interface {
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, act_pic_VO.getAct_no());
-			pstmt.setBlob(2, act_pic_VO.getAct_pic());
+			pstmt.setBytes(2, act_pic_VO.getAct_pic());
 			pstmt.setString(3, act_pic_VO.getAct_pic_name());
 
 			pstmt.executeUpdate();
@@ -76,7 +76,7 @@ public class Act_pic_JNDIDAO implements Act_pic_DAO_interface {
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setInt(1, act_pic_VO.getAct_no());
-			pstmt.setBlob(2, act_pic_VO.getAct_pic());
+			pstmt.setBytes(2, act_pic_VO.getAct_pic());
 			pstmt.setString(3, act_pic_VO.getAct_pic_name());
 
 			pstmt.executeUpdate();
@@ -162,7 +162,7 @@ public class Act_pic_JNDIDAO implements Act_pic_DAO_interface {
 				act_pic_VO = new Act_pic_VO();
 				act_pic_VO.setAct_pic_no(rs.getInt("act_pic_no"));
 				act_pic_VO.setAct_no(rs.getInt("act_no"));
-				act_pic_VO.setAct_pic(rs.getBlob("act_pic"));
+				act_pic_VO.setAct_pic(rs.getBytes("act_pic"));
 				act_pic_VO.setAct_pic_name(rs.getString("act_pic_name"));
 
 			}
@@ -217,7 +217,7 @@ public class Act_pic_JNDIDAO implements Act_pic_DAO_interface {
 				act_pic_VO = new Act_pic_VO();
 				act_pic_VO.setAct_pic_no(rs.getInt("act_pic_no"));
 				act_pic_VO.setAct_no(rs.getInt("act_no"));
-				act_pic_VO.setAct_pic(rs.getBlob("act_pic"));
+				act_pic_VO.setAct_pic(rs.getBytes("act_pic"));
 				act_pic_VO.setAct_pic_name(rs.getString("act_pic_name"));
 				list.add(act_pic_VO); // Store the row in the list
 			}

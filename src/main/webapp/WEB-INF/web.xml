@@ -54,15 +54,6 @@
 	</servlet-mapping>
 
 	<servlet>
-		<servlet-name>Act_pic_Servlet</servlet-name>
-		<servlet-class>com.act_pic.controller.act_pic_Servlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Act_pic_Servlet</servlet-name>
-		<url-pattern>/back-end/act_pic/act_pic.do</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
 		<servlet-name>Cart_Servlet</servlet-name>
 		<servlet-class>com.cart.controller.Cart_Servlet</servlet-class>
 	</servlet>

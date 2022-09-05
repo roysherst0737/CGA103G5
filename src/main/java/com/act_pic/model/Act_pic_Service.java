@@ -1,6 +1,5 @@
 package com.act_pic.model;
 
-import java.sql.Blob;
 import java.util.List;
 
 public class Act_pic_Service {
@@ -11,7 +10,7 @@ public class Act_pic_Service {
 		dao = new Act_pic_DAO();
 	}
 
-	public Act_pic_VO addAct_pic(Integer act_no, Blob act_pic, String act_pic_name) {
+	public Act_pic_VO addAct_pic(Integer act_no, byte[] act_pic, String act_pic_name) {
 
 		Act_pic_VO act_pic_VO = new Act_pic_VO();
 
@@ -24,7 +23,7 @@ public class Act_pic_Service {
 		return act_pic_VO;
 	}
 
-	public Act_pic_VO updateAct_pic(Integer act_no, Blob act_pic, String act_pic_name, Integer act_pic_no) {
+	public Act_pic_VO updateAct_pic(Integer act_no, byte[] act_pic, String act_pic_name, Integer act_pic_no) {
 
 		Act_pic_VO act_pic_VO = new Act_pic_VO();
 

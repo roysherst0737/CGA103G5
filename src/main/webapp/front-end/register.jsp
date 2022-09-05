@@ -10,15 +10,15 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>CelestialUI Admin</title>
 <!-- base:css -->
-<link rel="stylesheet" href="vendors/typicons.font/font/typicons.css">
-<link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="../back-end/vendors/typicons.font/font/typicons.css">
+<link rel="stylesheet" href="../back-end/vendors/css/vendor.bundle.base.css">
 <!-- endinject -->
 <!-- plugin css for this page -->
 <!-- End plugin css for this page -->
 <!-- inject:css -->
-<link rel="stylesheet" href="css/vertical-layout-light/style.css">
+<link rel="stylesheet" href="../back-end/css/vertical-layout-light/style.css">
 <!-- endinject -->
-<link rel="shortcut icon" href="images/favicon.png" />
+<link rel="shortcut icon" href="../back-end/images/favicon.png" />
 </head>
 
 <body>
@@ -29,7 +29,7 @@
 					<div class="col-lg-4 mx-auto">
 						<div class="auth-form-light text-left py-5 px-4 px-sm-5">
 							<div class="brand-logo">
-								<img src="images/logo.svg" alt="logo">
+								<img src="../back-end/images/logo.svg" alt="logo">
 							</div>
 							<h4>New here?</h4>
 							<h6 class="font-weight-light">Signing up is easy. It only
@@ -47,7 +47,7 @@
 								</div>
 								<div class="form-group">
 									<select class="form-control form-control-lg"
-										id="exampleFormControlSelect2" name="mem_gender">
+										id="exampleFormControlSelect1" name="mem_gender">
 										<option>性別</option>
 										<option>男</option>
 										<option>女</option>
@@ -56,45 +56,45 @@
 								</div>
 								<div class="form-group">
 									<input type="text" class="form-control form-control-lg"
-										id="exampleInputUsername1" placeholder="last_name"
+										id="exampleInputlast_name1" placeholder="last_name"
 										name="mem_last_name">
 								</div>
 								<div class="form-group">
 									<input type="text" class="form-control form-control-lg"
-										id="exampleInputUsername1" placeholder="first_name"
+										id="exampleInputfirst_name1" placeholder="first_name"
 										name="mem_first_name">
 								</div>
 								<div class="form-group">
 									<input type="text" class="form-control form-control-lg"
-										id="exampleInputUsername1" placeholder="nickname"
+										id="exampleInputnickname1" placeholder="nickname"
 										name="mem_nickname">
 								</div>
 								<div class="form-group">
 									<input type="tel" class="form-control form-control-lg"
-										id="exampleInputUsername1" placeholder="tel_no"
+										id="exampleInputtel_no1" placeholder="tel_no"
 										name="mem_tel_no">
 								</div>
 								<div class="form-group">
 									<input type="tel" class="form-control form-control-lg"
-										id="exampleInputUsername1" placeholder="cel_no"
+										id="exampleInputcel_no1" placeholder="cel_no"
 										name="mem_cel_no">
 								</div>
 								<div class="form-group">
 									<input type="email" class="form-control form-control-lg"
-										id="exampleInputEmail1" placeholder="email" name="mem_email">
+										id="exampleInputemail1" placeholder="email" name="mem_email">
 								</div>
 								<div class="form-group">
 									<input type="text" class="form-control form-control-lg"
-										id="exampleInputUsername1" placeholder="id" name="mem_id">
+										id="exampleInputid1" placeholder="id" name="mem_id">
 								</div>
 								<div class="form-group">
 									<input type="date" class="form-control form-control-lg"
-										id="exampleInputUsername1" placeholder="birth"
+										id="exampleInputbirth1" placeholder="birth"
 										name="mem_birth">
 								</div>
 								<div class="form-group">
 									<input type="text" class="form-control form-control-lg"
-										id="exampleInputUsername1" placeholder="addr" name="mem_addr">
+										id="exampleInputaddr1" placeholder="addr" name="mem_addr">
 								</div>
 
 
@@ -142,14 +142,14 @@
 	</div>
 	<!-- container-scroller -->
 	<!-- base:js -->
-	<script src="vendors/js/vendor.bundle.base.js"></script>
+	<script src="../back-end/vendors/js/vendor.bundle.base.js"></script>
 	<!-- endinject -->
 	<!-- inject:js -->
-	<script src="js/off-canvas.js"></script>
-	<script src="js/hoverable-collapse.js"></script>
-	<script src="js/template.js"></script>
-	<script src="js/settings.js"></script>
-	<script src="js/todolist.js"></script>
+	<script src="../back-end/js/off-canvas.js"></script>
+	<script src="../back-end/js/hoverable-collapse.js"></script>
+	<script src="../back-end/js/template.js"></script>
+	<script src="../back-end/js/settings.js"></script>
+	<script src="../back-end/js/todolist.js"></script>
 	<!-- endinject -->
 </body>
 

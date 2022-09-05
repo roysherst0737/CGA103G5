@@ -14,7 +14,7 @@
 	const firm_email = document.querySelector('#firm_email');
 	const firm_tax_id = document.querySelector('#firm_tax_id');
 	const file_check = false;
-	
+
 	btn.addEventListener('click', async () => {
 		if (pub_name.value.length < 1) {
 			errormsg(pub_name, '酒吧名稱不得為空')
@@ -86,7 +86,7 @@
 			firm_tax_id: firm_tax_id.value,
 		});
 
-			console.log(json);
+		console.log(json);
 		fetch('PubRegister', {
 			method: 'POST',
 			headers: {
@@ -110,7 +110,7 @@
 
 })();
 
-pub_img.addEventListener('change', function(e) {
+pub_img.addEventListener('change', function (e) {
 	var file_id = e.target.id;
 	file_check = check_multifile_logo($("#" + file_id).prop("files")[0]['name']);
 	//    多檔案使用

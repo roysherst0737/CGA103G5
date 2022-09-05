@@ -79,6 +79,12 @@ public List<Pub> selectAll() {
 	return null;
 }
 
+@Override
+public List<Pub> getMemAll(Integer mem_no) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
 //	@Override
 //	public void updateRate(Integer pub_no, Integer pub_rate_sum, Integer pub_ratetotal) {
 //		try (Connection con = ds.getConnection(); PreparedStatement pstmt = con.prepareStatement(UPDATE_RATE);) {

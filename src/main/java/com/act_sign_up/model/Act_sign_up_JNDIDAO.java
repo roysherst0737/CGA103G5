@@ -24,7 +24,7 @@ public class Act_sign_up_JNDIDAO implements Act_sign_up_DAO_interface {
 		}
 	}
 
-	private static final String INSERT_STMT = "INSERT INTO act (act_no, mem_no, accompany_count, sign_up_status) VALUES (?, ?, ?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO act (act_no, mem_no, accompany_count) VALUES (?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT sign_up_no, act_no, mem_no, sign_up_time, accompany_count, sign_up_status FROM act_sign_up order by sign_up_no";
 	private static final String GET_ONE_STMT = "SELECT sign_up_no, act_no, mem_no, sign_up_time, accompany_count, sign_up_status FROM act_sign_up where sign_up_no = ?";
 	private static final String DELETE = "DELETE FROM act where sign_up_no = ?";
@@ -43,7 +43,6 @@ public class Act_sign_up_JNDIDAO implements Act_sign_up_DAO_interface {
 			pstmt.setInt(1, act_sign_up_VO.getAct_no());
 			pstmt.setInt(2, act_sign_up_VO.getMem_no());
 			pstmt.setInt(3, act_sign_up_VO.getAccompany_count());
-			pstmt.setInt(4, act_sign_up_VO.getSign_up_status());
 
 			pstmt.executeUpdate();
 
@@ -165,7 +164,7 @@ public class Act_sign_up_JNDIDAO implements Act_sign_up_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVo ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				act_sign_up_VO = new Act_sign_up_VO();
 				act_sign_up_VO.setSign_up_no(rs.getInt("sign_up_no"));
 				act_sign_up_VO.setAct_no(rs.getInt("act_no"));
@@ -222,7 +221,7 @@ public class Act_sign_up_JNDIDAO implements Act_sign_up_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				act_sign_up_VO = new Act_sign_up_VO();
 				act_sign_up_VO.setSign_up_no(rs.getInt("sign_up_no"));
 				act_sign_up_VO.setAct_no(rs.getInt("act_no"));

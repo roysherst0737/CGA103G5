@@ -27,7 +27,16 @@
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/custom.css">
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+	<style>
+		.btn {
+    		width: auto;
+    		height: auto;
+			}
+	
+	</style>
+	
 </head>
 
 <body>

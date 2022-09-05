@@ -145,10 +145,10 @@ pageContext.setAttribute("list", list);
 											<c:forEach var="prodVO" items="${list}">
 												<tr>
 													<td>${prodVO.prod_no}</td>
-													<td>${prodVO.prod_typeVO.prod_type_name}</td>
+													<td>${prodVO.getProd_type_VO().prod_type_name}</td>
 													<td>${prodVO.prod_name}</td>
 													<td><img
-														src="<%=request.getContextPath()%>/ShowProd_picForProd?prod_no=${prodVO.prod_picVO.prod_pic}"
+														src="<%=request.getContextPath()%>/ShowProd_picForProd?prod_no=${prodVO.getProd_pic_VO().prod_pic}"
 														width=150px height=100px></td>
 													<td>${prodVO.prod_price}</td>
 													<td>${prodVO.prod_stock}</td>

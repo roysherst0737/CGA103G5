@@ -267,7 +267,7 @@ public class Firm_survey_JDBCDAO implements Firm_survey_DAO_interface {
 
 		Firm_survey_JDBCDAO dao = new Firm_survey_JDBCDAO();
 
-		// 新增
+//		 新增
 		Firm_survey_VO firm_survey_VO01 = new Firm_survey_VO();
 		firm_survey_VO01.setAct_no(1);
 
@@ -276,7 +276,7 @@ public class Firm_survey_JDBCDAO implements Firm_survey_DAO_interface {
 		// 修改
 		Firm_survey_VO firm_survey_VO02 = new Firm_survey_VO();
 		firm_survey_VO02.setAct_no(1);
-		firm_survey_VO02.setFirm_survey_no(1);
+		firm_survey_VO02.setFirm_survey_no(3);
 
 		dao.update(firm_survey_VO02);
 

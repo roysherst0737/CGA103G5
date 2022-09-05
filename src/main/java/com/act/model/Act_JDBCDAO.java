@@ -14,11 +14,11 @@ public class Act_JDBCDAO implements Act_DAO_interface {
 	String userid = "cga10305";
 	String passwd = "123qweqwe";
 
-	private static final String INSERT_STMT = "INSERT INTO act (pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status, apply_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO act (pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT act_no, pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status, apply_time, apply_status FROM act order by act_no";
 	private static final String GET_ONE_STMT = "SELECT act_no, pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status, apply_time, apply_status FROM act where act_no = ?";
 	private static final String DELETE = "DELETE FROM act where act_no = ?";
-	private static final String UPDATE = "UPDATE act set pub_no = ?, act_name = ?, act_detail = ?, act_loc = ?, act_launch_time = ?, act_off_time = ? current_count = ? max_count = ? min_count = ? sign_up_begin_time = ? sign_up_end_time = ? act_start_time = ? act_end_time = ? act_status = ? apply_status = ? where act_no = ?";
+	private static final String UPDATE = "UPDATE act set pub_no = ?, act_name = ?, act_detail = ?, act_loc = ?, act_launch_time = ?, act_off_time = ?, current_count = ?, max_count = ?, min_count = ?, sign_up_begin_time = ?, sign_up_end_time = ?, act_start_time = ?, act_end_time = ?, act_status = ?, apply_status = ? where act_no = ?";
 
 	@Override
 	public void insert(Act_VO act_VO) {
@@ -44,8 +44,7 @@ public class Act_JDBCDAO implements Act_DAO_interface {
 			pstmt.setTimestamp(11, act_VO.getSign_up_end_time());
 			pstmt.setTimestamp(12, act_VO.getAct_start_time());
 			pstmt.setTimestamp(13, act_VO.getAct_end_time());
-			pstmt.setInt(14, act_VO.getAct_status());
-			pstmt.setInt(15, act_VO.getApply_status());
+
 
 			pstmt.executeUpdate();
 
@@ -343,7 +342,7 @@ public class Act_JDBCDAO implements Act_DAO_interface {
 
 		// 修改
 		Act_VO act_VO02 = new Act_VO();
-		act_VO02.setPub_no(1);
+		act_VO02.setPub_no(3);
 		act_VO02.setAct_name("我想死");
 		act_VO02.setAct_detail("揪團自殺");
 		act_VO02.setAct_loc("懸崖邊");
@@ -356,9 +355,9 @@ public class Act_JDBCDAO implements Act_DAO_interface {
 		act_VO02.setSign_up_end_time(java.sql.Timestamp.valueOf("2022-10-10 10:10:10"));
 		act_VO02.setAct_start_time(java.sql.Timestamp.valueOf("2022-10-10 10:10:10"));
 		act_VO02.setAct_end_time(java.sql.Timestamp.valueOf("2022-10-10 10:10:10"));
-		act_VO02.setAct_status(0);
-		act_VO02.setApply_status(0);
-		act_VO02.setAct_no(1);
+		act_VO02.setAct_status(1);
+		act_VO02.setApply_status(1);
+		act_VO02.setAct_no(4);
 
 		dao.update(act_VO02);
 

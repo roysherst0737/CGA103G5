@@ -15,7 +15,7 @@ public class Act_sign_up_JDBCDAO implements Act_sign_up_DAO_interface {
 	String userid = "cga10305";
 	String passwd = "123qweqwe";
 
-	private static final String INSERT_STMT = "INSERT INTO act_sign_up (act_no, mem_no, accompany_count, sign_up_status) VALUES (?, ?, ?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO act_sign_up (act_no, mem_no, accompany_count) VALUES (?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT sign_up_no, act_no, mem_no, sign_up_time, accompany_count, sign_up_status FROM act_sign_up order by sign_up_no";
 	private static final String GET_ONE_STMT = "SELECT sign_up_no, act_no, mem_no, sign_up_time, accompany_count, sign_up_status FROM act_sign_up where sign_up_no = ?";
 	private static final String DELETE = "DELETE FROM act_sign_up where sign_up_no = ?";
@@ -35,7 +35,6 @@ public class Act_sign_up_JDBCDAO implements Act_sign_up_DAO_interface {
 			pstmt.setInt(1, act_sign_up_VO.getAct_no());
 			pstmt.setInt(2, act_sign_up_VO.getMem_no());
 			pstmt.setInt(3, act_sign_up_VO.getAccompany_count());
-			pstmt.setInt(4, act_sign_up_VO.getSign_up_status());
 
 			pstmt.executeUpdate();
 
@@ -278,50 +277,49 @@ public class Act_sign_up_JDBCDAO implements Act_sign_up_DAO_interface {
 
 		Act_sign_up_JDBCDAO dao = new Act_sign_up_JDBCDAO();
 
-		// 新增
-		Act_sign_up_VO act_sign_up_VO01 = new Act_sign_up_VO();
-		act_sign_up_VO01.setAct_no(1);
-		act_sign_up_VO01.setMem_no(1);
-		act_sign_up_VO01.setAccompany_count(0);
-		act_sign_up_VO01.setSign_up_status(0);
-
-		dao.insert(act_sign_up_VO01);
+//		// 新增
+//		Act_sign_up_VO act_sign_up_VO01 = new Act_sign_up_VO();
+//		act_sign_up_VO01.setAct_no(1);
+//		act_sign_up_VO01.setMem_no(1);
+//		act_sign_up_VO01.setAccompany_count(0);
+//
+//		dao.insert(act_sign_up_VO01);
 
 		// 修改
 		Act_sign_up_VO act_sign_up_VO02 = new Act_sign_up_VO();
-		act_sign_up_VO01.setAct_no(1);
-		act_sign_up_VO01.setMem_no(1);
-		act_sign_up_VO01.setAccompany_count(0);
-		act_sign_up_VO01.setSign_up_status(0);
-		act_sign_up_VO02.setSign_up_no(1);
+		act_sign_up_VO02.setAct_no(1);
+		act_sign_up_VO02.setMem_no(1);
+		act_sign_up_VO02.setAccompany_count(0);
+		act_sign_up_VO02.setSign_up_status(1);
+		act_sign_up_VO02.setSign_up_no(5);
 
 		dao.update(act_sign_up_VO02);
 
-		// 刪除
-		dao.delete(1);
-
-		// 查詢
-
-		Act_sign_up_VO act_sign_up_VO03 = dao.findByPrimaryKey(1);
-		System.out.print(act_sign_up_VO03.getSign_up_no() + ",");
-		System.out.print(act_sign_up_VO03.getAct_no() + ",");
-		System.out.print(act_sign_up_VO03.getMem_no() + ",");
-		System.out.print(act_sign_up_VO03.getSign_up_time() + ",");
-		System.out.print(act_sign_up_VO03.getAccompany_count() + ",");
-		System.out.print(act_sign_up_VO03.getSign_up_status());
-		System.out.println("---------------------");
-
-		// 查詢
-		List<Act_sign_up_VO> list = dao.getAll();
-		for (Act_sign_up_VO aAct_sign_up : list) {
-			System.out.print(aAct_sign_up.getSign_up_no() + ",");
-			System.out.print(aAct_sign_up.getAct_no() + ",");
-			System.out.print(aAct_sign_up.getMem_no() + ",");
-			System.out.print(aAct_sign_up.getSign_up_time() + ",");
-			System.out.print(aAct_sign_up.getAccompany_count() + ",");
-			System.out.print(aAct_sign_up.getSign_up_status());
-			System.out.println();
-		}
+//		// 刪除
+//		dao.delete(1);
+//
+//		// 查詢
+//
+//		Act_sign_up_VO act_sign_up_VO03 = dao.findByPrimaryKey(1);
+//		System.out.print(act_sign_up_VO03.getSign_up_no() + ",");
+//		System.out.print(act_sign_up_VO03.getAct_no() + ",");
+//		System.out.print(act_sign_up_VO03.getMem_no() + ",");
+//		System.out.print(act_sign_up_VO03.getSign_up_time() + ",");
+//		System.out.print(act_sign_up_VO03.getAccompany_count() + ",");
+//		System.out.print(act_sign_up_VO03.getSign_up_status());
+//		System.out.println("---------------------");
+//
+//		// 查詢
+//		List<Act_sign_up_VO> list = dao.getAll();
+//		for (Act_sign_up_VO aAct_sign_up : list) {
+//			System.out.print(aAct_sign_up.getSign_up_no() + ",");
+//			System.out.print(aAct_sign_up.getAct_no() + ",");
+//			System.out.print(aAct_sign_up.getMem_no() + ",");
+//			System.out.print(aAct_sign_up.getSign_up_time() + ",");
+//			System.out.print(aAct_sign_up.getAccompany_count() + ",");
+//			System.out.print(aAct_sign_up.getSign_up_status());
+//			System.out.println();
+//		}
 	}
 
 }

@@ -1,12 +1,10 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.prod.model.*"%>
 
 <%
-	Prod_Service_H prodSvc = new Prod_Service_H();
-	List<Prod> list = prodSvc.getAll();
-	pageContext.setAttribute("list",list);
+Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 %>
 
 <!DOCTYPE html>
@@ -17,7 +15,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>�gĿ LonelyBar�i��ݡj</title>
+<title>朧醴 LonelyBar【後端】</title>
 <!-- base:css -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/back-end/vendors/typicons.font/font/typicons.css">
@@ -43,20 +41,20 @@
 </head>
 
 <body>
-	<!-- �D���� -->
+	<!-- 主頁面 -->
 	<div class="container-scroller">
-		<!-- �ޤJnav(�����t�s�i) -->
+		<!-- 引入nav(頂部含廣告) -->
 		<script src="<%=request.getContextPath()%>/back-end/js/nav.js"></script>
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_settings-panel.html -->
-			<!-- �ޤJ�B�ʵ��� -->
+			<!-- 引入浮動視窗 -->
 			<script
 				src="<%=request.getContextPath()%>/back-end/js/floating_window.js"></script>
 			<!-- partial -->
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar"></nav>
-			<!-- �ޤJsidebar ��JQ�覡 -->
+			<!-- 引入sidebar 用JQ方式 -->
 			<script>
 				$(function() {
 					$("#sidebar").load(
@@ -68,58 +66,114 @@
 			<!-- partial -->
 			<div class="main-panel">
 				<div class="content-wrapper">
-					<!--�A�n�g������  -->
-					<table id="dataTables" class="stripe" style="width: 100%" enctype="multipart/form-data">
+					<div class="row">
+						<div class="col-sm-6">
+							<h3 class="mb-0 font-weight-bold">商品管理員</h3>
+							<p>上次登入：21小時前</p>
+						</div>
+						<div class="col-sm-6">
+							<div class="d-flex align-items-center justify-content-md-end">
+								<div class="mb-3 mb-xl-0 pr-1">
+									<div class="dropdown">
+										<button style="margin-right: 10px;">
+											<a href="listAllProd.jsp"><img
+												src="./images/home.png" width="30px" height="30px"></a>
+										</button>
+										<button style="margin-right: 10px;">
+											<a href='addProd.jsp'><img src="./images/plus.png"
+												width="30px" height="30px"></a>
+										</button>
+										<button style="margin-right: 10px;">
+											<a href="selectProd.jsp"><img src="./images/search2.png"
+												width="30px" height="30px"></a>
+										</button>
+										<button
+											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
+											type="button" id="dropdownMenu3" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false">
+											<i class="typcn typcn-calendar-outline mr-2"></i>Last 7 days
+										</button>
+										<div class="dropdown-menu"
+											aria-labelledby="dropdownMenuSizeButton3"
+											data-x-placement="top-start">
+											<h6 class="dropdown-header">Last 14 days</h6>
+											<a class="dropdown-item" href="#">Last 21 days</a> <a
+												class="dropdown-item" href="#">Last 28 days</a>
+										</div>
+									</div>
+								</div>
+								<div class="pr-1 mb-3 mr-2 mb-xl-0">
+									<button type="button"
+										class="btn btn-sm bg-white btn-icon-text border">
+										<i class="typcn typcn-arrow-forward-outline mr-2"></i>Export
+									</button>
+								</div>
+								<div class="pr-1 mb-3 mb-xl-0">
+									<button type="button"
+										class="btn btn-sm bg-white btn-icon-text border">
+										<i class="typcn typcn-info-large-outline mr-2"></i>info
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row  mt-3">
+						<div class="col-lg-12 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+								<jsp:useBean id="prod_picSvc" scope="page" class="com.prod_pic.model.Prod_pic_Service" />
+								<jsp:useBean id="prod_typeSvc" scope="page" class="com.prod_type.model.Prod_type_Service" />
+									<h4 class="card-title">商品詳情</h4>
+									<table id="dataTables" class="stripe table-hover" style="width: 100%">
 						<thead>
 							<tr>
-								<th>�ӫ~�s��</th>
-								<th>�ӫ~����</th>
-								<th>�ӫ~�W��</th>
-								<th>�ӫ~�Ӥ�</th>
-								<th>�ӫ~���</th>
-								<th>�w�s�ƶq</th>
-								<th>�ӫ~���A</th>
-								<th>�W�[�ɶ�</th>
-								<th>�U�[�ɶ�</th>
-								<th>�� �z</th>	
+								<th>商品編號</th>
+								<th>商品種類</th>
+								<th>商品名稱</th>
+								<th>商品照片</th>
+								<th>商品單價</th>
+								<th>庫存數量</th>
+								<th>商品狀態</th>
+								<th>上架時間</th>
+								<th>下架時間</th>
+								<th>商品管理</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="prod" items="${list}">
-								<tr>
-									<td>${prod.prod_no}</td>
-									<td>${prod.prod_typeVO.prod_type}</td>
-									<td>${prod.prod_name}</td>
-									<td>${prod.prod_picVO.prod_pic}</td>
-									<td>${prod.prod_stock}</td>
-									<td>${prod.prod_price}</td>
-									<td>${prod.prod_status?"�W�[":"�U�["}</td>
-									<td>${prod.launch_time}</td>
-									<td>${prod.off_time}</td>
-									<td>			  
-									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/pages/prod/prod.do" style="margin-bottom: 0px;">
-			     						<input type="submit" value="�޲z">
-			     						<input type="hidden" name="prod_no"  value="${prod.prod_no}">
-			     						<input type="hidden" name="action"	value="getOne_For_Update">
-			     					</FORM>
-			     					</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-						<tfoot>
 							<tr>
-								<th>�ӫ~�s��</th>
-								<th>�ӫ~����</th>
-								<th>�ӫ~�W��</th>
-								<th>�ӫ~�Ӥ�</th>
-								<th>�ӫ~���</th>
-								<th>�w�s�ƶq</th>
-								<th>�ӫ~���A</th>
-								<th>�W�[�ɶ�</th>
-								<th>�U�[�ɶ�</th>
-								<th>�� �z</th>
+								<td style="text align: center;">${prod.prod_no}</td>
+								<td>${prod_typeVO.prod_type}</td>
+								<td>${prod.prod_name}</td>
+								<td><img src="<%=request.getContextPath()%>/ShowProd_picForProd?prod_no=${prod_picVO.prod_no}"
+									width=150px height=100px></td>
+								<td>${prod.prod_price}</td>
+								<td>${prod.prod_stock}</td>
+								<td>
+									<c:if test="${prod.prod_status == 1}">
+										<div>已上架</div>
+									</c:if>
+									<c:if test="${prod.prod_status == 0}">
+										<div>已下架</div>
+									</c:if>
+								</td>
+								<td>${prod.launch_time}</td>
+								<td>
+									<c:if test="${empty prod.off_time}">
+										<div>暫無下架時間</div>
+									</c:if>
+									<c:if test="${not empty prod.off_time}">
+										<div>${prod.off_time}</div>
+									</c:if>
+								</td>
+								<td>
+								<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/prod/prod.do" style="margin-bottom: 0px;">
+									<input type="submit" value="管理"> 
+									<input type="hidden" name="prod_no" value="${prod.prod_no}">
+									<input type="hidden" name="action" value="getOne_For_Update">
+								</FORM>
+								</td>
 							</tr>
-						</tfoot>
+						</tbody>
 					</table>
 
 					<script>
@@ -130,7 +184,7 @@
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
-				<!-- �ޤJfooter ��JQ�覡 -->
+				<!-- 引入footer 用JQ方式 -->
 				<footer class="footer"></footer>
 				<script>
 					$(function() {

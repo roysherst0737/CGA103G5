@@ -3,8 +3,8 @@ package com.prod_type.model;
 import java.io.Serializable;
 
 public class Prod_type_VO implements Serializable{
-
 	private static final long serialVersionUID = 1L;
+	
 	private Integer prod_type_no;
 	private String prod_type_name;
 	

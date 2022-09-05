@@ -61,6 +61,7 @@
 		<servlet-name>Act_pic_Servlet</servlet-name>
 		<url-pattern>/back-end/act_pic/act_pic.do</url-pattern>
 	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>Cart_Servlet</servlet-name>
 		<servlet-class>com.cart.controller.Cart_Servlet</servlet-class>
@@ -86,6 +87,33 @@
 	<servlet-mapping>
 		<servlet-name>Prod_Servlet</servlet-name>
 		<url-pattern>/back-end/prod/prod.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Prod_type_Servlet</servlet-name>
+		<servlet-class>com.prod_type.controller.Prod_type_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Prod_type_Servlet</servlet-name>
+		<url-pattern>/back-end/prod_type/prod_type.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Order_Servlet</servlet-name>
+		<servlet-class>com.order.controller.Order_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Order_Servlet</servlet-name>
+		<url-pattern>/back-end/order/order.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Order_detail_Servlet</servlet-name>
+		<servlet-class>com.order_detail.controller.Order_detail_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Order_detail_Servlet</servlet-name>
+		<url-pattern>/back-end/order_detail/order_detail.do</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -119,9 +147,5 @@
   <servlet-mapping>
     <servlet-name>ManagerServlet</servlet-name>
     <url-pattern>/back-end/manager/manager.do</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ManagerImage</servlet-name>
-    <url-pattern>/back-end/ManagerImage.do</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -32,8 +32,13 @@ public Pub selectById(Integer id) {
 
 @Override
 public List<Pub> selectAll() {
-	final String sql = "FROM Pub ORDER BY id";
+	final String sql = "FROM Pub ORDER BY pub_no";
 	return getSession().createQuery(sql, Pub.class).list();
+}
+@Override
+public List<Pub> getMemAll(Integer mem_no) {
+	final String sql = "FROM Pub WHERE mem_no= : mem_no ORDER BY pub_no";
+	return getSession().createQuery(sql, Pub.class).setParameter("mem_no", mem_no).list();
 }
 
 //	@Override

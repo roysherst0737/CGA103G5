@@ -13,10 +13,10 @@
 				</div>
 				<div class="our-link">
 					<ul>
-						<li><a href="<%=request.getContextPath()%>/front-end/my-account.html"><i class="fa fa-user s_color"></i> 會員專區 </a></li>
-						<li><a href="<%=request.getContextPath()%>/front-end/about.html"><i class="fas fa-location-arrow"></i>
+						<li><a href="<%=request.getContextPath()%>/front-end/my-account.jsp"><i class="fa fa-user s_color"></i> 會員專區 </a></li>
+						<li><a href="<%=request.getContextPath()%>/front-end/about.jsp"><i class="fas fa-location-arrow"></i>
 								我們的地址 </a></li>
-						<li><a href="<%=request.getContextPath()%>/front-end/contact-us.html"><i class="fas fa-headset"></i>
+						<li><a href="<%=request.getContextPath()%>/front-end/contact-us.jsp"><i class="fas fa-headset"></i>
 								聯絡我們 </a></li>
 					</ul>
 				</div>
@@ -25,9 +25,9 @@
 	<!-- 以下為註冊/登入-->
 					<c:choose>
 
-						<c:when test="${empty  sessionScope.user}"> 
+						<c:when test="${empty sessionScope.user}"> 
 							<button type="button" class="btn btn-warning">
-								<a href="my-account.html" style="color: black">註冊</a>
+								<a href="my-account.jsp" style="color: black">註冊</a>
 							</button>
 							<button type="button" class="btn btn-outline-light me-2">
 								<a href="login.jsp" style="color: white">登入</a>
@@ -84,15 +84,14 @@
 			<div class="collapse navbar-collapse" id="navbar-menu">
 				<ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
 					<li class="nav-item active"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/index.jsp">首頁</a></li>
-					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/about.html">關於我們</a></li>
+					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/about.jsp">關於我們</a></li>
 					<li class="dropdown"><a href="<%=request.getContextPath()%>/front-end/#" class="nav-link dropdown" data-toggle="dropdown"
 							style="font-weight: 1000;">購物專區</a>
 						<ul class="dropdown-menu">
-							<li><a href="<%=request.getContextPath()%>/front-end/shop.html" style="color: white;">商品總覽</a></li>
-							<li><a href="<%=request.getContextPath()%>/front-end/shop-detail.html" style="color: white;">商品詳情</a></li>
-							<li><a href="<%=request.getContextPath()%>/front-end/cart.html" style="color: white;">購物車</a></li>
-							<li><a href="<%=request.getContextPath()%>/front-end/checkout.html" style="color: white;">前往結帳</a></li>
-							<li><a href="<%=request.getContextPath()%>/front-end/my-account.html" style="color: white;">會員專區</a></li>
+							<li><a href="<%=request.getContextPath()%>/front-end/prod/shop.jsp" style="color: white;">商品總覽</a></li>
+							<li><a href="<%=request.getContextPath()%>/front-end/prod/shop-detail.jsp" style="color: white;">商品詳情</a></li>
+							<li><a href="<%=request.getContextPath()%>/front-end/prod/cart.jsp" style="color: white;">購物車</a></li>
+							<li><a href="<%=request.getContextPath()%>/front-end/prod/checkout.jsp" style="color: white;">前往結帳</a></li>
 						</ul>
 					</li>
 					<li class="nav-item dropdown"><a id="pub_map" class="nav-link"
@@ -113,13 +112,12 @@
 			<!-- Start Atribute Navigation -->
 			<div class="attr-nav">
 				<ul>
-					<li class="user"><a href="<%=request.getContextPath()%>/front-end/my-account.html"><img id="user" src="<%=request.getContextPath()%>/front-end/images/user.png" width="28px"
-								height="28px" /></a></li>
-					<li class="side-menu"><a href="<%=request.getContextPath()%>/front-end/cart.html"><img id="shopping" src="<%=request.getContextPath()%>/front-end/images/shopping-cart.png"
+					<li class="user"><a href="<%=request.getContextPath()%>/front-end/my-account.jsp"><img id="user" src="<%=request.getContextPath()%>/front-end/images/user.png"
+								width="28px" height="28px" /></a></li>
+					<li class="cart"><a href="<%=request.getContextPath()%>/front-end/prod/cart.jsp"><img id="shopping" src="<%=request.getContextPath()%>/front-end/images/shopping-cart.png"
 								width="35px" height="35px" /></a></li>
-					<li class="search"><a href="<%=request.getContextPath()%>/front-end/#"><img id="search" src="<%=request.getContextPath()%>/front-end/images/search2.png" width="35px"
-								height="35px" /></a>
-					</li>
+					<li class="search"><a href="<%=request.getContextPath()%>/front-end/#"><img id="search" src="<%=request.getContextPath()%>/front-end/images/search2.png"
+								width="35px" height="35px" /></a></li>
 				</ul>
 			</div>
 			<!-- End Atribute Navigation -->

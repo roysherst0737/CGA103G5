@@ -41,7 +41,7 @@ public class Prod_Service {
 
 		dao.update(prodVO);
 
-		return prodVO;
+		return dao.findByPrimaryKey(prod_no);
 	}
 
 	public void delete(Integer prod_no) {

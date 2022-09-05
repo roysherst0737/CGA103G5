@@ -151,7 +151,7 @@ public class Prod_pic_Servlet extends HttpServlet {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 				Integer prod_no = 1;
 				if (prod_no == 0) {
-					errorMsgs.add("商品照片編號最小為1");
+					errorMsgs.add("商品編號最小為1");
 				} else {
 					try {
 						prod_no = Integer.valueOf(req.getParameter("prod_no").trim());

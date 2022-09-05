@@ -21,7 +21,7 @@
 						<p class="m-b-40">輕輕鬆鬆打造屬於自己的室內小酒吧，不用出門即可Party All Night！</p>
 						<p>
 							<a class="btn hvr-hover" style="height: fit-content; width: fit-content;"
-								href="shop.html">立即購買</a>
+								href="<%=request.getContextPath()%>/front-end/prod/shop.jsp">立即購買</a>
 						</p>
 					</div>
 				</div>
@@ -37,7 +37,7 @@
 						<p class="m-b-40">進入酒吧地圖，選擇自己喜歡的酒吧，徜徉於酒精的饗宴！</p>
 						<p>
 							<a class="btn hvr-hover" style="height: fit-content; width: fit-content;"
-								href="gallery.html">立即訂位</a>
+								href="gallery_fix.jsp">立即訂位</a>
 						</p>
 					</div>
 				</div>

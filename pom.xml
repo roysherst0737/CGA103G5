@@ -8,6 +8,13 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/com.github.cage/cage -->
+		<dependency>
+			<groupId>com.github.cage</groupId>
+			<artifactId>cage</artifactId>
+			<version>1.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>

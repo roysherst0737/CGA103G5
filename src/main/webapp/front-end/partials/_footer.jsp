@@ -22,7 +22,7 @@
 									<input class="" type="email" name="Email"
 										placeholder="Email Address*" /> <i class="fa fa-envelope"></i>
 								</div>
-								<button class="btn hvr-hover" type="submit">訂閱</button>
+								<button class="btn hvr-hover" type="submit" style="font-size: 14px;">訂閱</button>
 							</form>
 						</div>
 					</div>

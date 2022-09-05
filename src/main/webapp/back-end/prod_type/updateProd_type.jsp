@@ -4,7 +4,7 @@
 <%@ page import="com.prod_type.model.*"%>
 
 <%
-Prod_type_VO prod_typeVO = (Prod_type_VO) request.getAttribute("prod_type_VO");
+Prod_type_VO prod_typeVO = (Prod_type_VO) request.getAttribute("prod_typeVO");
 %>
 
 <html lang="zh">

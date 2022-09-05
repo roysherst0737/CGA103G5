@@ -6,6 +6,11 @@
 <%
 Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 %>
+<%
+Prod_Service prodSvc = new Prod_Service();
+List<Prod_VO> list = prodSvc.getAll();
+pageContext.setAttribute("list", list);
+%>
 
 <!DOCTYPE html>
 <html lang="zh">
@@ -128,10 +133,10 @@ Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 										<FORM METHOD="post" ACTION="prod.do" name="form1">
 											<table>
 												<tr>
-													<td>商品種類編號:</td>
-													<td><select size="1" name="prod_type_no">
-														<c:forEach var="prod_typeVO" items="${prod_typeSvc.all}">
-															<option value="${prod_typeVO.prod_type_no}">${prod_typeVO.prod_type_no}
+													<td>商品類別:</td>
+													<td><select size="1" name="prod_type">
+														<c:forEach var="prodVO" items="${list}">
+															<option value="${prodVO.getProd_type_VO().prod_type_name}">
 														</c:forEach>
 													</select></td>
 												</tr>											

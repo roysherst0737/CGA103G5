@@ -11,7 +11,7 @@ import javax.servlet.http.*;
 import javax.sql.DataSource;
 @WebServlet("/ManagerImage")
 public class ManagerImage extends HttpServlet {
-
+	private static final long serialVersionUID = 1L;
 	Connection con;
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)

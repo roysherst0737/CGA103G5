@@ -8,7 +8,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.manager.model.Manager_VO;
 
 public class Manager_authfunc_DAO implements Manager_authfunc_DAO_interface {
 
@@ -24,15 +23,15 @@ public class Manager_authfunc_DAO implements Manager_authfunc_DAO_interface {
 		}
 
 		private static final String INSERT_STMT = 
-			"INSERT INTO manager_authfunc_authfunc (mng_authfunc_no,mng_authfunc_name) VALUES (?, ?)";
+			"INSERT INTO manager_authfunc (mng_authfunc_name) VALUES (?)";
 		private static final String GET_ALL_MANAGER_AUTHFUNC_STMT = 
-			"SELECT mng_authfunc_no,mng_authfunc_name FROM manager_authfunc_authfunc order by mng_authfunc_no";
+			"SELECT mng_authfunc_no, mng_authfunc_name FROM manager_authfunc order by mng_authfunc_no";
 		private static final String GET_ONE_STMT = 
-			"SELECT mng_authfunc_no,mng_authfunc_name FROM manager_authfunc_authfunc where mng_authfunc_no = ?";
+			"SELECT mng_authfunc_no, mng_authfunc_name FROM manager_authfunc where mng_authfunc_no = ?";
 		private static final String DELETE = 
-			"DELETE FROM manager_authfunc_authfunc where mng_authfunc_no = ?";
+			"DELETE FROM manager_authfunc where mng_authfunc_no = ?";
 		private static final String UPDATE = 
-			"UPDATE manager_authfunc_authfunc set mng_authfunc_name=? where mng_authfunc_no=?";
+			"UPDATE manager_authfunc set mng_authfunc_name = ? where mng_authfunc_no = ?";
 
 
 		@Override
@@ -45,10 +44,7 @@ public class Manager_authfunc_DAO implements Manager_authfunc_DAO_interface {
 
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(INSERT_STMT);
-
-				pstmt.setInt(1, manager_authfunc_VO.getMng_authfunc_no());
-				pstmt.setString(2, manager_authfunc_VO.getMng_authfunc_name());
-
+				pstmt.setString(1, manager_authfunc_VO.getMng_authfunc_name());
 				pstmt.executeUpdate();
 
 				// Handle any SQL errors
@@ -125,9 +121,7 @@ public class Manager_authfunc_DAO implements Manager_authfunc_DAO_interface {
 
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(DELETE);
-
 				pstmt.setInt(1, mng_authfunc_no);
-
 				pstmt.executeUpdate();
 
 				// Handle any driver errors

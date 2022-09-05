@@ -2,6 +2,7 @@ package com.manager_auth.model;
 
 import java.io.Serializable;
 
+
 public class Manager_auth_VO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer mng_no;
@@ -19,6 +20,5 @@ public class Manager_auth_VO implements Serializable {
 	public void setMng_authfunc_no(Integer mng_authfunc_no) {
 		this.mng_authfunc_no = mng_authfunc_no;
 	}
-	
 
 }

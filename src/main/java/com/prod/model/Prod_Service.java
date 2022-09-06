@@ -3,6 +3,9 @@ package com.prod.model;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+import com.prod_pic.model.Prod_pic_VO;
 
 public class Prod_Service {
 	
@@ -58,5 +61,9 @@ public class Prod_Service {
 	
 	public List<Prod_VO> getAll(Map<String, String[]> map) {
 		return dao.getAll(map);
+	}
+
+	public Set<Prod_pic_VO> getProd_picsByProd(Integer prod_no) {
+		return dao.getProd_picsByProd(prod_no);
 	}
 }

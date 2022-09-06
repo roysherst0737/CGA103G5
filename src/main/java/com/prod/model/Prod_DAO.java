@@ -5,13 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import com.prod_pic.model.Prod_pic_VO;
 
 public class Prod_DAO implements Prod_DAO_interface{
 	
@@ -36,7 +40,9 @@ public class Prod_DAO implements Prod_DAO_interface{
 		"DELETE FROM prod where prod_no = ?";
 	private static final String UPDATE = 
 		"UPDATE prod set prod_type_no=?, prod_name=?, prod_price=?, prod_stock=?, prod_status=?, off_time=?, prod_detail=? where prod_no = ?";
-
+	
+	private static final String GET_Prod_pics_ByProd_STMT = "SELECT prod_pic_no,prod_no,prod_pic,prod_pic_name FROM prod_pic where prod_no = ? order by prod_pic_no";
+	
 	@Override
 	public void insert(Prod_VO prodVO) {
 		Connection con = null;
@@ -281,6 +287,61 @@ public class Prod_DAO implements Prod_DAO_interface{
 			}
 		}
 		return list;
+	}
+	
+	@Override
+	public Set<Prod_pic_VO> getProd_picsByProd(Integer prod_no) {
+		Set<Prod_pic_VO> set = new LinkedHashSet<Prod_pic_VO>();
+		Prod_pic_VO prod_picVO = null;
+	
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+	
+		try {
+	
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_Prod_pics_ByProd_STMT);
+			pstmt.setInt(1, prod_no);
+			rs = pstmt.executeQuery();
+	
+			while (rs.next()) {
+				prod_picVO = new Prod_pic_VO();
+				prod_picVO.setProd_pic_no(rs.getInt("prod_pic_no"));
+				prod_picVO.setProd_no(rs.getInt("prod_no"));
+				prod_picVO.setProd_pic(rs.getBytes("prod_pic"));
+				prod_picVO.setProd_pic_name(rs.getString("prod_pic_name"));
+				set.add(prod_picVO); // Store the row in the vector
+			}
+	
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return set;
 	}
 
 	@Override

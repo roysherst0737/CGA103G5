@@ -129,6 +129,8 @@ Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
 											</c:forEach>
 										</ul>
 									</c:if>
+									<jsp:useBean id="prod_picSvc" scope="page" class="com.prod_pic.model.Prod_pic_Service" />
+									<jsp:useBean id="prodSvc" scope="page" class="com.prod.model.Prod_Service" />
 									<h4 class="card-title">新增商品圖片</h4>
 									<table id="dataTables" class="stripe table-hover"
 										style="width: 100%">
@@ -136,9 +138,14 @@ Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
 											enctype="multipart/form-data">
 											<table>
 												<tr>
-													<td>商品編號:</td>
-													<td><input type="TEXT" name="prod_no" size="45"
-														value="<%=(prod_picVO == null) ? "3" : prod_picVO.getProd_no()%>" /></td>
+													<td>選擇商品名稱:</td> 
+													<td>
+													<select size="1" name="prod_name">
+														<c:forEach var="prodVO" items="${prodSvc.all}">
+															<option value="${prodVO.prod_no}">${prodVO.prod_name}
+														</c:forEach>
+													</select>
+												</td> 
 												</tr>
 												<tr>
 													<td>商品照片:</td>
@@ -147,7 +154,7 @@ Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
 												</tr>
 												<tr>
 													<td>商品照片名稱:</td>
-													<td><input type="TEXT" name="prod_pic_name" size="45"
+													<td><input type="TEXT" name="prod_pic_name" size="25"
 														value="<%=(prod_picVO == null) ? "" : prod_picVO.getProd_pic_name()%>" /></td>
 												</tr>
 											</table>

@@ -3,6 +3,9 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.prod_pic.model.*"%>
 
+<jsp:useBean id="listProd_pics_ByProd" scope="request" type="java.util.Set<Prod_pic_VO>" /> 
+<jsp:useBean id="prodSvc" scope="page" class="com.prod.model.Prod_Service" />
+
 <!DOCTYPE html>
 <html lang="zh">
 
@@ -60,7 +63,6 @@
 				});
 			</script>
 			<!-- partial -->
-			<!-- partial -->
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div class="row">
@@ -115,54 +117,25 @@
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">商品圖片搜尋</h4>
-									<div class="table-responsive">
-										<%-- 錯誤表列 --%>
-										<c:if test="${not empty errorMsgs}">
-											<font style="color: red">請修正以下錯誤:</font>
-											<ul>
-												<c:forEach var="message" items="${errorMsgs}">
-													<li style="color: red">${message}</li>
-												</c:forEach>
-											</ul>
-										</c:if>
-
-										<jsp:useBean id="prod_picSvc" scope="page" class="com.prod_pic.model.Prod_pic_Service" />
-										<jsp:useBean id="prodSvc" scope="page" class="com.prod.model.Prod_Service" />
-
-											<FORM METHOD="post" ACTION="prod_pic.do">
-												<b>選擇商品照片編號:</b> <select size="1" name="prod_pic_no">
-													<c:forEach var="prod_picVO" items="${prod_picSvc.all}">
-														<option value="${prod_picVO.prod_pic_no}">${prod_picVO.prod_pic_no}
-													</c:forEach>
-												</select> <input type="hidden" name="action"
-													value="getOne_For_Display"> <input type="submit"
-													value="送出">
-											</FORM>
-
-											<FORM METHOD="post" ACTION="prod_pic.do">
-												<b>選擇商品名稱:</b> 
-													<select size="1" name="prod_pic_no">
-														<c:forEach var="prodVO" items="${prodSvc.all}">
-															<option value="${prodVO.prod_no}">${prodVO.prod_name}
-														</c:forEach>
-													</select>
-												<input type="hidden" name="action"
-													value="listProd_pics_ByProd"> <input type="submit"
-													value="送出">
-											</FORM>
-										
-
-											<FORM METHOD="post" ACTION="prod_pic.do">
-												<b>選擇商品照片名稱:</b> <select size="1" name="prod_pic_no">
-													<c:forEach var="prod_picVO" items="${prod_picSvc.all}">
-														<option value="${prod_picVO.prod_pic_no}">${prod_picVO.prod_pic_name}
-													</c:forEach>
-												</select> <input type="hidden" name="action"
-													value="getOne_For_Display"> <input type="submit"
-													value="送出">
-											</FORM>
-									</div>
+									<h4 class="card-title">商品圖片詳情</h4>
+									<table id="dataTables" class="stripe table-hover"
+										style="width: 100%">
+									<c:forEach var="prod_picVO" items="${listProd_pics_ByProd}" >
+										<tr>
+											<th>商品照片編號</th>
+											<th>商品編號</th>
+											<th>商品照片</th>
+											<th>商品照片名稱</th>
+										</tr>
+										<tr>
+											<td>${prod_picVO.prod_pic_no}</td>
+											<td>${prod_picVO.prod_no}</td>
+											<td><img
+												src="<%=request.getContextPath()%>/Show_Prod_pic_Servlet?prod_pic_no=${prod_picVO.prod_pic_no}"
+												width=300px height=200px></td>
+											<td>${prod_picVO.prod_pic_name}</td>
+										</c:forEach>
+									</table>
 								</div>
 							</div>
 						</div>
@@ -170,15 +143,10 @@
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
-				<!-- 引入footer 用JQ方式 -->
 				<footer class="footer"></footer>
 				<script>
 					$(function() {
-						$(".footer").load(
-								window.location.pathname.substring(0,
-										window.location.pathname
-												.indexOf('/', 2))
-										+ "/back-end/partials/_footer.html");
+						$(".footer").load("../partials/_footer.html");
 					});
 				</script>
 				<!-- partial -->
@@ -189,6 +157,13 @@
 	</div>
 	<!-- container-scroller -->
 	<!-- base:js -->
+
+	<script>
+		function getContextPath() {
+			return window.location.pathname.substring(0,
+					window.location.pathname.indexOf('/', 2));
+		}
+	</script>
 	<script src="../vendors/js/vendor.bundle.base.js"></script>
 	<!-- endinject -->
 	<!-- Plugin js for this page-->

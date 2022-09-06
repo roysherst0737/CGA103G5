@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.prod.model.Prod_Service;
 import com.prod.model.Prod_VO;
+import com.prod_pic.model.Prod_pic_VO;
 
 @MultipartConfig
 public class Prod_Servlet extends HttpServlet{
@@ -75,7 +78,7 @@ public class Prod_Servlet extends HttpServlet{
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("prodVO", prodVO); // 資料庫取出的empVO物件,存入req
+				req.setAttribute("prodVO", prodVO); 
 				String url = "/back-end/prod/listOneProd.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
@@ -117,15 +120,15 @@ public class Prod_Servlet extends HttpServlet{
 					prod_type_no = Integer.valueOf(req.getParameter("prod_type_no").trim());
 				} catch (NumberFormatException e) {
 					prod_type_no = 0;
-					errorMsgs.add("商品種類編號請填數字");
+					errorMsgs.add("商品類別編號請填數字");
 				}	
 						
 				String prod_name = req.getParameter("prod_name");
 				String prod_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (prod_name == null ||prod_name.trim().length() == 0) {
-					errorMsgs.add("商品照片名稱: 請勿空白");
+					errorMsgs.add("商品名稱: 請勿空白");
 				} else if(!prod_name.trim().matches(prod_nameReg)) {
-					errorMsgs.add("商品照片名稱: 只能是中、英文字母、數字和底線, 且長度必需在2到10之間");
+					errorMsgs.add("商品名稱: 只能是中、英文字母、數字和底線, 且長度必需在2到10之間");
 	            }
 				
 				Integer prod_price = null;
@@ -151,8 +154,11 @@ public class Prod_Servlet extends HttpServlet{
 				
 				Timestamp off_time = null;
 				
-				String prod_detail = null;				
-
+				String prod_detail = req.getParameter("prod_detail");				
+				if (prod_detail == null ||prod_detail.trim().length() == 0) {
+					errorMsgs.add("商品敘述: 請勿空白");
+				}
+				
 				Prod_VO prodVO = new Prod_VO();
 				prodVO.setProd_no(prod_no);
 				prodVO.setProd_type_no(prod_type_no);
@@ -194,15 +200,15 @@ public class Prod_Servlet extends HttpServlet{
 
 			Integer prod_type_no = null;
 			if (prod_type_no == null) {
-				errorMsgs.add("商品種類編號: 請勿空白");
+				errorMsgs.add("商品類別編號: 請勿空白");
 			}	
 					
 			String prod_name = req.getParameter("prod_name");
 			String prod_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 			if (prod_name == null ||prod_name.trim().length() == 0) {
-				errorMsgs.add("商品照片名稱: 請勿空白");
+				errorMsgs.add("商品名稱: 請勿空白");
 			} else if(!prod_name.trim().matches(prod_nameReg)) {
-				errorMsgs.add("商品照片名稱: 只能是中、英文字母、數字和底線, 且長度必需在2到10之間");
+				errorMsgs.add("商品名稱: 只能是中、英文字母、數字和底線, 且長度必需在2到10之間");
             }
 			
 			Integer prod_price = null;
@@ -267,6 +273,29 @@ public class Prod_Servlet extends HttpServlet{
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
 				String url = "/back-end/prod/listAllProd.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
+				successView.forward(req, res);
+		}
+		
+		if ("listProd_pics_ByProd".equals(action)) {
+
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+
+				/*************************** 1.接收請求參數 ****************************************/
+				Integer prod_no = Integer.valueOf(req.getParameter("prod_no"));
+
+				/*************************** 2.開始查詢資料 ****************************************/
+				Prod_Service prodSvc = new Prod_Service();
+				Set<Prod_pic_VO> set = prodSvc.getProd_picsByProd(prod_no);
+
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
+				req.setAttribute("listProd_pics_ByProd", set);    // 資料庫取出的list物件,存入request
+
+				String url = null;
+				if ("listProd_pics_ByProd".equals(action))
+					url = "/dept/listProd_pics_ByProd.jsp";
+
+				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 		}
 	}

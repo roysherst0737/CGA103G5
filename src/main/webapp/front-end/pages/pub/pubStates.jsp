@@ -40,19 +40,11 @@
 		src="<%=request.getContextPath()%>/front-end/pages/pub/js/open.js"></script>
 <script src="<%=request.getContextPath()%>/front-end/js/inewsticker.js"></script>
 		<script>
-		function bb(opendiv){
-				  		open = "000000000000001111111111";
-			            open += "111000000001100000001101";
-			            open += "000000001111001111111111";
-			            open += "000110001111001111111100";
-			            open += "000000000000000000000000";
-			            open += "111111111111111111111111";
-			            open += "110110001111001111111100";
-			            let div = document.createElement('div');
+		function setDivData(opendiv){
 			            str="";
-			           const week= aa(open);
+			           const week= aa(opendiv.textContent);
 			           week.forEach(e=>{
-			        	   str+="<div class='col align-self-center	' style>"+e+"</div>"
+			        	   str+="<div class='col align-self-center '>"+e+"</div>"
 			           });
 			        	   opendiv.innerHTML=str;
 		}
@@ -180,9 +172,8 @@ div.main_card:hover{
 							</div>
 							<div class="col" style="display: grid;">
 								<div class="row" style="grid-row-start: 1;grid-row-end: 2;"> 營業時間:</div>
-								<div id="open${loop.index}" class="row" style="grid-row-start: 2;grid-row-end: 8; display: grid;float:right"></div>
-								<script>console.log(document.querySelector(`#open${loop.index}`))</script>
-								<script>bb(document.querySelector(`#open${loop.index}`))</script>
+								<div id="open${loop.index}" class="row" style="grid-row-start: 2;grid-row-end: 8; display: grid;float:right">${pubList.pub_open}</div>
+								<script>setDivData(document.querySelector(`#open${loop.index}`))</script>
 								<div class="row" style="grid-row-start:9;grid-row-end: 10;"><button type="button" class="btn" data-toggle="modal" data-target="#exampleModal${loop.index}">查看詳情</button></div>
 								</div>
 							</div>

@@ -183,12 +183,32 @@ div.main_card:hover{
 								<div id="open${loop.index}" class="row" style="grid-row-start: 2;grid-row-end: 8; display: grid;float:right"></div>
 								<script>console.log(document.querySelector(`#open${loop.index}`))</script>
 								<script>bb(document.querySelector(`#open${loop.index}`))</script>
-								<div class="row" style="grid-row-start:9;grid-row-end: 10;"><button class=btn>查看詳情</button></div>
+								<div class="row" style="grid-row-start:9;grid-row-end: 10;"><button type="button" class="btn" data-toggle="modal" data-target="#exampleModal${loop.index}">查看詳情</button></div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				
+<!-- 				彈跳視窗 -->
+	<div class="modal fade" id="exampleModal${loop.index}" tabindex="-1" aria-labelledby="exampleModalLabel${loop.index}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title${loop.index}</h5>
+        <button type="button" class="close" data-dismiss="modal"aria-label="Close">X</button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 				彈跳視窗結束 -->
 			</c:forEach>
 		</div>
 	</div>

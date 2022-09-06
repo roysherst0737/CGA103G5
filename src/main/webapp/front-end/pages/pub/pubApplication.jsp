@@ -44,6 +44,24 @@
 	href="<%=request.getContextPath()%>/back-end/css/vertical-layout-light/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
+div.col-sm-12>button.btn {
+	width: 50px;
+	height: 30px;
+	padding: 0px;
+	margin: 0px;
+	font-weight:bolder;
+}
+div.col-sm-12>button.btn-warning {
+	background-color:#ffc107;
+}
+div.col-sm-12>button.btn-warning:hover {
+	background-color:#e0a800;
+}
+
+.main-top {
+	height: 53.5px;
+}
+
 a.booking {
 	background: #f5c242;
 	position: absolute;
@@ -154,7 +172,8 @@ a.booking:hover {
 									</div>
 									<div class="form-group">
 										<label>酒吧圖片</label> <input id="pub_img" type="file"
-											name="img[]" class="file-upload-default" accept="image/gif, image/jpeg, image/png">
+											name="img[]" class="file-upload-default"
+											accept="image/gif, image/jpeg, image/png">
 										<div class="input-group col-xs-12">
 											<input type="text" class="form-control file-upload-info"
 												disabled placeholder="Upload Image"> <span
@@ -218,8 +237,8 @@ a.booking:hover {
 									<!-- 											type="checkbox" class="form-check-input"> Remember me -->
 									<!-- 										</label> -->
 									<!-- 									</div> -->
-									<button id="btn" type="button" class="btn btn-primary mr-2" >確認送出</button>
-									<button type="reset" class="btn btn-light" >重填</button>
+									<button id="btn" type="button" class="btn btn-primary mr-2">確認送出</button>
+									<button type="reset" class="btn btn-light">重填</button>
 								</div>
 							</div>
 						</div>
@@ -244,8 +263,8 @@ a.booking:hover {
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">取消</button>
-								<a style=" width: auto;height: auto;"
-								 class="btn btn-primary"href="<%=request.getContextPath()%>/PubStates">確認</a>
+								<a style="width: auto; height: auto;" class="btn btn-primary"
+									href="<%=request.getContextPath()%>/PubStates">確認</a>
 							</div>
 						</div>
 					</div>

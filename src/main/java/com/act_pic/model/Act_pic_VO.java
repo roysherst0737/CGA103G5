@@ -41,5 +41,12 @@ public class Act_pic_VO implements Serializable {
 	public void setAct_pic_name(String act_pic_name) {
 		this.act_pic_name = act_pic_name;
 	}
+	
+    // for join dname from act_picno
+    public com.act.model.Act_VO getActVO() {
+	    com.act.model.Act_Service actSvc = new com.act.model.Act_Service();
+	    com.act.model.Act_VO actVO = actSvc.getOneAct(act_no);
+	    return actVO;
+    }
 
 }

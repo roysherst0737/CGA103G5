@@ -173,7 +173,7 @@ th, td {
 					maxDate : $('#f_date2').val() ? $('#f_date2').val() : false
 				})
 			},
-			timepicker : false
+
 		});
 
 		$('#f_date2').datetimepicker({

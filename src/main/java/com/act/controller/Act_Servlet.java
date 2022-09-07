@@ -305,6 +305,8 @@ public class Act_Servlet extends HttpServlet {
 			Timestamp act_launch_time = null;
 			try {
 				act_launch_time = java.sql.Timestamp.valueOf(req.getParameter("act_launch_time").trim());
+				
+				System.out.println(act_launch_time);
 			} catch (IllegalArgumentException e) {
 				act_launch_time = new java.sql.Timestamp(System.currentTimeMillis());
 				errorMsgs.add("請輸入上架時間!");

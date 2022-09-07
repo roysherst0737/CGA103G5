@@ -3,9 +3,9 @@ package com.util;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-
 import static com.util.Constants.GSON;
 import static com.util.Constants.JSON_MIME_TYPE;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

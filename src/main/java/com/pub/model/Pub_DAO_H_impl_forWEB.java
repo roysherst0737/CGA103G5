@@ -26,8 +26,9 @@ public int update(Pub pojo) {
 
 @Override
 public Pub selectById(Integer id) {
-	// TODO Auto-generated method stub
-	return null;
+	System.out.println("ggggggggg="+id);
+//	 return null;
+	 return getSession().get(Pub.class, id);
 }
 
 @Override

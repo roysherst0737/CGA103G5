@@ -26,12 +26,22 @@
 <!-- endinject -->
 <link rel="shortcut icon"
 	href="<%=request.getContextPath()%>/back-end/images/favicon.png" />
+<style>
+.btn-c{
+border-radius:50%;
+border: 2px solid #e8eff9;
+}
+.btn-c:hover{
+border: 2px solid #266ed4;
+}
+</style>	
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script>
 	let path = window.location.pathname.substring(0, window.location.pathname
 			.lastIndexOf("/"));
 	path = path.substring(0, path.lastIndexOf("/"));
 </script>
+
 </head>
 
 <body>
@@ -63,37 +73,37 @@
 					<!--你要寫的頁面  -->
 					<div class="btn-group" role="group" aria-label="Basic example"
 						style="margin: 10px">
-						<button type="button" value="1"
-							class="btn btn-inverse-warning btn-fw btn-outline-secondary">審核成功</button>
-						<button type="button" value="2"
+						<button type="button" value="審核通過"
+							class="btn btn-inverse-success btn-fw btn-outline-secondary">審核成功</button>
+						<button type="button" value="待審核"
 							class="btn btn-inverse-secondary btn-fw btn-outline-secondary">等待審核</button>
-						<button type="button" value="3"
+						<button type="button" value="審核失敗"
 							class="btn btn-inverse-danger btn-fw btn-outline-secondary">審核失敗</button>
+						<button type="button" value=""
+							class="btn btn-inverse-dark btn-fw btn-outline-secondary">全部</button>
 					</div>
 					<table id="dataTables" class="stripe table-hover" style="width: 100%">
 						<thead>
 							<tr>
-								<th>酒吧編號</th>
-								<th>酒吧名稱</th>
-								<th>酒吧狀態</th>
-								<th>可容納人數</th>
-								<th>平均星數</th>
-								<th>評價總人數</th>
+								<th style="width:30px">酒吧編號</th>
+								<th style="width:120px">酒吧名稱</th>
+								<th style="width:60px">審核狀態</th>
+								<th style="width:60px">容納人數</th>
+								<th style="width:70px">建立時間</th>
 								<th>酒吧地址</th>
-								<th>設定</th>
+								<th style="width:30px">設定</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="pubVO" items="${pubList}">
+							<c:forEach var="pubVO" items="${pubList}" varStatus="loop">
 								<tr>
 									<td>${pubVO.pub_no}</td>
 									<td>${pubVO.pub_name}</td>
-									<td>${pubVO.pub_status?"上架":"下架"}</td>
+									<td>${pubVO.pub_application==0?"待審核":pubVO.pub_application==1?"審核通過":"審核失敗"}</td>
 									<td>${pubVO.pub_nop}</td>
-									<td>${pubVO.pub_rate_sum}</td>
-									<td>${pubVO.pub_ratetotal}</td>
+									<td>${pubVO.pub_time}</td>
 									<td>${pubVO.pub_address}</td>
-									<td>${pubVO.pub_no}</td>
+									<td><button class="btn-c" type="button" id="btn${loop.index}" onclick="getdate(${pubVO.pub_no})"><img  src="<%=request.getContextPath()%>/back-end/images/brush.svg"></img></button></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -101,10 +111,9 @@
 							<tr>
 								<th>酒吧編號</th>
 								<th>酒吧名稱</th>
-								<th>酒吧狀態</th>
-								<th>可容納人數</th>
-								<th>平均星數</th>
-								<th>評價總人數</th>
+								<th>審核狀態</th>
+								<th>容納人數</th>
+								<th>建立時間</th>
 								<th>酒吧地址</th>
 								<th>設定</th>
 							</tr>
@@ -118,7 +127,7 @@
 						
 					    document.querySelectorAll(".btn-outline-secondary").forEach(e=>{e.addEventListener('click',()=>{
 					        var table = $('#dataTables').DataTable();
-		                    table.column(0).search(e.value).draw();
+		                    table.column(2).search(e.value).draw();
 					    	});
     					});
 					</script>
@@ -169,7 +178,10 @@
 	<script src="<%=request.getContextPath()%>/back-end/js/dashboard.js"></script>
 	<script
 		src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/getModel.js"></script>
 	<!-- End custom js for this page-->
+	<script> function getId(i){
+	}</script>
 </body>
 
 </html>

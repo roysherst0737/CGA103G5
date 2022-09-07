@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.google.gson.annotations.Expose;
 import com.pub.service.Core;
 @Entity
 @Table(name="Pub")
@@ -50,9 +51,12 @@ public class Pub extends Core{
 	private String pub_application_M;
 	@Transient
 	private String img;
-	@OneToMany(fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name="pub_no")
-	private List<Pub_pics> pub_pics;
+	private  List<Pub_pics> pub_pics;
+	
+	public Pub() {
+	}
 	public Integer getPub_no() {
 		return pub_no;
 	}

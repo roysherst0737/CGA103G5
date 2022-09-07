@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
 import com.pub.service.Core;
 @Entity
 @Table(name="pub_pics")
@@ -24,7 +25,7 @@ public class Pub_pics extends Core {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="pub_no")
-	private Pub pub;
+	private transient Pub pub;
 	
 	private String pub_pic;	
 	public Integer getPub_pic_no() {

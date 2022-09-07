@@ -121,8 +121,7 @@ public class pub_Service_H_impl implements pub_Service_H{
 
 	@Override
 	public Pub findByPrimaryKey(Pub pub) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.selectById(pub.getPub_no());
 	}
 
 	@Override

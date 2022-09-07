@@ -132,7 +132,7 @@
 
 											<FORM METHOD="post" ACTION="prod.do">
 												<b>選擇商品編號:</b> <select size="1" name="prod_no">
-													<c:forEach var="prod_picVO" items="${prodSvc.all}">
+													<c:forEach var="prodVO" items="${prodSvc.all}">
 														<option value="${prodVO.prod_no}">${prodVO.prod_no}
 													</c:forEach>
 												</select> <input type="hidden" name="action"
@@ -141,8 +141,8 @@
 											</FORM>
 
 											<FORM METHOD="post" ACTION="prod.do">
-												<b>選擇商品類別:</b> <select size="1" name="prod_no">
-													<c:forEach var="prodVO" items="${prodSvc.all}">
+												<b>選擇商品類別:</b> <select size="1" name="prod_type_no">
+													<c:forEach var="prod_typeVO" items="${prodSvc.all}">
 														<option value="${prod_typeVO.prod_type_no}">${prod_typeVO.prod_type_name}
 													</c:forEach>
 												</select> <input type="hidden" name="action"

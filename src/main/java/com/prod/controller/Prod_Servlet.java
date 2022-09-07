@@ -293,7 +293,7 @@ public class Prod_Servlet extends HttpServlet{
 
 				String url = null;
 				if ("listProd_pics_ByProd".equals(action))
-					url = "/dept/listProd_pics_ByProd.jsp";
+					url = "/back-end/prod/listProd_pics_ByProd.jsp";
 
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);

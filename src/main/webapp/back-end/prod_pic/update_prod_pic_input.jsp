@@ -128,7 +128,7 @@
 												<tr>
 													<td>商品名稱:</td> 
 													<td>
-													<select size="1" name="prod_name">
+													<select size="1" name="prod_no">
 														<c:forEach var="prodVO" items="${prodSvc.all}">
 															<option value="${prodVO.prod_no}">${prodVO.prod_name}
 														</c:forEach>

@@ -3,7 +3,6 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.prod_pic.model.*"%>
 
-<jsp:useBean id="listProd_pics_ByProd" scope="request" type="java.util.Set<Prod_pic_VO>" /> 
 <jsp:useBean id="prodSvc" scope="page" class="com.prod.model.Prod_Service" />
 
 <!DOCTYPE html>
@@ -75,13 +74,13 @@
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
 										<button style="margin-right:10px;">
-										<a href="listAllProd_pic.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
+										<a href="<%=request.getContextPath()%>/back-end/prod_pic/listAllProd_pic.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right:10px;">
-										<a href='addProd_pic.jsp'><img src="./images/plus.png" width="30px" height="30px"></a>
+										<a href="<%=request.getContextPath()%>/back-end/prod_pic/addProd_pic.jsp"><img src="./images/plus.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right:10px;">
-										<a href="select_page.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
+										<a href="<%=request.getContextPath()%>/back-end/prod_pic/select_page.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
 										</button>
 										<button
 											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
@@ -117,30 +116,55 @@
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">商品圖片詳情</h4>
-									<table id="dataTables" class="stripe table-hover"
-										style="width: 100%">
-									<c:forEach var="prod_picVO" items="${listProd_pics_ByProd}" >
-										<tr>
-											<th>商品照片編號</th>
-											<th>商品編號</th>
-											<th>商品照片</th>
-											<th>商品照片名稱</th>
-										</tr>
-										<tr>
-											<td>${prod_picVO.prod_pic_no}</td>
-											<td>${prod_picVO.prod_no}</td>
-											<td><img
-												src="<%=request.getContextPath()%>/Show_Prod_pic_Servlet?prod_pic_no=${prod_picVO.prod_pic_no}"
-												width=300px height=200px></td>
-											<td>${prod_picVO.prod_pic_name}</td>
-										</c:forEach>
-									</table>
+									<h4 class="card-title">商品圖片管理</h4>
+										<table id="dataTables" class="stripe table-hover" style="width: 100%">
+											<thead>
+												<tr>
+													<th>商品照片編號</th>
+													<th>商品編號</th>
+													<th>商品照片</th>
+													<th>商品照片名稱</th>
+													<th>修改</th>
+													<th>刪除</th>
+												</tr>
+											</thead>
+											<br>
+											<c:forEach var="prod_picVO" items="${listProd_pics_ByProd}" >
+												<tr>
+													<td>${prod_picVO.prod_pic_no}</td>
+													<td>${prod_picVO.prod_no}</td>
+													<td><img
+														src="<%=request.getContextPath()%>/Show_Prod_pic_Servlet?prod_pic_no=${prod_picVO.prod_pic_no}"
+														width=150px height=100px></td>
+													<td>${prod_picVO.prod_pic_name}</td>
+													<td>
+														<FORM METHOD="post"
+															ACTION="<%=request.getContextPath()%>/back-end/prod_pic/prod_pic.do"
+															style="margin-bottom: 0px;">
+															<input type="submit" value="修改"> <input
+																type="hidden" name="prod_pic_no"
+																value="${prod_picVO.prod_pic_no}"> <input
+																type="hidden" name="action" value="getOne_For_Update">
+														</FORM>
+													</td>
+													<td>
+														<FORM METHOD="post"
+															ACTION="<%=request.getContextPath()%>/back-end/prod_pic/prod_pic.do"
+															style="margin-bottom: 0px;">
+															<input type="submit" value="刪除"> <input
+																type="hidden" name="prod_pic_no"
+																value="${prod_picVO.prod_pic_no}"> <input
+																type="hidden" name="action" value="delete">
+														</FORM>
+													</td>
+												</tr>
+											</c:forEach>
+										</table>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
 				<footer class="footer"></footer>

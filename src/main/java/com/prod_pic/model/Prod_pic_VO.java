@@ -2,6 +2,8 @@ package com.prod_pic.model;
 
 import java.io.Serializable;
 
+import com.prod.model.*;
+
 public class Prod_pic_VO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -34,4 +36,11 @@ public class Prod_pic_VO implements Serializable{
 	public void setProd_pic_name(String prod_pic_name) {
 		this.prod_pic_name = prod_pic_name;
 	}
+	
+    // for join prod_name from prod_no
+    public Prod_VO getProd_VO() {
+	    Prod_Service prodSvc = new Prod_Service();
+	    Prod_VO prodVO = prodSvc.getOneProd(prod_no);
+	    return prodVO;
+    }
 }

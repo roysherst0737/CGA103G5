@@ -70,7 +70,7 @@ CREATE TABLE `mem` (
   `mem_build_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `mem_cert_status` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`mem_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 -- 酒吧
 CREATE TABLE pub (
     pub_no INT AUTO_INCREMENT NOT NULL,
@@ -92,6 +92,7 @@ CREATE TABLE pub (
     firm_tel_no VARCHAR(20),
     firm_email VARCHAR(50),
     firm_tax_id VARCHAR(10),
+	pub_application_M VARCHAR(200),
     CONSTRAINT pub_no_PK PRIMARY KEY (pub_no),
     CONSTRAINT `pub.mem_no_FK` FOREIGN KEY (mem_no)
         REFERENCES mem (mem_no)

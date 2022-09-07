@@ -5,7 +5,6 @@
 	const pub_address = document.querySelector('#fpub_address');
 	const pub_lng = document.querySelector('#fpub_lng');
 	const pub_lat = document.querySelector('#fpub_lat');
-	const pub_open = document.querySelector('#fpub_open');
 	const pub_img = document.querySelector('#pub_img');
 	const pub_detail = document.querySelector('#fpub_detail');
 	const firm_name = document.querySelector('#firm_name');
@@ -14,6 +13,116 @@
 	const firm_email = document.querySelector('#firm_email');
 	const firm_tax_id = document.querySelector('#firm_tax_id');
 	const file_check = false;
+	const week = [0, '禮拜一', '禮拜二', '禮拜三', '禮拜四', '禮拜五', '禮拜六', '禮拜日'];
+	//	建立表單
+	for (let i = 1; i < 8; i++) {
+		this['m' + i + '_div'] = document.createElement('div');
+		this['div' + i] = document.querySelector('#div' + i);
+		this['m' + i + '_div'].innerHTML = `
+	<div class="modal fade" id="exampleModal`+ i + `" tabindex="-1"
+					role="dialog" aria-labelledby="exampleModalLabel`+ i + `"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel`+ i + `">編輯營業時間</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body1 container">
+								<div class="row d1">
+									<div class="col-6" style="display:flex;">
+										<div style="display: flex; justify-content:center;align-items: center; ">
+											<label>`+ week[i] + `</label>
+										</div>
+										<div >
+											<div class="row inside">
+												<input class="form-check-input" type="radio" name="m`+ i + `"
+													id="M`+ i + `all" value="24小時營業" onchange="radio(this,` + i + `)"> <label class="" for="M` + i + `all">24小時營業
+												</label>
+											</div>
+											<div class="row inside">
+												<input class="form-check-input" type="radio" name="m`+ i + `"
+													id="m`+ i + `off" value="未營業" onchange="radio(this,` + i + `)"checked> <label class="" for="m` + i + `off">未營業</label>
+											</div>
+											<div class="row inside">
+												<input class="form-check-input" type="radio" name="m`+ i + `"
+													id="m`+ i + `self" value="自選" onchange="radio(this,` + i + `)"> <label class="" for="m` + i + `self">自選</label>
+											</div>
+										</div>
+									</div>
+									<div id="oc`+ i + `"class="col-6" style="padding: 10px;display:none">
+									<div >
+									<div style="display: flex;justify-content:space-around;"><label>開始時間</label><label>結束時間</label></div>
+									<div style="display: flex;">
+										<select id="open_`+ i + `"  class="form-select form-select-sm mb-0" aria-label=".form-select-lg example" style="height:30px; font-size: smaller;" onchange=select(this,` + i + `)>
+										  <option value="0">00:00</option>
+										  <option value="1">01:00</option>
+										  <option value="2">02:00</option>
+										  <option value="3">03:00</option>
+										  <option value="4">04:00</option>
+										  <option value="5">05:00</option>
+										  <option value="6">06:00</option>
+										  <option value="7">07:00</option>
+										  <option value="8">08:00</option>
+										  <option value="9">09:00</option>
+										  <option value="10">10:00</option>
+										  <option value="11">11:00</option>
+										  <option value="12">12:00</option>
+										  <option value="13">13:00</option>
+										  <option value="14">14:00</option>
+										  <option value="15">15:00</option>
+										  <option value="16">16:00</option>
+										  <option value="17">17:00</option>
+										  <option value="18">18:00</option>
+										  <option value="19">19:00</option>
+										  <option value="20">20:00</option>
+										  <option value="21">21:00</option>
+										  <option value="22">22:00</option>
+										  <option value="23">23:00</option>
+										</select>
+											<select id="close_`+ i + `"class="form-select form-select-sm mb-0"  aria-label=".form-select-lg example" style="margin-left: 5px; height:30px;font-size: smaller;">
+										  <option disabled value="0">00:00</option>
+										  <option selected="selected" value="1">01:00</option>
+										  <option value="2">02:00</option>
+										  <option value="3">03:00</option>
+										  <option value="4">04:00</option>
+										  <option value="5">05:00</option>
+										  <option value="6">06:00</option>
+										  <option value="7">07:00</option>
+										  <option value="8">08:00</option>
+										  <option value="9">09:00</option>
+										  <option value="10">10:00</option>
+										  <option value="11">11:00</option>
+										  <option value="12">12:00</option>
+										  <option value="13">13:00</option>
+										  <option value="14">14:00</option>
+										  <option value="15">15:00</option>
+										  <option value="16">16:00</option>
+										  <option value="17">17:00</option>
+										  <option value="18">18:00</option>
+										  <option value="19">19:00</option>
+										  <option value="20">20:00</option>
+										  <option value="21">21:00</option>
+										  <option value="22">22:00</option>
+										  <option value="23">23:00</option>
+										  <option value="24">24:00</option>
+										</select>
+										</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"	data-dismiss="modal">取消</button>
+								<button type="button" data-dismiss="modal" style="width: auto; height: auto;" class="btn btn-primary" onclick=btnCheck(`+ i + `)>確認</button>
+							</div>`;
+
+		this['div' + i].appendChild(this['m' + i + '_div'], this['div' + i].lastChild);
+	}
+
 
 	btn.addEventListener('click', async () => {
 		if (pub_name.value.length < 1) {
@@ -60,6 +169,7 @@
 			return;
 		}
 		if (!window.file_check) {
+			document.querySelector('.file-upload-browse').focus();
 			errormsg(pub_img, '只能傳送JPG,JPEG,PNG,且不得為空');
 			return
 		}
@@ -68,7 +178,6 @@
 		btn.setAttribute("data-target", "#exampleModal");
 		if (pub_img.files[0]) {
 			img = await convertBase64(pub_img.files[0])
-			//			json = { ...json, pub_img: img };
 		}
 		let json = JSON.stringify({
 			pub_name: pub_name.value,
@@ -76,7 +185,7 @@
 			pub_address: pub_address.value,
 			pub_lng: pub_lng.value,
 			pub_lat: pub_lat.value,
-			pub_open: pub_open.value,
+			pub_open: getOpenTime(),
 			img: img,
 			pub_detail: pub_detail.value,
 			firm_name: firm_name.value,
@@ -86,7 +195,6 @@
 			firm_tax_id: firm_tax_id.value,
 		});
 
-		console.log(json);
 		fetch('PubRegister', {
 			method: 'POST',
 			headers: {
@@ -119,8 +227,6 @@ pub_img.addEventListener('change', function (e) {
 	} else {
 		errormsg(pub_img, "只能傳送JPG,JPEG,PNG");
 	}
-
-
 	//    }
 });
 
@@ -216,4 +322,66 @@ function isTax(tax) {
 		errormsg(tax, '統編錯誤')
 		return false;
 	}
+}
+function btnCheck(e) {
+	const radioButtons = document.querySelectorAll('input[name="m' + e + '"]');
+	document.querySelector('#b' + e + '').classList.remove('btn-danger');
+	document.querySelector('#b' + e + '').classList.add('btn-info');
+	for (const radioButton of radioButtons) {
+		if (radioButton.checked) {
+			if (radioButton.value === '自選') {
+				let o = document.querySelector('#open_' + e).value;
+				let c = document.querySelector('#close_' + e).value;
+				document.querySelector('#b' + e).textContent = o + ":00~" + c + ":00";
+			} else {
+				document.querySelector('#b' + e).textContent = radioButton.value;
+			}
+			break;
+		}
+	}
+}
+function select(self, e) {
+	let c = document.querySelector('#close_' + e);
+	c.options[parseInt(self.value) + 1].setAttribute("selected", "selected");
+	for (let i = 0; i < 24; i++) {
+
+		if (i <= parseInt(self.value)) {
+			c.options[i].setAttribute("disabled", '');
+		} else {
+			c.options[i].removeAttribute("disabled");
+		}
+	}
+}
+function radio(but, e) {
+	if (but.value == "自選") {
+		document.querySelector('#oc' + e).style.display = '';
+	} else {
+		document.querySelector('#oc' + e).style.display = "none";
+	}
+}
+function getOpenTime() {
+	let pub_open = "";
+	const blist = document.querySelectorAll('#b1,#b2,#b3,#b4,#b5,#b6,#b7');
+			let str1 = "";
+	blist.forEach((e, index) => {
+		str1="";
+		if (e.textContent === "未設定" || e.textContent === "未營業") {
+			pub_open += "000000000000000000000000";
+		} else if (e.textContent === "24小時營業") {
+			pub_open += "111111111111111111111111";
+		} else {
+			str1 += repeatStr(0, document.querySelector('#open_' + (parseInt(index) + 1)).value);
+			str1 += repeatStr(1, eval(document.querySelector('#close_' + (parseInt(index) + 1)).value - document.querySelector('#open_' + (parseInt(index) + 1)).value));
+			str1 += repeatStr(0, 24-str1.length );
+			pub_open+=str1;
+		}
+	});
+	return pub_open
+}
+function repeatStr(str,num){
+	let s="";
+	for(let i=0;i<num;i++){
+		s+=str;
+	}
+	return s;
 }

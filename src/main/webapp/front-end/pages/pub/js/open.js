@@ -51,7 +51,7 @@ function aa(open) {
     for (i = 0; i < 7; i++) {
 	      vars['m'+i] = open.substring(i*24, (i+1) * 24)
         a[i] = week[i] + ' : ' + checkOpenTime( vars['m'+i]);
-        console.log( vars['m'+i]);
+//        console.log( vars['m'+i]);
     }
     return a;
 }

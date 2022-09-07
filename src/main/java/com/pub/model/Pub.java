@@ -46,6 +46,8 @@ public class Pub extends Core{
 	private String firm_tel_no;
 	private String firm_email;
 	private String firm_tax_id;
+	@Column(insertable = false)
+	private String pub_application_M;
 	@Transient
 	private String img;
 	@OneToMany(fetch=FetchType.LAZY)
@@ -177,6 +179,14 @@ public class Pub extends Core{
 	}
 	public void setImg(String img) {
 		this.img = img;
+	}
+
+	public String getPub_application_M() {
+		return pub_application_M;
+	}
+
+	public void setPub_application_M(String pub_application_M) {
+		this.pub_application_M = pub_application_M;
 	}
 	
 }

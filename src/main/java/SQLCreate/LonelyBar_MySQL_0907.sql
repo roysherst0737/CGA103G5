@@ -361,7 +361,7 @@ CREATE TABLE `act_sign_up` (
 CREATE TABLE `act_pic` (
     `act_pic_no` INT AUTO_INCREMENT NOT NULL,
     `act_no` INT NOT NULL,
-    `act_pic` BLOB,
+    `act_pic` LONGBLOB,
     `act_pic_name` VARCHAR(500),
 
     CONSTRAINT `act_pic_no_PK` PRIMARY KEY (`act_pic_no`),
@@ -414,7 +414,7 @@ CREATE TABLE `ans_list` (
 
 -- 討論區
 CREATE TABLE `forum` (
-  `frm_no` int NOT NULL,
+  `frm_no` int NOT NULL AUTO_INCREMENT,
   `frm_name_no` varchar(200) DEFAULT NULL,
   `frm_status` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`frm_no`)
@@ -698,7 +698,7 @@ prod_price,
 prod_stock,
 off_time,
 prod_detail )
-VALUES (1, "Macallan", 10000, 10, null, "自始至終堅持培養自家雪莉桶的麥卡倫，不惜迢迢萬里路，堅持從西班牙製桶再將橡木桶運回蘇格蘭，顯然是對奢華有「絕對潔癖」的精神。我們也飛往西班牙抽絲剝繭追尋雪莉桶的價值，或許可找到「誰最珍貴」的正解。來自蘇格蘭斯佩塞的經典風土，雪莉桶威士忌嚐來好似沉甸甸野餐籃裡的果乾、果醬與生薑巧克力，十足討人喜歡！當「雪莉桶風味」威士忌成為一種流行，麥卡倫的「正統」色彩便立於威士忌迷心中不可撼動的地位。");
+VALUES (1, "Macallan", 10000, 10, null, "自始至終堅持培養自家雪莉桶的麥卡倫，不惜迢迢萬里路，堅持從西班牙製桶再將橡木桶運回蘇格蘭，顯然是對奢華有「絕對潔癖」的精神。我們也飛往西班牙抽絲剝繭追尋雪莉桶的價值，或許可找到「誰最珍貴」的正解。");
 INSERT INTO prod (
 prod_type_no,
 prod_name,
@@ -706,7 +706,7 @@ prod_price,
 prod_stock,
 off_time,
 prod_detail )
-VALUES (2, "Familia Torres", 5000, 6, "2023-01-01 08:10:10", "Miguel Torres Carbo (1909-1991) 對於品質的堅持與開拓國際市場的遠見都是讓TORRES成功蛻變成為國際知名酒廠的大功臣之一。他從幫忙送酒給餐廳的基層工作做起，經歷了西班牙內戰與二次世界大戰對酒廠造成的損害，1939年酒廠甚至受到了炸彈的攻擊，在一片殘破磚瓦當中Miguel Torres Carbo與妻子Dona Margarita一步一步讓TORRES酒廠重新振作。在Miguel Torres Carbo經營期間，他不但擴張了葡萄園的面積，也開始自己裝瓶，更創造了許多有名的系列像是Vina Sol、Gran Vina Sol、Sangre de Toro、Coronas 還有在台灣非常受到歡迎的Esmeralda。");
+VALUES (2, "Familia Torres", 5000, 6, "2023-01-01 08:10:10", "Miguel Torres Carbo (1909-1991) 對於品質的堅持與開拓國際市場的遠見都是讓TORRES成功蛻變成為國際知名酒廠的大功臣之一。");
 INSERT INTO prod (
 prod_type_no,
 prod_name,
@@ -960,36 +960,36 @@ VALUES(3, 3, 3, 3, 3, 3, 3, 1);
 
 -- 建立 活動 假資料
 INSERT INTO act(
-pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status, apply_status
-)values("1","我想死","揪團自殺","懸崖邊","2022-10-10 10:10:10","2022-11-11 11:11:11","0","60","20","2022-11-11 12:12:12","2022-11-11 13:13:13","2022-11-11 14:14:14","2022-11-11 15:15:15",0,0);
+pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
+)values("1","調酒品嘗","先欣賞一下，看看雞尾酒的顏色與裝飾，猜想一下這杯調酒會有怎樣的口感？並在細聞香味後抱著迫不及待的心，品嘗一下酒在低溫時的口感。","桃園","2022-10-10 10:10:10","2022-11-11 11:11:11","0","60","20","2022-11-11 12:12:12","2022-11-11 13:13:13","2022-11-11 14:14:14","2022-11-11 15:15:15");
 INSERT INTO act(
-pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status, apply_status
-)values("2","我好累","天台集合","九樓","2023-10-10 10:10:10","2023-11-11 11:11:11","0","30","10","2023-11-11 12:12:12","2023-11-11 13:13:13","2023-11-11 14:14:14","2023-11-11 15:15:15",0,0);
+pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
+)values("2","調酒教學","教學自己在家就能動手做的4款調酒，還有隱藏版柯夢波丹雞尾酒教學！","台北","2023-10-10 10:10:10","2023-11-11 11:11:11","0","30","10","2023-11-11 12:12:12","2023-11-11 13:13:13","2023-11-11 14:14:14","2023-11-11 15:15:15");
 INSERT INTO act(
-pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status, apply_status
-)values("3","柬埔寨","詐騙集團","新園區","2024-10-10 10:10:10","2024-11-11 11:11:11","0","1000","1","2024-11-11 12:12:12","2024-11-11 13:13:13","2024-11-11 14:14:14","2024-11-11 15:15:15",0,0);
+pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
+)values("3","花式調酒","花式調酒是由調酒師利用酒瓶以及任何調酒器具、杯具做出絢麗動作演變而來。","高雄","2024-10-10 10:10:10","2024-11-11 11:11:11","0","1000","1","2024-11-11 12:12:12","2024-11-11 13:13:13","2024-11-11 14:14:14","2024-11-11 15:15:15");
 
 -- 建立 活動照片 假資料
 INSERT INTO act_pic(
 act_no, act_pic, act_pic_name
-)values(1,null,"累");
+)values(1,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/1.png"),"調酒品嘗圖片1");
 INSERT INTO act_pic(
 act_no, act_pic, act_pic_name
-)values(2,null,"死");
+)values(2,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/2.png"),"調酒教學圖片1");
 INSERT INTO act_pic(
 act_no, act_pic, act_pic_name
-)values(3,null,"了");
+)values(3,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/3.png"),"花式調酒圖片1");
 
 -- 建立 活動報名 假資料
 INSERT INTO act_sign_up(
-act_no, mem_no, accompany_count, sign_up_status
-)values(1,1,0,0);
+act_no, mem_no, accompany_count
+)values(1,1,0);
 INSERT INTO act_sign_up(
-act_no, mem_no, accompany_count, sign_up_status
-)values(2,2,0,0);
+act_no, mem_no, accompany_count
+)values(2,2,0);
 INSERT INTO act_sign_up(
-act_no, mem_no, accompany_count, sign_up_status
-)values(3,3,0,0);
+act_no, mem_no, accompany_count
+)values(3,3,0);
 
 -- 建立 廠商問卷 假資料
 INSERT INTO firm_survey(
@@ -1005,13 +1005,13 @@ act_no
 -- 建立 題目 假資料
 INSERT INTO question(
 que
-)values("搞笑嗎");
+)values("本次活動好玩嗎?");
 INSERT INTO question(
 que
-)values("幾點了");
+)values("對本活動有任何感想嗎?");
 INSERT INTO question(
 que
-)values("柬埔寨好玩嗎");
+)values("1~10分給本活動幾分?");
 
 -- 建立 題目清單 假資料
 INSERT INTO question_list(
@@ -1030,27 +1030,24 @@ question_no, firm_survey_no, mem_no, ans
 )values(1,1,1,"還好");
 INSERT INTO ans_list(
 question_no, firm_survey_no, mem_no, ans
-)values(2,2,2,"十點");
+)values(2,2,2,"時間安排再加強");
 INSERT INTO ans_list(
 question_no, firm_survey_no, mem_no, ans
-)values(3,3,3,"很好玩");
+)values(3,3,3,"10分");
 
 -- 建立 討論區 假資料
 INSERT INTO forum(
-frm_no,
 frm_name_no,
 frm_status
-)values(1,"活動討論區",1);
+)values("活動討論區",1);
 INSERT INTO forum(
-frm_no,
 frm_name_no,
 frm_status
-)values(2,"商品討論區",1);
+)values("商品討論區",1);
 INSERT INTO forum(
-frm_no,
 frm_name_no,
 frm_status
-)values(3,"酒吧討論區",1);
+)values("酒吧討論區",1);
 
 -- 建立 討論區文章 假資料
 INSERT INTO forum_article(

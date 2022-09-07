@@ -27,10 +27,10 @@
 
 						<c:when test="${empty sessionScope.user}"> 
 							<button type="button" class="btn btn-warning">
-								<a href="register.jsp" style="color: black">註冊</a>
+								<a href="<%=request.getContextPath()%>/front-end/register.jsp" style="color: black">註冊</a>
 							</button>
 							<button type="button" class="btn btn-outline-light me-2">
-								<a href="login.jsp" style="color: white">登入</a>
+								<a href="<%=request.getContextPath()%>/front-end/login.jsp" style="color: white">登入</a>
 							</button>
 						</c:when>
 
@@ -103,7 +103,7 @@
 						</ul>
 							
 					</li>
-					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/gallery.html">活動專區</a></li>
+					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/act/actlist.jsp">活動專區</a></li>
 					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/gallery.html">討論園地</a></li>
 				</ul>
 			</div>

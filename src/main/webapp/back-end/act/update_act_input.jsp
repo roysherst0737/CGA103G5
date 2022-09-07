@@ -180,7 +180,7 @@ th, td {
 	$.datetimepicker.setLocale('zh'); // kr ko ja en
 	$(function() {
 		$('#f_date1').datetimepicker({
-			format : 'Y-m-d H:i:s',
+			format : 'Y-m-d H:i',
 			onShow : function() {
 				this.setOptions({
 					maxDate : $('#f_date2').val() ? $('#f_date2').val() : false
@@ -190,7 +190,7 @@ th, td {
 		});
 
 		$('#f_date2').datetimepicker({
-			format : 'Y-m-d H:i:s',
+			format : 'Y-m-d H:i',
 			onShow : function() {
 				this.setOptions({
 					minDate : $('#f_date1').val() ? $('#f_date1').val() : false
@@ -201,10 +201,10 @@ th, td {
 
 		$('#f_date3').datetimepicker(
 				{
-					format : 'Y-m-d H:i:s',
+					format : 'Y-m-d H:i',
 					onShow : function() {
 						this.setOptions({
-							maxDate : $('#f_date4').val() ? $('#f_date4').val()
+							maxDate : $('#f_date2').val() ? $('#f_date2').val()
 									: false,
 							minDate : $('#f_date1').val() ? $('#f_date1').val()
 									: false
@@ -213,18 +213,22 @@ th, td {
 					timepicker : false
 				});
 
-		$('#f_date4').datetimepicker({
-			format : 'Y-m-d H:i:s',
-			onShow : function() {
-				this.setOptions({
-					minDate : $('#f_date3').val() ? $('#f_date3').val() : false
-				})
-			},
-			timepicker : false
-		});
+		$('#f_date4').datetimepicker(
+				{
+					format : 'Y-m-d H:i',
+					onShow : function() {
+						this.setOptions({
+							maxDate : $('#f_date2').val() ? $('#f_date2').val()
+									: false,
+							minDate : $('#f_date3').val() ? $('#f_date3').val()
+									: false
+						})
+					},
+					timepicker : false
+				});
 		$('#f_date5').datetimepicker(
 				{
-					format : 'Y-m-d H:i:s',
+					format : 'Y-m-d H:i',
 					onShow : function() {
 						this.setOptions({
 							minDate : $('#f_date4').val() ? $('#f_date4').val()
@@ -236,10 +240,10 @@ th, td {
 					timepicker : false
 				});
 		$('#f_date6').datetimepicker({
-			format : 'Y-m-d H:i:s',
+			format : 'Y-m-d H:i',
 			onShow : function() {
 				this.setOptions({
-					minDate : $('#f_date3').val() ? $('#f_date3').val() : false
+					minDate : $('#f_date5').val() ? $('#f_date5').val() : false
 				})
 			},
 			timepicker : false

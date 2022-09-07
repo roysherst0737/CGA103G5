@@ -158,5 +158,14 @@ public class Act_VO implements Serializable {
 	public void setApply_status(Integer apply_status) {
 		this.apply_status = apply_status;
 	}
+	
 
+    // for join dname from act_picno
+    public com.act_pic.model.Act_pic_VO getAct_picVO() {
+	    com.act_pic.model.Act_pic_Service act_picSvc = new com.act_pic.model.Act_pic_Service();
+	    com.act_pic.model.Act_pic_VO act_picVO = act_picSvc.getOneAct_pic(act_no);
+	    return act_picVO;
+    }
+	
+	
 }

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.act_pic.model.Act_pic_Service;
 import com.act_pic.model.Act_pic_VO;
 
+@MultipartConfig
 @WebServlet("/back-end/act_pic/act_pic.do")
 public class Act_pic_Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

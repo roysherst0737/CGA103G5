@@ -85,6 +85,8 @@ th, td {
 			<th>活動狀態</th>
 			<th>申請上下架/修改時間</th>
 			<th>申請狀態</th>
+			<th>修改</th>
+			<th>刪除</th>
 		</tr>
 		<%@ include file="page1.file"%>
 		<c:forEach var="actVO" items="${list}" begin="<%=pageIndex%>"

@@ -134,13 +134,12 @@ Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
 									<h4 class="card-title">新增商品圖片</h4>
 									<table id="dataTables" class="stripe table-hover"
 										style="width: 100%">
-										<FORM METHOD="post" ACTION="prod_pic.do" name="form1"
-											enctype="multipart/form-data">
+										<FORM METHOD="post" ACTION="prod_pic.do" name="form1" enctype="multipart/form-data">
 											<table>
 												<tr>
 													<td>選擇商品名稱:</td> 
 													<td>
-													<select size="1" name="prod_name">
+													<select size="1" name="prod_no">
 														<c:forEach var="prodVO" items="${prodSvc.all}">
 															<option value="${prodVO.prod_no}">${prodVO.prod_name}
 														</c:forEach>
@@ -149,7 +148,7 @@ Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
 												</tr>
 												<tr>
 													<td>商品照片:</td>
-													<td><input type="file" name="prod_pic" size="45" /></td>
+													<td><input type="file" name="prod_pic" size="45" multiple/></td>
 
 												</tr>
 												<tr>

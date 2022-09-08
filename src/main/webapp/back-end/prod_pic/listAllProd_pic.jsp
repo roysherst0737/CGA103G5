@@ -125,7 +125,7 @@
 											<thead>
 												<tr>
 													<th>商品照片編號</th>
-													<th>商品編號</th>
+													<th>商品編號與名稱</th>
 													<th>商品照片</th>
 													<th>商品照片名稱</th>
 													<th>修改</th>
@@ -137,7 +137,7 @@
 											<br>
 												<tr>
 													<td>${prod_picVO.prod_pic_no}</td>
-													<td>${prod_picVO.prod_no}</td>
+													<td>${prod_picVO.prod_no}-[${prod_picVO.getProd_VO().prod_name}]</td>
 													<td><img
 														src="<%=request.getContextPath()%>/Show_Prod_pic_Servlet?prod_pic_no=${prod_picVO.prod_pic_no}"
 														width=150px height=100px></td>

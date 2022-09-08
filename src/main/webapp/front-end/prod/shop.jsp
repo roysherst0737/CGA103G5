@@ -115,7 +115,7 @@ pageContext.setAttribute("list", list);
                                                 </div>
                                                 <div class="why-text">
                                                     <h4>${prodVO.prod_name}</h4>
-                                                    <h5>${prodVO.prod_price}</h5>
+                                                    <h5>$${prodVO.prod_price}</h5>
                                                 </div>
                                             </div>
                                         </div>

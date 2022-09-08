@@ -148,7 +148,7 @@ Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
 												</tr>
 												<tr>
 													<td>商品照片:</td>
-													<td><input type="file" name="prod_pic" size="45" multiple/></td>
+													<td><input type="file" name="prod_pic" size="45"/></td>
 
 												</tr>
 												<tr>

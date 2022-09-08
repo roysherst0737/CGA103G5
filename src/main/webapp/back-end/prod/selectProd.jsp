@@ -142,11 +142,11 @@
 
 											<FORM METHOD="post" ACTION="prod.do">
 												<b>選擇商品類別:</b> <select size="1" name="prod_type_no">
-													<c:forEach var="prod_typeVO" items="${prodSvc.all}">
+													<c:forEach var="prod_typeVO" items="${prod_typeSvc.all}">
 														<option value="${prod_typeVO.prod_type_no}">${prod_typeVO.prod_type_name}
 													</c:forEach>
 												</select> <input type="hidden" name="action"
-													value="getOne_For_Display"> <input type="submit"
+													value="listProds_ByProd_type"> <input type="submit"
 													value="送出">
 											</FORM>
 										

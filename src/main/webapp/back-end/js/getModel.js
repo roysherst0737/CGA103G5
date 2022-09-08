@@ -1,3 +1,131 @@
+const mem_p = document.querySelector('#mem_p');
+const btn = document.querySelector('#btn');
+const fpub_name = document.querySelector('#fpub_name');
+const fpub_nop = document.querySelector('#fpub_nop');
+const pub_address = document.querySelector('#fpub_address');
+const pub_lng = document.querySelector('#fpub_lng');
+const pub_lat = document.querySelector('#fpub_lat');
+const pub_img = document.querySelector('#pub_img');
+const pub_detail = document.querySelector('#fpub_detail');
+const firm_name = document.querySelector('#firm_name');
+const firm_addr = document.querySelector('#firm_addr');
+const firm_tel_no = document.querySelector('#firm_tel_no');
+const firm_email = document.querySelector('#firm_email');
+const firm_tax_id = document.querySelector('#firm_tax_id');
+const file_check = false;
+
+
+const week = [0, '禮拜一', '禮拜二', '禮拜三', '禮拜四', '禮拜五', '禮拜六', '禮拜日'];
+//	建立表單
+for (let i = 1; i < 8; i++) {
+	this['m' + i + '_div'] = document.createElement('div');
+	this['div' + i] = document.querySelector('#div' + i);
+	this['m' + i + '_div'].innerHTML = `
+	<div class="modal fade" id="exampleModal`+ i + `" tabindex="-1"
+					role="dialog" aria-labelledby="exampleModalLabel`+ i + `"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel`+ i + `">編輯營業時間</h5>
+								<button type="button" class="close" onclick="close_dialog()"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body1 container">
+								<div class="row d1">
+									<div class="col-6" style="display:flex;">
+										<div style="display: flex; justify-content:center;align-items: center; ">
+											<label>`+ week[i] + `</label>
+										</div>
+										<div >
+											<div class="row inside">
+												<input class="form-check-input" type="radio" name="m`+ i + `"
+													id="M`+ i + `all" value="24小時營業" onchange="radio(this,` + i + `)"> <label class="" for="M` + i + `all">24小時營業
+												</label>
+											</div>
+											<div class="row inside">
+												<input class="form-check-input" type="radio" name="m`+ i + `"
+													id="m`+ i + `off" value="未營業" onchange="radio(this,` + i + `)"checked> <label class="" for="m` + i + `off">未營業</label>
+											</div>
+											<div class="row inside">
+												<input class="form-check-input" type="radio" name="m`+ i + `"
+													id="m`+ i + `self" value="自選" onchange="radio(this,` + i + `)"> <label class="" for="m` + i + `self">自選</label>
+											</div>
+										</div>
+									</div>
+									<div id="oc`+ i + `"class="col-6" style="padding: 10px;display:none">
+									<div >
+									<div style="display: flex;justify-content:space-around;"><label>開始時間</label><label>結束時間</label></div>
+									<div style="display: flex;">
+										<select id="open_`+ i + `"  class="form-select form-select-sm mb-0" aria-label=".form-select-lg example" style="height:30px; font-size: smaller;" onchange=select(this,` + i + `)>
+										  <option value="0">00:00</option>
+										  <option value="1">01:00</option>
+										  <option value="2">02:00</option>
+										  <option value="3">03:00</option>
+										  <option value="4">04:00</option>
+										  <option value="5">05:00</option>
+										  <option value="6">06:00</option>
+										  <option value="7">07:00</option>
+										  <option value="8">08:00</option>
+										  <option value="9">09:00</option>
+										  <option value="10">10:00</option>
+										  <option value="11">11:00</option>
+										  <option value="12">12:00</option>
+										  <option value="13">13:00</option>
+										  <option value="14">14:00</option>
+										  <option value="15">15:00</option>
+										  <option value="16">16:00</option>
+										  <option value="17">17:00</option>
+										  <option value="18">18:00</option>
+										  <option value="19">19:00</option>
+										  <option value="20">20:00</option>
+										  <option value="21">21:00</option>
+										  <option value="22">22:00</option>
+										  <option value="23">23:00</option>
+										</select>
+											<select id="close_`+ i + `"class="form-select form-select-sm mb-0"  aria-label=".form-select-lg example" style="margin-left: 5px; height:30px;font-size: smaller;">
+										  <option disabled value="0">00:00</option>
+										  <option selected="selected" value="1">01:00</option>
+										  <option value="2">02:00</option>
+										  <option value="3">03:00</option>
+										  <option value="4">04:00</option>
+										  <option value="5">05:00</option>
+										  <option value="6">06:00</option>
+										  <option value="7">07:00</option>
+										  <option value="8">08:00</option>
+										  <option value="9">09:00</option>
+										  <option value="10">10:00</option>
+										  <option value="11">11:00</option>
+										  <option value="12">12:00</option>
+										  <option value="13">13:00</option>
+										  <option value="14">14:00</option>
+										  <option value="15">15:00</option>
+										  <option value="16">16:00</option>
+										  <option value="17">17:00</option>
+										  <option value="18">18:00</option>
+										  <option value="19">19:00</option>
+										  <option value="20">20:00</option>
+										  <option value="21">21:00</option>
+										  <option value="22">22:00</option>
+										  <option value="23">23:00</option>
+										  <option value="24">24:00</option>
+										</select>
+										</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" onclick="close_dialog()">取消</button>
+								<button type="button" style="width: auto; height: auto;" class="btn btn-primary" onclick=btnCheck(`+ i + `)>確認</button>
+							</div>`;
+
+	this['div' + i].appendChild(this['m' + i + '_div'], this['div' + i].lastChild);
+}
+
+
 function getdate(pub_no) {
 	let json = JSON.stringify({
 		pub_no: pub_no,
@@ -15,11 +143,21 @@ function getdate(pub_no) {
 			const { successful } = body;
 			const { message } = body;
 			if (successful) {
-				alert("work");
-				//				document.querySelector('.modal-body').innerHTML = message + `<br>請等候管理員審核，點擊確認跳轉`
+				mem_p.textContent = "會員編號:" + body.mem_no;
+				fpub_name.value = body.pub_name;
+				fpub_nop.value = body.pub_nop;
+				pub_address.value = body.pub_address;
+				pub_lng.value = body.pub_lng;
+				pub_lat.value = body.pub_lat;
+				pub_detail.value = body.pub_detail;
+				firm_name.value = body.firm_name;
+				firm_addr.value = body.firm_addr;
+				firm_tel_no.value = body.firm_tel_no;
+				firm_email.value = body.firm_email;
+				firm_tax_id.value = body.firm_tax_id;
+
 			} else {
-				alert("fail");
-				//				document.querySelector('.modal-body').innerHTML = message + `<br>請聯繫客服協助處理`
+				alert("message" + "，請聯絡資訊人員");
 			}
 			// btn.removeAttribute("data-toggle");
 			// btn.removeAttribute("data-target");
@@ -279,6 +417,13 @@ function getOpenTime() {
 		}
 	});
 	return pub_open
+}
+function close_dialog() {
+	document.querySelectorAll('#exampleModal1, #exampleModal2, #exampleModal3, #exampleModal4, #exampleModal5, #exampleModal6, #exampleModal7').forEach(e=>{e.classList.remove("show")});
+	document.querySelectorAll('#exampleModal1, #exampleModal2, #exampleModal3, #exampleModal4, #exampleModal5, #exampleModal6, #exampleModal7').forEach(e=>{e.style.display="none"});
+	if(document.querySelectorAll('body .modal-backdrop').length==2){
+		document.querySelector('body >div:last-child').remove();
+	}
 }
 function repeatStr(str, num) {
 	let s = "";

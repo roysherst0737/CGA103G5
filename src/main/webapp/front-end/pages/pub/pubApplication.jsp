@@ -301,11 +301,6 @@ a.booking:hover {
 												id="firm_tax_id" placeholder="廠商統一編號">
 										</div>
 									</div>
-									<!-- 									<div class="form-check form-check-flat form-check-primary"> -->
-									<!-- 										<label class="form-check-label"> <input -->
-									<!-- 											type="checkbox" class="form-check-input"> Remember me -->
-									<!-- 										</label> -->
-									<!-- 									</div> -->
 									<button id="btn" type="button" class="btn btn-primary mr-2">確認送出</button>
 									<button type="reset" class="btn btn-light">重填</button>
 								</div>

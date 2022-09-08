@@ -26,8 +26,6 @@ public int update(Pub pojo) {
 
 @Override
 public Pub selectById(Integer id) {
-	System.out.println("ggggggggg="+id);
-//	 return null;
 	 return getSession().get(Pub.class, id);
 }
 

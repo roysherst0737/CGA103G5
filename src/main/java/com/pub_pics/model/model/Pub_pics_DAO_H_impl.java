@@ -19,7 +19,8 @@ public class Pub_pics_DAO_H_impl implements Pub_pics_DAO_H{
 
 	@Override
 	public int update(Pub_pics pojo) {
-		return 0;
+		getSession().update(pojo);
+		return 1;
 	}
 
 	@Override

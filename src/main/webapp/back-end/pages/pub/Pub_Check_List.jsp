@@ -291,12 +291,16 @@ border: 2px solid #266ed4;
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>酒吧圖片</label> <input id="pub_img" type="file" name="img[]"
+                            <div style="height: 240px;width: 100%;position: relative;margin: 10px;">
+                                <label>酒吧圖片</label> 
+                                    <img id="img_set" style="position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);height:240px;max-width: 300px; "src="<%=request.getContextPath()%>/back-end/images/noPic.png"></img>
+                            </div>
+                                <input id="pub_img" type="file" name="img[]"
                                     class="file-upload-default" accept="image/gif, image/jpeg, image/png">
                                 <div class="input-group col-xs-12">
                                     <input type="text" class="form-control file-upload-info" disabled
                                         placeholder="Upload Image"> <span class="input-group-append">
-                                        <button class="file-upload-browse btn btn-primary" type="button">上傳</button>
+                                        <button class="file-upload-browse btn btn-primary" type="button" >上傳</button>
                                     </span>
                                 </div>
                             </div>
@@ -388,12 +392,14 @@ border: 2px solid #266ed4;
 	<script
 		src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 	<script src="<%=request.getContextPath()%>/back-end/js/getModel.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/file-upload.js"></script>
 	<!-- End custom js for this page-->
 	<script>
 	$(document).ready(function() {
 		document.querySelectorAll('.btn-group>Button').forEach(e=>{e.addEventListener('click',()=>{change_word()})})
 	change_word();
 	});
+
 	function change_word(){
 	if(document.querySelector('.dataTables_empty')!==null){
 		document.querySelector('.dataTables_empty').innerText='查無資料';

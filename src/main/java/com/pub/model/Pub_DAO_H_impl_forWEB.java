@@ -20,8 +20,8 @@ public int deleteById(Integer id) {
 
 @Override
 public int update(Pub pojo) {
-	// TODO Auto-generated method stub
-	return 0;
+	getSession().update(pojo);
+	return 1;
 }
 
 @Override

@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.pub.model.Pub;
-@WebServlet("/PubRegister")
-public class PubRegisterServlet extends HttpServlet{
+@WebServlet("/pub/PubUpdate")
+public class PubUpdateServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
@@ -26,11 +26,10 @@ public class PubRegisterServlet extends HttpServlet{
 			writePojo2Json(response, pub);
 			return;
 		}
-		pub = SERVICE.register(pub);
+		pub = SERVICE.update(pub);
 		System.out.println(pub.getMessage());
 		System.out.println(pub.getSuccessful());
 		writePojo2Json(response, pub);
-		return;
 //		List<Pub> pubList = SERVICE.getAll();
 //		pubList.removeIf(e->e.getPub_status()==false);
 //		Set<String> pubAddress = new HashSet<String>() ;

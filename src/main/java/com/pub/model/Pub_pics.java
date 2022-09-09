@@ -1,6 +1,9 @@
 package com.pub.model;
 
 import java.io.Serializable;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
@@ -12,20 +15,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.google.gson.annotations.Expose;
 import com.pub.service.Core;
+
 @Entity
 @Table(name="pub_pics")
 public class Pub_pics extends Core {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (insertable=false)
 	private Integer pub_pic_no;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="pub_no" ,insertable=false,updatable = false)
-	private transient Pub pub;
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="pub_no" ,updatable = false)
+	private  Pub pub_1;
 	
 	private String pub_pic;	
 	public Integer getPub_pic_no() {
@@ -41,10 +43,10 @@ public class Pub_pics extends Core {
 		this.pub_pic = pub_pic;
 	}
 	public Pub getPub() {
-		return pub;
+		return pub_1;
 	}
 	public void setPub(Pub pub) {
-		this.pub = pub;
+		this.pub_1 = pub;
 	}
 
 	

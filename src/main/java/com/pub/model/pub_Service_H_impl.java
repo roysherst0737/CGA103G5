@@ -1,11 +1,9 @@
 package com.pub.model;
 
-import java.io.Console;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.pub_pics.model.model.Pub_pics_DAO_H_impl;
-import com.util.GetBase64;
 
 public class pub_Service_H_impl implements pub_Service_H{
 	private Pub_DAO_H_impl_forWEB dao;
@@ -71,16 +69,20 @@ public class pub_Service_H_impl implements pub_Service_H{
 		
 		try {
 			pub.setMem_no(1);
+			System.out.println(pub.getPub_no());
+			System.out.println(pub.getFirm_tax_id());
 			final int resultCount = dao.insert(pub);
 			Pub_pics pic= new Pub_pics();
 			pic.setPub(pub);
 			pic.setPub_pic(pub.getImg());
+			dao.getSession().flush();
 			final int pic_resultCount = pic_dao.insert(pic);
 			if (resultCount < 1) {
 				pub.setMessage("註冊錯誤，請聯絡管理員!");
 				pub.setSuccessful(false);
 				return pub;
-			}if (pic_resultCount < 1) {
+			}
+			if (pic_resultCount < 1) {
 				pub.setMessage("照片寫入錯誤，請聯絡管理員!");
 				pub.setSuccessful(false);
 				return pub;

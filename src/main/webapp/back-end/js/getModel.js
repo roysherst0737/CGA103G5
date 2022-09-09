@@ -159,20 +159,44 @@ function getdate(pub_no) {
 					status_b.classList.remove('btn-inverse-success');
 				}
 				pub_application.textContent = body.pub_application;
+
+
 				if (body.pub_application == 0) {
-					document.querySelector('#check_0').setAttribute('checked', '');
+					document.querySelector('#check_0').checked=true;
 					document.querySelector('#check_0').parentElement.style.backgroundColor = 'antiquewhite';
 					status_b.style.display = 'none';
+					document.querySelector('#check_2').parentElement.style.display = '';
+					document.querySelector('#check_0').parentElement.style.display = '';
+					document.querySelector('#check_2').removeAttribute('readonly');
+					document.querySelector('#check_0').removeAttribute('readonly');
+					document.querySelector('#check_1').removeAttribute('readonly');
+					pub_status.style.display = '';
 				} else if (body.pub_application == 1) {
-					document.querySelector('#check_1').setAttribute('checked', '');
+					document.querySelector('#check_1').checked=true;
 					document.querySelector('#check_1').parentElement.style.backgroundColor = 'antiquewhite';
 					status_b.style.display = '';
 
+					pub_application.textContent = "1";
+					document.querySelector('#check_1').parentElement.style.backgroundColor = '';
+					document.querySelector('#check_2').parentElement.style.display = 'none';
+					document.querySelector('#check_0').parentElement.style.display = 'none';
+					document.querySelector('#check_2').setAttribute('readonly', '');
+					document.querySelector('#check_0').setAttribute('readonly', '');
+					document.querySelector('#check_1').setAttribute('readonly', '');
+					pub_status.style.display = 'none';
+
 				} else {
 					status_b.style.display = 'none';
-					document.querySelector('#check_2').setAttribute('checked', '');
+					document.querySelector('#check_2').checked=true;
 					document.querySelector('#check_2').parentElement.style.backgroundColor = 'antiquewhite';
 					document.querySelector('#pub_application_M_div').style.display = '';
+
+					document.querySelector('#check_2').parentElement.style.display = '';
+					document.querySelector('#check_0').parentElement.style.display = '';
+					document.querySelector('#check_2').removeAttribute('readonly');
+					document.querySelector('#check_0').removeAttribute('readonly');
+					document.querySelector('#check_1').removeAttribute('readonly');
+					pub_status.style.display = '';
 				}
 				pub_no_p.textContent = body.pub_no;
 				mem_p.textContent = body.mem_no;
@@ -641,33 +665,9 @@ function readonly() {
 	$('#firm_tax_id').attr("readonly", true);
 	$('.input-group.col-xs-12').attr("style", 'display:none')
 	document.querySelectorAll('#b1,#b2,#b3,#b4,#b5,#b6,#b7').forEach(e => { e.removeAttribute('data-target', 'data-toggle') });
-	const check_i = document.querySelectorAll('input[name=check_i]');
-	for (const radioButton of check_i) {
-		
-		if (radioButton.checked) {
-				
-			if (radioButton.value === "1") {
-				pub_application.textContent = "1";
-				document.querySelector('#check_1').parentElement.style.backgroundColor = '';
-				document.querySelector('#check_2').parentElement.style.display = 'none';
-				document.querySelector('#check_0').parentElement.style.display = 'none';
-				document.querySelector('#check_2').setAttribute('readonly', '');
-				document.querySelector('#check_0').setAttribute('readonly', '');
-				document.querySelector('#check_1').setAttribute('readonly', '');
-				pub_status.style.display = 'none';
 
-			}else{
-				document.querySelector('#check_2').parentElement.style.display = '';
-				document.querySelector('#check_0').parentElement.style.display = '';
-				document.querySelector('#check_2').removeAttribute('readonly');
-				document.querySelector('#check_0').removeAttribute('readonly');
-				document.querySelector('#check_1').removeAttribute('readonly');
-				pub_status.style.display = '';
-			}
-		}
-	}
 }
-status_b.addEventListener('click', status_set())
+status_b.addEventListener('click', status_set)
 
 
 function status_set() {

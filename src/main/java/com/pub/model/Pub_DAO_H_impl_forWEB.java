@@ -20,6 +20,7 @@ public int deleteById(Integer id) {
 
 @Override
 public int update(Pub pojo) {
+	System.out.println(pojo.getPub_no()+"pubno");
 	getSession().update(pojo);
 	return 1;
 }

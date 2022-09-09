@@ -214,7 +214,12 @@ border: 2px solid #266ed4;
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">酒吧基本資料</h4>
-                            <p id ="mem_p" class="card-description">會員編號:</p>
+                            <div style="display:flex;justify-content: space-around;">
+                            <p class="card-description">會員編號 : <span id ="span_id"></span></p>
+                            <p class="card-description">酒吧編號 : <span id ="span_pub_no"></span></p>
+                            <p class="card-description">酒吧狀態 : <span id ="span_pub_status"></span></p>
+                            </div>
+                            <p class="card-description">審核狀態:<span id ="span_pub_application"></span></p>
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="fpub_name" value="" placeholder="pub_name">
                                 <label for="fpub_name">酒吧名稱</label>

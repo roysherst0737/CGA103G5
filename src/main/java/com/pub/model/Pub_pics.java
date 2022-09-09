@@ -24,7 +24,7 @@ public class Pub_pics extends Core {
 	private Integer pub_pic_no;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="pub_no")
+	@JoinColumn(name="pub_no" ,insertable=false,updatable = false)
 	private transient Pub pub;
 	
 	private String pub_pic;	

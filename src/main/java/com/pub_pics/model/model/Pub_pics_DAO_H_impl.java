@@ -19,7 +19,7 @@ public class Pub_pics_DAO_H_impl implements Pub_pics_DAO_H{
 
 	@Override
 	public int update(Pub_pics pojo) {
-		getSession().update(pojo);
+		getSession().merge(pojo);
 		return 1;
 	}
 
@@ -31,6 +31,11 @@ public class Pub_pics_DAO_H_impl implements Pub_pics_DAO_H{
 	@Override
 	public List<Pub_pics> selectAll() {
 		return null;
+	}
+
+	@Override
+	public Pub_pics findByPubNo(Integer pub_no) {
+		return getSession().get(Pub_pics.class, pub_no);
 	}
 
 }

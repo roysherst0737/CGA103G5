@@ -1,5 +1,8 @@
-const mem_p = document.querySelector('#mem_p');
+const mem_p = document.querySelector('#span_id');
+const pub_status = document.querySelector('#span_pub_status');
+const pub_application = document.querySelector('#span_pub_application');
 const btn = document.querySelector('#btn');
+const pub_no_p = document.querySelector('#span_pub_no');
 const pub_name = document.querySelector('#fpub_name');
 const pub_nop = document.querySelector('#fpub_nop');
 const pub_address = document.querySelector('#fpub_address');
@@ -12,6 +15,7 @@ const firm_addr = document.querySelector('#firm_addr');
 const firm_tel_no = document.querySelector('#firm_tel_no');
 const firm_email = document.querySelector('#firm_email');
 const firm_tax_id = document.querySelector('#firm_tax_id');
+
 const img_set = document.querySelector('#img_set');
 let file_check = false;
 
@@ -144,7 +148,10 @@ function getdate(pub_no) {
 			const { successful } = body;
 			const { message } = body;
 			if (successful) {
-				mem_p.textContent = "會員編號:" + body.mem_no;
+				pub_status.textContent=body.pub_status?"上架":"下架";
+				pub_application.textContent = body.pub_application;
+				pub_no_p.textContent = body.pub_no;
+				mem_p.textContent = body.mem_no;
 				pub_name.value = body.pub_name;
 				pub_nop.value = body.pub_nop;
 				pub_address.value = body.pub_address;
@@ -189,62 +196,66 @@ function dataURLtoFile(dataurl, filename) {
 //	, pub_open, pub_detail, pub_name, pub_lng, pub_lat, firm_name, firm_addr, firm_tel_no, firm_email, firm_tax_id) {
 $(document).ready(function() {
 btn.addEventListener('click', async () => {
-//	if (pub_name.value.length < 1) {
-//		errormsg(pub_name, '酒吧名稱不得為空')
-//		return;
-//	}
-//	const pub_nopLength = pub_nop.value.length;
-//	if (pub_nopLength < 1 || pub_nopLength > 100) {
-//		errormsg(pub_nop, '酒吧可接受預約人數須介於1~100人')
-//		return;
-//	}
-//
-//	if (pub_address.value.length < 1) {
-//		errormsg(pub_address, '酒吧地址不得為空')
-//		return;
-//	}
-//
-//	if (pub_detail.value.length < 1) {
-//		errormsg(pub_detail, '酒吧描述不得為空')
-//		return;
-//	}
-//	if (firm_name.value.length < 1) {
-//		errormsg(firm_name, '廠商名稱不得為空')
-//		return;
-//	}
-//	if (firm_addr.value.length < 1) {
-//		errormsg(firm_addr, '廠商地址不得為空')
-//		return;
-//	}
-//
-//	const indiaRegex = /0\d{9}/;
-//	if (!indiaRegex.test(firm_tel_no.value)) {
-//		errormsg(firm_tel_no, '電話格式錯誤');
-//		return;
-//	}
-//	const emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
-//
-//	if (!emailRule.test(firm_email.value)) {
-//		errormsg(firm_email, '廠商email格式錯誤');
-//		return;
-//	}
-//	if (!isTax(firm_tax_id)) {
-//		//            errormsg(firm_tax_id, this.msgTax)
-//		return;
-//	}
-//	if (!file_check) {
-//		document.querySelector('.file-upload-browse').focus();
-//		errormsg(pub_img, '只能傳送JPG,JPEG,PNG,且不得為空');
-//		return
-//	}
+	if (pub_name.value.length < 1) {
+		errormsg(pub_name, '酒吧名稱不得為空')
+		return;
+	}
+	const pub_nopLength = pub_nop.value.length;
+	if (pub_nopLength < 1 || pub_nopLength > 100) {
+		errormsg(pub_nop, '酒吧可接受預約人數須介於1~100人')
+		return;
+	}
+
+	if (pub_address.value.length < 1) {
+		errormsg(pub_address, '酒吧地址不得為空')
+		return;
+	}
+
+	if (pub_detail.value.length < 1) {
+		errormsg(pub_detail, '酒吧描述不得為空')
+		return;
+	}
+	if (firm_name.value.length < 1) {
+		errormsg(firm_name, '廠商名稱不得為空')
+		return;
+	}
+	if (firm_addr.value.length < 1) {
+		errormsg(firm_addr, '廠商地址不得為空')
+		return;
+	}
+
+	const indiaRegex = /0\d{9}/;
+	if (!indiaRegex.test(firm_tel_no.value)) {
+		errormsg(firm_tel_no, '電話格式錯誤');
+		return;
+	}
+	const emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+
+	if (!emailRule.test(firm_email.value)) {
+		errormsg(firm_email, '廠商email格式錯誤');
+		return;
+	}
+	if (!isTax(firm_tax_id)) {
+		//            errormsg(firm_tax_id, this.msgTax)
+		return;
+	}
+	if (!file_check) {
+		document.querySelector('.file-upload-browse').focus();
+		errormsg(pub_img, '只能傳送JPG,JPEG,PNG,且不得為空');
+		return
+	}
 	let img = null;
 	btn.setAttribute("data-toggle", "modal");
 	btn.setAttribute("data-target", "#exampleModal");
 	if (pub_img.files[0]) {
 		img = await convertBase64(pub_img.files[0])
-		console.log(img)
 	}
+	let status = pub_status.textContent==="上架"?"true":"false";
 	let json = JSON.stringify({
+		pub_status:status,
+		pub_application:pub_application.textContent,
+		pub_no:pub_no_p.textContent,
+		mem_no:mem_p.textContent,
 		pub_name: pub_name.value,
 		pub_nop: pub_nop.value,
 		pub_address: pub_address.value,
@@ -260,25 +271,27 @@ btn.addEventListener('click', async () => {
 		firm_tax_id: firm_tax_id.value,
 	});
 	console.log(json)
-//	fetch('PubUpdate', {
-//		method: 'POST',
-//		headers: {
-//			'Content-Type': 'application/json',
-//		},
-//		body: json,
-//	})
-//		.then(resp => resp.json())
-//		.then(body => {
-//			const { successful } = body;
-//			const { message } = body;
-//			if (successful) {
+	fetch('PubUpdate', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: json,
+	})
+		.then(resp => resp.json())
+		.then(body => {
+			const { successful } = body;
+			const { message } = body;
+			if (successful) {
+				alert(message)
 //				document.querySelector('.modal-body').innerHTML = message + `<br>請等候管理員審核，點擊確認跳轉`
-//			} else {
+			} else {
+				alert(message+"請聯繫管理員協助處理")
 //				document.querySelector('.modal-body').innerHTML = message + `<br>請聯繫客服協助處理`
-//			}
+			}
 //			btn.removeAttribute("data-toggle");
 //			btn.removeAttribute("data-target");
-//		});
+		});
 
 });});
 
@@ -408,6 +421,7 @@ function btnCheck(e) {
 			break;
 		}
 	}
+	close_dialog();
 }
 function select(self, e) {
 	let c = document.querySelector('#close_' + e);

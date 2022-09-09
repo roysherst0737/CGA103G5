@@ -52,7 +52,7 @@ public class Pub extends Core{
 	@Transient
 	private String img;
 	@OneToMany(fetch=FetchType.EAGER)
-	@JoinColumn(name="pub_no")
+	@JoinColumn(name="pub_no" ,updatable=false ,insertable = false)
 	private  List<Pub_pics> pub_pics;
 	
 	public Pub() {

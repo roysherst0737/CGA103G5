@@ -15,6 +15,7 @@ const firm_addr = document.querySelector('#firm_addr');
 const firm_tel_no = document.querySelector('#firm_tel_no');
 const firm_email = document.querySelector('#firm_email');
 const firm_tax_id = document.querySelector('#firm_tax_id');
+const status_b = document.querySelector('#status_b');
 
 const img_set = document.querySelector('#img_set');
 let file_check = false;
@@ -148,8 +149,31 @@ function getdate(pub_no) {
 			const { successful } = body;
 			const { message } = body;
 			if (successful) {
-				pub_status.textContent=body.pub_status?"上架":"下架";
+				pub_status.textContent = body.pub_status ? "上架" : "下架";
+				status_b.textContent = body.pub_status ? "上架" : "下架";
+				if (status_b.textContent === "上架") {
+					status_b.classList.remove('btn-inverse-danger');
+					status_b.classList.add('btn-inverse-success');
+				} else {
+					status_b.classList.add('btn-inverse-danger');
+					status_b.classList.remove('btn-inverse-success');
+				}
 				pub_application.textContent = body.pub_application;
+				if (body.pub_application == 0) {
+					document.querySelector('#check_0').setAttribute('checked', '');
+					document.querySelector('#check_0').parentElement.style.backgroundColor = 'antiquewhite';
+					status_b.style.display = 'none';
+				} else if (body.pub_application == 1) {
+					document.querySelector('#check_1').setAttribute('checked', '');
+					document.querySelector('#check_1').parentElement.style.backgroundColor = 'antiquewhite';
+					status_b.style.display = '';
+
+				} else {
+					status_b.style.display = 'none';
+					document.querySelector('#check_2').setAttribute('checked', '');
+					document.querySelector('#check_2').parentElement.style.backgroundColor = 'antiquewhite';
+					document.querySelector('#pub_application_M_div').style.display = '';
+				}
 				pub_no_p.textContent = body.pub_no;
 				mem_p.textContent = body.mem_no;
 				pub_name.value = body.pub_name;
@@ -170,7 +194,8 @@ function getdate(pub_no) {
 				dataTransfer.items.add(myFile);
 				pub_img.files = dataTransfer.files;
 				aa(body.pub_open);
-
+				readonly();
+				setCheckBox();
 			} else {
 				alert("message" + "，請聯絡資訊人員");
 			}
@@ -194,106 +219,108 @@ function dataURLtoFile(dataurl, filename) {
 }
 //function getModel(i, pub_no, mem_no, pub_status, pub_nop, pub_rate_sum, pub_ratetotal, pub_time, pub_application, pub_address
 //	, pub_open, pub_detail, pub_name, pub_lng, pub_lat, firm_name, firm_addr, firm_tel_no, firm_email, firm_tax_id) {
-$(document).ready(function() {
-btn.addEventListener('click', async () => {
-	if (pub_name.value.length < 1) {
-		errormsg(pub_name, '酒吧名稱不得為空')
-		return;
-	}
-	const pub_nopLength = pub_nop.value.length;
-	if (pub_nopLength < 1 || pub_nopLength > 100) {
-		errormsg(pub_nop, '酒吧可接受預約人數須介於1~100人')
-		return;
-	}
+$(document).ready(function () {
+	btn.addEventListener('click', async () => {
+		if (pub_name.value.length < 1) {
+			errormsg(pub_name, '酒吧名稱不得為空')
+			return;
+		}
+		const pub_nopLength = pub_nop.value.length;
+		if (pub_nopLength < 1 || pub_nopLength > 100) {
+			errormsg(pub_nop, '酒吧可接受預約人數須介於1~100人')
+			return;
+		}
 
-	if (pub_address.value.length < 1) {
-		errormsg(pub_address, '酒吧地址不得為空')
-		return;
-	}
+		if (pub_address.value.length < 1) {
+			errormsg(pub_address, '酒吧地址不得為空')
+			return;
+		}
 
-	if (pub_detail.value.length < 1) {
-		errormsg(pub_detail, '酒吧描述不得為空')
-		return;
-	}
-	if (firm_name.value.length < 1) {
-		errormsg(firm_name, '廠商名稱不得為空')
-		return;
-	}
-	if (firm_addr.value.length < 1) {
-		errormsg(firm_addr, '廠商地址不得為空')
-		return;
-	}
+		if (pub_detail.value.length < 1) {
+			errormsg(pub_detail, '酒吧描述不得為空')
+			return;
+		}
+		if (firm_name.value.length < 1) {
+			errormsg(firm_name, '廠商名稱不得為空')
+			return;
+		}
+		if (firm_addr.value.length < 1) {
+			errormsg(firm_addr, '廠商地址不得為空')
+			return;
+		}
 
-	const indiaRegex = /0\d{9}/;
-	if (!indiaRegex.test(firm_tel_no.value)) {
-		errormsg(firm_tel_no, '電話格式錯誤');
-		return;
-	}
-	const emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+		const indiaRegex = /0\d{9}/;
+		if (!indiaRegex.test(firm_tel_no.value)) {
+			errormsg(firm_tel_no, '電話格式錯誤');
+			return;
+		}
+		const emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
 
-	if (!emailRule.test(firm_email.value)) {
-		errormsg(firm_email, '廠商email格式錯誤');
-		return;
-	}
-	if (!isTax(firm_tax_id)) {
-		//            errormsg(firm_tax_id, this.msgTax)
-		return;
-	}
-	if (!file_check) {
-		document.querySelector('.file-upload-browse').focus();
-		errormsg(pub_img, '只能傳送JPG,JPEG,PNG,且不得為空');
-		return
-	}
-	let img = null;
-	btn.setAttribute("data-toggle", "modal");
-	btn.setAttribute("data-target", "#exampleModal");
-	if (pub_img.files[0]) {
-		img = await convertBase64(pub_img.files[0])
-	}
-	let status = pub_status.textContent==="上架"?"true":"false";
-	let json = JSON.stringify({
-		pub_status:status,
-		pub_application:pub_application.textContent,
-		pub_no:pub_no_p.textContent,
-		mem_no:mem_p.textContent,
-		pub_name: pub_name.value,
-		pub_nop: pub_nop.value,
-		pub_address: pub_address.value,
-		pub_lng: pub_lng.value,
-		pub_lat: pub_lat.value,
-		pub_open: getOpenTime(),
-		img: img,
-		pub_detail: pub_detail.value,
-		firm_name: firm_name.value,
-		firm_addr: firm_addr.value,
-		firm_tel_no: firm_tel_no.value,
-		firm_email: firm_email.value,
-		firm_tax_id: firm_tax_id.value,
-	});
-	console.log(json)
-	fetch('PubUpdate', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: json,
-	})
-		.then(resp => resp.json())
-		.then(body => {
-			const { successful } = body;
-			const { message } = body;
-			if (successful) {
-				alert(message)
-//				document.querySelector('.modal-body').innerHTML = message + `<br>請等候管理員審核，點擊確認跳轉`
-			} else {
-				alert(message+"請聯繫管理員協助處理")
-//				document.querySelector('.modal-body').innerHTML = message + `<br>請聯繫客服協助處理`
-			}
-//			btn.removeAttribute("data-toggle");
-//			btn.removeAttribute("data-target");
+		if (!emailRule.test(firm_email.value)) {
+			errormsg(firm_email, '廠商email格式錯誤');
+			return;
+		}
+		if (!isTax(firm_tax_id)) {
+			//            errormsg(firm_tax_id, this.msgTax)
+			return;
+		}
+		//		if (!file_check) {
+		//			document.querySelector('.file-upload-browse').focus();
+		//			errormsg(pub_img, '只能傳送JPG,JPEG,PNG,且不得為空');
+		//			return
+		//		}
+		let img = null;
+		btn.setAttribute("data-toggle", "modal");
+		btn.setAttribute("data-target", "#exampleModal");
+		if (pub_img.files[0]) {
+			img = await convertBase64(pub_img.files[0])
+		}
+		let status = pub_status.textContent === "上架" ? "true" : "false";
+		let json = JSON.stringify({
+			pub_status: status,
+			pub_application: pub_application.textContent,
+			pub_no: pub_no_p.textContent,
+			mem_no: mem_p.textContent,
+			pub_name: pub_name.value,
+			pub_nop: pub_nop.value,
+			pub_address: pub_address.value,
+			pub_lng: pub_lng.value,
+			pub_lat: pub_lat.value,
+			pub_open: getOpenTime(),
+			img: img,
+			pub_detail: pub_detail.value,
+			firm_name: firm_name.value,
+			firm_addr: firm_addr.value,
+			firm_tel_no: firm_tel_no.value,
+			firm_email: firm_email.value,
+			firm_tax_id: firm_tax_id.value,
+			pub_application_M: pub_application_M.value,
 		});
+		console.log(json)
+		fetch('PubUpdate', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: json,
+		})
+			.then(resp => resp.json())
+			.then(body => {
+				const { successful } = body;
+				const { message } = body;
+				if (successful) {
+					alert(message)
+					//				document.querySelector('.modal-body').innerHTML = message + `<br>請等候管理員審核，點擊確認跳轉`
+				} else {
+					alert(message + "請聯繫管理員協助處理")
+					//				document.querySelector('.modal-body').innerHTML = message + `<br>請聯繫客服協助處理`
+				}
+				//			btn.removeAttribute("data-toggle");
+				//			btn.removeAttribute("data-target");
+			});
 
-});});
+	});
+});
 
 pub_img.addEventListener('change', function (e) {
 	var file_id = e.target.id;
@@ -572,6 +599,90 @@ function aa(open) {
 	//    }
 	//    return a;
 }
+function setCheckBox() {
+	const check_i = document.querySelectorAll('input[name=check_i]');
+	for (const radioButton of check_i) {
+		if (radioButton.checked) {
+			if (radioButton.value == 2) {
+				document.querySelector('#pub_application_M_div').style.display = '';
+				document.querySelector('#check_2').parentElement.style.backgroundColor = 'antiquewhite';
+				document.querySelector('#check_1').parentElement.style.backgroundColor = '';
+				document.querySelector('#check_0').parentElement.style.backgroundColor = '';
+				pub_application.textContent = "2";
+			} else if (radioButton.value == 1) {
+				pub_application.textContent = "1";
+				document.querySelector('#check_1').parentElement.style.backgroundColor = 'antiquewhite';
+				document.querySelector('#check_2').parentElement.style.backgroundColor = '';
+				document.querySelector('#check_0').parentElement.style.backgroundColor = '';
+				document.querySelector('#pub_application_M_div').style.display = 'none';
+			} else {
+				pub_application.textContent = "0";
+				document.querySelector('#check_0').parentElement.style.backgroundColor = 'antiquewhite';
+				document.querySelector('#check_1').parentElement.style.backgroundColor = '';
+				document.querySelector('#check_2').parentElement.style.backgroundColor = '';
+				document.querySelector('#pub_application_M_div').style.display = 'none';
+			}
+			break;
+		}
+	}
+}
+//設定唯讀專用
+function readonly() {
+	$('#fpub_name').attr("readonly", true);
+	$('#fpub_nop').attr("readonly", true);
+	$('#fpub_address').attr("readonly", true);
+	$('#fpub_lng').attr("readonly", true);
+	$('#fpub_lat').attr("readonly", true);
+	$('#fpub_detail').attr("readonly", true);
+	$('#firm_name').attr("readonly", true);
+	$('#firm_addr').attr("readonly", true);
+	$('#firm_tel_no').attr("readonly", true);
+	$('#firm_email').attr("readonly", true);
+	$('#firm_tax_id').attr("readonly", true);
+	$('.input-group.col-xs-12').attr("style", 'display:none')
+	document.querySelectorAll('#b1,#b2,#b3,#b4,#b5,#b6,#b7').forEach(e => { e.removeAttribute('data-target', 'data-toggle') });
+	const check_i = document.querySelectorAll('input[name=check_i]');
+	for (const radioButton of check_i) {
+		
+		if (radioButton.checked) {
+				
+			if (radioButton.value === "1") {
+				pub_application.textContent = "1";
+				document.querySelector('#check_1').parentElement.style.backgroundColor = '';
+				document.querySelector('#check_2').parentElement.style.display = 'none';
+				document.querySelector('#check_0').parentElement.style.display = 'none';
+				document.querySelector('#check_2').setAttribute('readonly', '');
+				document.querySelector('#check_0').setAttribute('readonly', '');
+				document.querySelector('#check_1').setAttribute('readonly', '');
+				pub_status.style.display = 'none';
+
+			}else{
+				document.querySelector('#check_2').parentElement.style.display = '';
+				document.querySelector('#check_0').parentElement.style.display = '';
+				document.querySelector('#check_2').removeAttribute('readonly');
+				document.querySelector('#check_0').removeAttribute('readonly');
+				document.querySelector('#check_1').removeAttribute('readonly');
+				pub_status.style.display = '';
+			}
+		}
+	}
+}
+status_b.addEventListener('click', status_set())
+
+
+function status_set() {
+	if (status_b.textContent === "上架") {
+		status_b.textContent = "下架";
+		pub_status.textContent = "下架";
+		status_b.classList.add('btn-inverse-danger');
+		status_b.classList.remove('btn-inverse-success');
+	} else {
+		status_b.classList.remove('btn-inverse-danger');
+		status_b.classList.add('btn-inverse-success');
+		status_b.textContent = "上架";
+		pub_status.textContent = "上架";
+	}
+};
 async function setImg() {
 	if (pub_img.files[0]) {
 		img_set.src = await convertBase64(pub_img.files[0])

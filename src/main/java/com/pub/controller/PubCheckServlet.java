@@ -19,8 +19,8 @@ public class PubCheckServlet extends HttpServlet{
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Integer integer = request.getAttribute("check")!=null? Integer.parseInt((String) request.getAttribute("check")):0;
-		List<Pub> pubList = SERVICE.check(integer);
+//		Integer integer = request.getAttribute("check")!=null? Integer.parseInt((String) request.getAttribute("check")):0;
+		List<Pub> pubList = SERVICE.getAll();
 		request.setAttribute("pubList", pubList);
 		request.getRequestDispatcher("/back-end/pages/pub/Pub_Check_List.jsp").forward(request, response);
 	}

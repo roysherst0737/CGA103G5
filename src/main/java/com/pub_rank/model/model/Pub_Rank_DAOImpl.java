@@ -2,7 +2,7 @@ package com.pub_rank.model.model;
 
 import java.util.List;
 
-import com.pub.model.Pub_Rank;
+import com.pub_rank.entity.Pub_Rank;
 
 public class Pub_Rank_DAOImpl implements Pub_Rank_DAO{
 

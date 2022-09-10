@@ -1,10 +1,6 @@
 package com.pub.model;
 
 import java.io.Serializable;
-import java.lang.annotation.Retention;
-import java.lang.annotation.Target;
-
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

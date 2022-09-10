@@ -1,4 +1,4 @@
-package com.pub_rank.model.service;
+package com.pub_rank.service;
 
 
 public class PubRankConstants {

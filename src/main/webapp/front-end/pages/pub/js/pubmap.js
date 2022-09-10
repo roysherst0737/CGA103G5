@@ -9,7 +9,7 @@
 				}
 			});
 			let pub_no=document.querySelector('#pub_no').textContent;
-			let mem_no="1";
+			let mem_no="2";
 			
 			
 			let json = JSON.stringify({

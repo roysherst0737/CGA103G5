@@ -1,8 +1,8 @@
-package com.pub_rank.model.service;
+package com.pub_rank.service;
 
 import java.util.List;
 
-import com.pub.model.Pub_Rank;
+import com.pub_rank.entity.Pub_Rank;
 import com.pub_rank.model.model.Pub_Rank_DAOImpl;
 
 public class Pub_Rank_ServiceImpl implements Pub_Rank_Service{

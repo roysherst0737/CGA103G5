@@ -1,7 +1,8 @@
-package com.pub_rank.model.controller;
+package com.pub_rank.controller;
+import static com.pub_rank.service.PubRankConstants.SERVICE;
 import static com.util.CommonUtil.json2Pojo;
 import static com.util.CommonUtil.writePojo2Json;
-import static com.pub_rank.model.service.PubRankConstants.SERVICE;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pub.model.Pub_Rank;
+import com.pub_rank.entity.Pub_Rank;
 @WebServlet("/PubRate")
 public class PubInserServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;

@@ -37,6 +37,60 @@
 	href="<%=request.getContextPath()%>/front-end/css/pub.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
+.img_rate{
+	width:30px;
+	vertical-align: middle;
+}
+.ipt_rate{
+    position: absolute;
+    width: 30px;
+    height:30px;
+    opacity: 0;
+}
+.modal-content {
+	background-color: azure;
+}
+
+#myimg {
+	width: auto;
+	height: 120px;
+}
+
+.myimg_div {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+#mydetail {
+	width: 100%;
+	height: auto;
+	margin: 15px;
+}
+
+.datamsg {
+	display: none;
+}
+
+.my_a {
+	position: relative;
+}
+
+.mybtn {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: transparent;
+	border: none;
+}
+
+#rate_li {
+	text-align: center;
+}
+
 a.booking {
 	background: #f5c242;
 	position: absolute;
@@ -70,8 +124,10 @@ a.booking:hover {
 					<h2>酒吧地圖</h2>
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item active">酒吧地圖 /</li>
-						<li><li	>
-						<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/front-end">首頁</a></li>
+						<li>
+						<li>
+						<li class="breadcrumb-item"><a
+							href="<%=request.getContextPath()%>/front-end">首頁</a></li>
 					</ul>
 				</div>
 			</div>
@@ -99,42 +155,58 @@ a.booking:hover {
 							<c:forEach var="pubAddress" items="${pubAddress}">
 								<button data-filter=".${pubAddress}">${pubAddress}</button>
 							</c:forEach>
-							<!-- 							<button data-filter=".bulbs">Bulbs</button> -->
-							<!-- 							<button data-filter=".fruits">Fruits</button> -->
-							<!-- 							<button data-filter=".podded-vegetables">Podded	vegetables</button> -->
-							<!-- 							<button data-filter=".root-and-tuberous">Root and tuberous</button> -->
 						</div>
 					</div>
 				</div>
 			</div>
 
 			<div class="row special-list">
-				<c:forEach var="pubVO" items="${pubList}">
-					<div class="col-lg-3 col-md-6 special-grid ${pubVO.pub_address.substring(0, 3)}">
+				<c:forEach var="pubVO" items="${pubList}" varStatus="loop">
+					<div
+						class="col-lg-3 col-md-6 special-grid ${pubVO.pub_address.substring(0, 3)}">
 						<div class="products-single fix">
 							<div class="box-img-hover">
 								<div class="type-lb">
 									<p class="openType">營業中</p>
 								</div>
-								<img
-									src="<%=request.getContextPath()%>/back-end/images/noPic.png"
-									class="img-fluid" alt="Image">
+								<c:forEach var="imgList" items="${pubVO.pub_pics}">
+									<img src="${imgList.pub_pic}" class="img-fluid" alt="Image">
+								</c:forEach>
+								<div class="datamsg">
+									<span class="pub_name">${pubVO.pub_name}</span> <span
+										class="pub_no">${pubVO.pub_no}</span> <span class="pub_detail">${pubVO.pub_detail}</span>
+									<span class="pub_name">${pubVO.pub_name}</span> <span
+										class="pub_name">${pubVO.pub_name}</span> <span
+										class="pub_name">${pubVO.pub_name}</span> <span
+										class="pub_name">${pubVO.pub_name}</span> <span
+										class="pub_name">${pubVO.pub_name}</span> <span
+										class="pub_name">${pubVO.pub_name}</span> <span
+										class="pub_name">${pubVO.pub_name}</span>
+								</div>
 								<div class="mask-icon">
 									<ul>
 										<li><a href="#" data-toggle="tooltip"
-											data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="right" title="Compare"><i
-												class="fas fa-sync-alt"></i></a></li>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="right" title="Add to Wishlist"><i
-												class="far fa-heart"></i></a></li>
+											data-placement="right" title="詳細"><i class="fas fa-eye"></i></a></li>
+										<li id="rate_li"><a href="#" data-toggle="tooltip"
+											data-placement="right" title="評分數">${pubVO.pub_rate_sum==null?"NA":pubVO.pub_rate_sum}<i
+												class=""></i></a></li>
+										<li><a class="my_a" id="i${loop.index}"
+											data-toggle="tooltip" data-placement="right" title="一起來評分"><i
+												class="far fa-heart"></i>
+												<button type="button" class="mybtn" data-toggle="modal"
+													data-target="#exampleModalCenter"></button></a></li>
+
+
+
+
 									</ul>
 									<a class="cart" href="#">預約訂位</a>
 								</div>
 							</div>
 						</div>
 					</div>
+
+
 				</c:forEach>
 				<div class="col-lg-3 col-md-6 special-grid bulbs">
 					<div class="products-single fix">
@@ -155,6 +227,7 @@ a.booking:hover {
 									<li><a href="#" data-toggle="tooltip"
 										data-placement="right" title="Add to Wishlist"><i
 											class="far fa-heart"></i></a></li>
+
 								</ul>
 								<a class="cart" href="#">Add to Cart</a>
 							</div>
@@ -197,9 +270,10 @@ a.booking:hover {
 									<li><a href="#" data-toggle="tooltip"
 										data-placement="right" title="Compare"><i
 											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
+									<li><button type="button" data-toggle="tooltip"
+											data-placement="right" title="Add to Wishlist">
+											<i class="far fa-heart"></i>
+										</button></li>
 								</ul>
 							</div>
 						</div>
@@ -512,6 +586,63 @@ a.booking:hover {
 			</div>
 		</div>
 	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="pub_no" style="display:none"></h5>
+					<h5 class="modal-title" id="exampleModalLongTitle"></h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="myimg_div">
+						<img id="myimg"></img> <span id="mydetail"></span>
+					</div>
+					<div style="text-align: center;">點擊留下評分</div>
+					<div style="display: flex; justify-content: space-around; padding: 0px 100px 20px 100px;">
+						<div style="position: relative;">
+							<input type="radio" name="rate" value="1"  class="ipt_rate"> <img class="img_rate"
+								src="<%=request.getContextPath()%>/front-end/images/str_yes.svg"></img>
+						</div >
+						<div style="position: relative;">
+							<input type="radio" name="rate" value="2"  class="ipt_rate"> <img class="img_rate"
+								src="<%=request.getContextPath()%>/front-end/images/str_yes.svg"></img>
+						</div >
+						<div style="position: relative;">
+							<input type="radio" name="rate" value="3" class="ipt_rate"> <img class="img_rate"
+								src="<%=request.getContextPath()%>/front-end/images/str_yes.svg"></img>
+						</div>
+						<div style="position: relative;">
+							<input type="radio" name="rate" value="4" class="ipt_rate"> <img class="img_rate"
+								src="<%=request.getContextPath()%>/front-end/images/str_yes.svg"></img>
+						</div>
+						<div style="position: relative;">
+							<input type="radio" name="rate" value="5" class="ipt_rate" checked> <img  class="img_rate"
+								src="<%=request.getContextPath()%>/front-end/images/str_yes.svg"></img>
+						</div>
+					</div>
+					<div>
+						<textarea class="form-control" id="mem_rate" placeholder="請留下感想"></textarea>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">取消</button>
+					<button  id="rate_submit"type="button" class="btn btn-primary">提交評價</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<!-- End Instagram Feed  -->
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
@@ -554,8 +685,9 @@ a.booking:hover {
 		src="<%=request.getContextPath()%>/front-end/js/form-validator.min.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/front-end/js/contact-form-script.js"></script>
-	<script id="customjs"
-		src="<%=request.getContextPath()%>/front-end/js/custom.js"></script>
+	<script src="<%=request.getContextPath()%>/front-end/js/custom.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/front-end/pages/pub/js/pubmap.js"></script>
 </body>
 
 </html>

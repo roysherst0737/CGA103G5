@@ -9,6 +9,7 @@ import com.pub.service.Core;
 @Table(name="pub_rank")
 public class Pub_Rank extends Core {
 	private static final long serialVersionUID = 1L;
+	@Id
 	private Integer pub_no;
 	@Id
 	private Integer mem_no;

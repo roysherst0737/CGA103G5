@@ -10,10 +10,31 @@
 			});
 			let pub_no=document.querySelector('#pub_no').textContent;
 			let mem_no="1";
-			//	$('#exampleModalCenter').css('display','block');
-			//	$('#exampleModalCenter').addClass('show');
-			//	$('body').append('<div class="modal-backdrop fade show"></div>')
-
+			
+			
+			let json = JSON.stringify({
+			pub_rate: pub_rate,
+			pub_comment: pub_comment,
+			pub_no: pub_no,
+			mem_no: mem_no,
+		});
+		console.log(json)
+		fetch('PubRate', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: json,
+		}).then(resp => resp.json())
+			.then(body => {
+				const { successful } = body;
+				const { message } = body;
+				if (successful) {
+					alert(message)
+				} else {
+					alert(message + "請聯繫管理員協助處理")
+				}
+			});
 		})
 	});
 	//	設定按鈕

@@ -46,7 +46,7 @@ public class Prod_type_Service {
 		return dao.getAll();
 	}
 	
-	public Set<Prod_VO>getProdsByProd_type_no(Integer prod_type_no) {
-		return dao.getProdsByProd_type_no(prod_type_no);
+	public Set<Prod_VO>getProdsByProd_type(Integer prod_type_no) {
+		return dao.getProdsByProd_type(prod_type_no);
 	}
 }

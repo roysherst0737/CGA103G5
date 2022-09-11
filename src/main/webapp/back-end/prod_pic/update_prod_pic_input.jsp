@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.prod_pic.model.*"%>
+<%@ page import="com.prod.model.*"%>
 
 <%
 	Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
@@ -127,13 +128,7 @@
 											<table class="table table-striped">
 												<tr>
 													<td>商品名稱:</td> 
-													<td>
-													<select size="1" name="prod_no">
-														<c:forEach var="prodVO" items="${prodSvc.all}">
-															<option value="${prodVO.prod_no}">${prodVO.prod_name}
-														</c:forEach>
-													</select>
-												</td> 
+													<td>${prod_picVO.getProd_VO().prod_name}</td> 
 												</tr>
 
 												<tr>

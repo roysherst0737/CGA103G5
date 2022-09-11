@@ -132,20 +132,21 @@
 												<th>商品狀態</th>
 												<th>上架時間</th>
 												<th>下架時間</th>
+												<th>商品敘述</th>
 												<th>商品管理</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="prodVO" items="${listProds_ByProd_no}">
-												<tr ${(prodVO.prod_no==param.prod_no) ? 'bgcolor=#CCCCFF':''}><!--將修改的那一筆加入對比色-->
+											<c:forEach var="prodVO" items="${listProds_ByProd_type}">
+												<tr>
 													<td>${prodVO.prod_no}</td>
-													<td>${prodVO.prod_typeVO.prod_type_name}</td>
+													<td>${prodVO.getProd_type_VO().prod_type_name}</td>
 													<td>${prodVO.prod_name}</td>
 													<td><img
-														src="<%=request.getContextPath()%>/ShowProd_picForProd?prod_no=${prodVO.prod_picVO.prod_pic}"
-														width=150px height=100px></td>
+														src="<%=request.getContextPath()%>/ShowProd_picForProd?prod_no=${prodVO.getProd_pic_VO().prod_pic_no}"
+														width=110px height=75px></td>
 													<td>${prodVO.prod_price}</td>
-													<td>${prodVO.prod_stock}</td>
+													<td style="text-align:left;">${prodVO.prod_stock}</td>
 													<td>
 														<c:if test="${prodVO.prod_status == 1}">
 															<div>已上架</div>
@@ -163,6 +164,7 @@
 															<div>${prodVO.off_time}</div>
 														</c:if>
 													</td>
+													<td style="max-width: 300px">${prodVO.prod_detail}</td>
 													<td>
 														<FORM METHOD="post"
 															ACTION="<%=request.getContextPath()%>/back-end/prod/prod.do"

@@ -187,7 +187,7 @@ a.booking:hover {
 									<ul>
 										<li><a href="#" data-toggle="tooltip"
 											data-placement="right" title="詳細"><i class="fas fa-eye"></i></a></li>
-										<li id="rate_li"><a href="#" data-toggle="tooltip"
+										<li id="rate_li"><a  data-toggle="tooltip"
 											data-placement="right" title="評分數">${pubVO.pub_rate_sum==null?"NA":pubVO.pub_rate_sum}<i
 												class=""></i></a></li>
 										<li><a class="my_a" id="i${loop.index}"

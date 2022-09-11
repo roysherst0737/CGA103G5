@@ -29,7 +29,7 @@ public class Pub extends Core{
 	private Boolean pub_status;
 	private Integer pub_nop;
 	@Column(insertable = false)
-	private Integer pub_rate_sum;
+	private Double pub_rate_sum;
 	@Column(insertable = false)
 	private Integer pub_ratetotal;
 	@Column(insertable = false)
@@ -82,10 +82,10 @@ public class Pub extends Core{
 	public void setPub_nop(Integer pub_nop) {
 		this.pub_nop = pub_nop;
 	}
-	public Integer getPub_rate_sum() {
+	public Double getPub_rate_sum() {
 		return pub_rate_sum;
 	}
-	public void setPub_rate_sum(Integer pub_rate_sum) {
+	public void setPub_rate_sum(Double pub_rate_sum) {
 		this.pub_rate_sum = pub_rate_sum;
 	}
 	public Integer getPub_ratetotal() {

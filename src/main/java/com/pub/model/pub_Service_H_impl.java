@@ -159,7 +159,6 @@ public class pub_Service_H_impl implements pub_Service_H{
 			pub.setPub_ratetotal(oldPub.getPub_ratetotal());
 			pub.setPub_time(oldPub.getPub_time());
 //			解決永久化問題
-			System.out.println(pub.getPub_application_M());
 			dao.getSession().clear();
 			final int resultCount = dao.update(pub);
 			final Pub_pics oldPubPics =  pic_dao.findByPubNo(pub.getPub_no());

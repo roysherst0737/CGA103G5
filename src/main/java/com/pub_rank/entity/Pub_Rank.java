@@ -13,8 +13,11 @@ public class Pub_Rank extends Core {
 	private Integer pub_no;
 	@Id
 	private Integer mem_no;
-	private Integer pub_rate;
+	private Double pub_rate;
 	private String pub_comment;
+	public Pub_Rank() {
+		
+	}
 	public Integer getPub_no() {
 		return pub_no;
 	}
@@ -27,10 +30,10 @@ public class Pub_Rank extends Core {
 	public void setMem_no(Integer mem_no) {
 		this.mem_no = mem_no;
 	}
-	public Integer getPub_rate() {
+	public Double getPub_rate() {
 		return pub_rate;
 	}
-	public void setPub_rate(Integer pub_rate) {
+	public void setPub_rate(Double pub_rate) {
 		this.pub_rate = pub_rate;
 	}
 	public String getPub_comment() {

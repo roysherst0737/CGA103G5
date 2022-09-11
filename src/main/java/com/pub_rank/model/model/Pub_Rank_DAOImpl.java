@@ -2,6 +2,7 @@ package com.pub_rank.model.model;
 
 import java.util.List;
 
+import com.pub.model.Pub;
 import com.pub_rank.entity.Pub_Rank;
 
 public class Pub_Rank_DAOImpl implements Pub_Rank_DAO{
@@ -34,6 +35,12 @@ public class Pub_Rank_DAOImpl implements Pub_Rank_DAO{
 	public List<Pub_Rank> selectAll() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Pub_Rank> selectAllByPub_no(Integer pub_no) {
+		final String sql = "FROM Pub_Rank WHERE pub_no= :pub_no";
+		return getSession().createQuery(sql, Pub_Rank.class).setParameter("pub_no", pub_no).list();
 	}
 
 }

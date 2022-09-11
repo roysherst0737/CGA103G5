@@ -8,4 +8,5 @@ import com.pub_rank.entity.Pub_Rank;
 public interface Pub_Rank_Service extends CoreService{
 	Pub_Rank setRate(Pub_Rank pub_Rank);
 	List<Pub_Rank> getAll();
+	List<Pub_Rank> getPubAllRate(Integer pub_no);
 }

@@ -31,6 +31,7 @@
 				const { message } = body;
 				if (successful) {
 					alert(message)
+					 window.location.reload();
 				} else {
 					alert(message + "請聯繫管理員協助處理")
 				}
@@ -51,7 +52,6 @@
 			document.querySelectorAll('.img_rate').forEach((img,index)=>{
 				if(index==0){path=img.src}
 				if((index+1)>e.target.value){
-					console.log('t')
 					img.src=path.replace('str_yes.svg','str_no.svg')
 				}else{
 					img.src=path.replace('str_no.svg','str_yes.svg')

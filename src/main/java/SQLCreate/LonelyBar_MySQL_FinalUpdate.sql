@@ -77,7 +77,7 @@ CREATE TABLE pub (
     mem_no INT NOT NULL,
     pub_status TINYINT NOT NULL DEFAULT '0',
     pub_nop INT NOT NULL,
-    pub_rate_sum INT,
+    pub_rate_sum DOUBLE(2,1),
     pub_ratetotal INT,
     pub_time DATETIME DEFAULT CURRENT_TIMESTAMP,
     pub_application TINYINT NOT NULL DEFAULT '0',

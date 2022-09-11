@@ -33,25 +33,25 @@
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
             <ul class="navbar-nav mr-lg-2">
                 <li class="nav-item  d-none d-lg-flex">
-                    <a class="nav-link" href="#">
-                        Calendar
-                    </a>
-                </li>
-                <li class="nav-item  d-none d-lg-flex">
-                    <a class="nav-link active" href="#">
-                        Statistic
+                    <a class="nav-link" href="`+path + hostname + pathname+`/front-end/">
+                        前台首頁
                     </a>
                 </li>
                 <li class="nav-item  d-none d-lg-flex">
                     <a class="nav-link" href="#">
-                        Employee
+                        預留按鈕
+                    </a>
+                </li>
+                <li class="nav-item  d-none d-lg-flex">
+                    <a class="nav-link" href="#">
+                        預留按鈕
                     </a>
                 </li>
             </ul>
             <ul class="navbar-nav navbar-nav-right">
                 <li class="nav-item d-none d-lg-flex  mr-2">
                     <a class="nav-link" href="#">
-                        Help
+                       預留按鈕
                     </a>
                 </li>
                 <li class="nav-item dropdown d-flex">

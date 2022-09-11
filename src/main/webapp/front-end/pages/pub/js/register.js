@@ -12,7 +12,7 @@
 	const firm_tel_no = document.querySelector('#firm_tel_no');
 	const firm_email = document.querySelector('#firm_email');
 	const firm_tax_id = document.querySelector('#firm_tax_id');
-	const file_check = false;
+	let file_check = false;
 	const week = [0, '禮拜一', '禮拜二', '禮拜三', '禮拜四', '禮拜五', '禮拜六', '禮拜日'];
 	//	建立表單
 	for (let i = 1; i < 8; i++) {
@@ -331,7 +331,9 @@ function btnCheck(e) {
 		if (radioButton.checked) {
 			if (radioButton.value === '自選') {
 				let o = document.querySelector('#open_' + e).value;
-				let c = document.querySelector('#close_' + e).value;
+				let c = document.querySelector('#close_' + e).value
+				o=o<10?"0"+o:o;
+				c=c<10?"0"+c:c;
 				document.querySelector('#b' + e).textContent = o + ":00~" + c + ":00";
 			} else {
 				document.querySelector('#b' + e).textContent = radioButton.value;

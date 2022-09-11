@@ -30,6 +30,7 @@ public class PubRegisterServlet extends HttpServlet{
 		System.out.println(pub.getMessage());
 		System.out.println(pub.getSuccessful());
 		writePojo2Json(response, pub);
+		return;
 //		List<Pub> pubList = SERVICE.getAll();
 //		pubList.removeIf(e->e.getPub_status()==false);
 //		Set<String> pubAddress = new HashSet<String>() ;

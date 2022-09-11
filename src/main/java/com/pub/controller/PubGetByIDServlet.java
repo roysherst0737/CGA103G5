@@ -1,14 +1,22 @@
 package com.pub.controller;
 import static com.util.CommonUtil.json2Pojo;
 import static com.util.CommonUtil.writePojo2Json;
+import static com.util.Constants.GSON;
+import static com.util.Constants.JSON_MIME_TYPE;
 import static com.pub.service.PubConstants.SERVICE;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.pub.model.Pub;
 @WebServlet("/pub/PubEdit")
 public class PubGetByIDServlet extends HttpServlet{
@@ -26,18 +34,38 @@ public class PubGetByIDServlet extends HttpServlet{
 			writePojo2Json(response, pub);
 			return;
 		}
-		System.out.println(pub.getPub_no());
 		pub = SERVICE.findByPrimaryKey(pub);
-		System.out.println(	pub.getPub_name());
-		System.out.println(pub.getSuccessful());
-		writePojo2Json(response, pub);
-//		List<Pub> pubList = SERVICE.getAll();
-//		pubList.removeIf(e->e.getPub_status()==false);
-//		Set<String> pubAddress = new HashSet<String>() ;
-//		pubList.forEach(e->{pubAddress.add(e.getPub_address().substring(0, 3));});
-//		request.setAttribute("pubList", pubList);
-//		request.setAttribute("pubAddress", pubAddress);
-//		request.getRequestDispatcher("/front-end/pages/pub/pubStates.jsp").forward(request, response);
+		if(pub.getPub_name()==null) {
+			pub.setMessage("無會員資訊");
+			pub.setSuccessful(false);
+		}else {
+			pub.setMessage("成功");
+			pub.setSuccessful(true);
+		}
+		
+		ExclusionStrategy strategy = new ExclusionStrategy() {
+		    @Override
+		    public boolean shouldSkipClass(Class<?> clazz) {
+		        return false;
+		    }
+		    @Override
+		    public boolean shouldSkipField(FieldAttributes field) {
+		        return field.getName().startsWith("pub_1");
+		    }
+
+		};
+		Gson gson = new GsonBuilder()
+				  .addSerializationExclusionStrategy(strategy)
+				  .create();
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType(JSON_MIME_TYPE);
+		try (PrintWriter pw = response.getWriter()) {
+			pw.print(gson.toJson(pub));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+//		writePojo2Json(response, pub);
+		return;
 	}
 
 }

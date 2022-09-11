@@ -20,14 +20,13 @@ public int deleteById(Integer id) {
 
 @Override
 public int update(Pub pojo) {
-	// TODO Auto-generated method stub
-	return 0;
+	System.out.println(pojo.getPub_no()+"pubno");
+	getSession().update(pojo);
+	return 1;
 }
 
 @Override
 public Pub selectById(Integer id) {
-	System.out.println("ggggggggg="+id);
-//	 return null;
 	 return getSession().get(Pub.class, id);
 }
 

@@ -98,9 +98,9 @@ pageContext.setAttribute("list", list);
 						
                         <div class="product-categorie-box">
                             <div class="tab-content">	
-                                <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
-                                <c:forEach var="prodVO" items="${list}">
+                                <div role="tabpanel" class="tab-pane fade show active" id="grid-view">                                
                                     <div class="row">
+                                    <c:forEach var="prodVO" items="${list}">
                                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                             <div class="products-single fix">
                                                 <div class="box-img-hover">
@@ -119,13 +119,12 @@ pageContext.setAttribute("list", list);
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                	</c:forEach>
+                                        </c:forEach>
+                                    </div>                                	
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="list-view">
                                 <c:forEach var="prodVO" items="${list}">
-                                    <div class="list-view-box">
-                                    
+                                    <div class="list-view-box">                                    
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                                 <div class="products-single fix">
@@ -144,12 +143,11 @@ pageContext.setAttribute("list", list);
                                                 <div class="why-text full-width">
                                                     <h4>${prodVO.prod_name}</h4>
                                                     <h5>${prodVO.prod_price}</h5>
-                                                    <p>${prodVO.prod_detail}</p>
+                                                    <p>$${prodVO.prod_detail}</p>
                                                     <a class="btn hvr-hover" href="#">加入購物車</a>
                                                 </div>
                                             </div>
-                                        </div>
-                                        
+                                        </div>                                      
                                     </div>
                                     </c:forEach>
                                 </div>

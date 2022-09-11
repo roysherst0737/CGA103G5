@@ -169,8 +169,9 @@ Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 												
 												<tr>
 													<td>商品敘述:</td>
-													<td><input type="TEXT" name="prod_detail" size="45"
-														value="<%=(prodVO == null) ? "" : prodVO.getProd_detail()%>" /></td>
+													<td><textarea name="prod_detail" cols="46" rows="10">
+													<%=(prodVO == null) ? "" : prodVO.getProd_detail()%>
+													</textarea></td>
 												</tr>
 												
 											</table>

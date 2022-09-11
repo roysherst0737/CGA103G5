@@ -76,10 +76,10 @@
 										<a href="listAllProd.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right:10px;">
-										<a href='add.jsp'><img src="./images/plus.png" width="30px" height="30px"></a>
+										<a href='addProd.jsp'><img src="./images/plus.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right:10px;">
-										<a href="select.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
+										<a href="selectProd.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
 										</button>
 										<button
 											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
@@ -150,7 +150,6 @@
 													value="送出">
 											</FORM>
 										
-
 											<FORM METHOD="post" ACTION="prod.do">
 												<b>選擇商品名稱:</b> <select size="1" name="prod_no">
 													<c:forEach var="prodVO" items="${prodSvc.all}">
@@ -160,6 +159,27 @@
 													value="getOne_For_Display"> <input type="submit"
 													value="送出">
 											</FORM>
+											
+											<FORM METHOD="post" ACTION="prod.do">
+												<b>選擇商品單價:</b> <select size="1" name="prod_no">
+													<c:forEach var="prodVO" items="${prodSvc.all}">
+														<option value="${prodVO.prod_no}">${prodVO.prod_price}
+													</c:forEach>
+												</select> <input type="hidden" name="action"
+													value="getOne_For_Display"> <input type="submit"
+													value="送出">
+											</FORM>
+											
+<!-- 											商品狀態選擇待修正 -->
+<!-- 											<FORM METHOD="post" ACTION="prod.do" >												 -->
+<!-- 												<b>選擇商品狀態:</b>  -->
+<!-- 												<select size="1" name="prod_no"> -->
+<!-- 													<option value=1>已上架 -->
+<!-- 													<option value=0>已下架 -->
+<!-- 												</select> -->
+<!-- 												<input type="hidden" name="action" value="getOne_For_Display"> -->
+<!-- 												<input type="submit" value="送出"> -->
+<!-- 											</FORM> -->
 									</div>
 								</div>
 							</div>

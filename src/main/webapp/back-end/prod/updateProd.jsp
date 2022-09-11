@@ -7,6 +7,7 @@
 	Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 %>
 
+<!DOCTYPE html>
 <html lang="zh">
 
 <head>
@@ -16,42 +17,50 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>朧醴 LonelyBar【後端】</title>
 <!-- base:css -->
-<script type="text/javascript">
-	let path = window.location.pathname.substring(0, window.location.pathname
-			.lastIndexOf("/"));
-	path = path.substring(0, path.lastIndexOf("/"));
-</script>
-
-<link rel="stylesheet" href="../vendors/typicons.font/font/typicons.css">
-<link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/back-end/vendors/typicons.font/font/typicons.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/back-end/vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
 <!-- endinject -->
 <!-- plugin css for this page -->
 <!-- End plugin css for this page -->
 <!-- inject:css -->
-<link rel="stylesheet" href="../css/vertical-layout-light/style.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/back-end/css/vertical-layout-light/style.css">
 <!-- endinject -->
-<link rel="shortcut icon" href="../images/favicon.png" />
+<link rel="shortcut icon"
+	href="<%=request.getContextPath()%>/back-end/images/favicon.png" />
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-
+<script>
+	let path = window.location.pathname.substring(0, window.location.pathname
+			.lastIndexOf("/"));
+	path = path.substring(0, path.lastIndexOf("/"));
+</script>
 </head>
 
 <body>
 	<!-- 主頁面 -->
 	<div class="container-scroller">
 		<!-- 引入nav(頂部含廣告) -->
-		<script src="../js/nav.js"></script>
+		<script src="<%=request.getContextPath()%>/back-end/js/nav.js"></script>
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_settings-panel.html -->
 			<!-- 引入浮動視窗 -->
-			<script src="../js/floating_window.js"></script>
+			<script
+				src="<%=request.getContextPath()%>/back-end/js/floating_window.js"></script>
 			<!-- partial -->
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar"></nav>
 			<!-- 引入sidebar 用JQ方式 -->
 			<script>
 				$(function() {
-					$("#sidebar").load("../partials/_sidebar.html");
+					$("#sidebar").load(
+							window.location.pathname.substring(0,
+									window.location.pathname.indexOf('/', 2))
+									+ "/back-end/partials/_sidebar.html");
 				});
 			</script>
 			<!-- partial -->
@@ -66,14 +75,17 @@
 							<div class="d-flex align-items-center justify-content-md-end">
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
-										<button style="margin-right:10px;">
-										<a href="listAllProd.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
+										<button style="margin-right: 10px;">
+											<a href="listAllProd.jsp"><img
+												src="./images/home.png" width="30px" height="30px"></a>
 										</button>
-										<button style="margin-right:10px;">
-										<a href='addProd.jsp'><img src="./images/plus.png" width="30px" height="30px"></a>
+										<button style="margin-right: 10px;">
+											<a href='addProd.jsp'><img src="./images/plus.png"
+												width="30px" height="30px"></a>
 										</button>
-										<button style="margin-right:10px;" <a href="selectProd.jsp"></a>>
-										<img src="./images/search2.png" width="30px" height="30px">
+										<button style="margin-right: 10px;">
+											<a href="selectProd.jsp"><img src="./images/search2.png"
+												width="30px" height="30px"></a>
 										</button>
 										<button
 											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
@@ -120,16 +132,18 @@
 												</c:forEach>
 											</ul>
 										</c:if>
-
+										
+										<jsp:useBean id="prod_typeSvc" scope="page" class="com.prod_type.model.Prod_type_Service" />
+										
 										<FORM METHOD="post" ACTION="prod.do" name="form1">
 											<table class="table table-striped">
 
 												<tr>
 													<td>商品類別:</td> 
 													<td>
-													<select size="1" name="prod_type">
+													<select size="1" name="prod_type_no">
 														<c:forEach var="prod_typeVO" items="${prod_typeSvc.all}">
-															<option value="${prod_typeVO.prod_type_no}">${prod_type_VO.prod_type_name}
+															<option value="${prod_typeVO.prod_type_no}">${prod_typeVO.prod_type_name}
 														</c:forEach>
 													</select>
 												</td> 
@@ -150,14 +164,27 @@
 														value="<%=(prodVO == null) ? "" : prodVO.getProd_stock()%>" /></td>
 												</tr>
 												<tr>
+													<td>下架時間:</td>
+													<td><input name="off_time" size="45" id="offTime" type="text"
+														value="<%=(prodVO.getOff_time() == null) ? "暫無下架時間" : prodVO.getOff_time()%>" /></td>
+												</tr>
+												<tr>
 													<td>商品狀態:</td>
-													<td><input type="TEXT" name="prod_status" size="45"
-														value="<%=(prodVO == null) ? "0或1" : prodVO.getProd_status()%>" />請填"0"代表已下架/"1"代表已上架</td>
+													<td>
+													<input type="radio" name="prod_status" size="45" id="on"
+														value=1 checked/>
+														<label for="on">已上架(持續販售)</label>
+													<br>
+													<input type="radio" name="prod_status" size="45" id="off"
+														value=0 />
+														<label for="off" style="color: red;">已下架(移除此商品)</label>
+													</td>
 												</tr>
 												<tr>
 													<td>商品敘述:</td>
-													<td><input type="TEXT" name="prod_detail" size="100"
-														value="<%=(prodVO == null) ? "" : prodVO.getProd_detail()%>" /></td>
+													<td><textarea name="prod_detail" cols="46" rows="10">
+													<%=(prodVO == null) ? "" : prodVO.getProd_detail()%>
+													</textarea></td>
 												</tr>
 												
 											</table>
@@ -168,7 +195,9 @@
 												type="submit" value="送出修改">
 												
 											<br>
-											<button style="margin-right:10px;" <a href='../prod_pic/select_page.jsp'>商品圖片管理</a>>
+											<br>
+											<button style="margin-right:10px;">
+												<a href="<%=request.getContextPath()%>/back-end/prod_pic/listAllProd_pic.jsp">商品圖片管理</a>
 											</button>
 										</FORM>
 									</div>
@@ -225,4 +254,31 @@
 	<!-- End custom js for this page-->
 </body>
 
+<!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
+
+<!-- 參考網站: https://xdsoft.net/jqplugins/datetimepicker/ -->
+
+<link rel="stylesheet" type="text/css"
+	href="datetimepicker/jquery.datetimepicker.css" />
+<script src="datetimepicker/jquery.js"></script>
+<script src="datetimepicker/jquery.datetimepicker.full.js"></script>
+
+<style>
+.xdsoft_datetimepicker .xdsoft_datepicker {
+	width: 300px; /* width:  300px; */
+}
+
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
+	height: 151px; /* height:  151px; */
+}
+</style>
+
+<script>
+	$.datetimepicker.setLocale('zh'); // kr ko ja en
+	$('#offTime').datetimepicker({
+		theme: '',
+		timepicker:true,
+		format : 'Y-m-d H:i:s',
+	});
+</script>
 </html>

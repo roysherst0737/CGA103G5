@@ -107,7 +107,7 @@ public class Prod_Servlet extends HttpServlet{
 		}
 		
 		
-		if ("update".equals(action)) { // 來自update_prod_pic_input.jsp的請求
+		if ("update".equals(action)) {
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to send the ErrorPage view.
@@ -116,13 +116,17 @@ public class Prod_Servlet extends HttpServlet{
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				Integer prod_no = Integer.valueOf(req.getParameter("prod_no").trim());
 				
-				Integer prod_type_no = null;
-				try {
-					prod_type_no = Integer.valueOf(req.getParameter("prod_type_no").trim());
-				} catch (NumberFormatException e) {
-					prod_type_no = 0;
-					errorMsgs.add("商品類別編號請填數字");
-				}	
+				Integer prod_type_no = 1;
+				if (prod_type_no == 0) {
+					errorMsgs.add("商品類別編號最小為1");
+				} else {
+					try {
+						prod_type_no = Integer.valueOf(req.getParameter("prod_type_no").trim());
+					} catch (NumberFormatException e) {
+						prod_type_no = 1;
+						errorMsgs.add("商品類別編號請填數字");
+					}
+				}
 						
 				String prod_name = req.getParameter("prod_name");
 				String prod_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
@@ -148,10 +152,7 @@ public class Prod_Servlet extends HttpServlet{
 					errorMsgs.add("商品庫存請填數字");
 				}
 				
-				Integer prod_status = null;
-				if (prod_status != 0 || prod_status != 1) {
-					errorMsgs.add("商品狀態請填0或1");
-				} 
+				Integer prod_status = Integer.valueOf(req.getParameter("prod_status").trim());
 				
 				Timestamp off_time = null;
 				

@@ -140,7 +140,7 @@ Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 												<th>商品管理</th>
 											</tr>
 										</thead>
-								<tbody>
+									<tbody>
 											<tr>
 												<td>${prodVO.prod_no}</td>
 												<td>${prodVO.getProd_type_VO().prod_type_name}</td>

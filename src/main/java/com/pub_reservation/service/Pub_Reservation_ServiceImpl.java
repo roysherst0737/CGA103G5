@@ -20,8 +20,6 @@ public class Pub_Reservation_ServiceImpl implements Pub_Reservation_Service{
 
 	@Override
 	public List<String> setReservation() {
-		PubDao.getSession();
-			
 		List<Pub> pubList = PubDao.getAllbyOpen();
 		reserveDao.insetReservation(pubList);
 		return null;
@@ -29,7 +27,7 @@ public class Pub_Reservation_ServiceImpl implements Pub_Reservation_Service{
 
 	@Override
 	public List<String> removeReservation() {
-		// TODO Auto-generated method stub
+		reserveDao.removeReservation();
 		return null;
 	}
 

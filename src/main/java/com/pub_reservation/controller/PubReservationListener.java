@@ -33,10 +33,10 @@ class PubReservationTimer extends TimerTask {
 
 	@Override
 	public void run() {
+		System.out.println("開始新增酒吧預約表");
 		SERVICE.setReservation();
-		System.out.println("新增酒吧預約表");
-		SERVICE.removeReservation();
 		System.out.println("刪除過期酒吧預約表");
+		SERVICE.removeReservation();
 //		
 //		RmOrderService rmOrderSvc = new RmOrderService();
 //		rmOrderSvc.overdue();

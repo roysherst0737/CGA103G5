@@ -120,6 +120,22 @@
           class="typcn typcn-document-text menu-icon"></i> <span class="menu-title">Documentation</span>
       </a></li>
 
+    <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#mem" aria-expanded="false"
+        aria-controls="mem"> <i class="typcn typcn-user-add-outline menu-icon"></i> <span
+          class="menu-title">會員管理</span>
+        <i class="menu-arrow"></i>
+      </a>
+            <div class="collapse" id="mem">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"><a id="mem_list" class="nav-link" href=""> 會員資料管理 </a></li>
+
+          <script>
+            document.querySelector("#mem_list").setAttribute("href",
+            	getContextPath() + "/back-end/mem/listAllMem.jsp");
+          </script>
+        </ul>
+      </div>
+    </li>
     <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#prod" aria-expanded="false"
         aria-controls="prod"> <i class="typcn typcn-user-add-outline menu-icon"></i> <span
           class="menu-title">商品管理</span>

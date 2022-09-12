@@ -1,6 +1,5 @@
 package com.pub_rank.service;
 
-import java.io.Console;
 import java.util.List;
 
 import com.pub.model.Pub;

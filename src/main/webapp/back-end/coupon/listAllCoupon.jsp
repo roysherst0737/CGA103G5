@@ -1,13 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.mem.model.*"%>
+<%@ page import="com.coupon.model.*"%>
 <%@ page import="com.prod_type.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
-Mem_Service memSvc = new Mem_Service();
-List<Mem_VO> list = memSvc.getAll();
+Coupon_Service couponSvc = new Coupon_Service();
+List<Coupon_VO> list = couponSvc.getAll();
 pageContext.setAttribute("list", list);
 %>
 
@@ -74,7 +74,7 @@ pageContext.setAttribute("list", list);
 				<div class="content-wrapper">
 					<div class="row">
 						<div class="col-sm-6">
-							<h3 class="mb-0 font-weight-bold">會員資料管理</h3>
+							<h3 class="mb-0 font-weight-bold">優惠券資料管理</h3>
 							<p>上次登入：21小時前</p>
 						</div>
 						<div class="col-sm-6">
@@ -127,7 +127,7 @@ pageContext.setAttribute("list", list);
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 										<div class="card-body">
-											<h4 class="card-title">會員資料</h4>
+											<h4 class="card-title">優惠券資料</h4>
 											<p class="card-description">
 												Add class
 												<code>.table-striped</code>
@@ -137,88 +137,48 @@ pageContext.setAttribute("list", list);
 													<thead>
 														<tr>
 															<th>編號</th>
-															<th>帳號</th>
-															<th>密碼</th>
-															<th>性別</th>
-															<th>姓氏</th>
-															<th>名字</th>
-															<th>暱稱</th>
-															<th>連絡電話</th>
-															<th>手機號碼</th>
-															<th>電子郵件</th>
-															<th>身分證字號</th>
-															<th>生日</th>
-															<th>地址</th>
-															<th>權限</th>
-															<th>狀態</th>
-															<th>創建日期</th>
-															<th>認證狀態</th>
+															<th>名稱</th>
+															<th>代碼</th>
+															<th>內容</th>
+															<th>折扣</th>
+															<th>發放數量</th>
+															<th>有效期間開始日期</th>
+															<th>有效期間結束日期</th>
+															<th>建立時間</th>
+															<th>狀態</th>															
 														</tr>
 													</thead>
 													<%@ include file="page1.file" %> 
-														<c:forEach var="memVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+														<c:forEach var="couponVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 															
 															<tr>
-																<td>${memVO.mem_no}</td>
-																<td>${memVO.mem_account}</td>
-																<td>${memVO.mem_password}</td>			
+																<td>${couponVO.coupon_no}</td>
+																<td>${couponVO.coupon_name}</td>
+																<td>${couponVO.coupon_code}</td>																
+																<td>${couponVO.coupon_content}</td>
+																<td>${couponVO.coupon_discount}</td> 
+																<td>${couponVO.coupon_amount}</td>
+																<td>${couponVO.launch_time}</td>
+																<td>${couponVO.off_time}</td>
+																<td>${couponVO.coupon_build_time}</td>																													
 																<c:choose>
-														   			<c:when test="${memVO.mem_gender==1}">
-														   				<td>男</td>
-														  			 </c:when>
-														  			 
-														   			<c:when test="${memVO.mem_gender==0}">
-														   				<td>女</td>
-														   			</c:when>
-														   			
-														  			<c:otherwise>
-														   				<td>多元性別</td>
-														  			</c:otherwise>
-																</c:choose>
-																<td>${memVO.mem_last_name}</td>
-																<td>${memVO.mem_first_name}</td> 
-																<td>${memVO.mem_nickname}</td>
-																<td>${memVO.mem_tel_no}</td>
-																<td>${memVO.mem_cel_no}</td>
-																<td>${memVO.mem_email}</td>
-																<td>${memVO.mem_id}</td> 
-																<td>${memVO.mem_birth}</td>
-																<td>${memVO.mem_addr}</td>
-																<c:choose>
-														   			<c:when test="${memVO.mem_permission==0}">
-														   				<td>一般會員</td>
-														  			 </c:when>
-														  			<c:otherwise>
-														   				<td>廠商會員</td>
-														  			</c:otherwise>
-																</c:choose>
-																<c:choose>
-														   			<c:when test="${memVO.status==0}">
+														   			<c:when test="${couponVO.status==0}">
 														   				<td>啟用</td>
 														  			 </c:when>
 														  			<c:otherwise>
 														   				<td>停用</td>
 														  			</c:otherwise>
 																</c:choose>
-																<td>${memVO.mem_build_time}</td> 
-																<c:choose>
-														   			<c:when test="${memVO.mem_cert_status==0}">
-														   				<td>待認證</td>
-														  			 </c:when>	   			
-														  			<c:otherwise>
-														   				<td>認證通過</td>
-														  			</c:otherwise>
-																</c:choose>
 																<td>
 																  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;">
 																     <input type="submit" class="btn btn-outline-secondary btn-sm" value="修改">
-																     <input type="hidden" name="memno"  value="${memVO.mem_no}">
+																     <input type="hidden" name="memno"  value="${couponVO.coupon_no}">
 																     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 																</td>
 																<td>
 																  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mem/mem.do" style="margin-bottom: 0px;">
 																     <input type="submit" class="btn btn-outline-primary btn-sm" value="刪除">
-																     <input type="hidden" name="memno"  value="${memVO.mem_no}">
+																     <input type="hidden" name="memno"  value="${couponVO.coupon_no}">
 																     <input type="hidden" name="action" value="delete"></FORM>
 																</td>
 															</tr>

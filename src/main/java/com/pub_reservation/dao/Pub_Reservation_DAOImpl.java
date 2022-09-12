@@ -1,6 +1,5 @@
 package com.pub_reservation.dao;
 
-import java.io.Console;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;

@@ -2,7 +2,6 @@ package com.pub_pics.dao;
 
 import java.util.List;
 
-import com.pub.entity.Pub;
 import com.pub_pics.entity.Pub_pics;
 
 public class Pub_pics_DAO_H_impl implements Pub_pics_DAO_H{

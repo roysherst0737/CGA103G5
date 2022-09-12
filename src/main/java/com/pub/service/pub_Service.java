@@ -1,6 +1,10 @@
-package com.pub.model;
+package com.pub.service;
 
 import java.util.List;
+
+import com.pub.model.Pub_DAO;
+import com.pub.model.Pub_DAO_interface;
+import com.pub.model.Pub_VO;
 
 public class pub_Service {
 	private Pub_DAO_interface dao;

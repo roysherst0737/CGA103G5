@@ -17,7 +17,7 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.pub.model.Pub;
+import com.pub.entity.Pub;
 @WebServlet("/pub/PubEdit")
 public class PubGetByIDServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;

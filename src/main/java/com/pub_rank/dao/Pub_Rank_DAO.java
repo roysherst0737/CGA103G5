@@ -1,4 +1,4 @@
-package com.pub_rank.model.model;
+package com.pub_rank.dao;
 
 import java.util.List;
 

@@ -17,8 +17,8 @@
   <property name="hibernate.show_sql">true</property>
   <property name="hibernate.format_sql">true</property>
 
-  <mapping class="com.pub.model.Pub" />
-  <mapping class="com.pub.model.Pub_pics" />
+  <mapping class="com.pub.entity.Pub" />
+  <mapping class="com.pub_pics.entity.Pub_pics" />
   <mapping class="com.pub_rank.entity.Pub_Rank" />
   <mapping class="com.pub_reservation.entity.Pub_Reservation" />
   <mapping class="com.pub_booking.entity.Pub_Booking" />

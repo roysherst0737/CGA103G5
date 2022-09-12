@@ -2,10 +2,10 @@ package com.pub_rank.service;
 
 import java.util.List;
 
-import com.pub.model.Pub;
-import com.pub.model.Pub_DAO_H_impl_forWEB;
+import com.pub.dao.Pub_DAO_H_impl_forWEB;
+import com.pub.entity.Pub;
+import com.pub_rank.dao.Pub_Rank_DAOImpl;
 import com.pub_rank.entity.Pub_Rank;
-import com.pub_rank.model.model.Pub_Rank_DAOImpl;
 
 public class Pub_Rank_ServiceImpl implements Pub_Rank_Service{
 	private Pub_Rank_DAOImpl dao;

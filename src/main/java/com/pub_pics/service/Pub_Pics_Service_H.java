@@ -1,9 +1,9 @@
-package com.pub_pics.model.service;
+package com.pub_pics.service;
 
 import java.util.List;
 
-import com.pub.model.Pub_pics;
 import com.pub.service.CoreService;
+import com.pub_pics.entity.Pub_pics;
 
 public interface Pub_Pics_Service_H extends CoreService{
 	Pub_pics inserPics(Pub_pics pub_pics) ;

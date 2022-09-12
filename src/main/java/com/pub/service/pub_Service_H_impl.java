@@ -1,9 +1,13 @@
-package com.pub.model;
+package com.pub.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.pub_pics.model.model.Pub_pics_DAO_H_impl;
+import com.pub.dao.Pub_DAO_H_impl_forWEB;
+import com.pub.entity.Pub;
+import com.pub.model.pub_Service_H;
+import com.pub_pics.dao.Pub_pics_DAO_H_impl;
+import com.pub_pics.entity.Pub_pics;
 
 public class pub_Service_H_impl implements pub_Service_H{
 	private Pub_DAO_H_impl_forWEB dao;

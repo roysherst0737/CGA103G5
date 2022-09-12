@@ -1,6 +1,8 @@
-package com.pub.model;
+package com.pub.dao;
 
 import java.util.List;
+
+import com.pub.entity.Pub;
 
 public class Pub_DAO_H_impl_forWEB implements Pub_DAO_H  {
 

@@ -170,7 +170,7 @@
 															ACTION="<%=request.getContextPath()%>/back-end/prod/prod.do"
 															style="margin-bottom: 0px;">
 															<input type="submit" value="管理"> <input
-																type="hidden" name="prod_no" value="${prod.prod_no}">
+																type="hidden" name="prod_no" value="${prodVO.prod_no}">
 															<input type="hidden" name="action"
 																value="getOne_For_Update">
 														</FORM>

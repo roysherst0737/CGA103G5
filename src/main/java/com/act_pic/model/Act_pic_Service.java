@@ -1,7 +1,6 @@
 package com.act_pic.model;
 
 import java.util.List;
-import java.util.Map;
 
 
 public class Act_pic_Service {
@@ -51,8 +50,11 @@ public class Act_pic_Service {
 		return dao.getAll();
 	}
 	
-	public List<Act_pic_VO> getAll(Map<String, String[]> map) {
-		return dao.getAll();
+
+	
+	public List<Act_pic_VO> get_from_act_no(Integer act_no) {
+		return dao.get_from_act_no(act_no);
+		
 	}
 
 }

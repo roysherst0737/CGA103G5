@@ -89,7 +89,7 @@ th, td {
 			</tr>
 			<tr>
 				<td>攜伴人數:</td>
-				<td><input type="TEXT" name="accompany_count" size="45"
+				<td><input type="number" name="accompany_count" size="45"  min="0" max="20"
 					value="<%=(act_sign_upVO == null) ? "" : act_sign_upVO.getAccompany_count()%>" /></td>
 			</tr>
 		</table>

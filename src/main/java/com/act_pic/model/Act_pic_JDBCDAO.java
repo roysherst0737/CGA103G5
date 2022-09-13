@@ -314,4 +314,12 @@ public class Act_pic_JDBCDAO implements Act_pic_DAO_interface {
 		}
 	}
 
+
+
+	@Override
+	public List<Act_pic_VO> get_from_act_no(Integer act_no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

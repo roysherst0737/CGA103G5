@@ -1,16 +1,22 @@
 <%@ page import="org.hibernate.internal.build.AllowSysOut"%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+	isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	
+<%@ page import="java.util.*"%>
 <%@ page import="com.act.model.*"%>
+<%@ page import="com.act_pic.model.*"%>
+<%@ page import="com.act_sign_up.model.*"%>
 
 <%
-
 Act_Service actSvc = new Act_Service();
 Act_VO actVO = actSvc.getOneAct(Integer.parseInt(request.getQueryString()));
-
 request.setAttribute("actVO", actVO);
-%>	
+
+Act_pic_Service act_picSvc = new Act_pic_Service();
+List<Act_pic_VO> list = act_picSvc.get_from_act_no(actVO.getAct_no());
+pageContext.setAttribute("list", list);
+
+%>
 
 
 
@@ -59,6 +65,8 @@ request.setAttribute("actVO", actVO);
 
 <body>
 
+
+
 	<div id=top_nav_mainTop>
 		<%@ include file="/front-end/partials/_mainTop.jsp"%>
 	</div>
@@ -70,10 +78,11 @@ request.setAttribute("actVO", actVO);
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h2>Shop Detail</h2>
+					<h2>Act Detail</h2>
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="#">Shop</a></li>
-						<li class="breadcrumb-item active">Shop Detail</li>
+						<li class="breadcrumb-item"><a
+							href="<%=request.getContextPath()%>/front-end/act/actlist.jsp">Act</a></li>
+						<li class="breadcrumb-item active">Act Detail</li>
 					</ul>
 				</div>
 			</div>
@@ -89,44 +98,141 @@ request.setAttribute("actVO", actVO);
 					<div id="carousel-example-1"
 						class="single-product-slider carousel slide" data-ride="carousel">
 						<div class="carousel-inner" role="listbox">
+
+
 							<div class="carousel-item active">
-								<img
-									src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${actVO.act_picVO.act_pic_no}"
-									width=300px height=200px>
+								<c:forEach var="act_picVO" items="${list}" begin="0" end="0">
+									<img class="d-block w-100"
+										src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
+										alt="First slide" width="400" height="400">
+								</c:forEach>
 							</div>
+							<c:if test="${list.size() > 1}">
+								<div class="carousel-item">
+									<c:forEach var="act_picVO" items="${list}" begin="1" end="1">
+										<img class="d-block w-100"
+											src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
+											alt="Second slide" width="400" height="400">
+									</c:forEach>
+								</div>
+							</c:if>
+
+							<c:if test="${list.size() > 2}">
+								<div class="carousel-item">
+									<c:forEach var="act_picVO" items="${list}" begin="2" end="2">
+										<img class="d-block w-100"
+											src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
+											alt="Third slide" width="400" height="400">
+									</c:forEach>
+								</div>
+							</c:if>
+
+
+
+
 
 						</div>
+						<a class="carousel-control-prev" href="#carousel-example-1"
+							role="button" data-slide="prev"> <i class="fa fa-angle-left"
+							aria-hidden="true"></i> <span class="sr-only">Previous</span>
+						</a> <a class="carousel-control-next" href="#carousel-example-1"
+							role="button" data-slide="next"> <i class="fa fa-angle-right"
+							aria-hidden="true"></i> <span class="sr-only">Next</span>
+						</a>
+
 
 						<ol class="carousel-indicators">
 							<li data-target="#carousel-example-1" data-slide-to="0"
-								class="active"><img class="d-block w-100 img-fluid"
-								src="images/smp-img-01.jpg" alt="" /></li>
-							<li data-target="#carousel-example-1" data-slide-to="1"><img
-								class="d-block w-100 img-fluid" src="images/smp-img-02.jpg"
-								alt="" /></li>
-							<li data-target="#carousel-example-1" data-slide-to="2"><img
-								class="d-block w-100 img-fluid" src="images/smp-img-03.jpg"
-								alt="" /></li>
+								class="active"><c:forEach var="act_picVO" items="${list}"
+									begin="0" end="0">
+									<img class="d-block w-100 img-fluid"
+										src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
+										alt="" />
+								</c:forEach></li>
+
+							<c:if test="${list.size() > 1}">
+								<li data-target="#carousel-example-1" data-slide-to="1"><c:forEach
+										var="act_picVO" items="${list}" begin="1" end="1">
+										<img class="d-block w-100 img-fluid"
+											src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
+											alt="" />
+									</c:forEach></li>
+							</c:if>
+
+							<c:if test="${list.size() > 2}">
+								<li data-target="#carousel-example-1" data-slide-to="2"><c:forEach
+										var="act_picVO" items="${list}" begin="2" end="2">
+										<img class="d-block w-100 img-fluid"
+											src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
+											alt="" />
+									</c:forEach></li>
+							</c:if>
 						</ol>
 					</div>
 				</div>
+
 				<div class="col-xl-7 col-lg-7 col-md-6">
 					<div class="single-product-details">
-						<h2><%=actVO.getAct_name()%></h2>
-						<h5>
-							<del>$ 60.00</del>
-							$40.79
-						</h5>
-						<p class="available-stock">
-							<span> More than 20 available / <a href="#">8 sold </a></span>
-						<p>
-						<h4>活動內容:</h4>
+						<h1><%=actVO.getAct_name()%></h1>
+						<h4>
+							活動地點☞<%=actVO.getAct_loc()%></h4>
+
+						<h4>
+							報名人數限制 ☞
+							<%=actVO.getMax_count()%>
+						</h4>
+						<h4>
+							當前報名人數 ☞
+							<%=actVO.getCurrent_count()%>
+						</h4>
+						<h4>
+							報名開始時間 ☞
+							<%=actVO.getSign_up_begin_time()%>
+						</h4>
+						<h4>
+							報名結束時間 ☞
+							<%=actVO.getSign_up_end_time()%>
+						</h4>
+						<h4>
+							活動開始時間 ☞
+							<%=actVO.getAct_start_time()%>
+						</h4>
+						<h4>
+							活動結束時間 ☞
+							<%=actVO.getAct_end_time()%>
+						</h4>
+
+						<h4>活動內容：</h4>
 						<p><%=actVO.getAct_detail()%></p>
 						<ul>
 							<li>
 								<div class="form-group quantity-box">
-									<label class="control-label">Quantity</label> <input
-										class="form-control" value="0" min="0" max="20" type="number">
+
+
+
+									<FORM METHOD="post" ACTION="act_sign_up.do" name="form1">
+										<table>
+
+											<tr>
+												<td>攜伴人數：</td>
+												<td><input type="number" name="accompany_count"
+													size="45" min="0" max="20"
+													value="0" /></td>
+											</tr>
+										</table>
+
+										<br> 
+										<input type="hidden" name="act_no" value="<%=actVO.getAct_no()%>">
+										<input type="hidden" name="mem_no" value="2">
+										<input type="hidden" name="action" value="insert">
+										
+										<input type="submit" value="我要報名">
+										
+									</FORM>
+
+
+
+
 								</div>
 							</li>
 						</ul>

@@ -13,6 +13,8 @@ public interface Act_pic_DAO_interface {
 	public Act_pic_VO findByPrimaryKey(Integer act_pic_no);
 
 	public List<Act_pic_VO> getAll();
-	//萬用複合查詢(傳入參數型態Map)(回傳 List)
+	// 萬用複合查詢(傳入參數型態Map)(回傳 List)
 //  public List<EmpVO> getAll(Map<String, String[]> map); 
+
+	public List<Act_pic_VO> get_from_act_no(Integer act_no);
 }

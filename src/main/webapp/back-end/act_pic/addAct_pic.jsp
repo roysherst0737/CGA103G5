@@ -142,7 +142,7 @@ Act_pic_VO act_picVO = (Act_pic_VO) request.getAttribute("act_picVO");
 												</tr>
 												<tr>
 													<td>活動照片:</td>
-													<td><input type="file" name="act_pic" size="45" /></td>
+													<td><input type="file" name="act_pic" size="45" multiple/></td>
 
 												</tr>
 												<tr>

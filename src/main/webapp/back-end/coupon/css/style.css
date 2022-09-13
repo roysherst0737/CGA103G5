@@ -1,0 +1,6 @@
+@charset "UTF-8";
+.horizontal_style{
+	 display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}

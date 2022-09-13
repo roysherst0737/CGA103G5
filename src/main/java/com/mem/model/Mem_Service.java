@@ -73,6 +73,10 @@ public class Mem_Service {
 	public Mem_VO getOneMem(Integer mem_no) {
 		return dao.findByPrimaryKey(mem_no);
 	}
+	
+	public Mem_VO getOneMem(String mem_account) {
+		return dao.findByPrimaryKey(mem_account);
+	}
 
 	public List<Mem_VO> getAll() {
 		return dao.getAll();

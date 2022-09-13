@@ -1,9 +1,9 @@
-package com.pub_pics.model.service;
+package com.pub_pics.service;
 
 import java.util.List;
 
-import com.pub.model.Pub_pics;
-import com.pub_pics.model.model.Pub_pics_DAO_H_impl;
+import com.pub_pics.dao.Pub_pics_DAO_H_impl;
+import com.pub_pics.entity.Pub_pics;
 
 public class Pub_Pics_Service_H_impl implements Pub_Pics_Service_H{
 	private Pub_pics_DAO_H_impl dao;

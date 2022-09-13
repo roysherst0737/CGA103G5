@@ -1,4 +1,4 @@
-package com.pub.model;
+package com.pub.entity;
 
 import java.sql.Date;
 import java.util.List;
@@ -16,6 +16,7 @@ import javax.persistence.Transient;
 
 import com.google.gson.annotations.Expose;
 import com.pub.service.Core;
+import com.pub_pics.entity.Pub_pics;
 @Entity
 @Table(name="Pub")
 public class Pub extends Core{

@@ -1,4 +1,4 @@
-package com.pub.model;
+package com.pub_pics.entity;
 
 import java.io.Serializable;
 import javax.persistence.Embeddable;
@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.pub.entity.Pub;
 import com.pub.service.Core;
 
 @Entity

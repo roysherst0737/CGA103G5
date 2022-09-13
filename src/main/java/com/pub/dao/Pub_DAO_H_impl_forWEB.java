@@ -1,6 +1,10 @@
-package com.pub.model;
+package com.pub.dao;
 
 import java.util.List;
+
+import org.hibernate.Session;
+
+import com.pub.entity.Pub;
 
 public class Pub_DAO_H_impl_forWEB implements Pub_DAO_H  {
 
@@ -39,6 +43,15 @@ public List<Pub> selectAll() {
 public List<Pub> getMemAll(Integer mem_no) {
 	final String sql = "FROM Pub WHERE mem_no= : mem_no ORDER BY pub_no";
 	return getSession().createQuery(sql, Pub.class).setParameter("mem_no", mem_no).list();
+}
+
+@Override
+public List<Pub> getAllbyOpen() {
+	final String sql = "FROM Pub ORDER BY pub_no";
+	Session session = getOpenSession();
+	List<Pub> list=session.createQuery(sql, Pub.class).list();
+	session.close();
+	return list;
 }
 
 //	@Override

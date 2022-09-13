@@ -2,6 +2,7 @@ package com.pub.model;
 
 import java.util.List;
 
+import com.pub.entity.Pub;
 import com.pub.service.CoreService;
 
 public interface pub_Service_H extends CoreService{

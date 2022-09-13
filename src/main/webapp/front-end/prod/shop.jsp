@@ -105,7 +105,7 @@ pageContext.setAttribute("list", list);
                                             <div class="products-single fix">
                                                 <div class="box-img-hover">
                                                     <img src="<%=request.getContextPath()%>/ShowProd_picForProd?prod_no=${prodVO.getProd_pic_VO().prod_pic_no}"
-														width=280px height=180px>
+														width=250px height=160px>
                                                     <div class="mask-icon">
                                                         <ul>
                                                             <li><a href="#" data-toggle="tooltip" data-placement="right" title="查看詳情"><i class="fas fa-eye"></i></a></li>

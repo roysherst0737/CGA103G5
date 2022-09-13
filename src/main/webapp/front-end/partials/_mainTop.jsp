@@ -116,8 +116,6 @@
 								width="28px" height="28px" /></a></li>
 					<li class="cart"><a href="<%=request.getContextPath()%>/front-end/prod/cart.jsp"><img id="shopping" src="<%=request.getContextPath()%>/front-end/images/shopping-cart.png"
 								width="35px" height="35px" /></a></li>
-					<li class="search"><a href="<%=request.getContextPath()%>/front-end/#"><img id="search" src="<%=request.getContextPath()%>/front-end/images/search2.png"
-								width="35px" height="35px" /></a></li>
 				</ul>
 			</div>
 			<!-- End Atribute Navigation -->

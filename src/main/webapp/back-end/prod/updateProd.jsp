@@ -1,12 +1,10 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.prod.model.*"%>
 
 <%
-	Prod_Service_H prodSvc = new Prod_Service_H();
-	List<Prod> list = prodSvc.getAll();
-	pageContext.setAttribute("list",list);
+	Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 %>
 
 <!DOCTYPE html>
@@ -17,7 +15,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>ÄgÄ¿ LonelyBar¡i«áºİ¡j</title>
+<title>æœ§é†´ LonelyBarã€å¾Œç«¯ã€‘</title>
 <!-- base:css -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/back-end/vendors/typicons.font/font/typicons.css">
@@ -43,20 +41,20 @@
 </head>
 
 <body>
-	<!-- ¥D­¶­± -->
+	<!-- ä¸»é é¢ -->
 	<div class="container-scroller">
-		<!-- ¤Ş¤Jnav(³»³¡§t¼s§i) -->
+		<!-- å¼•å…¥nav(é ‚éƒ¨å«å»£å‘Š) -->
 		<script src="<%=request.getContextPath()%>/back-end/js/nav.js"></script>
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_settings-panel.html -->
-			<!-- ¤Ş¤J¯B°Êµøµ¡ -->
+			<!-- å¼•å…¥æµ®å‹•è¦–çª— -->
 			<script
 				src="<%=request.getContextPath()%>/back-end/js/floating_window.js"></script>
 			<!-- partial -->
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar"></nav>
-			<!-- ¤Ş¤Jsidebar ¥ÎJQ¤è¦¡ -->
+			<!-- å¼•å…¥sidebar ç”¨JQæ–¹å¼ -->
 			<script>
 				$(function() {
 					$("#sidebar").load(
@@ -68,69 +66,149 @@
 			<!-- partial -->
 			<div class="main-panel">
 				<div class="content-wrapper">
-					<!--§A­n¼gªº­¶­±  -->
-					<table id="dataTables" class="stripe" style="width: 100%" enctype="multipart/form-data">
-						<thead>
-							<tr>
-								<th>°Ó«~½s¸¹</th>
-								<th>°Ó«~ºØÃş</th>
-								<th>°Ó«~¦WºÙ</th>
-								<th>°Ó«~·Ó¤ù</th>
-								<th>°Ó«~³æ»ù</th>
-								<th>®w¦s¼Æ¶q</th>
-								<th>°Ó«~ª¬ºA</th>
-								<th>¤W¬[®É¶¡</th>
-								<th>¤U¬[®É¶¡</th>
-								<th>ºŞ ²z</th>	
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="prod" items="${list}">
-								<tr>
-									<td>${prod.prod_no}</td>
-									<td>${prod.prod_typeVO.prod_type}</td>
-									<td>${prod.prod_name}</td>
-									<td>${prod.prod_picVO.prod_pic}</td>
-									<td>${prod.prod_stock}</td>
-									<td>${prod.prod_price}</td>
-									<td>${prod.prod_status?"¤W¬[":"¤U¬["}</td>
-									<td>${prod.launch_time}</td>
-									<td>${prod.off_time}</td>
-									<td>			  
-									<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/pages/prod/prod.do" style="margin-bottom: 0px;">
-			     						<input type="submit" value="ºŞ²z">
-			     						<input type="hidden" name="prod_no"  value="${prod.prod_no}">
-			     						<input type="hidden" name="action"	value="getOne_For_Update">
-			     					</FORM>
-			     					</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th>°Ó«~½s¸¹</th>
-								<th>°Ó«~ºØÃş</th>
-								<th>°Ó«~¦WºÙ</th>
-								<th>°Ó«~·Ó¤ù</th>
-								<th>°Ó«~³æ»ù</th>
-								<th>®w¦s¼Æ¶q</th>
-								<th>°Ó«~ª¬ºA</th>
-								<th>¤W¬[®É¶¡</th>
-								<th>¤U¬[®É¶¡</th>
-								<th>ºŞ ²z</th>
-							</tr>
-						</tfoot>
-					</table>
+					<div class="row">
+						<div class="col-sm-6">
+							<h3 class="mb-0 font-weight-bold">å•†å“ç®¡ç†å“¡</h3>
+							<p>ä¸Šæ¬¡ç™»å…¥ï¼š21å°æ™‚å‰Â</p>
+						</div>
+						<div class="col-sm-6">
+							<div class="d-flex align-items-center justify-content-md-end">
+								<div class="mb-3 mb-xl-0 pr-1">
+									<div class="dropdown">
+										<button style="margin-right: 10px;">
+											<a href="listAllProd.jsp"><img
+												src="./images/home.png" width="30px" height="30px"></a>
+										</button>
+										<button style="margin-right: 10px;">
+											<a href='addProd.jsp'><img src="./images/plus.png"
+												width="30px" height="30px"></a>
+										</button>
+										<button style="margin-right: 10px;">
+											<a href="selectProd.jsp"><img src="./images/search2.png"
+												width="30px" height="30px"></a>
+										</button>
+										<button
+											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
+											type="button" id="dropdownMenu3" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false">
+											<i class="typcn typcn-calendar-outline mr-2"></i>Last 7 days
+										</button>
+										<div class="dropdown-menu"
+											aria-labelledby="dropdownMenuSizeButton3"
+											data-x-placement="top-start">
+											<h6 class="dropdown-header">Last 14 days</h6>
+											<a class="dropdown-item" href="#">Last 21 days</a> <a
+												class="dropdown-item" href="#">Last 28 days</a>
+										</div>
+									</div>
+								</div>
+								<div class="pr-1 mb-3 mr-2 mb-xl-0">
+									<button type="button"
+										class="btn btn-sm bg-white btn-icon-text border">
+										<i class="typcn typcn-arrow-forward-outline mr-2"></i>Export
+									</button>
+								</div>
+								<div class="pr-1 mb-3 mb-xl-0">
+									<button type="button"
+										class="btn btn-sm bg-white btn-icon-text border">
+										<i class="typcn typcn-info-large-outline mr-2"></i>info
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row  mt-3">
+						<div class="col-lg-12 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">å•†å“æ¸…å–®ç®¡ç†</h4>
+									<div class="table-responsive">
+										<%-- éŒ¯èª¤è¡¨åˆ— --%>
+										<c:if test="${not empty errorMsgs}">
+											<font style="color: red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
+											<ul>
+												<c:forEach var="message" items="${errorMsgs}">
+													<li style="color: red">${message}</li>
+												</c:forEach>
+											</ul>
+										</c:if>
+										
+										<jsp:useBean id="prod_typeSvc" scope="page" class="com.prod_type.model.Prod_type_Service" />
+										
+										<FORM METHOD="post" ACTION="prod.do" name="form1">
+											<table class="table table-striped">
 
-					<script>
-						$(document).ready(function() {
-							$('#dataTables').DataTable();
-						});
-					</script>
+												<tr>
+													<td>å•†å“é¡åˆ¥:</td> 
+													<td>
+													<select size="1" name="prod_type_no">
+														<c:forEach var="prod_typeVO" items="${prod_typeSvc.all}">
+															<option value="${prod_typeVO.prod_type_no}">${prod_typeVO.prod_type_name}
+														</c:forEach>
+													</select>
+												</td> 
+												</tr>
+												<tr>
+													<td>å•†å“åç¨±:</td>
+													<td><input type="TEXT" name="prod_name" size="45"
+														value="<%=(prodVO == null) ? "" : prodVO.getProd_name()%>" /></td>
+												</tr>
+												<tr>
+													<td>å•†å“å–®åƒ¹:</td>
+													<td><input type="TEXT" name="prod_price" size="45"
+														value="<%=(prodVO == null) ? "" : prodVO.getProd_price()%>" /></td>
+												</tr>
+												<tr>
+													<td>å•†å“åº«å­˜:</td>
+													<td><input type="TEXT" name="prod_stock" size="45"
+														value="<%=(prodVO == null) ? "" : prodVO.getProd_stock()%>" /></td>
+												</tr>
+												<tr>
+													<td>ä¸‹æ¶æ™‚é–“:</td>
+													<td><input name="off_time" size="45" id="offTime" type="text"
+														value="<%=(prodVO.getOff_time() == null) ? "æš«ç„¡ä¸‹æ¶æ™‚é–“" : prodVO.getOff_time()%>" /></td>
+												</tr>
+												<tr>
+													<td>å•†å“ç‹€æ…‹:</td>
+													<td>
+													<input type="radio" name="prod_status" size="45" id="on"
+														value=1 checked/>
+														<label for="on">å·²ä¸Šæ¶(æŒçºŒè²©å”®)</label>
+													<br>
+													<input type="radio" name="prod_status" size="45" id="off"
+														value=0 />
+														<label for="off" style="color: red;">å·²ä¸‹æ¶(ç§»é™¤æ­¤å•†å“)</label>
+													</td>
+												</tr>
+												<tr>
+													<td>å•†å“æ•˜è¿°:</td>
+													<td><textarea name="prod_detail" cols="46" rows="10">
+													<%=(prodVO == null) ? "" : prodVO.getProd_detail()%>
+													</textarea></td>
+												</tr>
+												
+											</table>
+
+											<br> <input type="hidden" name="action" value="update">
+											<input type="hidden" name="prod_no"
+												value="<%=prodVO.getProd_no()%>"> <input
+												type="submit" value="é€å‡ºä¿®æ”¹">
+												
+											<br>
+											<br>
+											<button style="margin-right:10px;">
+												<a href="<%=request.getContextPath()%>/back-end/prod_pic/listAllProd_pic.jsp">å•†å“åœ–ç‰‡ç®¡ç†</a>
+											</button>
+										</FORM>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
-				<!-- ¤Ş¤Jfooter ¥ÎJQ¤è¦¡ -->
+				<!-- å¼•å…¥footer ç”¨JQæ–¹å¼ -->
 				<footer class="footer"></footer>
 				<script>
 					$(function() {
@@ -176,4 +254,31 @@
 	<!-- End custom js for this page-->
 </body>
 
+<!-- =========================================ä»¥ä¸‹ç‚º datetimepicker ä¹‹ç›¸é—œè¨­å®š========================================== -->
+
+<!-- åƒè€ƒç¶²ç«™: https://xdsoft.net/jqplugins/datetimepicker/ -->
+
+<link rel="stylesheet" type="text/css"
+	href="datetimepicker/jquery.datetimepicker.css" />
+<script src="datetimepicker/jquery.js"></script>
+<script src="datetimepicker/jquery.datetimepicker.full.js"></script>
+
+<style>
+.xdsoft_datetimepicker .xdsoft_datepicker {
+	width: 300px; /* width:  300px; */
+}
+
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
+	height: 151px; /* height:  151px; */
+}
+</style>
+
+<script>
+	$.datetimepicker.setLocale('zh'); // kr ko ja en
+	$('#offTime').datetimepicker({
+		theme: '',
+		timepicker:true,
+		format : 'Y-m-d H:i:s',
+	});
+</script>
 </html>

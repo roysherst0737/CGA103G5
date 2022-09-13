@@ -12,6 +12,10 @@ public interface CoreDao<P, I> {
 		return getSessionFactory().getCurrentSession();
 //		return getSessionFactory().openSession();
 	};
+	default Session getOpenSession() {
+//		return getSessionFactory().getCurrentSession();
+		return getSessionFactory().openSession();
+	};
 	
 	int insert(P pojo);
 

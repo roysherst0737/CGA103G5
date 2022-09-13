@@ -73,13 +73,10 @@
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
 										<button style="margin-right:10px;">
-										<a href="listAllProd_pic.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
+										<a href="listAllOrder.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right:10px;">
-										<a href='addProd_pic.jsp'><img src="./images/plus.png" width="30px" height="30px"></a>
-										</button>
-										<button style="margin-right:10px;">
-										<a href="select_page.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
+										<a href="selectOrder.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
 										</button>
 										<button
 											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
@@ -115,7 +112,7 @@
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">商品圖片搜尋</h4>
+									<h4 class="card-title">商品訂單搜尋</h4>
 									<div class="table-responsive">
 										<%-- 錯誤表列 --%>
 										<c:if test="${not empty errorMsgs}">

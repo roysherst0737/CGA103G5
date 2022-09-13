@@ -18,7 +18,7 @@
 <!-- inject:css -->
 <link rel="stylesheet" href="../back-end/css/vertical-layout-light/style.css">
 <!-- endinject -->
-<link rel="shortcut icon" href="../back-end/images/favicon.png" />
+<link rel="shortcut icon" href="images/Logo2.png" />
 </head>
 
 <body>
@@ -29,7 +29,9 @@
 					<div class="col-lg-4 mx-auto">
 						<div class="auth-form-light text-left py-5 px-4 px-sm-5">
 							<div class="brand-logo">
-								<img src="../back-end/images/logo.svg" alt="logo">
+							<a href="index.jsp">
+								<img src="../front-end/images/Logo3.png" alt="logo">
+								</a>
 							</div>
 							<h4>New here?</h4>
 							<h6 class="font-weight-light">Signing up is easy. It only
@@ -119,7 +121,7 @@
 									<input class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit" value="SIGN UP" />
 								</div>
 								<div class="text-center mt-4 font-weight-light">
-									Already have an account? <a href="login.html"
+									Already have an account? <a href="login.jsp"
 										class="text-primary">Login</a>
 								</div>
 								<input type="hidden" name="Register" value="Mem_Register">

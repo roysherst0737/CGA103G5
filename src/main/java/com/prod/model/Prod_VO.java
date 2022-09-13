@@ -18,7 +18,6 @@ public class Prod_VO implements Serializable {
 	private Timestamp launch_time;
 	private Timestamp off_time;
 	private String prod_detail;
-	private Integer prod_pic_no;
 
 	public Integer getProd_no() {
 		return prod_no;
@@ -92,15 +91,6 @@ public class Prod_VO implements Serializable {
 		this.prod_detail = prod_detail;
 	}
 	
-
-	public Integer getProd_pic_no() {
-		return prod_pic_no;
-	}
-
-	public void setProd_pic_no(Integer prod_pic_no) {
-		this.prod_pic_no = prod_pic_no;
-	}
-	
     // for join prod_type_name from prod_type_no
     public Prod_type_VO getProd_type_VO() {
     	Prod_type_Service prod_typeSvc = new Prod_type_Service();
@@ -108,10 +98,10 @@ public class Prod_VO implements Serializable {
 	    return prod_typeVO;
     }
     
-    // for join prod_pic from prod_pic_no
+    // for join prod_pic from prod_no
     public Prod_pic_VO getProd_pic_VO() {
     	Prod_pic_Service prod_picSvc = new Prod_pic_Service();
-		Prod_pic_VO prod_picVO = prod_picSvc.getOneProd_pic(prod_pic_no);
+		Prod_pic_VO prod_picVO = prod_picSvc.getOneProd_pic(prod_no);
 	    return prod_picVO;
     }	
 }

@@ -126,8 +126,8 @@ pageContext.setAttribute("list", list);
 								<jsp:useBean id="prod_picSvc" scope="page" class="com.prod_pic.model.Prod_pic_Service" />
 								<jsp:useBean id="prod_typeSvc" scope="page" class="com.prod_type.model.Prod_type_Service" />
 									<h4 class="card-title">商品清單管理</h4>
-									<table id="dataTables" class="stripe table-hover" style="width: 100%">
-										<thead>
+									<table id="dataTables" class="stripe table-hover" style="width: 100%; font-size: 12px">
+										<thead style="width: 100%; font-size: 13px">
 											<tr>
 												<th>商品編號</th>
 												<th>商品種類</th>
@@ -138,6 +138,7 @@ pageContext.setAttribute("list", list);
 												<th>商品狀態</th>
 												<th>上架時間</th>
 												<th>下架時間</th>
+												<th>商品敘述</th>
 												<th>商品管理</th>
 											</tr>
 										</thead>
@@ -148,10 +149,10 @@ pageContext.setAttribute("list", list);
 													<td>${prodVO.getProd_type_VO().prod_type_name}</td>
 													<td>${prodVO.prod_name}</td>
 													<td><img
-														src="<%=request.getContextPath()%>/ShowProd_picForProd?prod_no=${prodVO.getProd_pic_VO().prod_pic}"
-														width=150px height=100px></td>
+														src="<%=request.getContextPath()%>/ShowProd_picForProd?prod_no=${prodVO.getProd_pic_VO().prod_pic_no}"
+														width=110px height=75px></td>
 													<td>${prodVO.prod_price}</td>
-													<td>${prodVO.prod_stock}</td>
+													<td style="text-align:left;">${prodVO.prod_stock}</td>
 													<td>
 														<c:if test="${prodVO.prod_status == 1}">
 															<div>已上架</div>
@@ -169,12 +170,13 @@ pageContext.setAttribute("list", list);
 															<div>${prodVO.off_time}</div>
 														</c:if>
 													</td>
+													<td style="max-width: 300px">${prodVO.prod_detail}</td>
 													<td>
 														<FORM METHOD="post"
 															ACTION="<%=request.getContextPath()%>/back-end/prod/prod.do"
 															style="margin-bottom: 0px;">
 															<input type="submit" value="管理"> <input
-																type="hidden" name="prod_no" value="${prod.prod_no}">
+																type="hidden" name="prod_no" value="${prodVO.prod_no}">
 															<input type="hidden" name="action"
 																value="getOne_For_Update">
 														</FORM>

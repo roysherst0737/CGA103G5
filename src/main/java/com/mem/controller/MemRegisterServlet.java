@@ -28,10 +28,10 @@ public class MemRegisterServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String Register = request.getParameter("Register");
-		System.out.println(123);
+
 		if ("Mem_Register".equals(Register)) {
 			
-			System.out.println(456);
+
 			Map<String,String> errorMsgs = new LinkedHashMap<String,String>();
 			request.setAttribute("errorMsgs", errorMsgs);
 			

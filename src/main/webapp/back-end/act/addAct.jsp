@@ -81,7 +81,7 @@ th, td {
 				<td>酒吧編號:</td>
 				<td><input type="TEXT" name="pub_no" size="45"
 					value="<%=(actVO == null) ? "" : actVO.getPub_no()%>" /></td>
-			</tr>
+			</tr>	
 			<tr>
 				<td>活動名稱:</td>
 				<td><input type="TEXT" name="act_name" size="45"

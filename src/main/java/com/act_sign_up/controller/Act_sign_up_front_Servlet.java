@@ -215,9 +215,8 @@ public class Act_sign_up_front_Servlet extends HttpServlet {
 			act_sign_upVO = act_sign_upSvc.addAct_sign_up(act_no, mem_no, accompany_count);
 
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-			String url = "/back-end/act_sign_up/listAllAct_sign_up.jsp";
-			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
-			successView.forward(req, res);
+			String url = "act-detail.jsp?" + act_no;		
+			res.sendRedirect(url);
 		}
 
 		if ("delete".equals(action)) { // 來自listAllEmp.jsp

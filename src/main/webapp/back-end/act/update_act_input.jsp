@@ -144,11 +144,7 @@ th, td {
 				<td><input type="TEXT" name="act_status" size="45"
 					value="<%=(actVO == null) ? "" : actVO.getAct_status()%>" /></td>
 			</tr>
-			<tr>
-				<td>申請狀態:</td>
-				<td><input type="TEXT" name="apply_status" size="45"
-					value="<%=(actVO == null) ? "" : actVO.getApply_status()%>" /></td>
-			</tr>
+
 		</table>
 
 		<br> <input type="hidden" name="action" value="update"> <input
@@ -180,7 +176,7 @@ th, td {
 	$.datetimepicker.setLocale('zh'); // kr ko ja en
 	$(function() {
 		$('#f_date1').datetimepicker({
-			format : 'Y-m-d H:i',
+			format : 'Y-m-d H:i:s',
 			onShow : function() {
 				this.setOptions({
 					maxDate : $('#f_date2').val() ? $('#f_date2').val() : false
@@ -190,7 +186,7 @@ th, td {
 		});
 
 		$('#f_date2').datetimepicker({
-			format : 'Y-m-d H:i',
+			format : 'Y-m-d H:i:s',
 			onShow : function() {
 				this.setOptions({
 					minDate : $('#f_date1').val() ? $('#f_date1').val() : false
@@ -201,7 +197,7 @@ th, td {
 
 		$('#f_date3').datetimepicker(
 				{
-					format : 'Y-m-d H:i',
+					format : 'Y-m-d H:i:s',
 					onShow : function() {
 						this.setOptions({
 							maxDate : $('#f_date2').val() ? $('#f_date2').val()
@@ -215,7 +211,7 @@ th, td {
 
 		$('#f_date4').datetimepicker(
 				{
-					format : 'Y-m-d H:i',
+					format : 'Y-m-d H:i:s',
 					onShow : function() {
 						this.setOptions({
 							maxDate : $('#f_date2').val() ? $('#f_date2').val()
@@ -228,7 +224,7 @@ th, td {
 				});
 		$('#f_date5').datetimepicker(
 				{
-					format : 'Y-m-d H:i',
+					format : 'Y-m-d H:i:s',
 					onShow : function() {
 						this.setOptions({
 							minDate : $('#f_date4').val() ? $('#f_date4').val()
@@ -240,7 +236,7 @@ th, td {
 					timepicker : false
 				});
 		$('#f_date6').datetimepicker({
-			format : 'Y-m-d H:i',
+			format : 'Y-m-d H:i:s',
 			onShow : function() {
 				this.setOptions({
 					minDate : $('#f_date5').val() ? $('#f_date5').val() : false

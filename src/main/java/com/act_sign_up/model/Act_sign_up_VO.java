@@ -59,4 +59,12 @@ public class Act_sign_up_VO implements Serializable{
 	public void setSign_up_status(Integer sign_up_status) {
 		this.sign_up_status = sign_up_status;
 	}
+	
+	
+    public com.mem.model.Mem_VO getMemVO() {
+	    com.mem.model.Mem_Service memSvc = new com.mem.model.Mem_Service();
+	    com.mem.model.Mem_VO memVO = memSvc.getOneMem(mem_no);
+	    return memVO;
+    }
+	
 }

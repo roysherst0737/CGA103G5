@@ -99,11 +99,6 @@ th, td {
 				<td><input type="TEXT" name="accompany_count" size="45"
 					value="<%=(act_sign_upVO == null) ? "" : act_sign_upVO.getAccompany_count()%>" /></td>
 			</tr>
-			<tr>
-				<td>報名狀態:</td>
-				<td><input type="TEXT" name="sign_up_status" size="45"
-					value="<%=(act_sign_upVO == null) ? "" : act_sign_upVO.getSign_up_status()%>" /></td>
-			</tr>
 		</table>
 
 		<br> <input type="hidden" name="action" value="update"> <input

@@ -83,8 +83,7 @@ th, td {
 			<th>活動開始時間</th>
 			<th>活動結束時間</th>
 			<th>活動狀態</th>
-			<th>申請上下架/修改時間</th>
-			<th>申請狀態</th>
+			<th>修改時間</th>
 			<th>修改</th>
 			<th>刪除</th>
 		</tr>
@@ -108,8 +107,7 @@ th, td {
 				<td>${actVO.act_start_time}</td>
 				<td>${actVO.act_end_time}</td>
 				<td>${actVO.act_status}</td>
-				<td>${actVO.apply_time}</td>
-				<td>${actVO.apply_status}</td>
+				<td>${actVO.revise_time}</td>
 				<td>
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/back-end/act/act.do"

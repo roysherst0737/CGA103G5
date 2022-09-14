@@ -45,7 +45,37 @@
 		document.querySelector('#pub_no').textContent = getDataById(msg, 'pub_no');
 		document.querySelector('#mydetail').textContent = getDataById(msg, 'pub_detail');
 		document.querySelector('#myimg').src = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.childNodes[3].src;
-	});
+	})
+//	$('.mybtn1').on('click', function (e) {
+//		let msg = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.childNodes[5];
+//		
+////		document.querySelector('#exampleModalLongTitle').textContent = getDataById(msg, 'pub_name');
+////		document.querySelector('#pub_no').textContent = getDataById(msg, 'pub_no');
+//		let pub_no=getDataById(msg, 'pub_no');
+//		let json = JSON.stringify({
+//			pub_no: pub_no,
+//		});
+//		console.log(json)
+//		fetch('PubDetail', {
+//			method: 'POST',
+//			headers: {
+//				'Content-Type': 'application/json',
+//			},
+//			body: json,
+//		}).then(resp => resp.json())
+//			.then(body => {
+//				const { successful } = body;
+//				const { message } = body;
+//				if (successful) {
+//					alert(message)
+//					 window.open.reload();
+//				} else {
+//					alert(message + "請聯繫管理員協助處理")
+//				}
+//			});
+////		document.querySelector('#mydetail').textContent = getDataById(msg, 'pub_detail');
+////		document.querySelector('#myimg').src = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.childNodes[3].src;
+//	});
 
 	$('.ipt_rate').on('change',function(e){
 				let path ="";

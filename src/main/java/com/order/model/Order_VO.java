@@ -10,14 +10,12 @@ public class Order_VO implements Serializable {
 	private Integer mem_no;
 	private Integer coupon_no;
 	private Timestamp order_time;
-	private Timestamp sold_time;
 	private Integer order_price_total;
 	private Integer dis_price_total;
 	private Integer order_status;
 	private Integer payment_method;
 	private Integer pickup_method;
 	private Integer shipping_fee;
-	private Integer tracking_no;
 	private String receiver_name;
 	private String receiver_address;
 	private String receiver_phone;
@@ -45,12 +43,6 @@ public class Order_VO implements Serializable {
 	}
 	public void setOrder_time(Timestamp order_time) {
 		this.order_time = order_time;
-	}
-	public Timestamp getSold_time() {
-		return sold_time;
-	}
-	public void setSold_time(Timestamp sold_time) {
-		this.sold_time = sold_time;
 	}
 	public Integer getOrder_price_total() {
 		return order_price_total;
@@ -87,12 +79,6 @@ public class Order_VO implements Serializable {
 	}
 	public void setShipping_fee(Integer shipping_fee) {
 		this.shipping_fee = shipping_fee;
-	}
-	public Integer getTracking_no() {
-		return tracking_no;
-	}
-	public void setTracking_no(Integer tracking_no) {
-		this.tracking_no = tracking_no;
 	}
 	public String getReceiver_name() {
 		return receiver_name;

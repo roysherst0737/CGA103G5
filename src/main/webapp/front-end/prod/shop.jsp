@@ -2,11 +2,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.prod.model.*"%>
+<%@ page import="com.prod_type.model.*"%>
 
 <%
 Prod_Service prodSvc = new Prod_Service();
 List<Prod_VO> list = prodSvc.getAll();
 pageContext.setAttribute("list", list);
+%>
+
+<%
+Prod_type_Service prod_typeSvc = new Prod_type_Service();
+List<Prod_type_VO> list2 = prod_typeSvc.getAll();
+pageContext.setAttribute("list2", list2);
 %>
 
 <!DOCTYPE html>
@@ -48,6 +55,11 @@ pageContext.setAttribute("list", list);
 		#view {
 			float:left;
 			}
+		
+		#type {
+			padding:2px;
+			font-size:20px;
+			}
 	
 	</style>
 	
@@ -66,10 +78,10 @@ pageContext.setAttribute("list", list);
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>商城</h2>
+                    <h2>購物商城</h2>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">購物專區</a></li>
-                        <li class="breadcrumb-item active">商品總覽</li>
+                        <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/front-end/prod/shop.jsp">回商城</a></li>
+                        <li class="breadcrumb-item active">總覽</li>
                     </ul>
                 </div>
             </div>
@@ -159,46 +171,50 @@ pageContext.setAttribute("list", list);
                     <div class="product-categori">
                         <div class="filter-sidebar-left">
                             <div class="title-left">
-                                <h2 style="font-weight: bold;">商品類別</h2>
+                                <h2 style="font-size:28px; font-weight: bold;">商品類別</h2>
                             </div>
                             <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
-                                <div class="list-group-collapse sub-men">
-                                    <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">各式基酒
-								</a>
-                                    <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
-                                        <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action">威士忌 <small class="text-muted"></small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">伏特加 <small class="text-muted"></small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">琴酒 <small class="text-muted"></small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">紅酒 <small class="text-muted"></small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">龍舌蘭 <small class="text-muted"></small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">蘭姆酒 <small class="text-muted"></small></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="list-group-collapse sub-men">
-                                    <a class="list-group-item list-group-item-action" href="#sub-men2" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">調酒器材
-								</a>
-                                    <div class="collapse" id="sub-men2" data-parent="#list-group-men">
-                                        <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action">量酒器 <small class="text-muted"></small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">雪克杯 <small class="text-muted"></small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">隔冰器 <small class="text-muted"></small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">吧叉匙 <small class="text-muted"></small></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="list-group-collapse sub-men">
-                                    <a class="list-group-item list-group-item-action" href="#sub-men3" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men3">調酒懶人包
-								</a>
-                                    <div class="collapse" id="sub-men3" data-parent="#list-group-men">
-                                        <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action">經典調酒懶人包 <small class="text-muted"></small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">便利商店調酒懶人包 <small class="text-muted"></small></a>
-                                            <a href="#" class="list-group-item list-group-item-action">微醺調酒懶人包 <small class="text-muted"></small></a>
-                                        </div>
-                                    </div>
-                                </div>
+                            	<c:forEach var="prod_typeVO" items="${list2}">
+                            		<a href="#" class="list-group-item list-group-item-action" id="type">● ${prod_typeVO.prod_type_name}</a>
+                            	</c:forEach>
+                            	
+<!--                                 <div class="list-group-collapse sub-men"> -->
+<!--                                     <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">各式基酒 -->
+<!-- 								</a> -->
+<!--                                     <div class="collapse show" id="sub-men1" data-parent="#list-group-men"> -->
+<!--                                         <div class="list-group"> -->
+<!--                                             <a href="#" class="list-group-item list-group-item-action">威士忌 <small class="text-muted"></small></a> -->
+<!--                                             <a href="#" class="list-group-item list-group-item-action">伏特加 <small class="text-muted"></small></a> -->
+<!--                                             <a href="#" class="list-group-item list-group-item-action">琴酒 <small class="text-muted"></small></a> -->
+<!--                                             <a href="#" class="list-group-item list-group-item-action">紅酒 <small class="text-muted"></small></a> -->
+<!--                                             <a href="#" class="list-group-item list-group-item-action">龍舌蘭 <small class="text-muted"></small></a> -->
+<!--                                             <a href="#" class="list-group-item list-group-item-action">蘭姆酒 <small class="text-muted"></small></a> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                                 <div class="list-group-collapse sub-men"> -->
+<!--                                     <a class="list-group-item list-group-item-action" href="#sub-men2" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">調酒器材 -->
+<!-- 								</a> -->
+<!--                                     <div class="collapse" id="sub-men2" data-parent="#list-group-men"> -->
+<!--                                         <div class="list-group"> -->
+<!--                                             <a href="#" class="list-group-item list-group-item-action">量酒器 <small class="text-muted"></small></a> -->
+<!--                                             <a href="#" class="list-group-item list-group-item-action">雪克杯 <small class="text-muted"></small></a> -->
+<!--                                             <a href="#" class="list-group-item list-group-item-action">隔冰器 <small class="text-muted"></small></a> -->
+<!--                                             <a href="#" class="list-group-item list-group-item-action">吧叉匙 <small class="text-muted"></small></a> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
+<!--                                 <div class="list-group-collapse sub-men"> -->
+<!--                                     <a class="list-group-item list-group-item-action" href="#sub-men3" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men3">調酒懶人包 -->
+<!-- 								</a> -->
+<!--                                     <div class="collapse" id="sub-men3" data-parent="#list-group-men"> -->
+<!--                                         <div class="list-group"> -->
+<!--                                             <a href="#" class="list-group-item list-group-item-action">經典調酒懶人包 <small class="text-muted"></small></a> -->
+<!--                                             <a href="#" class="list-group-item list-group-item-action">便利商店調酒懶人包 <small class="text-muted"></small></a> -->
+<!--                                             <a href="#" class="list-group-item list-group-item-action">微醺調酒懶人包 <small class="text-muted"></small></a> -->
+<!--                                         </div> -->
+<!--                                     </div> -->
+<!--                                 </div> -->
                             </div>
                         </div>
                     </div>

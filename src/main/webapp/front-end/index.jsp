@@ -34,6 +34,17 @@
     		width: auto;
     		height: auto;
 			}
+		
+		#shop {
+			color: white;
+			font-size:20px;
+			text-align: center;
+			}
+		
+		#news {
+			height: 29px;
+			padding: 0;
+			}
 	
 	</style>
 
@@ -55,19 +66,19 @@
 				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 					<div class="shop-cat-box">
 						<img class="img-fluid" src="images/cocktail-party.jpg" alt="" />
-						<a class="btn hvr-hover" href="#">誰是朧醴LonelyBar？可以吃嗎？!</a>
+						<a class="btn hvr-hover" id="news" href="<%=request.getContextPath()%>/front-end/about.jsp">關於朧醴</a>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 					<div class="shop-cat-box">
 						<img class="img-fluid" src="images/latest-news.jpg" alt="" /> <a
-							class="btn hvr-hover" href="#">想要知道最近有什麼新鮮事嗎？</a>
+							class="btn hvr-hover" id="news" href="#">最新消息</a>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 					<div class="shop-cat-box">
 						<img class="img-fluid" src="images/cocktail.jpg" alt="" /> <a
-							class="btn hvr-hover" href="#">好多經典調酒，想知道他們的故事嗎？</a>
+							class="btn hvr-hover" id="news" href="#">調酒故事</a>
 					</div>
 				</div>
 			</div>
@@ -80,12 +91,14 @@
 			<div class="row">
 				<div class="col-lg-6 col-md-6 col-sm-12">
 					<div class="offer-box-products">
-						<img class="img-fluid" src="images/wine.jpg" alt="" />
+						<img class="img-fluid" src="images/wine.jpg" alt="" /><a
+							class="btn hvr-hover" id="shop" href="<%=request.getContextPath()%>/front-end/prod/shop.jsp">歡迎選購最新商品</a>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-12">
 					<div class="offer-box-products">
-						<img class="img-fluid" src="images/cocktails.jpg" alt="" />
+						<img class="img-fluid" src="images/cocktails.jpg" alt="" /><a
+							class="btn hvr-hover" id="shop" href="<%=request.getContextPath()%>/PubMap">酒吧訂位入口</a>
 					</div>
 				</div>
 			</div>

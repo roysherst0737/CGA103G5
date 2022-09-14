@@ -42,8 +42,9 @@
 			}
 		
 		#news {
-			height: 29px;
-			padding: 0;
+			height: 32px;
+			padding: 3px;
+			text-align: center;
 			}
 	
 	</style>
@@ -66,19 +67,19 @@
 				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 					<div class="shop-cat-box">
 						<img class="img-fluid" src="images/cocktail-party.jpg" alt="" />
-						<a class="btn hvr-hover" id="news" href="<%=request.getContextPath()%>/front-end/about.jsp">關於朧醴</a>
+						<a class="btn hvr-hover" id="news" href="<%=request.getContextPath()%>/front-end/about.jsp">關 於 朧 醴</a>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 					<div class="shop-cat-box">
 						<img class="img-fluid" src="images/latest-news.jpg" alt="" /> <a
-							class="btn hvr-hover" id="news" href="#">最新消息</a>
+							class="btn hvr-hover" id="news" href="#">最 新 消 息</a>
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 					<div class="shop-cat-box">
 						<img class="img-fluid" src="images/cocktail.jpg" alt="" /> <a
-							class="btn hvr-hover" id="news" href="#">調酒故事</a>
+							class="btn hvr-hover" id="news" href="#">調 酒 故 事</a>
 					</div>
 				</div>
 			</div>

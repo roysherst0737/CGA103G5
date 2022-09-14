@@ -11,20 +11,18 @@ public class Order_Service {
 		dao = new Order_DAO();
 	}
 	
-	public Order_VO addOrder(Integer mem_no, Integer coupon_no, Timestamp sold_time, Integer order_price_total, Integer dis_price_total, Integer order_status, Integer payment_method, Integer pickup_method, Integer shipping_fee, Integer tracking_no, String receiver_name, String receiver_address, String receiver_phone) {
+	public Order_VO addOrder(Integer mem_no, Integer coupon_no, Integer order_price_total, Integer dis_price_total, Integer order_status, Integer payment_method, Integer pickup_method, Integer shipping_fee, String receiver_name, String receiver_address, String receiver_phone) {
 		
 		Order_VO orderVO = new Order_VO();
 		
 		orderVO.setMem_no(mem_no);
 		orderVO.setCoupon_no(coupon_no);
-		orderVO.setSold_time(sold_time);
 		orderVO.setOrder_price_total(order_price_total);
 		orderVO.setDis_price_total(dis_price_total);
 		orderVO.setOrder_status(order_status);
 		orderVO.setPayment_method(payment_method);
 		orderVO.setPickup_method(pickup_method);
 		orderVO.setShipping_fee(shipping_fee);
-		orderVO.setTracking_no(tracking_no);
 		orderVO.setReceiver_name(receiver_name);
 		orderVO.setReceiver_address(receiver_address);
 		orderVO.setReceiver_phone(receiver_phone);
@@ -33,7 +31,7 @@ public class Order_Service {
 		return orderVO;
 	}
 	
-	public Order_VO updateOrder(Integer order_no, Integer mem_no, Integer coupon_no, Timestamp order_time, Timestamp sold_time, Integer order_price_total, Integer dis_price_total, Integer order_status, Integer payment_method, Integer pickup_method, Integer shipping_fee, Integer tracking_no, String receiver_name, String receiver_address, String receiver_phone) {
+	public Order_VO updateOrder(Integer order_no, Integer mem_no, Integer coupon_no, Timestamp order_time, Integer order_price_total, Integer dis_price_total, Integer order_status, Integer payment_method, Integer pickup_method, Integer shipping_fee, String receiver_name, String receiver_address, String receiver_phone) {
 		
 		Order_VO orderVO = new Order_VO();
 		
@@ -41,14 +39,12 @@ public class Order_Service {
 		orderVO.setMem_no(mem_no);
 		orderVO.setCoupon_no(coupon_no);
 		orderVO.setOrder_time(order_time);
-		orderVO.setSold_time(sold_time);
 		orderVO.setOrder_price_total(order_price_total);
 		orderVO.setDis_price_total(dis_price_total);
 		orderVO.setOrder_status(order_status);
 		orderVO.setPayment_method(payment_method);
 		orderVO.setPickup_method(pickup_method);
 		orderVO.setShipping_fee(shipping_fee);
-		orderVO.setTracking_no(tracking_no);
 		orderVO.setReceiver_name(receiver_name);
 		orderVO.setReceiver_address(receiver_address);
 		orderVO.setReceiver_phone(receiver_phone);

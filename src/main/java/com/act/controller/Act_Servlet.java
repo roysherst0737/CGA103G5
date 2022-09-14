@@ -213,22 +213,8 @@ public class Act_Servlet extends HttpServlet {
 				errorMsgs.add("活動狀態請填數字");
 			}
 
-			Integer apply_status = null;
-			try {
-				apply_status = Integer.valueOf(req.getParameter("apply_status").trim());
-			} catch (NumberFormatException e) {
-				apply_status = 0;
-				errorMsgs.add("申請狀態請填數字");
-			}
+			java.sql.Timestamp revise_time = new java.sql.Timestamp(System.currentTimeMillis());
 
-			
-			
-			
-			java.sql.Timestamp apply_time = new java.sql.Timestamp(System.currentTimeMillis());
-
-			
-			
-			
 			Act_VO actVO = new Act_VO();
 			actVO.setAct_no(act_no);
 			actVO.setPub_no(pub_no);
@@ -244,8 +230,7 @@ public class Act_Servlet extends HttpServlet {
 			actVO.setSign_up_end_time(sign_up_end_time);
 			actVO.setAct_start_time(act_start_time);
 			actVO.setAct_end_time(act_end_time);
-			actVO.setAct_status(act_status);		
-			actVO.setApply_status(apply_status);
+			actVO.setAct_status(act_status);
 
 			// Send the use back to the form, if there were errors
 			if (!errorMsgs.isEmpty()) {
@@ -259,9 +244,9 @@ public class Act_Servlet extends HttpServlet {
 			Act_Service actSvc = new Act_Service();
 			actVO = actSvc.updateAct(pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time,
 					current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time,
-					act_end_time, act_status, apply_status, act_no);
-			
-			actVO.setApply_time(apply_time);
+					act_end_time, act_status, act_no);
+
+			actVO.setRevise_time(revise_time);
 
 			/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 			req.setAttribute("actVO", actVO); // 資料庫update成功後,正確的的empVO物件,存入req
@@ -305,8 +290,8 @@ public class Act_Servlet extends HttpServlet {
 			Timestamp act_launch_time = null;
 			try {
 				act_launch_time = java.sql.Timestamp.valueOf(req.getParameter("act_launch_time").trim());
+
 				
-				System.out.println(act_launch_time);
 			} catch (IllegalArgumentException e) {
 				act_launch_time = new java.sql.Timestamp(System.currentTimeMillis());
 				errorMsgs.add("請輸入上架時間!");
@@ -400,34 +385,34 @@ public class Act_Servlet extends HttpServlet {
 			}
 
 			/*************************** 2.開始新增資料 ***************************************/
-				Act_Service actSvc = new Act_Service();
-				actVO = actSvc.addAct(pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time);
-				
-				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/back-end/act/listAllAct.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
-				successView.forward(req, res);				
+			Act_Service actSvc = new Act_Service();
+			actVO = actSvc.addAct(pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count,
+					max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time);
+
+			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+			String url = "/back-end/act/listAllAct.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+			successView.forward(req, res);
 		}
-		
-		
+
 		if ("delete".equals(action)) { // 來自listAllEmp.jsp
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-	
-				/***************************1.接收請求參數***************************************/
-				Integer act_no = Integer.valueOf(req.getParameter("act_no"));
-				
-				/***************************2.開始刪除資料***************************************/
-				Act_Service actSvc = new Act_Service();
-				actSvc.deleteAct(act_no);
-				
-				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/back-end/act/listAllAct.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
-				successView.forward(req, res);
+
+			/*************************** 1.接收請求參數 ***************************************/
+			Integer act_no = Integer.valueOf(req.getParameter("act_no"));
+
+			/*************************** 2.開始刪除資料 ***************************************/
+			Act_Service actSvc = new Act_Service();
+			actSvc.deleteAct(act_no);
+
+			/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
+			String url = "/back-end/act/listAllAct.jsp";
+			RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
+			successView.forward(req, res);
 		}
 	}
 

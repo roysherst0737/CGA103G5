@@ -1,8 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.act.model.*"%>
+<%@ page import="com.act_sign_up.model.*"%>
 
 <%
 Act_VO actVO = (Act_VO) request.getAttribute("actVO");
+
 %>
 
 <html>
@@ -77,8 +79,7 @@ th, td {
 			<th>活動開始時間</th>
 			<th>活動結束時間</th>
 			<th>活動狀態</th>
-			<th>申請上下架/修改時間</th>
-			<th>申請狀態</th>
+			<th>修改時間</th>
 		</tr>
 		<tr>
 			<td><%=actVO.getAct_no()%></td>
@@ -96,8 +97,7 @@ th, td {
 			<td><%=actVO.getAct_start_time()%></td>
 			<td><%=actVO.getAct_end_time()%></td>
 			<td><%=actVO.getAct_status()%></td>
-			<td><%=actVO.getApply_time()%></td>
-			<td><%=actVO.getApply_status()%></td>
+			<td><%=actVO.getRevise_time()%></td>
 		</tr>
 	</table>
 

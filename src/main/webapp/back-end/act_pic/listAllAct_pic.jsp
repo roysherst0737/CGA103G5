@@ -134,7 +134,6 @@ pageContext.setAttribute("list", list);
 												<th>活動照片名稱</th>
 												<th>修改</th>
 												<th>刪除</th>
-												<th>測試</th>										
 											</tr>
 										</thead>
 										<%@ include file="page1.file"%>
@@ -168,7 +167,6 @@ pageContext.setAttribute("list", list);
 															type="hidden" name="action" value="delete">
 													</FORM>
 												</td>
-												<td>${act_picVO.actVO.act_name}</td>
 											</tr>
 										</c:forEach>
 									</table>

@@ -73,7 +73,6 @@ th, td {
 			<th>會員編號</th>
 			<th>報名時間</th>
 			<th>攜伴人數</th>
-			<th>報名狀態</th>
 		</tr>
 		<%@ include file="page1.file"%>
 		<c:forEach var="act_sign_upVO" items="${list}" begin="<%=pageIndex%>"
@@ -85,7 +84,6 @@ th, td {
 				<td>${act_sign_upVO.mem_no}</td>
 				<td>${act_sign_upVO.sign_up_time}</td>
 				<td>${act_sign_upVO.accompany_count}</td>
-				<td>${act_sign_upVO.sign_up_status}</td>
 				<td>
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/back-end/act_sign_up/act_sign_up.do"

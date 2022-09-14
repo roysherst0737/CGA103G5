@@ -67,7 +67,6 @@ th, td {
 			<th>會員編號</th>
 			<th>報名時間</th>
 			<th>攜伴人數</th>
-			<th>報名狀態</th>
 		</tr>
 		<tr>
 			<td><%=act_sign_upVO.getSign_up_no()%></td>
@@ -75,7 +74,6 @@ th, td {
 			<td><%=act_sign_upVO.getMem_no()%></td>
 			<td><%=act_sign_upVO.getSign_up_time()%></td>
 			<td><%=act_sign_upVO.getAccompany_count()%></td>
-			<td><%=act_sign_upVO.getSign_up_status()%></td>
 		</tr>
 	</table>
 

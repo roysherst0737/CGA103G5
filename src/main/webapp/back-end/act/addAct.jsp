@@ -226,7 +226,7 @@ th, td {
 			format : 'Y-m-d H:i:s',
 			onShow : function() {
 				this.setOptions({
-					minDate : $('#f_date3').val() ? $('#f_date3').val() : false
+					minDate : $('#f_date5').val() ? $('#f_date5').val() : false
 				})
 			},
 			timepicker : false

@@ -1,6 +1,7 @@
 package com.act_sign_up.model;
 
 import java.util.List;
+import java.util.Set;
 
 public class Act_sign_up_Service {
 
@@ -24,14 +25,13 @@ public class Act_sign_up_Service {
 	}
 
 	public Act_sign_up_VO updateAct_sign_up(Integer act_no, Integer mem_no, Integer accompany_count,
-			Integer sign_up_status, Integer sign_up_no) {
+			 Integer sign_up_no) {
 
 		Act_sign_up_VO act_sign_up_VO = new Act_sign_up_VO();
 
 		act_sign_up_VO.setAct_no(act_no);
 		act_sign_up_VO.setMem_no(mem_no);
 		act_sign_up_VO.setAccompany_count(accompany_count);
-		act_sign_up_VO.setSign_up_status(sign_up_status);
 		act_sign_up_VO.setSign_up_no(sign_up_no);
 
 		dao.update(act_sign_up_VO);
@@ -49,6 +49,10 @@ public class Act_sign_up_Service {
 
 	public List<Act_sign_up_VO> getAll() {
 		return dao.getAll();
+	}
+	
+	public Set<Integer> getAct_sign_up(Integer mem_no) {
+		return dao.getAct_sign_up(mem_no);
 	}
 
 }

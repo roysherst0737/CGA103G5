@@ -133,20 +133,14 @@ public class Act_sign_up_Servlet extends HttpServlet {
 				errorMsgs.add("攜伴人數請填數字");
 			}
 
-			Integer sign_up_status = null;
-			try {
-				sign_up_status = Integer.valueOf(req.getParameter("sign_up_status").trim());
-			} catch (NumberFormatException e) {
-				sign_up_status = 0;
-				errorMsgs.add("報名狀態請填數字");
-			}
+			
 
 			Act_sign_up_VO act_sign_upVO = new Act_sign_up_VO();
 			act_sign_upVO.setSign_up_no(sign_up_no);
 			act_sign_upVO.setAct_no(act_no);
 			act_sign_upVO.setMem_no(mem_no);
 			act_sign_upVO.setAccompany_count(accompany_count);
-			act_sign_upVO.setSign_up_status(sign_up_status);
+
 
 			// Send the use back to the form, if there were errors
 			if (!errorMsgs.isEmpty()) {
@@ -159,7 +153,7 @@ public class Act_sign_up_Servlet extends HttpServlet {
 
 			/*************************** 2.開始修改資料 *****************************************/
 			Act_sign_up_Service act_sign_upSvc = new Act_sign_up_Service();
-			act_sign_upVO = act_sign_upSvc.updateAct_sign_up(act_no, mem_no, accompany_count, sign_up_status,
+			act_sign_upVO = act_sign_upSvc.updateAct_sign_up(act_no, mem_no, accompany_count, 
 					sign_up_no);
 
 			/*************************** 3.修改完成,準備轉交(Send the Success view) *************/

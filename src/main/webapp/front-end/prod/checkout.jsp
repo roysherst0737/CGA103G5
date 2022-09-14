@@ -54,7 +54,7 @@
                 <div class="col-lg-12">
                     <h2>商品結帳</h2>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">購物專區</a></li>
+                        <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/front-end/prod/shop.jsp">回商城</a></li>
                         <li class="breadcrumb-item active">結帳</li>
                     </ul>
                 </div>

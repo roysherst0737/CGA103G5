@@ -27,15 +27,16 @@ public class Manager_JNDIDAO implements Manager_DAO_interface {
 	}
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO manager (mng_account,mng_password,mng_name,mng_phone,mng_pic,mng_status) VALUES (?, ?, ?, ?, ?, ?)";
-	private static final String GET_ALL_MANAGER_STMT = 
-		"SELECT mng_no,mng_account,mng_password,mng_name,mng_phone,mng_pic,mng_status FROM manager order by mng_no";
-	private static final String GET_ONE_STMT = 
-		"SELECT mng_no,mng_account,mng_password,mng_name,mng_phone,mng_pic,mng_status FROM manager where mng_no = ?";
-	private static final String DELETE = 
-		"DELETE FROM manager where mng_no = ?";
-	private static final String UPDATE = 
-		"UPDATE manager set mng_account=?, mng_password=?, mng_name=?, mng_phone=?, mng_pic=?, mng_status=? where mng_no = ?";
+			"INSERT INTO manager (mng_account,mng_password,mng_name,mng_phone,mng_pic,mng_status) VALUES (?, ?, ?, ?, ?, ?)";
+		private static final String GET_ALL_MANAGER_STMT = 
+			"SELECT mng_no,mng_account,mng_password,mng_name,mng_phone,mng_pic,mng_status FROM manager order by mng_no";
+		private static final String GET_ONE_STMT = 
+			"SELECT mng_no,mng_account,mng_password,mng_name,mng_phone,mng_pic,mng_status FROM manager where mng_no = ?";
+		private static final String DELETE = 
+			"DELETE FROM manager where mng_no = ?";
+		private static final String UPDATE = 
+			"UPDATE manager set mng_account=?, mng_password=?, mng_name=?, mng_phone=?, mng_pic=?, mng_status=? where mng_no = ?";
+		private static final String SELECT_FOR_LOGIN = "SELECT * FROM manager WHERE mng_account= ? and mng_password= ? ";
 
 
 	@Override
@@ -289,5 +290,47 @@ public class Manager_JNDIDAO implements Manager_DAO_interface {
 	public List<Manager_VO> getAllManager(Map<String, String[]> map) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	public boolean mngLogin(Manager_VO manager_VO) {
+		boolean status = false;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(SELECT_FOR_LOGIN);
+
+			pstmt.setString(1, manager_VO.getMng_account());
+			pstmt.setString(2, manager_VO.getMng_password());
+
+//			pstmt.executeUpdate();
+
+			System.out.println(pstmt);
+			ResultSet rs = pstmt.executeQuery();
+			status = rs.next();
+
+		} catch (SQLException e) {
+			// process sql exception
+			printSQLException(e);
+		}
+		return status;
+	}
+	
+	private void printSQLException(SQLException ex) {
+		for (Throwable e : ex) {
+			if (e instanceof SQLException) {
+				e.printStackTrace(System.err);
+				System.err.println("SQLState: " + ((SQLException) e).getSQLState());
+				System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
+				System.err.println("Message: " + e.getMessage());
+				Throwable t = ex.getCause();
+				while (t != null) {
+					System.out.println("Cause: " + t);
+					t = t.getCause();
+				}
+			}
+		}
 	}
 }

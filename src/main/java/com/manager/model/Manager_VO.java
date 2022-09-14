@@ -2,6 +2,9 @@ package com.manager.model;
 
 import java.io.Serializable;
 
+import com.manager_auth.model.Manager_auth_Service;
+import com.manager_auth.model.Manager_auth_VO;
+
 public class Manager_VO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer mng_no;
@@ -54,5 +57,5 @@ public class Manager_VO implements Serializable {
 	public void setMng_status(Integer mng_status) {
 		this.mng_status = mng_status;
 	}
-	
+
 }

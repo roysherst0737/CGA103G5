@@ -13,8 +13,7 @@ public class Act_Service {
 
 	public Act_VO addAct(Integer pub_no, String act_name, String act_detail, String act_loc, Timestamp act_launch_time,
 			Timestamp act_off_time, Integer current_count, Integer max_count, Integer min_count,
-			Timestamp sign_up_begin_time, Timestamp sign_up_end_time, Timestamp act_start_time, Timestamp act_end_time,
-			Integer act_status, Integer apply_status) {
+			Timestamp sign_up_begin_time, Timestamp sign_up_end_time, Timestamp act_start_time, Timestamp act_end_time) {
 
 		Act_VO act_VO = new Act_VO();
 
@@ -31,8 +30,7 @@ public class Act_Service {
 		act_VO.setSign_up_end_time(sign_up_end_time);
 		act_VO.setAct_start_time(act_start_time);
 		act_VO.setAct_end_time(act_end_time);
-		act_VO.setAct_status(act_status);
-		act_VO.setApply_status(apply_status);
+
 
 		dao.insert(act_VO);
 
@@ -42,7 +40,7 @@ public class Act_Service {
 	public Act_VO updateAct(Integer pub_no, String act_name, String act_detail, String act_loc,
 			Timestamp act_launch_time, Timestamp act_off_time, Integer current_count, Integer max_count,
 			Integer min_count, Timestamp sign_up_begin_time, Timestamp sign_up_end_time, Timestamp act_start_time,
-			Timestamp act_end_time, Integer act_status, Integer apply_status, Integer act_no) {
+			Timestamp act_end_time, Integer act_status, Integer act_no) {
 
 		Act_VO act_VO = new Act_VO();
 
@@ -60,7 +58,6 @@ public class Act_Service {
 		act_VO.setAct_start_time(act_start_time);
 		act_VO.setAct_end_time(act_end_time);
 		act_VO.setAct_status(act_status);
-		act_VO.setApply_status(apply_status);
 		act_VO.setAct_no(act_no);
 
 		dao.update(act_VO);
@@ -79,4 +76,7 @@ public class Act_Service {
 	public List<Act_VO> getAll() {
 		return dao.getAll();
 	}
+	
+
+	
 }

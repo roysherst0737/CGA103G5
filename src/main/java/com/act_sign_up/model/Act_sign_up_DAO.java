@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -18,18 +20,20 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/lonelybar");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private static final String INSERT_STMT = "INSERT INTO act_sign_up (act_no, mem_no, accompany_count, sign_up_status) VALUES (?, ?, ?, ?)";
-	private static final String GET_ALL_STMT = "SELECT sign_up_no, act_no, mem_no, sign_up_time, accompany_count, sign_up_status FROM act_sign_up order by sign_up_no";
-	private static final String GET_ONE_STMT = "SELECT sign_up_no, act_no, mem_no, sign_up_time, accompany_count, sign_up_status FROM act_sign_up where sign_up_no = ?";
+	private static final String INSERT_STMT = "INSERT INTO act_sign_up (act_no, mem_no, accompany_count) VALUES (?, ?, ?)";
+	private static final String GET_ALL_STMT = "SELECT sign_up_no, act_no, mem_no, sign_up_time, accompany_count FROM act_sign_up order by sign_up_no";
+	private static final String GET_ONE_STMT = "SELECT sign_up_no, act_no, mem_no, sign_up_time, accompany_count FROM act_sign_up where sign_up_no = ?";
 	private static final String DELETE = "DELETE FROM act_sign_up where sign_up_no = ?";
-	private static final String UPDATE = "UPDATE act_sign_up set act_no = ?, mem_no = ?, accompany_count = ?, sign_up_status = ? where sign_up_no = ?";
+	private static final String UPDATE = "UPDATE act_sign_up set act_no = ?, mem_no = ?, accompany_count = ? where sign_up_no = ?";
 
+	private static final String GET_ACT_SIGN_UP = "SELECT act_no FROM act_sign_up where mem_no = ?";
+	
 	@Override
 	public void insert(Act_sign_up_VO act_sign_up_VO) {
 		Connection con = null;
@@ -43,7 +47,6 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 			pstmt.setInt(1, act_sign_up_VO.getAct_no());
 			pstmt.setInt(2, act_sign_up_VO.getMem_no());
 			pstmt.setInt(3, act_sign_up_VO.getAccompany_count());
-			pstmt.setInt(4, act_sign_up_VO.getSign_up_status());
 
 			pstmt.executeUpdate();
 
@@ -83,8 +86,7 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 			pstmt.setInt(1, act_sign_up_VO.getAct_no());
 			pstmt.setInt(2, act_sign_up_VO.getMem_no());
 			pstmt.setInt(3, act_sign_up_VO.getAccompany_count());
-			pstmt.setInt(4, act_sign_up_VO.getSign_up_status());
-			pstmt.setInt(5, act_sign_up_VO.getSign_up_no());
+			pstmt.setInt(4, act_sign_up_VO.getSign_up_no());
 
 			pstmt.executeUpdate();
 
@@ -172,7 +174,6 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 				act_sign_up_VO.setMem_no(rs.getInt("mem_no"));
 				act_sign_up_VO.setSign_up_time(rs.getTimestamp("sign_up_time"));
 				act_sign_up_VO.setAccompany_count(rs.getInt("accompany_count"));
-				act_sign_up_VO.setSign_up_status(rs.getInt("sign_up_status"));
 
 			}
 
@@ -229,7 +230,6 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 				act_sign_up_VO.setMem_no(rs.getInt("mem_no"));
 				act_sign_up_VO.setSign_up_time(rs.getTimestamp("sign_up_time"));
 				act_sign_up_VO.setAccompany_count(rs.getInt("accompany_count"));
-				act_sign_up_VO.setSign_up_status(rs.getInt("sign_up_status"));
 				list.add(act_sign_up_VO); // Store the row in the list
 			}
 
@@ -261,6 +261,59 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 			}
 		}
 		return list;
+	}
+	
+
+
+	@Override
+	public Set<Integer> getAct_sign_up(Integer mem_no) {
+		Set<Integer> set = new HashSet<Integer>();
+		
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ACT_SIGN_UP);
+			pstmt.setInt(1, mem_no);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// empVO 也稱為 Domain objects
+				set.add(rs.getInt("act_no")); // Store the row in the list
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return set;
 	}
 
 }

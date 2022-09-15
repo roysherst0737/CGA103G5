@@ -3,17 +3,17 @@ package com.forum.model;
 import java.util.List;
 
 public class Forum_Service {
+	
 	private Forum_DAO_interface dao;
 
 	public Forum_Service() {
 		dao = new Forum_DAO();
 	}
 
-	public Forum_VO addForum(Integer frm_no, String frm_name_no, Integer frm_status) {
+	public Forum_VO addForum(String frm_name_no, Integer frm_status) {
 
 		Forum_VO forum_VO = new Forum_VO();
 
-//		forumVO.setFrm_no(frm_no);
 		forum_VO.setFrm_name_no(frm_name_no);
 		forum_VO.setFrm_status(frm_status);
 		dao.insert(forum_VO);
@@ -33,9 +33,6 @@ public class Forum_Service {
 		return forum_VO;
 	}
 	
-	public void updateForum(Forum_VO forum_VO) {
-		dao.update(forum_VO);
-	}
 
 	public void deleteForum(Integer frm_no) {
 		dao.delete(frm_no);

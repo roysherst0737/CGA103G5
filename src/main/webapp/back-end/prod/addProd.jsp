@@ -121,6 +121,15 @@ Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
+								<%-- 錯誤表列 --%>
+								<c:if test="${not empty errorMsgs}">
+									<font style="color: red">請修正以下錯誤:</font>
+									<ul>
+										<c:forEach var="message" items="${errorMsgs}">
+											<li style="color: red">${message}</li>
+										</c:forEach>
+									</ul>
+								</c:if>
 								<jsp:useBean id="prod_picSvc" scope="page" class="com.prod_pic.model.Prod_pic_Service" />
 								<jsp:useBean id="prod_typeSvc" scope="page" class="com.prod_type.model.Prod_type_Service" />
 									<h4 class="card-title">新增商品</h4>
@@ -128,10 +137,10 @@ Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 										<FORM METHOD="post" ACTION="prod.do" name="form1">
 											<table>
 												<tr>
-													<td>商品種類編號:</td>
+													<td>商品類別:</td>
 													<td><select size="1" name="prod_type_no">
 														<c:forEach var="prod_typeVO" items="${prod_typeSvc.all}">
-															<option value="${prod_typeVO.prod_type_no}">${prod_typeVO.prod_type_no}
+															<option value="${prod_typeVO.prod_type_no}">${prod_typeVO.prod_type_name}
 														</c:forEach>
 													</select></td>
 												</tr>											
@@ -155,14 +164,14 @@ Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 												
 												<tr>
 													<td>下架時間:</td>
-													<td><input type="TEXT" name="off_time" size="45"
-														value="<%=(prodVO == null) ? "" : prodVO.getOff_time()%>" /></td>
+													<td><input name="off_time" size="45" id="offTime" type="text"></td>
 												</tr>
 												
 												<tr>
 													<td>商品敘述:</td>
-													<td><input type="TEXT" name="prod_detail" size="45"
-														value="<%=(prodVO == null) ? "" : prodVO.getProd_detail()%>" /></td>
+													<td><textarea name="prod_detail" cols="46" rows="10">
+													<%=(prodVO == null) ? "" : prodVO.getProd_detail()%>
+													</textarea></td>
 												</tr>
 												
 											</table>
@@ -225,5 +234,33 @@ Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 		src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 	<!-- End custom js for this page-->
 </body>
+
+<!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
+
+<!-- 參考網站: https://xdsoft.net/jqplugins/datetimepicker/ -->
+
+<link rel="stylesheet" type="text/css"
+	href="datetimepicker/jquery.datetimepicker.css" />
+<script src="datetimepicker/jquery.js"></script>
+<script src="datetimepicker/jquery.datetimepicker.full.js"></script>
+
+<style>
+.xdsoft_datetimepicker .xdsoft_datepicker {
+	width: 300px; /* width:  300px; */
+}
+
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
+	height: 151px; /* height:  151px; */
+}
+</style>
+
+<script>
+	$.datetimepicker.setLocale('zh'); // kr ko ja en
+	$('#offTime').datetimepicker({
+		theme: '',
+		timepicker:true,
+		format : 'Y-m-d H:i:s',
+	});
+</script>
 
 </html>

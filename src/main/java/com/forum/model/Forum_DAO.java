@@ -27,7 +27,7 @@ public class Forum_DAO implements Forum_DAO_interface{
 	
 	}
 	private static final String INSERT_STMT = 
-		"INSERT INTO forum (frm_name_no,frm_status) VALUES (?, ?, ?)";
+		"INSERT INTO forum (frm_name_no,frm_status) VALUES (?, ?)";
 	private static final String GET_ALL_STMT = 
 		"SELECT frm_no,frm_name_no,frm_status FROM forum order by frm_no";
 	private static final String GET_ONE_STMT = 
@@ -46,8 +46,6 @@ public class Forum_DAO implements Forum_DAO_interface{
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
-
-//			pstmt.setInt(1, forum_VO.getFrm_no());
 			pstmt.setString(1, forum_VO.getFrm_name_no());
 			pstmt.setInt(2, forum_VO.getFrm_status());
 
@@ -88,10 +86,11 @@ public class Forum_DAO implements Forum_DAO_interface{
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-//			pstmt.setInt(1, forum_VO.getFrm_no());
+			
 			pstmt.setString(1, forum_VO.getFrm_name_no());
 			pstmt.setInt(2, forum_VO.getFrm_status());
-
+			pstmt.setInt(3, forum_VO.getFrm_no());//刪
+			
 			pstmt.executeUpdate();
 
 	
@@ -116,7 +115,6 @@ public class Forum_DAO implements Forum_DAO_interface{
 			}
 		}
 
-		
 		
 	}
 
@@ -183,8 +181,9 @@ public class Forum_DAO implements Forum_DAO_interface{
 				forum_VO.setFrm_status(rs.getInt("frm_status"));
 				
 			}
-
+		
 			
+
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -212,7 +211,7 @@ public class Forum_DAO implements Forum_DAO_interface{
 				}
 			}
 		}
-		return null;
+		return forum_VO;
 	}
 
 	@Override

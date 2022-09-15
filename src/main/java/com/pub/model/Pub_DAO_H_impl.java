@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import com.pub.dao.Pub_DAO_H;
+import com.pub.entity.Pub;
 import com.util.HibernateUtil;
 
 public class Pub_DAO_H_impl implements Pub_DAO_H  {
@@ -81,6 +83,12 @@ public List<Pub> selectAll() {
 
 @Override
 public List<Pub> getMemAll(Integer mem_no) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public List<Pub> getAllbyOpen() {
 	// TODO Auto-generated method stub
 	return null;
 }

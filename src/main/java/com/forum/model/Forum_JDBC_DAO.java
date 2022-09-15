@@ -12,7 +12,7 @@ public class Forum_JDBC_DAO implements Forum_DAO_interface {
 //	String passwd = "123qweqwe";
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO forum (frm_name_no,frm_status) VALUES (?, ?, ?)";
+		"INSERT INTO forum (frm_name_no,frm_status) VALUES (?, ?)";
 	private static final String GET_ALL_STMT = 
 		"SELECT frm_no,frm_name_no,frm_status FROM forum order by frm_no";
 	private static final String GET_ONE_STMT = 
@@ -32,8 +32,6 @@ public class Forum_JDBC_DAO implements Forum_DAO_interface {
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(INSERT_STMT);
-
-//			pstmt.setInt(1, forum_VO.getFrm_no());
 			pstmt.setString(1, forum_VO.getFrm_name_no());
 			pstmt.setInt(2, forum_VO.getFrm_status());
 
@@ -78,10 +76,9 @@ public class Forum_JDBC_DAO implements Forum_DAO_interface {
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(UPDATE);
-
-//			pstmt.setInt(1, forum_VO.getFrm_no());
 			pstmt.setString(1, forum_VO.getFrm_name_no());
 			pstmt.setInt(2, forum_VO.getFrm_status());
+			pstmt.setInt(3, forum_VO.getFrm_no());//刪
 
 			pstmt.executeUpdate();
 
@@ -284,24 +281,23 @@ public class Forum_JDBC_DAO implements Forum_DAO_interface {
 
 		// 新增
 		Forum_VO forum_VO1 = new Forum_VO();
-		forum_VO1.setFrm_no(123);
 		forum_VO1.setFrm_name_no("活動討論區");
-		forum_VO1.setFrm_status(0);
+		forum_VO1.setFrm_status(1);
 		
 		dao.insert(forum_VO1);
 
 		// 修改
 		Forum_VO forum_VO2 = new Forum_VO();
-		forum_VO2.setFrm_no(123);
+		forum_VO2.setFrm_no(2);
 		forum_VO2.setFrm_name_no("揪團討論區");
-		forum_VO2.setFrm_status(1);
+		forum_VO2.setFrm_status(0);
 		dao.update(forum_VO2);
 
 		// 刪除
-		dao.delete(7014);
+		dao.delete(10);
 
 		// 查詢
-		Forum_VO forum_VO3 = dao.findByPrimaryKey(7001);
+		Forum_VO forum_VO3 = dao.findByPrimaryKey(1);
 		System.out.print(forum_VO3.getFrm_no() + ",");
 		System.out.print(forum_VO3.getFrm_name_no() + ",");
 		System.out.println(forum_VO3.getFrm_name_no());

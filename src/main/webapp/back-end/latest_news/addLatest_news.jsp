@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.latest_news.model.*"%>
 
@@ -9,7 +9,7 @@ Latest_news_VO latest_news_VO = (Latest_news_VO) request.getAttribute("latest_ne
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>³Ì·s®ø®§¸ê®Æ·s¼W - addLatest_news.jsp</title>
+<title>æœ€æ–°æ¶ˆæ¯è³‡æ–™æ–°å¢ - addLatest_news.jsp</title>
 
 <style>
   table#table-1 {
@@ -48,16 +48,16 @@ Latest_news_VO latest_news_VO = (Latest_news_VO) request.getAttribute("latest_ne
 
 <table id="table-1">
 	<tr><td>
-		 <h3>³Ì·s®ø®§¸ê®Æ·s¼W - addLatest_news.jsp</h3></td><td>
-		 <h4><a href="select_page.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">¦^­º­¶</a></h4>
+		 <h3>æœ€æ–°æ¶ˆæ¯è³‡æ–™æ–°å¢ - addLatest_news.jsp</h3></td><td>
+		 <h4><a href="select_page.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">å›é¦–é </a></h4>
 	</td></tr>
 </table>
 
-<h3>¸ê®Æ·s¼W:</h3>
+<h3>è³‡æ–™æ–°å¢:</h3>
 
-<%-- ¿ù»~ªí¦C --%>
+<%-- éŒ¯èª¤è¡¨åˆ— --%>
 <c:if test="${not empty errorMsgs}">
-	<font style="color:red">½Ğ­×¥¿¥H¤U¿ù»~:</font>
+	<font style="color:red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li style="color:red">${message}</li>
@@ -67,25 +67,25 @@ Latest_news_VO latest_news_VO = (Latest_news_VO) request.getAttribute("latest_ne
 
 <FORM METHOD="post" ACTION="latest_news.do" name="form1">
 <table>
+<!-- 	<tr> -->
+<!-- 		<td>æœ€æ–°æ¶ˆæ¯ç·¨è™Ÿ:</td> -->
+<!-- 		<td><input type="TEXT" name="latest_news_no" size="45"  -->
+<%-- 			 value="<%= (latest_news_VO==null)? 1 : latest_news_VO.getLatest_news_no()%>" /></td> --%>
+<!-- 	</tr> -->
 	<tr>
-		<td>³Ì·s®ø®§½s¸¹:</td>
-		<td><input type="TEXT" name="latest_news_no" size="45" 
-			 value="<%= (latest_news_VO==null)? 1 : latest_news_VO.getLatest_news_no()%>" /></td>
-	</tr>
-	<tr>
-		<td>®ø®§¤º®e:</td>
+		<td>æ¶ˆæ¯å…§å®¹:</td>
 		<td><input type="TEXT" name="news_content" size="45" 
-			 value="<%= (latest_news_VO==null)? "½Õ°s§÷®Æ5~8§é¡A¤£­n¿ù¹L¡I" : latest_news_VO.getNews_content()%>" /></td>
+			 value="<%= (latest_news_VO==null)? "èª¿é…’ææ–™5~8æŠ˜ï¼Œä¸è¦éŒ¯éï¼" : latest_news_VO.getNews_content()%>" /></td>
 	</tr>
 	<tr>
-		<td>®ø®§ª¬ºA:</td>
+		<td>æ¶ˆæ¯ç‹€æ…‹:</td>
 		<td><input type="TEXT" name="news_status" size="45" 
-			 value="<%= (latest_news_VO==null)? 0 : latest_news_VO.getNews_status()%>" /></td>
+			 value="<%= (latest_news_VO==null)? "" : latest_news_VO.getNews_status()%>" /></td>
 	</tr>
 	
 <%-- 	<jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" /> --%>
 <!-- 	<tr> -->
-<!-- 		<td>³¡ªù:<font color=red><b>*</b></font></td> -->
+<!-- 		<td>éƒ¨é–€:<font color=red><b>*</b></font></td> -->
 <!-- 		<td><select size="1" name="deptno"> -->
 <%-- 			<c:forEach var="deptVO" items="${deptSvc.all}"> --%>
 <%-- 				<option value="${deptVO.deptno}" ${(empVO.deptno==deptVO.deptno)? 'selected':'' } >${deptVO.dname} --%>
@@ -96,12 +96,12 @@ Latest_news_VO latest_news_VO = (Latest_news_VO) request.getAttribute("latest_ne
 </table>
 <br>
 <input type="hidden" name="action" value="insert">
-<input type="submit" value="°e¥X·s¼W"></FORM>
+<input type="submit" value="é€å‡ºæ–°å¢"></FORM>
 </body>
 
 
 
-<!-- =========================================¥H¤U¬° datetimepicker ¤§¬ÛÃö³]©w========================================== -->
+<!-- =========================================ä»¥ä¸‹ç‚º datetimepicker ä¹‹ç›¸é—œè¨­å®š========================================== -->
 
 <% 
 //   java.sql.Date hiredate = null;
@@ -129,20 +129,20 @@ Latest_news_VO latest_news_VO = (Latest_news_VO) request.getAttribute("latest_ne
 //         $('#f_date1').datetimepicker({
 // 	       theme: '',              //theme: 'dark',
 // 	       timepicker:false,       //timepicker:true,
-// 	       step: 1,                //step: 60 (³o¬Otimepickerªº¹w³]¶¡¹j60¤ÀÄÁ)
+// 	       step: 1,                //step: 60 (é€™æ˜¯timepickerçš„é è¨­é–“éš”60åˆ†é˜)
 // 	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
 <%-- 		   value: '<%=hiredate%>', // value:   new Date(), --%>
-//            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // ¥h°£¯S©w¤£§t
-//            //startDate:	            '2017/07/10',  // °_©l¤é
-//            //minDate:               '-1970-01-01', // ¥h°£¤µ¤é(¤£§t)¤§«e
-//            //maxDate:               '+1970-01-01'  // ¥h°£¤µ¤é(¤£§t)¤§«á
+//            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // å»é™¤ç‰¹å®šä¸å«
+//            //startDate:	            '2017/07/10',  // èµ·å§‹æ—¥
+//            //minDate:               '-1970-01-01', // å»é™¤ä»Šæ—¥(ä¸å«)ä¹‹å‰
+//            //maxDate:               '+1970-01-01'  // å»é™¤ä»Šæ—¥(ä¸å«)ä¹‹å¾Œ
 //         });
         
         
    
-        // ----------------------------------------------------------¥H¤U¥Î¨Ó±Æ©wµLªk¿ï¾Üªº¤é´Á-----------------------------------------------------------
+        // ----------------------------------------------------------ä»¥ä¸‹ç”¨ä¾†æ’å®šç„¡æ³•é¸æ“‡çš„æ—¥æœŸ-----------------------------------------------------------
 
-        //      1.¥H¤U¬°¬Y¤@¤Ñ¤§«eªº¤é´ÁµLªk¿ï¾Ü
+        //      1.ä»¥ä¸‹ç‚ºæŸä¸€å¤©ä¹‹å‰çš„æ—¥æœŸç„¡æ³•é¸æ“‡
         //      var somedate1 = new Date('2017-06-15');
         //      $('#f_date1').datetimepicker({
         //          beforeShowDay: function(date) {
@@ -156,7 +156,7 @@ Latest_news_VO latest_news_VO = (Latest_news_VO) request.getAttribute("latest_ne
         //      }});
 
         
-        //      2.¥H¤U¬°¬Y¤@¤Ñ¤§«áªº¤é´ÁµLªk¿ï¾Ü
+        //      2.ä»¥ä¸‹ç‚ºæŸä¸€å¤©ä¹‹å¾Œçš„æ—¥æœŸç„¡æ³•é¸æ“‡
         //      var somedate2 = new Date('2017-06-15');
         //      $('#f_date1').datetimepicker({
         //          beforeShowDay: function(date) {
@@ -167,7 +167,7 @@ Latest_news_VO latest_news_VO = (Latest_news_VO) request.getAttribute("latest_ne
         //      }});
 
 
-        //      3.¥H¤U¬°¨â­Ó¤é´Á¤§¥~ªº¤é´ÁµLªk¿ï¾Ü (¤]¥i«ö»İ­n´«¦¨¨ä¥L¤é´Á)
+        //      3.ä»¥ä¸‹ç‚ºå…©å€‹æ—¥æœŸä¹‹å¤–çš„æ—¥æœŸç„¡æ³•é¸æ“‡ (ä¹Ÿå¯æŒ‰éœ€è¦æ›æˆå…¶ä»–æ—¥æœŸ)
         //      var somedate1 = new Date('2017-06-15');
         //      var somedate2 = new Date('2017-06-25');
         //      $('#f_date1').datetimepicker({

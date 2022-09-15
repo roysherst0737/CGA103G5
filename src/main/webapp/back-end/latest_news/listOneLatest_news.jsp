@@ -1,14 +1,14 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.latest_news.model.*"%>
-<%-- ¦¹­¶¼È½m²ß±Ä¥Î Script ªº¼gªk¨ú­È --%>
+<%-- æ­¤é æš«ç·´ç¿’æ¡ç”¨ Script çš„å¯«æ³•å–å€¼ --%>
 
 <%
-	Latest_news_VO latest_news_VO = (Latest_news_VO) request.getAttribute("latest_news_VO"); //EmpServlet.java(Concroller), ¦s¤JreqªºempVOª«¥ó
+	Latest_news_VO latest_news_VO = (Latest_news_VO) request.getAttribute("latest_news_VO"); //EmpServlet.java(Concroller), å­˜å…¥reqçš„empVOç‰©ä»¶
 %>
 
 <html>
 <head>
-<title>³Ì·s®ø®§¸ê®Æ - listOneLatest_news.jsp</title>
+<title>æœ€æ–°æ¶ˆæ¯è³‡æ–™ - listOneLatest_news.jsp</title>
 
 <style>
   table#table-1 {
@@ -46,19 +46,19 @@
 </head>
 <body bgcolor='white'>
 
-<h4>¦¹­¶¼È½m²ß±Ä¥Î Script ªº¼gªk¨ú­È:</h4>
+<h4>æ­¤é æš«ç·´ç¿’æ¡ç”¨ Script çš„å¯«æ³•å–å€¼:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>³Ì·s®ø®§¸ê®Æ - ListOneLatest_news.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a></h4>
+		 <h3>æœ€æ–°æ¶ˆæ¯è³‡æ–™ - ListOneLatest_news.jsp</h3>
+		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">å›é¦–é </a></h4>
 	</td></tr>
 </table>
 
 <table>
 	<tr>
-		<th>³Ì·s®ø®§½s¸¹</th>
-		<th>®ø®§¤º®e</th>
-		<th>®ø®§ª¬ºA</th>
+		<th>æœ€æ–°æ¶ˆæ¯ç·¨è™Ÿ</th>
+		<th>æ¶ˆæ¯å…§å®¹</th>
+		<th>æ¶ˆæ¯ç‹€æ…‹</th>
 	</tr>
 	<tr>
 		<td>${latest_news_VO.latest_news_no}</td>

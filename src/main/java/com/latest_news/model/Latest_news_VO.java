@@ -1,9 +1,7 @@
 package com.latest_news.model;
 
 public class Latest_news_VO implements java.io.Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private Integer latest_news_no;
 	private String news_content;

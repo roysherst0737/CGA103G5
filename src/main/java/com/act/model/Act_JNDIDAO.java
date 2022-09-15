@@ -20,11 +20,12 @@ public class Act_JNDIDAO implements Act_DAO_interface {
 		}
 	}
 
-	private static final String INSERT_STMT = "INSERT INTO act (pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status, apply_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	private static final String GET_ALL_STMT = "SELECT act_no, pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status, apply_time, apply_status FROM act order by act_no";
-	private static final String GET_ONE_STMT = "SELECT act_no, pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status, apply_time, apply_status FROM act where act_no = ?";
+	private static final String INSERT_STMT = "INSERT INTO act (pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String GET_ALL_STMT = "SELECT a.act_no, pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, sum(accompany_count + 1) as current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status, revise_time FROM act a LEFT JOIN act_sign_up b ON a.act_no = b.act_no GROUP BY act_no";
+	private static final String GET_ONE_STMT = "SELECT a.act_no, pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, sum(accompany_count + 1) as current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status, revise_time FROM act a LEFT JOIN act_sign_up b ON a.act_no = b.act_no where a.act_no = ?";
 	private static final String DELETE = "DELETE FROM act where act_no = ?";
-	private static final String UPDATE = "UPDATE act set pub_no = ?, act_name = ?, act_detail = ?, act_loc = ?, act_launch_time = ?, act_off_time = ? current_count = ? max_count = ? min_count = ? sign_up_begin_time = ? sign_up_end_time = ? act_start_time = ? act_end_time = ? act_status = ? apply_status = ? where act_no = ?";
+	private static final String UPDATE = "UPDATE act set pub_no = ?, act_name = ?, act_detail = ?, act_loc = ?, act_launch_time = ?, act_off_time = ?, current_count = ?, max_count = ?, min_count = ?, sign_up_begin_time = ?, sign_up_end_time = ?, act_start_time = ?, act_end_time = ?, act_status = ? where act_no = ?";
+
 
 	@Override
 	public void insert(Act_VO act_VO) {
@@ -49,8 +50,7 @@ public class Act_JNDIDAO implements Act_DAO_interface {
 			pstmt.setTimestamp(11, act_VO.getSign_up_end_time());
 			pstmt.setTimestamp(12, act_VO.getAct_start_time());
 			pstmt.setTimestamp(13, act_VO.getAct_end_time());
-			pstmt.setInt(14, act_VO.getAct_status());
-			pstmt.setInt(15, act_VO.getApply_status());
+
 
 			pstmt.executeUpdate();
 
@@ -101,7 +101,7 @@ public class Act_JNDIDAO implements Act_DAO_interface {
 			pstmt.setTimestamp(12, act_VO.getAct_start_time());
 			pstmt.setTimestamp(13, act_VO.getAct_end_time());
 			pstmt.setInt(14, act_VO.getAct_status());
-			pstmt.setInt(15, act_VO.getApply_status());
+			pstmt.setInt(15, act_VO.getAct_no());
 
 			pstmt.executeUpdate();
 
@@ -199,8 +199,7 @@ public class Act_JNDIDAO implements Act_DAO_interface {
 				act_VO.setAct_start_time(rs.getTimestamp("empno"));
 				act_VO.setAct_end_time(rs.getTimestamp("empno"));
 				act_VO.setAct_status(rs.getInt("empno"));
-				act_VO.setApply_time(rs.getTimestamp("empno"));
-				act_VO.setApply_status(rs.getInt("empno"));
+				act_VO.setRevise_time(rs.getTimestamp("empno"));
 
 			}
 
@@ -267,8 +266,7 @@ public class Act_JNDIDAO implements Act_DAO_interface {
 				act_VO.setAct_start_time(rs.getTimestamp("empno"));
 				act_VO.setAct_end_time(rs.getTimestamp("empno"));
 				act_VO.setAct_status(rs.getInt("empno"));
-				act_VO.setApply_time(rs.getTimestamp("empno"));
-				act_VO.setApply_status(rs.getInt("empno"));
+				act_VO.setRevise_time(rs.getTimestamp("empno"));
 				list.add(act_VO); // Store the row in the list
 			}
 
@@ -301,5 +299,6 @@ public class Act_JNDIDAO implements Act_DAO_interface {
 		}
 		return list;
 	}
+
 
 }

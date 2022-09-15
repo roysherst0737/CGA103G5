@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.prod_pic.model.*"%>
+<%@ page import="com.order.model.*"%>
 
 <!DOCTYPE html>
 <html lang="zh">
@@ -73,13 +73,10 @@
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
 										<button style="margin-right:10px;">
-										<a href="listAllProd_pic.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
+										<a href="listAllOrder.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right:10px;">
-										<a href='addProd_pic.jsp'><img src="./images/plus.png" width="30px" height="30px"></a>
-										</button>
-										<button style="margin-right:10px;">
-										<a href="select_page.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
+										<a href="selectOrder.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
 										</button>
 										<button
 											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
@@ -115,7 +112,7 @@
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">商品圖片搜尋</h4>
+									<h4 class="card-title">商品訂單搜尋</h4>
 									<div class="table-responsive">
 										<%-- 錯誤表列 --%>
 										<c:if test="${not empty errorMsgs}">
@@ -127,22 +124,22 @@
 											</ul>
 										</c:if>
 
-										<jsp:useBean id="prod_picSvc" scope="page" class="com.prod_pic.model.Prod_pic_Service" />
+										<jsp:useBean id="orderSvc" scope="page" class="com.order.model.Order_Service" />
 
-											<FORM METHOD="post" ACTION="prod_pic.do">
-												<b>選擇商品照片編號:</b> <select size="1" name="prod_pic_no">
-													<c:forEach var="prod_picVO" items="${prod_picSvc.all}">
-														<option value="${prod_picVO.prod_pic_no}">${prod_picVO.prod_pic_no}
+											<FORM METHOD="post" ACTION="order.do">
+												<b>選擇訂單編號:</b> <select size="1" name="order_no">
+													<c:forEach var="orderVO" items="${orderSvc.all}">
+														<option value="${orderVO.order_no}">${orderVO.order_no}
 													</c:forEach>
 												</select> <input type="hidden" name="action"
 													value="getOne_For_Display"> <input type="submit"
 													value="送出">
 											</FORM>
 
-											<FORM METHOD="post" ACTION="prod_pic.do">
-												<b>選擇商品編號:</b> <select size="1" name="prod_pic_no">
-													<c:forEach var="prod_picVO" items="${prod_picSvc.all}">
-														<option value="${prod_picVO.prod_pic_no}">${prod_picVO.prod_no}
+											<FORM METHOD="post" ACTION="order.do">
+												<b>選擇會員編號:</b> <select size="1" name="order_no">
+													<c:forEach var="orderVO" items="${orderSvc.all}">
+														<option value="${orderVO.order_no}">${orderVO.mem_no}
 													</c:forEach>
 												</select> <input type="hidden" name="action"
 													value="getOne_For_Display"> <input type="submit"
@@ -150,15 +147,52 @@
 											</FORM>
 										
 
-											<FORM METHOD="post" ACTION="prod_pic.do">
-												<b>選擇商品照片名稱:</b> <select size="1" name="prod_pic_no">
-													<c:forEach var="prod_picVO" items="${prod_picSvc.all}">
-														<option value="${prod_picVO.prod_pic_no}">${prod_picVO.prod_pic_name}
+											<FORM METHOD="post" ACTION="order.do">
+												<b>選擇訂單狀態:</b> <select size="1" name="order_no">
+													<c:forEach var="orderVO" items="${orderSvc.all}">
+														<option value="${orderVO.order_no}">${orderVO.order_status}
 													</c:forEach>
 												</select> <input type="hidden" name="action"
 													value="getOne_For_Display"> <input type="submit"
 													value="送出">
 											</FORM>
+											
+											<FORM METHOD="post" ACTION="order.do">
+												<b>選擇付款方式:</b> <select size="1" name="order_no">
+													<c:forEach var="orderVO" items="${orderSvc.all}">
+														<option value="${orderVO.order_no}">${orderVO.payment_method}
+													</c:forEach>
+												</select> <input type="hidden" name="action"
+													value="getOne_For_Display"> <input type="submit"
+													value="送出">
+											</FORM>
+											
+											<FORM METHOD="post" ACTION="order.do">
+												<b>選擇取貨方式:</b> <select size="1" name="order_no">
+													<c:forEach var="orderVO" items="${orderSvc.all}">
+														<option value="${orderVO.order_no}">${orderVO.pickup_method}
+													</c:forEach>
+												</select> <input type="hidden" name="action"
+													value="getOne_For_Display"> <input type="submit"
+													value="送出">
+											</FORM>
+											
+											<FORM METHOD="post" ACTION="order.do">
+												<b>選擇運費:</b> <select size="1" name="order_no">
+													<c:forEach var="orderVO" items="${orderSvc.all}">
+														<option value="${orderVO.order_no}">${orderVO.shipping_fee}
+													</c:forEach>
+												</select> <input type="hidden" name="action"
+													value="getOne_For_Display"> <input type="submit"
+													value="送出">
+											</FORM>
+											
+											<FORM METHOD="post" ACTION="order.do">
+        										<b>輸入物流編號</b>
+        										<input type="text" name="empno">
+        										<input type="submit" value="送出">
+        										<input type="hidden" name="action" value="getOne_For_Display">
+    										</FORM>
 									</div>
 								</div>
 							</div>

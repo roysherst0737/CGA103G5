@@ -128,6 +128,7 @@
 										</c:if>
 
 										<jsp:useBean id="prod_picSvc" scope="page" class="com.prod_pic.model.Prod_pic_Service" />
+										<jsp:useBean id="prodSvc" scope="page" class="com.prod.model.Prod_Service" />
 
 											<FORM METHOD="post" ACTION="prod_pic.do">
 												<b>選擇商品照片編號:</b> <select size="1" name="prod_pic_no">
@@ -139,14 +140,15 @@
 													value="送出">
 											</FORM>
 
-											<FORM METHOD="post" ACTION="prod_pic.do">
-												<b>選擇商品編號:</b> <select size="1" name="prod_pic_no">
-													<c:forEach var="prod_picVO" items="${prod_picSvc.all}">
-														<option value="${prod_picVO.prod_pic_no}">${prod_picVO.prod_no}
-													</c:forEach>
-												</select> <input type="hidden" name="action"
-													value="getOne_For_Display"> <input type="submit"
-													value="送出">
+											<FORM  METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/prod/prod.do">
+												<b>選擇商品名稱:</b> 
+													<select size="1" name="prod_no">
+														<c:forEach var="prodVO" items="${prodSvc.all}">
+															<option value="${prodVO.prod_no}">${prodVO.prod_name}
+														</c:forEach>
+													</select>
+												<input type="hidden" name="action" value="listProd_pics_ByProd"> 
+												<input type="submit" value="送出">
 											</FORM>
 										
 

@@ -120,10 +120,10 @@ public class Latest_news_Servlet extends HttpServlet {
 				
 			String news_content = req.getParameter("news_content").trim();
 				if (news_content == null || news_content.trim().length() == 0) {
-					errorMsgs.add("職位請勿空白");
+					errorMsgs.add("消息內容請勿空白");
 				}	
 				
-			
+				Integer news_status = Integer.valueOf(req.getParameter("news_status").trim());
 			//消息狀態  放這裡
 
 				Latest_news_VO latest_news_VO = new Latest_news_VO();
@@ -160,7 +160,7 @@ public class Latest_news_Servlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
-
+		
 //			String news_content = req.getParameter("news_content");
 //			String news_contentReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 //			if (news_content == null || news_content.trim().length() == 0) {
@@ -169,18 +169,18 @@ public class Latest_news_Servlet extends HttpServlet {
 //				errorMsgs.add("消息內容: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
 //            }
 			
-		String news_content = req.getParameter("news_content").trim();
+			String news_content = req.getParameter("news_content").trim();
 			if (news_content == null || news_content.trim().length() == 0) {
-				errorMsgs.add("職位請勿空白");
+				errorMsgs.add("消息內容請勿空白");
 			}	
 			
-		
+			Integer news_status = Integer.valueOf(req.getParameter("news_status").trim());
 		//消息狀態  放這裡
 
 			Latest_news_VO latest_news_VO = new Latest_news_VO();
 			latest_news_VO.setNews_content(news_content);
 			latest_news_VO.setNews_status(news_status);
-
+			
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("latest_news_VO", latest_news_VO); // 含有輸入格式錯誤的empVO物件,也存入req

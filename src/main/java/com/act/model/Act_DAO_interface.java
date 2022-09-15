@@ -11,6 +11,7 @@ public interface Act_DAO_interface {
 	public void delete(Integer act_no);
 
 	public Act_VO findByPrimaryKey(Integer act_no);
+	
 
 	public List<Act_VO> getAll();
 	//萬用複合查詢(傳入參數型態Map)(回傳 List)

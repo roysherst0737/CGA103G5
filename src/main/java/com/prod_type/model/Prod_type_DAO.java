@@ -35,7 +35,7 @@ public class Prod_type_DAO implements Prod_type_DAO_interface {
 		"SELECT prod_type_no,prod_type_name FROM prod_type order by prod_type_no";
 	private static final String GET_ONE_STMT = 
 		"SELECT prod_type_no,prod_type_name FROM prod_type where prod_type_no = ?";
-	private static final String GET_Prods_ByProd_type_no_STMT = 
+	private static final String GET_Prods_ByProd_type_STMT = 
 		"SELECT prod_no,prod_type_no,prod_name,prod_price,prod_stock,prod_status,launch_time,off_time,prod_detail FROM prod where prod_type_no = ? order by prod_no";
 	private static final String DELETE_Prods = 
 		"DELETE FROM prod where prod_type_no = ?";
@@ -287,7 +287,7 @@ public class Prod_type_DAO implements Prod_type_DAO_interface {
 		return list;
 	}
 	
-	public Set<Prod_VO> getProdsByProd_type_no(Integer prod_type_no) {
+	public Set<Prod_VO> getProdsByProd_type(Integer prod_type_no) {
 		Set<Prod_VO> set = new LinkedHashSet<Prod_VO>();
 		Prod_VO prodVO = null;
 	
@@ -298,7 +298,7 @@ public class Prod_type_DAO implements Prod_type_DAO_interface {
 		try {
 	
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_Prods_ByProd_type_no_STMT);
+			pstmt = con.prepareStatement(GET_Prods_ByProd_type_STMT);
 			pstmt.setInt(1, prod_type_no);
 			rs = pstmt.executeQuery();
 	

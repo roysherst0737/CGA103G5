@@ -14,12 +14,12 @@ import javax.sql.DataSource;
 
 public class Coupon_JNDIDAO implements Coupon_DAO_interface {
 
-	// ¤@­ÓÀ³¥Îµ{¦¡¤¤,°w¹ï¤@­Ó¸ê®Æ®w ,¦@¥Î¤@­ÓDataSource§Y¥i
+	// ï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½Îµ{ï¿½ï¿½ï¿½ï¿½,ï¿½wï¿½ï¿½@ï¿½Ó¸ï¿½Æ®w ,ï¿½@ï¿½Î¤@ï¿½ï¿½DataSourceï¿½Yï¿½i
 	private static DataSource ds = null;
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/lonelybar");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -28,22 +28,21 @@ public class Coupon_JNDIDAO implements Coupon_DAO_interface {
 	private static final String INSERT_STMT = 
 			"INSERT INTO coupon (coupon_name, coupon_code, coupon_content,"
 			+ " coupon_discount, coupon_amount, launch_time, off_time,"
-			+ " coupon_build_time, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			+ " coupon_build_time, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		private static final String GET_ALL_STMT = 
 			"SELECT coupon_no, coupon_name, coupon_code, coupon_content,"
 			+ " coupon_discount, coupon_amount, launch_time, off_time,"
-			+ " coupon_build_time, state FROM coupon order by coupon_no";
+			+ " coupon_build_time, status FROM coupon order by coupon_no";
 		private static final String GET_ONE_STMT = 
 			"SELECT coupon_no, coupon_name, coupon_code, coupon_content,"
 			+ " coupon_discount, coupon_amount, launch_time, off_time,"
-			+ " coupon_build_time, state FROM coupon where coupon_no = ?";
+			+ " coupon_build_time, status FROM coupon where coupon_no = ?";
 		private static final String DELETE = 
 			"DELETE FROM coupon where coupon_no = ?";
 		private static final String UPDATE = 
 			"UPDATE coupon coupon_name=?, coupon_code=?, coupon_content=?,"
 			+ " coupon_discount=?, coupon_amount=?, launch_time=?, off_time=?,"
-			+ " coupon_build_time=?, state=? where coupon_no = ?";
-
+			+ " coupon_build_time=?, status=? where coupon_no = ?";
 	@Override
 	public void insert(Coupon_VO couponVO) {
 
@@ -196,7 +195,7 @@ public class Coupon_JNDIDAO implements Coupon_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVo ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				couponVO = new Coupon_VO();
 				couponVO.setCoupon_no(rs.getInt("coupon_no"));
 				couponVO.setCoupon_name(rs.getString("coupon_name"));
@@ -257,7 +256,7 @@ public class Coupon_JNDIDAO implements Coupon_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				couponVO = new Coupon_VO();
 				couponVO.setCoupon_no(rs.getInt("coupon_no"));
 				couponVO.setCoupon_name(rs.getString("coupon_name"));

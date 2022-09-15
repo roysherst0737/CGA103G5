@@ -1,8 +1,8 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.forum.model.*"%>
-<%-- �����m�߱ĥ� EL ���g�k���� --%>
+<%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
 	Forum_Service forum_Svc = new Forum_Service();
@@ -13,7 +13,7 @@
 
 <html>
 <head>
-<title>�Ҧ��Q�װϽs����� - listAllForum.jsp</title>
+<title>所有討論區編號資料 - listAllForum.jsp</title>
 
 <style>
 table#table-1 {
@@ -55,14 +55,13 @@ th, td {
 </head>
 <body bgcolor='white'>
 
-	<h4>�����m�߱ĥ� EL ���g�k����:</h4>
+	<h4>此頁練習採用 EL 的寫法取值:</h4>
 	<table id="table-1">
 		<tr>
 			<td>
-				<h3>�Ҧ��Q�װϽs����� - listAllForum.jsp</h3>
+				<h3>所有討論區編號資料 - listAllForum.jsp</h3>
 				<h4>
-					<a href="select_page.jsp"><img src="images/back1.gif"
-						width="100" height="32" border="0">�^����</a>
+					<a href="select_page.jsp">回首頁</a>
 				</h4>
 			</td>
 		</tr>
@@ -70,9 +69,11 @@ th, td {
 
 	<table>
 		<tr>
-			<th>�Q�װϽs��</th>
-			<th>�Q�װϦW��</th>
-			<th>�Q�װϪ��A</th>
+			<th>討論區編號</th>
+			<th>討論區名稱</th>
+			<th>討論區狀態</th>
+			<th>修改</th>
+			<th>刪除</th>
 		</tr>
 		<%@ include file="page1.file"%>
 		<c:forEach var="forum_VO" items="${list}" begin="<%=pageIndex%>"
@@ -86,7 +87,7 @@ th, td {
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/back-end/forum/forum.do"
 						style="margin-bottom: 0px;">
-						<input type="submit" value="�ק�"> <input type="hidden"
+						<input type="submit" value="修改"> <input type="hidden"
 							name="frm_no" value="${forum_VO.frm_no}"> <input
 							type="hidden" name="action" value="getOne_For_Update">
 					</FORM>
@@ -95,7 +96,7 @@ th, td {
 					<FORM METHOD="post"
 						ACTION="<%=request.getContextPath()%>/back-end/forum/forum.do"
 						style="margin-bottom: 0px;">
-						<input type="submit" value="�R��"> <input type="hidden"
+						<input type="submit" value="刪除"> <input type="hidden"
 							name="frm_no" value="${forum_VO.frm_no}"> <input
 							type="hidden" name="action" value="delete">
 					</FORM>

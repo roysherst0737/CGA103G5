@@ -14,13 +14,13 @@ public class Latest_news_JDBC_DAO implements Latest_news_DAO_interface {
 	private static final String INSERT_STMT = 
 		"INSERT INTO latest_news (news_content,news_status) VALUES (?, ?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT latest_news_no,news_content,news_status order by latest_news_no";
+		"SELECT latest_news_no,news_content,news_status FROM latest_news order by latest_news_no";
 	private static final String GET_ONE_STMT = 
 		"SELECT latest_news_no,news_content,news_status FROM latest_news where latest_news_no = ?";
 	private static final String DELETE = 
 		"DELETE FROM latest_news where latest_news_no = ?";
 	private static final String UPDATE = 
-		"UPDATE latest_news set latest_news_no = ?,news_content = ?,news_status = ? where latest_news_no = ?";
+		"UPDATE latest_news set news_content = ?,news_status = ? where latest_news_no = ?";
 		
 	@Override
 	public void insert(Latest_news_VO latest_news_VO) {
@@ -81,6 +81,7 @@ public class Latest_news_JDBC_DAO implements Latest_news_DAO_interface {
 
 			pstmt.setString(1, latest_news_VO.getNews_content());
 			pstmt.setInt(2, latest_news_VO.getNews_status());
+			pstmt.setInt(2, latest_news_VO.getLatest_news_no());
 
 			pstmt.executeUpdate();
 
@@ -291,18 +292,18 @@ public class Latest_news_JDBC_DAO implements Latest_news_DAO_interface {
 		// 修改
 		Latest_news_VO latest_news_VO2 = new Latest_news_VO();
 		latest_news_VO2.setLatest_news_no(1);
-		latest_news_VO2.setNews_content("琳琅滿目調酒器材8折起");
+		latest_news_VO2.setNews_content("酒類商品全面87折");
 		latest_news_VO2.setNews_status(1);
 		dao.update(latest_news_VO2);
 
 		// 刪除
-		dao.delete(7014);
+		dao.delete(10);
 
 		// 查詢
-		Latest_news_VO latest_news_VO3 = dao.findByPrimaryKey(7001);
+		Latest_news_VO latest_news_VO3 = dao.findByPrimaryKey(1);
 		System.out.print(latest_news_VO3.getLatest_news_no() + ",");
 		System.out.print(latest_news_VO3.getNews_content() + ",");
-		System.out.print(latest_news_VO3.getNews_status() + ",");
+		System.out.print(latest_news_VO3.getNews_status());
 		System.out.println("---------------------");
 
 		// 查詢
@@ -310,7 +311,7 @@ public class Latest_news_JDBC_DAO implements Latest_news_DAO_interface {
 		for (Latest_news_VO aLatest_news : list) {
 			System.out.print(aLatest_news.getLatest_news_no() + ",");
 			System.out.print(aLatest_news.getNews_content() + ",");
-			System.out.print(aLatest_news.getNews_status() + ",");
+			System.out.print(aLatest_news.getNews_status());
 			System.out.println();
 		}
 	}

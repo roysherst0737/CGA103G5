@@ -1,5 +1,7 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.forum.model.*"%>
 
 <html>
 <head>
@@ -30,67 +32,67 @@
 <body bgcolor='white'>
 
 <table id="table-1">
-   <tr><td><h3>IBM Forum: Home</h3><h4>( MVC )</h4></td></tr>
+   <tr><td><h3>LonelyBar Forum: Home</h3><h4>( MVC )</h4></td></tr>
 </table>
 
-<p>This is the Home page for IBM Forum: Home</p>
+<!-- <p>This is the Home page for LonelyBar Forum: Home</p> -->
 
-<h3>¸ê®Æ¬d¸ß:</h3>
+<h3>è³‡æ–™æŸ¥è©¢:</h3>
 
-<%-- ¿ù»~ªí¦C --%>
-<%-- <c:if test="${not empty errorMsgs}"> --%>
-<!-- 	<font style="color:red">½Ğ­×¥¿¥H¤U¿ù»~:</font> -->
-<!-- 	<ul> -->
-<%-- 		<c:forEach var="message" items="${errorMsgs}"> --%>
-<%-- 			<li style="color:red">${message.value}</li> --%>
-<%-- 		</c:forEach> --%>
-<!-- 	</ul> -->
-<%-- </c:if> --%>
+<%-- éŒ¯èª¤è¡¨åˆ— --%>
+<c:if test="${not empty errorMsgs}">
+	<font style="color:red">ï¿½Ğ­×¥ï¿½ï¿½Hï¿½Uï¿½ï¿½ï¿½~:</font>
+	<ul>
+		<c:forEach var="message" items="${errorMsgs}">
+			<li style="color:red">${message}</li>
+		</c:forEach>
+	</ul>
+</c:if>
 
 <ul>
   <li><a href='listAllForum.jsp'>List</a> all Forums.  <br><br></li>
-  
-  
+
+<%--   value="${param.frm_no}"><font color=red>${errorMsgs.frm_no} --%>
+<!--   <li> -->
+<!--     <FORM METHOD="post" ACTION="forum.do" > -->
+<!--         <b>ï¿½ï¿½ï¿½Jï¿½Qï¿½×°Ï½sï¿½ï¿½:</b> -->
+<!--         <input type="text" name="frm_no"> -->
+<!--         <input type="hidden" name="action" value="getOne_For_Display"> -->
+<!--         <input type="submit" value="é€å‡º"> -->
+<!--     </FORM> -->
+<!--   </li> -->
+
+  <jsp:useBean id="forum_Svc" scope="page" class="com.forum.model.Forum_Service" />
+
   <li>
-    <FORM METHOD="post" ACTION="forum.do" >
-        <b>¿é¤J°Q½×°Ï½s¸¹:</b>
-        <input type="text" name="frm_no" value="${param.frm_no}"><font color=red>${errorMsgs.frm_no}</font>
-        <input type="hidden" name="action" value="getOne_For_Display">
-        <input type="submit" value="°e¥X">
+     <FORM METHOD="post" ACTION="forum.do" >
+       <b>è¼¸å…¥è¨è«–å€ç·¨è™Ÿ:</b>
+       <select size="1" name="frm_no">
+         <c:forEach var="forum_VO" items="${forum_Svc.all}" >
+          <option value="${forum_VO.frm_no}">${forum_VO.frm_no}
+         </c:forEach>
+       </select>
+       <input type="hidden" name="action" value="getOne_For_Display">
+       <input type="submit" value="é€å‡º">
     </FORM>
   </li>
 
-  <jsp:useBean id="forum_Svc" scope="page" class="com.forum.model.Forum_Service" />
-   
   <li>
      <FORM METHOD="post" ACTION="forum.do" >
-       <b>¿ï¾Ü°Q½×°Ï½s¸¹:</b>
+       <b>é¸æ“‡è¨è«–å€ç·¨è™Ÿ:</b>
        <select size="1" name="frm_no">
-         <c:forEach var="forum_VO" items="${forum_Svc.all}" > 
-          <option value="${forum_VO.frm_no}">${forum_VO.frm_no}
-         </c:forEach>   
-       </select>
-       <input type="hidden" name="action" value="getOne_For_Display">
-       <input type="submit" value="°e¥X">
-    </FORM>
-  </li>
-  
-  <li>
-     <FORM METHOD="post" ACTION="forum.do" >
-       <b>¿ï¾Ü°Q½×°Ï¦WºÙ:</b>
-       <select size="1" name="frm_no">
-         <c:forEach var="forum_VO" items="${forum_Svc.all}" > 
+         <c:forEach var="forum_VO" items="${forum_Svc.all}" >
           <option value="${forum_VO.frm_no}">${forum_VO.frm_name_no}
-         </c:forEach>   
+         </c:forEach>
        </select>
        <input type="hidden" name="action" value="getOne_For_Display">
-       <input type="submit" value="°e¥X">
+       <input type="submit" value="é€å‡º">
      </FORM>
   </li>
 </ul>
 
 
-<h3>­û¤uºŞ²z</h3>
+<h3>å“¡å·¥ç®¡ç†</h3>
 
 <ul>
   <li><a href='addForum.jsp'>Add</a> a new Forum.</li>

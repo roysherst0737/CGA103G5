@@ -35,7 +35,7 @@ public class Act_pic_JDBCDAO implements Act_pic_DAO_interface {
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, act_pic_VO.getAct_no());
-			pstmt.setBlob(2, act_pic_VO.getAct_pic());
+			pstmt.setBytes(2, act_pic_VO.getAct_pic());
 			pstmt.setString(3, act_pic_VO.getAct_pic_name());
 
 			pstmt.executeUpdate();
@@ -78,7 +78,7 @@ public class Act_pic_JDBCDAO implements Act_pic_DAO_interface {
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setInt(1, act_pic_VO.getAct_no());
-			pstmt.setBlob(2, act_pic_VO.getAct_pic());
+			pstmt.setBytes(2, act_pic_VO.getAct_pic());
 			pstmt.setString(3, act_pic_VO.getAct_pic_name());
 			pstmt.setInt(4, act_pic_VO.getAct_pic_no());
 
@@ -173,7 +173,7 @@ public class Act_pic_JDBCDAO implements Act_pic_DAO_interface {
 				act_pic_VO = new Act_pic_VO();
 				act_pic_VO.setAct_pic_no(rs.getInt("act_pic_no"));
 				act_pic_VO.setAct_no(rs.getInt("act_no"));
-				act_pic_VO.setAct_pic(rs.getBlob("act_pic"));
+				act_pic_VO.setAct_pic(rs.getBytes("act_pic"));
 				act_pic_VO.setAct_pic_name(rs.getString("act_pic_name"));
 
 			}
@@ -232,7 +232,7 @@ public class Act_pic_JDBCDAO implements Act_pic_DAO_interface {
 				act_pic_VO = new Act_pic_VO();
 				act_pic_VO.setAct_pic_no(rs.getInt("act_pic_no"));
 				act_pic_VO.setAct_no(rs.getInt("act_no"));
-				act_pic_VO.setAct_pic(rs.getBlob("act_pic"));
+				act_pic_VO.setAct_pic(rs.getBytes("act_pic"));
 				act_pic_VO.setAct_pic_name(rs.getString("act_pic_name"));
 				list.add(act_pic_VO); // Store the row in the list
 			}
@@ -312,6 +312,14 @@ public class Act_pic_JDBCDAO implements Act_pic_DAO_interface {
 			System.out.print(aAct_pic.getAct_pic_name());
 			System.out.println();
 		}
+	}
+
+
+
+	@Override
+	public List<Act_pic_VO> get_from_act_no(Integer act_no) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

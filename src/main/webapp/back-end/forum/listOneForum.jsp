@@ -1,14 +1,15 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.forum.model.*"%>
-<%-- ¦¹­¶¼È½m²ß±Ä¥Î Script ªº¼gªk¨ú­È --%>
+<%@ page import="java.util.*"%>
+<%@ page import="com.forum.model.*"%>
 
 <%
-	Forum_VO forum_VO = (Forum_VO) request.getAttribute("forum_VO"); //EmpServlet.java(Concroller), ¦s¤JreqªºempVOª«¥ó
+	Forum_VO forum_VO = (Forum_VO) request.getAttribute("forum_VO"); //EmpServlet.java(Concroller), å­˜å…¥reqçš„empVOç‰©ä»¶
 %>
 
 <html>
 <head>
-<title>°Q½×°Ï¸ê®Æ - listOneForum.jsp</title>
+<title>è¨è«–å€è³‡æ–™ - listOneForum.jsp</title>
 
 <style>
   table#table-1 {
@@ -46,19 +47,19 @@
 </head>
 <body bgcolor='white'>
 
-<h4>¦¹­¶¼È½m²ß±Ä¥Î Script ªº¼gªk¨ú­È:</h4>
+<h4>æ­¤é æš«ç·´ç¿’æ¡ç”¨ Script çš„å¯«æ³•å–å€¼:</h4>
 <table id="table-1">
 	<tr><td>
-		 <h3>°Q½×°Ï¸ê®Æ - ListOneForum.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a></h4>
+		 <h3>è¨è«–å€è³‡æ–™ - ListOneForum.jsp</h3>
+		 <h4><a href="select_page.jsp">å›é¦–é </a></h4>
 	</td></tr>
 </table>
 
 <table>
 	<tr>
-		<th>°Q½×°Ï½s¸¹</th>
-		<th>°Q½×°Ï¦WºÙ</th>
-		<th>°Q½×°Ïª¬ºA</th>
+		<th>è¨è«–å€ç·¨è™Ÿ</th>
+		<th>è¨è«–å€åç¨±</th>
+		<th>è¨è«–å€ç‹€æ…‹</th>
 	</tr>
 	<tr>
 		<td>${forum_VO.frm_no}</td>

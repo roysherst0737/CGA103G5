@@ -29,13 +29,13 @@ public class Latest_news_JNDI_DAO implements Latest_news_DAO_interface{
 	private static final String INSERT_STMT = 
 		"INSERT INTO latest_news (news_content,news_status) VALUES (?, ?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT latest_news_no,news_content,news_status order by latest_news_no";
+		"SELECT latest_news_no,news_content,news_status FROM latest_news order by latest_news_no";
 	private static final String GET_ONE_STMT = 
 		"SELECT latest_news_no,news_content,news_status FROM latest_news where latest_news_no = ?";
 	private static final String DELETE = 
 		"DELETE FROM latest_news where latest_news_no = ?";
 	private static final String UPDATE = 
-		"UPDATE latest_news set latest_news_no = ?,news_content = ?,news_status = ? where latest_news_no = ?";
+		"UPDATE latest_news set news_content = ?,news_status = ? where latest_news_no = ?";
 	
 	@Override
 	public void insert(Latest_news_VO latest_news_VO) {
@@ -90,6 +90,7 @@ public class Latest_news_JNDI_DAO implements Latest_news_DAO_interface{
 
 			pstmt.setString(1, latest_news_VO.getNews_content());
 			pstmt.setInt(2, latest_news_VO.getNews_status());
+			pstmt.setInt(3, latest_news_VO.getLatest_news_no());
 			pstmt.executeUpdate();
 
 	
@@ -209,7 +210,7 @@ public class Latest_news_JNDI_DAO implements Latest_news_DAO_interface{
 				}
 			}
 		}
-		return null;
+		return latest_news_VO;
 	}
 
 	@Override

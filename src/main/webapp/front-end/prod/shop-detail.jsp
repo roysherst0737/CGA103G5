@@ -27,7 +27,16 @@
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+	<style>
+		.btn {
+    		width: auto;
+    		height: auto;
+			}
+	
+	</style>
+	
 </head>
 
 <body>
@@ -43,10 +52,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Shop Detail</h2>
+                    <h2>商品詳情</h2>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                        <li class="breadcrumb-item active">Shop Detail </li>
+                        <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/front-end/prod/shop.jsp">回商城</a></li>
+                        <li class="breadcrumb-item active">詳情 </li>
                     </ul>
                 </div>
             </div>

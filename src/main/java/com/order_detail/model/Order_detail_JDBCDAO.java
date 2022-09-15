@@ -14,15 +14,15 @@ import java.util.List;
 public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 	
 	private static final String INSERT_STMT = 
-		"INSERT INTO order_detail (order_no,prod_no,prod_qty,prod_price,mem_no,comment_time,comment_star,comment_content,comment_pic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		"INSERT INTO order_detail (order_no,prod_no,prod_qty,prod_price,mem_no) VALUES (?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT order_no,prod_no,prod_qty,prod_price,mem_no,comment_time,comment_star,comment_content,comment_pic FROM order_detail order by order_no";
+		"SELECT order_no,prod_no,prod_qty,prod_price,mem_no FROM order_detail order by order_no";
 	private static final String GET_ONE_STMT = 
-		"SELECT order_no,prod_no,prod_qty,prod_price,mem_no,comment_time,comment_star,comment_content,comment_pic FROM order_detail where order_no = ? AND prod_no=?";
+		"SELECT order_no,prod_no,prod_qty,prod_price,mem_no FROM order_detail where order_no = ? AND prod_no=?";
 	private static final String DELETE = 
 		"DELETE FROM order_detail where order_no = ? AND prod_no = ?";
 	private static final String UPDATE = 
-		"UPDATE order_detail set prod_qty=?, prod_price=?, mem_no=?, comment_time=?, comment_star=?, comment_content=?, comment_pic=? where order_no = ? AND prod_no=?";
+		"UPDATE order_detail set prod_qty=?, prod_price=?, mem_no=? where order_no = ? AND prod_no=?";
 
 	@Override
 	public void insert(Order_detail_VO order_detailVO) {
@@ -40,10 +40,6 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 			pstmt.setInt(3, order_detailVO.getProd_qty());
 			pstmt.setInt(4, order_detailVO.getProd_price());
 			pstmt.setInt(5, order_detailVO.getMem_no());
-			pstmt.setTimestamp(6, order_detailVO.getComment_time());
-			pstmt.setInt(7, order_detailVO.getComment_star());
-			pstmt.setString(8, order_detailVO.getComment_content());
-			pstmt.setBytes(9, order_detailVO.getComment_pic());
 
 			pstmt.executeUpdate();
 			
@@ -88,10 +84,6 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 			pstmt.setInt(1, order_detailVO.getProd_qty());
 			pstmt.setInt(2, order_detailVO.getProd_price());
 			pstmt.setInt(3, order_detailVO.getMem_no());
-			pstmt.setTimestamp(4, order_detailVO.getComment_time());
-			pstmt.setInt(5, order_detailVO.getComment_star());
-			pstmt.setString(6, order_detailVO.getComment_content());
-			pstmt.setBytes(7, order_detailVO.getComment_pic());
 			pstmt.setInt(8, order_detailVO.getOrder_no());
 			pstmt.setInt(9, order_detailVO.getProd_no());
 
@@ -192,10 +184,6 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 				order_detailVO.setProd_qty(rs.getInt("prod_qty"));
 				order_detailVO.setProd_price(rs.getInt("prod_price"));
 				order_detailVO.setMem_no(rs.getInt("mem_no"));
-				order_detailVO.setComment_time(rs.getTimestamp("comment_time"));
-				order_detailVO.setComment_star(rs.getInt("comment_star"));
-				order_detailVO.setComment_content(rs.getString("comment_content"));
-				order_detailVO.setComment_pic(rs.getBytes("comment_pic"));
 			}
 			
 			// Handle any driver errors
@@ -257,10 +245,6 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 				order_detailVO.setProd_qty(rs.getInt("prod_qty"));
 				order_detailVO.setProd_price(rs.getInt("prod_price"));
 				order_detailVO.setMem_no(rs.getInt("mem_no"));
-				order_detailVO.setComment_time(rs.getTimestamp("comment_time"));
-				order_detailVO.setComment_star(rs.getInt("comment_star"));
-				order_detailVO.setComment_content(rs.getString("comment_content"));
-				order_detailVO.setComment_pic(rs.getBytes("comment_pic"));
 				
 				list.add(order_detailVO); // Store the row in the list
 			}
@@ -311,10 +295,6 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 		order_detailVO1.setProd_qty(50);
 		order_detailVO1.setProd_price(50000);
 		order_detailVO1.setMem_no(100289);
-		order_detailVO1.setComment_time(java.sql.Timestamp.valueOf("2022-01-01 10:10:10"));
-		order_detailVO1.setComment_star(5);
-		order_detailVO1.setComment_content("我就是土豪可以花錢不手軟，咬我啊！");
-		order_detailVO1.setComment_pic(null);
 		dao.insert(order_detailVO1);
 
 		// 修改
@@ -324,10 +304,6 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 		order_detailVO2.setProd_qty(50);
 		order_detailVO2.setProd_price(50000);
 		order_detailVO2.setMem_no(100289);
-		order_detailVO2.setComment_time(java.sql.Timestamp.valueOf("2022-01-01 10:10:10"));
-		order_detailVO2.setComment_star(5);
-		order_detailVO2.setComment_content("我就是土豪可以花錢不手軟，咬我啊！");
-		order_detailVO2.setComment_pic(null);
 		dao.update(order_detailVO2);
 
 		// 刪除
@@ -341,10 +317,6 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 		System.out.print(order_detailVO3.getProd_qty() + ",");
 		System.out.print(order_detailVO3.getProd_price() + ",");
 		System.out.print(order_detailVO3.getMem_no() + ",");
-		System.out.print(order_detailVO3.getComment_time() + ",");
-		System.out.print(order_detailVO3.getComment_star() + ",");
-		System.out.print(order_detailVO3.getComment_content() + ",");
-		System.out.print(order_detailVO3.getComment_pic() + ",");
 		System.out.println();
 		System.out.println("-----------------------------------------");
 
@@ -356,10 +328,6 @@ public class Order_detail_JDBCDAO implements Order_detail_DAO_interface{
 			System.out.print(allOrder_detail.getProd_qty() + ",");
 			System.out.print(allOrder_detail.getProd_price() + ",");
 			System.out.print(allOrder_detail.getMem_no() + ",");
-			System.out.print(allOrder_detail.getComment_time() + ",");
-			System.out.print(allOrder_detail.getComment_star() + ",");
-			System.out.print(allOrder_detail.getComment_content() + ",");
-			System.out.print(allOrder_detail.getComment_pic() + ",");
 			System.out.println();
 		}
 	}

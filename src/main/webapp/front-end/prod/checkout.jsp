@@ -27,7 +27,16 @@
     <link rel="stylesheet" href="../css/responsive.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/custom.css">
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+	<style>
+		.btn {
+    		width: auto;
+    		height: auto;
+			}
+	
+	</style>
+	
 </head>
 
 <body>
@@ -45,7 +54,7 @@
                 <div class="col-lg-12">
                     <h2>商品結帳</h2>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">購物專區</a></li>
+                        <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/front-end/prod/shop.jsp">回商城</a></li>
                         <li class="breadcrumb-item active">結帳</li>
                     </ul>
                 </div>
@@ -127,22 +136,18 @@
                             </div>
                             <div class="mb-3">
                                 <label for="address">收貨方式 *</label>
-                                <br>
+                                <br>                                
                                 <div class="custom-control custom-radio" style="display: inline-block;">
-                                    <input id="store" name="pickupMethod" type="radio" class="custom-control-input" checked required>
-                                    <label class="custom-control-label" for="store">門市</label>
-                                </div>
-                                <div class="custom-control custom-radio" style="display: inline-block;">
-                                    <input id="delivery" name="pickupMethod" type="radio" class="custom-control-input" required>
-                                    <label class="custom-control-label" for="delivery">宅配</label>
+                                    <input id="delivery" name="pickupMethod" type="radio" class="custom-control-input" checked required>
+                                    <label class="custom-control-label" for="delivery">宅配到府</label>
                                 </div>
                                 <div class="custom-control custom-radio" style="display: inline-block;">
                                     <input id="7-11" name="pickupMethod" type="radio" class="custom-control-input" required>
-                                    <label class="custom-control-label" for="7-11">7-11</label>
+                                    <label class="custom-control-label" for="7-11">7-11 便利商店</label>
                                 </div>
                                 <div class="custom-control custom-radio" style="display: inline-block;">
                                     <input id="famMart" name="pickupMethod" type="radio" class="custom-control-input" required>
-                                    <label class="custom-control-label" for="famMart">全家</label>
+                                    <label class="custom-control-label" for="famMart">全家 便利商店</label>
                                 </div>
                                 <p> (使用優惠碼折抵前之帳單總金額達$1,000即享免運費)</p>
                             </div>

@@ -1,10 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.prod_pic.model.*"%>
+<%@ page import="com.order.model.*"%>
 
 <%
-Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
+Order_VO orderVO = (Order_VO) request.getAttribute("orderVO");
 %>
 
 <!DOCTYPE html>
@@ -76,13 +76,10 @@ Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
 										<button style="margin-right:10px;">
-										<a href="listAllProd_pic.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
+										<a href="listAllOrder.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right:10px;">
-										<a href='addProd_pic.jsp'><img src="./images/plus.png" width="30px" height="30px"></a>
-										</button>
-										<button style="margin-right:10px;">
-										<a href="select_page.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
+										<a href="selectOrder.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
 										</button>
 										<button
 											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
@@ -118,23 +115,55 @@ Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">商品圖片詳情</h4>
+									<h4 class="card-title">訂單查詢結果</h4>
 									<table id="dataTables" class="stripe table-hover"
 										style="width: 100%">
 
 										<tr>
-											<th>商品照片編號</th>
-											<th>商品編號</th>
-											<th>商品照片</th>
-											<th>商品照片名稱</th>
+											<th>訂單編號</th>
+											<th>會員編號</th>
+											<th>優惠券編號</th>
+											<th>訂單建立時間</th>
+											<th>商品售出時間</th>
+											<th>訂單總金額</th>
+											<th>優惠後金額</th>
+											<th>訂單狀態</th>
+											<th>付款方式</th>
+											<th>取貨方式</th>
+											<th>運費</th>
+											<th>物流編號</th>
+											<th>取貨人姓名</th>
+											<th>取貨人地址</th>
+											<th>取貨人電話</th>
+											<th>訂單明細</th>
 										</tr>
 										<tr>
-											<td>${prod_picVO.prod_pic_no}</td>
-											<td>${prod_picVO.prod_no}</td>
-											<td><img
-												src="<%=request.getContextPath()%>/Show_Prod_pic_Servlet?prod_pic_no=${prod_picVO.prod_pic_no}"
-												width=300px height=200px></td>
-											<td>${prod_picVO.prod_pic_name}</td>
+											<td>${orderVO.order_no}</td>
+											<td>${orderVO.mem_no}</td>
+											<td>${orderVO.coupon_no}</td>
+											<td>${orderVO.order_time}</td>
+											<td>${orderVO.sold_time}</td>
+											<td>${orderVO.order_price_total}</td>
+											<td>${orderVO.dis_price_total}</td>
+											<td>${orderVO.order_status}</td>
+											<td>${orderVO.payment_method}</td>
+											<td>${orderVO.pickup_method}</td>
+											<td>${orderVO.shipping_fee}</td>
+											<td>${orderVO.tracking_no}</td>
+											<td>${orderVO.receiver_name}</td>
+											<td>${orderVO.receiver_address}</td>
+											<td>${orderVO.receiver_phone}</td>
+											<td>
+												<FORM METHOD="post"
+													ACTION="<%=request.getContextPath()%>/back-end/order_detail/order_detail.do"
+													style="margin-bottom: 0px;">
+													<input type="submit" value="查詢"> <input
+														type="hidden" name="order_no"
+														value="${orderVO.order_no}"> <input
+														type="hidden" name="action" value="getOne_For_display">
+												</FORM>
+											</td>
+										</tr>
 									</table>
 								</div>
 							</div>

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pub.model.Pub;
+import com.pub.entity.Pub;
 @WebServlet("/PubRegister")
 public class PubRegisterServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -30,6 +30,7 @@ public class PubRegisterServlet extends HttpServlet{
 		System.out.println(pub.getMessage());
 		System.out.println(pub.getSuccessful());
 		writePojo2Json(response, pub);
+		return;
 //		List<Pub> pubList = SERVICE.getAll();
 //		pubList.removeIf(e->e.getPub_status()==false);
 //		Set<String> pubAddress = new HashSet<String>() ;

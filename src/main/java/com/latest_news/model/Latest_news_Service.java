@@ -2,8 +2,8 @@ package com.latest_news.model;
 
 import java.util.List;
 
-
 public class Latest_news_Service {
+	
 	private Latest_news_DAO_interface dao;
 
 	public Latest_news_Service() {
@@ -14,7 +14,6 @@ public class Latest_news_Service {
 
 		Latest_news_VO latest_news_VO = new Latest_news_VO();
 
-//		latest_news_VO.setLatest_news_no(latest_news_no);
 		latest_news_VO.setNews_content(news_content);
 		latest_news_VO.setNews_status(news_status);
 		dao.insert(latest_news_VO);
@@ -34,9 +33,6 @@ public class Latest_news_Service {
 		return latest_news_VO;
 	}
 	
-//	public void updateLatest_news	(Latest_news_VO latest_news_VO) {
-//		dao.update(latest_news_VO);
-//	}
 
 	public void deleteLatest_news(Integer latest_news_no) {
 		dao.delete(latest_news_no);

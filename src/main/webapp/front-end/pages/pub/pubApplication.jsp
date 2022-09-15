@@ -44,6 +44,59 @@
 	href="<%=request.getContextPath()%>/back-end/css/vertical-layout-light/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
+button.b1{
+	height: auto;
+    padding: 5px;
+}
+div.o1{
+padding:7px;
+	display: flex;
+    align-items: center;
+    margin: 5px;
+}
+div.inside {
+	padding-left:30px; 
+	margin:0px;
+	
+}
+div.d1{
+border: 3px solid #e8eff9;  
+border-radius:3px;
+}
+div.d1:hover{
+border: 3px solid #d2b36b; 
+}
+div.row {
+	margin:11px;
+}
+.open_div>div {
+	padding-left: 30px;
+}
+
+.open_div>button {
+	float: right;
+}
+
+div.col-sm-12>button.btn {
+	width: 50px;
+	height: 30px;
+	padding: 0px;
+	margin: 0px;
+	font-weight: bolder;
+}
+
+div.col-sm-12>button.btn-warning {
+	background-color: #ffc107;
+}
+
+div.col-sm-12>button.btn-warning:hover {
+	background-color: #e0a800;
+}
+
+.main-top {
+	height: 53.5px;
+}
+
 a.booking {
 	background: #f5c242;
 	position: absolute;
@@ -149,12 +202,47 @@ a.booking:hover {
 
 									<div class="form-floating mb-3">
 										<input type="text" class="form-control" id="fpub_open"
-											value="111" placeholder="pub_open"> <label
-											for="fpub_open">營業時間</label>
+											placeholder="pub_open" style="display: none">
+										<div class="open_div">
+											<label>營業時間 </label>
+											<div style="border: 1px solid #e8eff9; padding: 10px;">
+										<div id="div1" class="d1 o1">
+												<div >星期一:</div>
+												<button id="b1" type="button" class="btn btn-danger b1"
+													data-toggle="modal" data-target="#exampleModal1">未設定</button>
+										</div>
+										<div  id="div2" class="d1 o1">
+												<div >星期二:</div>
+												<button id="b2" type="button" class="btn btn-danger b1"
+													data-toggle="modal" data-target="#exampleModal2">未設定</button>
+										</div><div id="div3"class="d1 o1">
+												<div >星期三:</div>
+												<button id="b3" type="button" class="btn btn-danger b1"
+													data-toggle="modal" data-target="#exampleModal3">未設定</button>
+										</div><div id="div4"class="d1 o1">
+												<div >星期四:</div>
+												<button id="b4" type="button" class="btn btn-danger b1"
+													data-toggle="modal" data-target="#exampleModal4">未設定</button>
+										</div><div id="div5"class="d1 o1">
+												<div >星期五:</div>
+												<button id="b5" type="button" class="btn btn-danger b1"
+													data-toggle="modal" data-target="#exampleModal5">未設定</button>
+										</div><div id="div6"class="d1 o1">
+												<div >星期六:</div>
+												<button id="b6" type="button" class="btn btn-danger b1"
+													data-toggle="modal" data-target="#exampleModal6">未設定</button>
+										</div><div id="div7"class="d1 o1">
+												<div >星期日:</div>
+												<button id="b7" type="button" class="btn btn-danger b1"
+													data-toggle="modal" data-target="#exampleModal7">未設定</button>
+										</div>
+											</div>
+										</div>
 									</div>
 									<div class="form-group">
 										<label>酒吧圖片</label> <input id="pub_img" type="file"
-											name="img[]" class="file-upload-default" accept="image/gif, image/jpeg, image/png">
+											name="img[]" class="file-upload-default"
+											accept="image/gif, image/jpeg, image/png">
 										<div class="input-group col-xs-12">
 											<input type="text" class="form-control file-upload-info"
 												disabled placeholder="Upload Image"> <span
@@ -213,13 +301,8 @@ a.booking:hover {
 												id="firm_tax_id" placeholder="廠商統一編號">
 										</div>
 									</div>
-									<!-- 									<div class="form-check form-check-flat form-check-primary"> -->
-									<!-- 										<label class="form-check-label"> <input -->
-									<!-- 											type="checkbox" class="form-check-input"> Remember me -->
-									<!-- 										</label> -->
-									<!-- 									</div> -->
-									<button id="btn" type="button" class="btn btn-primary mr-2" >確認送出</button>
-									<button type="reset" class="btn btn-light" >重填</button>
+									<button id="btn" type="button" class="btn btn-primary mr-2">確認送出</button>
+									<button type="reset" class="btn btn-light">重填</button>
 								</div>
 							</div>
 						</div>
@@ -227,7 +310,7 @@ a.booking:hover {
 				</form>
 
 
-				<!-- Modal -->
+				<!-- Modal1確認視窗 -->
 				<div class="modal fade" id="exampleModal" tabindex="-1"
 					role="dialog" aria-labelledby="exampleModalLabel"
 					aria-hidden="true">
@@ -244,12 +327,116 @@ a.booking:hover {
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary"
 									data-dismiss="modal">取消</button>
-								<a style=" width: auto;height: auto;"
-								 class="btn btn-primary"href="<%=request.getContextPath()%>/PubStates">確認</a>
+								<a style="width: auto; height: auto;" class="btn btn-primary"
+									href="<%=request.getContextPath()%>/PubStates">確認</a>
 							</div>
 						</div>
 					</div>
 				</div>
+
+				<!-- Modal2確認視窗 -->
+<!-- 				<div class="modal fade" id="exampleModal2" tabindex="-1" -->
+<!-- 					role="dialog" aria-labelledby="exampleModalLabel" -->
+<!-- 					aria-hidden="true"> -->
+<!-- 					<div class="modal-dialog" role="document"> -->
+<!-- 						<div class="modal-content"> -->
+<!-- 							<div class="modal-header"> -->
+<!-- 								<h5 class="modal-title" id="exampleModalLabel2">編輯營業時間</h5> -->
+<!-- 								<button type="button" class="close" data-dismiss="modal" -->
+<!-- 									aria-label="Close"> -->
+<!-- 									<span aria-hidden="true">&times;</span> -->
+<!-- 								</button> -->
+<!-- 							</div> -->
+<!-- 							<div class="modal-body1 container"> -->
+<!-- 								<div class="row d1"> -->
+<!-- 									<div class="col-6" style="display:flex;"> -->
+<!-- 										<div style="display: flex; justify-content:center;align-items: center; "> -->
+<!-- 											<label>星期一</label> -->
+<!-- 										</div> -->
+<!-- 										<div > -->
+<!-- 											<div class="row inside"> -->
+<!-- 												<input class="form-check-input" type="radio" name="m1" -->
+<!-- 													id="M1all"> <label class="" for="M1all">24小時營業 -->
+<!-- 												</label> -->
+<!-- 											</div> -->
+<!-- 											<div class="row inside"> -->
+<!-- 												<input class="form-check-input" type="radio" name="m1" -->
+<!-- 													id="m1off" checked> <label class="" for="m1off">休息</label> -->
+<!-- 											</div> -->
+<!-- 											<div class="row inside"> -->
+<!-- 												<input class="form-check-input" type="radio" name="m1" -->
+<!-- 													id="m1self"> <label class="" for="m1self">自選</label> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 									<div class="col-6" style="display:flex"> -->
+<!-- 										<select class="form-select form-select-sm mb-0" aria-label=".form-select-lg example" style="height:30px; font-size: smaller;"> -->
+<!-- 										  <option value="0">00:00</option> -->
+<!-- 										  <option value="1">01:00</option> -->
+<!-- 										  <option value="2">02:00</option> -->
+<!-- 										  <option value="3">03:00</option> -->
+<!-- 										  <option value="4">04:00</option> -->
+<!-- 										  <option value="5">05:00</option> -->
+<!-- 										  <option value="6">06:00</option> -->
+<!-- 										  <option value="7">07:00</option> -->
+<!-- 										  <option value="8">08:00</option> -->
+<!-- 										  <option value="9">09:00</option> -->
+<!-- 										  <option value="10">10:00</option> -->
+<!-- 										  <option value="11">11:00</option> -->
+<!-- 										  <option value="12">12:00</option> -->
+<!-- 										  <option value="13">13:00</option> -->
+<!-- 										  <option value="14">14:00</option> -->
+<!-- 										  <option value="15">15:00</option> -->
+<!-- 										  <option value="16">16:00</option> -->
+<!-- 										  <option value="17">17:00</option> -->
+<!-- 										  <option value="18">18:00</option> -->
+<!-- 										  <option value="19">19:00</option> -->
+<!-- 										  <option value="20">20:00</option> -->
+<!-- 										  <option value="21">21:00</option> -->
+<!-- 										  <option value="22">22:00</option> -->
+<!-- 										  <option value="23">23:00</option> -->
+<!-- 										  <option value="24">24:00</option> -->
+<!-- 										</select> -->
+<!-- 											<select class="form-select form-select-sm mb-0" aria-label=".form-select-lg example" style="height:30px;font-size: smaller;"> -->
+<!-- 										  <option value="0">00:00</option> -->
+<!-- 										  <option value="1">01:00</option> -->
+<!-- 										  <option value="2">02:00</option> -->
+<!-- 										  <option value="3">03:00</option> -->
+<!-- 										  <option value="4">04:00</option> -->
+<!-- 										  <option value="5">05:00</option> -->
+<!-- 										  <option value="6">06:00</option> -->
+<!-- 										  <option value="7">07:00</option> -->
+<!-- 										  <option value="8">08:00</option> -->
+<!-- 										  <option value="9">09:00</option> -->
+<!-- 										  <option value="10">10:00</option> -->
+<!-- 										  <option value="11">11:00</option> -->
+<!-- 										  <option value="12">12:00</option> -->
+<!-- 										  <option value="13">13:00</option> -->
+<!-- 										  <option value="14">14:00</option> -->
+<!-- 										  <option value="15">15:00</option> -->
+<!-- 										  <option value="16">16:00</option> -->
+<!-- 										  <option value="17">17:00</option> -->
+<!-- 										  <option value="18">18:00</option> -->
+<!-- 										  <option value="19">19:00</option> -->
+<!-- 										  <option value="20">20:00</option> -->
+<!-- 										  <option value="21">21:00</option> -->
+<!-- 										  <option value="22">22:00</option> -->
+<!-- 										  <option value="23">23:00</option> -->
+<!-- 										  <option value="24">24:00</option> -->
+<!-- 										</select> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+								
+<!-- 							</div> -->
+<!-- 							<div class="modal-footer"> -->
+<!-- 								<button type="button" class="btn btn-secondary" -->
+<!-- 									data-dismiss="modal">取消</button> -->
+<!-- 								<button type="button" style="width: auto; height: auto;" -->
+<!-- 									class="btn btn-primary" onclick="getOpenTime()">確認</button> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 			</div>
 
 

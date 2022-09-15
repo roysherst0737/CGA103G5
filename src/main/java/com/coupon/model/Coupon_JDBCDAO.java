@@ -17,21 +17,21 @@ public class Coupon_JDBCDAO implements Coupon_DAO_interface {
 	private static final String INSERT_STMT = 
 			"INSERT INTO coupon (coupon_name, coupon_code, coupon_content,"
 			+ " coupon_discount, coupon_amount, launch_time, off_time,"
-			+ " coupon_build_time, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			+ " coupon_build_time, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		private static final String GET_ALL_STMT = 
 			"SELECT coupon_no, coupon_name, coupon_code, coupon_content,"
 			+ " coupon_discount, coupon_amount, launch_time, off_time,"
-			+ " coupon_build_time, state FROM coupon order by coupon_no";
+			+ " coupon_build_time, status FROM coupon order by coupon_no";
 		private static final String GET_ONE_STMT = 
 			"SELECT coupon_no, coupon_name, coupon_code, coupon_content,"
 			+ " coupon_discount, coupon_amount, launch_time, off_time,"
-			+ " coupon_build_time, state FROM coupon where coupon_no = ?";
+			+ " coupon_build_time, status FROM coupon where coupon_no = ?";
 		private static final String DELETE = 
 			"DELETE FROM coupon where coupon_no = ?";
 		private static final String UPDATE = 
 			"UPDATE coupon coupon_name=?, coupon_code=?, coupon_content=?,"
 			+ " coupon_discount=?, coupon_amount=?, launch_time=?, off_time=?,"
-			+ " coupon_build_time=?, state=? where coupon_no = ?";
+			+ " coupon_build_time=?, status=? where coupon_no = ?";
 
 	@Override
 	public void insert(Coupon_VO couponVO) {
@@ -201,7 +201,7 @@ public class Coupon_JDBCDAO implements Coupon_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVo ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				couponVO = new Coupon_VO();
 				couponVO.setCoupon_no(rs.getInt("coupon_no"));
 				couponVO.setCoupon_name(rs.getString("coupon_name"));
@@ -267,7 +267,7 @@ public class Coupon_JDBCDAO implements Coupon_DAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				couponVO = new Coupon_VO();
 				couponVO.setCoupon_no(rs.getInt("coupon_no"));
 				couponVO.setCoupon_name(rs.getString("coupon_name"));
@@ -321,11 +321,11 @@ public class Coupon_JDBCDAO implements Coupon_DAO_interface {
 
 		Coupon_JDBCDAO dao = new Coupon_JDBCDAO();
 
-		// ·s¼W
+		// ï¿½sï¿½W
 		Coupon_VO couponVO1 = new Coupon_VO();
-		couponVO1.setCoupon_name("¥b»ùÀu´f¨é");
+		couponVO1.setCoupon_name("ï¿½bï¿½ï¿½ï¿½uï¿½fï¿½ï¿½");
 		couponVO1.setCoupon_code("ABCDE123");
-		couponVO1.setCoupon_content("°w¹ï°sÃþ°Ó«~¥þ­±¥b»ù");
+		couponVO1.setCoupon_content("ï¿½wï¿½ï¿½sï¿½ï¿½ï¿½Ó«~ï¿½ï¿½ï¿½ï¿½ï¿½bï¿½ï¿½");
 		couponVO1.setCoupon_discount(0.5);
 		couponVO1.setCoupon_amount(50);
 		couponVO1.setLaunch_time(java.sql.Timestamp.valueOf("2022-10-10 00:00:00"));
@@ -335,12 +335,12 @@ public class Coupon_JDBCDAO implements Coupon_DAO_interface {
 
 		dao.insert(couponVO1);
 
-		// ­×§ï
+		// ï¿½×§ï¿½
 		Coupon_VO couponVO2 = new Coupon_VO();
 
-		couponVO2.setCoupon_name("¥b»ùÀu´f¨é");
+		couponVO2.setCoupon_name("ï¿½bï¿½ï¿½ï¿½uï¿½fï¿½ï¿½");
 		couponVO2.setCoupon_code("ABCDE123");
-		couponVO2.setCoupon_content("°w¹ï°sÃþ°Ó«~¥þ­±¥b»ù");
+		couponVO2.setCoupon_content("ï¿½wï¿½ï¿½sï¿½ï¿½ï¿½Ó«~ï¿½ï¿½ï¿½ï¿½ï¿½bï¿½ï¿½");
 		couponVO2.setCoupon_discount(0.5);
 		couponVO2.setCoupon_amount(50);
 		couponVO2.setLaunch_time(java.sql.Timestamp.valueOf("2022-10-10 00:00:00"));
@@ -351,10 +351,10 @@ public class Coupon_JDBCDAO implements Coupon_DAO_interface {
 		dao.update(couponVO2);
 		System.out.println("update success!");
 
-		// §R°£
+		// ï¿½Rï¿½ï¿½
 		dao.delete(1);
 
-		// ¬d¸ß
+		// ï¿½dï¿½ï¿½
 		Coupon_VO couponVO3 = dao.findByPrimaryKey(2);
 		System.out.print(couponVO3.getCoupon_no() + ",");
 		System.out.print(couponVO3.getCoupon_name() + ",");
@@ -370,7 +370,7 @@ public class Coupon_JDBCDAO implements Coupon_DAO_interface {
 
 		System.out.println("---------------------");
 
-		// ¬d¸ß
+		// ï¿½dï¿½ï¿½
 		List<Coupon_VO> list = dao.getAll();
 		for (Coupon_VO aEmp : list) {
 			System.out.print(aEmp.getCoupon_no() + ",");

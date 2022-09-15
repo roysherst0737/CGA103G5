@@ -3,15 +3,12 @@ package com.prod_type.controller;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.prod.model.Prod_VO;
 import com.prod_type.model.Prod_type_Service;
 import com.prod_type.model.Prod_type_VO;
 
@@ -28,31 +25,7 @@ public class Prod_type_Servlet extends HttpServlet {
 		
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
-		String action = req.getParameter("action");
-		
-	if ("listProds_ByProd_type_no".equals(action)) {
-
-		List<String> errorMsgs = new LinkedList<String>();
-		req.setAttribute("errorMsgs", errorMsgs);
-
-			/*************************** 1.接收請求參數 ****************************************/
-			Integer prod_type_no = Integer.valueOf(req.getParameter("prod_type_no"));
-
-			/*************************** 2.開始查詢資料 ****************************************/
-			Prod_type_Service prod_typeSvc = new Prod_type_Service();
-			Set<Prod_VO> set = prod_typeSvc.getProdsByProd_type_no(prod_type_no);
-
-			/*************************** 3.查詢完成,準備轉交(Send the Success view) ************/
-			req.setAttribute("listProdsByProd_type_no", set);    // 資料庫取出的list物件,存入request
-
-			String url = null;
-			if ("listProds_ByProd_type_no".equals(action))
-				url = "back-end/prod/listProds_ByProd_type.jsp";
-
-			RequestDispatcher successView = req.getRequestDispatcher(url);
-			successView.forward(req, res);
-	}
-		
+		String action = req.getParameter("action");		
 		
 		if ("getOne_For_Display".equals(action)) {
 

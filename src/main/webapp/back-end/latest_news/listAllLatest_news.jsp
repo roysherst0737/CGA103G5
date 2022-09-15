@@ -1,95 +1,110 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.latest_news.model.*"%>
-<%-- ¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È --%>
+<%-- æ­¤é ç·´ç¿’æ¡ç”¨ EL çš„å¯«æ³•å–å€¼ --%>
 
 <%
 	Latest_news_Service latest_news_Svc = new Latest_news_Service();
-    List<Latest_news_VO> list = latest_news_Svc.getAll();
-    pageContext.setAttribute("list",list);
+	List<Latest_news_VO> list = latest_news_Svc.getAll();
+	pageContext.setAttribute("list", list);
 %>
 
 
 <html>
 <head>
-<title>©Ò¦³³Ì·s®ø®§¸ê®Æ - listAllLatest_news.jsp</title>
+<title>æ‰€æœ‰æœ€æ–°æ¶ˆæ¯è³‡æ–™ - listAllLatest_news.jsp</title>
 
 <style>
-  table#table-1 {
+table#table-1 {
 	background-color: #CCCCFF;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
+	border: 2px solid black;
+	text-align: center;
+}
+
+table#table-1 h4 {
+	color: red;
+	display: block;
+	margin-bottom: 1px;
+}
+
+h4 {
+	color: blue;
+	display: inline;
+}
 </style>
 
 <style>
-  table {
+table {
 	width: 800px;
 	background-color: white;
 	margin-top: 5px;
 	margin-bottom: 5px;
-  }
-  table, th, td {
-    border: 1px solid #CCCCFF;
-  }
-  th, td {
-    padding: 5px;
-    text-align: center;
-  }
+}
+
+table, th, td {
+	border: 1px solid #CCCCFF;
+}
+
+th, td {
+	padding: 5px;
+	text-align: center;
+}
 </style>
 
 </head>
 <body bgcolor='white'>
 
-<h4>¦¹­¶½m²ß±Ä¥Î EL ªº¼gªk¨ú­È:</h4>
-<table id="table-1">
-	<tr><td>
-		 <h3>©Ò¦³³Ì·s®ø®§¸ê®Æ - listAllLatest_news.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">¦^­º­¶</a></h4>
-	</td></tr>
-</table>
-
-<table>
-	<tr>
-		<th>³Ì·s®ø®§½s¸¹</th>
-		<th>®ø®§¤º®e</th>
-		<th>®ø®§ª¬ºA</th>
-		<th>­×§ï</th>
-		<th>§R°£</th>
-	</tr>
-	<%@ include file="page1.file" %> 
-	<c:forEach var="latest_news_VO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-		
+	<h4>æ­¤é ç·´ç¿’æ¡ç”¨ EL çš„å¯«æ³•å–å€¼:</h4>
+	<table id="table-1">
 		<tr>
-			<td>${latest_news_VO.latest_news_no}</td>
-			<td>${latest_news_VO.news_content}</td>
-			<td>${latest_news_VO.news_status}</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/latest_news/latest_news.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="­×§ï">
-			     <input type="hidden" name="latest_news_no"  value="${latest_news_VO.latest_news_no}">
-			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
-			</td>
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/latest_news/latest_news.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="§R°£">
-			     <input type="hidden" name="latest_news_no"  value="${latest_news_VO.latest_news_no}">
-			     <input type="hidden" name="action" value="delete"></FORM>
+				<h3>æ‰€æœ‰æœ€æ–°æ¶ˆæ¯è³‡æ–™ - listAllLatest_news.jsp</h3>
+				<h4>
+					<a href="select_page.jsp">å›é¦–é </a>
+				</h4>
 			</td>
 		</tr>
-	</c:forEach>
-</table>
-<%@ include file="page2.file" %>
+	</table>
+
+	<table>
+		<tr>
+			<th>æœ€æ–°æ¶ˆæ¯ç·¨è™Ÿ</th>
+			<th>æ¶ˆæ¯å…§å®¹</th>
+			<th>æ¶ˆæ¯ç‹€æ…‹</th>
+			<th>ä¿®æ”¹</th>
+			<th>åˆªé™¤</th>
+		</tr>
+		<%@ include file="page1.file"%>
+		<c:forEach var="latest_news_VO" items="${list}" begin="<%=pageIndex%>"
+			end="<%=pageIndex+rowsPerPage-1%>">
+
+			<tr>
+				<td>${latest_news_VO.latest_news_no}</td>
+				<td>${latest_news_VO.news_content}</td>
+				<td>${latest_news_VO.news_status}</td>
+				<td>
+					<FORM METHOD="post"
+						ACTION="<%=request.getContextPath()%>/back-end/latest_news/latest_news.do"
+						style="margin-bottom: 0px;">
+						<input type="submit" value="ä¿®æ”¹"> <input type="hidden"
+							name="latest_news_no" value="${latest_news_VO.latest_news_no}">
+						<input type="hidden" name="action" value="getOne_For_Update">
+					</FORM>
+				</td>
+				<td>
+					<FORM METHOD="post"
+						ACTION="<%=request.getContextPath()%>/back-end/latest_news/latest_news.do"
+						style="margin-bottom: 0px;">
+						<input type="submit" value="åˆªé™¤"> <input type="hidden"
+							name="latest_news_no" value="${latest_news_VO.latest_news_no}">
+						<input type="hidden" name="action" value="delete">
+					</FORM>
+				</td>
+			</tr>
+		</c:forEach>
+	</table>
+	<%@ include file="page2.file"%>
 
 </body>
 </html>

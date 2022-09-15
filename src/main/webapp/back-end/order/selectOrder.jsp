@@ -150,7 +150,19 @@
 											<FORM METHOD="post" ACTION="order.do">
 												<b>選擇訂單狀態:</b> <select size="1" name="order_no">
 													<c:forEach var="orderVO" items="${orderSvc.all}">
-														<option value="${orderVO.order_no}">${orderVO.order_status}
+														<option value="${orderVO.order_no}">
+															<c:if test="${orderVO.order_status == 0}">
+																<div>未出貨</div>
+															</c:if>
+															<c:if test="${orderVO.order_status == 1}">
+																<div>已出貨</div>
+															</c:if>
+															<c:if test="${orderVO.order_status == 2}">
+																<div>已完成</div>
+															</c:if>
+															<c:if test="${orderVO.order_status == 3}">
+																<div>取消</div>
+															</c:if>
 													</c:forEach>
 												</select> <input type="hidden" name="action"
 													value="getOne_For_Display"> <input type="submit"
@@ -160,7 +172,16 @@
 											<FORM METHOD="post" ACTION="order.do">
 												<b>選擇付款方式:</b> <select size="1" name="order_no">
 													<c:forEach var="orderVO" items="${orderSvc.all}">
-														<option value="${orderVO.order_no}">${orderVO.payment_method}
+														<option value="${orderVO.order_no}">
+															<c:if test="${orderVO.payment_method == 0}">
+																<div>貨到付款</div>
+															</c:if>
+															<c:if test="${orderVO.payment_method == 1}">
+																<div>信用卡</div>
+															</c:if>
+															<c:if test="${orderVO.payment_method == 2}">
+																<div>電子支付</div>
+															</c:if>
 													</c:forEach>
 												</select> <input type="hidden" name="action"
 													value="getOne_For_Display"> <input type="submit"
@@ -170,7 +191,16 @@
 											<FORM METHOD="post" ACTION="order.do">
 												<b>選擇取貨方式:</b> <select size="1" name="order_no">
 													<c:forEach var="orderVO" items="${orderSvc.all}">
-														<option value="${orderVO.order_no}">${orderVO.pickup_method}
+														<option value="${orderVO.order_no}">
+															<c:if test="${orderVO.pickup_method == 0}">
+																<div>宅配</div>
+															</c:if>
+															<c:if test="${orderVO.pickup_method == 1}">
+																<div>7-11</div>
+															</c:if>
+															<c:if test="${orderVO.pickup_method == 2}">
+																<div>全家</div>
+															</c:if>
 													</c:forEach>
 												</select> <input type="hidden" name="action"
 													value="getOne_For_Display"> <input type="submit"
@@ -180,19 +210,42 @@
 											<FORM METHOD="post" ACTION="order.do">
 												<b>選擇運費:</b> <select size="1" name="order_no">
 													<c:forEach var="orderVO" items="${orderSvc.all}">
-														<option value="${orderVO.order_no}">${orderVO.shipping_fee}
+														<option value="${orderVO.order_no}">
+															<c:if test="${orderVO.shipping_fee == 0}">
+																<div>免運</div>
+															</c:if>
+															<c:if test="${orderVO.shipping_fee == 1}">
+																<div>超商60元</div>
+															</c:if>
+															<c:if test="${orderVO.shipping_fee == 2}">
+																<div>宅配100元</div>
+															</c:if>
 													</c:forEach>
 												</select> <input type="hidden" name="action"
 													value="getOne_For_Display"> <input type="submit"
 													value="送出">
 											</FORM>
 											
-											<FORM METHOD="post" ACTION="order.do">
-        										<b>輸入物流編號</b>
-        										<input type="text" name="empno">
-        										<input type="submit" value="送出">
-        										<input type="hidden" name="action" value="getOne_For_Display">
-    										</FORM>
+<!-- 											<FORM METHOD="post" ACTION="order.do"> -->
+<!--         										<b>輸入取貨人姓名</b> -->
+<!--         										<input type="text" name="order_no"> -->
+<!--         										<input type="submit" value="送出"> -->
+<!--         										<input type="hidden" name="action" value="getOne_For_Display"> -->
+<!--     										</FORM> -->
+    										
+<!--     										<FORM METHOD="post" ACTION="order.do"> -->
+<!--         										<b>輸入取貨人地址</b> -->
+<!--         										<input type="text" name="order_no"> -->
+<!--         										<input type="submit" value="送出"> -->
+<!--         										<input type="hidden" name="action" value="getOne_For_Display"> -->
+<!--     										</FORM> -->
+    										
+<!--     										<FORM METHOD="post" ACTION="order.do"> -->
+<!--         										<b>輸入取貨人電話</b> -->
+<!--         										<input type="text" name="order_no"> -->
+<!--         										<input type="submit" value="送出"> -->
+<!--         										<input type="hidden" name="action" value="getOne_For_Display"> -->
+<!--     										</FORM> -->
 									</div>
 								</div>
 							</div>

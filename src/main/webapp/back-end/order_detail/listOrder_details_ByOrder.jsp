@@ -1,10 +1,14 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.prod_pic.model.*"%>
+<%@ page import="com.order_detail.model.*"%>
+<%@ page import="com.prod.model.*"%>
 
 <%
-Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
+Order_detail_VO order_detailVO = (Order_detail_VO) request.getAttribute("order_detailVO");
+%>
+<%
+Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 %>
 
 <!DOCTYPE html>
@@ -75,28 +79,10 @@ Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
 							<div class="d-flex align-items-center justify-content-md-end">
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
-										<button style="margin-right:10px;">
-										<a href="listAllProd_pic.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
+										<button style="margin-right: 10px;">
+											<a href="<%=request.getContextPath()%>/back-end/order/listAllOrder.jsp"><img
+												src="./images/home.png" width="30px" height="30px"></a>
 										</button>
-										<button style="margin-right:10px;">
-										<a href='addProd_pic.jsp'><img src="./images/plus.png" width="30px" height="30px"></a>
-										</button>
-										<button style="margin-right:10px;">
-										<a href="select_page.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
-										</button>
-										<button
-											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
-											type="button" id="dropdownMenu3" data-toggle="dropdown"
-											aria-haspopup="true" aria-expanded="false">
-											<i class="typcn typcn-calendar-outline mr-2"></i>Last 7 days
-										</button>
-										<div class="dropdown-menu"
-											aria-labelledby="dropdownMenuSizeButton3"
-											data-x-placement="top-start">
-											<h6 class="dropdown-header">Last 14 days</h6>
-											<a class="dropdown-item" href="#">Last 21 days</a> <a
-												class="dropdown-item" href="#">Last 28 days</a>
-										</div>
 									</div>
 								</div>
 								<div class="pr-1 mb-3 mr-2 mb-xl-0">
@@ -118,23 +104,31 @@ Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">商品圖片詳情</h4>
+									<h4 class="card-title">訂單明細</h4>
 									<table id="dataTables" class="stripe table-hover"
 										style="width: 100%">
-
+									
+									<c:forEach var="order_detailVO" items="${listOrder_details_ByOrder}" >
 										<tr>
-											<th>商品照片編號</th>
-											<th>商品編號</th>
-											<th>商品照片</th>
-											<th>商品照片名稱</th>
+											<th>訂單編號</th>
+											<th>商品名稱</th>
+											<th>商品照片</th>											
+											<th>商品數量</th>
+											<th>商品單價</th>
+											<th>商品總額</th>
+											<th>會員編號</th>
 										</tr>
 										<tr>
-											<td>${prod_picVO.prod_pic_no}</td>
-											<td>${prod_picVO.prod_no}</td>
+											<td>${order_detailVO.order_no}</td>
+											<td>${order_detailVO.getProd_VO().prod_name}</td>
 											<td><img
-												src="<%=request.getContextPath()%>/Show_Prod_pic_Servlet?prod_pic_no=${prod_picVO.prod_pic_no}"
-												width=300px height=200px></td>
-											<td>${prod_picVO.prod_pic_name}</td>
+												src="<%=request.getContextPath()%>/ShowProd_picForProd?prod_no=${order_detailVO.getProd_pic_VO().prod_pic_no}"
+												width=110px height=75px></td>
+											<td>${order_detailVO.prod_qty}</td>
+											<td>${order_detailVO.prod_price}</td>
+											<td>${order_detailVO.prod_qty * order_detailVO.prod_price}</td>
+											<td>${order_detailVO.mem_no}</td>
+									</c:forEach>
 									</table>
 								</div>
 							</div>

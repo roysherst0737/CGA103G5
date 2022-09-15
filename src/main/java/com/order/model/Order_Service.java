@@ -2,6 +2,9 @@ package com.order.model;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Set;
+
+import com.order_detail.model.Order_detail_VO;
 
 public class Order_Service {
 	
@@ -63,5 +66,9 @@ public class Order_Service {
 	
 	public List<Order_VO> getAll() {
 		return dao.getAll();
+	}
+	
+	public Set<Order_detail_VO> getOrder_detailsByOrder(Integer order_no) {
+		return dao.getOrder_detailsByOrder(order_no);
 	}
 }

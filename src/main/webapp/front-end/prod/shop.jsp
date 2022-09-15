@@ -174,6 +174,7 @@ pageContext.setAttribute("list2", list2);
                                 <h2 style="font-size:28px; font-weight: bold;">商品類別</h2>
                             </div>
                             <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+                            	<a href="#" class="list-group-item list-group-item-action" id="type" style="font-size:22px; font-weight: bold;">所有商品總覽</a>
                             	<c:forEach var="prod_typeVO" items="${list2}">
                             		<a href="#" class="list-group-item list-group-item-action" id="type">● ${prod_typeVO.prod_type_name}</a>
                             	</c:forEach>

@@ -18,8 +18,8 @@
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
 	</resource-ref>
-	
-<!-- 會員 -->
+
+	<!-- 會員 -->
 	<servlet>
 		<servlet-name>MemServlet</servlet-name>
 		<servlet-class>com.mem.controller.MemServlet</servlet-class>
@@ -53,7 +53,7 @@
 		<url-pattern>/front-end/MemRegisterServlet</url-pattern>
 	</servlet-mapping>
 
-<!-- 商品 -->
+	<!-- 商品 -->
 	<servlet>
 		<servlet-name>Cart_Servlet</servlet-name>
 		<servlet-class>com.cart.controller.Cart_Servlet</servlet-class>
@@ -108,7 +108,7 @@
 		<url-pattern>/back-end/order_detail/order_detail.do</url-pattern>
 	</servlet-mapping>
 
-<!-- 酒吧 -->
+	<!-- 酒吧 -->
 	<servlet>
 		<servlet-name>pubServlet</servlet-name>
 		<servlet-class>com.pub.controller.PubServlet</servlet-class>
@@ -118,7 +118,7 @@
 		<url-pattern>/pub.do</url-pattern>
 	</servlet-mapping>
 
-<!-- 討論區 -->
+	<!-- 討論區 -->
 	<servlet>
 		<servlet-name>Forum_Servlet</servlet-name>
 		<servlet-class>com.forum.controller.Forum_Servlet</servlet-class>
@@ -135,34 +135,23 @@
 		<servlet-name>Forum_article_Servlet</servlet-name>
 		<url-pattern>/front-end/forum/forum_article.do</url-pattern>
 	</servlet-mapping>
-<<<<<<< HEAD
-	  <servlet>
-    <servlet-name>ManagerServlet</servlet-name>
-    <servlet-class>com.manager.controller.ManagerServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ManagerServlet</servlet-name>
-    <url-pattern>/back-end/manager/manager.do</url-pattern>
-  </servlet-mapping>
-   <servlet>
-    <servlet-name>ManagerRegister</servlet-name>
-    <servlet-class>com.manager.controller.ManagerRegister</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ManagerRegister</servlet-name>
-    <url-pattern>/back-end/manager_login/mngRegister.do</url-pattern>
-  </servlet-mapping>
-     <servlet>
-    <servlet-name>ManagerLogin</servlet-name>
-    <servlet-class>com.manager.controller.ManagerLogin</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ManagerLogin</servlet-name>
-    <url-pattern>/back-end/manager_login/mngLogin.do</url-pattern>
-  </servlet-mapping>
-=======
-
-<!-- 管理員 -->
+	<servlet>
+		<servlet-name>ManagerRegister</servlet-name>
+		<servlet-class>com.manager.controller.ManagerRegister</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ManagerRegister</servlet-name>
+		<url-pattern>/back-end/manager_login/mngRegister.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>ManagerLogin</servlet-name>
+		<servlet-class>com.manager.controller.ManagerLogin</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ManagerLogin</servlet-name>
+		<url-pattern>/back-end/manager_login/mngLogin.do</url-pattern>
+	</servlet-mapping>
+	<!-- 管理員 -->
 	<servlet>
 		<servlet-name>ManagerServlet</servlet-name>
 		<servlet-class>com.manager.controller.ManagerServlet</servlet-class>
@@ -171,6 +160,4 @@
 		<servlet-name>ManagerServlet</servlet-name>
 		<url-pattern>/back-end/manager/manager.do</url-pattern>
 	</servlet-mapping>
-	
->>>>>>> c840be070011f9462dab9f1c4a0062ca3feee3fd
 </web-app>

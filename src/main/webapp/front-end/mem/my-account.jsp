@@ -14,17 +14,17 @@
 <meta name="author" content="Theme Wagon">
 
 <!-- Site Icons -->
-<link rel="shortcut icon" href="./images/favicon.ico"
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/front-end/images/favicon.ico"
 	type="image/x-icon">
-<link rel="lonelybar-icon" href="./images/Logo2.png">
+<link rel="lonelybar-icon" href="<%=request.getContextPath()%>/front-end/images/Logo2.png">
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/bootstrap.min.css">
 <!-- Site CSS -->
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/style.css">
 <!-- Responsive CSS -->
-<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/responsive.css">
 <!-- Custom CSS -->
-<link rel="stylesheet" href="css/custom.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/front-end/css/custom.css">
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -45,11 +45,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>My Account</h2>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                        <li class="breadcrumb-item active">My Account</li>
-                    </ul>
+                    <h2>會員專區</h2>
+<!--                     <ul class="breadcrumb"> -->
+<!--                         <li class="breadcrumb-item"><a href="#">Shop</a></li> -->
+<!--                         <li class="breadcrumb-item active">My Account</li> -->
+<!--                     </ul> -->
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@
                         <div class="account-box">
                             <div class="service-box">
                                 <div class="service-icon">
-                                    <a href="#"><i class="fa fa-lock"></i> </a>
+                                    <a href="<%=request.getContextPath()%>/front-end/mem/memApplication.jsp"><i class="fa fa-lock"></i> </a>
                                 </div>
                                 <div class="service-desc">
                                     <h4>Login &amp; security</h4>
@@ -247,7 +247,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-02.jpg" alt="" />
+                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-02.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -255,7 +255,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-03.jpg" alt="" />
+                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-03.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -263,7 +263,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-04.jpg" alt="" />
+                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-04.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -271,7 +271,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
+                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-05.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -279,7 +279,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-06.jpg" alt="" />
+                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-06.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -287,7 +287,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-07.jpg" alt="" />
+                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-07.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -295,7 +295,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-08.jpg" alt="" />
+                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-08.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -303,7 +303,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-09.jpg" alt="" />
+                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-09.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
@@ -311,7 +311,7 @@
             </div>
             <div class="item">
                 <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
+                    <img src="<%=request.getContextPath()%>/front-end/images/instagram-img-05.jpg" alt="" />
                     <div class="hov-in">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>

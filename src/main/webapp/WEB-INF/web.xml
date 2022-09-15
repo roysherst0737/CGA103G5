@@ -34,7 +34,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>MemLoginServlet</servlet-name>
-		<url-pattern>/front-end/MemLoginServlet</url-pattern>
+		<url-pattern>/front-end/mem/MemLoginServlet</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>MemLogoutServlet</servlet-name>
@@ -50,7 +50,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>MemRegisterServlet</servlet-name>
-		<url-pattern>/front-end/MemRegisterServlet</url-pattern>
+		<url-pattern>/front-end/mem/MemRegisterServlet</url-pattern>
 	</servlet-mapping>
 
 	<!-- 商品 -->

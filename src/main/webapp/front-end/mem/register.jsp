@@ -10,15 +10,15 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>CelestialUI Admin</title>
 <!-- base:css -->
-<link rel="stylesheet" href="../back-end/vendors/typicons.font/font/typicons.css">
-<link rel="stylesheet" href="../back-end/vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/back-end/vendors/typicons.font/font/typicons.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/back-end/vendors/css/vendor.bundle.base.css">
 <!-- endinject -->
 <!-- plugin css for this page -->
 <!-- End plugin css for this page -->
 <!-- inject:css -->
-<link rel="stylesheet" href="../back-end/css/vertical-layout-light/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/back-end/css/vertical-layout-light/style.css">
 <!-- endinject -->
-<link rel="shortcut icon" href="images/Logo2.png" />
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/Logo2.png" />
 </head>
 
 <body>
@@ -30,7 +30,7 @@
 						<div class="auth-form-light text-left py-5 px-4 px-sm-5">
 							<div class="brand-logo">
 							<a href="index.jsp">
-								<img src="../front-end/images/Logo3.png" alt="logo">
+								<img src="<%=request.getContextPath()%>/front-end/images/Logo3.png" alt="logo">
 								</a>
 							</div>
 							<h4>New here?</h4>
@@ -144,14 +144,14 @@
 	</div>
 	<!-- container-scroller -->
 	<!-- base:js -->
-	<script src="../back-end/vendors/js/vendor.bundle.base.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/vendors/js/vendor.bundle.base.js"></script>
 	<!-- endinject -->
 	<!-- inject:js -->
-	<script src="../back-end/js/off-canvas.js"></script>
-	<script src="../back-end/js/hoverable-collapse.js"></script>
-	<script src="../back-end/js/template.js"></script>
-	<script src="../back-end/js/settings.js"></script>
-	<script src="../back-end/js/todolist.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/off-canvas.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/hoverable-collapse.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/template.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/settings.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/todolist.js"></script>
 	<!-- endinject -->
 </body>
 

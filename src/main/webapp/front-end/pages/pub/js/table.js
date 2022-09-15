@@ -189,8 +189,15 @@
 				const { successful } = body;
 				const { message } = body;
 				const { pub_available } = body;
-				console.log(successful)
-				console.log(message)
+				if(successful){
+					alert("訂位成功")
+					location.reload();
+					
+					
+				}else{
+					alert("訂位失敗請洽客服")
+					location.reload();
+				}
 			});
 	});
 });

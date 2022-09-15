@@ -46,6 +46,12 @@
 
 
 <style>
+.div2{
+	padding:10px;
+}
+#div_1{
+	margin: 10px;
+}
 .mydiv {
   	border-radius: 20px;
 /*     border: 5px ridge rgb(193 193 193 / 60%); */
@@ -222,7 +228,7 @@ div.col-sm-12>button.btn-warning:hover {
 									<img class="img" src="${pic.pub_pic }">
 								</c:forEach>
 
-								<p>可接受預約人數:${pub.pub_nop}</p>
+								<p>可接受預約人數:${pub.pub_nop}<span id="nop" style="display:none">${pub.pub_nop}</span></p>
 								<p style="display: none"id="pub_no">${pub.pub_no}</p>
 							</div>
 						<!-- 預約表 -->
@@ -260,7 +266,7 @@ div.col-sm-12>button.btn-warning:hover {
 					<div class="myimg_div">
 						<img id="myimg"></img> <span id="mydetail"></span>
 					</div>
-					<div style="text-align: center;">預約</div>
+					<h3>預約時段</h3>
 					<div id="div_1">
 					</div>
 
@@ -268,7 +274,7 @@ div.col-sm-12>button.btn-warning:hover {
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">取消</button>
-					<button id="rate_submit" type="button" class="btn btn-primary">提交評價</button>
+					<button id="rate_submit" type="button" class="btn btn-primary">預定</button>
 				</div>
 			</div>
 		</div>

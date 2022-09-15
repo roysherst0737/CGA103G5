@@ -1,4 +1,4 @@
-package com.pub.controller;
+package com.pub_booking.controller;
 import static com.pub.service.PubConstants.SERVICE;
 import java.io.IOException;
 import java.sql.Date;
@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.pub.entity.Pub;
 import com.pub_reservation.entity.Pub_Reservation;
-import com.pub_reservation.model.pub_reservation_Service;
 import com.pub_reservation.service.Pub_Reservation_Service;
 @WebServlet("/PubBooking")
 public class PubBookingServlet extends HttpServlet{

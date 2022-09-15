@@ -148,4 +148,20 @@
     <servlet-name>ManagerServlet</servlet-name>
     <url-pattern>/back-end/manager/manager.do</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>ManagerRegister</servlet-name>
+    <servlet-class>com.manager.controller.ManagerRegister</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagerRegister</servlet-name>
+    <url-pattern>/back-end/manager_login/mngRegister.do</url-pattern>
+  </servlet-mapping>
+     <servlet>
+    <servlet-name>ManagerLogin</servlet-name>
+    <servlet-class>com.manager.controller.ManagerLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ManagerLogin</servlet-name>
+    <url-pattern>/back-end/manager_login/mngLogin.do</url-pattern>
+  </servlet-mapping>
 </web-app>

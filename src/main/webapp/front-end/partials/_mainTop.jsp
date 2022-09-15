@@ -27,17 +27,14 @@
 
 						<c:when test="${empty sessionScope.user}"> 
 							<button type="button" class="btn btn-warning">
-								<a href="<%=request.getContextPath()%>/front-end/register.jsp" style="color: black">註冊</a>
+								<a href="<%=request.getContextPath()%>/front-end/mem/register.jsp" style="color: black">註冊</a>
 							</button>
 							<button type="button" class="btn btn-outline-light me-2">
-								<a href="<%=request.getContextPath()%>/front-end/login.jsp" style="color: white">登入</a>
+								<a href="<%=request.getContextPath()%>/front-end/mem/login.jsp" style="color: white">登入</a>
 							</button>
 						</c:when>
 
 						<c:otherwise> 
-<!-- 							<button type="submit" class="btn btn-warning"> -->
-<%-- 								<a href="my-account.jsp" style="color: black">${sessionScope.user.getMem_nickname()}</a> --%>
-<!-- 							</button> -->
 							<form action="MemLogoutServlet" method="post">
 								<input type="submit" class="btn btn-warning" value="${sessionScope.user.getMem_nickname()}" />
 								<input type="hidden" name="Logout" value="Mem_Logout">
@@ -112,7 +109,7 @@
 			<!-- Start Atribute Navigation -->
 			<div class="attr-nav">
 				<ul>
-					<li class="user"><a href="<%=request.getContextPath()%>/front-end/my-account.jsp"><img id="user" src="<%=request.getContextPath()%>/front-end/images/user.png"
+					<li class="user"><a href="<%=request.getContextPath()%>/front-end/mem/my-account.jsp"><img id="user" src="<%=request.getContextPath()%>/front-end/images/user.png"
 								width="28px" height="28px" /></a></li>
 					<li class="cart"><a href="<%=request.getContextPath()%>/front-end/prod/cart.jsp"><img id="shopping" src="<%=request.getContextPath()%>/front-end/images/shopping-cart.png"
 								width="35px" height="35px" /></a></li>

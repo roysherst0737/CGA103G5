@@ -10,13 +10,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class MemLogoutServlet extends HttpServlet {
+	
+	public void doGet(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		doPost(req, res);
+	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
 		String Logout = request.getParameter("Logout");
 		HttpSession session = request.getSession();
-
+		System.out.println(request.getServletPath());
 		if ("Mem_Logout".equals(Logout)) {
 			session.removeAttribute("user");
 			String url = "/front-end/index.jsp";

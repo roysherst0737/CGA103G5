@@ -54,4 +54,9 @@ public class Pub_Reservation_ServiceImpl implements Pub_Reservation_Service{
 		return reserveDao.selectByPubNoDate(pub_no, date);
 	}
 
+	@Override
+	public List<Pub_Reservation> getListByPubNo(Integer pub_no) {
+		return reserveDao.getAllByPubNo(pub_no);
+	}
+
 }

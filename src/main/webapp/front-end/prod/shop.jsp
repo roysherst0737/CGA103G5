@@ -120,7 +120,8 @@ pageContext.setAttribute("list2", list2);
 														width=250px height=160px>
                                                     <div class="mask-icon">
                                                         <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="查看詳情"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="<%=request.getContextPath()%>/front-end/prod/shop-detail.jsp?${prodVO.prod_no}"
+                                                            	data-toggle="tooltip" data-placement="right" title="查看詳情"><i class="fas fa-eye"></i></a></li>
                                                         </ul>
                                                         <a class="cart" href="#">加入購物車</a>
                                                     </div>
@@ -145,7 +146,8 @@ pageContext.setAttribute("list2", list2);
 														width=280px height=180px>
                                                         <div class="mask-icon">
                                                             <ul>
-                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="查看詳情"><i class="fas fa-eye"></i></a></li>
+                                                                <li><a href="<%=request.getContextPath()%>/front-end/prod/shop-detail.jsp?${prodVO.prod_no}"
+                                                                	data-toggle="tooltip" data-placement="right" title="查看詳情"><i class="fas fa-eye"></i></a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -174,6 +176,7 @@ pageContext.setAttribute("list2", list2);
                                 <h2 style="font-size:28px; font-weight: bold;">商品類別</h2>
                             </div>
                             <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+                            	<a href="#" class="list-group-item list-group-item-action" id="type" style="font-size:22px; font-weight: bold;">所有商品總覽</a>
                             	<c:forEach var="prod_typeVO" items="${list2}">
                             		<a href="#" class="list-group-item list-group-item-action" id="type">● ${prod_typeVO.prod_type_name}</a>
                             	</c:forEach>
@@ -224,108 +227,28 @@ pageContext.setAttribute("list2", list2);
     </div>
     <!-- End Shop Page -->
 
-    <!-- Start Instagram Feed  -->
-    <div class="instagram-box">
-        <div class="main-instagram owl-carousel owl-theme">
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-01.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-02.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-03.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-04.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-06.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-07.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-08.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-09.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ins-inner-box">
-                    <img src="images/instagram-img-05.jpg" alt="" />
-                    <div class="hov-in">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Instagram Feed  -->
-
-    <!-- !!!!!!此行以下都不要修改!!!!!!-->
-    <!-- Start Footer  -->
-  	<footer>
+	<!-- !!!!!!此行以下都不要修改!!!!!!-->
+	<!-- Start Instagram Feed  -->
+	<div class="instagram-box">
+		<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
+	</div>
+	<!-- End Instagram Feed  -->
+	<!-- Start Footer  -->
+	<footer>
 		<%@ include file="/front-end/partials/_footer.jsp"%>
 	</footer>
-    <!-- End Footer  -->
+	<!-- End Footer  -->
 
-    <!-- Start copyright  -->
-    <div class="footer-copyright">
-        <p class="footer-company">All Rights Reserved. &copy; 2022 <a href="#">LonelyBar</a> Design By :
-            <a href="https://html.design/">CGA103G5</a></p>
-    </div>
-    <!-- End copyright  -->
+	<!-- Start copyright  -->
+	<div class="footer-copyright">
+		<p class="footer-company">
+			All Rights Reserved. &copy; 2022 <a href="#">LonelyBar</a> Design By
+			: <a href="https://html.design/">CGA103G5</a>
+		</p>
+	</div>
+	<!-- End copyright  -->
 
-   <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
 	<!-- ALL JS FILES -->
 	<script src="<%=request.getContextPath()%>/front-end/js/popper.min.js"></script>

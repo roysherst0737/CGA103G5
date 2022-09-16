@@ -5,12 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import com.order_detail.model.Order_detail_VO;
 
 public class Order_DAO implements Order_DAO_interface{
 	
@@ -35,7 +39,9 @@ public class Order_DAO implements Order_DAO_interface{
 		"DELETE FROM `order` where order_no = ?";
 	private static final String UPDATE = 
 		"UPDATE `order` set mem_no=?, coupon_no=?, order_time=?, order_price_total=?, dis_price_total=?, order_status=?, payment_method=?, pickup_method=?, shipping_fee=?, receiver_name=?, receiver_address=?, receiver_phone=? where order_no = ?";
-
+	
+	private static final String GET_Order_details_ByOrder_STMT = "SELECT order_no,prod_no,prod_qty,prod_price,mem_no FROM order_detail where order_no = ? order by order_no";
+	
 	@Override
 	public void insert(Order_VO orderVO) {
 		Connection con = null;
@@ -299,5 +305,61 @@ public class Order_DAO implements Order_DAO_interface{
 			}
 		}
 		return list;
+	}
+	
+	@Override
+	public Set<Order_detail_VO> getOrder_detailsByOrder(Integer order_no) {
+		Set<Order_detail_VO> set = new LinkedHashSet<Order_detail_VO>();
+		Order_detail_VO order_detailVO = null;
+	
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+	
+		try {
+	
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_Order_details_ByOrder_STMT);
+			pstmt.setInt(1, order_no);
+			rs = pstmt.executeQuery();
+	
+			while (rs.next()) {
+				order_detailVO = new Order_detail_VO();
+				order_detailVO.setOrder_no(rs.getInt("order_no"));
+				order_detailVO.setProd_no(rs.getInt("prod_no"));
+				order_detailVO.setProd_qty(rs.getInt("prod_qty"));
+				order_detailVO.setProd_price(rs.getInt("prod_price"));
+				order_detailVO.setMem_no(rs.getInt("mem_no"));
+				set.add(order_detailVO); // Store the row in the vector
+			}
+	
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return set;
 	}
 }

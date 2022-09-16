@@ -42,28 +42,70 @@
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/back-end/css/vertical-layout-light/style.css">
-<script
-	src="<%=request.getContextPath()%>/front-end/pages/pub/js/open.js"></script>
-<script>
-		function setDivData(opendiv){
-			            str="";
-			           const week= aa(opendiv.textContent);
-			           week.forEach(e=>{
-			        	   str+="<div class='col align-self-center '>"+e+"</div>"
-			           });
-			        	   opendiv.innerHTML=str;
-		}
-		</script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
+
 <style>
-	
-@media (min-width: 600px)
-  {
-	 .main_div{
-	display: flex;
+.div2{
+	padding:10px;
+}
+#div_1{
+	margin: 10px;
+}
+.mydiv {
+  	border-radius: 20px;
+/*     border: 5px ridge rgb(193 193 193 / 60%); */
+	width: 100%;
+/* 	background-color: #f1f1f1; */
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	grid-gap: 10px;
+	grid-auto-rows: minmax(100px, auto);
+	padding:10px;
+	grid-template-rows: 1fr 3fr 3fr 3fr;
+}
+.myday{
+ 	border-radius: 20px;
+    border: 3px solid rgb(193 193 193);
+	background-color: #e0e0e0;
+	padding:10px;
+}
+.myday:hover{
+	background-color: #c6c6c6;
+		
+}
+
+.week6{
+background-color: #dcd6d6;
+}
+.week6:hover{
+background-color: #c5bdbd;
+}
+
+.week7{
+background-color: #f5d9d9;
+}
+.week7:hover{
+background-color: #e2c8c8;
+}
+.today{
+	background-color: #acf0c7;
+}
+.today:hover{
+	background-color: #82d6a3;
+}
+.passday{
+background-color: #ffffff;
+}
+.passday:hover{
+background-color: #e3e3e3;
+}
+@media ( min-width : 600px) {
+	.main_div {
+		display: flex;
 	}
-  }
+}
+
 #booking {
 	display: block;
 	width: 100px;
@@ -72,6 +114,7 @@
 }
 
 #open {
+	
 }
 
 .img {
@@ -185,25 +228,15 @@ div.col-sm-12>button.btn-warning:hover {
 									<img class="img" src="${pic.pub_pic }">
 								</c:forEach>
 
+								<p>可接受預約人數:${pub.pub_nop}<span id="nop" style="display:none">${pub.pub_nop}</span></p>
+								<p style="display: none"id="pub_no">${pub.pub_no}</p>
 							</div>
-							<div style="padding:10px">
-								<p>可接受預約人數:${pub.pub_nop}</p>
-								<p>${pub.pub_detail}</p>
-								<p>評分:${pub.pub_rate_sum} &#9;&#9;評價人數:${pub.pub_ratetotal}</p>
-								<p>
-									地址:<a
-										href="https://www.google.com/maps/place/${pub.pub_address}">${pub.pub_address}</a>
-								</p>
-							</div>
-							<div style="padding:10px">
-								<p>營業時間</p>
-								<div id="open">${pub.pub_open}</div>
-							</div>
-							<div style="padding:10px">
-								<a id="booking" href="" class="btn-secondary">前往預約</a>
+						<!-- 預約表 -->
+						<script>
+						</script>
+							<div class="mydiv">
 							</div>
 						</div>
-						<script>setDivData(document.querySelector(`#open`))</script>
 					</div>
 				</div>
 			</div>
@@ -214,113 +247,39 @@ div.col-sm-12>button.btn-warning:hover {
 	<!-- End Gallery  -->
 
 	<!-- Start Instagram Feed  -->
-	<div class="instagram-box">
-		<div class="main-instagram owl-carousel owl-theme">
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-01.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
+	<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
+	<!-- End Instagram Feed  -->
+<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">${pub.pub_name} </h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-02.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
+				<div class="modal-body">
+					<div class="myimg_div">
+						<img id="myimg"></img> <span id="mydetail"></span>
 					</div>
+					<h3>預約時段</h3>
+					<div id="div_1">
+					</div>
+
 				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-03.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-04.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-05.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-06.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-07.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-08.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-09.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-05.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">取消</button>
+					<button id="rate_submit" type="button" class="btn btn-primary">預定</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-
-	<!-- End Instagram Feed  -->
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Footer  -->
@@ -365,7 +324,8 @@ div.col-sm-12>button.btn-warning:hover {
 	<script id="customjs"
 		src="<%=request.getContextPath()%>/front-end/js/custom.js"></script>
 	<script src="<%=request.getContextPath()%>/back-end/js/template.js"></script>
-
+	<script
+		src="<%=request.getContextPath()%>/front-end/pages/pub/js/table.js"></script>
 
 </body>
 

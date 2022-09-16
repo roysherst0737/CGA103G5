@@ -308,7 +308,6 @@ public class Manager_DAO implements Manager_DAO_interface {
 
 //				pstmt.executeUpdate();
 
-				System.out.println(pstmt);
 				ResultSet rs = pstmt.executeQuery();
 				status = rs.next();
 

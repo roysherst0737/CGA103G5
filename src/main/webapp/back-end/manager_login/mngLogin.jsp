@@ -10,7 +10,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - #dailyui Day 1. Sign Up Login page</title>
+  <title>朧醴 LonelyBar【後端登入頁面】</title>
   <link rel="stylesheet" href="<%=request.getContextPath()%>/back-end/manager_login/mngStyle.css">
 
 </head>
@@ -30,7 +30,7 @@
 <div class="cont_ba_opcitiy">
         
         <h2>LOGIN</h2>  
-  <p>Lorem ipsum dolor sit amet, consectetur.</p> 
+  <p>朧醴 LonelyBar【管理員登入】</p> 
   <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
   </div>
   </div>
@@ -40,7 +40,7 @@
   <h2>SIGN UP</h2>
 
   
-  <p>Lorem ipsum dolor sit amet, consectetur.</p>
+  <p>朧醴 LonelyBar【管理員註冊】</p>
 
   <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
 </div>
@@ -50,51 +50,52 @@
     
     <div class="cont_back_info">
        <div class="cont_img_back_grey">
-       <img src="https://images.unsplash.com/photo-1453831362806-3d5577f014a4?dpr=1&auto=compress,format&fit=crop&w=1199&h=812&q=80&cs=tinysrgb&crop=" alt="" />
+       <img src="https://images.pexels.com/photos/1554654/pexels-photo-1554654.jpeg?cs=srgb&dl=pexels-wendy-wei-1554654.jpg&fm=jpg" alt="" />
        </div>
        
     </div>
-    <!-- ÐÐ½Ð¸Ð¼Ð¸ÑÐ¾Ð²Ð°Ð½Ð½ÑÐµ LOGIN Ð¸ SIGNUP Ð¿Ð¾ÑÐ»Ðµ Ð½Ð°Ð¶Ð°ÑÐ¸Ñ Ð½Ð° ÐºÐ½Ð¾Ð¿ÐºÑ -->
+
     
 <div class="cont_forms" >
     <div class="cont_img_back_">
-       <img src="https://images.unsplash.com/photo-1453831362806-3d5577f014a4?dpr=1&auto=compress,format&fit=crop&w=1199&h=812&q=80&cs=tinysrgb&crop=" alt="" />
+       <img src="https://images.pexels.com/photos/1554654/pexels-photo-1554654.jpeg?cs=srgb&dl=pexels-wendy-wei-1554654.jpg&fm=jpg" alt="" />
        </div>
+       
+       
+   <form method='post' action="mngLogin.do">
  <div class="cont_form_login">
 <a href="#" onclick="ocultar_login_sign_up()" ><i class="material-icons">&#xE5C4;</i></a>
    <h2>LOGIN</h2>
-   <form method='post' action="<%=request.getContextPath()%>/login">
- <input type="text" name="mng_account" placeholder="Account" />
-<input type="password" name="mng_password" placeholder="Password" />
-<input type="hidden" name="action" value="login">
-<button class="btn_login" onclick="cambiar_login()">LOGIN</button>
-</form>
-  </div>
   
+ <input type="text" name="mng_account" value="<%= (manager_VO==null)? "" : manager_VO.getMng_account()%>" placeholder="Account" />
+<input type="password" value="<%= (manager_VO==null)? "" : manager_VO.getMng_password()%>" name="mng_password" placeholder="Password" />
+<input type="hidden" name="action" value="mngLogin">
+<button class="btn_login" onclick="cambiar_login()">LOGIN</button>
+  </div>
+  </form>
+  
+   <FORM METHOD='post' ACTION="mngRegister.do" name="form1" enctype="multipart/form-data" >
    <div class="cont_form_sign_up">
 <a href="#" onclick="ocultar_login_sign_up()"><i class="material-icons">&#xE5C4;</i></a>
      <h2>SIGN UP</h2>
-     <FORM METHOD='post' ACTION="<%=request.getContextPath()%>/register" name="form1" enctype="multipart/form-data">
-<input type="text" name="mng_account" placeholder="Account" /><p>
-<input type="password" name="mng_password" placeholder="Password" />
-<input type="password" placeholder="Confirm Password" /><p>
-<input type="text" name="mng_name" placeholder="Username" /><p>
-<input type="text" name="mng_phone" placeholder="Phone" />
-<input type="file" name="mng_pic" placeholder="Picture" /><p>
-管理員狀態: <input type="checkbox" name="mng_status" value=1 /><p>
-<input type="hidden" name="mng_status" value=0>
-<input type="hidden" name="action" value="register">
-<button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
-</FORM>
-  </div>
-
-    </div>
     
+<input type="text" name="mng_account" value="<%= (manager_VO==null)? "" : manager_VO.getMng_account()%>" placeholder="Account" />
+<input type="password" id="mng_password" name="mng_password" value="<%= (manager_VO==null)? "" : manager_VO.getMng_password()%>" placeholder="Password" />
+<input type="password" id="mng_cnf_password" name="mng_cnf_password" placeholder="Confirm Password" value=''/>
+<input type="text" id="mng_name" name="mng_name" value="<%= (manager_VO==null)? "" : manager_VO.getMng_name()%>" placeholder="Username" />
+<input type="text" name="mng_phone" value="<%= (manager_VO==null)? "" : manager_VO.getMng_phone()%>" placeholder="Phone"/>
+<input type="file" name="mng_pic" placeholder="Picture" /><p>
+<label for="mng_status">啟用管理員狀態: </label><input type="checkbox" id="mng_status" name="mng_status" value=1 /><p>
+<input type="hidden" id="mng_status" name="mng_status" value=0>
+<input type="hidden" name="action" value="mngRegister">
+<button class="btn_sign_up1" onclick="cambiar_sign_up()">SIGN UP</button>
+  </div>
+  </FORM>
+    </div>
   </div>
  </div>
 </div>
   
-    <script src="js/index.js"></script>
 
 </body>
 <!-- partial -->

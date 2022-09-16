@@ -8,6 +8,7 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.servlet.*;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import javax.sql.DataSource;
@@ -15,7 +16,7 @@ import javax.servlet.ServletException;
 
 import com.manager.model.*;
 
-@WebServlet("/login")
+@MultipartConfig
 public class ManagerLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Manager_DAO manager_dao;
@@ -32,7 +33,7 @@ public class ManagerLogin extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		
-        if ("login".equals(action)) { // 來自mngLogin.jsp的請求  
+        if ("mngLogin".equals(action)) { // 來自mngLogin.jsp的請求  
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -63,18 +64,18 @@ public class ManagerLogin extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("manager_VO", manager_VO); // 含有輸入格式錯誤的manager_VO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/manager_login/login.jsp");
+							.getRequestDispatcher("mngLogin.jsp");
 					failureView.forward(req, res);
 					return;
 				}
 				if (manager_dao.mngLogin(manager_VO)) {
-					//HttpSession session = request.getSession();
-					// session.setAttribute("username",username);
-					res.sendRedirect("back-end/manager_login/loginsuccess.jsp");
-				} else {
 					HttpSession session = req.getSession();
-					//session.setAttribute("user", username);
-					res.sendRedirect("back-end/manager_login/login.jsp");
+					 session.setAttribute("mng_account", mng_account);
+					res.sendRedirect("mngSuc.jsp");
+				} else {
+//					HttpSession session = req.getSession();
+//					session.setAttribute("user", mng_account);
+					res.sendRedirect("mngLogin.jsp");
 				}
 				
 				/***************************2.開始新增資料***************************************/

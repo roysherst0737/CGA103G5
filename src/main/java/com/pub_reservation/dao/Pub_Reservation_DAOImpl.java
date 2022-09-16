@@ -32,21 +32,16 @@ public class Pub_Reservation_DAOImpl implements Pub_Reservation_DAO {
 	}
 
 	@Override
-	public Pub_Reservation selectById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Pub_Reservation> selectAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Pub_Reservation> getAllByPubNo() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Pub_Reservation> getAllByPubNo(Integer pub_no) {
+		final String sql = "FROM Pub_Reservation WHERE pub_no= :pub_no";
+		return getSession().createQuery(sql, Pub_Reservation.class).setParameter("pub_no", pub_no).list();
+
 	}
 
 	@Override
@@ -108,6 +103,12 @@ public class Pub_Reservation_DAOImpl implements Pub_Reservation_DAO {
 		final String sql = "FROM Pub_Reservation WHERE pub_no= :pub_no AND pub_reservation_date=:pub_reservation_date";
 		return getSession().createQuery(sql, Pub_Reservation.class).setParameter("pub_no", pub_no)
 				.setParameter("pub_reservation_date", date).uniqueResult();
+	}
+
+	@Override
+	public Pub_Reservation selectById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

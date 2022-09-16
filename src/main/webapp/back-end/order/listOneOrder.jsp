@@ -124,14 +124,12 @@ Order_VO orderVO = (Order_VO) request.getAttribute("orderVO");
 											<th>會員編號</th>
 											<th>優惠券編號</th>
 											<th>訂單建立時間</th>
-											<th>商品售出時間</th>
 											<th>訂單總金額</th>
 											<th>優惠後金額</th>
 											<th>訂單狀態</th>
 											<th>付款方式</th>
 											<th>取貨方式</th>
 											<th>運費</th>
-											<th>物流編號</th>
 											<th>取貨人姓名</th>
 											<th>取貨人地址</th>
 											<th>取貨人電話</th>
@@ -142,25 +140,66 @@ Order_VO orderVO = (Order_VO) request.getAttribute("orderVO");
 											<td>${orderVO.mem_no}</td>
 											<td>${orderVO.coupon_no}</td>
 											<td>${orderVO.order_time}</td>
-											<td>${orderVO.sold_time}</td>
 											<td>${orderVO.order_price_total}</td>
 											<td>${orderVO.dis_price_total}</td>
-											<td>${orderVO.order_status}</td>
-											<td>${orderVO.payment_method}</td>
-											<td>${orderVO.pickup_method}</td>
-											<td>${orderVO.shipping_fee}</td>
-											<td>${orderVO.tracking_no}</td>
+											<td>
+												<c:if test="${orderVO.order_status == 0}">
+													<div>未出貨</div>
+												</c:if>
+												<c:if test="${orderVO.order_status == 1}">
+													<div>已出貨</div>
+												</c:if>
+												<c:if test="${orderVO.order_status == 2}">
+													<div>已完成</div>
+												</c:if>
+												<c:if test="${orderVO.order_status == 3}">
+													<div>取消</div>
+												</c:if>
+											</td>
+											<td>
+												<c:if test="${orderVO.payment_method == 0}">
+													<div>貨到付款</div>
+												</c:if>
+												<c:if test="${orderVO.payment_method == 1}">
+													<div>信用卡</div>
+												</c:if>
+												<c:if test="${orderVO.payment_method == 2}">
+													<div>電子支付</div>
+												</c:if>
+											</td>
+											<td>
+												<c:if test="${orderVO.pickup_method == 0}">
+													<div>宅配</div>
+												</c:if>
+												<c:if test="${orderVO.pickup_method == 1}">
+													<div>7-11</div>
+												</c:if>
+												<c:if test="${orderVO.pickup_method == 2}">
+													<div>全家</div>
+												</c:if>
+											</td>
+											<td>
+												<c:if test="${orderVO.shipping_fee == 0}">
+													<div>免運</div>
+												</c:if>
+												<c:if test="${orderVO.shipping_fee == 1}">
+													<div>超商60元</div>
+												</c:if>
+												<c:if test="${orderVO.shipping_fee == 2}">
+													<div>宅配100元</div>
+												</c:if>
+											</td>
 											<td>${orderVO.receiver_name}</td>
 											<td>${orderVO.receiver_address}</td>
 											<td>${orderVO.receiver_phone}</td>
 											<td>
 												<FORM METHOD="post"
-													ACTION="<%=request.getContextPath()%>/back-end/order_detail/order_detail.do"
+													ACTION="<%=request.getContextPath()%>/back-end/order/order.do"
 													style="margin-bottom: 0px;">
 													<input type="submit" value="查詢"> <input
 														type="hidden" name="order_no"
 														value="${orderVO.order_no}"> <input
-														type="hidden" name="action" value="getOne_For_display">
+														type="hidden" name="action" value="listOrder_details_ByOrder">
 												</FORM>
 											</td>
 										</tr>

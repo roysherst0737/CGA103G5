@@ -2,6 +2,11 @@ package com.order_detail.model;
 
 import java.io.Serializable;
 
+import com.prod.model.Prod_Service;
+import com.prod.model.Prod_VO;
+import com.prod_pic.model.Prod_pic_Service;
+import com.prod_pic.model.Prod_pic_VO;
+
 public class Order_detail_VO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -41,4 +46,18 @@ public class Order_detail_VO implements Serializable{
 	public void setMem_no(Integer mem_no) {
 		this.mem_no = mem_no;
 	}
+	
+	// for join prod_name from prod_no
+    public Prod_VO getProd_VO() {
+    	Prod_Service prodSvc = new Prod_Service();
+    	Prod_VO prodVO = prodSvc.getOneProd(prod_no);
+	    return prodVO;
+    }
+    
+    // for join prod_pic from prod_no
+    public Prod_pic_VO getProd_pic_VO() {
+    	Prod_pic_Service prod_picSvc = new Prod_pic_Service();
+		Prod_pic_VO prod_picVO = prod_picSvc.getOneProd_pic(prod_no);
+	    return prod_picVO;
+    }
 }

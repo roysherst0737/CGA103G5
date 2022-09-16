@@ -317,7 +317,6 @@ public class Manager_JDBCDAO implements Manager_DAO_interface {
 
 //			pstmt.executeUpdate();
 
-			System.out.println(pstmt);
 			ResultSet rs = pstmt.executeQuery();
 			status = rs.next();
 		} catch (ClassNotFoundException e) {

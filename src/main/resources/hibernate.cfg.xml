@@ -7,15 +7,13 @@
   <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/lonelybar?serverTimezone=Asia/Taipei</property>
   <property name="hibernate.connection.username">cga10305</property>
   <property name="hibernate.connection.password">123qweqwe</property>
-  
-  
 
   <!-- <property name="hibernate.connection.datasource">java:comp/env/jdbc/javaFramework</property> -->
 <!-- <property name="current_session_context_class">thread</property> -->
   <property name="hibernate.current_session_context_class">thread</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
-  <property name="hibernate.show_sql">true</property>
-  <property name="hibernate.format_sql">true</property>
+  <property name="hibernate.show_sql">false</property>
+  <property name="hibernate.format_sql">false</property>
 
   <mapping class="com.pub.entity.Pub" />
   <mapping class="com.pub_pics.entity.Pub_pics" />

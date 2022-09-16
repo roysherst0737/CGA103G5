@@ -224,6 +224,21 @@ cursor: pointer;
 z-index: 2;  
 }
 
+.btn_sign_up1 { 
+background-color: #f44336;
+  border: none;
+  padding: 10px;
+width: 200px;
+border-radius:3px;
+box-shadow: 1px 5px 20px -5px rgba(0,0,0,0.4);
+  color: #fff;
+margin-top: 10px;
+cursor: pointer;
+}
+.cont_forms_active_sign_up {
+z-index: 2;  
+}
+
 
 @-webkit-keyframes animar_fondo {
   from { -webkit-transform: scale(1) translate(0px);
@@ -309,9 +324,9 @@ transition: all 0.5s;
   
 .cont_form_sign_up > input {
 text-align: left;
-  padding: 15px 5px;
+  padding: 5px 5px;
 margin-left: 10px;
-margin-top: 20px;
+margin-top: 15px;
   width: 260px;
 border: none;
     color: #757575;
@@ -325,7 +340,7 @@ font-weight: 400;
 
 
 .cont_form_login > input {
-  padding: 15px 5px;
+  padding: 10px 5px;
 margin-left: 10px;
 margin-top: 20px;
   width: 260px;

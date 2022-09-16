@@ -38,3 +38,26 @@ document.querySelector('.cont_form_login').style.display = "none";
 },500);  
   
   }
+  
+var submitBtn = document.querySelector(".btn_sign_up1");
+var pswd1 = document.getElementById("mng_password");
+var pswd2 = document.getElementById("mng_cnf_password");
+
+function FsubmitBtn(value) {
+
+	if(pswd1 !== "" || pswd2 !== "") {
+  		if(pswd1.value!=pswd2.value) {
+		alert("輸入的密碼不一致！");
+		pswd2.focus();
+		return false;
+		}
+	} else if(pswd1 === "" || pswd2 === ''){
+		alert("密碼必須填寫");
+		return false;
+	}else {
+		alert("true");
+	return true;
+	}
+	}
+	
+submitBtn.addEventListener("click", FsubmitBtn);

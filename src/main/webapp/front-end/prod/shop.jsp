@@ -120,7 +120,8 @@ pageContext.setAttribute("list2", list2);
 														width=250px height=160px>
                                                     <div class="mask-icon">
                                                         <ul>
-                                                            <li><a href="#" data-toggle="tooltip" data-placement="right" title="查看詳情"><i class="fas fa-eye"></i></a></li>
+                                                            <li><a href="<%=request.getContextPath()%>/front-end/prod/shop-detail.jsp?${prodVO.prod_no}"
+                                                            	data-toggle="tooltip" data-placement="right" title="查看詳情"><i class="fas fa-eye"></i></a></li>
                                                         </ul>
                                                         <a class="cart" href="#">加入購物車</a>
                                                     </div>
@@ -145,7 +146,8 @@ pageContext.setAttribute("list2", list2);
 														width=280px height=180px>
                                                         <div class="mask-icon">
                                                             <ul>
-                                                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="查看詳情"><i class="fas fa-eye"></i></a></li>
+                                                                <li><a href="<%=request.getContextPath()%>/front-end/prod/shop-detail.jsp?${prodVO.prod_no}"
+                                                                	data-toggle="tooltip" data-placement="right" title="查看詳情"><i class="fas fa-eye"></i></a></li>
                                                             </ul>
                                                         </div>
                                                     </div>

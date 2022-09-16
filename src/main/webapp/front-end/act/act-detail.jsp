@@ -27,8 +27,6 @@ if (user != null) {
 	Set<Integer> set = act_sign_upSvc.getAct_sign_up((Integer) user.getMem_no());
 
 	pageContext.setAttribute("set", set);
-
-	System.out.println(set.contains(actVO.getAct_no()));
 }
 %>
 

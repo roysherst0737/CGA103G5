@@ -152,7 +152,7 @@
 						div2.setAttribute("id", "div2");
 						div2.style.display = 'none';
 						document.querySelector('#rate_submit').style.display = 'none';
-						div2.innerHTML = `<label for='ipt'>預約人數:</label><input id='ipt' type='number'>`;
+						div2.innerHTML = `<label for='ipt'>預約人數:</label><input id='ipt' type='number'><p id="p_check"style="display:none;color:red">請輸入預約人數</p>`;
 						div_1.appendChild(select, div_1.lastChild);
 						div_1.appendChild(div2, div_1.lastChild);
 					} else {
@@ -164,8 +164,16 @@
 
 	//送出預定
 	document.querySelector('#rate_submit').addEventListener('click', function() {
-		let str = "";
 		const ipt = document.querySelector('#ipt');
+		if(ipt.value===""){
+			document.querySelector('#p_check').style.display="";
+			ipt.focus();
+			ipt.addEventListener('change',function(){
+				document.querySelector('#p_check').style.display="none";
+			});
+			return;
+		};
+		let str = "";
 		const select = document.querySelector('.form-select');
 		str="000".repeat(select.value);
 		str+=ipt.value<10?"00"+ipt.value:ipt.value<100?"0"+ipt.value:ipt.value;

@@ -247,7 +247,7 @@ div.col-sm-12>button.btn-warning:hover {
 	<!-- End Gallery  -->
 
 	<!-- Start Instagram Feed  -->
-	<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
+<%-- 	<%@ include file="/front-end/partials/_InstagramBox.jsp"%> --%>
 	<!-- End Instagram Feed  -->
 <!-- Modal -->
 	<div class="modal fade" id="exampleModalCenter" tabindex="-1"

@@ -8,6 +8,7 @@ import com.pub.entity.Pub;
 import com.pub.model.pub_Service_H;
 import com.pub_pics.dao.Pub_pics_DAO_H_impl;
 import com.pub_pics.entity.Pub_pics;
+import com.pub_reservation.dao.Pub_Reservation_DAOImpl;
 
 public class pub_Service_H_impl implements pub_Service_H{
 	private Pub_DAO_H_impl_forWEB dao;
@@ -73,8 +74,6 @@ public class pub_Service_H_impl implements pub_Service_H{
 		
 		try {
 			pub.setMem_no(1);
-			System.out.println(pub.getPub_no());
-			System.out.println(pub.getFirm_tax_id());
 			final int resultCount = dao.insert(pub);
 			Pub_pics pic= new Pub_pics();
 			pic.setPub(pub);
@@ -96,7 +95,6 @@ public class pub_Service_H_impl implements pub_Service_H{
 			//rollback();
 			e.printStackTrace();
 		}
-		
 		pub.setMessage("註冊成功");
 		pub.setSuccessful(true);
 		return pub;

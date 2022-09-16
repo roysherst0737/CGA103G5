@@ -7,7 +7,7 @@
 			/ShowProd_picForProd?prod_no=${prodVO.getProd_pic_VO().prod_pic_no}" width=280px height=200px>
 			
 			<div class="hov-in">
-				<a href="#"><i class="fab fa-instagram"></i></a>
+				<a href="<%=request.getContextPath()%>/front-end/prod/shop-detail.jsp?${prodVO.prod_no}"><i class="fab fa-instagram"></i></a>
 			</div>				
 		</div>
 	</div>

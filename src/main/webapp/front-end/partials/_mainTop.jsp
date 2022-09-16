@@ -85,7 +85,6 @@
 							style="font-weight: 1000;">購物專區</a>
 						<ul class="dropdown-menu">
 							<li><a href="<%=request.getContextPath()%>/front-end/prod/shop.jsp" style="color: #f5c242; font-weight:bold;">商品總覽</a></li>
-							<li><a href="<%=request.getContextPath()%>/front-end/prod/shop-detail.jsp" style="color: #f5c242; font-weight:bold;">商品詳情</a></li>
 							<li><a href="<%=request.getContextPath()%>/front-end/prod/cart.jsp" style="color: #f5c242; font-weight:bold;">購物車</a></li>
 							<li><a href="<%=request.getContextPath()%>/front-end/prod/checkout.jsp" style="color: #f5c242; font-weight:bold;">前往結帳</a></li>
 						</ul>

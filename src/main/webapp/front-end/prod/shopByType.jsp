@@ -8,12 +8,15 @@
 Prod_Service prodSvc = new Prod_Service();
 List<Prod_VO> list = prodSvc.getAll();
 pageContext.setAttribute("list", list);
-%>
 
-<%
 Prod_type_Service prod_typeSvc = new Prod_type_Service();
 List<Prod_type_VO> list2 = prod_typeSvc.getAll();
 pageContext.setAttribute("list2", list2);
+
+Prod_type_VO prod_typeVO = prod_typeSvc.getOneProd_type(Integer.parseInt(request.getQueryString()));
+request.setAttribute("prod_typeVO", prod_typeVO);
+Set<Prod_VO> set = prod_typeSvc.getProdsByProd_type(prod_typeVO.getProd_type_no());
+pageContext.setAttribute("set", set);
 %>
 
 <!DOCTYPE html>
@@ -116,7 +119,7 @@ pageContext.setAttribute("list2", list2);
                             <div class="tab-content">	
                                 <div role="tabpanel" class="tab-pane fade show active" id="grid-view">                                
                                     <div class="row">
-                                    <c:forEach var="prodVO" items="${list}">
+                                    <c:forEach var="prodVO" items="${set}">
                                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                             <div class="products-single fix">
                                                 <div class="box-img-hover">
@@ -140,7 +143,7 @@ pageContext.setAttribute("list2", list2);
                                     </div>                                	
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="list-view">
-                                <c:forEach var="prodVO" items="${list}">
+                                <c:forEach var="prodVO" items="${set}">
                                     <div class="list-view-box">                                    
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">

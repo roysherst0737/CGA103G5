@@ -8,8 +8,8 @@ public class Pub_Booking_DAOImpl implements Pub_Booking_DAO{
 
 	@Override
 	public int insert(Pub_Booking pojo) {
-		// TODO Auto-generated method stub
-		return 0;
+		getSession().save(pojo);
+		return 1;
 	}
 
 	@Override
@@ -34,6 +34,13 @@ public class Pub_Booking_DAOImpl implements Pub_Booking_DAO{
 	public List<Pub_Booking> selectAll() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Pub_Booking getByPubNoAndMemNO(Integer pub_no, Integer mem_no) {
+		final String sql = "FROM Pub_Booking WHERE pub_no= :pub_no AND mem_no=:mem_no";
+		return getSession().createQuery(sql, Pub_Booking.class).setParameter("pub_no", pub_no)
+				.setParameter("mem_no", mem_no).uniqueResult();
 	}
 
 }

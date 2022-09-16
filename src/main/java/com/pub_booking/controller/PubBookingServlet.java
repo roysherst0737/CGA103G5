@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,14 +26,6 @@ public class PubBookingServlet extends HttpServlet{
 		request.setCharacterEncoding("UTF-8");
 		Pub pub = new Pub();
 		pub.setPub_no(Integer.parseInt(request.getParameter("pub_no")));
-//		Pub pub = json2Pojo(request, Pub.class);
-//		if(pub==null) {
-//			pub = new Pub();
-//			pub.setMessage("無會員資訊");
-//			pub.setSuccessful(false);
-//			writePojo2Json(response, pub);
-//			return;
-//		}
 		pub = SERVICE.findByPrimaryKey(pub);
 		if(pub.getPub_name()==null) {
 			pub.setMessage("無會員資訊");
@@ -62,15 +56,14 @@ public class PubBookingServlet extends HttpServlet{
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
-		Pub_Reservation pub_Reservation = new Pub_Reservation();
 		Pub_Reservation_Service reservationService = com.pub_reservation.service.Pub_ReservationConstants.SERVICE; 
+		List<Pub_Reservation> list = reservationService.getListByPubNo(pub.getPub_no());
 		Long LongDay = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
 		Date today = new Date(LongDay);
-		pub_Reservation = reservationService.getReservation(pub.getPub_no(), today);
 		request.setAttribute("pub", pub);
-		request.setAttribute("pub_Reservation", pub_Reservation);
+		request.setAttribute("today", today);
+		request.setAttribute("list", list);
 		request.getRequestDispatcher("/front-end/pages/pub/pubbooking.jsp").forward(request, response);
-//		writePojo2Json(response, pub);
 		return;
 	}
 

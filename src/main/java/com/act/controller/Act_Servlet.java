@@ -149,13 +149,6 @@ public class Act_Servlet extends HttpServlet {
 				errorMsgs.add("請輸入下架時間!");
 			}
 
-			Integer current_count = null;
-			try {
-				current_count = Integer.valueOf(req.getParameter("current_count").trim());
-			} catch (NumberFormatException e) {
-				current_count = 0;
-				errorMsgs.add("當前報名人數請填數字");
-			}
 
 			Integer max_count = null;
 			try {
@@ -223,7 +216,6 @@ public class Act_Servlet extends HttpServlet {
 			actVO.setAct_loc(act_loc);
 			actVO.setAct_launch_time(act_launch_time);
 			actVO.setAct_off_time(act_off_time);
-			actVO.setCurrent_count(current_count);
 			actVO.setMax_count(max_count);
 			actVO.setMin_count(min_count);
 			actVO.setSign_up_begin_time(sign_up_begin_time);
@@ -243,7 +235,7 @@ public class Act_Servlet extends HttpServlet {
 			/*************************** 2.開始修改資料 *****************************************/
 			Act_Service actSvc = new Act_Service();
 			actVO = actSvc.updateAct(pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time,
-					current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time,
+					 max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time,
 					act_end_time, act_status, act_no);
 
 			actVO.setRevise_time(revise_time);
@@ -289,9 +281,8 @@ public class Act_Servlet extends HttpServlet {
 
 			Timestamp act_launch_time = null;
 			try {
-				act_launch_time = java.sql.Timestamp.valueOf(req.getParameter("act_launch_time").trim());
+				act_launch_time = java.sql.Timestamp.valueOf(req.getParameter("act_launch_time").trim() + ":00");
 
-				
 			} catch (IllegalArgumentException e) {
 				act_launch_time = new java.sql.Timestamp(System.currentTimeMillis());
 				errorMsgs.add("請輸入上架時間!");
@@ -299,19 +290,13 @@ public class Act_Servlet extends HttpServlet {
 
 			Timestamp act_off_time = null;
 			try {
-				act_off_time = java.sql.Timestamp.valueOf(req.getParameter("act_off_time").trim());
+				act_off_time = java.sql.Timestamp.valueOf(req.getParameter("act_off_time").trim() + ":00");
 			} catch (IllegalArgumentException e) {
 				act_off_time = new java.sql.Timestamp(System.currentTimeMillis());
 				errorMsgs.add("請輸入下架時間!");
 			}
 
-			Integer current_count = null;
-			try {
-				current_count = Integer.valueOf(req.getParameter("current_count").trim());
-			} catch (NumberFormatException e) {
-				current_count = 0;
-				errorMsgs.add("當前報名人數請填數字");
-			}
+
 
 			Integer max_count = null;
 			try {
@@ -331,7 +316,7 @@ public class Act_Servlet extends HttpServlet {
 
 			Timestamp sign_up_begin_time = null;
 			try {
-				sign_up_begin_time = java.sql.Timestamp.valueOf(req.getParameter("sign_up_begin_time").trim());
+				sign_up_begin_time = java.sql.Timestamp.valueOf(req.getParameter("sign_up_begin_time").trim() + ":00");
 			} catch (IllegalArgumentException e) {
 				sign_up_begin_time = new java.sql.Timestamp(System.currentTimeMillis());
 				errorMsgs.add("請輸入報名開始時間!");
@@ -339,7 +324,7 @@ public class Act_Servlet extends HttpServlet {
 
 			Timestamp sign_up_end_time = null;
 			try {
-				sign_up_end_time = java.sql.Timestamp.valueOf(req.getParameter("sign_up_end_time").trim());
+				sign_up_end_time = java.sql.Timestamp.valueOf(req.getParameter("sign_up_end_time").trim() + ":00");
 			} catch (IllegalArgumentException e) {
 				sign_up_end_time = new java.sql.Timestamp(System.currentTimeMillis());
 				errorMsgs.add("請輸入報名結束時間!");
@@ -347,7 +332,7 @@ public class Act_Servlet extends HttpServlet {
 
 			Timestamp act_start_time = null;
 			try {
-				act_start_time = java.sql.Timestamp.valueOf(req.getParameter("act_start_time").trim());
+				act_start_time = java.sql.Timestamp.valueOf(req.getParameter("act_start_time").trim() + ":00");
 			} catch (IllegalArgumentException e) {
 				act_start_time = new java.sql.Timestamp(System.currentTimeMillis());
 				errorMsgs.add("請輸入活動開始時間!");
@@ -355,7 +340,7 @@ public class Act_Servlet extends HttpServlet {
 
 			Timestamp act_end_time = null;
 			try {
-				act_end_time = java.sql.Timestamp.valueOf(req.getParameter("act_end_time").trim());
+				act_end_time = java.sql.Timestamp.valueOf(req.getParameter("act_end_time").trim() + ":00");
 			} catch (IllegalArgumentException e) {
 				act_end_time = new java.sql.Timestamp(System.currentTimeMillis());
 				errorMsgs.add("請輸入活動結束時間!");
@@ -368,7 +353,6 @@ public class Act_Servlet extends HttpServlet {
 			actVO.setAct_loc(act_loc);
 			actVO.setAct_launch_time(act_launch_time);
 			actVO.setAct_off_time(act_off_time);
-			actVO.setCurrent_count(current_count);
 			actVO.setMax_count(max_count);
 			actVO.setMin_count(min_count);
 			actVO.setSign_up_begin_time(sign_up_begin_time);
@@ -386,7 +370,7 @@ public class Act_Servlet extends HttpServlet {
 
 			/*************************** 2.開始新增資料 ***************************************/
 			Act_Service actSvc = new Act_Service();
-			actVO = actSvc.addAct(pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count,
+			actVO = actSvc.addAct(pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time,
 					max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time);
 
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/

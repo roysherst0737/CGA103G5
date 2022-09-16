@@ -12,7 +12,7 @@ public class Act_Service {
 	}
 
 	public Act_VO addAct(Integer pub_no, String act_name, String act_detail, String act_loc, Timestamp act_launch_time,
-			Timestamp act_off_time, Integer current_count, Integer max_count, Integer min_count,
+			Timestamp act_off_time, Integer max_count, Integer min_count,
 			Timestamp sign_up_begin_time, Timestamp sign_up_end_time, Timestamp act_start_time, Timestamp act_end_time) {
 
 		Act_VO act_VO = new Act_VO();
@@ -23,7 +23,6 @@ public class Act_Service {
 		act_VO.setAct_loc(act_loc);
 		act_VO.setAct_launch_time(act_launch_time);
 		act_VO.setAct_off_time(act_off_time);
-		act_VO.setCurrent_count(current_count);
 		act_VO.setMax_count(max_count);
 		act_VO.setMin_count(min_count);
 		act_VO.setSign_up_begin_time(sign_up_begin_time);
@@ -38,7 +37,7 @@ public class Act_Service {
 	}
 
 	public Act_VO updateAct(Integer pub_no, String act_name, String act_detail, String act_loc,
-			Timestamp act_launch_time, Timestamp act_off_time, Integer current_count, Integer max_count,
+			Timestamp act_launch_time, Timestamp act_off_time, Integer max_count,
 			Integer min_count, Timestamp sign_up_begin_time, Timestamp sign_up_end_time, Timestamp act_start_time,
 			Timestamp act_end_time, Integer act_status, Integer act_no) {
 
@@ -50,7 +49,6 @@ public class Act_Service {
 		act_VO.setAct_loc(act_loc);
 		act_VO.setAct_launch_time(act_launch_time);
 		act_VO.setAct_off_time(act_off_time);
-		act_VO.setCurrent_count(current_count);
 		act_VO.setMax_count(max_count);
 		act_VO.setMin_count(min_count);
 		act_VO.setSign_up_begin_time(sign_up_begin_time);

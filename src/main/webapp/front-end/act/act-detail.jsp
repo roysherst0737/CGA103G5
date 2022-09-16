@@ -7,7 +7,7 @@
 <%@ page import="com.act_pic.model.*"%>
 <%@ page import="com.act_sign_up.model.*"%>
 <%@ page import="com.mem.model.*"%>
-
+<%@ page import="com.prod.model.*"%>
 
 
 <%
@@ -16,8 +16,8 @@ Act_VO actVO = actSvc.getOneAct(Integer.parseInt(request.getQueryString()));
 request.setAttribute("actVO", actVO);
 
 Act_pic_Service act_picSvc = new Act_pic_Service();
-List<Act_pic_VO> list = act_picSvc.get_from_act_no(actVO.getAct_no());
-pageContext.setAttribute("list", list);
+List<Act_pic_VO> act_picList = act_picSvc.get_from_act_no(actVO.getAct_no());
+pageContext.setAttribute("act_picList", act_picList);
 
 Object Objuser = session.getAttribute("user");
 Mem_VO user = (Mem_VO) Objuser;
@@ -25,9 +25,15 @@ Mem_VO user = (Mem_VO) Objuser;
 if (user != null) {
 	Act_sign_up_Service act_sign_upSvc = new Act_sign_up_Service();
 	Set<Integer> set = act_sign_upSvc.getAct_sign_up((Integer) user.getMem_no());
-
 	pageContext.setAttribute("set", set);
 }
+
+Prod_Service prodSvc = new Prod_Service();
+List<Prod_VO> list = prodSvc.getAll();
+pageContext.setAttribute("list", list);
+
+String url = request.getRequestURL().toString() + "?" + request.getQueryString();
+session.setAttribute("url", url);
 %>
 
 
@@ -76,13 +82,14 @@ if (user != null) {
 			showCancelButton : true
 		}).then(function(result) {
 			if (result.value) {	
-				location.href='<%=request.getContextPath()%>/front-end/login.jsp'
-			} 
-		});
+				location.href='<%=request.getContextPath()%>
+	/front-end/mem/login.jsp'
+							}
+						});
 	}
 	function confirmTest2() {
 		Swal.fire({
-			title : "報名成功",		
+			title : "報名成功",
 			showCancelButton : false
 		});
 	}
@@ -137,15 +144,17 @@ if (user != null) {
 
 
 							<div class="carousel-item active">
-								<c:forEach var="act_picVO" items="${list}" begin="0" end="0">
+								<c:forEach var="act_picVO" items="${act_picList}" begin="0"
+									end="0">
 									<img class="d-block w-100"
 										src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
 										alt="First slide" width="400" height="400">
 								</c:forEach>
 							</div>
-							<c:if test="${list.size() > 1}">
+							<c:if test="${act_picList.size() > 1}">
 								<div class="carousel-item">
-									<c:forEach var="act_picVO" items="${list}" begin="1" end="1">
+									<c:forEach var="act_picVO" items="${act_picList}" begin="1"
+										end="1">
 										<img class="d-block w-100"
 											src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
 											alt="Second slide" width="400" height="400">
@@ -153,9 +162,10 @@ if (user != null) {
 								</div>
 							</c:if>
 
-							<c:if test="${list.size() > 2}">
+							<c:if test="${act_picList.size() > 2}">
 								<div class="carousel-item">
-									<c:forEach var="act_picVO" items="${list}" begin="2" end="2">
+									<c:forEach var="act_picVO" items="${act_picList}" begin="2"
+										end="2">
 										<img class="d-block w-100"
 											src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
 											alt="Third slide" width="400" height="400">
@@ -179,25 +189,25 @@ if (user != null) {
 
 						<ol class="carousel-indicators">
 							<li data-target="#carousel-example-1" data-slide-to="0"
-								class="active"><c:forEach var="act_picVO" items="${list}"
-									begin="0" end="0">
+								class="active"><c:forEach var="act_picVO"
+									items="${act_picList}" begin="0" end="0">
 									<img class="d-block w-100 img-fluid"
 										src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
 										alt="" />
 								</c:forEach></li>
 
-							<c:if test="${list.size() > 1}">
+							<c:if test="${act_picList.size() > 1}">
 								<li data-target="#carousel-example-1" data-slide-to="1"><c:forEach
-										var="act_picVO" items="${list}" begin="1" end="1">
+										var="act_picVO" items="${act_picList}" begin="1" end="1">
 										<img class="d-block w-100 img-fluid"
 											src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
 											alt="" />
 									</c:forEach></li>
 							</c:if>
 
-							<c:if test="${list.size() > 2}">
+							<c:if test="${act_picList.size() > 2}">
 								<li data-target="#carousel-example-1" data-slide-to="2"><c:forEach
-										var="act_picVO" items="${list}" begin="2" end="2">
+										var="act_picVO" items="${act_picList}" begin="2" end="2">
 										<img class="d-block w-100 img-fluid"
 											src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
 											alt="" />
@@ -211,7 +221,8 @@ if (user != null) {
 					<div class="single-product-details">
 						<h1><%=actVO.getAct_name()%></h1>
 						<h4>
-							活動地點☞<%=actVO.getAct_loc()%></h4>
+							活動地點 ☞
+							<%=actVO.getAct_loc()%></h4>
 
 						<h4>
 							報名人數限制 ☞
@@ -223,19 +234,23 @@ if (user != null) {
 						</h4>
 						<h4>
 							報名開始時間 ☞
-							<%=actVO.getSign_up_begin_time()%>
+							<%String time = actVO.getSign_up_begin_time().toString();%>
+							<span id="begin"><%=time.toString().substring(0, time.length() - 5)%></span>
 						</h4>
 						<h4>
 							報名結束時間 ☞
-							<%=actVO.getSign_up_end_time()%>
+							<%time = actVO.getSign_up_end_time().toString();%>
+							<span id="end"><%=time.toString().substring(0, time.length() - 5)%></span>
 						</h4>
 						<h4>
 							活動開始時間 ☞
-							<%=actVO.getAct_start_time()%>
+							<%time = actVO.getAct_start_time().toString();%>
+							<%=time.toString().substring(0, time.length() - 5)%>
 						</h4>
 						<h4>
 							活動結束時間 ☞
-							<%=actVO.getAct_end_time()%>
+							<%time = actVO.getAct_end_time().toString();%>
+							<%=time.toString().substring(0, time.length() - 5)%>
 						</h4>
 
 						<h4>活動內容：</h4>
@@ -266,7 +281,7 @@ if (user != null) {
 
 
 											<c:when test="${empty sessionScope.user}">
-												<input type="button" value="我要報名" onclick="confirmTest()"/>
+												<input type="button" value="我要報名" onclick="confirmTest()" />
 											</c:when>
 											<c:otherwise>
 
@@ -276,7 +291,8 @@ if (user != null) {
 														<input type="submit" value="已報名" disabled="disabled">
 													</c:when>
 													<c:otherwise>
-														<input id="sign_up" type="submit" value="我要報名" onclick="confirmTest2()">
+														<input id="sign_up" type="submit" value="我要報名"
+															onclick="confirmTest2()">
 													</c:otherwise>
 
 												</c:choose>
@@ -324,310 +340,18 @@ if (user != null) {
 
 
 
-			<div class="row my-5">
-				<div class="col-lg-12">
-					<div class="title-all text-center">
-						<h1>Featured Products</h1>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Sed sit amet lacus enim.</p>
-					</div>
-					<div class="featured-products-box owl-carousel owl-theme">
-						<div class="item">
-							<div class="products-single fix">
-								<div class="box-img-hover">
-									<img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
-									<div class="mask-icon">
-										<ul>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="View"><i
-													class="fas fa-eye"></i></a></li>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="Compare"><i
-													class="fas fa-sync-alt"></i></a></li>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="Add to Wishlist"><i
-													class="far fa-heart"></i></a></li>
-										</ul>
-										<a class="cart" href="#">Add to Cart</a>
-									</div>
-								</div>
-								<div class="why-text">
-									<h4>Lorem ipsum dolor sit amet</h4>
-									<h5>$9.79</h5>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="products-single fix">
-								<div class="box-img-hover">
-									<img src="images/img-pro-02.jpg" class="img-fluid" alt="Image">
-									<div class="mask-icon">
-										<ul>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="View"><i
-													class="fas fa-eye"></i></a></li>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="Compare"><i
-													class="fas fa-sync-alt"></i></a></li>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="Add to Wishlist"><i
-													class="far fa-heart"></i></a></li>
-										</ul>
-										<a class="cart" href="#">Add to Cart</a>
-									</div>
-								</div>
-								<div class="why-text">
-									<h4>Lorem ipsum dolor sit amet</h4>
-									<h5>$9.79</h5>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="products-single fix">
-								<div class="box-img-hover">
-									<img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
-									<div class="mask-icon">
-										<ul>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="View"><i
-													class="fas fa-eye"></i></a></li>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="Compare"><i
-													class="fas fa-sync-alt"></i></a></li>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="Add to Wishlist"><i
-													class="far fa-heart"></i></a></li>
-										</ul>
-										<a class="cart" href="#">Add to Cart</a>
-									</div>
-								</div>
-								<div class="why-text">
-									<h4>Lorem ipsum dolor sit amet</h4>
-									<h5>$9.79</h5>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="products-single fix">
-								<div class="box-img-hover">
-									<img src="images/img-pro-04.jpg" class="img-fluid" alt="Image">
-									<div class="mask-icon">
-										<ul>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="View"><i
-													class="fas fa-eye"></i></a></li>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="Compare"><i
-													class="fas fa-sync-alt"></i></a></li>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="Add to Wishlist"><i
-													class="far fa-heart"></i></a></li>
-										</ul>
-										<a class="cart" href="#">Add to Cart</a>
-									</div>
-								</div>
-								<div class="why-text">
-									<h4>Lorem ipsum dolor sit amet</h4>
-									<h5>$9.79</h5>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="products-single fix">
-								<div class="box-img-hover">
-									<img src="images/img-pro-01.jpg" class="img-fluid" alt="Image">
-									<div class="mask-icon">
-										<ul>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="View"><i
-													class="fas fa-eye"></i></a></li>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="Compare"><i
-													class="fas fa-sync-alt"></i></a></li>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="Add to Wishlist"><i
-													class="far fa-heart"></i></a></li>
-										</ul>
-										<a class="cart" href="#">Add to Cart</a>
-									</div>
-								</div>
-								<div class="why-text">
-									<h4>Lorem ipsum dolor sit amet</h4>
-									<h5>$9.79</h5>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="products-single fix">
-								<div class="box-img-hover">
-									<img src="images/img-pro-02.jpg" class="img-fluid" alt="Image">
-									<div class="mask-icon">
-										<ul>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="View"><i
-													class="fas fa-eye"></i></a></li>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="Compare"><i
-													class="fas fa-sync-alt"></i></a></li>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="Add to Wishlist"><i
-													class="far fa-heart"></i></a></li>
-										</ul>
-										<a class="cart" href="#">Add to Cart</a>
-									</div>
-								</div>
-								<div class="why-text">
-									<h4>Lorem ipsum dolor sit amet</h4>
-									<h5>$9.79</h5>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="products-single fix">
-								<div class="box-img-hover">
-									<img src="images/img-pro-03.jpg" class="img-fluid" alt="Image">
-									<div class="mask-icon">
-										<ul>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="View"><i
-													class="fas fa-eye"></i></a></li>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="Compare"><i
-													class="fas fa-sync-alt"></i></a></li>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="Add to Wishlist"><i
-													class="far fa-heart"></i></a></li>
-										</ul>
-										<a class="cart" href="#">Add to Cart</a>
-									</div>
-								</div>
-								<div class="why-text">
-									<h4>Lorem ipsum dolor sit amet</h4>
-									<h5>$9.79</h5>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="products-single fix">
-								<div class="box-img-hover">
-									<img src="images/img-pro-04.jpg" class="img-fluid" alt="Image">
-									<div class="mask-icon">
-										<ul>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="View"><i
-													class="fas fa-eye"></i></a></li>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="Compare"><i
-													class="fas fa-sync-alt"></i></a></li>
-											<li><a href="#" data-toggle="tooltip"
-												data-placement="right" title="Add to Wishlist"><i
-													class="far fa-heart"></i></a></li>
-										</ul>
-										<a class="cart" href="#">Add to Cart</a>
-									</div>
-								</div>
-								<div class="why-text">
-									<h4>Lorem ipsum dolor sit amet</h4>
-									<h5>$9.79</h5>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+
 
 		</div>
 	</div>
 	<!-- End Cart -->
 
+	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->
 	<div class="instagram-box">
-		<div class="main-instagram owl-carousel owl-theme">
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-01.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-02.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-03.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-04.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-05.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-06.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-07.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-08.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-09.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-05.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-		</div>
+		<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
 	</div>
 	<!-- End Instagram Feed  -->
-
-	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Footer  -->
 	<footer>
 		<%@ include file="/front-end/partials/_footer.jsp"%>
@@ -670,9 +394,6 @@ if (user != null) {
 	<!-- 該文件需部屬較慢 -->
 	<script id="customjs"
 		src="<%=request.getContextPath()%>/front-end/js/custom.js"></script>
-
-
-
 </body>
 
 </html>

@@ -62,7 +62,6 @@
 		<servlet-name>Cart_Servlet</servlet-name>
 		<url-pattern>/front-end/cart/cart.do</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>Prod_pic_Servlet</servlet-name>
 		<servlet-class>com.prod_pic.controller.Prod_pic_Servlet</servlet-class>
@@ -71,7 +70,6 @@
 		<servlet-name>Prod_pic_Servlet</servlet-name>
 		<url-pattern>/back-end/prod_pic/prod_pic.do</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>Prod_Servlet</servlet-name>
 		<servlet-class>com.prod.controller.Prod_Servlet</servlet-class>
@@ -80,7 +78,6 @@
 		<servlet-name>Prod_Servlet</servlet-name>
 		<url-pattern>/back-end/prod/prod.do</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>Prod_type_Servlet</servlet-name>
 		<servlet-class>com.prod_type.controller.Prod_type_Servlet</servlet-class>
@@ -89,7 +86,6 @@
 		<servlet-name>Prod_type_Servlet</servlet-name>
 		<url-pattern>/back-end/prod_type/prod_type.do</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>Order_Servlet</servlet-name>
 		<servlet-class>com.order.controller.Order_Servlet</servlet-class>
@@ -98,7 +94,6 @@
 		<servlet-name>Order_Servlet</servlet-name>
 		<url-pattern>/back-end/order/order.do</url-pattern>
 	</servlet-mapping>
-
 	<servlet>
 		<servlet-name>Order_detail_Servlet</servlet-name>
 		<servlet-class>com.order_detail.controller.Order_detail_Servlet</servlet-class>
@@ -120,21 +115,47 @@
 
 	<!-- 討論區 -->
 	<servlet>
-		<servlet-name>Forum_Servlet</servlet-name>
-		<servlet-class>com.forum.controller.Forum_Servlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Forum_Servlet</servlet-name>
-		<url-pattern>/front-end/forum/forum.do</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>Forum_article_Servlet</servlet-name>
-		<servlet-class>com.forum_article.controller.Forum_article_Servlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Forum_article_Servlet</servlet-name>
-		<url-pattern>/front-end/forum/forum_article.do</url-pattern>
-	</servlet-mapping>
+        <servlet-name>Forum_Servlet</servlet-name>
+        <servlet-class>com.forum.controller.Forum_Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Forum_Servlet</servlet-name>
+        <url-pattern>/back-end/forum/forum.do</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Forum_article_Servlet</servlet-name>
+        <servlet-class>com.forum_article.controller.Forum_article_Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Forum_article_Servlet</servlet-name>
+        <url-pattern>/back-end/forum_article/forum_article.do</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Forum_article_report_Servlet</servlet-name>
+        <servlet-class>com.forum_article_report.controller.Forum_article_report_Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Forum_article_report_Servlet</servlet-name>
+        <url-pattern>/back-end/forum_article_report/forum_article_report.do</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Article_message_Servlet</servlet-name>
+        <servlet-class>com.article_message.controller.Article_message_Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Article_message_Servlet</servlet-name>
+        <url-pattern>/back-end/article_message/article_message.do</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Latest_news_Servlet</servlet-name>
+        <servlet-class>com.latest_news.controller.Latest_news_Servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Latest_news_Servlet</servlet-name>
+        <url-pattern>/back-end/latest_news/latest_news.do</url-pattern>
+    </servlet-mapping>
+	
+	<!-- 管理員 -->	
 	<servlet>
 		<servlet-name>ManagerRegister</servlet-name>
 		<servlet-class>com.manager.controller.ManagerRegister</servlet-class>
@@ -151,7 +172,6 @@
 		<servlet-name>ManagerLogin</servlet-name>
 		<url-pattern>/back-end/manager_login/mngLogin.do</url-pattern>
 	</servlet-mapping>
-	<!-- 管理員 -->
 	<servlet>
 		<servlet-name>ManagerServlet</servlet-name>
 		<servlet-class>com.manager.controller.ManagerServlet</servlet-class>

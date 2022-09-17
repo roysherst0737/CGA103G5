@@ -3,7 +3,7 @@
 	const week = [0, '禮拜一', '禮拜二', '禮拜三', '禮拜四', '禮拜五', '禮拜六', '禮拜日'];
 	const div_1 = document.querySelector('#div_1');
 	const pub_no = document.querySelector('#pub_no');
-	let nop=[];
+	let nop = [];
 	const today = new Date();
 	const tempday = new Date();
 	let longday;//選擇的日期
@@ -55,7 +55,7 @@
 				tempday.setDate(tempday.getDate() + 1);
 				span1.innerHTML = '<p>' + tempday.getDate() + '</p>';
 				const btn1 = document.createElement('div');
-				btn1.innerHTML = '<div style="display:none">' + tempday.getTime() + '</div><button data-toggle="modal"data-target="#exampleModalCenter" class="btn-inverse-secondary" style="border-radius: 10px;padding: 5px;">預約訂位	</button>';
+				btn1.innerHTML = '<div style="display:none">' + tempday.getTime() + '</div><button data-toggle="modal"data-target="#exampleModalCenter" class="' + "btn_day" + i + ' btn-inverse-secondary" style="border-radius: 10px;padding: 5px;">預約訂位	</button>';
 				table_div.appendChild(span1, table_div.lastChild);
 				if (y != 2 && !(y == 3 && thisWeek > i) && day_check < 8) {
 					day_check++;
@@ -90,7 +90,7 @@
 	const btnlist = document.querySelectorAll('.btn-inverse-secondary');
 	btnlist.forEach(e => {
 		e.addEventListener('click', element => {
-			 longday = element.target.parentElement.firstChild.textContent;
+			longday = element.target.parentElement.firstChild.textContent;
 			let json = JSON.stringify({
 				pub_no: pub_no.textContent,
 				pub_reservation_date: longday,
@@ -119,16 +119,16 @@
 							div2.style.display = '';
 							const ipt = document.querySelector('#ipt');
 							ipt.removeAttribute('max');
-							ipt.setAttribute('max',nop[select.value]);
-							ipt.addEventListener('keyup',function(){
-								if(this.value > nop[select.value]) {this.value = null};
+							ipt.setAttribute('max', nop[select.value]);
+							ipt.addEventListener('keyup', function() {
+								if (this.value > nop[select.value]) { this.value = null };
 							})
 						});
 						div_1.innerHTML = "";
 						select.innerHTML = "<option selected disabled>請選擇時段</option>";
 						for (i = 0; i < 24; i++) {
 							let aa = pub_available.substring(3 * i, 3 * (i + 1));
-							nop.push(parseInt(aa,10));
+							nop.push(parseInt(aa, 10));
 							if (aa === "000") {
 								if (i < 9) {
 									select.innerHTML += "<option value='" + i + "' disabled>時段:0" + i + ":00~0" + (i + 1) + ":00  &emsp;&emsp;&emsp;&emsp;&emsp;剩餘人數:" + aa + "</option>";
@@ -147,6 +147,7 @@
 								}
 							}
 						}
+						
 						const div2 = document.createElement("div");
 						div2.classList.add('div2');
 						div2.setAttribute("id", "div2");
@@ -155,6 +156,12 @@
 						div2.innerHTML = `<label for='ipt'>預約人數:</label><input id='ipt' type='number'><p id="p_check"style="display:none;color:red">請輸入預約人數</p>`;
 						div_1.appendChild(select, div_1.lastChild);
 						div_1.appendChild(div2, div_1.lastChild);
+						if(Number.parseInt(pub_available)==0){
+							select.style.display="none";
+							const div3 = document.createElement("div");
+							div3.innerHTML =`<P>客滿</P>`;
+							div_1.appendChild(div3, div_1.lastChild);
+						}
 					} else {
 					}
 				});
@@ -165,25 +172,25 @@
 	//送出預定
 	document.querySelector('#rate_submit').addEventListener('click', function() {
 		const ipt = document.querySelector('#ipt');
-		if(ipt.value===""){
-			document.querySelector('#p_check').style.display="";
+		if (ipt.value === "") {
+			document.querySelector('#p_check').style.display = "";
 			ipt.focus();
-			ipt.addEventListener('change',function(){
-				document.querySelector('#p_check').style.display="none";
+			ipt.addEventListener('change', function() {
+				document.querySelector('#p_check').style.display = "none";
 			});
 			return;
 		};
 		let str = "";
 		const select = document.querySelector('.form-select');
-		str="000".repeat(select.value);
-		str+=ipt.value<10?"00"+ipt.value:ipt.value<100?"0"+ipt.value:ipt.value;
-		str=str.padEnd(72, '0');
+		str = "000".repeat(select.value);
+		str += ipt.value < 10 ? "00" + ipt.value : ipt.value < 100 ? "0" + ipt.value : ipt.value;
+		str = str.padEnd(72, '0');
 		console.log(str);
 		let json = JSON.stringify({
-			mem_no:"1",
+			mem_no: "1",
 			pub_no: pub_no.textContent,
 			pub_booking_date: longday,
-			pub_booking_time:str,
+			pub_booking_time: str,
 		});
 		fetch('Booking', {
 			method: 'POST',
@@ -197,15 +204,36 @@
 				const { successful } = body;
 				const { message } = body;
 				const { pub_available } = body;
-				if(successful){
+				if (successful) {
 					alert("訂位成功")
 					location.reload();
-					
-					
-				}else{
+
+
+				} else {
 					alert("訂位失敗請洽客服")
 					location.reload();
 				}
 			});
 	});
+	//寫入營業時間
+	setDivData(document.querySelector('#open'));
+	function setDivData(opendiv) {
+		str = "";
+		const week = aa(opendiv.textContent);
+		const date = ['禮拜一', '禮拜二', '禮拜三', '禮拜四', '禮拜五', '禮拜六', '禮拜日'];
+
+		week.forEach(e => {
+			if (e.includes('未營業')) {
+				
+				console.log(date.indexOf(e.substring(0,3))+1);
+				const btn= document.querySelector('.btn_day'+(date.indexOf(e.substring(0,3))+1));
+				console.log(btn)
+				btn.removeAttribute("data-target");
+				btn.removeAttribute("data-toggle");
+				btn.textContent="未營業";
+			}
+			str += "<div class='col align-self-center '>" + e + "</div>"
+		});
+		opendiv.innerHTML = str;
+	}
 });

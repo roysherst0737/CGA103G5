@@ -39,7 +39,8 @@
 <!-- plugin css for this page -->
 <!-- End plugin css for this page -->
 <!-- inject:css -->
-
+<script 
+		src="<%=request.getContextPath()%>/front-end/pages/pub/js/open.js"></script>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/back-end/css/vertical-layout-light/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -230,6 +231,9 @@ div.col-sm-12>button.btn-warning:hover {
 
 								<p>可接受預約人數:${pub.pub_nop}<span id="nop" style="display:none">${pub.pub_nop}</span></p>
 								<p style="display: none"id="pub_no">${pub.pub_no}</p>
+								<div id="open_div" style="text-align: start;">營業時間</div>
+								<div id="open">${pub.pub_open}</div>
+								
 							</div>
 						<!-- 預約表 -->
 						<script>

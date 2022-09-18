@@ -12,7 +12,7 @@
 				</div>
 				<div class="our-link">
 					<ul>
-						<li><a href="<%=request.getContextPath()%>/front-end/my-account.jsp"><i class="fa fa-user s_color"></i> 會員專區 </a></li>
+						<li><a href="<%=request.getContextPath()%>/front-end/mem/my-account.jsp"><i class="fa fa-user s_color"></i> 會員專區 </a></li>
 						<li><a href="<%=request.getContextPath()%>/front-end/about.jsp"><i class="fas fa-location-arrow"></i>
 								我們的地址 </a></li>
 						<li><a href="<%=request.getContextPath()%>/front-end/contact-us.jsp"><i class="fas fa-headset"></i>

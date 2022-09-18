@@ -1836,7 +1836,7 @@ ul.cart-list>li.total>.btn:hover {
 
 /*------------------------------------------------------------------ All Pages -------------------------------------------------------------------*/
 .all-title-box {
-    background: url("../images/all-bg-title.jpg") no-repeat center center;
+    background: url("../images/pub2.jpg") no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -ms-background-size: cover;
@@ -2858,7 +2858,7 @@ ul.cart-list>li.total>.btn:hover {
 
 .contact-info-left {
     padding: 20px;
-    background: url(../images/contact-bg.jpg) no-repeat center;
+    background: url("../images/ContactUs.jpg") no-repeat center;
     background-size: cover;
 }
 

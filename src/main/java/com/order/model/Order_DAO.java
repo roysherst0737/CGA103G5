@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -41,6 +42,8 @@ public class Order_DAO implements Order_DAO_interface{
 		"UPDATE `order` set mem_no=?, coupon_no=?, order_time=?, order_price_total=?, dis_price_total=?, order_status=?, payment_method=?, pickup_method=?, shipping_fee=?, receiver_name=?, receiver_address=?, receiver_phone=? where order_no = ?";
 	
 	private static final String GET_Order_details_ByOrder_STMT = "SELECT order_no,prod_no,prod_qty,prod_price,mem_no FROM order_detail where order_no = ? order by order_no";
+	
+	private static final String GET_CREATE_ORDER = "SELECT order_no FROM `order` where mem_no = ?";
 	
 	@Override
 	public void insert(Order_VO orderVO) {
@@ -337,6 +340,57 @@ public class Order_DAO implements Order_DAO_interface{
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return set;
+	}
+	
+	@Override
+	public Set<Integer> getCreateOrder(Integer mem_no) {
+		Set<Integer> set = new HashSet<Integer>();
+		
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_CREATE_ORDER);
+			pstmt.setInt(1, mem_no);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				
+				set.add(rs.getInt("order_no")); 
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
 		} finally {
 			if (rs != null) {
 				try {

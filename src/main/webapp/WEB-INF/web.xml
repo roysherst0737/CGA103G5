@@ -60,7 +60,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Cart_Servlet</servlet-name>
-		<url-pattern>/front-end/cart/cart.do</url-pattern>
+		<url-pattern>/front-end/prod/cart.do</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>Prod_pic_Servlet</servlet-name>

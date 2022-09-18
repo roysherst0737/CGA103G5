@@ -31,6 +31,8 @@ public class Cart_DAO implements Cart_DAO_interface {
 	private static final String UPDATE = 
 		"UPDATE cart set prod_no=?, prod_qty=? where mem_no = ?";
 	
+	private static final String GET_ADD_TO_CART = "SELECT prod_no FROM cart where mem_no = ?";
+	
 	@Override
 	public void insert(Cart_VO cartVO) {
 		
@@ -254,5 +256,56 @@ public class Cart_DAO implements Cart_DAO_interface {
 			}
 		}
 		return list;
+	}
+	
+	@Override
+	public Set<Integer> getAdd_to_Cart(Integer mem_no) {
+		Set<Integer> set = new HashSet<Integer>();
+		
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ADD_TO_CART);
+			pstmt.setInt(1, mem_no);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				
+				set.add(rs.getInt("prod_no")); 
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return set;
 	}
 }

@@ -3,17 +3,29 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.prod.model.*"%>
 <%@ page import="com.prod_type.model.*"%>
+<%@ page import="com.mem.model.*"%>
+<%@ page import="com.cart.model.*"%>
 
 <%
 Prod_Service prodSvc = new Prod_Service();
 List<Prod_VO> list = prodSvc.getAll();
 pageContext.setAttribute("list", list);
-%>
 
-<%
 Prod_type_Service prod_typeSvc = new Prod_type_Service();
 List<Prod_type_VO> list2 = prod_typeSvc.getAll();
 pageContext.setAttribute("list2", list2);
+
+Object Objuser = session.getAttribute("user");
+Mem_VO user = (Mem_VO) Objuser;
+
+if (user != null) {
+	Cart_Service cartSvc = new Cart_Service();
+	Set<Integer> cartSet = cartSvc.getAdd_to_Cart((Integer) user.getMem_no());
+	pageContext.setAttribute("cartSet", cartSet);
+}
+
+String url = request.getRequestURL().toString() + "?" + request.getQueryString();
+session.setAttribute("url", url);
 %>
 
 <!DOCTYPE html>
@@ -45,6 +57,27 @@ pageContext.setAttribute("list2", list2);
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/custom.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+	<script>
+		function confirmTest() {
+			Swal.fire({
+				title : "請先登入會員",		
+				showCancelButton : true
+			}).then(function(result) {
+				if (result.value) {	
+					location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
+					}
+				});
+		}
+		function confirmTest2() {
+			Swal.fire({
+				title : "成功加入購物車！",
+				showCancelButton : false
+			});
+		}
+	</script>
 
 	<style>
 		.btn {
@@ -63,6 +96,24 @@ pageContext.setAttribute("list2", list2);
 		#type:hover {
 			color:#f5c242;
 			font-weight: bold
+			}
+		
+		#cart {
+			background-color: #f5c242;
+			color: white;
+			font-weight: bold;
+			font-size: 16px;
+			margin-top: 122px;
+			cursor: pointer;
+			border: none;
+			height: 38px;
+			}
+		#cart:hover {
+			color: black;
+			}
+			
+		#cart2 {
+			font-size: 18px;
 			}
 	
 	</style>
@@ -114,7 +165,8 @@ pageContext.setAttribute("list2", list2);
 						
                         <div class="product-categorie-box">
                             <div class="tab-content">	
-                                <div role="tabpanel" class="tab-pane fade show active" id="grid-view">                                
+                                <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                <form name="cart" action="cart.do" method="post">                                
                                     <div class="row">
                                     <c:forEach var="prodVO" items="${list}">
                                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
@@ -127,7 +179,23 @@ pageContext.setAttribute("list2", list2);
                                                             <li><a href="<%=request.getContextPath()%>/front-end/prod/shop-detail.jsp?${prodVO.prod_no}"
                                                             	data-toggle="tooltip" data-placement="right" title="查看詳情"><i class="fas fa-eye"></i></a></li>
                                                         </ul>
-                                                        <a class="cart" href="#">加入購物車</a>
+                                                        
+                                                        <c:choose>
+															<c:when test="${empty sessionScope.user}">
+																<input id="cart" type="button" value="加入購物車" onclick="confirmTest()" />
+															</c:when>
+															<c:otherwise>
+																<c:choose>
+																	<c:when test="${set.contains(prodVO.getProd_no())}">
+																		<input id="cart" type="submit" value="已加入購物車" disabled="disabled">
+																	</c:when>
+															<c:otherwise>
+																<input id="cart" type="submit" value="加入購物車" name="action" value="ADD" onclick="confirmTest2()">
+															</c:otherwise>
+																</c:choose>
+															</c:otherwise>
+														</c:choose>
+														
                                                     </div>
                                                 </div>
                                                 <div class="why-text">
@@ -137,7 +205,8 @@ pageContext.setAttribute("list2", list2);
                                             </div>
                                         </div>
                                         </c:forEach>
-                                    </div>                                	
+                                    </div> 
+                                    </form>                               	
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="list-view">
                                 <c:forEach var="prodVO" items="${list}">
@@ -162,7 +231,21 @@ pageContext.setAttribute("list2", list2);
                                                     <h4>${prodVO.prod_name}</h4>
                                                     <h5>$${prodVO.prod_price}</h5>
                                                     <p>${prodVO.prod_detail}</p>
-                                                    <a class="btn hvr-hover" href="#" style="font-size:18px">加入購物車</a>
+                                                    <c:choose>
+														<c:when test="${empty sessionScope.user}">
+															<input class="btn btn-warning" id="cart2" type="button" value="加入購物車" onclick="confirmTest()" />
+														</c:when>
+														<c:otherwise>
+															<c:choose>
+																<c:when test="${set.contains(prodVO.getProd_no())}">
+																	<input class="btn btn-warning" id="cart2" type="submit" value="已加入購物車" disabled="disabled">
+																</c:when>
+														<c:otherwise>
+															<input class="btn btn-warning" id="cart2" type="submit" value="加入購物車" onclick="confirmTest2()">
+														</c:otherwise>
+															</c:choose>
+														</c:otherwise>
+													</c:choose>
                                                 </div>
                                             </div>
                                         </div>                                      

@@ -34,7 +34,7 @@ public class Mem_Coupon_JNDIDAO implements Mem_Coupon_DAO_interface{
 	private static final String DELETE = 
 		"DELETE FROM mem_coupon where mem_no = ? AND coupon_no = ?";
 	private static final String UPDATE = 
-		"UPDATE mem_coupon remain_amount? where mem_no = ? AND coupon_no = ?";
+		"UPDATE mem_coupon set remain_amount? where mem_no = ? AND coupon_no = ?";
 
 	@Override
 	public void insert(Mem_Coupon_VO memCouponVO) {

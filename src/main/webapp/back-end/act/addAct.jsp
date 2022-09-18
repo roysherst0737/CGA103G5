@@ -168,7 +168,8 @@ th, td {
 					maxDate : $('#f_date2').val() ? $('#f_date2').val() : false
 				})
 			},
-			timepicker : true
+			timepicker : true,
+			step: 15
 		});
 
 		$('#f_date2').datetimepicker({

@@ -52,7 +52,15 @@
 		<servlet-name>MemRegisterServlet</servlet-name>
 		<url-pattern>/front-end/mem/MemRegisterServlet</url-pattern>
 	</servlet-mapping>
-
+	<!-- 優惠券 -->
+	<servlet>
+		<servlet-name>CouponServlet</servlet-name>
+		<servlet-class>com.coupon.controller.CouponServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CouponServlet</servlet-name>
+		<url-pattern>/back-end/coupon/coupon.do</url-pattern>
+	</servlet-mapping>
 	<!-- 商品 -->
 	<servlet>
 		<servlet-name>Cart_Servlet</servlet-name>

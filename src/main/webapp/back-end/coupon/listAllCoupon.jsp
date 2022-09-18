@@ -170,15 +170,15 @@ pageContext.setAttribute("list", list);
 														  			</c:otherwise>
 																</c:choose>
 																<td>
-																  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;">
+																  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/coupon/coupon.do" style="margin-bottom: 0px;">
 																     <input type="submit" class="btn btn-outline-secondary btn-sm" value="修改">
-																     <input type="hidden" name="memno"  value="${couponVO.coupon_no}">
+																     <input type="hidden" name="coupon_no"  value="${couponVO.coupon_no}">
 																     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 																</td>
 																<td>
-																  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mem/mem.do" style="margin-bottom: 0px;">
+																  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/coupon/coupon.do" style="margin-bottom: 0px;">
 																     <input type="submit" class="btn btn-outline-primary btn-sm" value="刪除">
-																     <input type="hidden" name="memno"  value="${couponVO.coupon_no}">
+																     <input type="hidden" name="coupon_no"  value="${couponVO.coupon_no}">
 																     <input type="hidden" name="action" value="delete"></FORM>
 																</td>
 															</tr>

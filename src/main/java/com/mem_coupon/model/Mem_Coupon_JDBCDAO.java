@@ -24,7 +24,7 @@ public class Mem_Coupon_JDBCDAO implements Mem_Coupon_DAO_interface{
 		private static final String DELETE = 
 			"DELETE FROM mem_coupon where mem_no = ? AND coupon_no = ?";
 		private static final String UPDATE = 
-			"UPDATE mem_coupon remain_amount? where mem_no = ? AND coupon_no = ?";
+			"UPDATE mem_coupon set remain_amount? where mem_no = ? AND coupon_no = ?";
 
 	@Override
 	public void insert(Mem_Coupon_VO memCouponVO) {
@@ -185,7 +185,7 @@ public class Mem_Coupon_JDBCDAO implements Mem_Coupon_DAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				// empVo ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				memCouponVO = new Mem_Coupon_VO();
 				memCouponVO.setCoupon_no(rs.getInt("coupon_no"));
 				memCouponVO.setMem_no(rs.getInt("mem_no"));
@@ -245,7 +245,7 @@ public class Mem_Coupon_JDBCDAO implements Mem_Coupon_DAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				memCouponVO = new Mem_Coupon_VO();
 				memCouponVO.setCoupon_no(rs.getInt("coupon_no"));
 				memCouponVO.setMem_no(rs.getInt("mem_no"));
@@ -293,7 +293,7 @@ public class Mem_Coupon_JDBCDAO implements Mem_Coupon_DAO_interface{
 
 		Mem_Coupon_JDBCDAO dao = new Mem_Coupon_JDBCDAO();
 
-//		// ·s¼W
+//		// ï¿½sï¿½W
 //		Mem_Coupon_VO memCouponVO1 = new Mem_Coupon_VO();
 //		memCouponVO1.setCoupon_no(1);
 //		memCouponVO1.setMem_no(1);
@@ -301,17 +301,17 @@ public class Mem_Coupon_JDBCDAO implements Mem_Coupon_DAO_interface{
 //
 //		dao.insert(memCouponVO1);
 //
-//		// ­×§ï
+//		// ï¿½×§ï¿½
 //		Mem_Coupon_VO memCouponVO2 = new Mem_Coupon_VO();
 //		memCouponVO2.setCoupon_no(1);
 //		memCouponVO2.setMem_no(1);
 //		memCouponVO2.setRemain_amount(2);
 //		dao.update(memCouponVO2);
 //
-//		// §R°£
+//		// ï¿½Rï¿½ï¿½
 //		dao.delete(1,1);
 //
-		// ¬d¸ß
+		// ï¿½dï¿½ï¿½
 		Mem_Coupon_VO memCouponVO3 = dao.findByPrimaryKey(1,1);
 		System.out.print(memCouponVO3.getCoupon_no() + ",");
 		System.out.print(memCouponVO3.getMem_no() + ",");
@@ -319,7 +319,7 @@ public class Mem_Coupon_JDBCDAO implements Mem_Coupon_DAO_interface{
 
 		System.out.println("---------------------");
 
-		// ¬d¸ß
+		// ï¿½dï¿½ï¿½
 //		List<Mem_Coupon_VO> list = dao.getAll();
 //		for (Mem_Coupon_VO aEmp : list) {
 //			System.out.print(aEmp.getCoupon_no() + ",");

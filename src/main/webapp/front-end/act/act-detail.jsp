@@ -6,6 +6,9 @@
 <%@ page import="com.act.model.*"%>
 <%@ page import="com.act_pic.model.*"%>
 <%@ page import="com.act_sign_up.model.*"%>
+<%@ page import="com.mem.model.*"%>
+
+
 
 <%
 Act_Service actSvc = new Act_Service();
@@ -16,6 +19,17 @@ Act_pic_Service act_picSvc = new Act_pic_Service();
 List<Act_pic_VO> list = act_picSvc.get_from_act_no(actVO.getAct_no());
 pageContext.setAttribute("list", list);
 
+Object Objuser = session.getAttribute("user");
+Mem_VO user = (Mem_VO) Objuser;
+
+if (user != null) {
+	Act_sign_up_Service act_sign_upSvc = new Act_sign_up_Service();
+	Set<Integer> set = act_sign_upSvc.getAct_sign_up((Integer) user.getMem_no());
+
+	pageContext.setAttribute("set", set);
+
+	System.out.println(set.contains(actVO.getAct_no()));
+}
 %>
 
 
@@ -53,6 +67,30 @@ pageContext.setAttribute("list", list);
 <!-- Custom CSS -->
 <link rel="stylesheet" href="css/custom.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script>
+	function confirmTest() {
+		Swal.fire({
+			title : "報名前請先登入",		
+			showCancelButton : true
+		}).then(function(result) {
+			if (result.value) {	
+				location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
+			} 
+		});
+	}
+	function confirmTest2() {
+		Swal.fire({
+			title : "報名成功",		
+			showCancelButton : false
+		});
+	}
+</script>
+
+
 
 <style>
 .btn {
@@ -216,22 +254,42 @@ pageContext.setAttribute("list", list);
 											<tr>
 												<td>攜伴人數：</td>
 												<td><input type="number" name="accompany_count"
-													size="45" min="0" max="20"
-													value="0" /></td>
+													size="45" min="0" max="20" value="0" /></td>
 											</tr>
 										</table>
 
-										<br> 
-										<input type="hidden" name="act_no" value="<%=actVO.getAct_no()%>">
-										<input type="hidden" name="mem_no" value="2">
-										<input type="hidden" name="action" value="insert">
-										
-										<input type="submit" value="我要報名">
-										
+										<br> <input type="hidden" name="act_no"
+											value="<%=actVO.getAct_no()%>"> <input type="hidden"
+											name="mem_no" value="${user.mem_no}"> <input
+											type="hidden" name="action" value="insert">
+
+
+										<c:choose>
+
+
+											<c:when test="${empty sessionScope.user}">
+												<input type="button" value="我要報名" onclick="confirmTest()"/>
+											</c:when>
+											<c:otherwise>
+
+
+												<c:choose>
+													<c:when test="${set.contains(actVO.getAct_no())}">
+														<input type="submit" value="已報名" disabled="disabled">
+													</c:when>
+													<c:otherwise>
+														<input id="sign_up" type="submit" value="我要報名" onclick="confirmTest2()">
+													</c:otherwise>
+
+												</c:choose>
+
+											</c:otherwise>
+
+
+										</c:choose>
+
+
 									</FORM>
-
-
-
 
 								</div>
 							</li>
@@ -614,6 +672,9 @@ pageContext.setAttribute("list", list);
 	<!-- 該文件需部屬較慢 -->
 	<script id="customjs"
 		src="<%=request.getContextPath()%>/front-end/js/custom.js"></script>
+
+
+
 </body>
 
 </html>

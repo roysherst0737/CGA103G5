@@ -24,6 +24,10 @@
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/Logo2.png" />
 </head>
 
+<%	String url = request.getHeader("referer"); 
+	session.setAttribute("url",url);
+%>
+
 <body>
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">

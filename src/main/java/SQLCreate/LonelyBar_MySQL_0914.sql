@@ -94,8 +94,7 @@ CREATE TABLE pub (
     firm_tax_id VARCHAR(10),
 	pub_application_M VARCHAR(200),
     CONSTRAINT pub_no_PK PRIMARY KEY (pub_no),
-    CONSTRAINT `pub.mem_no_FK` FOREIGN KEY (mem_no)
-        REFERENCES mem (mem_no)
+    CONSTRAINT `pub.mem_no_FK` FOREIGN KEY (mem_no) REFERENCES mem (mem_no)
 );
 
 -- 酒吧照片
@@ -200,15 +199,13 @@ CREATE TABLE `order` (
   `order_no` int NOT NULL AUTO_INCREMENT,
   `mem_no` int NOT NULL,
   `coupon_no` int DEFAULT NULL,
-  `order_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `sold_time` timestamp,
+  `order_time` timestamp DEFAULT CURRENT_TIMESTAMP,
   `order_price_total` int NOT NULL,
   `dis_price_total` int NOT NULL,
   `order_status` tinyint NOT NULL DEFAULT '0',
   `payment_method` tinyint NOT NULL,
   `pickup_method` tinyint NOT NULL,
   `shipping_fee` tinyint NOT NULL,
-  `tracking_no` int NOT NULL,
   `receiver_name` varchar(15) NOT NULL,
   `receiver_address` varchar(100) NOT NULL,
   `receiver_phone` varchar(15) NOT NULL,
@@ -226,10 +223,6 @@ CREATE TABLE `order_detail` (
   `prod_qty` int DEFAULT NULL,
   `prod_price` int DEFAULT NULL,
   `mem_no` int NOT NULL,
-  `comment_time` timestamp,
-  `comment_star` tinyint DEFAULT NULL,
-  `comment_content` varchar(100) DEFAULT NULL,
-  `comment_pic` longblob,
   PRIMARY KEY (`order_no`,`prod_no`),
   KEY `prod_no_PK_FK_idx` (`prod_no`),
   CONSTRAINT `order_detail_order_no_PK_FK` FOREIGN KEY (`order_no`) REFERENCES `order` (`order_no`),
@@ -325,7 +318,7 @@ CREATE TABLE `act` (
     `act_loc` VARCHAR(100) NOT NULL,
     `act_launch_time` DATETIME NOT NULL,
     `act_off_time` DATETIME NOT NULL,
-    `current_count` INT NOT NULL,
+    `current_count` INT NOT NULL DEFAULT '0',
     `max_count` INT NOT NULL,
     `min_count` INT NOT NULL,
     `sign_up_begin_time` DATETIME NOT NULL,
@@ -333,8 +326,7 @@ CREATE TABLE `act` (
     `act_start_time` DATETIME NOT NULL,
     `act_end_time` DATETIME NOT NULL,
     `act_status` TINYINT NOT NULL DEFAULT '0',
-    `apply_time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `apply_status` TINYINT NOT NULL DEFAULT '0',
+    `revise_time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
     CONSTRAINT `act_no_PK` PRIMARY KEY (`act_no`),
     CONSTRAINT `act.pub_no_FK` FOREIGN KEY (`pub_no`)
@@ -425,7 +417,7 @@ CREATE TABLE `forum_article` (
   `frm_art_no` int NOT NULL AUTO_INCREMENT,
   `frm_no` int NOT NULL,
   `mem_no` int NOT NULL,
-  `art_time` datetime NOT NULL,
+  `art_time` datetime DEFAULT CURRENT_TIMESTAMP,
   `art_title` varchar(100) NOT NULL,
   `art_content` varchar(1000) NOT NULL,
   `art_img` blob,
@@ -437,10 +429,10 @@ CREATE TABLE `forum_article` (
 
 -- 討論區文章檢舉
 CREATE TABLE `forum_article_report` (
-  `frm_art_rpt_no` int NOT NULL,
+  `frm_art_rpt_no` int NOT NULL AUTO_INCREMENT,
   `mem_no` int NOT NULL,
   `frm_art_no` int NOT NULL,
-  `rpt_time` datetime NOT NULL,
+  `rpt_time` datetime DEFAULT CURRENT_TIMESTAMP,
   `rpt_content` varchar(1000) NOT NULL,
   `mng_no` int DEFAULT NULL,
   `rpt_done_time` datetime DEFAULT NULL,
@@ -461,7 +453,7 @@ CREATE TABLE `article_message` (
   `art_msg_no` int NOT NULL AUTO_INCREMENT,
   `mem_no` int NOT NULL,
   `frm_art_no` int NOT NULL,
-  `msg_time` datetime NOT NULL,
+  `msg_time` datetime DEFAULT CURRENT_TIMESTAMP,
   `msg_content` varchar(1000) NOT NULL,
   PRIMARY KEY (`art_msg_no`),
   KEY `mem_no_FK_idx` (`mem_no`),
@@ -475,7 +467,7 @@ CREATE TABLE `article_message_report` (
   `art_msg_rpt` int NOT NULL AUTO_INCREMENT,
   `mem_no` int NOT NULL,
   `art_msg_no` int NOT NULL,
-  `rpt_time` datetime NOT NULL,
+  `rpt_time` datetime DEFAULT CURRENT_TIMESTAMP,
   `rpt_msg_content` varchar(1000) NOT NULL,
   `mng_no` int DEFAULT NULL,
   `msg_done_time` datetime DEFAULT NULL,
@@ -682,13 +674,13 @@ VALUES (1,"00000000000000","2022-08-20");
 -- 建立 商品種類 假資料
 INSERT INTO prod_type (
 prod_type_name)
-VALUES ("威士忌");
-INSERT INTO prod_type (
-prod_type_name)
-VALUES ("紅酒");
+VALUES ("香醇基酒");
 INSERT INTO prod_type (
 prod_type_name)
 VALUES ("調酒器材");
+INSERT INTO prod_type (
+prod_type_name)
+VALUES ("調酒懶人包");
 
 -- 建立 商品 假資料
 INSERT INTO prod (
@@ -698,7 +690,7 @@ prod_price,
 prod_stock,
 off_time,
 prod_detail )
-VALUES (1, "Macallan", 10000, 10, null, "自始至終堅持培養自家雪莉桶的麥卡倫，不惜迢迢萬里路，堅持從西班牙製桶再將橡木桶運回蘇格蘭，顯然是對奢華有「絕對潔癖」的精神。我們也飛往西班牙抽絲剝繭追尋雪莉桶的價值，或許可找到「誰最珍貴」的正解。");
+VALUES (1, "Macallan", 6980, 10, null, "自始至終堅持培養自家雪莉桶的麥卡倫，不惜迢迢萬里路，堅持從西班牙製桶再將橡木桶運回蘇格蘭，顯然是對奢華有「絕對潔癖」的精神。我們也飛往西班牙抽絲剝繭追尋雪莉桶的價值，或許可找到「誰最珍貴」的正解。");
 INSERT INTO prod (
 prod_type_no,
 prod_name,
@@ -706,7 +698,7 @@ prod_price,
 prod_stock,
 off_time,
 prod_detail )
-VALUES (2, "Familia Torres", 5000, 6, "2023-01-01 08:10:10", "Miguel Torres Carbo (1909-1991) 對於品質的堅持與開拓國際市場的遠見都是讓TORRES成功蛻變成為國際知名酒廠的大功臣之一。");
+VALUES (2, "Familia Torres", 1500, 6, "2023-01-01 08:10:10", "Miguel Torres Carbo (1909-1991) 對於品質的堅持與開拓國際市場的遠見都是讓TORRES成功蛻變成為國際知名酒廠的大功臣之一。");
 INSERT INTO prod (
 prod_type_no,
 prod_name,
@@ -714,7 +706,7 @@ prod_price,
 prod_stock,
 off_time,
 prod_detail )
-VALUES (3, "Leopold", 1000, 50, null, "Cocktail Kingdom offers their signature Leopold jiggers in two sizes and a number of different finishes. A one-ounce/two-ounce jigger is the go-to for many bartenders, so we’d recommend opting for the 30-milliliter/60-milliliter size.");
+VALUES (3, "Leopold", 680, 50, null, "Cocktail Kingdom offers their signature Leopold jiggers in two sizes and a number of different finishes. A one-ounce/two-ounce jigger is the go-to for many bartenders, so we’d recommend opting for the 30-milliliter/60-milliliter size.");
 
 -- 建立 商品照片 假資料
 INSERT INTO prod_pic (
@@ -736,54 +728,48 @@ INSERT INTO prod_pic (
 prod_no,
 prod_pic,
 prod_pic_name )
-VALUES (3, null, "無照片");
+VALUES (3, null, "待上傳照片");
 
 -- 建立 訂單 假資料
 INSERT INTO `order` (
 mem_no, 
 coupon_no,
-sold_time,
 order_price_total,
 dis_price_total,
 order_status,
 payment_method,
 pickup_method,
 shipping_fee,
-tracking_no,
 receiver_name,
 receiver_address,
 receiver_phone)
-VALUES (1, 1, null, 1776, 888, 0, 1, 2, 0, 123456, "韋小寶", "鹿頂街38號", "091234567");
+VALUES (1, 1, 1776, 888, 0, 1, 2, 0, "韋小寶", "台北市金庸區鹿頂街38號", "0912345677");
 INSERT INTO `order` (
 mem_no, 
 coupon_no,
-sold_time,
 order_price_total,
 dis_price_total,
 order_status,
 payment_method,
 pickup_method,
 shipping_fee,
-tracking_no,
 receiver_name,
 receiver_address,
 receiver_phone)
-VALUES (2, 2, null, 17766, 8883, 0, 1, 2, 0, 123456, "韋大寶", "妳心裡", "097654321");
+VALUES (2, 2, 17766, 8883, 0, 1, 2, 0, "韋大寶", "高雄市倪匡區藍血路100號", "0976543211");
 INSERT INTO `order` (
 mem_no, 
 coupon_no,
-sold_time,
 order_price_total,
 dis_price_total,
 order_status,
 payment_method,
 pickup_method,
 shipping_fee,
-tracking_no,
 receiver_name,
 receiver_address,
 receiver_phone)
-VALUES (3, 3, null, 17776, 8888, 0, 1, 2, 0, 123456, "你老婆", "隔壁小王的床上", "0988888888");
+VALUES (3, 3, 17776, 8888, 0, 1, 2, 0, "韋寶寶", "台中市消波區大海路87號", "0988888888");
 
 -- 建立 訂單明細 假資料
 INSERT INTO order_detail (
@@ -791,34 +777,22 @@ order_no,
 prod_no,
 prod_qty,
 prod_price,
-mem_no,
-comment_time,
-comment_star,
-comment_content,
-comment_pic )
-VALUES (1, 1, 10, 10000, 1, "2022-08-08 08:08:08", 5, "OMG太好喝了吧", LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/home.png"));
+mem_no )
+VALUES (1, 1, 5, 6980, 1);
 INSERT INTO order_detail (
 order_no,
 prod_no,
 prod_qty,
 prod_price,
-mem_no,
-comment_time,
-comment_star,
-comment_content,
-comment_pic )
-VALUES (2, 2, 100, 1000, 2, "2022-06-06 06:06:06", 2, "這什麼啦嘰東西啦！", LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/search2.png"));
+mem_no )
+VALUES (2, 2, 10, 1500, 2);
 INSERT INTO order_detail (
 order_no,
 prod_no,
 prod_qty,
 prod_price,
-mem_no,
-comment_time,
-comment_star,
-comment_content,
-comment_pic )
-VALUES (3, 3, 88888, 88888, 3, "2022-08-08 08:08:08", 3, "我就是土豪花錢不手軟，咬我啊！", LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/shopping-cart.png"));
+mem_no )
+VALUES (3, 3, 8, 680, 3);
 
 -- 建立 購物車 假資料
 INSERT INTO cart (
@@ -835,7 +809,7 @@ INSERT INTO cart (
 mem_no,
 prod_no,
 prod_qty)
-VALUES (3, 3, 88888);
+VALUES (3, 3, 888);
 
 -- 建立 管理員 假資料
 INSERT INTO manager(
@@ -960,14 +934,14 @@ VALUES(3, 3, 3, 3, 3, 3, 3, 1);
 
 -- 建立 活動 假資料
 INSERT INTO act(
-pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
-)values("1","調酒品嘗","先欣賞一下，看看雞尾酒的顏色與裝飾，猜想一下這杯調酒會有怎樣的口感？並在細聞香味後抱著迫不及待的心，品嘗一下酒在低溫時的口感。","桃園","2022-10-10 10:10:10","2022-11-11 11:11:11","0","60","20","2022-11-11 12:12:12","2022-11-11 13:13:13","2022-11-11 14:14:14","2022-11-11 15:15:15");
+pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
+)values("1","調酒品嘗","先欣賞一下，看看雞尾酒的顏色與裝飾，猜想一下這杯調酒會有怎樣的口感？並在細聞香味後抱著迫不及待的心，品嘗一下酒在低溫時的口感。","桃園","2022-10-10 10:10:10","2022-11-11 11:11:11","60","20","2022-11-11 12:12:12","2022-11-11 13:13:13","2022-11-11 14:14:14","2022-11-11 15:15:15");
 INSERT INTO act(
-pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
-)values("2","調酒教學","教學自己在家就能動手做的4款調酒，還有隱藏版柯夢波丹雞尾酒教學！","台北","2023-10-10 10:10:10","2023-11-11 11:11:11","0","30","10","2023-11-11 12:12:12","2023-11-11 13:13:13","2023-11-11 14:14:14","2023-11-11 15:15:15");
+pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
+)values("2","調酒教學","教學自己在家就能動手做的4款調酒，還有隱藏版柯夢波丹雞尾酒教學！","台北","2023-10-10 10:10:10","2023-11-11 11:11:11","30","10","2023-11-11 12:12:12","2023-11-11 13:13:13","2023-11-11 14:14:14","2023-11-11 15:15:15");
 INSERT INTO act(
-pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
-)values("3","花式調酒","花式調酒是由調酒師利用酒瓶以及任何調酒器具、杯具做出絢麗動作演變而來。","高雄","2024-10-10 10:10:10","2024-11-11 11:11:11","0","1000","1","2024-11-11 12:12:12","2024-11-11 13:13:13","2024-11-11 14:14:14","2024-11-11 15:15:15");
+pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
+)values("3","花式調酒","花式調酒是由調酒師利用酒瓶以及任何調酒器具、杯具做出絢麗動作演變而來。","高雄","2024-10-10 10:10:10","2024-11-11 11:11:11","1000","1","2024-11-11 12:12:12","2024-11-11 13:13:13","2024-11-11 14:14:14","2024-11-11 15:15:15");
 
 -- 建立 活動照片 假資料
 INSERT INTO act_pic(
@@ -1053,123 +1027,102 @@ frm_status
 INSERT INTO forum_article(
 frm_no,
 mem_no,
-art_time,
 art_title,
 art_content,
 art_img,
 art_status
-)values(1,1,"2023-11-11 11:11:11","夏日調酒節","XXXXXXXXXXXXXX","null",1);
+)values(1,1,"夏日調酒節","XXXXXXXXXXXXXX","null",1);
 INSERT INTO forum_article(
 frm_no,
 mem_no,
-art_time,
 art_title,
 art_content,
 art_img,
 art_status
-)values(2,2,"2024-11-11 11:11:11","夏日調酒節","XXXXXXXXXXXXXX","null",1);
+)values(2,2,"春天調酒節","XXXXXXXXXXXXXX","null",1);
 INSERT INTO forum_article(
 frm_no,
 mem_no,
-art_time,
 art_title,
 art_content,
 art_img,
 art_status
-)values(3,3,"2025-11-11 11:11:11","夏日調酒節","XXXXXXXXXXXXXX","null",1);
+)values(3,3,"秋冬調酒節","XXXXXXXXXXXXXX","null",1);
 
 -- 建立 討論區文章檢舉 假資料
 INSERT INTO forum_article_report(
-frm_art_rpt_no,
 mem_no,
 frm_art_no,
-rpt_time,
 rpt_content,
 mng_no,
-rpt_done_time,
 rpt_status,
 rpt_result,
 rpt_note
-)values(1,1,1,"2023-11-11 11:11:11","文章內容涉及歧視",1,"2023-11-11 11:11:11","1","1","內容違反相關規範");
+)values(1,1,"文章內容涉及歧視",1,"1","1","內容違反相關規範");
 INSERT INTO forum_article_report(
-frm_art_rpt_no,
 mem_no,
 frm_art_no,
-rpt_time,
 rpt_content,
 mng_no,
-rpt_done_time,
 rpt_status,
 rpt_result,
 rpt_note
-)values(2,2,2,"2024-11-11 11:11:11","文章內容涉及歧視",1,"2024-11-11 11:11:11","1","1","內容違反相關規範");
+)values(2,2,"文章內容涉及性騷擾",1,"1","1","內容違反相關規範");
 INSERT INTO forum_article_report(
-frm_art_rpt_no,
 mem_no,
 frm_art_no,
-rpt_time,
 rpt_content,
 mng_no,
-rpt_done_time,
 rpt_status,
 rpt_result,
 rpt_note
-)values(3,3,3,"2025-11-11 11:11:11","文章內容涉及歧視",1,"2025-11-11 11:11:11","1","1","內容違反相關規範");
+)values(3,3,"文章內容涉及暴力",1,"1","1","內容違反相關規範");
 
 -- 建立 文章留言 假資料
 INSERT INTO article_message(
 mem_no,
 frm_art_no,
-msg_time,
 msg_content
-) VALUES (1,1,"2023-11-11 11:11:11","這個活動的小姐身材好好");
+) VALUES (1,1,"這個活動的小姐身材好好");
 INSERT INTO article_message(
 mem_no,
 frm_art_no,
-msg_time,
 msg_content
-) VALUES (2,2,"2024-11-11 11:11:11","好好玩");
+) VALUES (2,2,"好好玩");
 INSERT INTO article_message(
 mem_no,
 frm_art_no,
-msg_time,
 msg_content
-) VALUES (3,3,"2025-11-11 11:11:11","我好帥");
+) VALUES (3,3,"我好帥");
 
 -- 建立 文章留言檢舉 假資料
 INSERT INTO article_message_report(
 mem_no,
 art_msg_no,
-rpt_time,
 rpt_msg_content,
 mng_no,
-msg_done_time,
 msg_states,
 msg_result,
 msg_note
-) VALUES (1,1,"2023-11-11 11:11:11","涉及性騷擾",1,"2023-11-11 11:11:11",1,1,"符合檢舉");
+) VALUES (1,1,"涉及性騷擾",1,1,1,"符合檢舉");
 INSERT INTO article_message_report(
 mem_no,
 art_msg_no,
-rpt_time,
 rpt_msg_content,
 mng_no,
-msg_done_time,
 msg_states,
 msg_result,
 msg_note
-) VALUES (2,2,"2024-11-11 11:11:11","涉及暴力ˋ",1,"2024-11-11 11:11:11",1,1,"符合檢舉");
+) VALUES (2,2,"涉及暴力",1,1,1,"符合檢舉");
 INSERT INTO article_message_report(
 mem_no,
 art_msg_no,
-rpt_time,
 rpt_msg_content,
 mng_no,
-msg_done_time,
 msg_states,
 msg_result,
 msg_note
-) VALUES (3,3,"2025-11-11 11:11:11","垃圾訊息",1,"2025-11-11 11:11:11",1,1,"符合檢舉");
+) VALUES (3,3,"垃圾訊息",1,1,1,"符合檢舉");
 
 INSERT INTO latest_news(
 news_content,

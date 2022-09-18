@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Start Main Top -->
+<%String url = request.getRequestURL().toString();
+ session.setAttribute("url", url);
+
+%>
 <div class="main-top">
 	<div class="container-fluid">
 		<div class="row">
@@ -36,7 +40,7 @@
 
 						<c:otherwise> 
 							<form action="MemLogoutServlet" method="post">
-								<input type="submit" class="btn btn-warning" value="${sessionScope.user.getMem_nickname()}" />
+								<input type="button" class="btn btn-warning" value="${sessionScope.user.getMem_nickname()}" onclick="location.href='<%=request.getContextPath()%>/front-end/MemLogoutServlet'"/>
 								<input type="hidden" name="Logout" value="Mem_Logout">
 							</form>
 						</c:otherwise>

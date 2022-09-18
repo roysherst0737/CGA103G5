@@ -127,4 +127,10 @@ public class Mem_VO implements java.io.Serializable{
 	}
 	
 	
+    public com.act_sign_up.model.Act_sign_up_VO getAct_sign_upVO() {
+	    com.act_sign_up.model.Act_sign_up_Service act_sign_upSvc = new com.act_sign_up.model.Act_sign_up_Service();
+	    com.act_sign_up.model.Act_sign_up_VO act_sign_upVO = act_sign_upSvc.getOneAct_sign_up(mem_no);
+	    return act_sign_upVO;
+    }
+	
 }

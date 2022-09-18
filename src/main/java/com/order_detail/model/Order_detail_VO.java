@@ -1,7 +1,11 @@
 package com.order_detail.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+
+import com.prod.model.Prod_Service;
+import com.prod.model.Prod_VO;
+import com.prod_pic.model.Prod_pic_Service;
+import com.prod_pic.model.Prod_pic_VO;
 
 public class Order_detail_VO implements Serializable{
 	
@@ -11,10 +15,6 @@ public class Order_detail_VO implements Serializable{
 	private Integer prod_qty;
 	private Integer prod_price;
 	private Integer mem_no;
-	private Timestamp comment_time;
-	private Integer comment_star;
-	private String comment_content;
-	private byte[] comment_pic;
 	
 	public Integer getOrder_no() {
 		return order_no;
@@ -46,28 +46,18 @@ public class Order_detail_VO implements Serializable{
 	public void setMem_no(Integer mem_no) {
 		this.mem_no = mem_no;
 	}
-	public Timestamp getComment_time() {
-		return comment_time;
-	}
-	public void setComment_time(Timestamp timestamp) {
-		this.comment_time = timestamp;
-	}
-	public Integer getComment_star() {
-		return comment_star;
-	}
-	public void setComment_star(Integer comment_star) {
-		this.comment_star = comment_star;
-	}
-	public String getComment_content() {
-		return comment_content;
-	}
-	public void setComment_content(String comment_content) {
-		this.comment_content = comment_content;
-	}
-	public byte[] getComment_pic() {
-		return comment_pic;
-	}
-	public void setComment_pic(byte[] comment_pic) {
-		this.comment_pic = comment_pic;
-	}
+	
+	// for join prod_name from prod_no
+    public Prod_VO getProd_VO() {
+    	Prod_Service prodSvc = new Prod_Service();
+    	Prod_VO prodVO = prodSvc.getOneProd(prod_no);
+	    return prodVO;
+    }
+    
+    // for join prod_pic from prod_no
+    public Prod_pic_VO getProd_pic_VO() {
+    	Prod_pic_Service prod_picSvc = new Prod_pic_Service();
+		Prod_pic_VO prod_picVO = prod_picSvc.getOneProd_pic(prod_no);
+	    return prod_picVO;
+    }
 }

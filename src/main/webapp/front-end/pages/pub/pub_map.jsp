@@ -37,16 +37,18 @@
 	href="<%=request.getContextPath()%>/front-end/css/pub.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
-.img_rate{
-	width:30px;
+.img_rate {
+	width: 30px;
 	vertical-align: middle;
 }
-.ipt_rate{
-    position: absolute;
-    width: 30px;
-    height:30px;
-    opacity: 0;
+
+.ipt_rate {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	opacity: 0;
 }
+
 .modal-content {
 	background-color: azure;
 }
@@ -76,7 +78,7 @@
 	position: relative;
 }
 
-.mybtn {
+.mybtn, .mybtn1 {
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -167,7 +169,7 @@ a.booking:hover {
 						<div class="products-single fix">
 							<div class="box-img-hover">
 								<div class="type-lb">
-									<p class="openType">營業中</p>
+									<p class="openType">${pubVO.pub_name}</p>
 								</div>
 								<c:forEach var="imgList" items="${pubVO.pub_pics}">
 									<img src="${imgList.pub_pic}" class="img-fluid" alt="Image">
@@ -185,9 +187,12 @@ a.booking:hover {
 								</div>
 								<div class="mask-icon">
 									<ul>
-										<li><a href="#" data-toggle="tooltip"
-											data-placement="right" title="詳細"><i class="fas fa-eye"></i></a></li>
-										<li id="rate_li"><a  data-toggle="tooltip"
+										<li><a
+											href="<%=request.getContextPath()%>/PubDetail?pub_no=${pubVO.pub_no}"
+											data-toggle="tooltip" data-placement="right" title="詳細"><i
+												class="fas fa-eye"></i>
+												<button type="button" class="mybtn1"></button></a></li>
+										<li id="rate_li"><a data-toggle="tooltip"
 											data-placement="right" title="評分數">${pubVO.pub_rate_sum==null?"NA":pubVO.pub_rate_sum}<i
 												class=""></i></a></li>
 										<li><a class="my_a" id="i${loop.index}"
@@ -195,287 +200,13 @@ a.booking:hover {
 												class="far fa-heart"></i>
 												<button type="button" class="mybtn" data-toggle="modal"
 													data-target="#exampleModalCenter"></button></a></li>
-
-
-
-
 									</ul>
-									<a class="cart" href="#">預約訂位</a>
+									<a class="cart" href="<%=request.getContextPath()%>/PubBooking?pub_no=${pubVO.pub_no}">預約訂位</a>
 								</div>
 							</div>
 						</div>
 					</div>
-
-
 				</c:forEach>
-				<div class="col-lg-3 col-md-6 special-grid bulbs">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<div class="type-lb">
-								<p class="sale">Sale</p>
-							</div>
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-01.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-
-								</ul>
-								<a class="cart" href="#">Add to Cart</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid fruits">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-02.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid bulbs">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-03.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><button type="button" data-toggle="tooltip"
-											data-placement="right" title="Add to Wishlist">
-											<i class="far fa-heart"></i>
-										</button></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid fruits">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-04.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6 special-grid bulbs">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-05.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid fruits">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-06.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid podded-vegetables">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-07.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid root-and-tuberous">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-08.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid root-and-tuberous">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-09.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid podded-vegetables">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-10.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid root-and-tuberous">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-11.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-3 col-md-6 special-grid podded-vegetables">
-					<div class="products-single fix">
-						<div class="box-img-hover">
-							<img
-								src="<%=request.getContextPath()%>/front-end/images/gallery-img-12.jpg"
-								class="img-fluid" alt="Image">
-							<div class="mask-icon">
-								<ul>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Compare"><i
-											class="fas fa-sync-alt"></i></a></li>
-									<li><a href="#" data-toggle="tooltip"
-										data-placement="right" title="Add to Wishlist"><i
-											class="far fa-heart"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -594,7 +325,7 @@ a.booking:hover {
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-				<h5 class="modal-title" id="pub_no" style="display:none"></h5>
+					<h5 class="modal-title" id="pub_no" style="display: none"></h5>
 					<h5 class="modal-title" id="exampleModalLongTitle"></h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
@@ -606,25 +337,31 @@ a.booking:hover {
 						<img id="myimg"></img> <span id="mydetail"></span>
 					</div>
 					<div style="text-align: center;">點擊留下評分</div>
-					<div style="display: flex; justify-content: space-around; padding: 0px 100px 20px 100px;">
+					<div
+						style="display: flex; justify-content: space-around; padding: 0px 100px 20px 100px;">
 						<div style="position: relative;">
-							<input type="radio" name="rate" value="1"  class="ipt_rate"> <img class="img_rate"
-								src="<%=request.getContextPath()%>/front-end/images/str_yes.svg"></img>
-						</div >
-						<div style="position: relative;">
-							<input type="radio" name="rate" value="2"  class="ipt_rate"> <img class="img_rate"
-								src="<%=request.getContextPath()%>/front-end/images/str_yes.svg"></img>
-						</div >
-						<div style="position: relative;">
-							<input type="radio" name="rate" value="3" class="ipt_rate"> <img class="img_rate"
+							<input type="radio" name="rate" value="1" class="ipt_rate">
+							<img class="img_rate"
 								src="<%=request.getContextPath()%>/front-end/images/str_yes.svg"></img>
 						</div>
 						<div style="position: relative;">
-							<input type="radio" name="rate" value="4" class="ipt_rate"> <img class="img_rate"
+							<input type="radio" name="rate" value="2" class="ipt_rate">
+							<img class="img_rate"
 								src="<%=request.getContextPath()%>/front-end/images/str_yes.svg"></img>
 						</div>
 						<div style="position: relative;">
-							<input type="radio" name="rate" value="5" class="ipt_rate" checked> <img  class="img_rate"
+							<input type="radio" name="rate" value="3" class="ipt_rate">
+							<img class="img_rate"
+								src="<%=request.getContextPath()%>/front-end/images/str_yes.svg"></img>
+						</div>
+						<div style="position: relative;">
+							<input type="radio" name="rate" value="4" class="ipt_rate">
+							<img class="img_rate"
+								src="<%=request.getContextPath()%>/front-end/images/str_yes.svg"></img>
+						</div>
+						<div style="position: relative;">
+							<input type="radio" name="rate" value="5" class="ipt_rate"
+								checked> <img class="img_rate"
 								src="<%=request.getContextPath()%>/front-end/images/str_yes.svg"></img>
 						</div>
 					</div>
@@ -636,7 +373,7 @@ a.booking:hover {
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary"
 						data-dismiss="modal">取消</button>
-					<button  id="rate_submit"type="button" class="btn btn-primary">提交評價</button>
+					<button id="rate_submit" type="button" class="btn btn-primary">提交評價</button>
 				</div>
 			</div>
 		</div>

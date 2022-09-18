@@ -154,9 +154,9 @@ pageContext.setAttribute("list2", list2);
                                             <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
                                                 <div class="why-text full-width">
                                                     <h4>${prodVO.prod_name}</h4>
-                                                    <h5>${prodVO.prod_price}</h5>
-                                                    <p>$${prodVO.prod_detail}</p>
-                                                    <a class="btn hvr-hover" href="#">加入購物車</a>
+                                                    <h5>$${prodVO.prod_price}</h5>
+                                                    <p>${prodVO.prod_detail}</p>
+                                                    <a class="btn hvr-hover" href="#" style="font-size:18px">加入購物車</a>
                                                 </div>
                                             </div>
                                         </div>                                      
@@ -174,6 +174,7 @@ pageContext.setAttribute("list2", list2);
                                 <h2 style="font-size:28px; font-weight: bold;">商品類別</h2>
                             </div>
                             <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+                            	<a href="#" class="list-group-item list-group-item-action" id="type" style="font-size:22px; font-weight: bold;">所有商品總覽</a>
                             	<c:forEach var="prod_typeVO" items="${list2}">
                             		<a href="#" class="list-group-item list-group-item-action" id="type">● ${prod_typeVO.prod_type_name}</a>
                             	</c:forEach>

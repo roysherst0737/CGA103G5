@@ -25,12 +25,13 @@ public class Act_pic_DAO implements Act_pic_DAO_interface {
 	}
 
 	private static final String INSERT_STMT = "INSERT INTO act_pic (act_no, act_pic, act_pic_name) VALUES (?, ?, ?)";
-	private static final String GET_ALL_STMT = "SELECT act_pic_no, act_no, act_pic, act_pic_name FROM act_pic order by act_pic_no";
+	private static final String GET_ALL_STMT = "SELECT act_pic_no, act_no, act_pic, act_pic_name FROM act_pic order by act_no";
 	private static final String GET_ONE_STMT = "SELECT act_pic_no, act_no, act_pic, act_pic_name FROM act_pic where act_pic_no = ?";
 	private static final String DELETE = "DELETE FROM act_pic where act_pic_no = ?";
 	private static final String UPDATE = "UPDATE act_pic set act_no = ?, act_pic = ?, act_pic_name = ? where act_pic_no = ?";
 
 	private static final String GET_FROM_ACT_NO_STMT = "SELECT act_pic_no, act_no, act_pic, act_pic_name FROM act_pic where act_no = ?";
+	
 
 	@Override
 	public void insert(Act_pic_VO act_pic_VO) {

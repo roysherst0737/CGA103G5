@@ -20,8 +20,8 @@ public class Act_VO implements Serializable {
 	private Timestamp act_start_time;
 	private Timestamp act_end_time;
 	private Integer act_status;
-	private Timestamp apply_time;
-	private Integer apply_status;
+	private Timestamp revise_time;
+
 
 	public Integer getAct_no() {
 		return act_no;
@@ -143,21 +143,15 @@ public class Act_VO implements Serializable {
 		this.act_status = act_status;
 	}
 
-	public Timestamp getApply_time() {
-		return apply_time;
+	public Timestamp getRevise_time() {
+		return revise_time;
 	}
 
-	public void setApply_time(Timestamp apply_time) {
-		this.apply_time = apply_time;
+	public void setRevise_time(Timestamp apply_time) {
+		this.revise_time = apply_time;
 	}
 
-	public Integer getApply_status() {
-		return apply_status;
-	}
 
-	public void setApply_status(Integer apply_status) {
-		this.apply_status = apply_status;
-	}
 	
 
     // for join dname from act_picno

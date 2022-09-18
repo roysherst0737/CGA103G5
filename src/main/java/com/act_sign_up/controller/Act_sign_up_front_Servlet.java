@@ -133,20 +133,14 @@ public class Act_sign_up_front_Servlet extends HttpServlet {
 				errorMsgs.add("攜伴人數請填數字");
 			}
 
-			Integer sign_up_status = null;
-			try {
-				sign_up_status = Integer.valueOf(req.getParameter("sign_up_status").trim());
-			} catch (NumberFormatException e) {
-				sign_up_status = 0;
-				errorMsgs.add("報名狀態請填數字");
-			}
+
 
 			Act_sign_up_VO act_sign_upVO = new Act_sign_up_VO();
 			act_sign_upVO.setSign_up_no(sign_up_no);
 			act_sign_upVO.setAct_no(act_no);
 			act_sign_upVO.setMem_no(mem_no);
 			act_sign_upVO.setAccompany_count(accompany_count);
-			act_sign_upVO.setSign_up_status(sign_up_status);
+
 
 			// Send the use back to the form, if there were errors
 			if (!errorMsgs.isEmpty()) {
@@ -159,7 +153,7 @@ public class Act_sign_up_front_Servlet extends HttpServlet {
 
 			/*************************** 2.開始修改資料 *****************************************/
 			Act_sign_up_Service act_sign_upSvc = new Act_sign_up_Service();
-			act_sign_upVO = act_sign_upSvc.updateAct_sign_up(act_no, mem_no, accompany_count, sign_up_status,
+			act_sign_upVO = act_sign_upSvc.updateAct_sign_up(act_no, mem_no, accompany_count, 
 					sign_up_no);
 
 			/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
@@ -171,6 +165,7 @@ public class Act_sign_up_front_Servlet extends HttpServlet {
 
 		if ("insert".equals(action)) { // 來自addEmp.jsp的請求
 
+	
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -220,9 +215,8 @@ public class Act_sign_up_front_Servlet extends HttpServlet {
 			act_sign_upVO = act_sign_upSvc.addAct_sign_up(act_no, mem_no, accompany_count);
 
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-			String url = "/back-end/act_sign_up/listAllAct_sign_up.jsp";
-			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
-			successView.forward(req, res);
+			String url = "act-detail.jsp?" + act_no;		
+			res.sendRedirect(url);
 		}
 
 		if ("delete".equals(action)) { // 來自listAllEmp.jsp

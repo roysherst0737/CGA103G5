@@ -16,7 +16,6 @@ import javax.sql.DataSource;
 import com.manager.model.*;
 
 @MultipartConfig
-@WebServlet("/register")
 public class ManagerRegister extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
@@ -29,7 +28,7 @@ public class ManagerRegister extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		
-		 if ("register".equals(action)) { // 來自addManager.jsp的請求  
+		 if ("mngRegister".equals(action)) { // 來自addManager.jsp的請求  
 				
 				List<String> errorMsgs = new LinkedList<String>();
 				// Store this set in the request scope, in case we need to
@@ -102,7 +101,7 @@ public class ManagerRegister extends HttpServlet {
 					if (!errorMsgs.isEmpty()) {
 						req.setAttribute("manager_VO", manager_VO); // 含有輸入格式錯誤的manager_VO物件,也存入req
 						RequestDispatcher failureView = req
-								.getRequestDispatcher("/manager/addManager.jsp");
+								.getRequestDispatcher("mngLogin.jsp");
 						failureView.forward(req, res);
 						return;
 					}
@@ -112,7 +111,7 @@ public class ManagerRegister extends HttpServlet {
 					manager_VO = manager_Svc.addManager(mng_account, mng_password, mng_name, mng_phone, mng_pic, mng_status);
 					
 					/***************************3.新增完成,準備轉交(Send the Success view)***********/
-					String url = "/manager/listAllManager.jsp";
+					String url = "/back-end/manager/listAllManager.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllManager.jsp
 					successView.forward(req, res);				
 			}

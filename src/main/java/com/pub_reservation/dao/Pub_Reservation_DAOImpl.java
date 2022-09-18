@@ -103,4 +103,11 @@ public class Pub_Reservation_DAOImpl implements Pub_Reservation_DAO {
 		return 1;
 	}
 
+	@Override
+	public Pub_Reservation selectByPubNoDate(Integer pub_no, Date date) {
+		final String sql = "FROM Pub_Reservation WHERE pub_no= :pub_no AND pub_reservation_date=:pub_reservation_date";
+		return getSession().createQuery(sql, Pub_Reservation.class).setParameter("pub_no", pub_no)
+				.setParameter("pub_reservation_date", date).uniqueResult();
+	}
+
 }

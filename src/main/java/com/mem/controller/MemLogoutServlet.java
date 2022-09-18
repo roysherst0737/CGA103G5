@@ -22,12 +22,9 @@ public class MemLogoutServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String Logout = request.getParameter("Logout");
 		HttpSession session = request.getSession();
-		System.out.println(request.getServletPath());
-		if ("Mem_Logout".equals(Logout)) {
+
 			session.removeAttribute("user");
-			String url = "/front-end/index.jsp";
-			RequestDispatcher successView = request.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
-			successView.forward(request, response);
-		}
+
+			response.sendRedirect(request.getHeader("referer"));			
 	}
 }

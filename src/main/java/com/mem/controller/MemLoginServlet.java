@@ -60,9 +60,9 @@ public class MemLoginServlet extends HttpServlet {
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				session.setAttribute("user",user );
-				String url = "/front-end/mem/my-account.jsp"; 
-				RequestDispatcher successView = request.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
-				successView.forward(request, response);
+				String url = (String) session.getAttribute("url");
+				response.sendRedirect(url);
+
 		}
 	}
 }

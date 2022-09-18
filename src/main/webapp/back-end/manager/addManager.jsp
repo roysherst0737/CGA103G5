@@ -65,7 +65,7 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="manager.do" name="form1" enctype="multipart/form-data">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/manager/manager.do" name="form1" enctype="multipart/form-data">
 <table>
 	<tr>
 		<td>管理員帳號:</td>

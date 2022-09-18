@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Start Main Top -->
-<%String url = request.getRequestURL().toString();
- session.setAttribute("url", url);
 
-%>
 <div class="main-top">
 	<div class="container-fluid">
 		<div class="row">

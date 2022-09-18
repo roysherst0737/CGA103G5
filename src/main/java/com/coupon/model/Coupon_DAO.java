@@ -41,9 +41,9 @@ public class Coupon_DAO implements Coupon_DAO_interface {
 	private static final String DELETE = 
 		"DELETE FROM coupon where coupon_no = ?";
 	private static final String UPDATE = 
-		"UPDATE coupon coupon_name=?, coupon_code=?, coupon_content=?,"
+		"UPDATE coupon set coupon_name=?, coupon_code=?, coupon_content=?,"
 		+ " coupon_discount=?, coupon_amount=?, launch_time=?, off_time=?,"
-		+ " coupon_build_time=?, status=? where coupon_no = ?";
+		+ " status=? where coupon_no = ?";
 
 	@Override
 	public void insert(Coupon_VO couponVO) {
@@ -110,9 +110,8 @@ public class Coupon_DAO implements Coupon_DAO_interface {
 			pstmt.setInt(5, couponVO.getCoupon_amount());
 			pstmt.setTimestamp(6, couponVO.getLaunch_time());
 			pstmt.setTimestamp(7, couponVO.getOff_time());
-			pstmt.setTimestamp(8, couponVO.getCoupon_build_time());
-			pstmt.setInt(9, couponVO.getStatus());
-			pstmt.setInt(10, couponVO.getCoupon_no());
+			pstmt.setInt(8, couponVO.getStatus());
+			pstmt.setInt(9, couponVO.getCoupon_no());
 
 			pstmt.executeUpdate();
 

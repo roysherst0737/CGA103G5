@@ -18,7 +18,7 @@ import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pub.entity.Pub;
-@WebServlet("/pub/PubEdit")
+@WebServlet(urlPatterns = {"/pub/PubEdit","/PubEdit"})
 public class PubGetByIDServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

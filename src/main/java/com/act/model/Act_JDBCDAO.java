@@ -15,11 +15,11 @@ public class Act_JDBCDAO implements Act_DAO_interface {
 	String userid = "cga10305";
 	String passwd = "123qweqwe";
 
-	private static final String INSERT_STMT = "INSERT INTO act (pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO act (pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT a.act_no, pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, sum(accompany_count + 1) as current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status, revise_time FROM act a LEFT JOIN act_sign_up b ON a.act_no = b.act_no GROUP BY act_no";
 	private static final String GET_ONE_STMT = "SELECT a.act_no, pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, sum(accompany_count + 1) as current_count, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status, revise_time FROM act a LEFT JOIN act_sign_up b ON a.act_no = b.act_no where a.act_no = ?";
 	private static final String DELETE = "DELETE FROM act where act_no = ?";
-	private static final String UPDATE = "UPDATE act set pub_no = ?, act_name = ?, act_detail = ?, act_loc = ?, act_launch_time = ?, act_off_time = ?, current_count = ?, max_count = ?, min_count = ?, sign_up_begin_time = ?, sign_up_end_time = ?, act_start_time = ?, act_end_time = ?, act_status = ? where act_no = ?";
+	private static final String UPDATE = "UPDATE act set pub_no = ?, act_name = ?, act_detail = ?, act_loc = ?, act_launch_time = ?, act_off_time = ?, max_count = ?, min_count = ?, sign_up_begin_time = ?, sign_up_end_time = ?, act_start_time = ?, act_end_time = ?, act_status = ? where act_no = ?";
 
 
 	@Override
@@ -39,13 +39,12 @@ public class Act_JDBCDAO implements Act_DAO_interface {
 			pstmt.setString(4, act_VO.getAct_loc());
 			pstmt.setTimestamp(5, act_VO.getAct_launch_time());
 			pstmt.setTimestamp(6, act_VO.getAct_off_time());
-			pstmt.setInt(7, act_VO.getCurrent_count());
-			pstmt.setInt(8, act_VO.getMax_count());
-			pstmt.setInt(9, act_VO.getMin_count());
-			pstmt.setTimestamp(10, act_VO.getSign_up_begin_time());
-			pstmt.setTimestamp(11, act_VO.getSign_up_end_time());
-			pstmt.setTimestamp(12, act_VO.getAct_start_time());
-			pstmt.setTimestamp(13, act_VO.getAct_end_time());
+			pstmt.setInt(7, act_VO.getMax_count());
+			pstmt.setInt(8, act_VO.getMin_count());
+			pstmt.setTimestamp(9, act_VO.getSign_up_begin_time());
+			pstmt.setTimestamp(10, act_VO.getSign_up_end_time());
+			pstmt.setTimestamp(11, act_VO.getAct_start_time());
+			pstmt.setTimestamp(12, act_VO.getAct_end_time());
 
 
 			pstmt.executeUpdate();
@@ -93,15 +92,14 @@ public class Act_JDBCDAO implements Act_DAO_interface {
 			pstmt.setString(4, act_VO.getAct_loc());
 			pstmt.setTimestamp(5, act_VO.getAct_launch_time());
 			pstmt.setTimestamp(6, act_VO.getAct_off_time());
-			pstmt.setInt(7, act_VO.getCurrent_count());
-			pstmt.setInt(8, act_VO.getMax_count());
-			pstmt.setInt(9, act_VO.getMin_count());
-			pstmt.setTimestamp(10, act_VO.getSign_up_begin_time());
-			pstmt.setTimestamp(11, act_VO.getSign_up_end_time());
-			pstmt.setTimestamp(12, act_VO.getAct_start_time());
-			pstmt.setTimestamp(13, act_VO.getAct_end_time());
-			pstmt.setInt(14, act_VO.getAct_status());
-			pstmt.setInt(15, act_VO.getAct_no());
+			pstmt.setInt(7, act_VO.getMax_count());
+			pstmt.setInt(8, act_VO.getMin_count());
+			pstmt.setTimestamp(9, act_VO.getSign_up_begin_time());
+			pstmt.setTimestamp(10, act_VO.getSign_up_end_time());
+			pstmt.setTimestamp(11, act_VO.getAct_start_time());
+			pstmt.setTimestamp(12, act_VO.getAct_end_time());
+			pstmt.setInt(13, act_VO.getAct_status());
+			pstmt.setInt(14, act_VO.getAct_no());
 
 			pstmt.executeUpdate();
 

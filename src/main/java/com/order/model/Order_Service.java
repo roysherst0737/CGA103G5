@@ -71,4 +71,8 @@ public class Order_Service {
 	public Set<Order_detail_VO> getOrder_detailsByOrder(Integer order_no) {
 		return dao.getOrder_detailsByOrder(order_no);
 	}
+	
+	public Set<Integer> getCreateOrder(Integer mem_no) {
+		return dao.getCreateOrder(mem_no);
+	}
 }

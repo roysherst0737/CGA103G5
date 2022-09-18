@@ -13,5 +13,7 @@ public interface Order_DAO_interface {
     public List<Order_VO> getAll();
   //查詢某訂單的明細(一對多)(回傳 Set)
     public Set<Order_detail_VO> getOrder_detailsByOrder(Integer order_no);
+    
+    public Set<Integer> getCreateOrder(Integer mem_no);
 
 }

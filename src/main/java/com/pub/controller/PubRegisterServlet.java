@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.pub.entity.Pub;
+import com.pub_reservation.service.Pub_Reservation_ServiceImpl;
 @WebServlet("/PubRegister")
 public class PubRegisterServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -27,6 +28,8 @@ public class PubRegisterServlet extends HttpServlet{
 			return;
 		}
 		pub = SERVICE.register(pub);
+		new Pub_Reservation_ServiceImpl().setReservation();
+//		com.pub_reservation.service.Pub_ReservationConstants.SERVICE.setReservation();
 		System.out.println(pub.getMessage());
 		System.out.println(pub.getSuccessful());
 		writePojo2Json(response, pub);

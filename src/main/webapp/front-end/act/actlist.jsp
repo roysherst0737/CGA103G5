@@ -2,11 +2,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.act.model.*"%>
+<%@ page import="com.prod.model.*"%>
 
 <%
 Act_Service actSvc = new Act_Service();
-List<Act_VO> list = actSvc.getAll();
+List<Act_VO> actList = actSvc.getAll();
+pageContext.setAttribute("actList", actList);
+
+
+
+Prod_Service prodSvc = new Prod_Service();
+List<Prod_VO> list = prodSvc.getAll();
 pageContext.setAttribute("list", list);
+
 %>
 
 <!DOCTYPE html>
@@ -105,7 +113,7 @@ pageContext.setAttribute("list", list);
 
 
 										<%@ include file="page1.file"%>
-										<c:forEach var="actVO" items="${list}" begin="<%=pageIndex%>"
+										<c:forEach var="actVO" items="${actList}" begin="<%=pageIndex%>"
 											end="<%=pageIndex+rowsPerPage-1%>">
 											<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
 												<div class="products-single fix">
@@ -137,7 +145,7 @@ pageContext.setAttribute("list", list);
 								<div role="tabpanel" class="tab-pane fade" id="list-view">
 
 
-									<c:forEach var="actVO" items="${list}">
+									<c:forEach var="actVO" items="${actList}">
 										<div class="list-view-box">
 											<div class="row">
 												<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
@@ -179,94 +187,13 @@ pageContext.setAttribute("list", list);
 	</div>
 	<!-- End Shop Page -->
 
-	<!-- Start Instagram Feed  -->
-	<div class="instagram-box">
-		<div class="main-instagram owl-carousel owl-theme">
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-01.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-02.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-03.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-04.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-05.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-06.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-07.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-08.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-09.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img src="images/instagram-img-05.jpg" alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End Instagram Feed  -->
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
+	<!-- Start Instagram Feed  -->
+	<div class="instagram-box">
+		<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
+	</div>
+	<!-- End Instagram Feed  -->
 	<!-- Start Footer  -->
 	<footer>
 		<%@ include file="/front-end/partials/_footer.jsp"%>

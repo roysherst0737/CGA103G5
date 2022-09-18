@@ -1,6 +1,5 @@
 package com.pub_booking.entity;
 
-import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Entity;
@@ -8,9 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.pub.service.Core;
 @Entity
 @Table(name = "pub_booking")
-public class Pub_Booking implements Serializable{
+public class Pub_Booking extends Core{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -39,13 +39,20 @@
 <!-- plugin css for this page -->
 <!-- End plugin css for this page -->
 <!-- inject:css -->
-
+<script 
+		src="<%=request.getContextPath()%>/front-end/pages/pub/js/open.js"></script>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/back-end/css/vertical-layout-light/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 
 <style>
+.div2{
+	padding:10px;
+}
+#div_1{
+	margin: 10px;
+}
 .mydiv {
   	border-radius: 20px;
 /*     border: 5px ridge rgb(193 193 193 / 60%); */
@@ -62,6 +69,7 @@
  	border-radius: 20px;
     border: 3px solid rgb(193 193 193);
 	background-color: #e0e0e0;
+	padding:10px;
 }
 .myday:hover{
 	background-color: #c6c6c6;
@@ -80,6 +88,18 @@ background-color: #f5d9d9;
 }
 .week7:hover{
 background-color: #e2c8c8;
+}
+.today{
+	background-color: #acf0c7;
+}
+.today:hover{
+	background-color: #82d6a3;
+}
+.passday{
+background-color: #ffffff;
+}
+.passday:hover{
+background-color: #e3e3e3;
 }
 @media ( min-width : 600px) {
 	.main_div {
@@ -209,9 +229,15 @@ div.col-sm-12>button.btn-warning:hover {
 									<img class="img" src="${pic.pub_pic }">
 								</c:forEach>
 
-								<p>可接受預約人數:${pub.pub_nop}</p>
+								<p>可接受預約人數:${pub.pub_nop}<span id="nop" style="display:none">${pub.pub_nop}</span></p>
+								<p style="display: none"id="pub_no">${pub.pub_no}</p>
+								<div id="open_div" style="text-align: start;">營業時間</div>
+								<div id="open">${pub.pub_open}</div>
+								
 							</div>
 						<!-- 預約表 -->
+						<script>
+						</script>
 							<div class="mydiv">
 							</div>
 						</div>
@@ -225,113 +251,39 @@ div.col-sm-12>button.btn-warning:hover {
 	<!-- End Gallery  -->
 
 	<!-- Start Instagram Feed  -->
-	<div class="instagram-box">
-		<div class="main-instagram owl-carousel owl-theme">
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-01.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
+<%-- 	<%@ include file="/front-end/partials/_InstagramBox.jsp"%> --%>
+	<!-- End Instagram Feed  -->
+<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">${pub.pub_name} </h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-02.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
+				<div class="modal-body">
+					<div class="myimg_div">
+						<img id="myimg"></img> <span id="mydetail"></span>
 					</div>
+					<h3>預約時段</h3>
+					<div id="div_1">
+					</div>
+
 				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-03.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-04.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-05.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-06.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-07.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-08.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-09.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-05.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">取消</button>
+					<button id="rate_submit" type="button" class="btn btn-primary">預定</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-
-	<!-- End Instagram Feed  -->
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Footer  -->

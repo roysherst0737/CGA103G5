@@ -1,6 +1,7 @@
 package com.cart.model;
 
 import java.util.List;
+import java.util.Set;
 
 public class Cart_Service {
 	
@@ -44,5 +45,9 @@ public class Cart_Service {
 	
 	public List<Cart_VO> getAll() {
 		return dao.getAll();
+	}
+	
+	public Set<Integer> getAdd_to_Cart(Integer mem_no) {
+		return dao.getAdd_to_Cart(mem_no);
 	}
 }

@@ -338,8 +338,8 @@ p {
 
 .btn {
     float: right;
-    width: 50px;
-    height: 30px;
+    width: auto;
+    height: auto;
     margin-left: 5px;
     font-size: small;
     font-weight: bolder;
@@ -1451,7 +1451,7 @@ ul.cart-list>li.total>.btn:hover {
 
 /*------------------------------------------------------------------ Instagram Feed -------------------------------------------------------------------*/
 .instagram-box {
-    padding: 70px 0px;
+    padding: 50px 0px;
     background: url(../images/ins-bg.jpg) no-repeat center center;
     background-size: auto auto;
     -webkit-background-size: cover;

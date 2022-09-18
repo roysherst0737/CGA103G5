@@ -3,6 +3,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.prod.model.*"%>
 <%@ page import="com.prod_pic.model.*"%>
+<%@ page import="com.mem.model.*"%>
+<%@ page import="com.cart.model.*"%>
 
 <%
 Prod_Service prodSvc = new Prod_Service();
@@ -13,6 +15,18 @@ Prod_VO prodVO = prodSvc.getOneProd(Integer.parseInt(request.getQueryString()));
 request.setAttribute("prodVO", prodVO);
 Set<Prod_pic_VO> set = prodSvc.getProd_picsByProd(prodVO.getProd_no());
 pageContext.setAttribute("set", set);
+
+Object Objuser = session.getAttribute("user");
+Mem_VO user = (Mem_VO) Objuser;
+
+if (user != null) {
+	Cart_Service cartSvc = new Cart_Service();
+	Set<Integer> cartSet = cartSvc.getAdd_to_Cart((Integer) user.getMem_no());
+	pageContext.setAttribute("cartSet", cartSet);
+}
+
+String url = request.getRequestURL().toString() + "?" + request.getQueryString();
+session.setAttribute("url", url);
 %>
 
 <!DOCTYPE html>
@@ -44,17 +58,43 @@ pageContext.setAttribute("set", set);
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+	<script>
+		function confirmTest() {
+			Swal.fire({
+				title : "請先登入會員",		
+				showCancelButton : true
+			}).then(function(result) {
+				if (result.value) {	
+					location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
+					}
+				});
+		}
+		function confirmTest2() {
+			Swal.fire({
+				title : "成功加入購物車！",
+				showCancelButton : false
+			});
+		}
+	</script>
 
 	<style>
 		.btn {
     		width: auto;
     		height: auto;
 			}
+			
 		#subPic {
 			width: auto;
     		height: auto;
     		padding: 0;
     		}
+    		
+    	#cart2 {
+			font-size: 18px;
+			}
 	
 	</style>
 	
@@ -157,14 +197,28 @@ pageContext.setAttribute("set", set);
 							<li>
 								<div class="form-group quantity-box">
 									<label class="control-label">購買數量</label>
-									<input class="form-control" value="0" min="0" max="20" type="number">
+									<input class="form-control" value="0" min="0" max="${prodVO.prod_stock}" type="number">
 								</div>
 							</li>
 						</ul>
 
 						<div class="price-box-bar">
 							<div class="cart-and-bay-btn">
-								<a class="btn hvr-hover" data-fancybox-close="" href="#">加入購物車</a>
+								<c:choose>
+									<c:when test="${empty sessionScope.user}">
+										<input class="btn btn-warning" id="cart2" type="button" value="加入購物車" onclick="confirmTest()" />
+									</c:when>
+									<c:otherwise>
+										<c:choose>
+											<c:when test="${set.contains(prodVO.getProd_no())}">
+												<input class="btn btn-warning" id="cart2" type="submit" value="已加入購物車" disabled="disabled">
+											</c:when>
+									<c:otherwise>
+										<input class="btn btn-warning" id="cart2" type="submit" value="加入購物車" onclick="confirmTest2()">
+									</c:otherwise>
+										</c:choose>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
                     </div>

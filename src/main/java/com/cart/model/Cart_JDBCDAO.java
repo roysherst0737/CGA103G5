@@ -8,7 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Cart_JDBCDAO implements Cart_DAO_interface{
 	
@@ -22,6 +24,8 @@ public class Cart_JDBCDAO implements Cart_DAO_interface{
 		"DELETE FROM cart where mem_no = ?";
 	private static final String UPDATE = 
 		"UPDATE cart set prod_no=?, prod_qty=? where mem_no = ?";
+	
+	private static final String GET_ADD_TO_CART = "SELECT prod_no FROM cart where mem_no = ?";
 
 	@Override
 	public void insert(Cart_VO cartVO) {
@@ -273,6 +277,60 @@ public class Cart_JDBCDAO implements Cart_DAO_interface{
 			}
 		}
 		return list;
+	}
+	
+	@Override
+	public Set<Integer> getAdd_to_Cart(Integer mem_no) {
+		Set<Integer> set = new HashSet<Integer>();
+		
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			pstmt = con.prepareStatement(GET_ADD_TO_CART);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				
+				set.add(rs.getInt("prod_no"));
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return set;
 	}
 	
 	public static void main(String[] args) {

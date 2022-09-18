@@ -338,8 +338,8 @@ p {
 
 .btn {
     float: right;
-    width: 50px;
-    height: 30px;
+    width: auto;
+    height: auto;
     margin-left: 5px;
     font-size: small;
     font-weight: bolder;

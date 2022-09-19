@@ -190,35 +190,35 @@ session.setAttribute("url", url);
                     <div class="single-product-details">
                         <h2>${prodVO.prod_name}</h2>
                         <h5>$${prodVO.prod_price}</h5>
-                        <p class="available-stock"><span> 現有庫存： <a href="#">${prodVO.prod_stock}</a></span><p>
+                        <p class="available-stock"><span> 現有庫存： <span style="color: red;">${prodVO.prod_stock}</span></span><p>
 						<h4>商品詳情：</h4>
 						<p>${prodVO.prod_detail}</p>
 						<ul>
 							<li>
 								<div class="form-group quantity-box">
 									<label class="control-label">購買數量</label>
-									<input class="form-control" value="0" min="0" max="${prodVO.prod_stock}" type="number">
+									<input class="form-control" value="0" min="1" max="${prodVO.prod_stock}" type="number">
 								</div>
 							</li>
 						</ul>
 
 						<div class="price-box-bar">
 							<div class="cart-and-bay-btn">
+							
+								<FORM name="cart" action="cart.do" method="post">
 								<c:choose>
 									<c:when test="${empty sessionScope.user}">
 										<input class="btn btn-warning" id="cart2" type="button" value="加入購物車" onclick="confirmTest()" />
 									</c:when>
-									<c:otherwise>
-										<c:choose>
-											<c:when test="${set.contains(prodVO.getProd_no())}">
-												<input class="btn btn-warning" id="cart2" type="submit" value="已加入購物車" disabled="disabled">
-											</c:when>
-									<c:otherwise>
+									<c:otherwise>									
 										<input class="btn btn-warning" id="cart2" type="submit" value="加入購物車" onclick="confirmTest2()">
 									</c:otherwise>
-										</c:choose>
-									</c:otherwise>
 								</c:choose>
+								<input type="hidden" name="prod_no" value="${prodVO.prod_no}">
+								<input type="hidden" name="prod_qty" value="${cartVO.prod_qty}">
+                                <input type="hidden" name="mem_no" value="${user.mem_no}">
+								<input type="hidden" name="action" value="insertByDetail">	
+								</FORM>
 							</div>
 						</div>
                     </div>

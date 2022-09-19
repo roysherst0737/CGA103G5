@@ -2,11 +2,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.prod.model.*"%>
+<%@ page import="com.cart.model.*"%>
+<%@ page import="com.mem.model.*"%>
 
 <%
 Prod_Service prodSvc = new Prod_Service();
 List<Prod_VO> list = prodSvc.getAll();
 pageContext.setAttribute("list", list);
+
+Cart_Service cartSvc = new Cart_Service();
+List<Cart_VO> cartlist = cartSvc.getAll();
+pageContext.setAttribute("cartlist", cartlist);
+
+// int amount = 0;
+// for (int i = 0; i < cartlist.size(); i++) {
+// 	Cart_VO order = cartlist.get(i);
+// 	Integer price = order.getProd_VO().getProd_price();
+// 	Integer quantity = order.getProd_qty();
+// 	amount += (price * quantity);
+// }
+
+Object Objuser = session.getAttribute("user");
+Mem_VO user = (Mem_VO) Objuser;
+
+String url = request.getRequestURL().toString() + "?" + request.getQueryString();
+session.setAttribute("url", url);
 %>
 
 <!DOCTYPE html>
@@ -90,80 +110,36 @@ pageContext.setAttribute("list", list);
                                     <th>移除</th>
                                 </tr>
                             </thead>
+                            <c:forEach var="cartVO" items="${cartlist}">
+                            <c:if test="${cartVO.mem_no == user.mem_no}">
                             <tbody>
                                 <tr>
                                     <td class="thumbnail-img">
-                                        <a href="#">
-									<img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
-								</a>
+                                    	<img src="<%=request.getContextPath()%>/ShowProd_picForProd?prod_no=${cartVO.getProd_pic_VO().prod_pic_no}"
+											 width=150px height=100px>
                                     </td>
                                     <td class="name-pr">
-                                        <a href="#">
-									Lorem ipsum dolor sit amet
-								</a>
+                                        ${cartVO.getProd_VO().prod_name}
                                     </td>
                                     <td class="price-pr">
-                                        <p>$ 80.0</p>
+                                        <p>$${cartVO.getProd_VO().prod_price}</p>
                                     </td>
-                                    <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
+                                    <td class="quantity-box">
+                                    	<p>${cartVO.prod_qty}</p>
+<!--                                     <input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"> -->
+                                    </td>
                                     <td class="total-pr">
-                                        <p>$ 80.0</p>
+                                        <p>$${cartVO.getProd_VO().prod_price * cartVO.prod_qty}</p>
                                     </td>
                                     <td class="remove-pr">
                                         <a href="#">
 									<i class="fas fa-times"></i>
 								</a>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-									<img class="img-fluid" src="images/img-pro-02.jpg" alt="" />
-								</a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-									Lorem ipsum dolor sit amet
-								</a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>$ 60.0</p>
-                                    </td>
-                                    <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
-                                    <td class="total-pr">
-                                        <p>$ 80.0</p>
-                                    </td>
-                                    <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="thumbnail-img">
-                                        <a href="#">
-									<img class="img-fluid" src="images/img-pro-03.jpg" alt="" />
-								</a>
-                                    </td>
-                                    <td class="name-pr">
-                                        <a href="#">
-									Lorem ipsum dolor sit amet
-								</a>
-                                    </td>
-                                    <td class="price-pr">
-                                        <p>$ 30.0</p>
-                                    </td>
-                                    <td class="quantity-box"><input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"></td>
-                                    <td class="total-pr">
-                                        <p>$ 80.0</p>
-                                    </td>
-                                    <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
-                                    </td>
-                                </tr>
+                                </tr>                                                                
                             </tbody>
+                            </c:if>
+                            </c:forEach>
                         </table>
                     </div>
                 </div>
@@ -183,34 +159,38 @@ pageContext.setAttribute("list", list);
                     </div>
                 </div>
             </div>
-
-            <div class="row my-5">
-                <div class="col-lg-8 col-sm-12"></div>
-                <div class="col-lg-4 col-sm-12">
-                    <div class="order-box">
-                        <h3>購物車內容</h3>
-                        <div class="d-flex">
-                            <h4>消費金額</h4>
-                            <div class="ml-auto font-weight-bold"> $ 130 </div>
-                        </div>
-                        <hr class="my-1">
-                        <div class="d-flex">
-                            <h4>優惠碼折抵</h4>
-                            <div class="ml-auto font-weight-bold"> $ 10 </div>
-                        </div>
-                        <div class="d-flex">
-                            <h4>運費</h4>
-                            <div class="ml-auto font-weight-bold"> Free </div>
-                        </div>
-                        <hr>
-                        <div class="d-flex gr-total">
-                            <h5>訂單總金額</h5>
-                            <div class="ml-auto h5"> $ 388 </div>
-                        </div>
-                        <hr> </div>
-                </div>
+			
+<%-- 			<c:forEach var="cartVO" items="${cartlist}"> --%>
+<%--             <c:if test="${cartVO.mem_no == user.mem_no}"> --%>
+<!--             <div class="row my-5"> -->
+<!--                 <div class="col-lg-8 col-sm-12"></div> -->
+<!--                 <div class="col-lg-4 col-sm-12"> -->
+<!--                     <div class="order-box"> -->
+<!--                         <h3>購物車內容</h3> -->
+<!--                         <div class="d-flex"> -->
+<!--                             <h4>消費金額</h4> -->
+<!--                             <div class="ml-auto font-weight-bold"> $${cartVO.getProd_VO().prod_price * cartVO.prod_qty} </div> -->
+<!--                         </div> -->
+<!--                         <hr class="my-1"> -->
+<!--                         <div class="d-flex"> -->
+<!--                             <h4>優惠碼折抵</h4> -->
+<!--                             <div class="ml-auto font-weight-bold"> $ 10 </div> -->
+<!--                         </div> -->
+<!--                         <div class="d-flex"> -->
+<!--                             <h4>運費</h4> -->
+<!--                             <div class="ml-auto font-weight-bold"> Free </div> -->
+<!--                         </div> -->
+<!--                         <hr> -->
+<!--                         <div class="d-flex gr-total"> -->
+<!--                             <h5>訂單總金額</h5> -->
+<!--                             <div class="ml-auto h5"> $${cartVO.getProd_VO().prod_price * cartVO.prod_qty} </div> -->
+<!--                         </div> -->
+<!--                         <hr> </div> -->
+<!--                 </div> -->
                 <div class="col-12 d-flex shopping-box"><a href="checkout.jsp" class="ml-auto btn hvr-hover">結帳</a> </div>
-            </div>
+<!--             </div> -->
+<%--             </c:if> --%>
+<%--             </c:forEach> --%>
 
         </div>
     </div>

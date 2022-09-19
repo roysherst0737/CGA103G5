@@ -4,11 +4,16 @@
 <%@ page import="com.prod.model.*"%>
 <%@ page import="com.mem.model.*"%>
 <%@ page import="com.order.model.*"%>
+<%@ page import="com.cart.model.*"%>
 
 <%
 Prod_Service prodSvc = new Prod_Service();
 List<Prod_VO> list = prodSvc.getAll();
 pageContext.setAttribute("list", list);
+
+Cart_Service cartSvc = new Cart_Service();
+List<Cart_VO> cartlist = cartSvc.getAll();
+pageContext.setAttribute("cartlist", cartlist);
 
 Object Objuser = session.getAttribute("user");
 Mem_VO user = (Mem_VO) Objuser;
@@ -65,6 +70,12 @@ session.setAttribute("url", url);
 					location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
 					}
 				});
+		}
+		function confirmTest0() {
+			Swal.fire({
+				title : "您已登入會員，可直接進行結帳",
+				showCancelButton : false
+			});
 		}
 		function confirmTest1() {
 			Swal.fire({
@@ -125,13 +136,31 @@ session.setAttribute("url", url);
                     <div class="title-left">
                         <h3>會員登入</h3>
                     </div>
-                    <h5><a href="<%=request.getContextPath()%>/front-end/mem/login.jsp" style="color:#f5c242; font-size: 18px">若尚未登入，請點擊登入會員後方可結帳</a></h5>
+                    <h5>
+                    	<c:choose>
+							<c:when test="${empty sessionScope.user}">
+								<a href="<%=request.getContextPath()%>/front-end/mem/login.jsp" style="color:#f5c242; font-size: 18px">您尚未登入，請點擊登入會員後方可結帳</a>
+							</c:when>
+							<c:otherwise>
+								<a style="color:#f5c242; font-size: 18px">您已登入，可直接進行結帳</a>
+							</c:otherwise>
+						</c:choose> 
+                    </h5>
                 </div>
                 <div class="col-sm-6 col-lg-6 mb-3">
                     <div class="title-left">
                         <h3>註冊新會員</h3>
                     </div>
-                    <h5><a href="<%=request.getContextPath()%>/front-end/mem/register.jsp" style="color:#f5c242; font-size: 18px">若尚未成為會員，請點擊加入我們！</a></h5>
+                    <h5>
+                    	<c:choose>
+							<c:when test="${empty sessionScope.user}">
+								<a href="<%=request.getContextPath()%>/front-end/mem/register.jsp" style="color:#f5c242; font-size: 18px">若您尚未註冊，請點擊加入我們！</a>
+							</c:when>
+							<c:otherwise>
+								<a style="color:#f5c242; font-size: 18px">已註冊會員，謝謝您的支持！</a>
+							</c:otherwise>
+						</c:choose> 
+                    </h5>
                 </div>
             </div>
             <div class="row">
@@ -234,23 +263,17 @@ session.setAttribute("url", url);
                                 <div class="title-left">
                                     <h3>購物車內容</h3>
                                 </div>
+                                <c:forEach var="cartVO" items="${cartlist}">
+                            	<c:if test="${cartVO.mem_no == user.mem_no}">
                                 <div class="rounded p-2 bg-light">
                                     <div class="media mb-2 border-bottom">
-                                        <div class="media-body"> <a href="detail.html"> Lorem ipsum dolor sit amet</a>
-                                            <div class="small text-muted">Price: $80.00 <span class="mx-2">|</span> Qty: 1 <span class="mx-2">|</span> Subtotal: $80.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="media mb-2 border-bottom">
-                                        <div class="media-body"> <a href="detail.html"> Lorem ipsum dolor sit amet</a>
-                                            <div class="small text-muted">Price: $60.00 <span class="mx-2">|</span> Qty: 1 <span class="mx-2">|</span> Subtotal: $60.00</div>
-                                        </div>
-                                    </div>
-                                    <div class="media mb-2">
-                                        <div class="media-body"> <a href="detail.html"> Lorem ipsum dolor sit amet</a>
-                                            <div class="small text-muted">Price: $40.00 <span class="mx-2">|</span> Qty: 1 <span class="mx-2">|</span> Subtotal: $40.00</div>
+                                        <div class="media-body"> <a href="detail.html"> ${cartVO.getProd_VO().prod_name}</a>
+                                            <div class="small text-muted">單價: $${cartVO.getProd_VO().prod_price} <span class="mx-2">|</span> 數量: ${cartVO.prod_qty} <span class="mx-2">|</span> 總價: $${cartVO.getProd_VO().prod_price * cartVO.prod_qty}</div>
                                         </div>
                                     </div>
                                 </div>
+                                </c:if>
+                            	</c:forEach>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-12">

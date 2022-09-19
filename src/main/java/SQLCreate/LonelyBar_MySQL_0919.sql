@@ -432,7 +432,7 @@ CREATE TABLE `forum_article_report` (
   `frm_art_rpt_no` int NOT NULL AUTO_INCREMENT,
   `mem_no` int NOT NULL,
   `frm_art_no` int NOT NULL,
-  `rpt_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `rpt_time` datetime DEFAULT CURRENT_TIMESTAMP,
   `rpt_content` varchar(1000) NOT NULL,
   `mng_no` int DEFAULT NULL,
   `rpt_done_time` datetime DEFAULT CURRENT_TIMESTAMP,

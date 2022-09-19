@@ -50,7 +50,7 @@
     
     <div class="cont_back_info">
        <div class="cont_img_back_grey">
-       <img src="https://images.pexels.com/photos/1554654/pexels-photo-1554654.jpeg?cs=srgb&dl=pexels-wendy-wei-1554654.jpg&fm=jpg" alt="" />
+       <img src="https://images.pexels.com/photos/1554654/pexels-photo-1554654.jpeg?cs=srgb&dl=pexels-wendy-wei-1554654.jpg&fm=jpg"" alt="" />
        </div>
        
     </div>
@@ -60,38 +60,36 @@
     <div class="cont_img_back_">
        <img src="https://images.pexels.com/photos/1554654/pexels-photo-1554654.jpeg?cs=srgb&dl=pexels-wendy-wei-1554654.jpg&fm=jpg" alt="" />
        </div>
-       
-       
-   <form method='post' action="mngLogin.do">
  <div class="cont_form_login">
 <a href="#" onclick="ocultar_login_sign_up()" ><i class="material-icons">&#xE5C4;</i></a>
    <h2>LOGIN</h2>
-  
- <input type="text" name="mng_account" value="<%= (manager_VO==null)? "" : manager_VO.getMng_account()%>" placeholder="Account" />
+   <form method='post' action="<%=request.getContextPath()%>/back-end/manager_login/mngLogin.do">
+<input type="text" name="mng_account" value="<%= (manager_VO==null)? "" : manager_VO.getMng_account()%>" placeholder="Account" />
 <input type="password" value="<%= (manager_VO==null)? "" : manager_VO.getMng_password()%>" name="mng_password" placeholder="Password" />
 <input type="hidden" name="action" value="mngLogin">
 <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
+</form>
   </div>
-  </form>
   
-   <FORM METHOD='post' ACTION="mngRegister.do" name="form1" enctype="multipart/form-data" >
    <div class="cont_form_sign_up">
 <a href="#" onclick="ocultar_login_sign_up()"><i class="material-icons">&#xE5C4;</i></a>
      <h2>SIGN UP</h2>
-    
-<input type="text" name="mng_account" value="<%= (manager_VO==null)? "" : manager_VO.getMng_account()%>" placeholder="Account" />
+     <FORM METHOD='post' ACTION="<%=request.getContextPath()%>/back-end/manager_login/mngRegister.do" name="form1" enctype="multipart/form-data">
+<input type="text" name="mng_account" value="<%= (manager_VO==null)? "" : manager_VO.getMng_account()%>" placeholder="Account" /><br>
 <input type="password" id="mng_password" name="mng_password" value="<%= (manager_VO==null)? "" : manager_VO.getMng_password()%>" placeholder="Password" />
-<input type="password" id="mng_cnf_password" name="mng_cnf_password" placeholder="Confirm Password" value=''/>
-<input type="text" id="mng_name" name="mng_name" value="<%= (manager_VO==null)? "" : manager_VO.getMng_name()%>" placeholder="Username" />
-<input type="text" name="mng_phone" value="<%= (manager_VO==null)? "" : manager_VO.getMng_phone()%>" placeholder="Phone"/>
-<input type="file" name="mng_pic" placeholder="Picture" /><p>
-<label for="mng_status">啟用管理員狀態: </label><input type="checkbox" id="mng_status" name="mng_status" value=1 /><p>
+<input type="password" id="mng_cnf_password" name="mng_cnf_password" placeholder="Confirm Password" value=''/><br>
+<input type="text" id="mng_name" name="mng_name" value="<%= (manager_VO==null)? "" : manager_VO.getMng_name()%>" placeholder="Username" /><br>
+<input type="text" name="mng_phone" value="<%= (manager_VO==null)? "" : manager_VO.getMng_phone()%>" placeholder="Phone"/><br>
+<input type="file" name="mng_pic" placeholder="Picture" /><br>
+<label for="mng_status" style="margin: auto;">啟用管理員狀態: </label><input type="checkbox" id="mng_status" name="mng_status" value=1 /><br>
 <input type="hidden" id="mng_status" name="mng_status" value=0>
 <input type="hidden" name="action" value="mngRegister">
 <button class="btn_sign_up1" onclick="cambiar_sign_up()">SIGN UP</button>
+</FORM>
   </div>
-  </FORM>
+
     </div>
+    
   </div>
  </div>
 </div>

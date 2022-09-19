@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import com.manager.model.*;
-@WebServlet("/mngServlet")
+
 @MultipartConfig
 public class ManagerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,9 +23,9 @@ public class ManagerServlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-//		res.setContentType("image/gif");
+		res.setContentType("image/jpg, image/png, image/jpeg, image/gif");
 		
-		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
+		if ("getOne_For_Display".equals(action)) { // 來自selectPage.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -40,7 +40,7 @@ public class ManagerServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/manager/select_page.jsp");
+							.getRequestDispatcher("/back-end/manager/selectPage.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -54,7 +54,7 @@ public class ManagerServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/manager/select_page.jsp");
+							.getRequestDispatcher("/back-end/manager/selectPage.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -68,20 +68,20 @@ public class ManagerServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/manager/select_page.jsp");
+							.getRequestDispatcher("/back-end/manager/selectPage.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("manager_VO", manager_VO); // 資料庫取出的manager_VO物件,存入req
-				String url = "/back-end/manager/listOneManager.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneManager.jsp
+				String url = "/back-end/manager/listOneMng.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listAllMng.jsp
 				successView.forward(req, res);
 		}
 		
 		
-		if ("getOne_For_Update".equals(action)) { // 來自listAllManager.jsp的請求
+		if ("getOne_For_Update".equals(action)) { // 來自listAllMng.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -97,13 +97,13 @@ public class ManagerServlet extends HttpServlet {
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("manager_VO", manager_VO);         // 資料庫取出的manager_VO物件,存入req
-				String url = "/back-end/manager/update_manager_input.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_manager_input.jsp
+				String url = "/back-end/manager/updateMng.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 updateMng.jsp
 				successView.forward(req, res);
 		}
 		
 		
-		if ("update".equals(action)) { // 來自update_manager_input.jsp的請求
+		if ("update".equals(action)) { // 來自updateMng.jsp的請求
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -177,7 +177,7 @@ public class ManagerServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("manager_VO", manager_VO); // 含有輸入格式錯誤的manager_VO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/manager/update_manager_input.jsp");
+							.getRequestDispatcher("/back-end/manager/updateMng.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -188,8 +188,8 @@ public class ManagerServlet extends HttpServlet {
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("manager_VO", manager_VO); // 資料庫update成功後,正確的的manager_VO物件,存入req
-				String url = "/back-end/manager/listOneManager.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneManager.jsp
+				String url = "/back-end/manager/listOneMng.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listAllMng.jsp
 				successView.forward(req, res);
 		}
 
@@ -263,7 +263,7 @@ public class ManagerServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("manager_VO", manager_VO); // 含有輸入格式錯誤的manager_VO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/manager/addManager.jsp");
+							.getRequestDispatcher("/back-end/manager_login/mngLogin.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -273,13 +273,13 @@ public class ManagerServlet extends HttpServlet {
 				manager_VO = manager_Svc.addManager(mng_account, mng_password, mng_name, mng_phone, mng_pic, mng_status);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/back-end/manager/listAllManager.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllManager.jsp
+				String url = "/back-end/manager/listAllMng.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllMng.jsp
 				successView.forward(req, res);				
 		}
 		
 		
-		if ("delete".equals(action)) { // 來自listAllManager.jsp
+		if ("delete".equals(action)) { // 來自listAllMng.jsp
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -294,7 +294,7 @@ public class ManagerServlet extends HttpServlet {
 				manager_Svc.deleteManager(mng_no);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/back-end/manager/listAllManager.jsp";
+				String url = "/back-end/manager/listAllMng.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 		}

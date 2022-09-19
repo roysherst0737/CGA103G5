@@ -73,8 +73,8 @@ public class ManagerLogin extends HttpServlet {
 					 session.setAttribute("mng_account", mng_account);
 					res.sendRedirect("mngSuc.jsp");
 				} else {
-//					HttpSession session = req.getSession();
-//					session.setAttribute("user", mng_account);
+					HttpSession session = req.getSession();
+					session.setAttribute("user", mng_account);
 					res.sendRedirect("mngLogin.jsp");
 				}
 				

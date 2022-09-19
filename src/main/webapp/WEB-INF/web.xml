@@ -135,7 +135,7 @@
 		<servlet-name>Forum_article_Servlet</servlet-name>
 		<url-pattern>/front-end/forum/forum_article.do</url-pattern>
 	</servlet-mapping>
-<<<<<<< HEAD
+<!-- 管理員 -->
 	  <servlet>
     <servlet-name>ManagerServlet</servlet-name>
     <servlet-class>com.manager.controller.ManagerServlet</servlet-class>
@@ -160,17 +160,5 @@
     <servlet-name>ManagerLogin</servlet-name>
     <url-pattern>/back-end/manager_login/mngLogin.do</url-pattern>
   </servlet-mapping>
-=======
 
-<!-- 管理員 -->
-	<servlet>
-		<servlet-name>ManagerServlet</servlet-name>
-		<servlet-class>com.manager.controller.ManagerServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ManagerServlet</servlet-name>
-		<url-pattern>/back-end/manager/manager.do</url-pattern>
-	</servlet-mapping>
-	
->>>>>>> c840be070011f9462dab9f1c4a0062ca3feee3fd
 </web-app>

@@ -4,6 +4,8 @@
 
 <%
   Manager_VO manager_VO = (Manager_VO) request.getAttribute("manager_VO"); //Manager_Servlet.java(Concroller), 存入req的manager_VO物件
+  
+  Manager_Service manager_Svc = new Manager_Service();
 %>
 
 <html>
@@ -70,7 +72,7 @@
 		<td><%=manager_VO.getMng_password()%></td>
 		<td><%=manager_VO.getMng_name()%></td>
 		<td><%=manager_VO.getMng_phone()%></td>
-		<td><%=manager_VO.getMng_pic()%></td>
+		<td><img src="<%=request.getContextPath()%>/ManagerImage?mng_no=${manager_VO.mng_no}" width=60px height=60px></td>
 		<td><%=manager_VO.getMng_status()%></td>
 	</tr>
 </table>

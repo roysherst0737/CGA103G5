@@ -16,18 +16,23 @@ import com.manager.model.Manager_VO;
 public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO manager_auth (mng_no,mng_authfunc_no) VALUES (?, ?)";
-	private static final String GET_ALL_MANAGER_AUTH_STMT = 
-		"SELECT * FROM manager_auth order by mng_no";
-	private static final String GET_ALL_MANAGER_AUTHFUNC_STMT = 
-		"SELECT * FROM manager_auth order by mng_authfunc_no";
-	private static final String GET_ONE_STMT = 
-		"SELECT * FROM manager_auth where mng_no = ? AND mng_authfunc_no = ?";
-	private static final String DELETE = 
-		"DELETE FROM manager_auth where mng_no = ? AND mng_authfunc_no = ?";
-	private static final String UPDATE = 
-		"UPDATE manager_auth set mng_authfunc_no = ? where mng_no = ?";
-
+			"INSERT INTO manager_auth (mng_no,mng_authfunc_no) VALUES (?, ?)";
+//		private static final String GET_ALL_MANAGER_STMT = 
+//			"SELECT * FROM manager_auth order by mng_no";
+		private static final String GET_ALL_MANAGER_AUTHFUNC_STMT = 
+			"SELECT mng_no,mng_authfunc_no FROM manager_auth order by mng_authfunc_no";
+		private static final String GET_ONE_STMT = 
+			"SELECT mng_no,mng_authfunc_no FROM manager_auth where mng_no = ?";
+		private static final String DELETE = 
+			"DELETE FROM manager_auth where mng_no = ? AND mng_authfunc_no = ?";
+		private static final String DELETE_ALL = 
+			"DELETE FROM manager_auth where mng_no = ?";
+		private static final String UPDATE = 
+			"UPDATE manager_auth set mng_authfunc_no = ? where mng_no = ?";
+		private static final String GET_AUTHFUNC = 
+			"SELECT mng_authfunc_no, mng_no "
+			+ "FROM manager_auth WHERE mng_no = ?";
+	
 	@Override
 	public void insert(Manager_auth_VO manager_auth_VO) {
 
@@ -164,7 +169,7 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 	}
 
 	@Override
-	public Manager_auth_VO findByPrimaryKey(Integer mng_no,Integer mng_authfunc_no) {
+	public Manager_auth_VO findByPrimaryKey(Integer mng_no) {
 
 		Manager_auth_VO manager_auth_VO = null;
 		Connection con = null;
@@ -178,7 +183,6 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setInt(1, mng_no);
-			pstmt.setInt(2, mng_authfunc_no);
 
 			rs = pstmt.executeQuery();
 
@@ -225,7 +229,7 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 	}
 
 	@Override
-	public List<Manager_auth_VO> getAllManager_auth(Integer mng_no) {
+	public List<Manager_auth_VO> getAuthfunc(Integer mng_no) {
 		List<Manager_auth_VO> list = new ArrayList<Manager_auth_VO>();
 		Manager_auth_VO manager_auth_VO = null;
 
@@ -237,14 +241,13 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-			pstmt = con.prepareStatement(GET_ALL_MANAGER_AUTH_STMT);
+			pstmt = con.prepareStatement(GET_AUTHFUNC);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				// manager_auth_Vo 也稱為 Domain objects
 				manager_auth_VO = new Manager_auth_VO();
 				manager_auth_VO.setMng_no(rs.getInt("mng_no"));
-				manager_auth_VO.setMng_authfunc_no(rs.getInt("mng_authfunc_no"));
 				list.add(manager_auth_VO); // Store the row in the list
 			}
 
@@ -284,7 +287,7 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 	}
 		
 		@Override
-		public List<Manager_auth_VO> getAllManager_authfunc(Integer mng_authfunc_no) {
+		public List<Manager_auth_VO> getAllManager_auth() {
 			List<Manager_auth_VO> list = new ArrayList<Manager_auth_VO>();
 			Manager_auth_VO manager_auth_VO = null;
 
@@ -341,6 +344,50 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 			}
 			return list;
 	}
+		
+		@Override
+		public void deleteAll(Integer mng_no) {
+
+			Connection con = null;
+			PreparedStatement pstmt = null;
+
+			try {
+
+				Class.forName(DRIVER);
+				con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+				pstmt = con.prepareStatement(DELETE_ALL);
+
+				pstmt.setInt(1, mng_no);
+
+				pstmt.executeUpdate();
+
+				// Handle any driver errors
+			} catch (ClassNotFoundException e) {
+				throw new RuntimeException("Couldn't load database driver. "
+						+ e.getMessage());
+				// Handle any SQL errors
+			} catch (SQLException se) {
+				throw new RuntimeException("A database error occured. "
+						+ se.getMessage());
+				// Clean up JDBC resources
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}
+
+		}
 
 //	public static void main(String[] args) {
 //

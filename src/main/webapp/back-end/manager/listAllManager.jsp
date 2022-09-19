@@ -88,7 +88,7 @@
 			     <input type="hidden" name="mng_no"  value="${manager_VO.mng_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
-			<td>
+			<td align='center' valign="middle">
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/manager/manager.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="刪除">
 			     <input type="hidden" name="mng_no"  value="${manager_VO.mng_no}">

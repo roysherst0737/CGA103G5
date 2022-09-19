@@ -2,8 +2,10 @@ package com.manager_authfunc.model;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.manager.model.Manager_VO;
+import com.manager.model.Manager_Service;
 
 public class Manager_authfunc_Service {
 
@@ -42,10 +44,16 @@ public class Manager_authfunc_Service {
 		return dao.findByPrimaryKey(mng_authfunc_no);
 	}
 
-	public List<Manager_authfunc_VO> getManager_authfuncAll() {
+	public List<Manager_authfunc_VO> getAllManager_authfunc() {
 		return dao.getAllManager_authfunc();
 	}
 	public List<Manager_authfunc_VO> getAllManager_authfunc(Map<String, String[]> map) {
 		return dao.getAllManager_authfunc(map);
+	}
+	public Set<Manager_VO> getMngsByMng_authfunc_no(Integer mng_authfunc_no){
+		return dao.getMngsByMng_authfunc_no(mng_authfunc_no);
+	}
+	public void insertWithMngs(Manager_authfunc_VO manager_authfunc_VO , List<Manager_VO> list) {
+		return;
 	}
 }

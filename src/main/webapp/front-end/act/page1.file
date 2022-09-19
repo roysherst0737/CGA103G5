@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%  int rowsPerPage = 6;  //每頁的筆數
+<%  int rowsPerPage = 3;  //每頁的筆數
     int rowNumber=0;      //總筆數
     int pageNumber=0;     //總頁數     
     int whichPage=1;      //第幾頁
@@ -8,7 +8,7 @@
 %>
 
 <%  
-    rowNumber=list.size();
+    rowNumber=actList.size();
     if (rowNumber%rowsPerPage !=0)
          pageNumber=rowNumber/rowsPerPage + 1;
     else pageNumber=rowNumber/rowsPerPage;    
@@ -32,3 +32,4 @@
     } 
 %>
 
+<div><b>●符 合 查 詢 條 件 如 下 所 示 ： 共<font color=red><%=rowNumber%></font>筆</b></div>

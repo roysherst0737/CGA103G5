@@ -142,7 +142,7 @@
 											<FORM METHOD="post" ACTION="act_pic.do">
 												<b>選擇活動編號:</b> <select size="1" name="act_pic_no">
 													<c:forEach var="act_picVO" items="${act_picSvc.all}">
-														<option value="${act_picVO.act_pic_no}">${act_picVO.act_no}
+														<option value="${act_picVO.act_no}">${act_picVO.act_no}
 													</c:forEach>
 												</select> <input type="hidden" name="action"
 													value="getOne_For_Display"> <input type="submit"

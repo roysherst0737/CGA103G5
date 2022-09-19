@@ -96,10 +96,17 @@
 							<li><a href="<%=request.getContextPath()%>/PubMap" style="color: #f5c242; font-weight:bold;">酒吧地圖</a></li>
 							<li><a href="<%=request.getContextPath()%>/PubApplication" style="color: #f5c242; font-weight:bold;">酒吧註冊申請</a></li>
 							<li><a href="<%=request.getContextPath()%>/PubStates" style="color: #f5c242; font-weight:bold;">酒吧狀態</a></li>
-						</ul>
-							
+						</ul>			
 					</li>
-					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/act/actlist.jsp">活動專區</a></li>
+					
+					<li class="dropdown"><a href="<%=request.getContextPath()%>/front-end/#" class="nav-link dropdown" data-toggle="dropdown"
+							style="font-weight: 1000;">活動專區</a>
+						<ul class="dropdown-menu">
+							<li><a href="<%=request.getContextPath()%>/front-end/act/actlist.jsp" style="color: #f5c242; font-weight:bold;">活動總覽</a></li>
+							<li><a href="<%=request.getContextPath()%>/front-end/act/my_sign_up.jsp" style="color: #f5c242; font-weight:bold;">我的報名</a></li>
+						</ul>
+					</li>
+					
 					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/gallery.html">討論園地</a></li>
 				</ul>
 			</div>

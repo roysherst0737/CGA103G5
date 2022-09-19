@@ -74,11 +74,8 @@ pageContext.setAttribute("list", list);
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h2>Act List</h2>
-					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a href="#">活動專區</a></li>
-						<li class="breadcrumb-item active">Act List</li>
-					</ul>
+					<h2>活動總覽</h2>
+
 				</div>
 			</div>
 		</div>
@@ -111,8 +108,8 @@ pageContext.setAttribute("list", list);
 									id="grid-view">
 									<div class="row">
 
-
-										<%@ include file="page1.file"%>
+                                  <%@ include file="page1.file"%>
+										
 										<c:forEach var="actVO" items="${actList}" begin="<%=pageIndex%>"
 											end="<%=pageIndex+rowsPerPage-1%>">
 											<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
@@ -128,7 +125,7 @@ pageContext.setAttribute("list", list);
 																	data-toggle="tooltip" data-placement="right"
 																	title="查看詳情"><i class="fas fa-eye"></i></a></li>
 															</ul>
-															<a class="cart" href="#">報名</a>
+															
 														</div>
 													</div>
 													<div class="why-text">
@@ -138,13 +135,13 @@ pageContext.setAttribute("list", list);
 												</div>
 											</div>
 										</c:forEach>
-										<%@ include file="page2.file"%>
+										
 
 									</div>
 								</div>
+								<%@ include file="page2.file"%>
+								
 								<div role="tabpanel" class="tab-pane fade" id="list-view">
-
-
 									<c:forEach var="actVO" items="${actList}">
 										<div class="list-view-box">
 											<div class="row">
@@ -170,7 +167,7 @@ pageContext.setAttribute("list", list);
 														<h4>${actVO.act_name}</h4>
 														<h5>活動地點：${actVO.act_loc}</h5>
 														<p>${actVO.act_detail}</p>
-														<a class="btn hvr-hover" href="#">報名</a>
+														<a class="btn hvr-hover" href="<%=request.getContextPath()%>/front-end/act/act-detail.jsp?${actVO.act_no}">活動詳情</a>
 													</div>
 												</div>
 											</div>
@@ -179,6 +176,9 @@ pageContext.setAttribute("list", list);
 								</div>
 							</div>
 						</div>
+						
+						
+						
 					</div>
 				</div>
 

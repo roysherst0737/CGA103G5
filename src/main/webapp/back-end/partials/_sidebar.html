@@ -140,6 +140,27 @@
         </ul>
       </div>
     </li>
+        <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#act" aria-expanded="false"
+        aria-controls="act"> <i class="typcn typcn-user-add-outline menu-icon"></i> <span
+          class="menu-title">活動管理</span>
+        <i class="menu-arrow"></i>
+      </a>
+            <div class="collapse" id="act">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"><a id="act_list" class="nav-link" href=""> 活動資料管理 </a></li>
+          <li class="nav-item"><a id="act_pic" class="nav-link" href=""> 活動圖片管理 </a></li>
+          <li class="nav-item"><a id="act_sign_up" class="nav-link" href=""> 活動報名管理 </a></li>
+          <script>
+            document.querySelector("#act_list").setAttribute("href",
+            	getContextPath() + "/back-end/act/listAllAct.jsp");
+            document.querySelector("#act_pic").setAttribute("href",
+                	getContextPath() + "/back-end/act_pic/listAllAct_pic.jsp");
+            document.querySelector("#act_sign_up").setAttribute("href",
+                	getContextPath() + "/back-end/act_sign_up/listAllAct_sign_up.jsp");
+          </script>
+        </ul>
+      </div>
+    </li>
     <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#prod" aria-expanded="false"
         aria-controls="prod"> <i class="typcn typcn-user-add-outline menu-icon"></i> <span
           class="menu-title">商品管理</span>

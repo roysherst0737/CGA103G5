@@ -64,6 +64,15 @@ session.setAttribute("url", url);
     		width: auto;
     		height: auto;
 			}
+		
+		#remind {
+			color:#f5c242; 
+			font-size: 28px; 
+			font-weight:bold;
+			}
+		#remind:hover {	
+			color:black;
+			}
 	
 	</style>
 	
@@ -149,13 +158,26 @@ session.setAttribute("url", url);
                 <div class="col-lg-6 col-sm-6">
                     <div class="coupon-box">
                         <div class="input-group input-group-sm">
-                            <input class="form-control" placeholder="輸入優惠碼" aria-label="Coupon code" type="text">
+                        	<c:choose>
+							<c:when test="${empty sessionScope.user}">
+								<a href="<%=request.getContextPath()%>/front-end/mem/login.jsp" id="remind">【請點擊登入會員，以查看購物車】</a>
+							</c:when>
+							<c:otherwise>
+                            	<input class="form-control" placeholder="輸入優惠碼" aria-label="Coupon code" type="text">
+                            </c:otherwise>
+                            </c:choose> 
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-6">
                     <div class="update-box">
-                        <input value="確定" type="submit">
+                    	<c:choose>
+							<c:when test="${empty sessionScope.user}">								
+							</c:when>
+							<c:otherwise>
+                        		<input value="確定" type="submit">
+                        	</c:otherwise>
+                    	</c:choose> 
                     </div>
                 </div>
             </div>
@@ -187,7 +209,15 @@ session.setAttribute("url", url);
 <!--                         </div> -->
 <!--                         <hr> </div> -->
 <!--                 </div> -->
-                <div class="col-12 d-flex shopping-box"><a href="checkout.jsp" class="ml-auto btn hvr-hover">結帳</a> </div>
+                <div class="col-12 d-flex shopping-box">
+                	<c:choose>
+						<c:when test="${empty sessionScope.user}">								
+						</c:when>
+						<c:otherwise>
+                        	<a href="checkout.jsp" class="ml-auto btn hvr-hover">結帳</a>
+                        </c:otherwise>
+                    </c:choose>                 	
+                </div>
 <!--             </div> -->
 <%--             </c:if> --%>
 <%--             </c:forEach> --%>

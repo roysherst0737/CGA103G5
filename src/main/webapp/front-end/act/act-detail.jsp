@@ -82,10 +82,16 @@ session.setAttribute("url", url);
 			showCancelButton : true
 		}).then(function(result) {
 			if (result.value) {	
+
+				location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
+			} 
+		});
+
 				location.href='<%=request.getContextPath()%>
 	/front-end/mem/login.jsp'
 							}
 						});
+
 	}
 	function confirmTest2() {
 		Swal.fire({

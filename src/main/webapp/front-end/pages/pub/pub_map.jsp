@@ -37,6 +37,8 @@
 	href="<%=request.getContextPath()%>/front-end/css/pub.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
+.modal{
+padding-right: 17px;}
 .img_rate {
 	width: 30px;
 	vertical-align: middle;

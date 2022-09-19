@@ -60,8 +60,10 @@ public class MemLoginServlet extends HttpServlet {
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				session.setAttribute("user",user );
-				String url = session.getAttribute("url").toString();
-				response.sendRedirect(url);
+
+				String previous_page = (String) session.getAttribute("previous_page");
+				response.sendRedirect(previous_page);
+
 		}
 	}
 }

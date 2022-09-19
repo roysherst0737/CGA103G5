@@ -43,4 +43,11 @@ public class Pub_Booking_DAOImpl implements Pub_Booking_DAO{
 				.setParameter("mem_no", mem_no).uniqueResult();
 	}
 
+	@Override
+	public List<Pub_Booking> getListByPubnoAndDate(Pub_Booking pub_Booking) {
+		final String sql = "FROM Pub_Booking WHERE pub_no= :pub_no AND pub_booking_date=:pub_booking_date";
+		return getSession().createQuery(sql, Pub_Booking.class).setParameter("pub_no", pub_Booking.getPub_no())
+				.setParameter("pub_booking_date", pub_Booking.getPub_booking_date()).list();
+	}
+
 }

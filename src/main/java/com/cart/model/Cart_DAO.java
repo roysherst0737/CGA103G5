@@ -26,12 +26,14 @@ public class Cart_DAO implements Cart_DAO_interface {
 		"SELECT mem_no,prod_no,prod_qty FROM cart order by mem_no";
 	private static final String GET_ONE_STMT = 
 		"SELECT mem_no,prod_no,prod_qty FROM cart where mem_no = ?";
-	private static final String DELETE = 
+	private static final String DELETE_ALL = 
 		"DELETE FROM cart where mem_no = ?";
 	private static final String UPDATE = 
 		"UPDATE cart set prod_no=?, prod_qty=? where mem_no = ?";
 	
 	private static final String GET_ADD_TO_CART = "SELECT prod_no FROM cart where mem_no = ?";
+	
+	private static final String DELETE_PROD = "DELETE FROM cart where prod_no = ?";
 	
 	@Override
 	public void insert(Cart_VO cartVO) {
@@ -111,16 +113,53 @@ public class Cart_DAO implements Cart_DAO_interface {
 	}
 
 	@Override
-	public void delete(Integer mem_no) {
+	public void deleteAll(Integer mem_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(DELETE);
+			pstmt = con.prepareStatement(DELETE_ALL);
 
 			pstmt.setInt(1, mem_no);
+
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+	}
+	
+	@Override
+	public void deleteProd(Integer prod_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(DELETE_PROD);
+
+			pstmt.setInt(1, prod_no);
 
 			pstmt.executeUpdate();
 

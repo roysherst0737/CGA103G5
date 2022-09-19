@@ -26,6 +26,8 @@ public class Cart_JDBCDAO implements Cart_DAO_interface{
 		"UPDATE cart set prod_no=?, prod_qty=? where mem_no = ?";
 	
 	private static final String GET_ADD_TO_CART = "SELECT prod_no FROM cart where mem_no = ?";
+	
+	private static final String DELETE_PROD = "DELETE FROM cart where prod_no = ?";
 
 	@Override
 	public void insert(Cart_VO cartVO) {
@@ -117,7 +119,7 @@ public class Cart_JDBCDAO implements Cart_DAO_interface{
 	}
 
 	@Override
-	public void delete(Integer mem_no) {
+	public void deleteAll(Integer mem_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -128,6 +130,48 @@ public class Cart_JDBCDAO implements Cart_DAO_interface{
 			pstmt = con.prepareStatement(DELETE);
 			
 			pstmt.setInt(1, mem_no);
+
+			pstmt.executeUpdate();
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+	}
+	
+	@Override
+	public void deleteProd(Integer prod_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			pstmt = con.prepareStatement(DELETE_PROD);
+			
+			pstmt.setInt(1, prod_no);
 
 			pstmt.executeUpdate();
 			
@@ -352,7 +396,7 @@ public class Cart_JDBCDAO implements Cart_DAO_interface{
 		dao.update(cartVO2);
 
 		// 刪除
-		dao.delete(2);
+		dao.deleteAll(2);
 		
 		// 查詢
 		Cart_VO cartVO3 = dao.findByForeignKey(1);

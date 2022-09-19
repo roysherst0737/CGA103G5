@@ -166,6 +166,63 @@ public class Cart_Servlet extends HttpServlet {
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 			String url = "shop-detail.jsp?" + prod_no;		
 			res.sendRedirect(url);
-		}		
+		}
+		
+		if ("deleteOne".equals(action)) {
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+	
+				/***************************1.接收請求參數***************************************/
+				Integer prod_no = Integer.valueOf(req.getParameter("prod_no"));
+				
+				/***************************2.開始刪除資料***************************************/
+				Cart_Service cartSvc = new Cart_Service();
+				cartSvc.deleteCartByProd(prod_no);
+				
+				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
+				String url = "cart.jsp";		
+				res.sendRedirect(url);
+		}
+		
+		if ("deleteOneWhenCheckout".equals(action)) {
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+	
+				/***************************1.接收請求參數***************************************/
+				Integer prod_no = Integer.valueOf(req.getParameter("prod_no"));
+				
+				/***************************2.開始刪除資料***************************************/
+				Cart_Service cartSvc = new Cart_Service();
+				cartSvc.deleteCartByProd(prod_no);
+				
+				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
+				String url = "checkout.jsp";		
+				res.sendRedirect(url);
+		}
+		
+		if ("deleteAll".equals(action)) {
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+	
+				/***************************1.接收請求參數***************************************/
+				Integer mem_no = Integer.valueOf(req.getParameter("mem_no"));
+				
+				/***************************2.開始刪除資料***************************************/
+				Cart_Service cartSvc = new Cart_Service();
+				cartSvc.deleteCartByMem(mem_no);
+				
+				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
+				String url = "cart.jsp";		
+				res.sendRedirect(url);
+		}
 	}
 }

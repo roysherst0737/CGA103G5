@@ -99,6 +99,29 @@ session.setAttribute("url", url);
 			font-size: 20px;
 			color: white;
 			}
+		#useCoupon {
+			font-size: 16px;
+			}
+		#useCoupon:hover {
+			color: red;
+			}
+			
+		#deleteCart {
+			font-size: 3px;
+			color: red;
+			}
+			
+		#detail:hover {
+			color: red;			
+			}
+		#detail:hover::after {
+			margin-left: 12px;
+			color: white;
+			font-size: 12px;
+			background: #f5c242;
+			border-radius: 5px;
+			content: '查看商品詳情';
+			}
 	
 	</style>
 	
@@ -266,20 +289,35 @@ session.setAttribute("url", url);
                                 <c:forEach var="cartVO" items="${cartlist}">
                             	<c:if test="${cartVO.mem_no == user.mem_no}">
                                 <div class="rounded p-2 bg-light">
-                                    <div class="media mb-2 border-bottom">
-                                        <div class="media-body"> <a href="detail.html"> ${cartVO.getProd_VO().prod_name}</a>
+                                    <div class="media mb-2 border-bottom">                                    	
+                                        <div class="media-body"> <a id="detail" href="<%=request.getContextPath()%>/front-end/prod/shop-detail.jsp?${cartVO.prod_no}"> ${cartVO.getProd_VO().prod_name}</a>
+                                        	<FORM action="cart.do" method="post">
+                                        	<input class="btn" id="deleteCart" type="submit" value="X">
+                                        	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
+                                        	<input type="hidden" name="action" value="deleteOneWhenCheckout">
+                                        	</FORM>
                                             <div class="small text-muted">單價: $${cartVO.getProd_VO().prod_price} <span class="mx-2">|</span> 數量: ${cartVO.prod_qty} <span class="mx-2">|</span> 總價: $${cartVO.getProd_VO().prod_price * cartVO.prod_qty}</div>
                                         </div>
                                     </div>
                                 </div>
                                 </c:if>
                             	</c:forEach>
+                            	
+                    			<div class="coupon-box">
+                        			<div class="input-group input-group-sm">
+                            				<input class="form-control" placeholder="輸入優惠碼" aria-label="Coupon code" type="text">
+                            			<div class="input-group-append">
+                                			<input class="btn" id="useCoupon" type="submit" value="使用"></input>
+                           				</div>
+                        			</div>
+                    			</div>
+                            	
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-12">
                             <div class="order-box">
                                 <div class="title-left" id="order">
-                                    <br><h3 style="font-size: 20px;">你的訂單</h3>
+                                    <br><h3 style="font-size: 20px;">您的訂單</h3>
                                 </div>
                                 <div class="d-flex">
                                     <div class="font-weight-bold">本次消費</div>

@@ -35,8 +35,12 @@ public class Cart_Service {
 		return cartVO;
 	}
 	
-	public void deleteCart(Integer mem_no) {
-		dao.delete(mem_no);
+	public void deleteCartByMem(Integer mem_no) {
+		dao.deleteAll(mem_no);
+	}
+	
+	public void deleteCartByProd(Integer prod_no) {
+		dao.deleteProd(prod_no);
 	}
 	
 	public Cart_VO getOneCart(Integer mem_no) {

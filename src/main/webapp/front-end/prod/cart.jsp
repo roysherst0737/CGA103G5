@@ -73,6 +73,17 @@ session.setAttribute("url", url);
 		#remind:hover {	
 			color:black;
 			}
+			
+		#deleteCart {
+			font-size: 18px;
+			color: red;
+			}
+		
+		#deleteAll {
+			font-size: 18px;
+			color: red;
+			margin-right: 12px;
+			}
 	
 	</style>
 	
@@ -111,12 +122,14 @@ session.setAttribute("url", url);
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>圖片</th>
-                                    <th>名稱</th>
-                                    <th>單價</th>
-                                    <th>數量</th>
+                                    <th>商品圖片</th>
+                                    <th>商品名稱</th>
+                                    <th>商品單價</th>
+                                    <th>購買數量</th>
                                     <th>總價</th>
-                                    <th>移除</th>
+                                    <th>
+                                    	
+                                    </th>
                                 </tr>
                             </thead>
                             <c:forEach var="cartVO" items="${cartlist}">
@@ -140,11 +153,15 @@ session.setAttribute("url", url);
                                     <td class="total-pr">
                                         <p>$${cartVO.getProd_VO().prod_price * cartVO.prod_qty}</p>
                                     </td>
+                                    
                                     <td class="remove-pr">
-                                        <a href="#">
-									<i class="fas fa-times"></i>
-								</a>
+                                    	<FORM action="cart.do" method="post">
+                                        	<input class="btn btn-warning" id="deleteCart" type="submit" value="X">
+                                        	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
+                                        	<input type="hidden" name="action" value="deleteOne">
+                                        </FORM>
                                     </td>
+                                    
                                 </tr>                                                                
                             </tbody>
                             </c:if>
@@ -154,33 +171,31 @@ session.setAttribute("url", url);
                 </div>
             </div>
 
-            <div class="row my-5">
-                <div class="col-lg-6 col-sm-6">
-                    <div class="coupon-box">
-                        <div class="input-group input-group-sm">
-                        	<c:choose>
-							<c:when test="${empty sessionScope.user}">
-								<a href="<%=request.getContextPath()%>/front-end/mem/login.jsp" id="remind">【請點擊登入會員，以查看購物車】</a>
-							</c:when>
-							<c:otherwise>
-                            	<input class="form-control" placeholder="輸入優惠碼" aria-label="Coupon code" type="text">
-                            </c:otherwise>
-                            </c:choose> 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-sm-6">
-                    <div class="update-box">
-                    	<c:choose>
-							<c:when test="${empty sessionScope.user}">								
-							</c:when>
-							<c:otherwise>
-                        		<input value="確定" type="submit">
-                        	</c:otherwise>
-                    	</c:choose> 
-                    </div>
-                </div>
-            </div>
+<!--             <div class="row my-5"> -->
+<!--                 <div class="col-lg-6 col-sm-6"> -->
+<!--                     <div class="coupon-box"> -->
+<!--                         <div class="input-group input-group-sm"> -->
+<%--                         	<c:choose> --%>
+<%-- 							<c:when test="${empty sessionScope.user}"> --%>
+<%-- 								<a href="<%=request.getContextPath()%>/front-end/mem/login.jsp" id="remind">【請點擊登入會員，以查看購物車】</a> --%>
+<%-- 							</c:when> --%>
+<%-- 							<c:otherwise>                            	 --%>
+<%--                             </c:otherwise> --%>
+<%--                             </c:choose>  --%>
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--                 <div class="col-lg-6 col-sm-6"> -->
+<!--                     <div class="update-box"> -->
+<%--                     	<c:choose> --%>
+<%-- 							<c:when test="${empty sessionScope.user}">								 --%>
+<%-- 							</c:when> --%>
+<%-- 							<c:otherwise> --%>
+<%--                         	</c:otherwise> --%>
+<%--                     	</c:choose>  --%>
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
 			
 <%-- 			<c:forEach var="cartVO" items="${cartlist}"> --%>
 <%--             <c:if test="${cartVO.mem_no == user.mem_no}"> --%>
@@ -211,13 +226,28 @@ session.setAttribute("url", url);
 <!--                 </div> -->
                 <div class="col-12 d-flex shopping-box">
                 	<c:choose>
-						<c:when test="${empty sessionScope.user}">								
+						<c:when test="${empty sessionScope.user}">
+							<a href="<%=request.getContextPath()%>/front-end/mem/login.jsp" id="remind">【請點擊登入會員，以查看購物車】</a>								
 						</c:when>
 						<c:otherwise>
-                        	<a href="checkout.jsp" class="ml-auto btn hvr-hover">結帳</a>
+							<c:choose>
+								<c:when test="${empty cartlist}">
+									<a href="<%=request.getContextPath()%>/front-end/prod/shop.jsp" id="remind">【前往選購商品】</a>
+								</c:when>
+								<c:otherwise>
+                        		<a href="checkout.jsp" class="ml-auto btn hvr-hover" style="font-size: 28px">前往結帳</a>
+                        		</c:otherwise>
+                        	</c:choose> 
                         </c:otherwise>
-                    </c:choose>                 	
+                    </c:choose>                                	
                 </div>
+                <br>
+                <FORM action="cart.do" method="post">
+                	<input class="btn btn-warning" id="deleteAll" type="submit" value="清空購物車">
+                    <input type="hidden" name="mem_no" value="${user.mem_no}">
+                    <input type="hidden" name="action" value="deleteAll">
+               </FORM>   
+                
 <!--             </div> -->
 <%--             </c:if> --%>
 <%--             </c:forEach> --%>

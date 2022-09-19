@@ -5,7 +5,7 @@
 <%
   Manager_VO manager_VO = (Manager_VO) request.getAttribute("manager_VO"); //Manager_Servlet.java (Concroller) 存入req的manager_VO物件 (包括幫忙取出的manager_VO, 也包括輸入資料錯誤時的manager_VO物件)
 %>
---%= manager_VO==null %--${manager_VO.mng_pic}--
+--%= manager_VO==null %--${manager_VO.mng_account}--
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -49,7 +49,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>管理員資料修改 - update_manager_input.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+		 <h4><a href="<%=request.getContextPath()%>/back-end/manager/select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -65,7 +65,7 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="manager.do" name="form1">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/manager/manager.do" name="form1" enctype="multipart/form-data">
 <table>
 	<tr>
 		<td>管理員編號:<font color=red><b>*</b></font></td>
@@ -73,22 +73,22 @@
 	</tr>
 	<tr>
 		<td>管理員帳號:</td>
-		<td><input type="TEXT" name="ename" size="45" value="<%=manager_VO.getMng_account()%>" /></td>
+		<td><input type="TEXT" name="mng_account" size="45" value="<%=manager_VO.getMng_account()%>" /></td>
 	</tr>
 	<tr>
 		<td>管理員密碼:</td>
-		<td><input type="TEXT" name="job" size="45"	value="<%=manager_VO.getMng_password()%>" /></td>
+		<td><input type="TEXT" name="mng_password" size="45"	value="<%=manager_VO.getMng_password()%>" /></td>
 	</tr>
 	<tr>
 		<td>管理員姓名:</td>
-		<td><input type="TEXT" name="job" size="45"	value="<%=manager_VO.getMng_name()%>" /></td>
+		<td><input type="TEXT" name="mng_name" size="45"	value="<%=manager_VO.getMng_name()%>" /></td>
 	</tr>
 	<tr>
 		<td>管理員手機:</td>
-		<td><input type="TEXT" name="job" size="45"	value="<%=manager_VO.getMng_phone()%>" /></td>
+		<td><input type="TEXT" name="mng_phone" size="45"	value="<%=manager_VO.getMng_phone()%>" /></td>
 	</tr>
 	<tr>
-		<td>管理員圖片:</td>
+		<td>管理員照片:</td>
 		<td colspan="3"><input class="btn btn-default" type="file" name="mng_pic"><td> 
 	</tr>
     <tr>

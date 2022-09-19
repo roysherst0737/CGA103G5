@@ -204,5 +204,22 @@
         </ul>
       </div>
     </li>
+    
+    <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#mng" aria-expanded="false"
+        aria-controls="mng"> <i class="typcn typcn-user-add-outline menu-icon"></i> <span
+          class="menu-title">管理員管理</span>
+        <i class="menu-arrow"></i>
+      </a>
+            <div class="collapse" id="mng">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"><a id="mng_list" class="nav-link" href=""> 管理員資料管理 </a></li>
+          <script>
+            document.querySelector("#mng_list").setAttribute("href",
+            	getContextPath() + "/back-end/manager/selectPage.jsp");
+          </script>
+        </ul>
+      </div>
+    </li>
+    
   </ul>
 </nav>

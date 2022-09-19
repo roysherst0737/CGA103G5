@@ -24,7 +24,7 @@ public class Manager_auth_Service {
 		return manager_auth_VO;
 	}
 
-	public Manager_auth_VO updateManager(Integer mng_no, Integer mng_authfunc_no) {
+	public Manager_auth_VO updateManager_auth(Integer mng_no, Integer mng_authfunc_no) {
 
 		Manager_auth_VO manager_auth_VO = new Manager_auth_VO();
 
@@ -44,13 +44,19 @@ public class Manager_auth_Service {
 		
 		dao.delete(mng_no, mng_authfunc_no);
 	}
-
-	public Manager_auth_VO getOneManager_auth(Integer mng_no, Integer mng_authfunc_no) {
-		return dao.findByPrimaryKey(mng_no, mng_authfunc_no);
+	public void deleteOneManager_authfunc(Integer mng_no) {
+		dao.deleteAll(mng_no);
 	}
 
-	public List<Manager_auth_VO> getAllManager_auth(Integer mng_no) {
-		return dao.getAllManager_auth(mng_no);
+	public Manager_auth_VO getOneManager_auth(Integer mng_no) {
+		return dao.findByPrimaryKey(mng_no);
+	}
+
+	public List<Manager_auth_VO> getAllManager_auth() {
+		return dao.getAllManager_auth();
+	}
+	public List<Manager_auth_VO> getAuthfunc(Integer mng_no){
+		return dao.getAuthfunc(mng_no);
 	}
 	public List<Manager_auth_VO> getAllManager_auth(Map<String, String[]> map) {
 		return dao.getAllManager_auth(map);

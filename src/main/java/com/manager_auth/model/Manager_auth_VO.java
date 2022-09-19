@@ -2,6 +2,9 @@ package com.manager_auth.model;
 
 import java.io.Serializable;
 
+import com.manager_authfunc.model.Manager_authfunc_Service;
+import com.manager_authfunc.model.Manager_authfunc_VO;
+
 
 public class Manager_auth_VO implements Serializable {
 	private static final long serialVersionUID = 1L;

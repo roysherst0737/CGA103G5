@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,16 +28,17 @@ public class Manager_DAO implements Manager_DAO_interface {
 	}
 
 	private static final String INSERT_STMT = 
-			"INSERT INTO manager (mng_account,mng_password,mng_name,mng_phone,mng_pic,mng_status) VALUES (?, ?, ?, ?, ?, ?)";
-		private static final String GET_ALL_MANAGER_STMT = 
-			"SELECT mng_no,mng_account,mng_password,mng_name,mng_phone,mng_pic,mng_status FROM manager order by mng_no";
-		private static final String GET_ONE_STMT = 
-			"SELECT mng_no,mng_account,mng_password,mng_name,mng_phone,mng_pic,mng_status FROM manager where mng_no = ?";
-		private static final String DELETE = 
-			"DELETE FROM manager where mng_no = ?";
-		private static final String UPDATE = 
-			"UPDATE manager set mng_account=?, mng_password=?, mng_name=?, mng_phone=?, mng_pic=?, mng_status=? where mng_no = ?";
-		private static final String SELECT_FOR_LOGIN = "SELECT * FROM manager WHERE mng_account= ? and mng_password= ? ";
+		"INSERT INTO manager (mng_account,mng_password,mng_name,mng_phone,mng_pic,mng_status) VALUES (?, ?, ?, ?, ?, ?)";
+	private static final String GET_ALL_MANAGER_STMT = 
+		"SELECT mng_no,mng_account,mng_password,mng_name,mng_phone,mng_pic,mng_status FROM manager order by mng_no";
+	private static final String GET_ONE_STMT = 
+		"SELECT mng_no,mng_account,mng_password,mng_name,mng_phone,mng_pic,mng_status FROM manager where mng_no = ?";
+	private static final String DELETE = 
+		"DELETE FROM manager where mng_no = ?";
+	private static final String UPDATE = 
+		"UPDATE manager set mng_account=?, mng_password=?, mng_name=?, mng_phone=?, mng_pic=?, mng_status=? where mng_no = ?";
+	private static final String SELECT_FOR_LOGIN = "SELECT * FROM manager "
+		+ "WHERE mng_account= ? and mng_password= ? ";
 
 
 		@Override
@@ -316,6 +318,56 @@ public class Manager_DAO implements Manager_DAO_interface {
 				printSQLException(e);
 			}
 			return status;
+		}
+		
+		@Override
+		public void insert2 (Manager_VO manager_VO , Connection con) {
+
+			PreparedStatement pstmt = null;
+
+			try {
+
+	     		pstmt = con.prepareStatement(INSERT_STMT);
+
+				pstmt.setString(1, manager_VO.getMng_account());
+				pstmt.setString(2, manager_VO.getMng_password());
+				pstmt.setString(3, manager_VO.getMng_name());
+				pstmt.setString(4, manager_VO.getMng_phone());
+				pstmt.setBytes(5, manager_VO.getMng_pic());
+				pstmt.setInt(4, manager_VO.getMng_status());
+				pstmt.setInt(6, manager_VO.getMng_authfunc_no());
+
+	Statement stmt=	con.createStatement();
+	//stmt.executeUpdate("set auto_increment_offset=7001;"); //自增主鍵-初始值
+	stmt.executeUpdate("set auto_increment_increment=1;");   //自增主鍵-遞增
+				pstmt.executeUpdate();
+
+				// Handle any SQL errors
+			} catch (SQLException se) {
+				if (con != null) {
+					try {
+						// 3●設定於當有exception發生時之catch區塊內
+						System.err.print("Transaction is being ");
+						System.err.println("rolled back-由-emp");
+						con.rollback();
+					} catch (SQLException excep) {
+						throw new RuntimeException("rollback error occured. "
+								+ excep.getMessage());
+					}
+				}
+				throw new RuntimeException("A database error occured. "
+						+ se.getMessage());
+				// Clean up JDBC resources
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+			}
+
 		}
 		
 		private void printSQLException(SQLException ex) {

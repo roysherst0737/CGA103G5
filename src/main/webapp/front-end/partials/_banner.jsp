@@ -36,7 +36,7 @@
 						<p class="m-b-40">進入酒吧地圖，選擇自己喜歡的酒吧，徜徉於酒精的饗宴！</p>
 						<p>
 							<a class="btn hvr-hover" style="height: fit-content; width: fit-content;"
-								href="gallery_fix.jsp">立即訂位</a>
+								href="<%=request.getContextPath()%>/PubMap">立即訂位</a>
 						</p>
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 						<p class="m-b-40">各家廠商舉辦的有趣活動，不管有沒有酒精都能令人回味無窮！</p>
 						<p>
 							<a class="btn hvr-hover" style="height: fit-content; width: fit-content;"
-								href="gallery.html">立即報名</a>
+								href="<%=request.getContextPath()%>/front-end/act/actlist.jsp">立即報名</a>
 						</p>
 					</div>
 				</div>

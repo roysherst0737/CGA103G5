@@ -21,8 +21,6 @@ public class PageFilter extends HttpFilter {
 //		let hostname = window.location.host;
 //		let pathname = window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2));
 //		let script = document.createElement('script')
-		
-		
 		final String requestPath = request.getServletPath();
 		if (!requestPath.contains(request.getContextPath())
 				&& (requestPath.endsWith(".html") || requestPath.endsWith(".css") || requestPath.endsWith(".js"))) {

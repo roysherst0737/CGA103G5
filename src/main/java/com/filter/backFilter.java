@@ -15,7 +15,7 @@ import org.hibernate.Transaction;
 
 import com.util.HibernateUtil;
 
-@WebFilter("/pub/pub_check")
+@WebFilter(urlPatterns = {"/pub/pub_check","/back-end/prod/listAllProd.jsp"})
 public class backFilter extends HttpFilter{
 	private static final long serialVersionUID = 1L;
 	@Override

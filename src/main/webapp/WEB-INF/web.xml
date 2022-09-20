@@ -52,6 +52,14 @@
 		<servlet-name>MemRegisterServlet</servlet-name>
 		<url-pattern>/front-end/mem/MemRegisterServlet</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>MemChangePasswordServlet</servlet-name>
+		<servlet-class>com.mem.controller.MemChangePasswordServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemChangePasswordServlet</servlet-name>
+		<url-pattern>/front-end/mem/MemChangePasswordServlet</url-pattern>
+	</servlet-mapping>
 	<!-- 優惠券 -->
 	<servlet>
 		<servlet-name>CouponServlet</servlet-name>

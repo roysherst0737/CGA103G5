@@ -27,8 +27,8 @@ public class Coupon_JNDIDAO implements Coupon_DAO_interface {
 
 	private static final String INSERT_STMT = 
 			"INSERT INTO coupon (coupon_name, coupon_code, coupon_content,"
-			+ " coupon_discount, coupon_amount, launch_time, off_time,"
-			+ " coupon_build_time, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			+ " coupon_discount, launch_time, off_time,"
+			+ " status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		private static final String GET_ALL_STMT = 
 			"SELECT coupon_no, coupon_name, coupon_code, coupon_content,"
 			+ " coupon_discount, coupon_amount, launch_time, off_time,"
@@ -41,7 +41,7 @@ public class Coupon_JNDIDAO implements Coupon_DAO_interface {
 			"DELETE FROM coupon where coupon_no = ?";
 		private static final String UPDATE = 
 			"UPDATE coupon set coupon_name=?, coupon_code=?, coupon_content=?,"
-			+ " coupon_discount=?, coupon_amount=?, launch_time=?, off_time=?,"
+			+ " coupon_discount=?, launch_time=?, off_time=?,"
 			+ " status=? where coupon_no = ?";
 	@Override
 	public void insert(Coupon_VO couponVO) {
@@ -58,11 +58,9 @@ public class Coupon_JNDIDAO implements Coupon_DAO_interface {
 			pstmt.setString(2, couponVO.getCoupon_code());
 			pstmt.setString(3, couponVO.getCoupon_content());
 			pstmt.setDouble(4, couponVO.getCoupon_discount());
-			pstmt.setInt(5, couponVO.getCoupon_amount());
-			pstmt.setTimestamp(6, couponVO.getLaunch_time());
-			pstmt.setTimestamp(7, couponVO.getOff_time());
-			pstmt.setTimestamp(8, couponVO.getCoupon_build_time());
-			pstmt.setInt(9, couponVO.getStatus());
+			pstmt.setTimestamp(5, couponVO.getLaunch_time());
+			pstmt.setTimestamp(6, couponVO.getOff_time());
+			pstmt.setInt(7, couponVO.getStatus());
 
 			pstmt.executeUpdate();
 
@@ -105,11 +103,10 @@ public class Coupon_JNDIDAO implements Coupon_DAO_interface {
 			pstmt.setString(2, couponVO.getCoupon_code());
 			pstmt.setString(3, couponVO.getCoupon_content());
 			pstmt.setDouble(4, couponVO.getCoupon_discount());
-			pstmt.setInt(5, couponVO.getCoupon_amount());
-			pstmt.setTimestamp(6, couponVO.getLaunch_time());
-			pstmt.setTimestamp(7, couponVO.getOff_time());
-			pstmt.setInt(8, couponVO.getStatus());
-			pstmt.setInt(9, couponVO.getCoupon_no());
+			pstmt.setTimestamp(5, couponVO.getLaunch_time());
+			pstmt.setTimestamp(6, couponVO.getOff_time());
+			pstmt.setInt(7, couponVO.getStatus());
+			pstmt.setInt(8, couponVO.getCoupon_no());
 
 			pstmt.executeUpdate();
 

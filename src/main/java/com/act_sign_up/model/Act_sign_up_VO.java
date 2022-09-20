@@ -66,5 +66,11 @@ public class Act_sign_up_VO implements Serializable{
 	    com.mem.model.Mem_VO memVO = memSvc.getOneMem(mem_no);
 	    return memVO;
     }
+    
+    public com.act.model.Act_VO getActVO() {
+	    com.act.model.Act_Service actSvc = new com.act.model.Act_Service();
+	    com.act.model.Act_VO actVO = actSvc.getOneAct(act_no);
+	    return actVO;
+    }
 	
 }

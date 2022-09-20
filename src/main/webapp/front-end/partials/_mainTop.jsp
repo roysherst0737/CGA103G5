@@ -1,6 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Start Main Top -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script>
+	function confirmTest() {
+		Swal.fire({
+			title : "報名前請先登入",		
+			showCancelButton : true
+		}).then(function(result) {
+			if (result.value) {	
+				location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
+			} 
+		});
+	}
+	function confirmTest2() {
+		Swal.fire({
+			title : "報名成功",
+			showCancelButton : false
+		});
+	}
+</script>
+
+
 
 <div class="main-top">
 	<div class="container-fluid">
@@ -103,7 +125,16 @@
 							style="font-weight: 1000;">活動專區</a>
 						<ul class="dropdown-menu">
 							<li><a href="<%=request.getContextPath()%>/front-end/act/actlist.jsp" style="color: #f5c242; font-weight:bold;">活動總覽</a></li>
+							
+							<c:choose>
+							<c:when test="${empty sessionScope.user}">
+							<li><a href="javascript:void(0)" style="color: #f5c242; font-weight:bold;" onclick="confirmTest()">我的報名</a></li>
+							</c:when>
+							
+							<c:otherwise>
 							<li><a href="<%=request.getContextPath()%>/front-end/act/my_sign_up.jsp" style="color: #f5c242; font-weight:bold;">我的報名</a></li>
+							</c:otherwise>
+							</c:choose>
 						</ul>
 					</li>
 					

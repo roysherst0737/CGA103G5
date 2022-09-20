@@ -17,6 +17,8 @@ public interface Act_sign_up_DAO_interface {
 	
 	public Set<Integer> getAct_sign_up(Integer mem_no);
 	
+	public List<Act_sign_up_VO> getMy_act_sign_up(Integer mem_no);
+	
 	//萬用複合查詢(傳入參數型態Map)(回傳 List)
 //  public List<EmpVO> getAll(Map<String, String[]> map); 
 }

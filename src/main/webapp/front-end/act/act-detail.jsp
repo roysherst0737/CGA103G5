@@ -14,24 +14,19 @@
 Act_Service actSvc = new Act_Service();
 Act_VO actVO = actSvc.getOneAct(Integer.parseInt(request.getQueryString()));
 request.setAttribute("actVO", actVO);
-
 Act_pic_Service act_picSvc = new Act_pic_Service();
 List<Act_pic_VO> act_picList = act_picSvc.get_from_act_no(actVO.getAct_no());
 pageContext.setAttribute("act_picList", act_picList);
-
 Object Objuser = session.getAttribute("user");
 Mem_VO user = (Mem_VO) Objuser;
-
 if (user != null) {
 	Act_sign_up_Service act_sign_upSvc = new Act_sign_up_Service();
 	Set<Integer> set = act_sign_upSvc.getAct_sign_up((Integer) user.getMem_no());
 	pageContext.setAttribute("set", set);
 }
-
 Prod_Service prodSvc = new Prod_Service();
 List<Prod_VO> list = prodSvc.getAll();
 pageContext.setAttribute("list", list);
-
 String url = request.getRequestURL().toString() + "?" + request.getQueryString();
 session.setAttribute("url", url);
 %>
@@ -86,7 +81,6 @@ session.setAttribute("url", url);
 			} 
 		});
 	}
-
 	function confirmTest2() {
 		Swal.fire({
 			title : "報名成功",
@@ -279,12 +273,11 @@ session.setAttribute("url", url);
 
 										<c:choose>
 
-
 											<c:when test="${empty sessionScope.user}">
 												<input type="button" value="我要報名" onclick="confirmTest()" />
 											</c:when>
+											
 											<c:otherwise>
-
 
 												<c:choose>
 													<c:when test="${set.contains(actVO.getAct_no())}">
@@ -299,9 +292,7 @@ session.setAttribute("url", url);
 
 											</c:otherwise>
 
-
 										</c:choose>
-
 
 									</FORM>
 

@@ -334,6 +334,7 @@ $(document).ready(function() {
 				const { message } = body;
 				if (successful) {
 					alert(message)
+					window.location.reload();
 					//				document.querySelector('.modal-body').innerHTML = message + `<br>請等候管理員審核，點擊確認跳轉`
 				} else {
 					alert(message + "請聯繫管理員協助處理")

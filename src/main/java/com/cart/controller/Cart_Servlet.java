@@ -66,6 +66,12 @@ public class Cart_Servlet extends HttpServlet {
 			cartVO = cartSvc.addCart(mem_no, prod_no, prod_qty);
 
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+			try {
+				Thread.sleep(1500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			String url = "shop.jsp";		
 			res.sendRedirect(url);
 		}
@@ -115,6 +121,13 @@ public class Cart_Servlet extends HttpServlet {
 			cartVO = cartSvc.addCart(mem_no, prod_no, prod_qty);
 
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+			
+			try {
+				Thread.sleep(1500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			String url = "shopByType.jsp?" + 1;		
 			res.sendRedirect(url);
 		}
@@ -164,6 +177,13 @@ public class Cart_Servlet extends HttpServlet {
 			cartVO = cartSvc.addCart(mem_no, prod_no, prod_qty);
 
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+			
+			try {
+				Thread.sleep(1500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			String url = "shop-detail.jsp?" + prod_no;		
 			res.sendRedirect(url);
 		}

@@ -1,24 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Start Main Top -->
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 <script>
+
 // ========================== 活動報名 ==========================
-	function confirmTest() {
+	function confirmTest0() {
 		Swal.fire({
-			title : "報名前請先登入",		
+			title : "請先登入會員",		
+			showCancelButton : true
+		}).then(function(result) {
+			if (result.value) {	
+				location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
+				}
+			});
+	}
+	
+	function confirmTest1() {
+		Swal.fire({
+			title : "查看我的報名前請先登入",		
 			showCancelButton : true
 		}).then(function(result) {
 			if (result.value) {	
 				location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
 			} 
-		});
-	}
-	function confirmTest2() {
-		Swal.fire({
-			title : "報名成功",
-			showCancelButton : false
 		});
 	}
 
@@ -33,6 +40,7 @@
 				}
 			});
 	}
+	
 	function confirmTest7() {
 		Swal.fire({
 			title : "成功加入購物車！",
@@ -43,19 +51,26 @@
 // ========================== 進行結帳 ==========================
 	function confirmTest8() {
 		Swal.fire({
-			title : "您已登入會員，可直接進行結帳",
-			showCancelButton : false
-		});
+			title : "請先登入會員後方可結帳",		
+			showCancelButton : true
+		}).then(function(result) {
+			if (result.value) {	
+				location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
+				}
+			});
 	}
 	function confirmTest9() {
+ 		if($("#cash").is(":checked")){
 		Swal.fire({
 			title : "訂單已成立，謝謝您的購買！",
 			showCancelButton : false
 		});
+	} 		
+ 		if($("#credit").is(":checked")){
+ 			location.href='<%=request.getContextPath()%>/front-end/prod/PayWithCredit.jsp'
+ 		}
 	}
-	function confirmTest10() {
-		location.href='<%=request.getContextPath()%>/front-end/prod/PayWithCredit.jsp'
-	}
+
 </script>
 
 
@@ -164,7 +179,7 @@
 							
 							<c:choose>
 							<c:when test="${empty sessionScope.user}">
-							<li><a href="javascript:void(0)" style="color: #f5c242; font-weight:bold;" onclick="confirmTest()">我的報名</a></li>
+							<li><a href="javascript:void(0)" style="color: #f5c242; font-weight:bold;" onclick="confirmTest1()">我的報名</a></li>
 							</c:when>
 							
 							<c:otherwise>

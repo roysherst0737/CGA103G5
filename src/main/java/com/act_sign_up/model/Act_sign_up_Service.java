@@ -54,5 +54,9 @@ public class Act_sign_up_Service {
 	public Set<Integer> getAct_sign_up(Integer mem_no) {
 		return dao.getAct_sign_up(mem_no);
 	}
+	
+	public List<Act_sign_up_VO> getMy_act_sign_up(Integer mem_no) {
+		return dao.getMy_act_sign_up(mem_no);
+	}
 
 }

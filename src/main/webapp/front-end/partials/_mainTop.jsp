@@ -4,9 +4,19 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 <script>
-	function confirmTest() {
+	function confirmTest0() {
 		Swal.fire({
 			title : "報名前請先登入",		
+			showCancelButton : true
+		}).then(function(result) {
+			if (result.value) {	
+				location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
+			} 
+		});
+	}
+	function confirmTest1() {
+		Swal.fire({
+			title : "查看我的報名前請先登入",		
 			showCancelButton : true
 		}).then(function(result) {
 			if (result.value) {	
@@ -20,6 +30,7 @@
 			showCancelButton : false
 		});
 	}
+
 </script>
 
 
@@ -128,7 +139,7 @@
 							
 							<c:choose>
 							<c:when test="${empty sessionScope.user}">
-							<li><a href="javascript:void(0)" style="color: #f5c242; font-weight:bold;" onclick="confirmTest()">我的報名</a></li>
+							<li><a href="javascript:void(0)" style="color: #f5c242; font-weight:bold;" onclick="confirmTest1()">我的報名</a></li>
 							</c:when>
 							
 							<c:otherwise>

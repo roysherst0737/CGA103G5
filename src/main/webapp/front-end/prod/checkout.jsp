@@ -315,23 +315,14 @@ session.setAttribute("url", url);
                                 <hr> </div>
                         </div>
                         <div class="col-12 d-flex shopping-box">
-                        <c:choose>
-							<c:when test="${empty sessionScope.user}">
-								<input class="btn btn-warning" id="checkout" type="button" value="結帳" onclick="confirmTest6()" />
-							</c:when>
-							<c:otherwise>
-								<c:choose>
-									<c:when test="${orderVO.payment_method == 0}">
-										<input class="btn btn-warning" id="checkout" type="submit" value="結帳" onclick="confirmTest9()">
-									</c:when>
-							<c:otherwise>
-<%-- 									<c:when test="${orderVO.payment_method == 1}"> --%>
-									<input class="btn btn-warning" id="checkout" type="submit" value="結帳" onclick="confirmTest10()">
-<%-- 									</c:when> --%>
-							</c:otherwise>
-								</c:choose>
-							</c:otherwise>
-						</c:choose>
+                        	<c:choose>
+								<c:when test="${empty sessionScope.user}">
+									<input class="btn btn-warning" id="checkout" type="button" value="結帳" onclick="confirmTest8()" />
+								</c:when>
+								<c:otherwise>									
+									<input class="btn btn-warning" id="checkout" type="submit" value="結帳" onclick="confirmTest9()">
+								</c:otherwise>
+							</c:choose>                        
                         </div>
                     </div>
                 </div>

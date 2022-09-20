@@ -1,13 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.question.model.*"%>
 
-<%
-Question_Service questionSvc = new Question_Service();
-List<Question_VO> list = questionSvc.getAll();
-pageContext.setAttribute("list", list);
-%>
 
 <!DOCTYPE html>
 <html lang="zh">
@@ -66,6 +60,7 @@ pageContext.setAttribute("list", list);
 				});
 			</script>
 			<!-- partial -->
+			<!-- partial -->
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div class="row">
@@ -78,16 +73,16 @@ pageContext.setAttribute("list", list);
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
 										<button style="margin-right: 10px;">
-											<a href="listAllQuestion.jsp"><img
-												src="./images/home.png" width="30px" height="30px"></a>
-										</button>
-										<button style="margin-right: 10px;">
-											<a href='addQuestion.jsp'><img src="./images/plus.png"
+											<a href="listAllAct.jsp"><img src="./images/home.png"
 												width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right: 10px;">
-											<a href="selectQuestion.jsp"><img
-												src="./images/search2.png" width="30px" height="30px"></a>
+											<a href='addAct.jsp'><img src="./images/plus.png"
+												width="30px" height="30px"></a>
+										</button>
+										<button style="margin-right: 10px;">
+											<a href="selectAct.jsp"><img src="./images/search2.png"
+												width="30px" height="30px"></a>
 										</button>
 										<button
 											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
@@ -123,54 +118,51 @@ pageContext.setAttribute("list", list);
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<jsp:useBean id="prod_picSvc" scope="page"
-										class="com.prod_pic.model.Prod_pic_Service" />
-									<jsp:useBean id="prod_typeSvc" scope="page"
-										class="com.prod_type.model.Prod_type_Service" />
-									<h4 class="card-title">活動題目管理</h4>
-									<table id="dataTables" class="stripe table-hover"
-										style="width: 100%; font-size: 12px">
-										<thead style="width: 100%; font-size: 13px">
-											<tr>
-												<th>題目編號</th>
-												<th>問題</th>
-												<th>修改</th>
-												<th>刪除</th>
-											</tr>
-										</thead>
-										<tbody>
-											<%@ include file="page1.file"%>
-											<c:forEach var="questionVO" items="${list}"
-												begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-												<tr>
-													<td>${questionVO.question_no}</td>
-													<td>${questionVO.que}</td>
-													<td>
-														<FORM METHOD="post"
-															ACTION="<%=request.getContextPath()%>/back-end/question/question.do"
-															style="margin-bottom: 0px;">
-															<input type="submit" value="修改"> <input
-																type="hidden" name="question_no"
-																value="${questionVO.question_no}"> <input
-																type="hidden" name="action" value="getOne_For_Update">
-														</FORM>
-													</td>
-													<td>
-														<FORM METHOD="post"
-															ACTION="<%=request.getContextPath()%>/back-end/question/question.do"
-															style="margin-bottom: 0px;">
-															<input type="submit" value="刪除"> <input
-																type="hidden" name="question_no"
-																value="${questionVO.question_no}"> <input
-																type="hidden" name="action" value="delete">
-														</FORM>
-													</td>
-												</tr>
-											</c:forEach>
-									</table>
-									<%@ include file="page2.file"%>
-									</tbody>
-									</table>
+									<h4 class="card-title">活動搜尋</h4>
+									<div class="table-responsive">
+										<%-- 錯誤表列 --%>
+										<c:if test="${not empty errorMsgs}">
+											<font style="color: red">請修正以下錯誤:</font>
+											<ul>
+												<c:forEach var="message" items="${errorMsgs}">
+													<li style="color: red">${message}</li>
+												</c:forEach>
+											</ul>
+										</c:if>
+
+
+
+										<FORM METHOD="post" ACTION="act.do">
+											<b>輸入活動編號:</b> <input type="text" name="act_no"> <input
+												type="hidden" name="action" value="getOne_For_Display">
+											<input type="submit" value="送出">
+										</FORM>
+
+										<jsp:useBean id="actSvc" scope="page"
+											class="com.act.model.Act_Service" />
+
+										<FORM METHOD="post" ACTION="act.do">
+											<b>選擇活動編號:</b> <select size="1" name="act_no">
+												<c:forEach var="actVO" items="${actSvc.all}">
+													<option value="${actVO.act_no}">${actVO.act_no}
+												</c:forEach>
+											</select> <input type="hidden" name="action"
+												value="getOne_For_Display"> <input type="submit"
+												value="送出">
+										</FORM>
+
+										<FORM METHOD="post" ACTION="act.do">
+											<b>選擇活動名稱:</b> <select size="1" name="act_no">
+												<c:forEach var="actVO" items="${actSvc.all}">
+													<option value="${actVO.act_no}">${actVO.act_name}
+												</c:forEach>
+											</select> <input type="hidden" name="action"
+												value="getOne_For_Display"> <input type="submit"
+												value="送出">
+										</FORM>
+
+								
+									</div>
 								</div>
 							</div>
 						</div>
@@ -178,10 +170,15 @@ pageContext.setAttribute("list", list);
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
+				<!-- 引入footer 用JQ方式 -->
 				<footer class="footer"></footer>
 				<script>
 					$(function() {
-						$(".footer").load("../partials/_footer.html");
+						$(".footer").load(
+								window.location.pathname.substring(0,
+										window.location.pathname
+												.indexOf('/', 2))
+										+ "/back-end/partials/_footer.html");
 					});
 				</script>
 				<!-- partial -->
@@ -192,31 +189,30 @@ pageContext.setAttribute("list", list);
 	</div>
 	<!-- container-scroller -->
 	<!-- base:js -->
-
-	<script>
-		function getContextPath() {
-			return window.location.pathname.substring(0,
-					window.location.pathname.indexOf('/', 2));
-		}
-	</script>
-	<script src="../vendors/js/vendor.bundle.base.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/back-end/vendors/js/vendor.bundle.base.js"></script>
 	<!-- endinject -->
 	<!-- Plugin js for this page-->
 	<!-- End plugin js for this page-->
 	<!-- inject:js -->
-	<script src="../js/off-canvas.js"></script>
-	<script src="../js/hoverable-collapse.js"></script>
-	<script src="../js/template.js"></script>
-	<script src="../js/settings.js"></script>
-	<script src="../js/todolist.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/off-canvas.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/back-end/js/hoverable-collapse.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/template.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/settings.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/todolist.js"></script>
 	<!-- endinject -->
 	<!-- plugin js for this page -->
-	<script src="../vendors/progressbar.js/progressbar.min.js"></script>
-	<script src="../vendors/chart.js/Chart.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/back-end/vendors/progressbar.js/progressbar.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/back-end/vendors/chart.js/Chart.min.js"></script>
 	<!-- End plugin js for this page -->
 	<!-- Custom js for this page-->
 
-	<script src="../js/dashboard.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/dashboard.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 	<!-- End custom js for this page-->
 </body>
 

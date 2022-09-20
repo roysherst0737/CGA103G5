@@ -62,27 +62,6 @@ session.setAttribute("url", url);
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/custom.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-	
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-	<script>
-		function confirmTest() {
-			Swal.fire({
-				title : "請先登入會員",		
-				showCancelButton : true
-			}).then(function(result) {
-				if (result.value) {	
-					location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
-					}
-				});
-		}
-		function confirmTest2() {
-			Swal.fire({
-				title : "成功加入購物車！",
-				showCancelButton : false
-			});
-		}
-	</script>
 
 	<style>
 		.btn {
@@ -188,10 +167,10 @@ session.setAttribute("url", url);
                                                         <FORM name="cart" action="cart.do" method="post">
                                                         <c:choose>
 															<c:when test="${empty sessionScope.user}">
-																<input id="cart" type="button" value="加入購物車" onclick="confirmTest()" />
+																<input id="cart" type="button" value="加入購物車" onclick="confirmTest6()" />
 															</c:when>
 															<c:otherwise>
-																<input id="cart" type="submit" value="加入購物車" onclick="confirmTest2()">
+																<input id="cart" type="submit" value="加入購物車" onclick="confirmTest7()">
 															</c:otherwise>
 														</c:choose>
 														<input type="hidden" name="prod_no" value="${prodVO.prod_no}">
@@ -238,10 +217,10 @@ session.setAttribute("url", url);
                                                     <FORM name="cart" action="cart.do" method="post">
                                                     <c:choose>
 														<c:when test="${empty sessionScope.user}">
-															<input class="btn btn-warning" id="cart2" type="button" value="加入購物車" onclick="confirmTest()" />
+															<input class="btn btn-warning" id="cart2" type="button" value="加入購物車" onclick="confirmTest6()" />
 														</c:when>
 														<c:otherwise>
-															<input class="btn btn-warning" id="cart2" type="submit" value="加入購物車" onclick="confirmTest2()">
+															<input class="btn btn-warning" id="cart2" type="submit" value="加入購物車" onclick="confirmTest7()">
 														</c:otherwise>
 													</c:choose>
 													<input type="hidden" name="prod_no" value="${prodVO.prod_no}">

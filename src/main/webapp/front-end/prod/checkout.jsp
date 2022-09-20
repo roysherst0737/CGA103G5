@@ -57,36 +57,6 @@ session.setAttribute("url", url);
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/custom.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-	
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-	<script>
-		function confirmTest() {
-			Swal.fire({
-				title : "請先登入會員",		
-				showCancelButton : true
-			}).then(function(result) {
-				if (result.value) {	
-					location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
-					}
-				});
-		}
-		function confirmTest0() {
-			Swal.fire({
-				title : "您已登入會員，可直接進行結帳",
-				showCancelButton : false
-			});
-		}
-		function confirmTest1() {
-			Swal.fire({
-				title : "訂單已成立，謝謝您的購買！",
-				showCancelButton : false
-			});
-		}
-		function confirmTest2() {
-			location.href='<%=request.getContextPath()%>/front-end/prod/PayWithCredit.jsp'
-		}
-	</script>
 
 	<style>
 		.btn {
@@ -347,17 +317,17 @@ session.setAttribute("url", url);
                         <div class="col-12 d-flex shopping-box">
                         <c:choose>
 							<c:when test="${empty sessionScope.user}">
-								<input class="btn btn-warning" id="checkout" type="button" value="結帳" onclick="confirmTest()" />
+								<input class="btn btn-warning" id="checkout" type="button" value="結帳" onclick="confirmTest6()" />
 							</c:when>
 							<c:otherwise>
 								<c:choose>
 									<c:when test="${orderVO.payment_method == 0}">
-										<input class="btn btn-warning" id="checkout" type="submit" value="結帳" onclick="confirmTest1()">
+										<input class="btn btn-warning" id="checkout" type="submit" value="結帳" onclick="confirmTest9()">
 									</c:when>
 							<c:otherwise>
-<%-- 								<c:when test="${orderVO.payment_method == 1}"> --%>
-									<input class="btn btn-warning" id="checkout" type="submit" value="結帳" onclick="confirmTest2()">
-<%-- 								</c:when> --%>
+<%-- 									<c:when test="${orderVO.payment_method == 1}"> --%>
+									<input class="btn btn-warning" id="checkout" type="submit" value="結帳" onclick="confirmTest10()">
+<%-- 									</c:when> --%>
 							</c:otherwise>
 								</c:choose>
 							</c:otherwise>

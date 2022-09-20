@@ -8,6 +8,7 @@
 
 // ========================== 加入購物車 ==========================
 	function confirmTest6() {
+	function confirmTest0() {
 		Swal.fire({
 			title : "請先登入會員",		
 			showCancelButton : true
@@ -18,6 +19,17 @@
 			});
 	}
 	function confirmTest7() {
+	function confirmTest1() {
+		Swal.fire({
+			title : "查看我的報名前請先登入",		
+			showCancelButton : true
+		}).then(function(result) {
+			if (result.value) {	
+				location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
+			} 
+		});
+	}
+	function confirmTest2() {
 		Swal.fire({
 			title : "成功加入購物車！",
 			showCancelButton : false
@@ -156,7 +168,7 @@
 							
 							<c:choose>
 							<c:when test="${empty sessionScope.user}">
-							<li><a href="javascript:void(0)" style="color: #f5c242; font-weight:bold;" onclick="confirmTest()">我的報名</a></li>
+							<li><a href="javascript:void(0)" style="color: #f5c242; font-weight:bold;" onclick="confirmTest1()">我的報名</a></li>
 							</c:when>
 							
 							<c:otherwise>

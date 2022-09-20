@@ -68,29 +68,6 @@ session.setAttribute("url", url);
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-<script>
-	function confirmTest() {
-		Swal.fire({
-			title : "報名前請先登入",		
-			showCancelButton : true
-		}).then(function(result) {
-			if (result.value) {	
-				location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
-			} 
-		});
-	}
-	function confirmTest2() {
-		Swal.fire({
-			title : "報名成功",
-			showCancelButton : false
-		});
-	}
-</script>
-
-
-
 <style>
 .btn {
 	width: auto;
@@ -274,7 +251,7 @@ session.setAttribute("url", url);
 										<c:choose>
 
 											<c:when test="${empty sessionScope.user}">
-												<input type="button" value="我要報名" onclick="confirmTest()" />
+												<input type="button" value="我要報名" onclick="confirmTest0()" />
 											</c:when>
 											
 											<c:otherwise>

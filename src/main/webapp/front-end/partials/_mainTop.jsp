@@ -6,8 +6,7 @@
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 <script>
 
-// ========================== 加入購物車 ==========================
-	function confirmTest6() {
+// ========================== 活動報名 ==========================
 	function confirmTest0() {
 		Swal.fire({
 			title : "請先登入會員",		
@@ -18,7 +17,7 @@
 				}
 			});
 	}
-	function confirmTest7() {
+	
 	function confirmTest1() {
 		Swal.fire({
 			title : "查看我的報名前請先登入",		
@@ -29,7 +28,20 @@
 			} 
 		});
 	}
-	function confirmTest2() {
+
+// ========================== 加入購物車 ==========================
+	function confirmTest6() {
+		Swal.fire({
+			title : "請先登入會員",		
+			showCancelButton : true
+		}).then(function(result) {
+			if (result.value) {	
+				location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
+				}
+			});
+	}
+	
+	function confirmTest7() {
 		Swal.fire({
 			title : "成功加入購物車！",
 			showCancelButton : false
@@ -53,8 +65,7 @@
 			title : "訂單已成立，謝謝您的購買！",
 			showCancelButton : false
 		});
-	}
- 		
+	} 		
  		if($("#credit").is(":checked")){
  			location.href='<%=request.getContextPath()%>/front-end/prod/PayWithCredit.jsp'
  		}

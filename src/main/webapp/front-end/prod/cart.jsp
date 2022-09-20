@@ -147,8 +147,8 @@ session.setAttribute("url", url);
                                         <p>$${cartVO.getProd_VO().prod_price}</p>
                                     </td>
                                     <td class="quantity-box">
-                                    	<p>${cartVO.prod_qty}</p>
-<!--                                     <input type="number" size="4" value="1" min="0" step="1" class="c-input-text qty text"> -->
+<%--                                     	<p>${cartVO.prod_qty}</p> --%>
+                                    <input type="number" size="4" value="${cartVO.prod_qty}" min="0" max="${cartVO.getProd_VO().prod_stock}" class="c-input-text qty text">
                                     </td>
                                     <td class="total-pr">
                                         <p>$${cartVO.getProd_VO().prod_price * cartVO.prod_qty}</p>

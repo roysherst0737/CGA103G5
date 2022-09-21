@@ -20,7 +20,7 @@
 	
 	function confirmTest1() {
 		Swal.fire({
-			title : "查看我的報名前請先登入",		
+			title : "查看報名前請先登入會員",		
 			showCancelButton : true
 		}).then(function(result) {
 			if (result.value) {	

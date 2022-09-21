@@ -1,12 +1,31 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="org.hibernate.internal.build.AllowSysOut"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+	isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.firm_survey.model.*"%>
+<%@ page import="com.question_list.model.*"%>
+<%@ page import="com.question.model.*"%>
 
 <%
-Firm_survey_Service firm_surveySvc = new Firm_survey_Service();
-List<Firm_survey_VO> list = firm_surveySvc.getAll();
+Question_list_Service question_listSvc = new Question_list_Service();
+List<Question_list_VO> list = question_listSvc.getAllFromFirmSurveyNo(Integer.parseInt(request.getQueryString()));
 pageContext.setAttribute("list", list);
+
+
+// List<Integer> selected_question_no = new ArrayList<Integer>();
+
+String selected_question_no = "";
+for (int i = 0; i < list.size(); i++) {
+	Question_list_VO abc = list.get(i);
+	selected_question_no += (abc.getQuestion_no());
+}
+
+String url = request.getContextPath();
+url += "/back-end/question_list/addQuestion_list.jsp?";
+url += Integer.parseInt(request.getQueryString());
+url += selected_question_no;
+pageContext.setAttribute("url", url);
+
 %>
 
 <!DOCTYPE html>
@@ -78,15 +97,15 @@ pageContext.setAttribute("list", list);
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
 										<button style="margin-right: 10px;">
-											<a href="listAllFirm_survey.jsp"><img
+											<a href="<%=request.getContextPath()%>/back-end/firm_survey/listAllFirm_survey.jsp"><img
 												src="./images/home.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right: 10px;">
-											<a href='addFirm_survey.jsp'><img src="./images/plus.png"
+											<a href="<%=request.getContextPath()%>/back-end/firm_survey/addFirm_survey.jsp"><img src="./images/plus.png"
 												width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right: 10px;">
-											<a href="selectFirm_survey.jsp"><img
+											<a href="<%=request.getContextPath()%>/back-end/firm_survey/selectFirm_survey.jsp"><img
 												src="./images/search2.png" width="30px" height="30px"></a>
 										</button>
 										<button
@@ -127,60 +146,50 @@ pageContext.setAttribute("list", list);
 										class="com.prod_pic.model.Prod_pic_Service" />
 									<jsp:useBean id="prod_typeSvc" scope="page"
 										class="com.prod_type.model.Prod_type_Service" />
-									<h4 class="card-title">活動問卷管理</h4>
+									<h4 class="card-title">問卷題目管理</h4>
+									<form>		
+								
+										<input type="button" value="新增問題"
+											onclick="location.href='<%=url%>'">
+									</form>
+
+
 									<table id="dataTables" class="stripe table-hover"
 										style="width: 100%; font-size: 12px">
 										<thead style="width: 100%; font-size: 13px">
 											<tr>
-												<th>廠商問卷編號</th>
-												<th>活動編號</th>
-												<th>廠商問卷建立時間</th>
-												<th>廠商問卷修改時間</th>
-												<th>修改</th>
-												<th>選擇題目</th>
+												<th>題目編號</th>
+												<th>問題內容</th>
 												<th>刪除</th>
 											</tr>
 										</thead>
 										<tbody>
-											<%@ include file="page1.file"%>
-											<c:forEach var="firm_surveyVO" items="${list}"
-												begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+
+											<c:forEach var="question_listVO" items="${list}">
 
 												<tr>
-													<td>${firm_surveyVO.firm_survey_no}</td>
-													<td>${firm_surveyVO.act_no}</td>
-													<td>${firm_surveyVO.survey_build_time}</td>
-													<td>${firm_surveyVO.survey_revise_time}</td>
-													<td>
-														<FORM METHOD="post"
-															ACTION="<%=request.getContextPath()%>/back-end/firm_survey/firm_survey.do"
-															style="margin-bottom: 0px;">
-															<input type="submit" value="修改"> <input
-																type="hidden" name="firm_survey_no"
-																value="${firm_surveyVO.firm_survey_no}"> <input
-																type="hidden" name="action" value="getOne_For_Update">
-														</FORM>
-													</td>
-
-													<td><a
-														href="<%=request.getContextPath()%>/back-end/question_list/listQuestion_list.jsp?${firm_surveyVO.firm_survey_no}">
-															<input type="submit" value="問卷題目管理">
-													</a></td>
+													<td>${question_listVO.question_no}</td>
+													<td>${question_listVO.questionVO.que}</td>
 
 													<td>
 														<FORM METHOD="post"
-															ACTION="<%=request.getContextPath()%>/back-end/firm_survey/firm_survey.do"
+															ACTION="<%=request.getContextPath()%>/back-end/question_list/question_list.do"
 															style="margin-bottom: 0px;">
 															<input type="submit" value="刪除"> <input
+																type="hidden" name="question_no"
+																value="${question_listVO.question_no}"> <input
 																type="hidden" name="firm_survey_no"
-																value="${firm_surveyVO.firm_survey_no}"> <input
-																type="hidden" name="action" value="delete">
+																value="${question_listVO.firm_survey_no}"> <input
+																type="hidden" name="queryString"
+																value="<%=Integer.parseInt(request.getQueryString())%>">
+
+															<input type="hidden" name="action" value="delete">
 														</FORM>
 													</td>
 												</tr>
 											</c:forEach>
 									</table>
-									<%@ include file="page2.file"%>
+
 									</tbody>
 									</table>
 								</div>

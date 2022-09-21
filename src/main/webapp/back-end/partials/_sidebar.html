@@ -151,6 +151,8 @@
           <li class="nav-item"><a id="act_list" class="nav-link" href=""> 活動資料管理 </a></li>
           <li class="nav-item"><a id="act_pic" class="nav-link" href=""> 活動圖片管理 </a></li>
           <li class="nav-item"><a id="act_sign_up" class="nav-link" href=""> 活動報名管理 </a></li>
+          <li class="nav-item"><a id="firm_survey" class="nav-link" href=""> 活動問卷管理 </a></li>
+          <li class="nav-item"><a id="question" class="nav-link" href=""> 問卷問題管理 </a></li>
           <script>
             document.querySelector("#act_list").setAttribute("href",
             	getContextPath() + "/back-end/act/listAllAct.jsp");
@@ -158,6 +160,10 @@
                 	getContextPath() + "/back-end/act_pic/listAllAct_pic.jsp");
             document.querySelector("#act_sign_up").setAttribute("href",
                 	getContextPath() + "/back-end/act_sign_up/listAllAct_sign_up.jsp");
+            document.querySelector("#firm_survey").setAttribute("href",
+                	getContextPath() + "/back-end/firm_survey/listAllFirm_survey.jsp");
+            document.querySelector("#question").setAttribute("href",
+                	getContextPath() + "/back-end/question/listAllQuestion.jsp");
           </script>
         </ul>
       </div>

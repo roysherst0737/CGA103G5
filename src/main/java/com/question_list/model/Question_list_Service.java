@@ -47,5 +47,9 @@ public class Question_list_Service {
 	public List<Question_list_VO> getAll() {
 		return dao.getAll();
 	}
+	
+	public List<Question_list_VO> getAllFromFirmSurveyNo(Integer firm_survey_no) {
+		return dao.getAllFromFirmSurveyNo(firm_survey_no);
+	}
 
 }

@@ -7,6 +7,10 @@
 <%@ page import="com.cart.model.*"%>
 
 <%
+Order_VO orderVO = (Order_VO) request.getAttribute("orderVO");
+%>
+
+<%
 Prod_Service prodSvc = new Prod_Service();
 List<Prod_VO> list = prodSvc.getAll();
 pageContext.setAttribute("list", list);
@@ -26,18 +30,6 @@ if (user != null) {
 
 String url = request.getRequestURL().toString() + "?" + request.getQueryString();
 session.setAttribute("url", url);
-%>
-
-<%
-int amount = 0;
-for (int i = 0; i < cartlist.size(); i++) {
-	Cart_VO order = cartlist.get(i);
-	Integer price = order.getProd_VO().getProd_price();
-	Integer quantity = order.getProd_qty();
-	amount += (price * quantity);
-}
-
-Cart_VO cartVO = (Cart_VO) request.getAttribute("cartVO");
 %>
 
 <!DOCTYPE html>
@@ -138,39 +130,45 @@ Cart_VO cartVO = (Cart_VO) request.getAttribute("cartVO");
         <div class="container">
             <div class="row new-account-login">
                 <div class="col-sm-6 col-lg-6 mb-3">
+                	<c:choose>
+						<c:when test="${empty sessionScope.user}">
                     <div class="title-left">
                         <h3>會員登入</h3>
                     </div>
-                    <h5>
-                    	<c:choose>
-							<c:when test="${empty sessionScope.user}">
-								<a href="<%=request.getContextPath()%>/front-end/mem/login.jsp" style="color:#f5c242; font-size: 18px">您尚未登入，請點擊登入會員後方可結帳</a>
-							</c:when>
+                    	<h5>                    	
+							<a href="<%=request.getContextPath()%>/front-end/mem/login.jsp" style="color:#f5c242; font-size: 18px">您尚未登入，請點擊登入會員後方可結帳</a>
+						</h5>
+							</c:when>							
 							<c:otherwise>
-								<a style="color:#f5c242; font-size: 18px">您已登入，可直接進行結帳</a>
+								<div class="title-left">
+                        			<h3>基本資訊填寫</h3>
+                    			</div>
+                    			<h5><a style="color:#f5c242; font-size: 18px">為了提供完美的送貨服務，請填寫基本資料</a></h5>
 							</c:otherwise>
 						</c:choose> 
-                    </h5>
                 </div>
                 <div class="col-sm-6 col-lg-6 mb-3">
+                    <c:choose>
+						<c:when test="${empty sessionScope.user}">
                     <div class="title-left">
                         <h3>註冊新會員</h3>
                     </div>
-                    <h5>
-                    	<c:choose>
-							<c:when test="${empty sessionScope.user}">
-								<a href="<%=request.getContextPath()%>/front-end/mem/register.jsp" style="color:#f5c242; font-size: 18px">若您尚未註冊，請點擊加入我們！</a>
+                    	<h5>
+							<a href="<%=request.getContextPath()%>/front-end/mem/register.jsp" style="color:#f5c242; font-size: 18px">若您尚未註冊，請點擊加入我們！</a>
+						</h5>	
 							</c:when>
 							<c:otherwise>
-								<a style="color:#f5c242; font-size: 18px">已註冊會員，謝謝您的支持！</a>
+								<div class="title-left">
+                        			<h3>購買內容確認</h3>
+                    			</div>
+                    			<h5><a style="color:#f5c242; font-size: 18px">再次瀏覽購物車&消費金額，可在結帳前更改</a></h5>
 							</c:otherwise>
 						</c:choose> 
-                    </h5>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6 col-lg-6 mb-3">
-                    <div class="checkout-address">
+                    <div class="checkout-address">                    	
                         <div class="title-left">
                             <h3>收貨人資訊</h3>
                         </div>
@@ -178,14 +176,14 @@ Cart_VO cartVO = (Cart_VO) request.getAttribute("cartVO");
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="firstName">收貨人姓名 *</label>
-                                    <input type="text" name="receiver_name" class="form-control" id="firstName" placeholder="" value="" required>
+                                    <input type="text" name="receiver_name" class="form-control" id="firstName" placeholder="" value="<%=(orderVO == null) ? "" : orderVO.getReceiver_name()%>" required>
                                     <div class="invalid-feedback"> 請輸入收貨人姓名 </div>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="username">收貨人電話 *</label>
                                 <div class="input-group">
-                                    <input type="text" name="receiver_phone" class="form-control" id="username" placeholder="" required>
+                                    <input type="text" name="receiver_phone" class="form-control" id="username" placeholder="" value="<%=(orderVO == null) ? "" : orderVO.getReceiver_phone()%>" required>
                                     <div class="invalid-feedback" style="width: 100%;"> 請輸入收貨人電話 </div>
                                 </div>
                             </div>
@@ -214,7 +212,7 @@ Cart_VO cartVO = (Cart_VO) request.getAttribute("cartVO");
                             </div>
                             <div class="mb-3">
                                 <label for="address2">宅配地址/便利商店地址 *</label>
-                                <input type="text" name="receiver_address" class="form-control" id="address" placeholder="" required>
+                                <input type="text" name="receiver_address" class="form-control" id="address" placeholder="" value="<%=(orderVO == null) ? "" : orderVO.getReceiver_address()%>" required>
                                 <div class="invalid-feedback" style="width: 100%;"> 地址必填 </div>
                             </div>
                                 
@@ -298,7 +296,24 @@ Cart_VO cartVO = (Cart_VO) request.getAttribute("cartVO");
                                         	<input type="hidden" name="action" value="checkoutMinus">
                                         	</FORM>
                                             <div class="small text-muted">
-                                            	單價: $${cartVO.getProd_VO().prod_price} <span class="mx-2">|</span> 數量: ${cartVO.prod_qty} <span class="mx-2">|</span> 總價: $${cartVO.getProd_VO().prod_price * cartVO.prod_qty}                                    	
+                                            	單價: $${cartVO.getProd_VO().prod_price} 
+                                            	<span class="mx-2">|</span> 數量: ${cartVO.prod_qty} 
+                                            	<span class="mx-2">|</span> 總價: $ <span class="totalPrice">${cartVO.getProd_VO().prod_price * cartVO.prod_qty}</span>
+                                            	<script>
+                                            	(function($) {
+                                            		 $(window).on('load', function() {
+                                            			 const total = document.querySelector("#amount");
+                                            			 const totalFinal = document.querySelector("#amountFinal");
+                                            			 let num = 0;
+                                            			 document.querySelectorAll(".totalPrice").forEach(e =>{
+                                            				 num += parseInt(e.textContent);                                            				 
+                                            			 });
+                                            			 total.textContent = num;
+                                            			 totalFinal.textContent = num;
+                                            		 });                                          
+                                            	}(jQuery));
+                                            	</script>
+                                   	
                                             </div>
                                         </div>
                                     </div>
@@ -313,8 +328,7 @@ Cart_VO cartVO = (Cart_VO) request.getAttribute("cartVO");
                                 			<input class="btn" id="useCoupon" type="submit" value="使用"></input>
                            				</div>
                         			</div>
-                    			</div>
-                            	
+                    			</div>                           	
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-12">
@@ -328,8 +342,10 @@ Cart_VO cartVO = (Cart_VO) request.getAttribute("cartVO");
                                 </div>
                                 <hr class="my-1">
                                 <div class="d-flex">
-                                    <h4>消費金額</h4>
-                                    <div class="ml-auto font-weight-bold"> $${cartVO.getProd_VO().prod_price * cartVO.prod_qty} </div>
+                                    <h4>消費金額</h4>                                    
+                                    <div class="ml-auto font-weight-bold">
+                                    	$<span id="amount"></span>
+                                    </div>                                    
                                 </div>
                                 <hr class="my-1">
                                 <div class="d-flex">
@@ -343,11 +359,15 @@ Cart_VO cartVO = (Cart_VO) request.getAttribute("cartVO");
                                 <hr>
                                 <div class="d-flex gr-total">
                                     <h5>訂單總金額</h5>
-                                    <div class="ml-auto h5"> $${cartVO.getProd_VO().prod_price * cartVO.prod_qty - 10}</div>
+                                    <div class="ml-auto h5"> 
+                                    	$<span id="amountFinal"></span>
+                                    </div>
                                 </div>
                                 <hr> </div>
                         </div>
                         <div class="col-12 d-flex shopping-box">
+                        	
+                        	<FORM name="order" action="detail.do" method="post">
                         	<c:choose>
 								<c:when test="${empty sessionScope.user}">
 									<input class="btn btn-warning" id="checkout" type="button" value="結帳" onclick="confirmTest8()" />
@@ -355,12 +375,13 @@ Cart_VO cartVO = (Cart_VO) request.getAttribute("cartVO");
 								<c:otherwise>									
 									<input class="btn btn-warning" id="checkout" type="submit" value="結帳" onclick="confirmTest9()">
 								</c:otherwise>
-							</c:choose>                        
+							</c:choose>
+							<input type="hidden" name="action" value="createOrder"> 
+							</FORM>                       
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <!-- End Cart -->

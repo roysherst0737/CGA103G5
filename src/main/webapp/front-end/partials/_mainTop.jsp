@@ -172,7 +172,7 @@
 							<li><a id="states" href="<%=request.getContextPath()%>/PubStates" style="color: #f5c242; font-weight:bold;">酒吧狀態</a></li>
 							<script> 
 							(window.onload = function() {
-							fetch('PubStatesCheck', {
+							fetch('.PubStatesCheck', {
 								method: 'POST',
 								headers: {
 									'Content-Type': 'application/json',

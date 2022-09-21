@@ -18,8 +18,7 @@ import com.pub.entity.Pub;
 
 import static com.pub.service.PubConstants.SERVICE;
 import static com.util.CommonUtil.writePojo2Json;
-import static com.util.Constants.GSON;
-@WebServlet(urlPatterns = { "/PubStatesCheck","/front-end/PubStatesCheck"})
+@WebServlet(urlPatterns = { "/PubStatesCheck","/front-end/PubStatesCheck","*.PubStatesCheck"})
 public class PubStatesCheckServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

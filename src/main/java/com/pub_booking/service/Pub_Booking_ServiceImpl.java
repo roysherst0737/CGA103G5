@@ -54,4 +54,9 @@ public class Pub_Booking_ServiceImpl implements Pub_Booking_Service {
 		}
 		return 1;
 	}
+
+	@Override
+	public List<Pub_Booking> getMemALL(Integer mem_no) {
+		return dao.getListByMem(mem_no);
+	}
 }

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mem.model.Mem_VO;
 import com.pub.entity.Pub;
 import com.pub_reservation.service.Pub_Reservation_ServiceImpl;
 @WebServlet("/PubRegister")
@@ -27,6 +28,7 @@ public class PubRegisterServlet extends HttpServlet{
 			writePojo2Json(response, pub);
 			return;
 		}
+		pub.setMem_no((Integer)((Mem_VO) request.getSession().getAttribute("user")).getMem_no());
 		pub = SERVICE.register(pub);
 		new Pub_Reservation_ServiceImpl().setReservation();
 //		com.pub_reservation.service.Pub_ReservationConstants.SERVICE.setReservation();

@@ -39,68 +39,104 @@
 <!-- plugin css for this page -->
 <!-- End plugin css for this page -->
 <!-- inject:css -->
-<script 
-		src="<%=request.getContextPath()%>/front-end/pages/pub/js/open.js"></script>
+<script
+	src="<%=request.getContextPath()%>/front-end/pages/pub/js/open.js"></script>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/back-end/css/vertical-layout-light/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 
 <style>
-.div2{
-	padding:10px;
+.btn-warning {
+	background-color: #ffc107;
+	width: 52px;
+	height: 33.5px;
+	padding: 0px;
+	font-size: small;
+	font-weight: bolder
 }
-#div_1{
+
+input.btn-warning:hover {
+	background-color: #e0a800;
+	color: black;
+	!
+	important;
+}
+
+.container-fluid {
+	padding: 0px;
+}
+
+.col-lg-6 {
+	padding: 0px;
+}
+.main-top {
+	padding:0.1px;
+}
+.div2 {
+	padding: 10px;
+}
+
+#div_1 {
 	margin: 10px;
 }
+
 .mydiv {
-  	border-radius: 20px;
-/*     border: 5px ridge rgb(193 193 193 / 60%); */
+	border-radius: 20px;
+	/*     border: 5px ridge rgb(193 193 193 / 60%); */
 	width: 100%;
-/* 	background-color: #f1f1f1; */
+	/* 	background-color: #f1f1f1; */
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
 	grid-gap: 10px;
 	grid-auto-rows: minmax(100px, auto);
-	padding:10px;
+	padding: 10px;
 	grid-template-rows: 1fr 3fr 3fr 3fr;
 }
-.myday{
- 	border-radius: 20px;
-    border: 3px solid rgb(193 193 193);
+
+.myday {
+	border-radius: 20px;
+	border: 3px solid rgb(193, 193, 193);
 	background-color: #e0e0e0;
-	padding:10px;
+	padding: 10px;
 }
-.myday:hover{
+
+.myday:hover {
 	background-color: #c6c6c6;
-		
 }
 
-.week6{
-background-color: #dcd6d6;
-}
-.week6:hover{
-background-color: #c5bdbd;
+.week6 {
+	background-color: #dcd6d6;
 }
 
-.week7{
-background-color: #f5d9d9;
+.week6:hover {
+	background-color: #c5bdbd;
 }
-.week7:hover{
-background-color: #e2c8c8;
+
+.week7 {
+	background-color: #f5d9d9;
 }
-.today{
+
+.week7:hover {
+	background-color: #e2c8c8;
+}
+
+.today {
 	background-color: #acf0c7;
 }
-.today:hover{
+
+.today:hover {
 	background-color: #82d6a3;
 }
-.passday{
-background-color: #ffffff;
+
+.passday {
+	background-color: #ffffff;
 }
-.passday:hover{
-background-color: #e3e3e3;
+
+.passday:hover {
+	background-color: #e3e3e3;
 }
+
 @media ( min-width : 600px) {
 	.main_div {
 		display: flex;
@@ -229,17 +265,19 @@ div.col-sm-12>button.btn-warning:hover {
 									<img class="img" src="${pic.pub_pic }">
 								</c:forEach>
 
-								<p>可接受預約人數:${pub.pub_nop}<span id="nop" style="display:none">${pub.pub_nop}</span></p>
-								<p style="display: none"id="pub_no">${pub.pub_no}</p>
+								<p>
+									可接受預約人數:${pub.pub_nop}<span id="nop" style="display: none">${pub.pub_nop}</span>
+								</p>
+								<p style="display: none" id="pub_no">${pub.pub_no}</p>
 								<div id="open_div" style="text-align: start;">營業時間</div>
 								<div id="open">${pub.pub_open}</div>
+
+							</div>
+							<!-- 預約表 -->
+							<script>
 								
-							</div>
-						<!-- 預約表 -->
-						<script>
-						</script>
-							<div class="mydiv">
-							</div>
+							</script>
+							<div class="mydiv"></div>
 						</div>
 					</div>
 				</div>
@@ -251,16 +289,16 @@ div.col-sm-12>button.btn-warning:hover {
 	<!-- End Gallery  -->
 
 	<!-- Start Instagram Feed  -->
-<%-- 	<%@ include file="/front-end/partials/_InstagramBox.jsp"%> --%>
+	<%-- 	<%@ include file="/front-end/partials/_InstagramBox.jsp"%> --%>
 	<!-- End Instagram Feed  -->
-<!-- Modal -->
+	<!-- Modal -->
 	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
 		role="dialog" aria-labelledby="exampleModalCenterTitle"
 		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">${pub.pub_name} </h5>
+					<h5 class="modal-title">${pub.pub_name}</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -271,8 +309,7 @@ div.col-sm-12>button.btn-warning:hover {
 						<img id="myimg"></img> <span id="mydetail"></span>
 					</div>
 					<h3>預約時段</h3>
-					<div id="div_1">
-					</div>
+					<div id="div_1"></div>
 
 				</div>
 				<div class="modal-footer">

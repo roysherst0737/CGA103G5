@@ -13,6 +13,8 @@ public interface Mem_DAO_interface {
     public List<Mem_VO> getAll();
     public Mem_VO login(String mem_account,String mem_password);    
     public void updatePassword(Mem_VO memVO);    
+    public void enable_status(Integer mem_no);
+    public void unable_status(Integer mem_no);
     //萬用複合查詢(傳入參數型態Map)(回傳 List)
 //  public List<EmpVO> getAll(Map<String, String[]> map); 
 }

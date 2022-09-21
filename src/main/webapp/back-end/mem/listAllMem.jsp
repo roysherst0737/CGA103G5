@@ -75,7 +75,6 @@ pageContext.setAttribute("list", list);
 					<div class="row">
 						<div class="col-sm-6">
 							<h3 class="mb-0 font-weight-bold">會員資料管理</h3>
-							<p>上次登入：21小時前</p>
 						</div>
 						<div class="col-sm-6">
 							<div class="d-flex align-items-center justify-content-md-end">
@@ -92,20 +91,7 @@ pageContext.setAttribute("list", list);
 										<button style="margin-right: 10px;">
 											<a href="selectProd_type.jsp"><img
 												src="./images/search2.png" width="30px" height="30px"></a>
-										</button>
-										<button
-											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
-											type="button" id="dropdownMenu3" data-toggle="dropdown"
-											aria-haspopup="true" aria-expanded="false">
-											<i class="typcn typcn-calendar-outline mr-2"></i>Last 7 days
-										</button>
-										<div class="dropdown-menu"
-											aria-labelledby="dropdownMenuSizeButton3"
-											data-x-placement="top-start">
-											<h6 class="dropdown-header">Last 14 days</h6>
-											<a class="dropdown-item" href="#">Last 21 days</a> <a
-												class="dropdown-item" href="#">Last 28 days</a>
-										</div>
+										</button>									
 									</div>
 								</div>
 								<div class="pr-1 mb-3 mr-2 mb-xl-0">
@@ -128,10 +114,7 @@ pageContext.setAttribute("list", list);
 							<div class="card">
 										<div class="card-body">
 											<h4 class="card-title">會員資料</h4>
-											<p class="card-description">
-												Add class
-												<code>.table-striped</code>
-											</p>
+											
 											<div class="horizontal_style">
 												<table class="table table-striped">
 													<thead>
@@ -210,20 +193,23 @@ pageContext.setAttribute("list", list);
 														  			</c:otherwise>
 																</c:choose>
 																<td>
-																  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mem/mem.do" style="margin-bottom: 0px;">
-																     <input type="submit" class="btn btn-outline-secondary btn-sm" value="修改">
+																  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mem/changeMemStatus" style="margin-bottom: 0px;">
+																     <input type="submit" class="btn btn-outline-secondary btn-sm" value="啟用">
 																     <input type="hidden" name="mem_no"  value="${memVO.mem_no}">
-																     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
+																     <input type="hidden" name="action"	value="enable_status"></FORM>
 																</td>
 																<td>
-																  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mem/mem.do" style="margin-bottom: 0px;">
-																     <input type="submit" class="btn btn-outline-primary btn-sm" value="刪除">
-																     <input type="hidden" name="mem_no"  value="${sessionScope.user.getMem_no()}">
-																     <input type="hidden" name="action" value="delete"></FORM>
+																  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mem/changeMemStatus" style="margin-bottom: 0px;">				     
+														   			 <input type="submit" class="btn btn-outline-primary btn-sm" value="停用">													  			
+																     <input type="hidden" name="mem_no"  value="${memVO.mem_no}">
+																     <input type="hidden" name="action" value="unable_status">
+																   </FORM>
 																</td>
 															</tr>
 														</c:forEach>
 													</table>
+													
+													
 													<%@ include file="page2.file" %>
 											</div>
 										</div>

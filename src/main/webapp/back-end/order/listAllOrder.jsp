@@ -168,9 +168,6 @@
 														<c:if test="${orderVO.payment_method == 1}">
 															<div>信用卡</div>
 														</c:if>
-														<c:if test="${orderVO.payment_method == 2}">
-															<div>電子支付</div>
-														</c:if>
 													</td>
 													<td>
 														<c:if test="${orderVO.pickup_method == 0}">

@@ -58,6 +58,11 @@ public class Mem_DAO implements Mem_DAO_interface{
 	
 	private static final String UPDATE_PASSWORD = 
 			"UPDATE mem set mem_password=? where mem_no = ?";
+	
+	private static final String ENABLE_STATUS = 
+			"UPDATE mem set status= 0 where mem_no = ?";
+	private static final String UNABLE_STATUS = 
+			"UPDATE mem set status= 1 where mem_no = ?";
 	@Override
 	public void insert(Mem_VO memVO) {
 
@@ -495,6 +500,87 @@ public class Mem_DAO implements Mem_DAO_interface{
 			
 			pstmt.setString(1, memVO.getMem_password());
 			pstmt.setInt(2, memVO.getMem_no());
+
+
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
+
+	@Override
+	public void enable_status(Integer mem_no) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(ENABLE_STATUS);
+			
+			pstmt.setInt(1, mem_no);
+
+
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
+
+
+	@Override
+	public void unable_status(Integer mem_no) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UNABLE_STATUS);
+			
+			pstmt.setInt(1, mem_no);
 
 
 			pstmt.executeUpdate();

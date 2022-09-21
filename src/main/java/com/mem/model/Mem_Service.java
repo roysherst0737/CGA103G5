@@ -95,5 +95,13 @@ public class Mem_Service {
 		 dao.updatePassword(memVO);
 		 return memVO;
 	 }
+	 
+	 public void enable_status(Integer mem_no) {
+		 dao.enable_status(mem_no);
+	 }
+	 
+	  public void unable_status(Integer mem_no) {
+		  dao.unable_status(mem_no);
+	  }
 }
 

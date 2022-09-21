@@ -142,6 +142,7 @@ Firm_survey_VO firm_surveyVO = (Firm_survey_VO) request.getAttribute("firm_surve
 														value="<%=(firm_surveyVO == null) ? "" : firm_surveyVO.getAct_no()%>" /></td>
 												</tr>
 											</table>
+											
 
 											<br> <input type="hidden" name="action" value="insert">
 											<input type="submit" value="送出新增">

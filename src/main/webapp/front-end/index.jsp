@@ -56,6 +56,14 @@ pageContext.setAttribute("list", list);
 			padding: 3px;
 			text-align: center;
 			}
+			
+		#nickname {
+		    /* width: 50px; */
+		    height: 30px;
+		    padding: 0px;
+		    margin: 0px;
+		    font-weight: bolder;
+		}
 	
 	</style>
 

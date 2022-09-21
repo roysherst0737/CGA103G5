@@ -137,6 +137,7 @@ pageContext.setAttribute("list", list);
 												<th>廠商問卷建立時間</th>
 												<th>廠商問卷修改時間</th>
 												<th>修改</th>
+												<th>選擇題目</th>
 												<th>刪除</th>
 											</tr>
 										</thead>
@@ -160,6 +161,12 @@ pageContext.setAttribute("list", list);
 																type="hidden" name="action" value="getOne_For_Update">
 														</FORM>
 													</td>
+
+													<td><a
+														href="<%=request.getContextPath()%>/back-end/question_list/listQuestion_list.jsp?${firm_surveyVO.firm_survey_no}">
+															<input type="submit" value="問卷題目管理">
+													</a></td>
+
 													<td>
 														<FORM METHOD="post"
 															ACTION="<%=request.getContextPath()%>/back-end/firm_survey/firm_survey.do"

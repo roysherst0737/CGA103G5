@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mem.model.Mem_VO;
 import com.pub_rank.entity.Pub_Rank;
 @WebServlet("/PubRate")
 public class PubInserServlet extends HttpServlet{
@@ -27,6 +28,7 @@ public class PubInserServlet extends HttpServlet{
 			writePojo2Json(response, pub_Rank);
 			return;
 		}
+		pub_Rank.setMem_no((Integer)((Mem_VO) request.getSession().getAttribute("user")).getMem_no());
 		pub_Rank = SERVICE.setRate(pub_Rank);
 		System.out.println(pub_Rank.getMessage());
 		System.out.println(pub_Rank.getSuccessful());

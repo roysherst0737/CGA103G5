@@ -75,11 +75,11 @@ pageContext.setAttribute("list", list);
                         <div class="account-box">
                             <div class="service-box">
                                 <div class="service-icon">
-                                    <a href="#"> <i class="fa fa-gift"></i> </a>
+                                    <a href="<%=request.getContextPath()%>/front-end/prod/orderHistory.jsp"> <i class="fa fa-gift"></i> </a>
                                 </div>
                                 <div class="service-desc">
-                                    <h4>Your Orders</h4>
-                                    <p>Track, return, or buy things again</p>
+                                    <h4>歷史訂單</h4>
+                                    <p>追蹤、瀏覽歷史訂單</p>
                                 </div>
                             </div>
                         </div>
@@ -91,8 +91,8 @@ pageContext.setAttribute("list", list);
                                     <a href="<%=request.getContextPath()%>/front-end/mem/memApplication.jsp"><i class="fa fa-lock"></i> </a>
                                 </div>
                                 <div class="service-desc">
-                                    <h4>Login &amp; security</h4>
-                                    <p>Edit login, name, and mobile number</p>
+                                    <h4>個人資料管理</h4>
+                                    <p>編輯自己的會員資料</p>
                                 </div>
                             </div>
                         </div>
@@ -101,11 +101,11 @@ pageContext.setAttribute("list", list);
                         <div class="account-box">
                             <div class="service-box">
                                 <div class="service-icon">
-                                    <a href="#"> <i class="fa fa-location-arrow"></i> </a>
+                                    <a href="<%=request.getContextPath()%>/MemBookingGet"> <i class="fa fa-location-arrow"></i> </a>
                                 </div>
                                 <div class="service-desc">
-                                    <h4>Your Addresses</h4>
-                                    <p>Edit addresses for orders and gifts</p>
+                                    <h4>酒吧訂位查看</h4>
+                                    <p>查看已訂位的酒吧，別忘了要赴約！</p>
                                 </div>
                             </div>
                         </div>

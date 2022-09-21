@@ -106,9 +106,7 @@ Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 								<div class="card-body">
 									<h4 class="card-title">訂單明細</h4>
 									<table id="dataTables" class="stripe table-hover"
-										style="width: 100%">
-									
-									<c:forEach var="order_detailVO" items="${listOrder_details_ByOrder}" >
+										style="width: 100%">																		
 										<tr>
 											<th>訂單編號</th>
 											<th>商品名稱</th>
@@ -118,6 +116,7 @@ Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 											<th>商品總額</th>
 											<th>會員編號</th>
 										</tr>
+										<c:forEach var="order_detailVO" items="${listOrder_details_ByOrder}" >
 										<tr>
 											<td>${order_detailVO.order_no}</td>
 											<td>${order_detailVO.getProd_VO().prod_name}</td>

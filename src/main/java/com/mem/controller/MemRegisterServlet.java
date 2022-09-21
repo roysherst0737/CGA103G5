@@ -89,7 +89,7 @@ public class MemRegisterServlet extends HttpServlet {
 			// Send the use back to the form, if there were errors
 			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = request
-						.getRequestDispatcher("/front-end/register.jsp");
+						.getRequestDispatcher("/front-end/mem/register.jsp");
 				failureView.forward(request, response);
 				return;//程式中斷
 				
@@ -104,7 +104,7 @@ public class MemRegisterServlet extends HttpServlet {
 			}
 			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = request
-						.getRequestDispatcher("/front-end/register.jsp");
+						.getRequestDispatcher("/front-end/mem/register.jsp");
 				failureView.forward(request, response);
 				return;//程式中斷
 			}

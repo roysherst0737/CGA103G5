@@ -28,6 +28,18 @@ String url = request.getRequestURL().toString() + "?" + request.getQueryString()
 session.setAttribute("url", url);
 %>
 
+<%
+int amount = 0;
+for (int i = 0; i < cartlist.size(); i++) {
+	Cart_VO order = cartlist.get(i);
+	Integer price = order.getProd_VO().getProd_price();
+	Integer quantity = order.getProd_qty();
+	amount += (price * quantity);
+}
+
+Cart_VO cartVO = (Cart_VO) request.getAttribute("cartVO");
+%>
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <!-- Basic(head都不用動) -->
@@ -228,17 +240,21 @@ session.setAttribute("url", url);
                                     <input id="credit" value="1" name="payment_method" type="radio" class="custom-control-input" required>
                                     <label class="custom-control-label" for="credit">信用卡</label>
                                 </div>
-                                <div class="custom-control custom-radio" style="display: inline-block;">
-                                    <input id="linepay" value="2" name="payment_method" type="radio" class="custom-control-input" required>
-                                    <label class="custom-control-label" for="linepay">LinePay</label>
-                                </div>
+<!--                                 <div class="custom-control custom-radio" style="display: inline-block;"> -->
+<!--                                     <input id="linepay" value="2" name="payment_method" type="radio" class="custom-control-input" required> -->
+<!--                                     <label class="custom-control-label" for="linepay">LinePay</label> -->
+<!--                                 </div> -->
                             </div>
                                 <div class="col-md-6 mb-3">
                                     <div class="payment-icon">
                                         <ul>
                                             <li><img class="img-fluid" src="images/payment-icon/1.png" width=150%;></li>
                                             <li><img class="img-fluid" src="images/payment-icon/2.png"></li>
-                                            <li style="margin-top: 0.5px;"><img class="img-fluid" src="images/payment-icon/9.png"></li>
+                                            <li><img class="img-fluid" src="images/payment-icon/3.png"></li>
+                                            <li><img class="img-fluid" src="images/payment-icon/4.png"></li>
+                                            <li><img class="img-fluid" src="images/payment-icon/6.png"></li>
+<!--                                             <li><img class="img-fluid" src="images/payment-icon/7.png"></li> -->
+<!--                                             <li style="margin-top: 0.5px;"><img class="img-fluid" src="images/payment-icon/9.png"></li> -->
 
                                         </ul>
                                     </div>
@@ -313,7 +329,7 @@ session.setAttribute("url", url);
                                 <hr class="my-1">
                                 <div class="d-flex">
                                     <h4>消費金額</h4>
-                                    <div class="ml-auto font-weight-bold"> $ 440 </div>
+                                    <div class="ml-auto font-weight-bold"> $${cartVO.getProd_VO().prod_price * cartVO.prod_qty} </div>
                                 </div>
                                 <hr class="my-1">
                                 <div class="d-flex">
@@ -327,7 +343,7 @@ session.setAttribute("url", url);
                                 <hr>
                                 <div class="d-flex gr-total">
                                     <h5>訂單總金額</h5>
-                                    <div class="ml-auto h5"> $ 388 </div>
+                                    <div class="ml-auto h5"> $${cartVO.getProd_VO().prod_price * cartVO.prod_qty - 10}</div>
                                 </div>
                                 <hr> </div>
                         </div>

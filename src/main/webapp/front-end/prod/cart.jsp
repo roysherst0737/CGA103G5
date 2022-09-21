@@ -14,14 +14,6 @@ Cart_Service cartSvc = new Cart_Service();
 List<Cart_VO> cartlist = cartSvc.getAll();
 pageContext.setAttribute("cartlist", cartlist);
 
-// int amount = 0;
-// for (int i = 0; i < cartlist.size(); i++) {
-// 	Cart_VO order = cartlist.get(i);
-// 	Integer price = order.getProd_VO().getProd_price();
-// 	Integer quantity = order.getProd_qty();
-// 	amount += (price * quantity);
-// }
-
 Object Objuser = session.getAttribute("user");
 Mem_VO user = (Mem_VO) Objuser;
 

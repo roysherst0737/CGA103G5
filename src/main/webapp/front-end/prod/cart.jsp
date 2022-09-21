@@ -63,8 +63,7 @@ session.setAttribute("url", url);
 		.btn {
     		width: auto;
     		height: auto;
-			}
-		
+			}		
 		#remind {
 			color:#f5c242; 
 			font-size: 28px; 
@@ -72,17 +71,53 @@ session.setAttribute("url", url);
 			}
 		#remind:hover {	
 			color:black;
-			}
-			
+			}			
 		#deleteCart {
 			font-size: 18px;
 			color: red;
-			}
-		
+			}		
 		#deleteAll {
 			font-size: 18px;
 			color: red;
-			margin-right: 12px;
+			margin-right: 14px;
+			}			
+		#minus {
+			width: 20px;
+			text-align: auto;
+			font-size: 20px;
+			padding: 0px;
+			}
+		#minus:hover {
+			color: red;
+			}			
+		#qty {
+			width: 16px;
+			text-align: center;
+			}			
+		#plus {
+			width: 20px;
+			text-align: auto;
+			font-size: 20px;
+			padding: 0px;
+			}
+		#plus:hover {
+			color: green;
+			}	
+		#total-price {
+			text-align: center;
+			}
+		#remove-cart {
+			width: 16px;
+			text-align: center;
+			}
+		#pic {
+			width: 250px;
+			}
+		#name {
+			width: 200px;
+			}
+		#price {
+			width: 200px;
 			}
 	
 	</style>
@@ -122,42 +157,59 @@ session.setAttribute("url", url);
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>商品圖片</th>
-                                    <th>商品名稱</th>
-                                    <th>商品單價</th>
-                                    <th>購買數量</th>
-                                    <th>總價</th>
-                                    <th>
-                                    	
-                                    </th>
+                                    <th id="pic">商品圖片</th>
+                                    <th id="name">商品名稱</th>
+                                    <th id="price">商品單價</th>
+                                    <th id="minus"></th>
+                                    <th id="qty">購買數量</th>
+                                    <th id="plus"></th>
+                                    <th id="total-price">總價</th>
+                                    <th id="remove-cart"></th>
                                 </tr>
                             </thead>
                             <c:forEach var="cartVO" items="${cartlist}">
                             <c:if test="${cartVO.mem_no == user.mem_no}">
                             <tbody>
                                 <tr>
-                                    <td class="thumbnail-img">
+                                    <td id="pic">
                                     	<img src="<%=request.getContextPath()%>/ShowProd_picForProd?prod_no=${cartVO.getProd_pic_VO().prod_pic_no}"
 											 width=150px height=100px>
                                     </td>
-                                    <td class="name-pr">
+                                    <td id="name">
                                         ${cartVO.getProd_VO().prod_name}
                                     </td>
-                                    <td class="price-pr">
+                                    <td id="price">
                                         <p>$${cartVO.getProd_VO().prod_price}</p>
                                     </td>
-                                    <td class="quantity-box">
-<%--                                     	<p>${cartVO.prod_qty}</p> --%>
-                                    <input type="number" size="4" value="${cartVO.prod_qty}" min="0" max="${cartVO.getProd_VO().prod_stock}" class="c-input-text qty text">
+                                    <td id="minus">
+                                    	<FORM action="cart.do" method="post">
+                                        	<input class="btn" id="minus" type="submit" value="-">
+                                        	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
+                                        	<input type="hidden" name="mem_no" value="${user.mem_no}">
+                                        	<input type="hidden" name="action" value="cartMinus">
+                                        </FORM>
                                     </td>
-                                    <td class="total-pr">
+                                    <td id="qty">                                    	
+                                    	<p>${cartVO.prod_qty}</p>                                    	
+<%--                                     <input type="number" size="4" value="${cartVO.prod_qty}" min="0" max="${cartVO.getProd_VO().prod_stock}" class="c-input-text qty text"> --%>
+                                    </td>
+                                    <td id="plus">
+                                    	<FORM action="cart.do" method="post">
+                                        	<input class="btn" id="plus" type="submit" value="+">
+                                        	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
+                                        	<input type="hidden" name="mem_no" value="${user.mem_no}">
+                                        	<input type="hidden" name="action" value="cartPlus">
+                                        </FORM>
+                                    </td>
+                                    <td id="total-price">
                                         <p>$${cartVO.getProd_VO().prod_price * cartVO.prod_qty}</p>
                                     </td>
                                     
-                                    <td class="remove-pr">
+                                    <td id="remove-cart">
                                     	<FORM action="cart.do" method="post">
                                         	<input class="btn btn-warning" id="deleteCart" type="submit" value="X">
                                         	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
+                                        	<input type="hidden" name="mem_no" value="${user.mem_no}">
                                         	<input type="hidden" name="action" value="deleteOne">
                                         </FORM>
                                     </td>

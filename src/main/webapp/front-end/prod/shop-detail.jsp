@@ -172,14 +172,14 @@ session.setAttribute("url", url);
                         <p class="available-stock"><span> 現有庫存： <span style="color: red;">${prodVO.prod_stock}</span></span><p>
 						<h4>商品詳情：</h4>
 						<p>${prodVO.prod_detail}</p>
-						<ul>
-							<li>
-								<div class="form-group quantity-box">
-									<label class="control-label">購買數量</label>
-									<input class="form-control" value="0" min="1" max="${prodVO.prod_stock}" type="number">
-								</div>
-							</li>
-						</ul>
+<!-- 						<ul> -->
+<!-- 							<li> -->
+<!-- 								<div class="form-group quantity-box"> -->
+<!-- 									<label class="control-label">購買數量</label> -->
+<%-- 									<input class="form-control" value="0" min="1" max="${prodVO.prod_stock}" type="number"> --%>
+<!-- 								</div> -->
+<!-- 							</li> -->
+<!-- 						</ul> -->
 
 						<div class="price-box-bar">
 							<div class="cart-and-bay-btn">

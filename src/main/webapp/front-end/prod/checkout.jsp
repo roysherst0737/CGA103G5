@@ -261,12 +261,29 @@ session.setAttribute("url", url);
                                 <div class="rounded p-2 bg-light">
                                     <div class="media mb-2 border-bottom">                                    	
                                         <div class="media-body"> <a id="detail" href="<%=request.getContextPath()%>/front-end/prod/shop-detail.jsp?${cartVO.prod_no}"> ${cartVO.getProd_VO().prod_name}</a>
+                                        	
                                         	<FORM action="cart.do" method="post">
                                         	<input class="btn" id="deleteCart" type="submit" value="X">
                                         	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
                                         	<input type="hidden" name="action" value="deleteOneWhenCheckout">
                                         	</FORM>
-                                            <div class="small text-muted">單價: $${cartVO.getProd_VO().prod_price} <span class="mx-2">|</span> 數量: ${cartVO.prod_qty} <span class="mx-2">|</span> 總價: $${cartVO.getProd_VO().prod_price * cartVO.prod_qty}</div>
+                                        	
+                                        	<FORM action="cart.do" method="post">
+                                        	<input class="btn" id="plus" type="submit" value="+">
+                                        	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
+                                        	<input type="hidden" name="mem_no" value="${user.mem_no}">
+                                        	<input type="hidden" name="action" value="checkoutPlus">
+                                        	</FORM>
+                                        	
+                                        	<FORM action="cart.do" method="post">
+                                        	<input class="btn" id="minus" type="submit" value="-">
+                                        	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
+                                        	<input type="hidden" name="mem_no" value="${user.mem_no}">
+                                        	<input type="hidden" name="action" value="checkoutMinus">
+                                        	</FORM>
+                                            <div class="small text-muted">
+                                            	單價: $${cartVO.getProd_VO().prod_price} <span class="mx-2">|</span> 數量: ${cartVO.prod_qty} <span class="mx-2">|</span> 總價: $${cartVO.getProd_VO().prod_price * cartVO.prod_qty}                                    	
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

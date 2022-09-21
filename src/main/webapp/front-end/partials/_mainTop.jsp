@@ -153,7 +153,7 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="navbar-menu">
 				<ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-					<li class="nav-item active"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/index.jsp">首頁</a></li>
+					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/index.jsp">首頁</a></li>
 					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/about.jsp">關於我們</a></li>
 					<li class="dropdown"><a href="<%=request.getContextPath()%>/front-end/#" class="nav-link dropdown" data-toggle="dropdown"
 							style="font-weight: 1000;">購物專區</a>

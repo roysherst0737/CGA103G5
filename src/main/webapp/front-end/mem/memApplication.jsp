@@ -44,6 +44,27 @@
 	href="<%=request.getContextPath()%>/back-end/css/vertical-layout-light/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
+.main-top {
+	padding:0.1px;
+}
+.btn-warning{
+    background-color: #ffc107;
+    width: 52px;
+    height: 33.5px;
+    padding: 0px;
+    font-size: small;
+    font-weight: bolder
+}
+input.btn-warning:hover{
+ 	background-color:#e0a800;
+    color:black; !important;
+}
+.container-fluid{
+	padding:0px;
+}
+.col-lg-6{
+	padding:0px;
+}
 button.b1{
 	height: auto;
     padding: 5px;

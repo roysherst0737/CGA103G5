@@ -20,6 +20,8 @@ public class Question_list_JDBCDAO implements Question_list_DAO_interface {
 	private static final String DELETE = "DELETE FROM question_list where question_no = ? and firm_survey_no = ?";
 	private static final String UPDATE = "UPDATE question_list set question_no = ?, firm_survey_no = ? where question_no = ? and firm_survey_no = ?";
 
+	private static final String GET_ALL_FROM_FIRM_SURVEY_NO = "SELECT question_no, firm_survey_no FROM question_list where firm_survey_no = ?";
+
 	@Override
 	public void insert(Question_list_VO question_list_VO) {
 		Connection con = null;
@@ -263,6 +265,66 @@ public class Question_list_JDBCDAO implements Question_list_DAO_interface {
 		}
 		return list;
 	}
+	
+	
+	@Override
+	public List<Question_list_VO> getAllFromFirmSurveyNo(Integer firm_survey_no) {
+		List<Question_list_VO> list = new ArrayList<Question_list_VO>();
+		Question_list_VO question_list_VO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(GET_ALL_FROM_FIRM_SURVEY_NO);
+			pstmt.setInt(1, firm_survey_no);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// empVO 也稱為 Domain objects
+				question_list_VO = new Question_list_VO();
+				question_list_VO.setQuestion_no(rs.getInt("question_no"));
+				question_list_VO.setFirm_survey_no(rs.getInt("firm_survey_no"));
+				list.add(question_list_VO); // Store the row in the list
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	
 
 	public static void main(String[] args) {
 

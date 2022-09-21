@@ -22,5 +22,12 @@ public class Question_list_VO implements Serializable{
 	public void setFirm_survey_no(Integer firm_survey_no) {
 		this.firm_survey_no = firm_survey_no;
 	}
+	
+    // for join dname from act_picno
+    public com.question.model.Question_VO getQuestionVO() {
+	    com.question.model.Question_Service questionSvc = new com.question.model.Question_Service();
+	    com.question.model.Question_VO questionVO = questionSvc.getOneQuestion(question_no);
+	    return questionVO;
+    }
 
 }

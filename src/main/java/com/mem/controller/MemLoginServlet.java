@@ -68,6 +68,7 @@ public class MemLoginServlet extends HttpServlet {
 				session.setAttribute("user",user );
 
 				String previous_page = (String) session.getAttribute("previous_page");
+				System.out.println(previous_page);
 				response.sendRedirect(previous_page);
 
 		}

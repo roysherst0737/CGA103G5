@@ -109,6 +109,7 @@
 
 						<c:otherwise> 
 							<form action="MemLogoutServlet" method="post">
+							你好!${sessionScope.user.getMem_nickname()}
 								<input type="button" class="btn btn-warning" value="${sessionScope.user.getMem_nickname()}" onclick="location.href='<%=request.getContextPath()%>/front-end/MemLogoutServlet'"/>
 								<input type="hidden" name="Logout" value="Mem_Logout">
 							</form>
@@ -197,8 +198,15 @@
 			<!-- Start Atribute Navigation -->
 			<div class="attr-nav">
 				<ul>
-					<li class="user"><a href="<%=request.getContextPath()%>/front-end/mem/my-account.jsp"><img id="user" src="<%=request.getContextPath()%>/front-end/images/user.png"
-								width="28px" height="28px" /></a></li>
+					<li class="dropdown"><a href="<%=request.getContextPath()%>/front-end/mem/my-account.jsp"><img id="user" src="<%=request.getContextPath()%>/front-end/images/user.png"
+								width="28px" height="28px" /></a>
+							<ul class="dropdown-menu">
+							<li><a href="<%=request.getContextPath()%>/front-end/mem/my-account.jsp" style="color: #f5c242; font-weight:bold;">個人資料</a></li>
+							<li><a href="<%=request.getContextPath()%>/front-end/prod/cart.jsp" style="color: #f5c242; font-weight:bold;">訂單紀錄</a></li>
+							<li><a href="<%=request.getContextPath()%>/front-end/prod/checkout.jsp" style="color: #f5c242; font-weight:bold;">我的報名</a></li>
+							<li><a href="<%=request.getContextPath()%>/front-end/MemLogoutServlet" style="color: #f5c242; font-weight:bold;">登出</a></li>
+						</ul>
+					</li>
 					<li class="cart"><a href="<%=request.getContextPath()%>/front-end/prod/cart.jsp"><img id="shopping" src="<%=request.getContextPath()%>/front-end/images/shopping-cart.png"
 								width="35px" height="35px" /></a></li>
 				</ul>

@@ -23,9 +23,13 @@
 <!-- endinject -->
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/Logo2.png" />
 </head>
+<%
+String previous_page = request.getHeader("referer");
+if(!previous_page.equals("http://localhost:8081/CGA103G5ALL/front-end/mem/login.jsp")){
+	session.setAttribute("previous_page", previous_page);
+}
 
-<%	String previous_page = request.getHeader("referer"); 
-	session.setAttribute("previous_page",previous_page);
+
 %>
 
 <body>

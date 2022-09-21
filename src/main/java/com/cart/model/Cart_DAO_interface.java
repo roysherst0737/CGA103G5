@@ -11,6 +11,7 @@ public interface Cart_DAO_interface {
     public Cart_VO findByForeignKey(Integer mem_no);
     public List<Cart_VO> getAll();
     public Set<Integer> getAdd_to_Cart(Integer mem_no);
+    public Set<Integer> getCart_Minus(Integer mem_no);
     
     public Cart_VO selectByMem_noAndProd_no(Integer mem_no, Integer prod_no );
 }

@@ -226,7 +226,7 @@ public class pub_Service_H_impl implements pub_Service_H{
 	}
 	@Override
 	public List<Pub> getMemALL(Integer mem_no) {
-		return dao.selectAll();
+		return dao.getMemAll(mem_no);
 	}
 
 }

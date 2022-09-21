@@ -18,7 +18,6 @@
 			pub_no: pub_no,
 			mem_no: mem_no,
 		});
-		console.log(json)
 		fetch('PubRate', {
 			method: 'POST',
 			headers: {
@@ -33,7 +32,7 @@
 					alert(message)
 					 window.location.reload();
 				} else {
-					alert(message + "請聯繫管理員協助處理")
+					alert("尚未登入，請先登入後開始評價")
 				}
 			});
 		})

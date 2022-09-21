@@ -185,7 +185,6 @@
 		str = "000".repeat(select.value);
 		str += ipt.value < 10 ? "00" + ipt.value : ipt.value < 100 ? "0" + ipt.value : ipt.value;
 		str = str.padEnd(72, '0');
-		console.log(str);
 		let json = JSON.stringify({
 			mem_no: "1",
 			pub_no: pub_no.textContent,
@@ -225,9 +224,7 @@
 		week.forEach(e => {
 			if (e.includes('未營業')) {
 				
-				console.log(date.indexOf(e.substring(0,3))+1);
 				const btn= document.querySelector('.btn_day'+(date.indexOf(e.substring(0,3))+1));
-				console.log(btn)
 				btn.removeAttribute("data-target");
 				btn.removeAttribute("data-toggle");
 				btn.textContent="未營業";

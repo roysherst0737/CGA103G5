@@ -73,7 +73,6 @@ public class pub_Service_H_impl implements pub_Service_H{
 //		}
 		
 		try {
-			pub.setMem_no(1);
 			final int resultCount = dao.insert(pub);
 			Pub_pics pic= new Pub_pics();
 			pic.setPub(pub);

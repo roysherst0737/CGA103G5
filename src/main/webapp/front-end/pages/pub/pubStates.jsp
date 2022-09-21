@@ -50,6 +50,15 @@
 		}
 		</script>
 <style>
+.container-fluid{
+	padding:0px;
+}
+.col-lg-6{
+	padding:0px;
+}
+.main-top {
+	padding:0.1px;
+}
 .modal1{
     position: fixed;
     top: 0;
@@ -289,7 +298,7 @@ div.main_card:hover {
 												酒吧編號 : <span id="span_pub_no"></span>
 											</p>
 											<p class="card-description">
-												酒吧狀態 : <span id="span_pub_status"></span><span><button
+												酒吧狀態: <span id="span_pub_status"></span><span><button
 														id="status_b" class="btn btn-danger b1"
 														style="display: none">上架</button></span>
 											</p>
@@ -440,8 +449,8 @@ div.main_card:hover {
 													id="firm_tax_id" placeholder="廠商統一編號">
 											</div>
 										</div>
-										<div>
-											<p class="card-description">
+										<div style="display:none">
+											<p class="card-description" >
 												審核狀態:<span style="display: none" id="span_pub_application"></span>
 											</p>
 											<div>

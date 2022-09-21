@@ -105,6 +105,7 @@
 							<button type="button" class="btn btn-outline-light me-2">
 								<a href="<%=request.getContextPath()%>/front-end/mem/login.jsp" style="color: white">登入</a>
 							</button>
+							<span id="mem_no_d"style="display:none"></span>
 						</c:when>
 
 						<c:otherwise> 

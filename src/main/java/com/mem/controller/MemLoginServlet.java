@@ -15,7 +15,13 @@ import com.mem.model.Mem_Service;
 import com.mem.model.Mem_VO;
 
 public class MemLoginServlet extends HttpServlet {
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	
+	public void doGet(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		doPost(req, res);
+	}
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String Login = request.getParameter("Login");

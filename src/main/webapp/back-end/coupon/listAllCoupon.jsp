@@ -75,7 +75,7 @@ pageContext.setAttribute("list", list);
 					<div class="row">
 						<div class="col-sm-6">
 							<h3 class="mb-0 font-weight-bold">優惠券資料管理</h3>
-							<p>上次登入：21小時前</p>
+
 						</div>
 						<div class="col-sm-6">
 							<div class="d-flex align-items-center justify-content-md-end">
@@ -86,26 +86,13 @@ pageContext.setAttribute("list", list);
 												src="./images/home.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right: 10px;">
-											<a href='addProd_type.jsp'><img src="./images/plus.png"
+											<a href='addCoupon.jsp'><img src="./images/plus.png"
 												width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right: 10px;">
 											<a href="selectProd_type.jsp"><img
 												src="./images/search2.png" width="30px" height="30px"></a>
-										</button>
-										<button
-											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
-											type="button" id="dropdownMenu3" data-toggle="dropdown"
-											aria-haspopup="true" aria-expanded="false">
-											<i class="typcn typcn-calendar-outline mr-2"></i>Last 7 days
-										</button>
-										<div class="dropdown-menu"
-											aria-labelledby="dropdownMenuSizeButton3"
-											data-x-placement="top-start">
-											<h6 class="dropdown-header">Last 14 days</h6>
-											<a class="dropdown-item" href="#">Last 21 days</a> <a
-												class="dropdown-item" href="#">Last 28 days</a>
-										</div>
+										</button>										
 									</div>
 								</div>
 								<div class="pr-1 mb-3 mr-2 mb-xl-0">
@@ -128,10 +115,7 @@ pageContext.setAttribute("list", list);
 							<div class="card">
 										<div class="card-body">
 											<h4 class="card-title">優惠券資料</h4>
-											<p class="card-description">
-												Add class
-												<code>.table-striped</code>
-											</p>
+
 											<div class="horizontal_style">
 												<table class="table table-striped">
 													<thead>
@@ -141,7 +125,7 @@ pageContext.setAttribute("list", list);
 															<th>代碼</th>
 															<th>內容</th>
 															<th>折扣</th>
-															<th>發放數量</th>
+															<th>使用數量</th>
 															<th>有效期間開始日期</th>
 															<th>有效期間結束日期</th>
 															<th>建立時間</th>

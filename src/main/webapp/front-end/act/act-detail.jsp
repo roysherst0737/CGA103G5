@@ -240,7 +240,7 @@ session.setAttribute("url", url);
 
 
 
-									<FORM METHOD="post" ACTION="act_sign_up.do" name="form1">
+									<FORM METHOD="post" ACTION="my_sign_up.do" name="form1">
 										<table>
 
 											<tr>

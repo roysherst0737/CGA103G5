@@ -61,5 +61,9 @@ public class Coupon_Service  {
 	public List<Coupon_VO> getAll() {
 		return dao.getAll();
 	}
+	
+	public Coupon_VO getCouponDiscount(String coupon_code) {
+		return dao.getCouponDiscount(coupon_code);
+	}
 }
 

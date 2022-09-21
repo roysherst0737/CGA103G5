@@ -96,6 +96,15 @@ session.setAttribute("url", url);
 			border-radius: 5px;
 			content: '查看商品詳情';
 			}
+			
+		#insertCoupon.is-invalid{
+			border-color: #dc3545;
+    		padding-right: calc(1.5em + 0.75rem);
+    		background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e);
+    		background-repeat: no-repeat;
+    		background-position: right calc(0.375em + 0.1875rem) center;
+    		background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+    		}
 	
 	</style>
 	
@@ -323,12 +332,63 @@ session.setAttribute("url", url);
                             	
                     			<div class="coupon-box">
                         			<div class="input-group input-group-sm">
-                            				<input class="form-control" placeholder="輸入優惠碼" aria-label="Coupon code" type="text">
+                            				<input name="discount" id="insertCoupon" class="form-control" placeholder="輸入優惠碼" aria-label="Coupon code" type="text">
                             			<div class="input-group-append">
-                                			<input class="btn" id="useCoupon" type="submit" value="使用"></input>
+                                			<input class="btn" id="useCoupon" type="button" value="使用"></input>
                            				</div>
                         			</div>
-                    			</div>                           	
+                    			</div>
+                    			
+                    			<script>
+                    			(function () {
+                    				$(window).on('load', function () {
+                    					
+                    					$('#useCoupon').on('click', function () {
+                    						let coupon_code=document.querySelector('#insertCoupon').value;
+                    						let disAmount=document.querySelector('#disAmount');
+                    						let amountFinal=document.querySelector('#amountFinal');
+                    						
+                    						let json = JSON.stringify({
+                    						coupon_code: coupon_code,
+                    					});
+                    					
+                    					console.log(json);
+                    					
+                    					if(coupon_code === ""){
+                    						document.querySelector('#insertCoupon').classList.add('is-invalid');
+                    						alert("請輸入優惠碼");
+                    						return;
+                    					} else {
+                    						document.querySelector('#insertCoupon').classList.remove('is-invalid');
+                    					}
+                    					fetch('Discount', {
+                    						method: 'POST',
+                    						headers: {
+                    							'Content-Type': 'application/json',
+                    						},
+                    						body: json,
+                    					}).then(resp => resp.json())
+                    						.then(e => {
+                    							if(e === null){
+                            						alert("請輸入正確優惠碼");
+                            						return;
+                            					}
+                    							const { coupon_discount } = e;
+                    								if (coupon_discount < 1){
+                    									disAmount.textContent = (coupon_discount*10) + "折";
+                    									amountFinal.textContent = amountFinal.textContent * coupon_discount;
+                    								} else {
+                    									disAmount.textContent = "折抵" + coupon_discount + "元";
+                    									amountFinal.textContent = amountFinal.textContent - coupon_discount;
+                    								}
+                    								
+                    								
+                    						});
+                    					});
+                    				});
+                    			}(jQuery));
+                    			</script>
+                    			                          	
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-12">
@@ -350,7 +410,9 @@ session.setAttribute("url", url);
                                 <hr class="my-1">
                                 <div class="d-flex">
                                     <h4>優惠碼折抵</h4>
-                                    <div class="ml-auto font-weight-bold"> $ 10 </div>
+                                    <div class="ml-auto font-weight-bold">
+                                    	<span id="disAmount"></span>
+                                    </div>
                                 </div>
                                 <div class="d-flex">
                                     <h4>運費</h4>

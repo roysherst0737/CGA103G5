@@ -16,7 +16,7 @@ import org.hibernate.Transaction;
 import com.mem.model.Mem_VO;
 import com.util.HibernateUtil;
 
-@WebFilter(urlPatterns = {"/PubApplication","/PubBooking","/PubRate"})
+@WebFilter(urlPatterns = {"/PubApplication","/PubBooking","/PubRate","/PubStates"})
 public class frontFilter extends HttpFilter{
 	private static final long serialVersionUID = 1L;
 	@Override

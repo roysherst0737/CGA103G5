@@ -169,7 +169,28 @@
 							<ul class="dropdown-menu">
 							<li><a href="<%=request.getContextPath()%>/PubMap" style="color: #f5c242; font-weight:bold;">酒吧地圖</a></li>
 							<li><a href="<%=request.getContextPath()%>/PubApplication" style="color: #f5c242; font-weight:bold;">酒吧註冊申請</a></li>
-							<li><a href="<%=request.getContextPath()%>/PubStates" style="color: #f5c242; font-weight:bold;">酒吧狀態</a></li>
+							<li><a id="states" href="<%=request.getContextPath()%>/PubStates" style="color: #f5c242; font-weight:bold;">酒吧狀態</a></li>
+							<script> 
+							(window.onload = function() {
+							fetch('PubStatesCheck', {
+								method: 'POST',
+								headers: {
+									'Content-Type': 'application/json',
+								},
+								body: "",
+							})
+								.then(resp => resp.json()).then(body => {
+									const { successful } = body;
+									const { pub } = body;
+									if(successful){
+										document.querySelector('#states').style.display="";
+									}else{
+										document.querySelector('#states').style.display="none";
+									}
+								
+								});});
+								
+								</script>
 						</ul>			
 					</li>
 					

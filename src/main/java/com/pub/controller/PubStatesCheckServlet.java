@@ -1,6 +1,7 @@
 package com.pub.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.List;
@@ -16,23 +17,30 @@ import com.mem.model.Mem_VO;
 import com.pub.entity.Pub;
 
 import static com.pub.service.PubConstants.SERVICE;
-@WebServlet("/PubStates")
-public class PubStatesServlet extends HttpServlet{
+import static com.util.CommonUtil.writePojo2Json;
+import static com.util.Constants.GSON;
+@WebServlet(urlPatterns = { "/PubStatesCheck","/front-end/PubStatesCheck"})
+public class PubStatesCheckServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		List<Pub> pubList = SERVICE.getMemALL((Integer)((Mem_VO) request.getSession().getAttribute("user")).getMem_no());
-//		pubList.removeIf(e->e.getPub_status()==false);
-//		Set<String> pubAddress = new HashSet<String>() ;
-//		pubList.forEach(e->{pubAddress.add(e.getPub_address().substring(0, 3));});
-		
-		request.removeAttribute("pubList");
-		request.setAttribute("pubList", pubList);
+		Mem_VO mem_VO=(Mem_VO)request.getSession().getAttribute("user");
+		Integer mem_no=0;
+		if(mem_VO!=null) {
+			mem_no=(Integer)((Mem_VO) request.getSession().getAttribute("user")).getMem_no();
+		}
+		List<Pub> pubList = SERVICE.getMemALL(mem_no);
+		Pub pub=new Pub();
+		if(pubList.size()>0) {
+			pub.setSuccessful(true);
+		}else {
+			pub.setSuccessful(false);
+		}
+		writePojo2Json(response, pub);
+		return;
 //		request.setAttribute("pubAddress", pubAddress);
-		request.getRequestDispatcher("/front-end/pages/pub/pubStates.jsp").forward(request, response);
 	}
 
 }

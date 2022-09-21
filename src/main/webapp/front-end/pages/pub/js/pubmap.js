@@ -18,7 +18,6 @@
 			pub_no: pub_no,
 			mem_no: mem_no,
 		});
-		console.log(json)
 		fetch('PubRate', {
 			method: 'POST',
 			headers: {

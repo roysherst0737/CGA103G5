@@ -75,11 +75,11 @@ pageContext.setAttribute("list", list);
                         <div class="account-box">
                             <div class="service-box">
                                 <div class="service-icon">
-                                    <a href="#"> <i class="fa fa-gift"></i> </a>
+                                    <a href="<%=request.getContextPath()%>/front-end/prod/orderHistory.jsp"> <i class="fa fa-gift"></i> </a>
                                 </div>
                                 <div class="service-desc">
-                                    <h4>Your Orders</h4>
-                                    <p>Track, return, or buy things again</p>
+                                    <h4>歷史訂單</h4>
+                                    <p>追蹤、瀏覽歷史訂單</p>
                                 </div>
                             </div>
                         </div>

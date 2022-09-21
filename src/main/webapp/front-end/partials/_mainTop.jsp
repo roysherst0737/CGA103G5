@@ -69,7 +69,7 @@
  		if($("#credit").is(":checked")){
  			location.href='<%=request.getContextPath()%>/front-end/prod/PayWithCredit.jsp'
  		}
-	}
+	}		
 
 </script>
 
@@ -86,7 +86,14 @@
 				</div>
 				<div class="our-link">
 					<ul>
-						<li><a href="<%=request.getContextPath()%>/front-end/mem/my-account.jsp"><i class="fa fa-user s_color"></i> 會員專區 </a></li>
+						<c:choose>
+							<c:when test="${empty sessionScope.user}">
+								<li><a href="<%=request.getContextPath()%>/front-end/mem/login.jsp"><i class="fa fa-user s_color"></i> 會員專區 </a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="<%=request.getContextPath()%>/front-end/mem/my-account.jsp"><i class="fa fa-user s_color"></i> 會員專區 </a></li>
+							</c:otherwise>
+						</c:choose>						
 						<li><a href="<%=request.getContextPath()%>/front-end/about.jsp"><i class="fas fa-location-arrow"></i>
 								我們的地址 </a></li>
 						<li><a href="<%=request.getContextPath()%>/front-end/contact-us.jsp"><i class="fas fa-headset"></i>
@@ -198,8 +205,17 @@
 			<!-- Start Atribute Navigation -->
 			<div class="attr-nav">
 				<ul>
-					<li class="user"><a href="<%=request.getContextPath()%>/front-end/mem/my-account.jsp"><img id="user" src="<%=request.getContextPath()%>/front-end/images/user.png"
+				<c:choose>
+					<c:when test="${empty sessionScope.user}">
+						<li class="user"><a href="<%=request.getContextPath()%>/front-end/mem/login.jsp"><img id="user" src="<%=request.getContextPath()%>/front-end/images/user.png"
 								width="28px" height="28px" /></a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="user"><a href="<%=request.getContextPath()%>/front-end/mem/my-account.jsp"><img id="user" src="<%=request.getContextPath()%>/front-end/images/user.png"
+								width="28px" height="28px" /></a></li>
+					</c:otherwise>
+				</c:choose>	
+					
 					<li class="cart"><a href="<%=request.getContextPath()%>/front-end/prod/cart.jsp"><img id="shopping" src="<%=request.getContextPath()%>/front-end/images/shopping-cart.png"
 								width="35px" height="35px" /></a></li>
 				</ul>

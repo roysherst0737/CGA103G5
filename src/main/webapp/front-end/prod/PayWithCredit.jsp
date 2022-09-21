@@ -33,7 +33,7 @@
         </div>
         <div class="rightside">
           <form action="">
-            <h1>信用卡結帳</h1>
+            <h1>信用卡結帳 <span style="color: red; font-size: 10px;">*非真實信用卡結帳，可隨意填寫資料</span> </h1>            
             <h2>付款資訊</h2>
             <p>持卡人姓名</p>
             <input type="text" class="inputbox" name="name" required />
@@ -45,6 +45,9 @@
               <option value="">--選擇信用卡種類--</option>
               <option value="Visa">Visa</option>
               <option value="MasterCard">MasterCard</option>
+              <option value="Maestro">Maestro</option>
+              <option value="Cirrus">Cirrus</option>
+              <option value="Skrill">Skrill</option>
             </select>
 		<div class="expcvv">
 

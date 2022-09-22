@@ -9,4 +9,5 @@ public interface Pub_Booking_DAO extends CoreDao<Pub_Booking, Integer>{
 	Pub_Booking getByPubNoAndMemNO(Integer pub_no,Integer mem_no);
 	List<Pub_Booking>  getListByPubnoAndDate(Pub_Booking pub_Booking); 
 	List<Pub_Booking> getListByMem(Integer mem_no);
+	List<Pub_Booking> getListBypub(Integer pub_no);
 }

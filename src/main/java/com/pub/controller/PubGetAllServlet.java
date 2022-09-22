@@ -9,10 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.pub.entity.Pub;
+import com.pub_booking.entity.Pub_Booking;
 
-import static com.pub.service.PubConstants.SERVICE;
-import static com.util.Constants.PREFIX_WEB_INF;
+import static com.pub_booking.service.Pub_BookingConstants.SERVICE;
 @WebServlet("/pub/getlist")
 public class PubGetAllServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -20,8 +19,9 @@ public class PubGetAllServlet extends HttpServlet{
 		doPost(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Pub> pubList = SERVICE.getAll();
-		request.setAttribute("pubList", pubList);
+//		List<Pub> pubList = SERVICE.getAll();
+		List<Pub_Booking> bookList=SERVICE.getAll();
+		request.setAttribute("bookList", bookList);
 		request.getRequestDispatcher("/back-end/pages/pub/pub_list.jsp").forward(request, response);
 	}
 

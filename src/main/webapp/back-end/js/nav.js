@@ -37,23 +37,8 @@
                         前台首頁
                     </a>
                 </li>
-                <li class="nav-item  d-none d-lg-flex">
-                    <a class="nav-link" href="#">
-                        預留按鈕
-                    </a>
-                </li>
-                <li class="nav-item  d-none d-lg-flex">
-                    <a class="nav-link" href="#">
-                        預留按鈕
-                    </a>
-                </li>
             </ul>
             <ul class="navbar-nav navbar-nav-right">
-                <li class="nav-item d-none d-lg-flex  mr-2">
-                    <a class="nav-link" href="#">
-                       預留按鈕
-                    </a>
-                </li>
                 <li class="nav-item dropdown d-flex">
                     <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
                         id="messageDropdown" href="#" data-toggle="dropdown">
@@ -154,13 +139,9 @@
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle  pl-0 pr-0" href="#" data-toggle="dropdown" id="profileDropdown">
                         <i class="typcn typcn-user-outline mr-0"></i>
-                        <span class="nav-profile-name">Evan Morales</span>
+                        <span class="nav-profile-name">設定</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item">
-                            <i class="typcn typcn-cog text-primary"></i>
-                            Settings
-                        </a>
                         <a class="dropdown-item">
                             <i class="typcn typcn-power text-primary"></i>
                             Logout

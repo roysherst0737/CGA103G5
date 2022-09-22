@@ -173,20 +173,16 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 													<td><input name="act_off_time" id="f_date2"
 														type="text" value="<%=(actVO == null) ? "" : actVO.getAct_off_time()%>"></td>
 												</tr>
-												<tr>
-													<td>當前報名人數:</td>
-													<td><input type="TEXT" name="current_count" size="45"
-														value="<%=(actVO == null) ? "" : actVO.getCurrent_count()%>" /></td>
-												</tr>
+
 												<tr>
 													<td>容納人數上限:</td>
 													<td><input type="TEXT" name="max_count" size="45"
-														value="<%=(actVO == null) ? "" : actVO.getMax_count()%>" /></td>
+														value="<%=(actVO == null) ? "" : actVO.getMax_count()%>"></td>
 												</tr>
 												<tr>
 													<td>容納人數下限:</td>
 													<td><input type="TEXT" name="min_count" size="45"
-														value="<%=(actVO == null) ? "" : actVO.getMin_count()%>" /></td>
+														value="<%=(actVO == null) ? "" : actVO.getMin_count()%>"></td>
 												</tr>
 												<tr>
 													<td>報名開始時間:</td>
@@ -211,12 +207,15 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 												<tr>
 													<td>活動狀態:</td>
 													<td><input type="TEXT" name="act_status" size="45"
-														value="<%=(actVO == null) ? "" : actVO.getAct_status()%>" /></td>
+														value="<%=(actVO == null) ? "" : actVO.getAct_status()%>"></td>
 												</tr>
 
 											</table>
 
-											<br> <input type="hidden" name="action" value="update">
+											<br> 
+											
+											<input type="hidden" name="current_count" value="<%=actVO.getCurrent_count()%>">
+											<input type="hidden" name="action" value="update">
 											<input type="hidden" name="act_no"
 												value="<%=actVO.getAct_no()%>"> <input type="submit"
 												value="送出修改">

@@ -82,7 +82,7 @@ Act_pic_VO act_picVO = (Act_pic_VO) request.getAttribute("act_picVO");
 										<a href='addAct_pic.jsp'><img src="./images/plus.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right:10px;">
-										<a href="select_page.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
+										<a href="selectAct_pic.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
 										</button>
 										<button
 											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"

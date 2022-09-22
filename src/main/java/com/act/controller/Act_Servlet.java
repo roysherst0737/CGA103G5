@@ -149,6 +149,7 @@ public class Act_Servlet extends HttpServlet {
 				errorMsgs.add("請輸入下架時間!");
 			}
 
+			
 
 			Integer max_count = null;
 			try {
@@ -207,6 +208,7 @@ public class Act_Servlet extends HttpServlet {
 			}
 
 			java.sql.Timestamp revise_time = new java.sql.Timestamp(System.currentTimeMillis());
+			Integer current_count = Integer.valueOf(req.getParameter("current_count").trim());;
 
 			Act_VO actVO = new Act_VO();
 			actVO.setAct_no(act_no);
@@ -238,7 +240,8 @@ public class Act_Servlet extends HttpServlet {
 					 max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time,
 					act_end_time, act_status, act_no);
 
-			actVO.setRevise_time(revise_time);
+			actVO.setRevise_time(revise_time);		
+			actVO.setCurrent_count(current_count);
 
 			/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 			req.setAttribute("actVO", actVO); // 資料庫update成功後,正確的的empVO物件,存入req

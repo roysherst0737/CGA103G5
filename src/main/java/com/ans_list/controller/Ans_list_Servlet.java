@@ -229,7 +229,8 @@ public class Ans_list_Servlet extends HttpServlet {
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 //			String url = "/back-end/act_sign_up/listAllAct_sign_up.jsp";
 //			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
-//			successView.forward(req, res);
+//			successView.forward(req, res);			
+//			res.sendRedirect(url);
 		}
 
 //		if ("delete".equals(action)) { // 來自listAllEmp.jsp

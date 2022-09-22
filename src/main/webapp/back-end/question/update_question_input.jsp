@@ -145,9 +145,7 @@ Question_VO questionVO = (Question_VO) request.getAttribute("questionVO");
 
 												<tr>
 													<td>問題:</td>
-													<td><textarea name="que" cols="46" rows="10">
-													<%=(questionVO == null) ? "" : questionVO.getQue()%>
-													</textarea></td>
+													<td><textarea name="que" cols="46" rows="10"><%=(questionVO == null) ? "" : questionVO.getQue()%></textarea></td>
 												</tr>
 
 

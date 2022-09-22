@@ -8,16 +8,15 @@ Question_list_VO question_listVO = (Question_list_VO) request.getAttribute("ques
 
 String queryString = request.getQueryString();
 
-String[] queryStringSplit = queryString.split("(?<=\\G.{" + 1 + "})");
-
-String queryStringSplit1 = "";
-for (int i = 1; i < queryStringSplit.length; i++) {
-	queryStringSplit1 += queryStringSplit[i];
-}
+String[] queryStringSplit = queryString.split("\\?");
 
 int firm_survey_no = Integer.parseInt(queryStringSplit[0]);
 
-pageContext.setAttribute("queryStringSplit1", queryStringSplit1);
+if (queryStringSplit.length > 1) {
+	pageContext.setAttribute("queryStringSplit", queryStringSplit[1]);
+} else {
+	pageContext.setAttribute("queryStringSplit", "");
+}
 %>
 
 <!DOCTYPE html>
@@ -89,15 +88,18 @@ pageContext.setAttribute("queryStringSplit1", queryStringSplit1);
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
 										<button style="margin-right: 10px;">
-											<a href="<%=request.getContextPath()%>/back-end/firm_survey/listAllFirm_survey.jsp"><img
+											<a
+												href="<%=request.getContextPath()%>/back-end/firm_survey/listAllFirm_survey.jsp"><img
 												src="./images/home.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right: 10px;">
-											<a href="<%=request.getContextPath()%>/back-end/firm_survey/addFirm_survey.jsp"><img src="./images/plus.png"
-												width="30px" height="30px"></a>
+											<a
+												href="<%=request.getContextPath()%>/back-end/firm_survey/addFirm_survey.jsp"><img
+												src="./images/plus.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right: 10px;">
-											<a href=<%=request.getContextPath()%>/back-end/firm_survey/selectFirm_survey.jsp"><img
+											<a
+												href="<%=request.getContextPath()%>/back-end/firm_survey/selectFirm_survey.jsp"><img
 												src="./images/search2.png" width="30px" height="30px"></a>
 										</button>
 										<button
@@ -144,109 +146,109 @@ pageContext.setAttribute("queryStringSplit1", queryStringSplit1);
 										</ul>
 									</c:if>
 									<h4 class="card-title">新增題目清單</h4>
-										<FORM METHOD="post" ACTION="question_list.do" name="form1">
-									<table id="dataTables" class="stripe table-hover"
-										style="width: 100%">
-										<jsp:useBean id="questionSvc" scope="page"
-														class="com.question.model.Question_Service" />
-											
-												<tr>
-													<td>選擇題目:</td>
-													<td><select size="1" name="question_no1">
-															<option value="不選擇">不選擇
-																<c:forEach var="questionVO" items="${questionSvc.all}">
-																	<c:choose>
-																		<c:when
-																			test="${queryStringSplit1.contains(questionVO.question_no.toString()) }">
-																		</c:when>
-																		<c:otherwise>
-																			<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
-																		</c:otherwise>
-																	</c:choose>
-																</c:forEach>
-													</select></td>
-												</tr>
-												<tr>
-													<td>選擇題目:</td>
-													<td><select size="1" name="question_no2">
-															<option value="不選擇">不選擇
-																<c:forEach var="questionVO" items="${questionSvc.all}">
-																	<c:choose>
-																		<c:when
-																			test="${queryStringSplit1.contains(questionVO.question_no.toString()) }">								
-																		</c:when>
-																		<c:otherwise>
-																			<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
-																		</c:otherwise>
-																	</c:choose>
-																</c:forEach>
-													</select></td>
-												</tr>
-												<tr>
-													<td>選擇題目:</td>
-													<td><select size="1" name="question_no3">
-															<option value="不選擇">不選擇
-																<c:forEach var="questionVO" items="${questionSvc.all}">
-																	<c:choose>
-																		<c:when
-																			test="${queryStringSplit1.contains(questionVO.question_no.toString()) }">
-																		</c:when>
-																		<c:otherwise>
-																			<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
-																		</c:otherwise>
-																	</c:choose>
-																</c:forEach>
-													</select></td>
-												</tr>
-												<tr>
-													<td>選擇題目:</td>
-													<td><select size="1" name="question_no4">
-															<option value="不選擇">不選擇
-																<c:forEach var="questionVO" items="${questionSvc.all}">
-																	<c:choose>
-																		<c:when
-																			test="${queryStringSplit1.contains(questionVO.question_no.toString()) }">
-																		</c:when>
-																		<c:otherwise>
-																			<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
-																		</c:otherwise>
-																	</c:choose>
-																</c:forEach>
-													</select></td>
-												</tr>
-												<tr>
-													<td>選擇題目:</td>
-													<td><select size="1" name="question_no5">
-															<option value="不選擇">不選擇
-																<c:forEach var="questionVO" items="${questionSvc.all}">
-																	<c:choose>
-																		<c:when
-																			test="${queryStringSplit1.contains(questionVO.question_no.toString()) }">
-																		</c:when>
-																		<c:otherwise>
-																			<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
-																		</c:otherwise>
-																	</c:choose>
-																</c:forEach>
-													</select></td>
-												</tr>
+									<FORM METHOD="post" ACTION="question_list.do" name="form1">
+										<table id="dataTables" class="stripe table-hover"
+											style="width: 100%">
+											<jsp:useBean id="questionSvc" scope="page"
+												class="com.question.model.Question_Service" />
 
-												<tr>
-													<td>問卷編號:</td>
-													<td><input type="TEXT" name="1" size="45"
-														value="<%=firm_survey_no%>" disabled /></td>
-												</tr>
+											<tr>
+												<td>選擇題目:</td>
+												<td><select size="1" name="question_no1">
+														<option value="不選擇">不選擇
+															<c:forEach var="questionVO" items="${questionSvc.all}">
+																<c:choose>
+																	<c:when
+																		test="${queryStringSplit.contains(questionVO.question_no.toString()) }">
+																	</c:when>
+																	<c:otherwise>
+																		<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
+																	</c:otherwise>
+																</c:choose>
+															</c:forEach>
+												</select></td>
+											</tr>
+											<tr>
+												<td>選擇題目:</td>
+												<td><select size="1" name="question_no2">
+														<option value="不選擇">不選擇
+															<c:forEach var="questionVO" items="${questionSvc.all}">
+																<c:choose>
+																	<c:when
+																		test="${queryStringSplit.contains(questionVO.question_no.toString()) }">
+																	</c:when>
+																	<c:otherwise>
+																		<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
+																	</c:otherwise>
+																</c:choose>
+															</c:forEach>
+												</select></td>
+											</tr>
+											<tr>
+												<td>選擇題目:</td>
+												<td><select size="1" name="question_no3">
+														<option value="不選擇">不選擇
+															<c:forEach var="questionVO" items="${questionSvc.all}">
+																<c:choose>
+																	<c:when
+																		test="${queryStringSplit.contains(questionVO.question_no.toString()) }">
+																	</c:when>
+																	<c:otherwise>
+																		<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
+																	</c:otherwise>
+																</c:choose>
+															</c:forEach>
+												</select></td>
+											</tr>
+											<tr>
+												<td>選擇題目:</td>
+												<td><select size="1" name="question_no4">
+														<option value="不選擇">不選擇
+															<c:forEach var="questionVO" items="${questionSvc.all}">
+																<c:choose>
+																	<c:when
+																		test="${queryStringSplit.contains(questionVO.question_no.toString()) }">
+																	</c:when>
+																	<c:otherwise>
+																		<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
+																	</c:otherwise>
+																</c:choose>
+															</c:forEach>
+												</select></td>
+											</tr>
+											<tr>
+												<td>選擇題目:</td>
+												<td><select size="1" name="question_no5">
+														<option value="不選擇">不選擇
+															<c:forEach var="questionVO" items="${questionSvc.all}">
+																<c:choose>
+																	<c:when
+																		test="${queryStringSplit.contains(questionVO.question_no.toString()) }">
+																	</c:when>
+																	<c:otherwise>
+																		<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
+																	</c:otherwise>
+																</c:choose>
+															</c:forEach>
+												</select></td>
+											</tr>
 
-											
+											<tr>
+												<td>問卷編號:</td>
+												<td><input type="TEXT" name="1" size="45"
+													value="<%=firm_survey_no%>" disabled /></td>
+											</tr>
 
-									</table>
-											<br> <input type="hidden" name="action" value="insert">
-											<input type="hidden" name="firm_survey_no"
-												value="<%=firm_survey_no%>"> <input type="hidden"
-												name="queryString"
-												value="<%=Integer.parseInt(queryStringSplit[0])%>">
-											<input type="submit" value="送出新增">
-										</FORM>
+
+
+										</table>
+										<br> <input type="hidden" name="action" value="insert">
+										<input type="hidden" name="firm_survey_no"
+											value="<%=firm_survey_no%>"> <input type="hidden"
+											name="queryString"
+											value="<%=Integer.parseInt(queryStringSplit[0])%>"> <input
+											type="submit" value="送出新增">
+									</FORM>
 
 									<script>
 										$(document).ready(function() {

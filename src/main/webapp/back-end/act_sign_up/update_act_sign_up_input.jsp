@@ -155,7 +155,8 @@ Act_sign_up_VO act_sign_upVO = (Act_sign_up_VO) request.getAttribute("act_sign_u
 												<tr>
 													<td>報名時間:</td>
 													<td><input name="sign_up_time" id="f_date1"
-														type="text" value="<%=(act_sign_upVO == null) ? "" : act_sign_upVO.getSign_up_time()%>"></td>
+														type="text"
+														value="<%=(act_sign_upVO == null) ? "" : act_sign_upVO.getSign_up_time()%>"></td>
 												</tr>
 												<tr>
 													<td>攜伴人數:</td>

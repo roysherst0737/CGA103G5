@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -29,6 +31,8 @@ public class Ans_list_JNDIDAO implements Ans_list_DAO_interface {
 	private static final String GET_ONE_STMT = "SELECT question_no, firm_survey_no, mem_no, ans FROM ans_list where question_no = ? and firm_survey_no = ? and mem_no = ?";
 	private static final String DELETE = "DELETE FROM ans_list where question_no = ? and firm_survey_no = ? and mem_no = ?";
 	private static final String UPDATE = "UPDATE ans_list set ans = ? where question_no = ? and firm_survey_no = ? and mem_no = ?";
+
+	private static final String GET_ALL_FIRM_SURVEY_NO = "SELECT firm_survey_no FROM ans_list where mem_no = ?";
 
 	@Override
 	public void insert(Ans_list_VO ans_list_VO) {
@@ -260,6 +264,56 @@ public class Ans_list_JNDIDAO implements Ans_list_DAO_interface {
 			}
 		}
 		return list;
+	}
+	
+	@Override
+	public Set<Integer> getAllfirm_survey_no(Integer mem_no) {
+		Set<Integer> set = new HashSet<Integer>();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_FIRM_SURVEY_NO);
+			pstmt.setInt(1, mem_no);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// empVO 也稱為 Domain objects
+				set.add(rs.getInt("firm_survey_no")); // Store the row in the list
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return set;
 	}
 
 }

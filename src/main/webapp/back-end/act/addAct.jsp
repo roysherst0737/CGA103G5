@@ -117,6 +117,7 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 							</div>
 						</div>
 					</div>
+
 					<div class="row  mt-3">
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
@@ -132,136 +133,135 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 									</c:if>
 
 									<h4 class="card-title">新增活動</h4>
-									<table id="dataTables" class="stripe table-hover"
-										style="width: 100%">
-										<FORM METHOD="post" ACTION="act.do" name="form1">
-											<table>
-												<tr>
-													<td>酒吧編號:</td>
-													<td><input type="TEXT" name="pub_no" size="45"
-														value="<%=(actVO == null) ? "" : actVO.getPub_no()%>" /></td>
-												</tr>
-												<tr>
-													<td>活動名稱:</td>
-													<td><input type="TEXT" name="act_name" size="45"
-														value="<%=(actVO == null) ? "" : actVO.getAct_name()%>" /></td>
-												</tr>
-												<tr>
-													<td>活動敘述:</td>
-													<td><textarea name="act_detail" cols="46" rows="10"><%=(actVO == null) ? "" : actVO.getAct_detail()%></textarea></td>
-												</tr>
+									<FORM METHOD="post" ACTION="act.do" name="form1">
+										<table id="dataTables" class="stripe table-hover"
+											style="width: 100%">
 
-												<tr>
-													<td>活動地址:</td>
-													<td><input type="TEXT" name="act_loc" size="45"
-														value="<%=(actVO == null) ? "" : actVO.getAct_loc()%>" /></td>
-												</tr>
-												<tr>
-													<td>上架時間:</td>
-													<td><input name="act_launch_time" id="f_date1"
-														type="text"></td>
-												</tr>
-												<tr>
-													<td>下架時間:</td>
-													<td><input name="act_off_time" id="f_date2"
-														type="text"></td>
-												</tr>
-												<tr>
-													<td>容納人數上限:</td>
-													<td><input type="TEXT" name="max_count" size="45"
-														value="<%=(actVO == null) ? "" : actVO.getMax_count()%>" /></td>
-												</tr>
-												<tr>
-													<td>容納人數下限:</td>
-													<td><input type="TEXT" name="min_count" size="45"
-														value="<%=(actVO == null) ? "" : actVO.getMin_count()%>" /></td>
-												</tr>
-												<tr>
-													<td>報名開始時間:</td>
-													<td><input name="sign_up_begin_time" id="f_date3"
-														type="text"></td>
-												</tr>
-												<tr>
-													<td>報名結束時間:</td>
-													<td><input name="sign_up_end_time" id="f_date4"
-														type="text"></td>
-												</tr>
-												<tr>
-													<td>活動開始時間:</td>
-													<td><input name="act_start_time" id="f_date5"
-														type="text"></td>
-												</tr>
-												<tr>
-													<td>活動結束時間:</td>
-													<td><input name="act_end_time" id="f_date6"
-														type="text"></td>
-												</tr>
-											</table>
+											<tr>
+												<td>酒吧編號:</td>
+												<td><input type="TEXT" name="pub_no" size="45"
+													value="<%=(actVO == null) ? "" : actVO.getPub_no()%>" /></td>
+											</tr>
+											<tr>
+												<td>活動名稱:</td>
+												<td><input type="TEXT" name="act_name" size="45"
+													value="<%=(actVO == null) ? "" : actVO.getAct_name()%>" /></td>
+											</tr>
+											<tr>
+												<td>活動敘述:</td>
+												<td><textarea name="act_detail" cols="46" rows="10"><%=(actVO == null) ? "" : actVO.getAct_detail()%></textarea></td>
+											</tr>
 
-											<br> <input type="hidden" name="action" value="insert">
-											<input type="submit" value="送出新增">
-										</FORM>
-									</table>
+											<tr>
+												<td>活動地址:</td>
+												<td><input type="TEXT" name="act_loc" size="45"
+													value="<%=(actVO == null) ? "" : actVO.getAct_loc()%>" /></td>
+											</tr>
+											<tr>
+												<td>上架時間:</td>
+												<td><input name="act_launch_time" id="f_date1"
+													type="text"></td>
+											</tr>
+											<tr>
+												<td>下架時間:</td>
+												<td><input name="act_off_time" id="f_date2" type="text"></td>
+											</tr>
+											<tr>
+												<td>容納人數上限:</td>
+												<td><input type="TEXT" name="max_count" size="45"
+													value="<%=(actVO == null) ? "" : actVO.getMax_count()%>" /></td>
+											</tr>
+											<tr>
+												<td>容納人數下限:</td>
+												<td><input type="TEXT" name="min_count" size="45"
+													value="<%=(actVO == null) ? "" : actVO.getMin_count()%>" /></td>
+											</tr>
+											<tr>
+												<td>報名開始時間:</td>
+												<td><input name="sign_up_begin_time" id="f_date3"
+													type="text"></td>
+											</tr>
+											<tr>
+												<td>報名結束時間:</td>
+												<td><input name="sign_up_end_time" id="f_date4"
+													type="text"></td>
+											</tr>
+											<tr>
+												<td>活動開始時間:</td>
+												<td><input name="act_start_time" id="f_date5"
+													type="text"></td>
+											</tr>
+											<tr>
+												<td>活動結束時間:</td>
+												<td><input name="act_end_time" id="f_date6" type="text"></td>
+											</tr>
 
-									<script>
-										$(document).ready(function() {
-											$('#dataTables').DataTable();
-										});
-									</script>
+
+
+										</table>
+										<input type="hidden" name="action" value="insert"> <input
+											type="submit" value="送出新增">
+									</FORM>
 								</div>
-								<!-- content-wrapper ends -->
-								<!-- partial:partials/_footer.html -->
-								<!-- 引入footer 用JQ方式 -->
-								<footer class="footer"></footer>
-								<script>
-									$(function() {
-										$(".footer")
-												.load(
-														window.location.pathname
-																.substring(
-																		0,
-																		window.location.pathname
-																				.indexOf(
-																						'/',
-																						2))
-																+ "/back-end/partials/_footer.html");
-									});
-								</script>
-								<!-- partial -->
 							</div>
-							<!-- main-panel ends -->
-						</div>
-						<!-- page-body-wrapper ends -->
-					</div>
-					<!-- container-scroller -->
-					<!-- base:js -->
-					<script
-						src="<%=request.getContextPath()%>/back-end/vendors/js/vendor.bundle.base.js"></script>
-					<!-- endinject -->
-					<!-- Plugin js for this page-->
-					<!-- End plugin js for this page-->
-					<!-- inject:js -->
-					<script
-						src="<%=request.getContextPath()%>/back-end/js/off-canvas.js"></script>
-					<script
-						src="<%=request.getContextPath()%>/back-end/js/hoverable-collapse.js"></script>
-					<script src="<%=request.getContextPath()%>/back-end/js/template.js"></script>
-					<script src="<%=request.getContextPath()%>/back-end/js/settings.js"></script>
-					<script src="<%=request.getContextPath()%>/back-end/js/todolist.js"></script>
-					<!-- endinject -->
-					<!-- plugin js for this page -->
-					<script
-						src="<%=request.getContextPath()%>/back-end/vendors/progressbar.js/progressbar.min.js"></script>
-					<script
-						src="<%=request.getContextPath()%>/back-end/vendors/chart.js/Chart.min.js"></script>
-					<!-- End plugin js for this page -->
-					<!-- Custom js for this page-->
 
-					<script
-						src="<%=request.getContextPath()%>/back-end/js/dashboard.js"></script>
-					<script
-						src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-					<!-- End custom js for this page-->
+							<script>
+								$(document).ready(function() {
+									$('#dataTables').DataTable();
+								});
+							</script>
+						</div>
+						<!-- content-wrapper ends -->
+						<!-- partial:partials/_footer.html -->
+						<!-- 引入footer 用JQ方式 -->
+						<footer class="footer"></footer>
+						<script>
+							$(function() {
+								$(".footer")
+										.load(
+												window.location.pathname
+														.substring(
+																0,
+																window.location.pathname
+																		.indexOf(
+																				'/',
+																				2))
+														+ "/back-end/partials/_footer.html");
+							});
+						</script>
+						<!-- partial -->
+					</div>
+					<!-- main-panel ends -->
+				</div>
+				<!-- page-body-wrapper ends -->
+			</div>
+			<!-- container-scroller -->
+			<!-- base:js -->
+			<script
+				src="<%=request.getContextPath()%>/back-end/vendors/js/vendor.bundle.base.js"></script>
+			<!-- endinject -->
+			<!-- Plugin js for this page-->
+			<!-- End plugin js for this page-->
+			<!-- inject:js -->
+			<script src="<%=request.getContextPath()%>/back-end/js/off-canvas.js"></script>
+			<script
+				src="<%=request.getContextPath()%>/back-end/js/hoverable-collapse.js"></script>
+			<script src="<%=request.getContextPath()%>/back-end/js/template.js"></script>
+			<script src="<%=request.getContextPath()%>/back-end/js/settings.js"></script>
+			<script src="<%=request.getContextPath()%>/back-end/js/todolist.js"></script>
+			<!-- endinject -->
+			<!-- plugin js for this page -->
+			<script
+				src="<%=request.getContextPath()%>/back-end/vendors/progressbar.js/progressbar.min.js"></script>
+			<script
+				src="<%=request.getContextPath()%>/back-end/vendors/chart.js/Chart.min.js"></script>
+			<!-- End plugin js for this page -->
+			<!-- Custom js for this page-->
+
+			<script src="<%=request.getContextPath()%>/back-end/js/dashboard.js"></script>
+			<script
+				src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+			<!-- End custom js for this page-->
 </body>
 
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->

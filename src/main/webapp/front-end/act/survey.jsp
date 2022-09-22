@@ -1,8 +1,14 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="org.hibernate.internal.build.AllowSysOut"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+	isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.firm_survey.model.*"%>
 <%@ page import="com.question_list.model.*"%>
+<%@ page import="com.ans_list.model.*"%>
+<%@ page import="com.mem.model.*"%>
+<%@ page import="com.prod.model.*"%>
+
 
 <%
 Firm_survey_Service firm_surveySvc = new Firm_survey_Service();
@@ -10,196 +16,168 @@ Set<Integer> set = firm_surveySvc.getAll_from_act_no(Integer.parseInt(request.ge
 pageContext.setAttribute("set", set);
 int i = 1;
 
+Object Objuser = session.getAttribute("user");
+Mem_VO user = (Mem_VO) Objuser;
+
+Ans_list_Service ans_listSvc = new Ans_list_Service();
+Set<Integer> set2 = ans_listSvc.getAllfirm_survey_no((Integer) user.getMem_no());
+pageContext.setAttribute("set2", set2);
+
+Prod_Service prodSvc = new Prod_Service();
+List<Prod_VO> list = prodSvc.getAll();
+pageContext.setAttribute("list", list);
+
 %>
 
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-Hant">
+<!-- Basic(head都不用動) -->
 
 <head>
-<!-- Required meta tags -->
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>朧醴 LonelyBar【後端】</title>
-<!-- base:css -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/back-end/vendors/typicons.font/font/typicons.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/back-end/vendors/css/vendor.bundle.base.css">
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
-<!-- endinject -->
-<!-- plugin css for this page -->
-<!-- End plugin css for this page -->
-<!-- inject:css -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/back-end/css/vertical-layout-light/style.css">
-<!-- endinject -->
-<link rel="shortcut icon"
-	href="<%=request.getContextPath()%>/back-end/images/favicon.png" />
+
+<!-- Mobile Metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Site Metas -->
+<title>朧醴 LonelyBar</title>
+<meta name="keywords" content="LonelyBar Index">
+<meta name="description" content="This is template from Theme Wagon.">
+<meta name="author" content="Theme Wagon">
+
+<!-- Site Icons -->
+<link rel="shortcut icon" href="../images/favicon.ico"
+	type="image/x-icon">
+<link rel="lonelybar-icon" href="../images/Logo2.png">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<!-- Site CSS -->
+<link rel="stylesheet" href="../css/style.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="../css/responsive.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="../css/custom.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script>
-	let path = window.location.pathname.substring(0, window.location.pathname
-			.lastIndexOf("/"));
-	path = path.substring(0, path.lastIndexOf("/"));
-</script>
+
+<style>
+.btn {
+	width: auto;
+	height: auto;
+}
+</style>
+
 </head>
 
 <body>
-	<!-- 主頁面 -->
-	<div class="container-scroller">
-		<!-- 引入nav(頂部含廣告) -->
-		<script src="<%=request.getContextPath()%>/back-end/js/nav.js"></script>
-		<!-- partial -->
-		<div class="container-fluid page-body-wrapper">
-			<!-- partial:partials/_settings-panel.html -->
-			<!-- 引入浮動視窗 -->
-			<script
-				src="<%=request.getContextPath()%>/back-end/js/floating_window.js"></script>
-			<!-- partial -->
-			<!-- partial:partials/_sidebar.html -->
-			<nav class="sidebar sidebar-offcanvas" id="sidebar"></nav>
-			<!-- 引入sidebar 用JQ方式 -->
-			<script>
-				$(function() {
-					$("#sidebar").load(
-							window.location.pathname.substring(0,
-									window.location.pathname.indexOf('/', 2))
-									+ "/back-end/partials/_sidebar.html");
-				});
-			</script>
-			<!-- partial -->
-			<div class="main-panel">
-				<div class="content-wrapper">
-					<div class="row">
-						<div class="col-sm-6">
-							<h3 class="mb-0 font-weight-bold">活動管理員</h3>
-							<p>上次登入：21小時前</p>
-						</div>
-						<div class="col-sm-6">
-							<div class="d-flex align-items-center justify-content-md-end">
-								<div class="mb-3 mb-xl-0 pr-1">
-									<div class="dropdown">
-										<button style="margin-right: 10px;">
-											<a href="listAllFirm_survey.jsp"><img
-												src="./images/home.png" width="30px" height="30px"></a>
-										</button>
-										<button style="margin-right: 10px;">
-											<a href='addFirm_survey.jsp'><img src="./images/plus.png"
-												width="30px" height="30px"></a>
-										</button>
-										<button style="margin-right: 10px;">
-											<a href="selectFirm_survey.jsp"><img
-												src="./images/search2.png" width="30px" height="30px"></a>
-										</button>
-										<button
-											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
-											type="button" id="dropdownMenu3" data-toggle="dropdown"
-											aria-haspopup="true" aria-expanded="false">
-											<i class="typcn typcn-calendar-outline mr-2"></i>Last 7 days
-										</button>
-										<div class="dropdown-menu"
-											aria-labelledby="dropdownMenuSizeButton3"
-											data-x-placement="top-start">
-											<h6 class="dropdown-header">Last 14 days</h6>
-											<a class="dropdown-item" href="#">Last 21 days</a> <a
-												class="dropdown-item" href="#">Last 28 days</a>
-										</div>
-									</div>
-								</div>
-								<div class="pr-1 mb-3 mr-2 mb-xl-0">
-									<button type="button"
-										class="btn btn-sm bg-white btn-icon-text border">
-										<i class="typcn typcn-arrow-forward-outline mr-2"></i>Export
-									</button>
-								</div>
-								<div class="pr-1 mb-3 mb-xl-0">
-									<button type="button"
-										class="btn btn-sm bg-white btn-icon-text border">
-										<i class="typcn typcn-info-large-outline mr-2"></i>info
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row  mt-3">
-						<div class="col-lg-12 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body">
+	<div id=top_nav_mainTop>
+		<%@ include file="/front-end/partials/_mainTop.jsp"%>
+	</div>
 
-									<h4 class="card-title">活動問卷管理</h4>
-									<table id="dataTables" class="stripe table-hover"
-										style="width: 100%; font-size: 12px">
-										<thead style="width: 100%; font-size: 13px">
-											<tr>
-												<th>問卷</th>
-												<th>廠商問卷編號</th>
+	<!-- !!!!!! 從以下開始修改到Start Instagram Feed" !!!!!!-->
+
+	<!-- Start All Title Box -->
+	<div class="all-title-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h2>我的報名</h2>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Title Box -->
+
+	<!-- Start Cart  -->
+	<div class="cart-box-main">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="table-main table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+												<th>活動問卷</th>
+												
 												<th>填寫</th>
-
 											</tr>
-										</thead>
-										<tbody>
+							</thead>
+							<tbody>
 
-											<c:forEach var="set" items="${set}">
+								<c:forEach var="set" items="${set}">
 												<tr>
-													<td>問卷<%=i++%></td>
-													<td>${set}</td>
-													<td><input type="button" value="填寫"
-														onclick="location.href='<%=request.getContextPath()%>/front-end/act/writesurvey.jsp?${set}'"></td>
+													<td>活動問卷<%=i++%></td>
+													
+													
+													<c:choose>
+														<c:when test="${set2.contains(set)}">
+															<td><input type="button" value="已填寫"></td>
+														</c:when>
+														<c:otherwise>
+															<td><input type="button" value="填寫"
+																onclick="location.href='<%=request.getContextPath()%>/front-end/act/writesurvey.jsp?${set}'"></td>
+														</c:otherwise>
+													</c:choose>
 												</tr>
 											</c:forEach>
-										</tbody>
-									</table>
-
-
-
-								</div>
-							</div>
-						</div>
+							</tbody>
+						</table>
 					</div>
 				</div>
-				<!-- content-wrapper ends -->
-				<!-- partial:partials/_footer.html -->
-				<footer class="footer"></footer>
-				<script>
-					$(function() {
-						$(".footer").load("../partials/_footer.html");
-					});
-				</script>
-				<!-- partial -->
 			</div>
-			<!-- main-panel ends -->
-		</div>
-		<!-- page-body-wrapper ends -->
+
+
+
+		
+			<!-- !!!!!!此行以下都不要修改!!!!!!-->
+	<!-- Start Instagram Feed  -->
+	<div class="instagram-box">
+		<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
 	</div>
-	<!-- container-scroller -->
-	<!-- base:js -->
+	<!-- End Instagram Feed  -->
+	<!-- Start Footer  -->
+	<footer>
+		<%@ include file="/front-end/partials/_footer.jsp"%>
+	</footer>
+	<!-- End Footer  -->
 
-	<script>
-		function getContextPath() {
-			return window.location.pathname.substring(0,
-					window.location.pathname.indexOf('/', 2));
-		}
-	</script>
-	<script src="../vendors/js/vendor.bundle.base.js"></script>
-	<!-- endinject -->
-	<!-- Plugin js for this page-->
-	<!-- End plugin js for this page-->
-	<!-- inject:js -->
-	<script src="../js/off-canvas.js"></script>
-	<script src="../js/hoverable-collapse.js"></script>
-	<script src="../js/template.js"></script>
-	<script src="../js/settings.js"></script>
-	<script src="../js/todolist.js"></script>
-	<!-- endinject -->
-	<!-- plugin js for this page -->
-	<script src="../vendors/progressbar.js/progressbar.min.js"></script>
-	<script src="../vendors/chart.js/Chart.min.js"></script>
-	<!-- End plugin js for this page -->
-	<!-- Custom js for this page-->
+	<!-- Start copyright  -->
+	<div class="footer-copyright">
+		<p class="footer-company">
+			All Rights Reserved. &copy; 2022 <a href="#">LonelyBar</a> Design By
+			: <a href="https://html.design/">CGA103G5</a>
+		</p>
+	</div>
+	<!-- End copyright  -->
 
-	<script src="../js/dashboard.js"></script>
-	<!-- End custom js for this page-->
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+	<!-- ALL JS FILES -->
+	<script src="<%=request.getContextPath()%>/front-end/js/popper.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+	<!-- ALL PLUGINS -->
+	<script
+		src="<%=request.getContextPath()%>/front-end/js/owl.carousel.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/front-end/js/form-validator.min.js"></script>
+	<script src="<%=request.getContextPath()%>/front-end/js/bootsnav.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/front-end/js/baguetteBox.min.js"></script>
+	<script src="<%=request.getContextPath()%>/front-end/js/inewsticker.js"></script>
+	<script src="<%=request.getContextPath()%>/front-end/js/isotope.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/front-end/js/jquery.superslides.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/front-end/js/bootstrap-select.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/front-end/js/images-loded.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/front-end/js/contact-form-script.js"></script>
+	<!-- 該文件需部屬較慢 -->
+	<script id="customjs"
+		src="<%=request.getContextPath()%>/front-end/js/custom.js"></script>
 </body>
 
 </html>

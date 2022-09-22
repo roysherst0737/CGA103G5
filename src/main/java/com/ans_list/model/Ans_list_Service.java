@@ -1,6 +1,7 @@
 package com.ans_list.model;
 
 import java.util.List;
+import java.util.Set;
 
 public class Ans_list_Service {
 
@@ -48,6 +49,10 @@ public class Ans_list_Service {
 
 	public List<Ans_list_VO> getAll() {
 		return dao.getAll();
+	}
+	
+	public Set<Integer> getAllfirm_survey_no(Integer mem_no) {
+		return dao.getAllfirm_survey_no(mem_no);
 	}
 
 }

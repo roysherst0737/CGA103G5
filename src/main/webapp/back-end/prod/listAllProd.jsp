@@ -158,7 +158,7 @@ pageContext.setAttribute("list", list);
 															<div>已上架</div>
 														</c:if>
 														<c:if test="${prodVO.prod_status == 0}">
-															<div>已下架</div>
+															<div style="color: red;">已下架</div>
 														</c:if>
 													</td>
 													<td>${prodVO.launch_time}</td>

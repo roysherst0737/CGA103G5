@@ -112,7 +112,7 @@
  <div class="cont_form_login">
 <a href="#" onclick="ocultar_login_sign_up()" ><i class="material-icons">&#xE5C4;</i></a>
    <h2>LOGIN</h2>
-   <form method='post' action="<%=request.getContextPath()%>/back-end/manager_login/mngLogin.do">
+   <form method='post' action="<%=request.getContextPath()%>/mng_login">
 <input type="text" name="mng_account" value="<%= (manager_VO==null)? "" : manager_VO.getMng_account()%>" placeholder="Account" />
 <input type="password" value="<%= (manager_VO==null)? "" : manager_VO.getMng_password()%>" name="mng_password" placeholder="Password" />
 <input type="hidden" name="action" value="mngLogin">

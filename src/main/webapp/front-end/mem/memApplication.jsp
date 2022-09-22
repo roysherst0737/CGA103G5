@@ -44,6 +44,27 @@
 	href="<%=request.getContextPath()%>/back-end/css/vertical-layout-light/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <style>
+.main-top {
+	padding:0.1px;
+}
+.btn-warning{
+    background-color: #ffc107;
+    width: 52px;
+    height: 33.5px;
+    padding: 0px;
+    font-size: small;
+    font-weight: bolder
+}
+input.btn-warning:hover{
+ 	background-color:#e0a800;
+    color:black; !important;
+}
+.container-fluid{
+	padding:0px;
+}
+.col-lg-6{
+	padding:0px;
+}
 button.b1{
 	height: auto;
     padding: 5px;
@@ -176,17 +197,44 @@ a.booking:hover {
 				                        <div class="form-group row">
 				                          <label class="col-sm-3 col-form-label">密碼</label>
 				                          <div class="col-sm-9">
-				                            <input type="password" class="form-control" value="${sessionScope.user.getMem_password()}">
+				                            <a class="form-control" href="change_password.jsp">變更密碼</a>
 				                          </div>
 				                        </div>
 				                        <div class="form-group row">
 				                          <label class="col-sm-3 col-form-label">性別</label>
 				                          <div class="col-sm-9">
-				                            <select class="form-control">
-				                              <option>男</option>
-				                              <option>女</option>
-				                              <option>多元性別</option>
-				                            </select>
+<!-- 				                            <select class="form-control"> -->
+<!-- 				                              <option>男</option> -->
+<!-- 				                              <option>女</option> -->
+<!-- 				                              <option>多元性別</option> -->
+<!-- 				                            </select> -->
+												<div class="form-group row">
+				                           			  <div class="col-sm-3">
+				                           				 <div class="form-check">
+				                           				   <label class="form-check-label">
+				                              				  <input type="radio" class="form-check-input" name="gender" id="genderRadios1" value="1" >
+				                                				男
+				                             					 <i class="input-helper"></i><i class="input-helper"></i></label>
+				                            			</div>
+				                          			 </div>
+				                          			 <div class="col-sm-3">
+				                           				 <div class="form-check">
+				                           				   <label class="form-check-label">
+				                            				   <input type="radio" class="form-check-input" name="gender" id="genderRadios0" value="0" >
+				                              					  女
+				                              						<i class="input-helper"></i><i class="input-helper"></i></label>
+				                          				  </div>
+				                       				   </div>	
+				                          			 <div class="col-sm-5">
+				                           				 <div class="form-check">
+				                           				   <label class="form-check-label">
+				                            				   <input type="radio" class="form-check-input" name="gender" id="genderRadios2" value="2" >
+				                              					  多元性別
+				                              						<i class="input-helper"></i><i class="input-helper"></i></label>
+				                          				  </div>
+				                       				   </div>	
+				                       				   <input type="hidden" id ="gender_value"  value="${sessionScope.user.getMem_gender()}" >                      		
+				                          			 </div>
 				                          </div>
 				                        </div>
 				                        <div class="form-group row">
@@ -212,43 +260,7 @@ a.booking:hover {
 				                          <div class="col-sm-9">
                            					 <input type="tel" class="form-control" value="${sessionScope.user.getMem_tel_no()}">
                           				  </div>
-				                        </div>
-				                        <div class="form-group row">
-				                          <label class="col-sm-3 col-form-label">Date of Birth</label>
-				                          <div class="col-sm-9">
-				                            <input class="form-control" placeholder="dd/mm/yyyy" value="${sessionScope.user.getMem_password()}">
-				                          </div>
-				                        </div>
-				                        <div class="form-group row">
-				                          <label class="col-sm-3 col-form-label">Category</label>
-				                          <div class="col-sm-9">
-				                            <select class="form-control">
-				                              <option>Category1</option>
-				                              <option>Category2</option>
-				                              <option>Category3</option>
-				                              <option>Category4</option>
-				                            </select>
-				                          </div>
-				                        </div>
-				                        <div class="form-group row">
-				                          <label class="col-sm-3 col-form-label">Membership</label>
-				                          <div class="col-sm-4">
-				                            <div class="form-check">
-				                              <label class="form-check-label">
-				                                <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios1" value="" >
-				                                Free
-				                              <i class="input-helper"></i></label>
-				                            </div>
-				                          </div>
-				                          <div class="col-sm-5">
-				                            <div class="form-check">
-				                              <label class="form-check-label">
-				                                <input type="radio" class="form-check-input" name="membershipRadios" id="membershipRadios2" value="option2" checked="">
-				                                Professional
-				                              <i class="input-helper"></i></label>
-				                            </div>
-				                          </div>
-				                        </div>				                   
+				                        </div>				                       				                        				                       			                   
 				                	</div>
 								</div>
 							</div>
@@ -289,7 +301,8 @@ a.booking:hover {
 									<div class="form-group row">
 			                          <label class="col-sm-3 col-form-label">權限</label>
 			                          <div class="col-sm-9">
-                          				<input type="text" class="form-control" value="${sessionScope.user.getMem_permission()}">
+                          				<input type="text" class="form-control"  id= "permission"  disabled="disabled">
+                          				<input type="hidden" id ="permission_value"  value="${sessionScope.user.getMem_permission()}" > 
                          			  </div>
 				                    </div>								
 									<button id="btn" type="button" class="btn btn-primary mr-2">確認送出</button>
@@ -463,8 +476,8 @@ a.booking:hover {
 
 	<!-- ALL JS FILES -->
 	<script src="<%=request.getContextPath()%>/front-end/js/popper.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/front-end/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/front-end/js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/front-end/mem/js/permission_value.js"></script>
 	<!-- ALL PLUGINS -->
 	<script
 		src="<%=request.getContextPath()%>/front-end/js/jquery.superslides.min.js"></script>
@@ -487,8 +500,7 @@ a.booking:hover {
 		src="<%=request.getContextPath()%>/front-end/js/custom.js"></script>
 	<script src="<%=request.getContextPath()%>/back-end/js/template.js"></script>
 	<script src="<%=request.getContextPath()%>/back-end/js/file-upload.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/front-end/pages/pub/js/register.js"></script>
+
 </body>
 
 </html>

@@ -1,3 +1,4 @@
+<%@page import="org.hibernate.internal.build.AllowSysOut"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -23,9 +24,15 @@
 <!-- endinject -->
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/Logo2.png" />
 </head>
+<%
+String previous_page = request.getHeader("referer");
+String original_URL = request.getRequestURL().toString();
+String servlet_URL = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/front-end/mem/MemLoginServlet";
 
-<%	String previous_page = request.getHeader("referer"); 
-	session.setAttribute("previous_page",previous_page);
+if((!previous_page.equals(original_URL))&&(!previous_page.equals(servlet_URL))){
+	session.setAttribute("previous_page", previous_page);
+}
+
 %>
 
 <body>
@@ -40,16 +47,23 @@
 								<img src="<%=request.getContextPath()%>/front-end/images/Logo3.png" alt="logo">
 								</a>
 							</div>
-							<h4>Hello! let's get started</h4>
-							<h6 class="font-weight-light">Sign in to continue.</h6>
-							<form class="pt-3" action="MemLoginServlet" method="post">
+							<h1>登入</h1>
+								<c:if test="${not empty errorMsgs}">
+								<font style="color: red">請修正以下錯誤:</font>
+								<ul>
+									<c:forEach var="message" items="${errorMsgs}">
+										<li style="color: red">${message.value}</li>
+									</c:forEach>
+								</ul>
+								</c:if>
+							<form class="pt-3" action="<%=request.getContextPath()%>/front-end/mem/MemLoginServlet" method="post">
 								<div class="form-group">
-									<input type="text" class="form-control form-control-lg"
+									帳號<input type="text" class="form-control form-control-lg"
 										id="exampleInputEmail1" placeholder="account"
 										name="mem_account">
 								</div>
 								<div class="form-group">
-									<input type="password" class="form-control form-control-lg"
+									密碼<input type="password" class="form-control form-control-lg"
 										id="exampleInputPassword1" placeholder="password"
 										name="mem_password">
 								</div>
@@ -79,14 +93,7 @@
 								</div>
 								<input type="hidden" name="Login" value="Mem_Login">
 							</form>
-							<c:if test="${not empty errorMsgs}">
-								<font style="color: red">請修正以下錯誤:</font>
-								<ul>
-									<c:forEach var="message" items="${errorMsgs}">
-										<li style="color: red">${message}</li>
-									</c:forEach>
-								</ul>
-							</c:if>
+							
 						</div>
 					</div>
 				</div>

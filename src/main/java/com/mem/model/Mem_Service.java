@@ -85,5 +85,15 @@ public class Mem_Service {
 	public Mem_VO loginMem(String mem_account,String mem_password) {
 		return dao.login(mem_account, mem_password);
 	}
+	
+	 public Mem_VO updatePassword(String mem_password,Integer mem_no) {
+		 Mem_VO memVO = new Mem_VO();
+
+		 memVO.setMem_password(mem_password);
+		 memVO.setMem_no(mem_no);
+
+		 dao.updatePassword(memVO);
+		 return memVO;
+	 }
 }
 

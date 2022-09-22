@@ -1,5 +1,8 @@
 package com.pub_booking.dao;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 import com.pub_booking.entity.Pub_Booking;
@@ -48,6 +51,15 @@ public class Pub_Booking_DAOImpl implements Pub_Booking_DAO{
 		final String sql = "FROM Pub_Booking WHERE pub_no= :pub_no AND pub_booking_date=:pub_booking_date";
 		return getSession().createQuery(sql, Pub_Booking.class).setParameter("pub_no", pub_Booking.getPub_no())
 				.setParameter("pub_booking_date", pub_Booking.getPub_booking_date()).list();
+	}
+
+	@Override
+	public List<Pub_Booking> getListByMem(Integer mem_no) {
+		Long LongDay = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
+		Date today = new Date(LongDay);
+		final String sql = "FROM Pub_Booking WHERE mem_no= :mem_no and pub_booking_date>=:pub_booking_date";
+		return getSession().createQuery(sql, Pub_Booking.class).setParameter("mem_no", mem_no).setParameter("pub_booking_date", today).list();
+	
 	}
 
 }

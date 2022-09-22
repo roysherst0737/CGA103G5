@@ -58,27 +58,6 @@ session.setAttribute("url", url);
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-	
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-	<script>
-		function confirmTest() {
-			Swal.fire({
-				title : "請先登入會員",		
-				showCancelButton : true
-			}).then(function(result) {
-				if (result.value) {	
-					location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
-					}
-				});
-		}
-		function confirmTest2() {
-			Swal.fire({
-				title : "成功加入購物車！",
-				showCancelButton : false
-			});
-		}
-	</script>
 
 	<style>
 		.btn {
@@ -190,35 +169,35 @@ session.setAttribute("url", url);
                     <div class="single-product-details">
                         <h2>${prodVO.prod_name}</h2>
                         <h5>$${prodVO.prod_price}</h5>
-                        <p class="available-stock"><span> 現有庫存： <a href="#">${prodVO.prod_stock}</a></span><p>
+                        <p class="available-stock"><span> 現有庫存： <span style="color: red;">${prodVO.prod_stock}</span></span><p>
 						<h4>商品詳情：</h4>
 						<p>${prodVO.prod_detail}</p>
-						<ul>
-							<li>
-								<div class="form-group quantity-box">
-									<label class="control-label">購買數量</label>
-									<input class="form-control" value="0" min="0" max="${prodVO.prod_stock}" type="number">
-								</div>
-							</li>
-						</ul>
+<!-- 						<ul> -->
+<!-- 							<li> -->
+<!-- 								<div class="form-group quantity-box"> -->
+<!-- 									<label class="control-label">購買數量</label> -->
+<%-- 									<input class="form-control" value="0" min="1" max="${prodVO.prod_stock}" type="number"> --%>
+<!-- 								</div> -->
+<!-- 							</li> -->
+<!-- 						</ul> -->
 
 						<div class="price-box-bar">
 							<div class="cart-and-bay-btn">
+							
+								<FORM name="cart" action="cart.do" method="post">
 								<c:choose>
 									<c:when test="${empty sessionScope.user}">
-										<input class="btn btn-warning" id="cart2" type="button" value="加入購物車" onclick="confirmTest()" />
+										<input class="btn btn-warning" id="cart2" type="button" value="加入購物車" onclick="confirmTest6()" />
 									</c:when>
-									<c:otherwise>
-										<c:choose>
-											<c:when test="${set.contains(prodVO.getProd_no())}">
-												<input class="btn btn-warning" id="cart2" type="submit" value="已加入購物車" disabled="disabled">
-											</c:when>
-									<c:otherwise>
-										<input class="btn btn-warning" id="cart2" type="submit" value="加入購物車" onclick="confirmTest2()">
-									</c:otherwise>
-										</c:choose>
+									<c:otherwise>									
+										<input class="btn btn-warning" id="cart2" type="submit" value="加入購物車" onclick="confirmTest7()">
 									</c:otherwise>
 								</c:choose>
+								<input type="hidden" name="prod_no" value="${prodVO.prod_no}">
+								<input type="hidden" name="prod_qty" value="${cartVO.prod_qty}">
+                                <input type="hidden" name="mem_no" value="${user.mem_no}">
+								<input type="hidden" name="action" value="insertByDetail">	
+								</FORM>
 							</div>
 						</div>
                     </div>

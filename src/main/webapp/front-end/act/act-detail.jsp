@@ -15,9 +15,11 @@ Act_Service actSvc = new Act_Service();
 Act_VO actVO = actSvc.getOneAct(Integer.parseInt(request.getQueryString()));
 request.setAttribute("actVO", actVO);
 
+
 Act_pic_Service act_picSvc = new Act_pic_Service();
 List<Act_pic_VO> act_picList = act_picSvc.get_from_act_no(actVO.getAct_no());
 pageContext.setAttribute("act_picList", act_picList);
+
 
 Object Objuser = session.getAttribute("user");
 Mem_VO user = (Mem_VO) Objuser;
@@ -27,6 +29,7 @@ if (user != null) {
 	Set<Integer> set = act_sign_upSvc.getAct_sign_up((Integer) user.getMem_no());
 	pageContext.setAttribute("set", set);
 }
+
 
 Prod_Service prodSvc = new Prod_Service();
 List<Prod_VO> list = prodSvc.getAll();
@@ -71,36 +74,6 @@ session.setAttribute("url", url);
 <!-- Custom CSS -->
 <link rel="stylesheet" href="css/custom.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-<script>
-	function confirmTest() {
-		Swal.fire({
-			title : "報名前請先登入",		
-			showCancelButton : true
-		}).then(function(result) {
-			if (result.value) {	
-
-				location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
-			} 
-		});
-
-				location.href='<%=request.getContextPath()%>
-	/front-end/mem/login.jsp'
-							}
-						});
-
-	}
-	function confirmTest2() {
-		Swal.fire({
-			title : "報名成功",
-			showCancelButton : false
-		});
-	}
-</script>
-
 
 
 <style>
@@ -267,7 +240,7 @@ session.setAttribute("url", url);
 
 
 
-									<FORM METHOD="post" ACTION="act_sign_up.do" name="form1">
+									<FORM METHOD="post" ACTION="my_sign_up.do" name="form1">
 										<table>
 
 											<tr>
@@ -285,12 +258,11 @@ session.setAttribute("url", url);
 
 										<c:choose>
 
-
 											<c:when test="${empty sessionScope.user}">
-												<input type="button" value="我要報名" onclick="confirmTest()" />
+												<input type="button" value="我要報名" onclick="confirmTest0()" />
 											</c:when>
+											
 											<c:otherwise>
-
 
 												<c:choose>
 													<c:when test="${set.contains(actVO.getAct_no())}">
@@ -305,9 +277,7 @@ session.setAttribute("url", url);
 
 											</c:otherwise>
 
-
 										</c:choose>
-
 
 									</FORM>
 

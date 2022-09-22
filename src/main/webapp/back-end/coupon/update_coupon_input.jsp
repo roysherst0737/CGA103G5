@@ -59,7 +59,7 @@ Coupon_VO couponVO = (Coupon_VO) request.getAttribute("couponVO");
 					<div class="row">
 						<div class="col-sm-6">
 							<h3 class="mb-0 font-weight-bold">商品管理員</h3>
-							<p>上次登入：21小時前</p>
+
 						</div>
 						<div class="col-sm-6">
 							<div class="d-flex align-items-center justify-content-md-end">
@@ -69,24 +69,8 @@ Coupon_VO couponVO = (Coupon_VO) request.getAttribute("couponVO");
 										<a href="listAllProd_pic.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right:10px;">
-										<a href='addProd_pic.jsp'><img src="./images/plus.png" width="30px" height="30px"></a>
+										<a href='addCoupon.jsp'><img src="./images/plus.png" width="30px" height="30px"></a>
 										</button>
-										<button style="margin-right:10px;">
-										<a href="select_page.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
-										</button>
-										<button
-											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
-											type="button" id="dropdownMenu3" data-toggle="dropdown"
-											aria-haspopup="true" aria-expanded="false">
-											<i class="typcn typcn-calendar-outline mr-2"></i>Last 7 days
-										</button>
-										<div class="dropdown-menu"
-											aria-labelledby="dropdownMenuSizeButton3"
-											data-x-placement="top-start">
-											<h6 class="dropdown-header">Last 14 days</h6>
-											<a class="dropdown-item" href="#">Last 21 days</a> <a
-												class="dropdown-item" href="#">Last 28 days</a>
-										</div>
 									</div>
 								</div>
 								<div class="pr-1 mb-3 mr-2 mb-xl-0">
@@ -120,8 +104,6 @@ Coupon_VO couponVO = (Coupon_VO) request.getAttribute("couponVO");
 											</ul>
 										</c:if>
 										
-<%-- 										<jsp:useBean id="prod_picSvc" scope="page" class="com.prod_pic.model.Prod_pic_Service" /> --%>
-<%-- 										<jsp:useBean id="prodSvc" scope="page" class="com.prod.model.Prod_Service" /> --%>
 										<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/coupon/coupon.do" name="coupon_form"
 											>
 											<table class="table table-striped">
@@ -135,26 +117,25 @@ Coupon_VO couponVO = (Coupon_VO) request.getAttribute("couponVO");
 													<td><input type="TEXT" name="coupon_code" size="25"
 														value="<%=(couponVO == null) ? "" : couponVO.getCoupon_code()%>" /></td> 
 												</tr>
-<!-- 												<tr> -->
-<!-- 													<td>優惠券內容:</td>  -->
-<%-- 													<td><textarea  name="coupon_content" rows="6" cols="26"><%=(couponVO == null) ? "" : couponVO.getCoupon_content()%>" --%>
-<!-- 														</textarea> </td>  -->
-<!-- 												</tr> -->
 												<tr>
 													<td>優惠券內容:</td> 
-													<td><input type="TEXT" name="coupon_content" size="25"
-														value="<%=(couponVO == null) ? "" : couponVO.getCoupon_content()%>" /></td> 
+													<td><textarea name="coupon_content" rows="6" cols="26"
+													><%=(couponVO == null) ? "" : couponVO.getCoupon_content()%>
+														</textarea></td> 
+														
+<!-- 														<input type="TEXT" name="coupon_content" size="25" -->
+<%-- 														value="<%=(couponVO == null) ? "" : couponVO.getCoupon_content()%>" /> --%>
 												</tr>
 												<tr>
 													<td>優惠券折扣:</td> 
 													<td><input type="TEXT" name="coupon_discount" size="25"
 														value="<%=(couponVO == null) ? "" : couponVO.getCoupon_discount()%>" /></td> 
 												</tr>
-												<tr>
-													<td>優惠券發放數量:</td> 
-													<td><input type="TEXT" name="coupon_amount" size="25"
-														value="<%=(couponVO == null) ? "" : couponVO.getCoupon_amount()%>" /></td> 
-												</tr>
+<!-- 												<tr> -->
+<!-- 													<td>優惠券發放數量:</td>  -->
+<!-- 													<td><input type="TEXT" name="coupon_amount" size="25" -->
+<%-- 														value="<%=(couponVO == null) ? "" : couponVO.getCoupon_amount()%>" /></td>  --%>
+<!-- 												</tr> -->
 												<tr>
 													<td>優惠券有效期間開始日期:</td> 
 													<td><input type="datetime-local" name="launch_time" size="25"
@@ -167,14 +148,34 @@ Coupon_VO couponVO = (Coupon_VO) request.getAttribute("couponVO");
 												</tr>
 												<tr>
 													<td>優惠券狀態:</td> 
-													<td><input type="TEXT" name="status" size="25"
-														value="<%=(couponVO == null) ? "" : couponVO.getStatus()%>" /></td> 
+													<td>
+													<div class="form-group row">
+				                           			  <div class="col-sm-5">
+				                           				 <div class="form-check">
+				                           				   <label class="form-check-label">
+				                              				  <input type="radio" class="form-check-input" name="status" id="couponRadios1" value="0" >
+				                                				啟用
+				                             					 <i class="input-helper"></i><i class="input-helper"></i></label>
+				                            			</div>
+				                          			 </div>
+				                          			 <div class="col-sm-5">
+				                           				 <div class="form-check">
+				                           				   <label class="form-check-label">
+				                            				   <input type="radio" class="form-check-input" name="status" id="couponRadios2" value="1" >
+				                              					  停用
+				                              						<i class="input-helper"></i><i class="input-helper"></i></label>
+				                          				  </div>
+				                       				   </div>	
+				                       				   <input type="hidden" id ="status_value"  value="<%=couponVO.getStatus() %>" >                      		
+				                          			 </div>
+				                         		   </td>
 												</tr>
 
 											</table>
 											
 											<input type="hidden" name="action" value="update">
 											<input type="hidden" name="coupon_no" value="<%=couponVO.getCoupon_no()%>"> 
+											<input type="hidden" name="coupon_no1" value="<%=request.getAttribute("coupon_no")%>"> 
 											<input type="submit" value="送出修改">
 										</FORM>
 									</div>
@@ -217,6 +218,7 @@ Coupon_VO couponVO = (Coupon_VO) request.getAttribute("couponVO");
 	<script src="../js/template.js"></script>
 	<script src="../js/settings.js"></script>
 	<script src="../js/todolist.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/coupon/js/couponstatus.js"></script>
 	<!-- endinject -->
 	<!-- plugin js for this page -->
 	<script src="../vendors/progressbar.js/progressbar.min.js"></script>

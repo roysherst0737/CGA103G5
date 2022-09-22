@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mem.model.Mem_VO;
 import com.pub_booking.entity.Pub_Booking;
 @WebServlet("/Booking")
 public class InserBookingServlet extends HttpServlet{
@@ -36,12 +37,13 @@ public class InserBookingServlet extends HttpServlet{
 			   message= message.replace("}", "");
 			   message= message.replace("\"", "");
 			   Pub_Booking booking=new Pub_Booking();
-		Integer mem_no=Integer.parseInt(message.split(",")[0].split(":")[1]);
+//		Integer mem_no=Integer.parseInt(message.split(",")[0].split(":")[1]);
 		Integer pub_no=Integer.parseInt(message.split(",")[1].split(":")[1]);
 		Long pub_booking_date=Long.parseLong(message.split(",")[2].split(":")[1]);
 		Date date = new Date(pub_booking_date);
 		String pub_booking_time=message.split(",")[3].split(":")[1];
-		booking.setMem_no(mem_no);
+		booking.setMem_no((Integer)((Mem_VO) request.getSession().getAttribute("user")).getMem_no());
+		
 		booking.setPub_no(pub_no);
 		booking.setPub_booking_status(1);//1:訂位2:取消
 		booking.setPub_booking_time(pub_booking_time);

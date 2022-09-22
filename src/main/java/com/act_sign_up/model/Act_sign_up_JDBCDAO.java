@@ -24,6 +24,8 @@ public class Act_sign_up_JDBCDAO implements Act_sign_up_DAO_interface {
 	private static final String UPDATE = "UPDATE act_sign_up set act_no = ?, mem_no = ?, accompany_count = ? where sign_up_no = ?";
 
 	private static final String GET_ACT_SIGN_UP = "SELECT act_no FROM act_sign_up where mem_no = ?";
+	private static final String GET_MY_ACT_SIGN_UP = "SELECT sign_up_no, act_no, mem_no, sign_up_time, accompany_count FROM act_sign_up where mem_no = ?";
+	
 	
 	@Override
 	public void insert(Act_sign_up_VO act_sign_up_VO) {
@@ -329,6 +331,67 @@ public class Act_sign_up_JDBCDAO implements Act_sign_up_DAO_interface {
 			}
 		}
 		return set;
+	}
+	
+	@Override
+	public List<Act_sign_up_VO> getMy_act_sign_up(Integer mem_no) {
+		List<Act_sign_up_VO> list = new ArrayList<Act_sign_up_VO>();
+		Act_sign_up_VO act_sign_up_VO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(GET_MY_ACT_SIGN_UP);
+			pstmt.setInt(1, mem_no);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// empVO 也稱為 Domain objects
+				act_sign_up_VO = new Act_sign_up_VO();
+				act_sign_up_VO.setSign_up_no(rs.getInt("sign_up_no"));
+				act_sign_up_VO.setAct_no(rs.getInt("act_no"));
+				act_sign_up_VO.setMem_no(rs.getInt("mem_no"));
+				act_sign_up_VO.setSign_up_time(rs.getTimestamp("sign_up_time"));
+				act_sign_up_VO.setAccompany_count(rs.getInt("accompany_count"));
+				list.add(act_sign_up_VO); // Store the row in the list
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
 	}
 
 	public static void main(String[] args) {

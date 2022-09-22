@@ -26,12 +26,17 @@ public class Cart_DAO implements Cart_DAO_interface {
 		"SELECT mem_no,prod_no,prod_qty FROM cart order by mem_no";
 	private static final String GET_ONE_STMT = 
 		"SELECT mem_no,prod_no,prod_qty FROM cart where mem_no = ?";
-	private static final String DELETE = 
+	private static final String DELETE_ALL = 
 		"DELETE FROM cart where mem_no = ?";
 	private static final String UPDATE = 
-		"UPDATE cart set prod_no=?, prod_qty=? where mem_no = ?";
+		"UPDATE cart set  prod_qty=? where mem_no = ? and prod_no=?";
 	
 	private static final String GET_ADD_TO_CART = "SELECT prod_no FROM cart where mem_no = ?";
+	private static final String CART_MINUS = "SELECT prod_no FROM cart where mem_no = ?";
+	
+	private static final String DELETE_PROD = "DELETE FROM cart where prod_no = ?";
+	
+	private static final String SELECT_BY_MEM_and_PROD = "SELECT *  FROM cart where mem_no = ? AND prod_no = ?";
 	
 	@Override
 	public void insert(Cart_VO cartVO) {
@@ -82,9 +87,9 @@ public class Cart_DAO implements Cart_DAO_interface {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 			
-			pstmt.setInt(1, cartVO.getProd_no());
-			pstmt.setInt(2, cartVO.getProd_qty());
-			pstmt.setInt(3, cartVO.getMem_no());
+			pstmt.setInt(3, cartVO.getProd_no());
+			pstmt.setInt(1, cartVO.getProd_qty());
+			pstmt.setInt(2, cartVO.getMem_no());
 
 			pstmt.executeUpdate();
 			
@@ -111,16 +116,53 @@ public class Cart_DAO implements Cart_DAO_interface {
 	}
 
 	@Override
-	public void delete(Integer mem_no) {
+	public void deleteAll(Integer mem_no) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(DELETE);
+			pstmt = con.prepareStatement(DELETE_ALL);
 
 			pstmt.setInt(1, mem_no);
+
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+	}
+	
+	@Override
+	public void deleteProd(Integer prod_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(DELETE_PROD);
+
+			pstmt.setInt(1, prod_no);
 
 			pstmt.executeUpdate();
 
@@ -271,6 +313,113 @@ public class Cart_DAO implements Cart_DAO_interface {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ADD_TO_CART);
+			pstmt.setInt(1, mem_no);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				
+				set.add(rs.getInt("prod_no")); 
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return set;
+	}
+
+	@Override
+	public Cart_VO selectByMem_noAndProd_no(Integer mem_no, Integer prod_no) {
+		
+		Cart_VO cartVO =  new Cart_VO();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(SELECT_BY_MEM_and_PROD);
+			pstmt.setInt(1, mem_no);
+			pstmt.setInt(2, prod_no);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				cartVO.setMem_no(rs.getInt("mem_no"));
+				cartVO.setProd_no(rs.getInt("prod_no"));
+				cartVO.setProd_qty(rs.getInt("prod_qty"));
+				
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return cartVO;
+	}
+
+	@Override
+	public Set<Integer> getCart_Minus(Integer mem_no) {
+		Set<Integer> set = new HashSet<Integer>();		
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(CART_MINUS);
 			pstmt.setInt(1, mem_no);
 			rs = pstmt.executeQuery();
 

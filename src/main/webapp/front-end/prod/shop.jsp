@@ -57,27 +57,6 @@ session.setAttribute("url", url);
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/custom.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-	
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-	<script>
-		function confirmTest() {
-			Swal.fire({
-				title : "請先登入會員",		
-				showCancelButton : true
-			}).then(function(result) {
-				if (result.value) {	
-					location.href='<%=request.getContextPath()%>/front-end/mem/login.jsp'
-					}
-				});
-		}
-		function confirmTest2() {
-			Swal.fire({
-				title : "成功加入購物車！",
-				showCancelButton : false
-			});
-		}
-	</script>
 
 	<style>
 		.btn {
@@ -165,10 +144,10 @@ session.setAttribute("url", url);
 						
                         <div class="product-categorie-box">
                             <div class="tab-content">	
-                                <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
-                                <form name="cart" action="cart.do" method="post">                                
+                                <div role="tabpanel" class="tab-pane fade show active" id="grid-view">                                                                                               
                                     <div class="row">
                                     <c:forEach var="prodVO" items="${list}">
+                                    <c:if test="${prodVO.prod_status == 1}">
                                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                             <div class="products-single fix">
                                                 <div class="box-img-hover">
@@ -180,22 +159,20 @@ session.setAttribute("url", url);
                                                             	data-toggle="tooltip" data-placement="right" title="查看詳情"><i class="fas fa-eye"></i></a></li>
                                                         </ul>
                                                         
+                                            			<FORM name="cart" action="cart.do" method="post">             
                                                         <c:choose>
 															<c:when test="${empty sessionScope.user}">
-																<input id="cart" type="button" value="加入購物車" onclick="confirmTest()" />
+																<input id="cart" type="button" value="加入購物車" onclick="confirmTest6()" />
 															</c:when>
 															<c:otherwise>
-																<c:choose>
-																	<c:when test="${set.contains(prodVO.getProd_no())}">
-																		<input id="cart" type="submit" value="已加入購物車" disabled="disabled">
-																	</c:when>
-															<c:otherwise>
-																<input id="cart" type="submit" value="加入購物車" name="action" value="ADD" onclick="confirmTest2()">
-															</c:otherwise>
-																</c:choose>
+																<input id="cart" type="submit" value="加入購物車" onclick="confirmTest7()">
 															</c:otherwise>
 														</c:choose>
-														
+														<input type="hidden" name="prod_no" value="${prodVO.prod_no}">
+                                                        <input type="hidden" name="mem_no" value="${user.mem_no}">
+														<input type="hidden" name="action" value="insert">	
+														</FORM>
+														 																
                                                     </div>
                                                 </div>
                                                 <div class="why-text">
@@ -204,12 +181,15 @@ session.setAttribute("url", url);
                                                 </div>
                                             </div>
                                         </div>
+                                        </c:if>
                                         </c:forEach>
                                     </div> 
-                                    </form>                               	
+                                    
+                                                                  	
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="list-view">
                                 <c:forEach var="prodVO" items="${list}">
+                                <c:if test="${prodVO.prod_status == 1}">
                                     <div class="list-view-box">                                    
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
@@ -231,25 +211,26 @@ session.setAttribute("url", url);
                                                     <h4>${prodVO.prod_name}</h4>
                                                     <h5>$${prodVO.prod_price}</h5>
                                                     <p>${prodVO.prod_detail}</p>
+                                                    
+                                                    <FORM name="cart" action="cart.do" method="post">
                                                     <c:choose>
 														<c:when test="${empty sessionScope.user}">
-															<input class="btn btn-warning" id="cart2" type="button" value="加入購物車" onclick="confirmTest()" />
+															<input class="btn btn-warning" id="cart2" type="button" value="加入購物車" onclick="confirmTest6()" />
 														</c:when>
 														<c:otherwise>
-															<c:choose>
-																<c:when test="${set.contains(prodVO.getProd_no())}">
-																	<input class="btn btn-warning" id="cart2" type="submit" value="已加入購物車" disabled="disabled">
-																</c:when>
-														<c:otherwise>
-															<input class="btn btn-warning" id="cart2" type="submit" value="加入購物車" onclick="confirmTest2()">
-														</c:otherwise>
-															</c:choose>
+															<input class="btn btn-warning" id="cart2" type="submit" value="加入購物車" onclick="confirmTest7()">
 														</c:otherwise>
 													</c:choose>
+													<input type="hidden" name="prod_no" value="${prodVO.prod_no}">
+                                                    <input type="hidden" name="mem_no" value="${user.mem_no}">
+													<input type="hidden" name="action" value="insert">	
+													</FORM>
+													
                                                 </div>
                                             </div>
                                         </div>                                      
                                     </div>
+                                    </c:if>
                                     </c:forEach>
                                 </div>
                             </div>

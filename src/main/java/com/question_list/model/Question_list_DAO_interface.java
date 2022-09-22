@@ -16,4 +16,6 @@ public interface Question_list_DAO_interface {
 	//萬用複合查詢(傳入參數型態Map)(回傳 List)
 //  public List<EmpVO> getAll(Map<String, String[]> map); 
 
+	public List<Question_list_VO> getAllFromFirmSurveyNo(Integer firm_survey_no);
+
 }

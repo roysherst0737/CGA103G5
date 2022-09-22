@@ -28,8 +28,8 @@ public class Coupon_DAO implements Coupon_DAO_interface {
 
 	private static final String INSERT_STMT = 
 		"INSERT INTO coupon (coupon_name, coupon_code, coupon_content,"
-		+ " coupon_discount, coupon_amount, launch_time, off_time,"
-		+ " coupon_build_time, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		+ " coupon_discount,  launch_time, off_time,"
+		+ " status) VALUES (?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
 		"SELECT coupon_no, coupon_name, coupon_code, coupon_content,"
 		+ " coupon_discount, coupon_amount, launch_time, off_time,"
@@ -42,8 +42,10 @@ public class Coupon_DAO implements Coupon_DAO_interface {
 		"DELETE FROM coupon where coupon_no = ?";
 	private static final String UPDATE = 
 		"UPDATE coupon set coupon_name=?, coupon_code=?, coupon_content=?,"
-		+ " coupon_discount=?, coupon_amount=?, launch_time=?, off_time=?,"
+		+ " coupon_discount=?,  launch_time=?, off_time=?,"
 		+ " status=? where coupon_no = ?";
+	private static final String COUPON_DISCOUNT = "SELECT * FROM coupon where coupon_code = ?";
+	
 
 	@Override
 	public void insert(Coupon_VO couponVO) {
@@ -60,11 +62,9 @@ public class Coupon_DAO implements Coupon_DAO_interface {
 			pstmt.setString(2, couponVO.getCoupon_code());
 			pstmt.setString(3, couponVO.getCoupon_content());
 			pstmt.setDouble(4, couponVO.getCoupon_discount());
-			pstmt.setInt(5, couponVO.getCoupon_amount());
-			pstmt.setTimestamp(6, couponVO.getLaunch_time());
-			pstmt.setTimestamp(7, couponVO.getOff_time());
-			pstmt.setTimestamp(8, couponVO.getCoupon_build_time());
-			pstmt.setInt(9, couponVO.getStatus());
+			pstmt.setTimestamp(5, couponVO.getLaunch_time());
+			pstmt.setTimestamp(6, couponVO.getOff_time());
+			pstmt.setInt(7, couponVO.getStatus());
 
 			pstmt.executeUpdate();
 
@@ -107,11 +107,10 @@ public class Coupon_DAO implements Coupon_DAO_interface {
 			pstmt.setString(2, couponVO.getCoupon_code());
 			pstmt.setString(3, couponVO.getCoupon_content());
 			pstmt.setDouble(4, couponVO.getCoupon_discount());
-			pstmt.setInt(5, couponVO.getCoupon_amount());
-			pstmt.setTimestamp(6, couponVO.getLaunch_time());
-			pstmt.setTimestamp(7, couponVO.getOff_time());
-			pstmt.setInt(8, couponVO.getStatus());
-			pstmt.setInt(9, couponVO.getCoupon_no());
+			pstmt.setTimestamp(5, couponVO.getLaunch_time());
+			pstmt.setTimestamp(6, couponVO.getOff_time());
+			pstmt.setInt(7, couponVO.getStatus());
+			pstmt.setInt(8, couponVO.getCoupon_no());
 
 			pstmt.executeUpdate();
 
@@ -301,5 +300,67 @@ public class Coupon_DAO implements Coupon_DAO_interface {
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public Coupon_VO getCouponDiscount(String coupon_code) {
+		Coupon_VO couponVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(COUPON_DISCOUNT);
+
+			pstmt.setString(1, coupon_code);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// empVo �]�٬� Domain objects
+				couponVO = new Coupon_VO();
+				couponVO.setCoupon_no(rs.getInt("coupon_no"));
+				couponVO.setCoupon_name(rs.getString("coupon_name"));
+				couponVO.setCoupon_code(rs.getString("coupon_code"));
+				couponVO.setCoupon_content(rs.getString("coupon_content"));
+				couponVO.setCoupon_discount(rs.getDouble("coupon_discount"));
+				couponVO.setCoupon_amount(rs.getInt("coupon_amount"));
+				couponVO.setLaunch_time(rs.getTimestamp("launch_time"));
+				couponVO.setOff_time(rs.getTimestamp("off_time"));
+				couponVO.setCoupon_build_time(rs.getTimestamp("coupon_build_time"));
+				couponVO.setStatus(rs.getInt("status"));
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return couponVO;
 	}
 }

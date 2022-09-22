@@ -7,6 +7,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import com.mem.model.Mem_Service;
+import com.mem.model.Mem_VO;
 
 
 public class MemServlet extends HttpServlet {
@@ -262,11 +263,11 @@ public class MemServlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 	
 				/***************************1.接收請求參數***************************************/
-				Integer memno = Integer.valueOf(req.getParameter("memno"));
+				Integer mem_no = Integer.valueOf(req.getParameter("mem_no"));
 				
 				/***************************2.開始刪除資料***************************************/
 				Mem_Service memSvc = new Mem_Service();
-				memSvc.deleteMem(memno);
+				memSvc.deleteMem(mem_no);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
 				String url = "/back-end/mem/listAllMem.jsp";

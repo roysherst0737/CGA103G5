@@ -56,6 +56,9 @@ public class Mem_JNDIDAO implements Mem_DAO_interface{
 			+ " mem_nickname, mem_tel_no, mem_cel_no, mem_email, mem_id, mem_birth, mem_addr,"
 			+ " mem_permission, status, mem_build_time, mem_cert_status  FROM mem where mem_account =? and mem_password =?";
 	
+	private static final String UPDATE_PASSWORD = 
+			"UPDATE mem set mem_password=? where mem_no = ?";
+	
 	@Override
 	public void insert(Mem_VO memVO) {
 
@@ -479,5 +482,46 @@ public class Mem_JNDIDAO implements Mem_DAO_interface{
 			}
 		}
 		return memVO;
+	}
+	
+	@Override
+	 public void updatePassword(Mem_VO memVO) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE_PASSWORD);
+
+			pstmt.setString(1, memVO.getMem_password());
+			pstmt.setInt(2, memVO.getMem_no());
+
+
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
 	}
 }

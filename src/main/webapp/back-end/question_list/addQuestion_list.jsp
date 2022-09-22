@@ -144,12 +144,12 @@ pageContext.setAttribute("queryStringSplit1", queryStringSplit1);
 										</ul>
 									</c:if>
 									<h4 class="card-title">新增題目清單</h4>
+										<FORM METHOD="post" ACTION="question_list.do" name="form1">
 									<table id="dataTables" class="stripe table-hover"
 										style="width: 100%">
-										<FORM METHOD="post" ACTION="question_list.do" name="form1">
 										<jsp:useBean id="questionSvc" scope="page"
 														class="com.question.model.Question_Service" />
-											<table>
+											
 												<tr>
 													<td>選擇題目:</td>
 													<td><select size="1" name="question_no1">
@@ -160,7 +160,7 @@ pageContext.setAttribute("queryStringSplit1", queryStringSplit1);
 																			test="${queryStringSplit1.contains(questionVO.question_no.toString()) }">
 																		</c:when>
 																		<c:otherwise>
-																			<option value="${questionVO.question_no}">${questionVO.que}
+																			<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
 																		</c:otherwise>
 																	</c:choose>
 																</c:forEach>
@@ -176,7 +176,7 @@ pageContext.setAttribute("queryStringSplit1", queryStringSplit1);
 																			test="${queryStringSplit1.contains(questionVO.question_no.toString()) }">								
 																		</c:when>
 																		<c:otherwise>
-																			<option value="${questionVO.question_no}">${questionVO.que}
+																			<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
 																		</c:otherwise>
 																	</c:choose>
 																</c:forEach>
@@ -192,7 +192,7 @@ pageContext.setAttribute("queryStringSplit1", queryStringSplit1);
 																			test="${queryStringSplit1.contains(questionVO.question_no.toString()) }">
 																		</c:when>
 																		<c:otherwise>
-																			<option value="${questionVO.question_no}">${questionVO.que}
+																			<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
 																		</c:otherwise>
 																	</c:choose>
 																</c:forEach>
@@ -208,7 +208,7 @@ pageContext.setAttribute("queryStringSplit1", queryStringSplit1);
 																			test="${queryStringSplit1.contains(questionVO.question_no.toString()) }">
 																		</c:when>
 																		<c:otherwise>
-																			<option value="${questionVO.question_no}">${questionVO.que}
+																			<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
 																		</c:otherwise>
 																	</c:choose>
 																</c:forEach>
@@ -224,7 +224,7 @@ pageContext.setAttribute("queryStringSplit1", queryStringSplit1);
 																			test="${queryStringSplit1.contains(questionVO.question_no.toString()) }">
 																		</c:when>
 																		<c:otherwise>
-																			<option value="${questionVO.question_no}">${questionVO.que}
+																			<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
 																		</c:otherwise>
 																	</c:choose>
 																</c:forEach>
@@ -237,8 +237,9 @@ pageContext.setAttribute("queryStringSplit1", queryStringSplit1);
 														value="<%=firm_survey_no%>" disabled /></td>
 												</tr>
 
-											</table>
+											
 
+									</table>
 											<br> <input type="hidden" name="action" value="insert">
 											<input type="hidden" name="firm_survey_no"
 												value="<%=firm_survey_no%>"> <input type="hidden"
@@ -246,7 +247,6 @@ pageContext.setAttribute("queryStringSplit1", queryStringSplit1);
 												value="<%=Integer.parseInt(queryStringSplit[0])%>">
 											<input type="submit" value="送出新增">
 										</FORM>
-									</table>
 
 									<script>
 										$(document).ready(function() {

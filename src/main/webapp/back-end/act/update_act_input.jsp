@@ -154,9 +154,7 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 												</tr>
 												<tr>
 													<td>活動描述:</td>
-													<td><textarea name="act_detail" cols="46" rows="10">
-													<%=(actVO == null) ? "" : actVO.getAct_detail()%>
-													</textarea></td>
+													<td><textarea name="act_detail" cols="46" rows="10"><%=(actVO == null) ? "" : actVO.getAct_detail()%></textarea></td>
 												</tr>
 
 
@@ -168,12 +166,12 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 												<tr>
 													<td>上架時間:</td>
 													<td><input name="act_launch_time" id="f_date1"
-														type="text"></td>
+														type="text" value="<%=(actVO == null) ? "" : actVO.getAct_launch_time()%>"></td>
 												</tr>
 												<tr>
 													<td>下架時間:</td>
 													<td><input name="act_off_time" id="f_date2"
-														type="text"></td>
+														type="text" value="<%=(actVO == null) ? "" : actVO.getAct_off_time()%>"></td>
 												</tr>
 												<tr>
 													<td>當前報名人數:</td>
@@ -193,22 +191,22 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 												<tr>
 													<td>報名開始時間:</td>
 													<td><input name="sign_up_begin_time" id="f_date3"
-														type="text"></td>
+														type="text" value="<%=(actVO == null) ? "" : actVO.getSign_up_begin_time()%>"></td>
 												</tr>
 												<tr>
 													<td>報名結束時間:</td>
 													<td><input name="sign_up_end_time" id="f_date4"
-														type="text"></td>
+														type="text" value="<%=(actVO == null) ? "" : actVO.getSign_up_end_time()%>"></td>
 												</tr>
 												<tr>
 													<td>活動開始時間:</td>
 													<td><input name="act_start_time" id="f_date5"
-														type="text"></td>
+														type="text" value="<%=(actVO == null) ? "" : actVO.getAct_start_time()%>"></td>
 												</tr>
 												<tr>
 													<td>活動結束時間:</td>
 													<td><input name="act_end_time" id="f_date6"
-														type="text"></td>
+														type="text" value="<%=(actVO == null) ? "" : actVO.getAct_end_time()%>"></td>
 												</tr>
 												<tr>
 													<td>活動狀態:</td>

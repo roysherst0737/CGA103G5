@@ -1,26 +1,31 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="org.hibernate.internal.build.AllowSysOut"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+	isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.act.model.*"%>
+<%@ page import="com.firm_survey.model.*"%>
+<%@ page import="com.question_list.model.*"%>
+<%@ page import="com.ans_list.model.*"%>
 <%@ page import="com.mem.model.*"%>
-<%@ page import="com.act_pic.model.*"%>
-<%@ page import="com.act_sign_up.model.*"%>
 <%@ page import="com.prod.model.*"%>
 
 
 <%
+Firm_survey_Service firm_surveySvc = new Firm_survey_Service();
+Set<Integer> set = firm_surveySvc.getAll_from_act_no(Integer.parseInt(request.getQueryString()));
+pageContext.setAttribute("set", set);
+int i = 1;
+
 Object Objuser = session.getAttribute("user");
 Mem_VO user = (Mem_VO) Objuser;
 
-Act_sign_up_Service act_sign_upSvc = new Act_sign_up_Service();
-List<Act_sign_up_VO> my_sign_upList = act_sign_upSvc.getMy_act_sign_up(user.getMem_no());
-pageContext.setAttribute("my_sign_upList", my_sign_upList);
+Ans_list_Service ans_listSvc = new Ans_list_Service();
+Set<Integer> set2 = ans_listSvc.getAllfirm_survey_no((Integer) user.getMem_no());
+pageContext.setAttribute("set2", set2);
 
 Prod_Service prodSvc = new Prod_Service();
 List<Prod_VO> list = prodSvc.getAll();
 pageContext.setAttribute("list", list);
-String url = request.getRequestURL().toString() + "?" + request.getQueryString();
-session.setAttribute("url", url);
 
 %>
 
@@ -93,48 +98,29 @@ session.setAttribute("url", url);
 						<table class="table">
 							<thead>
 								<tr>
-									<th>圖片</th>
-									<th>活動名稱</th>
-									<th>攜伴人數</th>
-									<th>報名時間</th>
-									<th>取消報名</th>
-									<th>查看問卷</th>
-								</tr>
+												<th>活動問卷</th>
+												
+												<th>填寫</th>
+											</tr>
 							</thead>
 							<tbody>
 
-								<c:forEach var="act_sign_upVO" items="${my_sign_upList}">
-									<tr>
-										<td class="thumbnail-img"><img
-												src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_sign_upVO.actVO.act_picVO.act_pic_no}"
-												alt="" width="100" height="100" />
-										</td>
-										<td class="act_name"><a
-											href="<%=request.getContextPath()%>/front-end/act/act-detail.jsp?${act_sign_upVO.act_no}">${act_sign_upVO.actVO.act_name}</a></td>
-										<td class="accompany_count"><p>${act_sign_upVO.accompany_count}</p></td>
-										<td class="sign_up_time"><p>${act_sign_upVO.sign_up_time}</p></td>
-										<td class="delete">
-											<FORM METHOD="post"
-												ACTION="<%=request.getContextPath()%>/front-end/act/my_sign_up.do"
-												style="margin-bottom: 0px;">
-												<input type="submit" value="取消"> <input
-													type="hidden" name="sign_up_no"
-													value="${act_sign_upVO.sign_up_no}"> <input
-													type="hidden" name="action" value="delete">
-											</FORM>
-										</td>
-								
-                                     <td class="survey">
-                                     
-                                     
-                                     <input type="button" value="查看" onclick="location.href='<%=request.getContextPath()%>/front-end/act/survey.jsp?${act_sign_upVO.act_no}'">
-                                     </td>
-                                     
-                                 
-                                     
-                                      </FORM>
-									</tr>
-								</c:forEach>
+								<c:forEach var="set" items="${set}">
+												<tr>
+													<td>活動問卷<%=i++%></td>
+													
+													
+													<c:choose>
+														<c:when test="${set2.contains(set)}">
+															<td><input type="button" value="已填寫"></td>
+														</c:when>
+														<c:otherwise>
+															<td><input type="button" value="填寫"
+																onclick="location.href='<%=request.getContextPath()%>/front-end/act/writesurvey.jsp?${set}'"></td>
+														</c:otherwise>
+													</c:choose>
+												</tr>
+											</c:forEach>
 							</tbody>
 						</table>
 					</div>

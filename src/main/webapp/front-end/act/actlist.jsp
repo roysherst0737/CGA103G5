@@ -108,10 +108,9 @@ pageContext.setAttribute("list", list);
 									id="grid-view">
 									<div class="row">
 
-                                  <%@ include file="page1.file"%>
+                                 
 										
-										<c:forEach var="actVO" items="${actList}" begin="<%=pageIndex%>"
-											end="<%=pageIndex+rowsPerPage-1%>">
+										<c:forEach var="actVO" items="${actList}">
 											<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
 												<div class="products-single fix">
 													<div class="box-img-hover">
@@ -139,7 +138,7 @@ pageContext.setAttribute("list", list);
 
 									</div>
 								</div>
-								<%@ include file="page2.file"%>
+								
 								
 								<div role="tabpanel" class="tab-pane fade" id="list-view">
 									<c:forEach var="actVO" items="${actList}">

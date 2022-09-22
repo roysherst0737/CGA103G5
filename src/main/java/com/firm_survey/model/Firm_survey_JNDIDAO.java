@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -29,6 +31,8 @@ public class Firm_survey_JNDIDAO implements Firm_survey_DAO_interface {
 	private static final String GET_ONE_STMT = "SELECT firm_survey_no, act_no, survey_build_time, survey_revise_time FROM firm_survey where firm_survey_no = ?";
 	private static final String DELETE = "DELETE FROM firm_survey where firm_survey_no = ?";
 	private static final String UPDATE = "UPDATE firm_survey set act_no = ? where firm_survey_no = ?";
+
+	private static final String GET_ALL_FROM_ACT_NO = "SELECT firm_survey_no FROM firm_survey where act_no = ?";
 
 	@Override
 	public void insert(Firm_survey_VO firm_survey_VO) {
@@ -251,6 +255,56 @@ public class Firm_survey_JNDIDAO implements Firm_survey_DAO_interface {
 			}
 		}
 		return list;
+	}
+
+	@Override
+	public Set<Integer> getAll_from_act_no(Integer act_no) {
+		Set<Integer> set = new HashSet<Integer>();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_FROM_ACT_NO);
+			pstmt.setInt(1, act_no);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// empVO 也稱為 Domain objects
+				set.add(rs.getInt("firm_survey_no")); // Store the row in the list
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return set;
 	}
 
 }

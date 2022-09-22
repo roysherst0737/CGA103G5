@@ -11,9 +11,6 @@ Question_list_Service question_listSvc = new Question_list_Service();
 List<Question_list_VO> list = question_listSvc.getAllFromFirmSurveyNo(Integer.parseInt(request.getQueryString()));
 pageContext.setAttribute("list", list);
 
-
-// List<Integer> selected_question_no = new ArrayList<Integer>();
-
 String selected_question_no = "";
 for (int i = 0; i < list.size(); i++) {
 	Question_list_VO abc = list.get(i);

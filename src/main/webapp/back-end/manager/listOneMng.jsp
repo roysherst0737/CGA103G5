@@ -1,9 +1,9 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.manager.model.*"%>
-<%-- ¦¹­¶¼È½m²ß±Ä¥Î Script ªº¼gªk¨ú­È --%>
+<%-- æ­¤é æš«ç·´ç¿’æ¡ç”¨ Script çš„å¯«æ³•å–å€¼ --%>
 
 <%
-  Manager_VO manager_VO = (Manager_VO) request.getAttribute("manager_VO"); //Manager_Servlet.java(Concroller), ¦s¤Jreqªºmanager_VOª«¥ó
+  Manager_VO manager_VO = (Manager_VO) request.getAttribute("manager_VO"); //Manager_Servlet.java(Concroller), å­˜å…¥reqçš„manager_VOç‰©ä»¶
   
   Manager_Service manager_Svc = new Manager_Service();
 %>
@@ -16,7 +16,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>ÄgÄ¿ LonelyBar¡i«áºİ¡j</title>
+<title>æœ§é†´ LonelyBarã€å¾Œç«¯ã€‘</title>
 <!-- base:css -->
 
 <link rel="stylesheet" href="../vendors/typicons.font/font/typicons.css">
@@ -43,44 +43,46 @@
 
 <body>
 
-<!-- ¥D­¶­± -->
+<!-- ä¸»é é¢ -->
 	<div class="container-scroller">
-		<!-- ¤Ş¤Jnav(³»³¡§t¼s§i) -->
+		<!-- å¼•å…¥nav(é ‚éƒ¨å«å»£å‘Š) -->
 		<script src="../js/nav.js"></script>
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_settings-panel.html -->
-			<!-- ¤Ş¤J¯B°Êµøµ¡ -->
+			<!-- å¼•å…¥æµ®å‹•è¦–çª— -->
 			<script src="../js/floating_window.js"></script>
 			<!-- partial -->
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar"></nav>
-			<!-- ¤Ş¤Jsidebar ¥ÎJQ¤è¦¡ -->
+			<!-- å¼•å…¥sidebar ç”¨JQæ–¹å¼ -->
 			<script>
 				$(function() {
 					$("#sidebar").load("../partials/_sidebar.html");
 				});
 			</script>
 			 <!-- partial -->
-      <div class="main-panel">
+      <<div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
 
   <div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
+    <div class="card" style="border-radius: 15px">
       <div class="card-body">
-        <h4 class="card-title" style="text-align:center;">ÄgÄ¿ LonelyBar¡iºŞ²z­û¡j</h4>
+        <h4 class="card-title" style="text-align:center;">æœ§é†´ LonelyBarã€ç®¡ç†å“¡ã€‘</h4>
         <p class="card-description">
           <code></code>
         </p>
         <div class="table-responsive">
           <table class="table table-striped" style="text-align:center;">
 	<tr>
-		<th>ºŞ²z­û½s¸¹</th>
-		<th>ºŞ²z­û±b¸¹</th>
-		<th>ºŞ²z­û±K½X</th>
-		<th>ºŞ²z­û©m¦W</th>
-		<th>ºŞ²z­û¤â¾÷</th>
-		<th>ºŞ²z­û·Ó¤ù</th>
-		<th>ºŞ²z­ûª¬ºA</th>
+		<th>ç®¡ç†å“¡ç·¨è™Ÿ</th>
+		<th>ç®¡ç†å“¡å¸³è™Ÿ</th>
+		<th>ç®¡ç†å“¡å¯†ç¢¼</th>
+		<th>ç®¡ç†å“¡å§“å</th>
+		<th>ç®¡ç†å“¡æ‰‹æ©Ÿ</th>
+		<th>ç®¡ç†å“¡ç…§ç‰‡</th>
+		<th>ç®¡ç†å“¡ç‹€æ…‹</th>
 	</tr>
 	<tr>
 		<td><%=manager_VO.getMng_no()%></td>
@@ -96,6 +98,9 @@
 </div>
 </div>
 </div>
+</div>
+</div>
+
 <!-- container-scroller -->
     <!-- base:js -->
     <script src="<%=request.getContextPath()%>/vendors/js/vendor.bundle.base.js"></script>
@@ -119,7 +124,7 @@
     
     <!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
-				<!-- ¤Ş¤Jfooter ¥ÎJQ¤è¦¡ -->
+				<!-- å¼•å…¥footer ç”¨JQæ–¹å¼ -->
 				<footer class="footer"></footer>
 				<script>
 					$(function() {

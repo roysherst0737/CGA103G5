@@ -1,12 +1,31 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.manager_auth.model.Manager_auth_VO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.manager_auth.model.Manager_auth_Service"%>
+<%@page import="com.manager.model.Manager_VO"%>
+<%@page import="com.manager.model.Manager_Service"%>
+<%@page import="com.manager_authfunc.model.Manager_authfunc_VO"%>
+<%@page import="com.manager_authfunc.model.Manager_authfunc_Service"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.*"%>
-<%@ page import="com.manager.model.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%
-    Manager_Service manager_Svc = new Manager_Service();
-    List<Manager_VO> list = manager_Svc.getAllManager();
-    pageContext.setAttribute("list",list);
+  Manager_VO manager_VO = (Manager_VO) request.getAttribute("manager_VO"); //Manager_Servlet.java (Concroller) 存入req的manager_VO物件 (包括幫忙取出的manager_VO, 也包括輸入資料錯誤時的manager_VO物件)
+  Manager_auth_VO manager_auth_VO = (Manager_auth_VO) request.getAttribute("manager_auth_VO");
+  Manager_authfunc_VO manager_authfunc_VO = (Manager_authfunc_VO) request.getAttribute("manager_authfunc_VO");
+  
+  Manager_Service managerSvc = new Manager_Service();
+  List<Manager_VO> list = managerSvc.getAllManager();
+  pageContext.setAttribute("list", list);
+
+  Manager_auth_Service manager_authSvc = new Manager_auth_Service();
+  List<Manager_auth_VO> list1 = manager_authSvc.getAllManager_auth();
+  pageContext.setAttribute("list1", list1);
+  
+  Manager_authfunc_Service manager_authfuncSvc = new Manager_authfunc_Service();
+  List<Manager_authfunc_VO> list2 = manager_authfuncSvc.getAllManager_authfunc();
+  pageContext.setAttribute("list2", list2);
 %>
 
 <!DOCTYPE html>
@@ -67,10 +86,10 @@
         <div class="content-wrapper">
           <div class="row">
   <div class="col-lg-12 grid-margin stretch-card">
-    <div class="card" style="border-radius: 15px">
+    <div class="card">
       <div class="card-body">
         <h4 class="card-title" style="text-align:center;">朧醴 LonelyBar【管理員列表】</h4>
-        <h5 style="text-align:center;"><a href="selectPage.jsp">管理員查詢</a></h5>
+        <h5 style="text-align:center;"><a href="selectPage.jsp">回首頁</a></h5>
         <p class="card-description">
           <code></code>
         </p>
@@ -78,15 +97,10 @@
           <table class="table table-striped" style="text-align:center;">
             <thead>
        <tr>
-        <th>管理員編號</th>
-		<th>管理員帳號</th>
-		<th>管理員密碼</th>
-		<th>管理員姓名</th>
-		<th>管理員手機</th>
-		<th>管理員照片</th>
-		<th>管理員狀態</th>
-		<th>修改資料</th>
-		<th>刪除資料</th>
+        <th>管理員<br>編號</th>
+		<th>管理員<br>姓名</th>
+		<th>管理員<br>權限</th>
+
        </tr>
             </thead>
             <tbody>
@@ -94,26 +108,36 @@
             <%@ include file="page1.file" %> 
 	<c:forEach var="manager_VO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>" >
               <tr>
-                <td>${manager_VO.mng_no}</td>
-               	<td>${manager_VO.mng_account}</td>
-				<td>${manager_VO.mng_password}</td>
-				<td>${manager_VO.mng_name}</td>
-				<td>${manager_VO.mng_phone}</td>
-                <td>
-                <img src="<%=request.getContextPath()%>/ManagerImage?mng_no=${manager_VO.mng_no}" alt="image" style="width: 60px; height: 60px;"/>
-                </td>
-                <td>${manager_VO.mng_status == 1? "啟用中" : "未啟用"}</td>
+                <td><%=manager_VO.getMng_no()%></td>
+               	<td><%=manager_VO.getMng_name()%></td>
+				<td><c:forEach var="manager_auth_VO" items="${list1}">
+			    <c:if test="${manager_VO.mng_no == manager_auth_VO.mng_no}">
+			    <c:forEach var="manager_authfunc_VO" items="${list2}">
+			    <c:if test="${manager_auth_VO.mng_authfunc_no == manager_authfunc_VO.mng_authfunc_no}">
+			       ${manager_authfunc_VO.mng_authfunc_name}
+			    <input type="checkbox" checked class="form-control" id="mng_authfunc_name" name="mng_authfunc_name"
+			    value="${manager_auth_VO.mng_authfunc_no}">
+			    <input type="hidden" checked class="form-control" id="mng_no" name="mng_no"
+			    value="${manager_VO.mng_no}">
+			    </c:if>
+			    </c:forEach>
+			    </c:if>
+		
+			    </c:forEach></td>
+
+			<td>
+			<FORM METHOD="post"
+				ACTION="<%=request.getContextPath()%>/Manager_authServlet" style="margin-bottom: 0px;">
+				<input class="" type="submit" value="修改" > 
+				<input type="hidden" name="mng_no" value="${manager_VO.mng_no}">
+				<input type="hidden" name="action" value="getOne_For_Display">
+			</FORM>
+			</td>
                 <td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/manager/manager.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
+			     <input type="submit" value="新增">
 			     <input type="hidden" name="mng_no"  value="${manager_VO.mng_no}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
-			</td>
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/manager/manager.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="刪除">
-			     <input type="hidden" name="mng_no"  value="${manager_VO.mng_no}">
-			     <input type="hidden" name="action" value="delete"></FORM>
 			</td>
               </tr>
               </c:forEach>
@@ -124,8 +148,7 @@
                 </div>
               </div>
             </div>
-              </div>
-              </div>
+              
 
     <!-- container-scroller -->
     <!-- base:js -->

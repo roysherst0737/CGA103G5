@@ -31,7 +31,6 @@ public class Manager_authfuncUpdate extends HttpServlet {
 		Gson gson = new Gson();
 		String json = gson.toJson(manager_authfuncSvc.getAllManager_authfunc());
 		out.print(json);
-		System.out.println(json);
 		
 		//
 		
@@ -53,11 +52,11 @@ public class Manager_authfuncUpdate extends HttpServlet {
 			String mng_authfunc_name = request.getParameter("mng_authfunc_name");
 			String mng_authfunc_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_:)(\\-\\)]{1,30}$";
 			if (mng_authfunc_name == null || mng_authfunc_name.trim().length() == 0) {
-				errorMsgs.add("名稱: 請勿空白");
+				errorMsgs.add("權限名稱: 請勿空白");
 			} else if (!mng_authfunc_name.trim().matches(mng_authfunc_nameReg)) {
-				errorMsgs.add("名稱: 只能包含中文、英文大小寫、數字和底線及冒號 , 且長度須在1到30之間");
+				errorMsgs.add("權限名稱: 只能包含中文、英文大小寫、數字和底線及冒號 , 且長度須在1到30之間");
 			}
-			System.out.println(mng_authfunc_name);
+			
 
 			// 將取得資料裝入 bidProductVO 物件
 			manager_authfunc_VO.setMng_authfunc_no(mng_authfunc_no);
@@ -66,7 +65,7 @@ public class Manager_authfuncUpdate extends HttpServlet {
 			// 回傳錯誤訊息
 			if (!errorMsgs.isEmpty()) {
 				request.setAttribute("manager_authfunc_VO", manager_authfunc_VO);
-				RequestDispatcher failureView = request.getRequestDispatcher("/back-end/manager_authfunc/updateMngAuthfunc.jsp");
+				RequestDispatcher failureView = request.getRequestDispatcher("/back-end/manager_authfunc/addMngAuthfunc.jsp");
 				failureView.forward(request, response);
 				return; // 程式中斷
 			}
@@ -77,7 +76,7 @@ public class Manager_authfuncUpdate extends HttpServlet {
 
 			/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 			request.setAttribute("manager_authfunc_VO", manager_authfunc_VO); // 資料庫update成功後,正確的的bidProductVO物件,存入request
-			String url = "/back-end/manager_authfunc/getAllMngAuthfuc.jsp";
+			String url = "/back-end/manager_auth/listAllMngAuth.jsp";
 			RequestDispatcher successView = request.getRequestDispatcher(url); // 修改成功後,轉交listOneBid.jsp
 			successView.forward(request, response);
 
@@ -85,7 +84,7 @@ public class Manager_authfuncUpdate extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			errorMsgs.add("修改資料失敗:" + e.getMessage());
-			RequestDispatcher failureView = request.getRequestDispatcher("/back-end/manager_authfunc/updateMngAuthfunc.jsp");
+			RequestDispatcher failureView = request.getRequestDispatcher("/back-end/manager_authfunc/addMngAuthfunc.jsp");
 			failureView.forward(request, response);
 		}
 		

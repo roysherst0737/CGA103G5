@@ -9,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 import com.google.gson.Gson;
+import com.manager.model.Manager_Service;
+import com.manager.model.Manager_VO;
 import com.manager_authfunc.model.*;
 
 @WebServlet("/mngAuthFuncServlet")
@@ -42,7 +44,7 @@ public class Manager_authfuncServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/manager/select_page.jsp");
+							.getRequestDispatcher("/back-end/manager_auth/listAllMngAuth.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -56,7 +58,7 @@ public class Manager_authfuncServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/manager/select_page.jsp");
+							.getRequestDispatcher("/back-end/manager_auth/listAllMngAuth.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -70,14 +72,14 @@ public class Manager_authfuncServlet extends HttpServlet{
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/manager_authfunc/select_page.jsp");
+							.getRequestDispatcher("/back-end/manager_auth/listAllMngAuth.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("manager_authfunc_VO", manager_authfunc_VO); // 資料庫取出的manager_VO物件,存入req
-				String url = "/back-end/manager_authfunc/listOneManager.jsp";
+				String url = "//back-end/manager_auth/listAllMngAuth.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneManager.jsp
 				successView.forward(req, res);
 		}
@@ -99,7 +101,7 @@ public class Manager_authfuncServlet extends HttpServlet{
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("manager_authfunc_VO", manager_authfunc_VO);         // 資料庫取出的manager_VO物件,存入req
-				String url = "/back-end/manager_authfunc/update_manager_input.jsp";
+				String url = "//back-end/manager_auth/listAllMngAuth.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_manager_input.jsp
 				successView.forward(req, res);
 		}
@@ -141,7 +143,7 @@ public class Manager_authfuncServlet extends HttpServlet{
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("manager_authfunc_VO", manager_authfunc_VO); // 含有輸入格式錯誤的manager_VO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/manager_authfunc/update_manager_authfunc_input.jsp");
+							.getRequestDispatcher("/back-end/manager_auth/listAllMngAuth.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -152,7 +154,7 @@ public class Manager_authfuncServlet extends HttpServlet{
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("manager_authfunc_VO", manager_authfunc_VO); // 資料庫update成功後,正確的的manager_VO物件,存入req
-				String url = "/back-end/manager_authfunc/listOneManager.jsp";
+				String url = "/back-end/manager_auth/listAllMngAuth.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneManager.jsp
 				successView.forward(req, res);
 		}
@@ -168,9 +170,15 @@ public class Manager_authfuncServlet extends HttpServlet{
 				String mng_authfunc_name = req.getParameter("mng_authfunc_name");
 				String mng_authfunc_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (mng_authfunc_name == null || mng_authfunc_name.trim().length() == 0) {
-					errorMsgs.add("管理員姓名: 請勿空白");
+					errorMsgs.add("權限名稱: 請勿空白");
 				} else if (!mng_authfunc_name.trim().matches(mng_authfunc_nameReg)) { // 以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("管理員姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+					errorMsgs.add("權限名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+				}
+				List<Manager_authfunc_VO> list = new Manager_authfunc_Service().getAllManager_authfunc();
+				for(Manager_authfunc_VO manager_authfunc_VO : list) {
+					if(manager_authfunc_VO.getMng_authfunc_name().equals(mng_authfunc_name)) {
+						errorMsgs.add("權限名稱: 請勿重複");
+					}
 				}
 
 				Manager_authfunc_VO manager_authfunc_VO = new Manager_authfunc_VO();
@@ -180,7 +188,7 @@ public class Manager_authfuncServlet extends HttpServlet{
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("manager_authfunc_VO", manager_authfunc_VO); // 含有輸入格式錯誤的manager_VO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/manager/listAllMng.jsp");
+							.getRequestDispatcher("/back-end/manager_auth/listAllMngAuth.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -190,7 +198,7 @@ public class Manager_authfuncServlet extends HttpServlet{
 				manager_authfunc_VO = manager_authfunc_Svc.addManager_authfunc(mng_authfunc_name);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/back-end/manager/listAllMng.jsp";
+				String url = "/back-end/manager_auth/listAllMngAuth.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllManager.jsp
 				successView.forward(req, res);				
 		}
@@ -211,7 +219,7 @@ public class Manager_authfuncServlet extends HttpServlet{
 				manager_authfunc_Svc.deleteManager_authfunc(mng_authfunc_no);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/back-end/manager_authfunc/listAllng.jsp";
+				String url = "/back-end/manager_auth/listAllMngAuth.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 		}

@@ -30,8 +30,7 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 		private static final String UPDATE = 
 			"UPDATE manager_auth set mng_authfunc_no = ? where mng_no = ?";
 		private static final String GET_AUTHFUNC = 
-			"SELECT mng_authfunc_no, mng_no "
-			+ "FROM manager_auth WHERE mng_no = ?";
+			"SELECT mng_authfunc_no, mng_no FROM manager_auth WHERE mng_no = ?";
 	
 	@Override
 	public void insert(Manager_auth_VO manager_auth_VO) {
@@ -242,6 +241,7 @@ public class Manager_auth_JDBCDAO implements Manager_auth_DAO_interface {
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			pstmt = con.prepareStatement(GET_AUTHFUNC);
+			pstmt.setInt(1, mng_no);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {

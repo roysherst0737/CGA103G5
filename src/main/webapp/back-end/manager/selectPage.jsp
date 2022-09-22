@@ -1,15 +1,15 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>ÄgÄ¿ LonelyBar¡i«áºİ¡j</title>
+<title>æœ§é†´ LonelyBarã€å¾Œç«¯ã€‘</title>
 <!-- base:css -->
 
 <link rel="stylesheet" href="../vendors/typicons.font/font/typicons.css">
@@ -23,32 +23,22 @@
 <link rel="shortcut icon" href="../images/favicon.png" />
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
-
-  <!-- base:css -->
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/back-end/vendors/typicons.font/font/typicons.css">
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/back-end/vendors/css/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/back-end/css/vertical-layout-light/style.css">
-  <!-- endinject -->
-  <link rel="shortcut icon" href="<%=request.getContextPath()%>/back-end/images/favicon.png" />
 </head>
 
 <body>
-
-<!-- ¥D­¶­± -->
+	<!-- ä¸»é é¢ -->
 	<div class="container-scroller">
-		<!-- ¤Ş¤Jnav(³»³¡§t¼s§i) -->
+		<!-- å¼•å…¥nav(é ‚éƒ¨å«å»£å‘Š) -->
 		<script src="../js/nav.js"></script>
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_settings-panel.html -->
-			<!-- ¤Ş¤J¯B°Êµøµ¡ -->
+			<!-- å¼•å…¥æµ®å‹•è¦–çª— -->
 			<script src="../js/floating_window.js"></script>
 			<!-- partial -->
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar"></nav>
-			<!-- ¤Ş¤Jsidebar ¥ÎJQ¤è¦¡ -->
+			<!-- å¼•å…¥sidebar ç”¨JQæ–¹å¼ -->
 			<script>
 				$(function() {
 					$("#sidebar").load("../partials/_sidebar.html");
@@ -56,106 +46,72 @@
 			</script>
 			 <!-- partial -->
       <div class="main-panel">
-
-  <div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title" style="text-align:center;">ÄgÄ¿ LonelyBar¡iºŞ²z­û¦Cªí¡j</h4>
-        <p class="card-description">
-          <code></code>
-        </p>
-        <div class="table-responsive" style="margin-left:30%;">
-          <table class="table table-striped" style="text-align:center;">
-
-<%-- ¿ù»~ªí¦C --%>
-<c:if test="${not empty errorMsgs}">
-	<font style="color:red">½Ğ­×¥¿¥H¤U¿ù»~:</font>
-	<ul>
-	    <c:forEach var="message" items="${errorMsgs}">
-			<li style="color:red">${message}</li>
-		</c:forEach>
-	</ul>
-</c:if>
-
-
-  <li><a href='<%=request.getContextPath()%>/back-end/manager/listAllMng.jsp'>List</a> all Managers.  <br><br></li>
-  
-  
-  <li>
-    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/manager/manager.do" >
-        <b>¿é¤JºŞ²z­û½s¸¹ (¦p1):</b>
-        <input type="text" name="mng_no">
-        <input type="hidden" name="action" value="getOne_For_Display">
-        <input type="submit" value="°e¥X">
-    </FORM>
-  </li>
-
-  <jsp:useBean id="manager_Svc" scope="page" class="com.manager.model.Manager_Service" />
-   
-  <li>
-     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/manager/manager.do" >
-       <b>¿ï¾ÜºŞ²z­û½s¸¹:</b>
-       <select size="1" name="mng_no">
-         <c:forEach var="manager_VO" items="${manager_Svc.allManager}" > 
-          <option value="${manager_VO.mng_no}">${manager_VO.mng_no}
-         </c:forEach>   
-       </select>
-       <input type="hidden" name="action" value="getOne_For_Display">
-       <input type="submit" value="°e¥X">
-    </FORM>
-  </li>
-  
-  <li>
-     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/manager/manager.do" >
-       <b>¿ï¾ÜºŞ²z­û©m¦W:</b>
-       <select size="1" name="mng_no">
-         <c:forEach var="manager_VO" items="${manager_Svc.allManager}" > 
-          <option value="${manager_VO.mng_no}">${manager_VO.mng_name}
-         </c:forEach>   
-       </select>
-       <input type="hidden" name="action" value="getOne_For_Display">
-       <input type="submit" value="°e¥X">
-     </FORM>
-  </li>
-
-
-
-<h3>ºŞ²z­ûºŞ²z</h3>
-
-
-  <li><a href='<%=request.getContextPath()%>/back-end/manager_login/mngLogin.jsp'>Add</a> a new Manager.</li>
-
-
- </table>
-</div>
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-6 grid-margin stretch-card" style="margin: auto;">
+              <div class="card" style="margin: auto; border-radius:15px">
+                <div class="card-body">
+                  <h4 class="card-title" style="text-align:center;">æœ§é†´ LonelyBarã€ç®¡ç†å“¡è³‡æ–™æŸ¥è©¢ã€‘</h4>
+                  <p class="card-description">
+                    
+                  </p>
+				<div class="form-group">
+  			     <label for="exampleInputEmail1"></label>
+  			   <%-- éŒ¯èª¤è¡¨åˆ— --%>
+				<c:if test="${not empty errorMsgs}">
+				<font style="color:red">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:</font>
+				<ul>
+	   			 <c:forEach var="message" items="${errorMsgs}">
+					<li style="color:red">${message}</li>
+				</c:forEach>
+				</ul>
+				</c:if>
                 </div>
+                  <form METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/manager/manager.do" name="form1" enctype="multipart/form-data">
+                  <div class="form-group">
+                  <label for="exampleInputEmail1">è¼¸å…¥ç®¡ç†å“¡ç·¨è™Ÿ: </label>
+       			  <input type="text" name="mng_no">
+        		  <input type="hidden" name="action" value="getOne_For_Display">
+       		      <input type="submit" value="é€å‡º">
+                    </div>
+    			</FORM>
+    			
+    			<jsp:useBean id="manager_Svc" scope="page" class="com.manager.model.Manager_Service" />
+    			
+    			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/manager/manager.do" >
+    			<div class="form-group">
+       			 <label for="exampleInputEmail1">é¸æ“‡ç®¡ç†å“¡ç·¨è™Ÿ: </label>
+       			<select size="1" name="mng_no">
+        			 <c:forEach var="manager_VO" items="${manager_Svc.allManager}" > 
+          			<option value="${manager_VO.mng_no}">${manager_VO.mng_no}
+       			  </c:forEach>   
+     			  </select>
+    			   <input type="hidden" name="action" value="getOne_For_Display">
+   			    <input type="submit" value="é€å‡º">
+   			    </div>
+ 			   </FORM>
+ 			   
+    			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/manager/manager.do" >
+    			<div class="form-group">
+      			  <label for="exampleInputEmail1">é¸æ“‡ç®¡ç†å“¡å§“å: </label>
+  			     <select size="1" name="mng_no">
+   			      <c:forEach var="manager_VO" items="${manager_Svc.allManager}" > 
+  			        <option value="${manager_VO.mng_no}">${manager_VO.mng_name}
+ 			        </c:forEach>   
+ 			      </select>
+ 			      <input type="hidden" name="action" value="getOne_For_Display">
+  			     <input type="submit" value="é€å‡º">
+  			     </div>
+  			   </FORM>
+  			   
               </div>
             </div>
-
-<!-- container-scroller -->
-    <!-- base:js -->
-    <script src="<%=request.getContextPath()%>/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page-->
-    <!-- End plugin js for this page-->
-    <!-- inject:js -->
-    <script src="<%=request.getContextPath()%>/js/off-canvas.js"></script>
-    <script src="<%=request.getContextPath()%>/js/hoverable-collapse.js"></script>
-    <script src="<%=request.getContextPath()%>/js/template.js"></script>
-    <script src="<%=request.getContextPath()%>/js/settings.js"></script>
-    <script src="<%=request.getContextPath()%>/js/todolist.js"></script>
-    <script>
-
-    </script>
-    <!-- endinject -->
-    <!-- plugin js for this page -->
-    <!-- End plugin js for this page -->
-    <!-- Custom js for this page-->
-    <!-- End custom js for this page-->
-    
-    <!-- content-wrapper ends -->
+            </div>
+            </div>
+            </div>
+				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
-				<!-- ¤Ş¤Jfooter ¥ÎJQ¤è¦¡ -->
+				<!-- å¼•å…¥footer ç”¨JQæ–¹å¼ -->
 				<footer class="footer"></footer>
 				<script>
 					$(function() {
@@ -180,6 +136,31 @@
 		return path+hostname+pathname;
 	}
 	</script>
+	
+	<script>
+  var submitBtn = document.querySelector(".btn btn-primary mr-2");
+  var pswd1 = document.getElementById("mng_password");
+  var pswd2 = document.getElementById("mng_cnf_password");
+  
+  function FsubmitBtn(value) {
+		if(pswd1 !== "" || pswd2 !== "") {
+	  		if(pswd1.value!=pswd2.value) {
+			alert("è¼¸å…¥çš„å¯†ç¢¼ä¸ä¸€è‡´ï¼");
+			pswd2.focus();
+			return false;
+			}
+		} else if(pswd1 === "" || pswd2 === ''){
+			alert("å¯†ç¢¼å¿…é ˆå¡«å¯«");
+			return false;
+		}else {
+			alert("true");
+		return true;
+		}
+		}
+		
+	submitBtn.addEventListener("click", FsubmitBtn);
+  </script>
+	
 	<script src="../vendors/js/vendor.bundle.base.js"></script>
 	<!-- endinject -->
 	<!-- Plugin js for this page-->

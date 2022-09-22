@@ -1,9 +1,9 @@
-* {
-  margin: 0px auto;
-  padding: 0px;
-  text-align: center;
-font-family: 'Lato', sans-serif;
-}
+/* * { */
+/*   margin: 0px auto; */
+/*   padding: 0px; */
+/*   text-align: center; */
+/* font-family: 'Lato', sans-serif; */
+/* } */
 
 .cotn_principal {
   position: absolute;
@@ -23,7 +23,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfd8dc', end
   position: relative;
   float: left;
    width: 100%;
-      
+      margin-top: -80px;
 }
 
 .cont_login {

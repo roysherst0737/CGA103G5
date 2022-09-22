@@ -54,7 +54,7 @@
         <div class="content-wrapper">
           <div class="row">
             <div class="col-md-6 grid-margin stretch-card" style="margin: auto;">
-              <div class="card" style="margin: auto;">
+              <div class="card" style="margin: auto; border-radius: 15px;">
                 <div class="card-body">
                   <h4 class="card-title">管理員資料修改</h4>
                   <p class="card-description">

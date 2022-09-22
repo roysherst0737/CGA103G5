@@ -71,7 +71,7 @@ public class ManagerLogin extends HttpServlet {
 				if (manager_dao.mngLogin(manager_VO)) {
 					HttpSession session = req.getSession();
 					 session.setAttribute("mng_account", mng_account);
-					res.sendRedirect("mngSuc.jsp");
+					res.sendRedirect("../index_back.html");
 				} else {
 					HttpSession session = req.getSession();
 					session.setAttribute("user", mng_account);

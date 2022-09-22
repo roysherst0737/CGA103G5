@@ -23,5 +23,9 @@ public class Manager_auth_VO implements Serializable {
 	public void setMng_authfunc_no(Integer mng_authfunc_no) {
 		this.mng_authfunc_no = mng_authfunc_no;
 	}
-
+	public Manager_authfunc_VO getOneManager_authfunc_name() {
+		Manager_authfunc_Service manager_authfuncSvc = new Manager_authfunc_Service();
+		Manager_authfunc_VO manager_authfunc_VO = manager_authfuncSvc.getOneManager_authfunc(mng_authfunc_no);
+		return manager_authfunc_VO;
+	}
 }

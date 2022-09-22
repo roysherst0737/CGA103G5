@@ -65,39 +65,27 @@
 						<thead>
 							<tr>
 								<th>酒吧編號</th>
-								<th>酒吧名稱</th>
-								<th>酒吧狀態</th>
-								<th>可容納人數</th>
-								<th>平均星數</th>
-								<th>評價總人數</th>
-								<th>酒吧地址</th>
-								<th>設定</th>
+								<th>會員編號</th>
+								<th>預約日期</th>
+								<th>預約時段</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="pubVO" items="${pubList}">
+							<c:forEach var="bookList" items="${bookList}">
 								<tr>
-									<td>${pubVO.pub_no}</td>
-									<td>${pubVO.pub_name}</td>
-									<td>${pubVO.pub_status?"上架":"下架"}</td>
-									<td>${pubVO.pub_nop}</td>
-									<td>${pubVO.pub_rate_sum}</td>
-									<td>${pubVO.pub_ratetotal}</td>
-									<td>${pubVO.pub_address}</td>
-									<td>${pubVO.pub_no}</td>
+									<td>${bookList.pub_no}</td>
+									<td>${bookList.mem_no}</td>
+									<td>${bookList.pub_booking_date}</td>
+									<td class="td_time">${bookList.pub_booking_time}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
 						<tfoot>
 							<tr>
 								<th>酒吧編號</th>
-								<th>酒吧名稱</th>
-								<th>酒吧狀態</th>
-								<th>可容納人數</th>
-								<th>平均星數</th>
-								<th>評價總人數</th>
-								<th>酒吧地址</th>
-								<th>設定</th>
+								<th>會員編號</th>
+								<th>預約日期</th>
+								<th>預約時段</th>
 							</tr>
 						</tfoot>
 					</table>
@@ -153,6 +141,45 @@
 	<script src="<%=request.getContextPath()%>/back-end/js/dashboard.js"></script>
 	<script
 		src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<script>
+		(window.onload = function() {
+			document.querySelectorAll('.td_time').forEach(e=>{
+				e.textContent=getDate(e.textContent);
+			});
+			function getDate(m) {
+				//		暫時不會有多時段
+				let str = "";
+				let check = false;
+				let total = "";
+				for (i = 0; i < 24; i++) {
+					let aa = m.substring(3 * i, 3 * (i + 1));
+					if (aa === "000" && check) {
+						if (i < 9) {
+							str += "0" + i + ":00";
+						} else {
+							str += i + ":00";
+						}
+						break;
+					} else if (aa !== "000") {
+						if (i < 9) {
+							str += "0" + i + ":00~";
+							check = !check;
+							total = aa;
+						} else {
+							str += i + ":00~";
+							check = !check;
+							total = aa;
+						}
+					}
+					if (i == 23) {
+						str += "24:00"
+					}
+				}
+				str += "人數:" + total + "  人";
+				return str;
+			}
+		});
+	</script>
 	<!-- End custom js for this page-->
 </body>
 

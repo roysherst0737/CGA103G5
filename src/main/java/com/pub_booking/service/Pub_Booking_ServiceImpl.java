@@ -64,4 +64,9 @@ public class Pub_Booking_ServiceImpl implements Pub_Booking_Service {
 	public List<Pub_Booking> getPubALL(Integer pub_no) {
 		return dao.getListBypub(pub_no);
 	}
+
+	@Override
+	public List<Pub_Booking> getAll() {
+		return dao.selectAll();
+	}
 }

@@ -35,8 +35,8 @@ public class Pub_Booking_DAOImpl implements Pub_Booking_DAO{
 
 	@Override
 	public List<Pub_Booking> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		final String sql = "FROM Pub_Booking";
+		return getSession().createQuery(sql, Pub_Booking.class).list();
 	}
 
 	@Override

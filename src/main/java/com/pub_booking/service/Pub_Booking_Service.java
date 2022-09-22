@@ -11,4 +11,5 @@ public interface Pub_Booking_Service extends CoreService{
 	Integer InserBooking(Pub_Booking pub_Booking);
 	List<Pub_Booking> getMemALL(Integer mem_no);
 	List<Pub_Booking> getPubALL(Integer pub_no);
+	List<Pub_Booking> getAll();
 }

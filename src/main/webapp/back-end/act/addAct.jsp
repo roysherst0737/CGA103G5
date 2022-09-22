@@ -148,9 +148,7 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 												</tr>
 												<tr>
 													<td>活動敘述:</td>
-													<td><textarea name="act_detail" cols="46" rows="10">
-													<%=(actVO == null) ? "" : actVO.getAct_detail()%>
-													</textarea></td>
+													<td><textarea name="act_detail" cols="46" rows="10"><%=(actVO == null) ? "" : actVO.getAct_detail()%></textarea></td>
 												</tr>
 
 												<tr>

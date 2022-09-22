@@ -1,7 +1,8 @@
 package com.firm_survey.model;
 
-import java.sql.Timestamp;
+
 import java.util.List;
+import java.util.Set;
 
 public class Firm_survey_Service {
 
@@ -44,6 +45,10 @@ public class Firm_survey_Service {
 
 	public List<Firm_survey_VO> getAll() {
 		return dao.getAll();
+	}
+
+	public Set<Integer> getAll_from_act_no(Integer act_no) {
+		return dao.getAll_from_act_no(act_no);
 	}
 
 }

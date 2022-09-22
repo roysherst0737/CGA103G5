@@ -140,28 +140,28 @@ Act_sign_up_VO act_sign_upVO = (Act_sign_up_VO) request.getAttribute("act_sign_u
 												<tr>
 													<td>報名編號:</td>
 													<td><input type="TEXT" name="sign_up_no" size="45"
-														value="<%=(act_sign_upVO == null) ? "" : act_sign_upVO.getSign_up_no()%>" /></td>
+														value="<%=(act_sign_upVO == null) ? "" : act_sign_upVO.getSign_up_no()%>"></td>
 												</tr>
 												<tr>
 													<td>活動編號:</td>
 													<td><input type="TEXT" name="act_no" size="45"
-														value="<%=(act_sign_upVO == null) ? "" : act_sign_upVO.getAct_no()%>" /></td>
+														value="<%=(act_sign_upVO == null) ? "" : act_sign_upVO.getAct_no()%>"></td>
 												</tr>
 												<tr>
 													<td>會員編號:</td>
 													<td><input type="TEXT" name="mem_no" size="45"
-														value="<%=(act_sign_upVO == null) ? "" : act_sign_upVO.getMem_no()%>" /></td>
+														value="<%=(act_sign_upVO == null) ? "" : act_sign_upVO.getMem_no()%>"></td>
 												</tr>
 												<tr>
 													<td>報名時間:</td>
 													<td><input name="sign_up_time" id="f_date1"
-														type="text"></td>
+														type="text" value="<%=(act_sign_upVO == null) ? "" : act_sign_upVO.getSign_up_time()%>"></td>
 												</tr>
 												<tr>
 													<td>攜伴人數:</td>
 													<td><input type="TEXT" name="accompany_count"
 														size="45"
-														value="<%=(act_sign_upVO == null) ? "" : act_sign_upVO.getAccompany_count()%>" /></td>
+														value="<%=(act_sign_upVO == null) ? "" : act_sign_upVO.getAccompany_count()%>"></td>
 												</tr>
 											</table>
 

@@ -15,11 +15,9 @@ Act_Service actSvc = new Act_Service();
 Act_VO actVO = actSvc.getOneAct(Integer.parseInt(request.getQueryString()));
 request.setAttribute("actVO", actVO);
 
-
 Act_pic_Service act_picSvc = new Act_pic_Service();
 List<Act_pic_VO> act_picList = act_picSvc.get_from_act_no(actVO.getAct_no());
 pageContext.setAttribute("act_picList", act_picList);
-
 
 Object Objuser = session.getAttribute("user");
 Mem_VO user = (Mem_VO) Objuser;
@@ -30,13 +28,16 @@ if (user != null) {
 	pageContext.setAttribute("set", set);
 }
 
-
 Prod_Service prodSvc = new Prod_Service();
 List<Prod_VO> list = prodSvc.getAll();
 pageContext.setAttribute("list", list);
 
 String url = request.getRequestURL().toString() + "?" + request.getQueryString();
 session.setAttribute("url", url);
+
+int i = 0;
+int j = 0;
+String[] numberArr = { "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth" };
 %>
 
 
@@ -130,30 +131,14 @@ session.setAttribute("url", url);
 										alt="First slide" width="400" height="400">
 								</c:forEach>
 							</div>
-							<c:if test="${act_picList.size() > 1}">
+
+							<c:forEach var="act_picVO" items="${act_picList}" begin="1">
 								<div class="carousel-item">
-									<c:forEach var="act_picVO" items="${act_picList}" begin="1"
-										end="1">
-										<img class="d-block w-100"
-											src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
-											alt="Second slide" width="400" height="400">
-									</c:forEach>
+									<img class="d-block w-100"
+										src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
+										alt="<%=numberArr[i++]%> slide" width="400" height="400">
 								</div>
-							</c:if>
-
-							<c:if test="${act_picList.size() > 2}">
-								<div class="carousel-item">
-									<c:forEach var="act_picVO" items="${act_picList}" begin="2"
-										end="2">
-										<img class="d-block w-100"
-											src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
-											alt="Third slide" width="400" height="400">
-									</c:forEach>
-								</div>
-							</c:if>
-
-
-
+							</c:forEach>
 
 
 						</div>
@@ -167,31 +152,13 @@ session.setAttribute("url", url);
 
 
 						<ol class="carousel-indicators">
-							<li data-target="#carousel-example-1" data-slide-to="0"
-								class="active"><c:forEach var="act_picVO"
-									items="${act_picList}" begin="0" end="0">
-									<img class="d-block w-100 img-fluid"
-										src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
-										alt="" />
-								</c:forEach></li>
+							<c:forEach var="act_picVO" items="${act_picList}">
+								<li data-target="#carousel-example-1" data-slide-to="<%=j++%>"
+									class="active"><img class="d-block w-100 img-fluid"
+									src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
+									alt="" /></li>
+							</c:forEach>
 
-							<c:if test="${act_picList.size() > 1}">
-								<li data-target="#carousel-example-1" data-slide-to="1"><c:forEach
-										var="act_picVO" items="${act_picList}" begin="1" end="1">
-										<img class="d-block w-100 img-fluid"
-											src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
-											alt="" />
-									</c:forEach></li>
-							</c:if>
-
-							<c:if test="${act_picList.size() > 2}">
-								<li data-target="#carousel-example-1" data-slide-to="2"><c:forEach
-										var="act_picVO" items="${act_picList}" begin="2" end="2">
-										<img class="d-block w-100 img-fluid"
-											src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
-											alt="" />
-									</c:forEach></li>
-							</c:if>
 						</ol>
 					</div>
 				</div>
@@ -213,22 +180,30 @@ session.setAttribute("url", url);
 						</h4>
 						<h4>
 							報名開始時間 ☞
-							<%String time = actVO.getSign_up_begin_time().toString();%>
+							<%
+						String time = actVO.getSign_up_begin_time().toString();
+						%>
 							<span id="begin"><%=time.toString().substring(0, time.length() - 5)%></span>
 						</h4>
 						<h4>
 							報名結束時間 ☞
-							<%time = actVO.getSign_up_end_time().toString();%>
+							<%
+						time = actVO.getSign_up_end_time().toString();
+						%>
 							<span id="end"><%=time.toString().substring(0, time.length() - 5)%></span>
 						</h4>
 						<h4>
 							活動開始時間 ☞
-							<%time = actVO.getAct_start_time().toString();%>
+							<%
+						time = actVO.getAct_start_time().toString();
+						%>
 							<%=time.toString().substring(0, time.length() - 5)%>
 						</h4>
 						<h4>
 							活動結束時間 ☞
-							<%time = actVO.getAct_end_time().toString();%>
+							<%
+						time = actVO.getAct_end_time().toString();
+						%>
 							<%=time.toString().substring(0, time.length() - 5)%>
 						</h4>
 
@@ -261,7 +236,7 @@ session.setAttribute("url", url);
 											<c:when test="${empty sessionScope.user}">
 												<input type="button" value="我要報名" onclick="confirmTest0()" />
 											</c:when>
-											
+
 											<c:otherwise>
 
 												<c:choose>

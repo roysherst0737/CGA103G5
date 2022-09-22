@@ -1,28 +1,20 @@
-<%@ page import="org.hibernate.internal.build.AllowSysOut"%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-	isELIgnored="false"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.question_list.model.*"%>
 <%@ page import="com.question.model.*"%>
+<%@ page import="com.mem.model.*"%>
 
 <%
 Question_list_Service question_listSvc = new Question_list_Service();
 List<Question_list_VO> list = question_listSvc.getAllFromFirmSurveyNo(Integer.parseInt(request.getQueryString()));
 pageContext.setAttribute("list", list);
 
-String selected_question_no = "";
-for (int i = 0; i < list.size(); i++) {
-	Question_list_VO abc = list.get(i);
-	selected_question_no += (abc.getQuestion_no());
-}
+int i = 1;
+int j = 1;
 
-String url = request.getContextPath();
-url += "/back-end/question_list/addQuestion_list.jsp?";
-url += Integer.parseInt(request.getQueryString());
-url += selected_question_no;
-pageContext.setAttribute("url", url);
-
+Object Objuser = session.getAttribute("user");
+Mem_VO user = (Mem_VO) Objuser;
 %>
 
 <!DOCTYPE html>
@@ -56,6 +48,7 @@ pageContext.setAttribute("url", url);
 			.lastIndexOf("/"));
 	path = path.substring(0, path.lastIndexOf("/"));
 </script>
+
 </head>
 
 <body>
@@ -94,15 +87,15 @@ pageContext.setAttribute("url", url);
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
 										<button style="margin-right: 10px;">
-											<a href="<%=request.getContextPath()%>/back-end/firm_survey/listAllFirm_survey.jsp"><img
+											<a href="listAllFirm_survey.jsp"><img
 												src="./images/home.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right: 10px;">
-											<a href="<%=request.getContextPath()%>/back-end/firm_survey/addFirm_survey.jsp"><img src="./images/plus.png"
+											<a href='addFirm_survey.jsp'><img src="./images/plus.png"
 												width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right: 10px;">
-											<a href="<%=request.getContextPath()%>/back-end/firm_survey/selectFirm_survey.jsp"><img
+											<a href="selectFirm_survey.jsp"><img
 												src="./images/search2.png" width="30px" height="30px"></a>
 										</button>
 										<button
@@ -139,56 +132,37 @@ pageContext.setAttribute("url", url);
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<jsp:useBean id="prod_picSvc" scope="page"
-										class="com.prod_pic.model.Prod_pic_Service" />
-									<jsp:useBean id="prod_typeSvc" scope="page"
-										class="com.prod_type.model.Prod_type_Service" />
-									<h4 class="card-title">問卷題目管理</h4>
-									<form>		
-								
-										<input type="button" value="新增問題"
-											onclick="location.href='<%=url%>'">
-									</form>
+
+									<h4 class="card-title">活動問卷管理</h4>
 
 
-									<table id="dataTables" class="stripe table-hover"
-										style="width: 100%; font-size: 12px">
-										<thead style="width: 100%; font-size: 13px">
-											<tr>
-												<th>題目編號</th>
-												<th>問題內容</th>
-												<th>刪除</th>
-											</tr>
-										</thead>
-										<tbody>
 
+									<FORM METHOD="post" ACTION="ans_list.do" name="form1"
+										id="google-form" class="contact100-form validate-form">
+										<table id="dataTables" class="stripe table-hover"
+											style="width: 100%">
 											<c:forEach var="question_listVO" items="${list}">
+												<label class="label-input100" for="message">${question_listVO.questionVO.que}</label>
+												<div class="wrap-input100"
+													data-validate="Message is required">
+													<textarea name="ans<%=i++%>" id="message" class="input100"
+														placeholder="Write your answer" rows="8" cols="46"></textarea>
+													<span class="focus-input100"></span>
 
-												<tr>
-													<td>${question_listVO.question_no}</td>
-													<td>${question_listVO.questionVO.que}</td>
-
-													<td>
-														<FORM METHOD="post"
-															ACTION="<%=request.getContextPath()%>/back-end/question_list/question_list.do"
-															style="margin-bottom: 0px;">
-															<input type="submit" value="刪除"> <input
-																type="hidden" name="question_no"
-																value="${question_listVO.question_no}"> <input
-																type="hidden" name="firm_survey_no"
-																value="${question_listVO.firm_survey_no}"> <input
-																type="hidden" name="queryString"
-																value="<%=Integer.parseInt(request.getQueryString())%>">
-
-															<input type="hidden" name="action" value="delete">
-														</FORM>
-													</td>
-												</tr>
+												</div>
+												<input type="hidden" name="question_no<%=j++%>"
+													value="${question_listVO.questionVO.question_no}">
 											</c:forEach>
-									</table>
+										</table>
+										<input type="hidden" name="action" value="insert"> <input
+											type="hidden" name="firm_survey_no"
+											value="<%=Integer.parseInt(request.getQueryString())%>">
+										<input type="hidden" name="mem_no" value="${user.mem_no}">
+										<input type="hidden" name="question_amount" value="<%=i - 1%>">
+										<input type="submit" value="送出">
+									</FORM>
 
-									</tbody>
-									</table>
+
 								</div>
 							</div>
 						</div>

@@ -160,7 +160,7 @@ pageContext.setAttribute("queryStringSplit1", queryStringSplit1);
 																			test="${queryStringSplit1.contains(questionVO.question_no.toString()) }">
 																		</c:when>
 																		<c:otherwise>
-																			<option value="${questionVO.question_no}">${questionVO.que}
+																			<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
 																		</c:otherwise>
 																	</c:choose>
 																</c:forEach>
@@ -176,7 +176,7 @@ pageContext.setAttribute("queryStringSplit1", queryStringSplit1);
 																			test="${queryStringSplit1.contains(questionVO.question_no.toString()) }">								
 																		</c:when>
 																		<c:otherwise>
-																			<option value="${questionVO.question_no}">${questionVO.que}
+																			<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
 																		</c:otherwise>
 																	</c:choose>
 																</c:forEach>
@@ -192,7 +192,7 @@ pageContext.setAttribute("queryStringSplit1", queryStringSplit1);
 																			test="${queryStringSplit1.contains(questionVO.question_no.toString()) }">
 																		</c:when>
 																		<c:otherwise>
-																			<option value="${questionVO.question_no}">${questionVO.que}
+																			<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
 																		</c:otherwise>
 																	</c:choose>
 																</c:forEach>
@@ -208,7 +208,7 @@ pageContext.setAttribute("queryStringSplit1", queryStringSplit1);
 																			test="${queryStringSplit1.contains(questionVO.question_no.toString()) }">
 																		</c:when>
 																		<c:otherwise>
-																			<option value="${questionVO.question_no}">${questionVO.que}
+																			<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
 																		</c:otherwise>
 																	</c:choose>
 																</c:forEach>
@@ -224,7 +224,7 @@ pageContext.setAttribute("queryStringSplit1", queryStringSplit1);
 																			test="${queryStringSplit1.contains(questionVO.question_no.toString()) }">
 																		</c:when>
 																		<c:otherwise>
-																			<option value="${questionVO.question_no}">${questionVO.que}
+																			<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
 																		</c:otherwise>
 																	</c:choose>
 																</c:forEach>

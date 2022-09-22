@@ -21,6 +21,7 @@ List<Prod_VO> list = prodSvc.getAll();
 pageContext.setAttribute("list", list);
 String url = request.getRequestURL().toString() + "?" + request.getQueryString();
 session.setAttribute("url", url);
+
 %>
 
 <!DOCTYPE html>
@@ -97,6 +98,7 @@ session.setAttribute("url", url);
 									<th>攜伴人數</th>
 									<th>報名時間</th>
 									<th>取消報名</th>
+									<th>查看問卷</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -121,8 +123,16 @@ session.setAttribute("url", url);
 													type="hidden" name="action" value="delete">
 											</FORM>
 										</td>
-
-
+								
+                                     <td class="survey">
+                                     
+                                     
+                                     <input type="button" value="查看" onclick="location.href='<%=request.getContextPath()%>/front-end/act/survey.jsp?${act_sign_upVO.act_no}'">
+                                     </td>
+                                     
+                                 
+                                     
+                                      </FORM>
 									</tr>
 								</c:forEach>
 							</tbody>

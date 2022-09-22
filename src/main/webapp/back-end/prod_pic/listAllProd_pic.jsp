@@ -122,6 +122,10 @@
 								<div class="card-body">
 									<h4 class="card-title">商品圖片管理</h4>
 										<table id="dataTables" class="stripe table-hover" style="width: 100%">
+										<div>
+										<%@ include file="page1.file"%>
+										</div>
+										<br>
 											<thead>
 												<tr>
 													<th>商品照片編號</th>
@@ -132,9 +136,7 @@
 													<th>刪除</th>
 												</tr>
 											</thead>
-											<%@ include file="page1.file"%>
 											<c:forEach var="prod_picVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-											<br>
 												<tr>
 													<td>${prod_picVO.prod_pic_no}</td>
 													<td>${prod_picVO.prod_no}-[${prod_picVO.getProd_VO().prod_name}]</td>

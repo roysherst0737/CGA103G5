@@ -128,6 +128,10 @@ pageContext.setAttribute("list", list);
 									<h4 class="card-title">商品清單管理</h4>
 									<table id="dataTables" class="stripe table-hover" style="width: 100%; font-size: 12px">
 										<thead style="width: 100%; font-size: 13px">
+										<div>
+										<%@ include file="page1.file"%>
+										</div>
+										<br>
 											<tr>
 												<th>商品編號</th>
 												<th>商品種類</th>
@@ -142,8 +146,8 @@ pageContext.setAttribute("list", list);
 												<th>商品管理</th>
 											</tr>
 										</thead>
-										<tbody>
-											<c:forEach var="prodVO" items="${list}">
+										<tbody>										
+											<c:forEach var="prodVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">											
 												<tr>
 													<td>${prodVO.prod_no}</td>
 													<td>${prodVO.getProd_type_VO().prod_type_name}</td>
@@ -185,6 +189,7 @@ pageContext.setAttribute("list", list);
 											</c:forEach>
 										</tbody>
 									</table>
+									<%@ include file="page2.file"%>
 								</div>
 							</div>
 						</div>

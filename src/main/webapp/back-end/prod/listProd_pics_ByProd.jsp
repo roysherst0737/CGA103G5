@@ -128,7 +128,6 @@
 													<th>刪除</th>
 												</tr>
 											</thead>
-											<br>
 											<c:forEach var="prod_picVO" items="${listProd_pics_ByProd}" >
 												<tr>
 													<td>${prod_picVO.prod_pic_no}</td>

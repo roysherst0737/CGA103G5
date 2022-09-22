@@ -15,5 +15,7 @@ public interface Order_DAO_interface {
     public Set<Order_detail_VO> getOrder_detailsByOrder(Integer order_no);
     
     public Set<Integer> getCreateOrder(Integer mem_no);
+    
+    public void changeStatus(Order_VO orderVO);
 
 }

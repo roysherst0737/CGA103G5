@@ -100,8 +100,9 @@ session.setAttribute("url", url);
             <div class="row">
                 <div class="col-lg-12">
                     <div class="table-main table-responsive">
-						<table id="dataTables" class="stripe table-hover" style="width: 100%">																
-								<tr>
+						<table id="dataTables" class="stripe table-hover" style="width: 100%; font-size: 12px">
+							<thead>																
+								<tr style="font-size:20px">
 									<th>訂單編號</th>
 									<th>商品名稱</th>
 									<th>商品照片</th>											
@@ -109,13 +110,14 @@ session.setAttribute("url", url);
 									<th>商品單價</th>
 									<th>商品總額</th>
 								</tr>
+							</thead>
 							<c:forEach var="order_detailVO" items="${listFrontOrder_details}" >
 								<tr>
 									<td>${order_detailVO.order_no}</td>
 									<td>${order_detailVO.getProd_VO().prod_name}</td>
 									<td><img
 										src="<%=request.getContextPath()%>/ShowProd_picForProd?prod_no=${order_detailVO.getProd_pic_VO().prod_pic_no}"
-										width=110px height=75px></td>
+										width=200px height=120px></td>
 									<td>${order_detailVO.prod_qty}</td>
 									<td>${order_detailVO.prod_price}</td>
 									<td>${order_detailVO.prod_qty * order_detailVO.prod_price}</td>

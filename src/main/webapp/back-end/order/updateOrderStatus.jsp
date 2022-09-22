@@ -4,7 +4,7 @@
 <%@ page import="com.order.model.*"%>
 
 <%
-Order_VO orderVO = (Order_VO) request.getAttribute("orderVO");
+	Order_VO orderVO = (Order_VO) request.getAttribute("orderVO");
 %>
 
 <!DOCTYPE html>
@@ -75,11 +75,13 @@ Order_VO orderVO = (Order_VO) request.getAttribute("orderVO");
 							<div class="d-flex align-items-center justify-content-md-end">
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
-										<button style="margin-right:10px;">
-										<a href="listAllOrder.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
+										<button style="margin-right: 10px;">
+											<a href="listAllOrder.jsp"><img
+												src="./images/home.png" width="30px" height="30px"></a>
 										</button>
-										<button style="margin-right:10px;">
-										<a href="selectOrder.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
+										<button style="margin-right: 10px;">
+											<a href="selectOrder.jsp"><img src="./images/search2.png"
+												width="30px" height="30px"></a>
 										</button>
 										<button
 											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
@@ -115,90 +117,50 @@ Order_VO orderVO = (Order_VO) request.getAttribute("orderVO");
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">訂單查詢結果</h4>
-									<table id="dataTables" class="stripe table-hover"
-										style="width: 100%">
+									<h4 class="card-title">訂單狀態</h4>
+									<div class="table-responsive">
+										<%-- 錯誤表列 --%>
+										<c:if test="${not empty errorMsgs}">
+											<font style="color: red">請修正以下錯誤:</font>
+											<ul>
+												<c:forEach var="message" items="${errorMsgs}">
+													<li style="color: red">${message}</li>
+												</c:forEach>
+											</ul>
+										</c:if>																				
+										
+										<FORM METHOD="post" ACTION="order.do" name="form1">
+											<table class="table table-striped">
 
-										<tr>
-											<th>訂單編號</th>
-											<th>會員編號</th>
-											<th>訂單建立時間</th>
-											<th>訂單總金額</th>
-											<th>優惠後金額</th>
-											<th>訂單狀態</th>
-											<th>付款方式</th>
-											<th>取貨方式</th>
-											<th>運費</th>
-											<th>取貨人姓名</th>
-											<th>取貨人地址</th>
-											<th>取貨人電話</th>
-											<th>訂單明細</th>
-										</tr>
-										<tr>
-											<td>${orderVO.order_no}</td>
-											<td>${orderVO.mem_no}</td>
-											<td>${orderVO.order_time}</td>
-											<td>${orderVO.order_price_total}</td>
-											<td>${orderVO.dis_price_total}</td>
-											<td>
-												<c:if test="${orderVO.order_status == 0}">
-													<div>未出貨</div>
-												</c:if>
-												<c:if test="${orderVO.order_status == 1}">
-													<div>已出貨</div>
-												</c:if>
-												<c:if test="${orderVO.order_status == 2}">
-													<div>已完成</div>
-												</c:if>
-												<c:if test="${orderVO.order_status == 3}">
-													<div>取消</div>
-												</c:if>
-											</td>
-											<td>
-												<c:if test="${orderVO.payment_method == 0}">
-													<div>貨到付款</div>
-												</c:if>
-												<c:if test="${orderVO.payment_method == 1}">
-													<div>信用卡</div>
-												</c:if>
-											</td>
-											<td>
-												<c:if test="${orderVO.pickup_method == 0}">
-													<div>宅配</div>
-												</c:if>
-												<c:if test="${orderVO.pickup_method == 1}">
-													<div>7-11</div>
-												</c:if>
-												<c:if test="${orderVO.pickup_method == 2}">
-													<div>全家</div>
-												</c:if>
-											</td>
-											<td>
-												<c:if test="${orderVO.shipping_fee == 0}">
-													<div>免運</div>
-												</c:if>
-												<c:if test="${orderVO.shipping_fee == 1}">
-													<div>超商60元</div>
-												</c:if>
-												<c:if test="${orderVO.shipping_fee == 2}">
-													<div>宅配100元</div>
-												</c:if>
-											</td>
-											<td>${orderVO.receiver_name}</td>
-											<td>${orderVO.receiver_address}</td>
-											<td>${orderVO.receiver_phone}</td>
-											<td>
-												<FORM METHOD="post"
-													ACTION="<%=request.getContextPath()%>/back-end/order/order.do"
-													style="margin-bottom: 0px;">
-													<input type="submit" value="查詢"> <input
-														type="hidden" name="order_no"
-														value="${orderVO.order_no}"> <input
-														type="hidden" name="action" value="listOrder_details_ByOrder">
-												</FORM>
-											</td>
-										</tr>
-									</table>
+												<tr>
+													<td>商品狀態:</td>
+													<td>
+													<input type="radio" name="order_status" size="45" id="on"
+														value=0 checked/>
+														<label for="on">未出貨</label>
+													<br>
+													<input type="radio" name="order_status" size="45" id="off"
+														value=1 />
+														<label for="off">已出貨</label>
+													<br>
+													<input type="radio" name="order_status" size="45" id="off"
+														value=2 />
+														<label for="off">已完成</label>
+													<br>
+													<input type="radio" name="order_status" size="45" id="off"
+														value=3 />
+														<label for="off" style="color: red;">取消</label>
+													</td>
+												</tr>
+												
+											</table>
+
+											<br> <input type="hidden" name="action" value="changeStatus">
+											<input type="hidden" name="order_no"
+												value="<%=orderVO.getOrder_no()%>"> <input
+												type="submit" value="送出修改">
+										</FORM>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -206,10 +168,15 @@ Order_VO orderVO = (Order_VO) request.getAttribute("orderVO");
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
+				<!-- 引入footer 用JQ方式 -->
 				<footer class="footer"></footer>
 				<script>
 					$(function() {
-						$(".footer").load("../partials/_footer.html");
+						$(".footer").load(
+								window.location.pathname.substring(0,
+										window.location.pathname
+												.indexOf('/', 2))
+										+ "/back-end/partials/_footer.html");
 					});
 				</script>
 				<!-- partial -->
@@ -220,32 +187,58 @@ Order_VO orderVO = (Order_VO) request.getAttribute("orderVO");
 	</div>
 	<!-- container-scroller -->
 	<!-- base:js -->
-
-	<script>
-		function getContextPath() {
-			return window.location.pathname.substring(0,
-					window.location.pathname.indexOf('/', 2));
-		}
-	</script>
-	<script src="../vendors/js/vendor.bundle.base.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/back-end/vendors/js/vendor.bundle.base.js"></script>
 	<!-- endinject -->
 	<!-- Plugin js for this page-->
 	<!-- End plugin js for this page-->
 	<!-- inject:js -->
-	<script src="../js/off-canvas.js"></script>
-	<script src="../js/hoverable-collapse.js"></script>
-	<script src="../js/template.js"></script>
-	<script src="../js/settings.js"></script>
-	<script src="../js/todolist.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/off-canvas.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/back-end/js/hoverable-collapse.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/template.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/settings.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/todolist.js"></script>
 	<!-- endinject -->
 	<!-- plugin js for this page -->
-	<script src="../vendors/progressbar.js/progressbar.min.js"></script>
-	<script src="../vendors/chart.js/Chart.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/back-end/vendors/progressbar.js/progressbar.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/back-end/vendors/chart.js/Chart.min.js"></script>
 	<!-- End plugin js for this page -->
 	<!-- Custom js for this page-->
 
-	<script src="../js/dashboard.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/dashboard.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 	<!-- End custom js for this page-->
 </body>
 
+<!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
+
+<!-- 參考網站: https://xdsoft.net/jqplugins/datetimepicker/ -->
+
+<link rel="stylesheet" type="text/css"
+	href="datetimepicker/jquery.datetimepicker.css" />
+<script src="datetimepicker/jquery.js"></script>
+<script src="datetimepicker/jquery.datetimepicker.full.js"></script>
+
+<style>
+.xdsoft_datetimepicker .xdsoft_datepicker {
+	width: 300px; /* width:  300px; */
+}
+
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
+	height: 151px; /* height:  151px; */
+}
+</style>
+
+<script>
+	$.datetimepicker.setLocale('zh'); // kr ko ja en
+	$('#offTime').datetimepicker({
+		theme: '',
+		timepicker:true,
+		format : 'Y-m-d H:i:s',
+	});
+</script>
 </html>

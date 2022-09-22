@@ -8,7 +8,6 @@ public class Order_VO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer order_no;
 	private Integer mem_no;
-	private Integer coupon_no;
 	private Timestamp order_time;
 	private Integer order_price_total;
 	private Integer dis_price_total;
@@ -31,12 +30,6 @@ public class Order_VO implements Serializable {
 	}
 	public void setMem_no(Integer mem_no) {
 		this.mem_no = mem_no;
-	}
-	public Integer getCoupon_no() {
-		return coupon_no;
-	}
-	public void setCoupon_no(Integer coupon_no) {
-		this.coupon_no = coupon_no;
 	}
 	public Timestamp getOrder_time() {
 		return order_time;

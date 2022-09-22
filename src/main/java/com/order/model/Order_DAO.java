@@ -31,19 +31,21 @@ public class Order_DAO implements Order_DAO_interface{
 	}
 
 	private static final String INSERT_STMT = 
-		"INSERT INTO `order` (mem_no,coupon_no,order_price_total,dis_price_total,order_status,payment_method,pickup_method,shipping_fee,receiver_name,receiver_address,receiver_phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		"INSERT INTO `order` (mem_no,order_price_total,dis_price_total,payment_method,pickup_method,shipping_fee,receiver_name,receiver_address,receiver_phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
-		"SELECT order_no,mem_no,coupon_no,order_time,order_price_total,dis_price_total,order_status,payment_method,pickup_method,shipping_fee,receiver_name,receiver_address,receiver_phone FROM `order` order by order_no";
+		"SELECT order_no,mem_no,order_time,order_price_total,dis_price_total,order_status,payment_method,pickup_method,shipping_fee,receiver_name,receiver_address,receiver_phone FROM `order` order by order_no";
 	private static final String GET_ONE_STMT = 
-		"SELECT order_no,mem_no,coupon_no,order_time,order_price_total,dis_price_total,order_status,payment_method,pickup_method,shipping_fee,receiver_name,receiver_address,receiver_phone FROM `order` where order_no = ?";
+		"SELECT order_no,mem_no,order_time,order_price_total,dis_price_total,order_status,payment_method,pickup_method,shipping_fee,receiver_name,receiver_address,receiver_phone FROM `order` where order_no = ?";
 	private static final String DELETE = 
 		"DELETE FROM `order` where order_no = ?";
 	private static final String UPDATE = 
-		"UPDATE `order` set mem_no=?, coupon_no=?, order_time=?, order_price_total=?, dis_price_total=?, order_status=?, payment_method=?, pickup_method=?, shipping_fee=?, receiver_name=?, receiver_address=?, receiver_phone=? where order_no = ?";
+		"UPDATE `order` set mem_no=?, order_time=?, order_price_total=?, dis_price_total=?, order_status=?, payment_method=?, pickup_method=?, shipping_fee=?, receiver_name=?, receiver_address=?, receiver_phone=? where order_no = ?";
 	
 	private static final String GET_Order_details_ByOrder_STMT = "SELECT order_no,prod_no,prod_qty,prod_price,mem_no FROM order_detail where order_no = ? order by order_no";
 	
 	private static final String GET_CREATE_ORDER = "SELECT order_no FROM `order` where mem_no = ?";
+	
+	private static final String CHANGE_STATUS = "UPDATE `order` set order_status=? where order_no = ?";
 	
 	@Override
 	public void insert(Order_VO orderVO) {
@@ -56,16 +58,14 @@ public class Order_DAO implements Order_DAO_interface{
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setInt(1, orderVO.getMem_no());
-			pstmt.setInt(2, orderVO.getCoupon_no());
-			pstmt.setInt(3, orderVO.getOrder_price_total());
-			pstmt.setInt(4, orderVO.getDis_price_total());
-			pstmt.setInt(5, orderVO.getOrder_status());
-			pstmt.setInt(6, orderVO.getPayment_method());
-			pstmt.setInt(7, orderVO.getPickup_method());
-			pstmt.setInt(8, orderVO.getShipping_fee());
-			pstmt.setString(9, orderVO.getReceiver_name());
-			pstmt.setString(10, orderVO.getReceiver_address());
-			pstmt.setString(11, orderVO.getReceiver_phone());
+			pstmt.setInt(2, orderVO.getOrder_price_total());
+			pstmt.setInt(3, orderVO.getDis_price_total());
+			pstmt.setInt(4, orderVO.getPayment_method());
+			pstmt.setInt(5, orderVO.getPickup_method());
+			pstmt.setInt(6, orderVO.getShipping_fee());
+			pstmt.setString(7, orderVO.getReceiver_name());
+			pstmt.setString(8, orderVO.getReceiver_address());
+			pstmt.setString(9, orderVO.getReceiver_phone());
 
 			pstmt.executeUpdate();
 
@@ -104,18 +104,56 @@ public class Order_DAO implements Order_DAO_interface{
 
 
 				pstmt.setInt(1, orderVO.getMem_no());
-				pstmt.setInt(2, orderVO.getCoupon_no());
-				pstmt.setTimestamp(3, orderVO.getOrder_time());
-				pstmt.setInt(4, orderVO.getOrder_price_total());
-				pstmt.setInt(5, orderVO.getDis_price_total());
-				pstmt.setInt(6, orderVO.getOrder_status());
-				pstmt.setInt(7, orderVO.getPayment_method());
-				pstmt.setInt(8, orderVO.getPickup_method());
-				pstmt.setInt(9, orderVO.getShipping_fee());
-				pstmt.setString(10, orderVO.getReceiver_name());
-				pstmt.setString(11, orderVO.getReceiver_address());
-				pstmt.setString(12, orderVO.getReceiver_phone());
-				pstmt.setInt(13, orderVO.getOrder_no());
+				pstmt.setTimestamp(2, orderVO.getOrder_time());
+				pstmt.setInt(3, orderVO.getOrder_price_total());
+				pstmt.setInt(4, orderVO.getDis_price_total());
+				pstmt.setInt(5, orderVO.getOrder_status());
+				pstmt.setInt(6, orderVO.getPayment_method());
+				pstmt.setInt(7, orderVO.getPickup_method());
+				pstmt.setInt(8, orderVO.getShipping_fee());
+				pstmt.setString(9, orderVO.getReceiver_name());
+				pstmt.setString(10, orderVO.getReceiver_address());
+				pstmt.setString(11, orderVO.getReceiver_phone());
+				pstmt.setInt(12, orderVO.getOrder_no());
+
+				pstmt.executeUpdate();
+
+				// Handle any SQL errors
+			} catch (SQLException se) {
+				throw new RuntimeException("A database error occured. "
+						+ se.getMessage());
+				// Clean up JDBC resources
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}			
+		}
+	
+	@Override
+	public void changeStatus(Order_VO orderVO) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+
+			try {
+
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(CHANGE_STATUS);
+
+
+				pstmt.setInt(1, orderVO.getOrder_status());
+				pstmt.setInt(2, orderVO.getOrder_no());
 
 				pstmt.executeUpdate();
 
@@ -200,7 +238,6 @@ public class Order_DAO implements Order_DAO_interface{
 				orderVO = new Order_VO();
 				orderVO.setOrder_no(rs.getInt("order_no"));
 				orderVO.setMem_no(rs.getInt("mem_no"));
-				orderVO.setCoupon_no(rs.getInt("coupon_no"));
 				orderVO.setOrder_time(rs.getTimestamp("order_time"));
 				orderVO.setOrder_price_total(rs.getInt("order_price_total"));
 				orderVO.setDis_price_total(rs.getInt("dis_price_total"));
@@ -264,7 +301,6 @@ public class Order_DAO implements Order_DAO_interface{
 				orderVO = new Order_VO();
 				orderVO.setOrder_no(rs.getInt("order_no"));
 				orderVO.setMem_no(rs.getInt("mem_no"));
-				orderVO.setCoupon_no(rs.getInt("coupon_no"));
 				orderVO.setOrder_time(rs.getTimestamp("order_time"));
 				orderVO.setOrder_price_total(rs.getInt("order_price_total"));
 				orderVO.setDis_price_total(rs.getInt("dis_price_total"));

@@ -1,7 +1,6 @@
 package com.order.controller;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -14,9 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.order.model.Order_Service;
+import com.order.model.Order_VO;
 import com.order_detail.model.Order_detail_VO;
-import com.prod.model.Prod_Service;
-import com.prod.model.Prod_VO;
 
 @WebServlet("/front-end/prod/detail.do")
 public class Order_Front_Servlet extends HttpServlet{
@@ -27,6 +25,8 @@ public class Order_Front_Servlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		
+		
 		
 		if ("listFrontOrder_details".equals(action)) {
 
@@ -47,6 +47,8 @@ public class Order_Front_Servlet extends HttpServlet{
 				successView.forward(req, res);
 		}
 		
+		
+		
 		if ("createOrder".equals(action)) {
 			
 			List<String> errorMsgs = new LinkedList<String>();
@@ -55,82 +57,74 @@ public class Order_Front_Servlet extends HttpServlet{
 			req.setAttribute("errorMsgs", errorMsgs);
 
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
+			
+			Integer mem_no = Integer.valueOf(req.getParameter("mem_no").trim());
+			String receiver_name = req.getParameter("receiver_name");
+			String receiver_phone = req.getParameter("receiver_phone");			
+			Integer pickup_method = Integer.valueOf(req.getParameter("pickup_method").trim());			
+			String receiver_address = req.getParameter("receiver_address");
+			Integer payment_method = Integer.valueOf(req.getParameter("payment_method").trim());
+			Integer order_price_total = Integer.valueOf(req.getParameter("order_price_total").trim());
+			Integer dis_price_total = Integer.valueOf(req.getParameter("dis_price_total").trim());
+			Integer shipping_fee = 0;
 
-			Integer prod_type_no = 1;
-			if (prod_type_no == 0) {
-				errorMsgs.add("商品類別編號最小為1");
-			} else {
-				try {
-					prod_type_no = Integer.valueOf(req.getParameter("prod_type_no").trim());
-				} catch (NumberFormatException e) {
-					prod_type_no = 1;
-					errorMsgs.add("商品類別編號請填數字");
-				}
-			}
-					
-			String prod_name = req.getParameter("prod_name");
-			String prod_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
-			if (prod_name == null ||prod_name.trim().length() == 0) {
-				errorMsgs.add("商品名稱: 請勿空白");
-			} else if(!prod_name.trim().matches(prod_nameReg)) {
-				errorMsgs.add("商品名稱: 只能是中、英文字母、數字和底線, 且長度必需在2到10之間");
-            }
-			
-			Integer prod_price = null;
+			Order_VO orderVO = new Order_VO();
+			orderVO.setMem_no(mem_no);			
+			orderVO.setOrder_price_total(order_price_total);
+			orderVO.setDis_price_total(dis_price_total);
+			orderVO.setPayment_method(payment_method);
+			orderVO.setPickup_method(pickup_method);
+			orderVO.setShipping_fee(shipping_fee);
+			orderVO.setReceiver_name(receiver_name);
+			orderVO.setReceiver_address(receiver_address);
+			orderVO.setReceiver_phone(receiver_phone);
+				
+			/***************************2.開始新增資料***************************************/
+			Order_Service orderSvc = new Order_Service();
+			orderVO = orderSvc.addOrder(mem_no, order_price_total, dis_price_total, payment_method, pickup_method, shipping_fee, receiver_name, receiver_address, receiver_phone);
+				
+			/***************************3.新增完成,準備轉交(Send the Success view)***********/
 			try {
-				prod_price = Integer.valueOf(req.getParameter("prod_price").trim());
-			} catch (NumberFormatException e) {
-				prod_price = 0;
-				errorMsgs.add("商品單價請填數字.");
+				Thread.sleep(1500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			String url = "checkoutConfirm.jsp";		
+			res.sendRedirect(url);
+		}
+		
+		if ("cancelOrder".equals(action)) {
 			
-			Integer prod_stock = null;
-			try {
-				prod_stock = Integer.valueOf(req.getParameter("prod_stock").trim());
-			} catch (NumberFormatException e) {
-				prod_stock = 0;
-				errorMsgs.add("商品庫存請填數字.");
-			}
-			
-			Timestamp off_time = null;
-			try {
-				off_time = java.sql.Timestamp.valueOf(req.getParameter("off_time").trim());
-			} catch (IllegalArgumentException e) {
-				off_time = new java.sql.Timestamp(System.currentTimeMillis());
-				errorMsgs.add("請輸入下架時間.");
-			}
-			
-			String prod_detail = req.getParameter("prod_detail");
-			String prod_detailReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{10,200}$";
-			if (prod_detail == null ||prod_detail.trim().length() == 0) {
-				errorMsgs.add("商品敘述: 請勿空白");
-			} else if(!prod_detail.trim().matches(prod_detailReg)) {
-				errorMsgs.add("商品敘述: 只能是中、英文字母、數字和底線, 且長度必需在20到200之間");
-            }
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+		
+				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+				Integer order_no = Integer.valueOf(req.getParameter("order_no").trim());
 
-				Prod_VO prodVO = new Prod_VO();
-				prodVO.setProd_type_no(prod_type_no);
-				prodVO.setProd_name(prod_name);
-				prodVO.setProd_price(prod_price);
-				prodVO.setProd_stock(prod_stock);
-				prodVO.setOff_time(off_time);
-				prodVO.setProd_detail(prod_detail);
+				Integer order_status = 3;			
+				
+				Order_VO orderVO = new Order_VO();
+				orderVO.setOrder_no(order_no);
+				orderVO.setOrder_status(order_status);
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("prodVO", prodVO);
+					req.setAttribute("orderVO", orderVO);
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/prod/addProd.jsp");
+							.getRequestDispatcher("/back-end/order/changeOrderStatus.jsp");
 					failureView.forward(req, res);
-					return;
+					return; //程式中斷
 				}
 				
-				/***************************2.開始新增資料***************************************/
-				Prod_Service prodSvc = new Prod_Service();
-				prodVO = prodSvc.addProd(prod_type_no, prod_name, prod_price, prod_stock, off_time, prod_detail);
+				/***************************2.開始修改資料*****************************************/
+				Order_Service orderSvc = new Order_Service();
+				orderVO = orderSvc.changeStatus(order_no, order_status);
 				
-				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/back-end/prod/listAllProd.jsp";
+				/***************************3.修改完成,準備轉交(Send the Success view)*************/
+				req.setAttribute("orderVO", orderVO);
+				String url = "/front-end/prod/orderHistory.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
 		}

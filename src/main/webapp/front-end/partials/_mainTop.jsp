@@ -177,7 +177,7 @@
 							<li><a href="<%=request.getContextPath()%>/PubMap" style="color: #f5c242; font-weight:bold;">酒吧地圖</a></li>
 							<li><a href="<%=request.getContextPath()%>/PubApplication" style="color: #f5c242; font-weight:bold;">酒吧註冊申請</a></li>
 							<li><a id="states" href="<%=request.getContextPath()%>/PubStates" style="color: #f5c242; font-weight:bold;">酒吧狀態</a></li>
-							<li><a id="booking" href="<%=request.getContextPath()%>/MemBookingGet" style="color: #f5c242; font-weight:bold;">訂位查看</a></li>
+							<li><a id="booking_a" href="<%=request.getContextPath()%>/MemBookingGet" style="color: #f5c242; font-weight:bold;">訂位查看</a></li>
 							<script> 
 							(window.onload = function() {
 							fetch('.PubStatesCheck', {
@@ -208,9 +208,9 @@
 									const { successful } = body;
 									const { pub } = body;
 									if(successful){
-										document.querySelector('#booking').style.display="";
+										document.querySelector('#booking_a').style.display="";
 									}else{
-										document.querySelector('#booking').style.display="none";
+										document.querySelector('#booking_a').style.display="none";
 									}
 								
 								});

@@ -49,7 +49,7 @@
 					id += "," + e.mem_no;
 				}
 			})
-
+			if(id.length>1){
 			fetch('getNameByMem', {
 				method: 'POST',
 				headers: {
@@ -65,6 +65,7 @@
 						});
 					});
 				})
+						}
 		});
 		function getDate(m) {
 			//		暫時不會有多時段

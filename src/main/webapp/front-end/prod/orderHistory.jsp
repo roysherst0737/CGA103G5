@@ -96,7 +96,7 @@ session.setAttribute("url", url);
                     <div class="table-main table-responsive">
 						<table id="dataTables" class="stripe table-hover" style="width: 100%; font-size: 12px">
 							<thead>
-								<tr>
+								<tr style="font-size:16px">
 									<th>訂單編號</th>
 									<th>訂單建立時間</th>
 									<th>支付金額</th>
@@ -106,6 +106,7 @@ session.setAttribute("url", url);
 									<th>取貨人地址</th>
 									<th>取貨人電話</th>
 									<th>訂單明細</th>
+									<th>取消訂單</th>
 								</tr>
 							</thead>
 							<c:forEach var="orderVO" items="${orderlist}">
@@ -148,6 +149,14 @@ session.setAttribute("url", url);
 											<input type="submit" value="查詢">
 											<input type="hidden" name="order_no" value="${orderVO.order_no}">
 											<input type="hidden" name="action" value="listFrontOrder_details">
+										</FORM>
+									</td>
+									<td>
+										<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/prod/detail.do"
+											style="margin-bottom: 0px;">
+											<input type="submit" value="取消" style="color:red;">
+											<input type="hidden" name="order_no" value="${orderVO.order_no}">
+											<input type="hidden" name="action" value="cancelOrder">
 										</FORM>
 									</td>
 								</tr>

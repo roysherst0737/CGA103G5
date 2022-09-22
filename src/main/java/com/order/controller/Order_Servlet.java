@@ -100,6 +100,62 @@ public class Order_Servlet extends HttpServlet{
 
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
-		}		
+		}
+		
+		if ("getOne_For_Update".equals(action)) {
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+				/***************************1.接收請求參數****************************************/
+				Integer order_no = Integer.valueOf(req.getParameter("order_no"));
+				
+				/***************************2.開始查詢資料****************************************/
+				Order_Service orderSvc = new Order_Service();
+				Order_VO orderVO = orderSvc.getOneOrder(order_no);
+								
+				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+				req.setAttribute("orderVO", orderVO);         // 資料庫取出的prod_picVO物件,存入req
+				String url = "/back-end/order/updateOrderStatus.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_prod_pic_input.jsp
+				successView.forward(req, res);
+		}
+		
+		if ("changeStatus".equals(action)) {
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+		
+				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+				Integer order_no = Integer.valueOf(req.getParameter("order_no").trim());
+
+				Integer order_status = Integer.valueOf(req.getParameter("order_status").trim());			
+				
+				Order_VO orderVO = new Order_VO();
+				orderVO.setOrder_no(order_no);
+				orderVO.setOrder_status(order_status);
+
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					req.setAttribute("orderVO", orderVO);
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/back-end/order/changeOrderStatus.jsp");
+					failureView.forward(req, res);
+					return; //程式中斷
+				}
+				
+				/***************************2.開始修改資料*****************************************/
+				Order_Service orderSvc = new Order_Service();
+				orderVO = orderSvc.changeStatus(order_no, order_status);
+				
+				/***************************3.修改完成,準備轉交(Send the Success view)*************/
+				req.setAttribute("orderVO", orderVO);
+				String url = "/back-end/order/listAllOrder.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, res);
+		}
 	}
 }

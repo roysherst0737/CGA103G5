@@ -119,11 +119,14 @@
 								<div class="card-body">
 									<h4 class="card-title">訂單管理</h4>
 										<table id="dataTables" class="stripe table-hover" style="width: 100%; font-size: 12px">
+										<div>
+										<%@ include file="page1.file"%>
+										</div>
+										<br>
 											<thead>
 												<tr>
 													<th>訂單編號</th>
 													<th>會員編號</th>
-													<th>優惠券編號</th>
 													<th>訂單建立時間</th>
 													<th>訂單總金額</th>
 													<th>優惠後金額</th>
@@ -135,30 +138,28 @@
 													<th>取貨人地址</th>
 													<th>取貨人電話</th>
 													<th>訂單明細</th>
+													<th>出貨狀態更改</th>
 												</tr>
 											</thead>
-											<%@ include file="page1.file"%>
 											<c:forEach var="orderVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-											<br>
 												<tr>
 													<td>${orderVO.order_no}</td>
 													<td>${orderVO.mem_no}</td>
-													<td>${orderVO.coupon_no}</td>
 													<td>${orderVO.order_time}</td>
 													<td>${orderVO.order_price_total}</td>
 													<td>${orderVO.dis_price_total}</td>
 													<td>
 														<c:if test="${orderVO.order_status == 0}">
-															<div>未出貨</div>
+															<div style="color: blue;">未出貨</div>
 														</c:if>
 														<c:if test="${orderVO.order_status == 1}">
-															<div>已出貨</div>
+															<div style="color: yellow;">已出貨</div>
 														</c:if>
 														<c:if test="${orderVO.order_status == 2}">
-															<div>已完成</div>
+															<div style="color: green;">已完成</div>
 														</c:if>
 														<c:if test="${orderVO.order_status == 3}">
-															<div>取消</div>
+															<div style="color: red;">取消</div>
 														</c:if>
 													</td>
 													<td>
@@ -202,6 +203,16 @@
 																type="hidden" name="order_no"
 																value="${orderVO.order_no}"> <input
 																type="hidden" name="action" value="listOrder_details_ByOrder">
+														</FORM>
+													</td>
+													<td>
+														<FORM METHOD="post"
+															ACTION="<%=request.getContextPath()%>/back-end/order/order.do"
+															style="margin-bottom: 0px;">
+															<input type="submit" value="更改狀態"> <input
+																type="hidden" name="order_no"
+																value="${orderVO.order_no}"> <input
+																type="hidden" name="action" value="getOne_For_Update">
 														</FORM>
 													</td>
 												</tr>

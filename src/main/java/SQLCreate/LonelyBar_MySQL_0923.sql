@@ -199,7 +199,6 @@ CREATE TABLE `coupon` (
 CREATE TABLE `order` (
   `order_no` int NOT NULL AUTO_INCREMENT,
   `mem_no` int NOT NULL,
-  `coupon_no` int DEFAULT NULL,
   `order_time` timestamp DEFAULT CURRENT_TIMESTAMP,
   `order_price_total` int NOT NULL,
   `dis_price_total` int NOT NULL,
@@ -212,8 +211,6 @@ CREATE TABLE `order` (
   `receiver_phone` varchar(15) NOT NULL,
   PRIMARY KEY (`order_no`),
   KEY `mem_no_idx` (`mem_no`),
-  KEY `coupon_no_idx` (`coupon_no`),
-  CONSTRAINT `order_coupon_no_FK` FOREIGN KEY (`coupon_no`) REFERENCES `coupon` (`coupon_no`),
   CONSTRAINT `order_mem_no_FK` FOREIGN KEY (`mem_no`) REFERENCES `mem` (`mem_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -486,11 +483,12 @@ CREATE TABLE `article_message_report` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- 建立 最新消息 表格
-CREATE TABLE `latest_news` (
-  `latest_news_no` int NOT NULL AUTO_INCREMENT,
-  `news_content` varchar(1000) NOT NULL,
-  `news_status` tinyint NOT NULL DEFAULT '0',
-  PRIMARY KEY (`latest_news_no`)
+CREATE TABLE latest_news (
+  latest_news_no int NOT NULL AUTO_INCREMENT,
+  news_content varchar(1000) NOT NULL,
+  news_status tinyint NOT NULL DEFAULT '0',
+  news_time datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (latest_news_no)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- 建立 會員優惠券 表格
@@ -946,7 +944,6 @@ VALUES (15, LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/capsulesVod
 -- 建立 訂單 假資料
 INSERT INTO `order` (
 mem_no, 
-coupon_no,
 order_price_total,
 dis_price_total,
 payment_method,
@@ -955,10 +952,9 @@ shipping_fee,
 receiver_name,
 receiver_address,
 receiver_phone)
-VALUES (1, 1, 6980, 3490, 0, 0, 0, "葉柏宇", "新北市新莊區新豐街217號", "0912345678");
+VALUES (1, 6980, 3490, 0, 0, 0, "葉柏宇", "新北市新莊區新豐街217號", "0912345678");
 INSERT INTO `order` (
 mem_no, 
-coupon_no,
 order_price_total,
 dis_price_total,
 payment_method,
@@ -967,10 +963,9 @@ shipping_fee,
 receiver_name,
 receiver_address,
 receiver_phone)
-VALUES (2, 2, 960, 816, 1, 1, 1, "王雅君", "台北市大安區安和路二段149巷10號7樓", "0977351602");
+VALUES (2, 960, 816, 1, 1, 0, "王雅君", "台北市大安區安和路二段149巷10號7樓", "0977351602");
 INSERT INTO `order` (
 mem_no, 
-coupon_no,
 order_price_total,
 dis_price_total,
 payment_method,
@@ -979,7 +974,7 @@ shipping_fee,
 receiver_name,
 receiver_address,
 receiver_phone)
-VALUES (3, 3, 3600, 3510, 0, 2, 0, "張祐書", "宜蘭縣宜蘭市東港路2段128巷10號", "0924678945");
+VALUES (3, 3600, 3510, 0, 2, 0, "張祐書", "宜蘭縣宜蘭市東港路2段128巷10號", "0924678945");
 
 -- 建立 訂單明細 假資料
 INSERT INTO order_detail (

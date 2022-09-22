@@ -167,7 +167,14 @@
 						<ul class="dropdown-menu">
 							<li><a href="<%=request.getContextPath()%>/front-end/prod/shop.jsp" style="color: #f5c242; font-weight:bold;">商品總覽</a></li>
 							<li><a href="<%=request.getContextPath()%>/front-end/prod/cart.jsp" style="color: #f5c242; font-weight:bold;">購物車</a></li>
-							<li><a href="<%=request.getContextPath()%>/front-end/prod/checkout.jsp" style="color: #f5c242; font-weight:bold;">前往結帳</a></li>
+							<c:choose>
+								<c:when test="${empty sessionScope.user}">
+									<li><a href="javascript:void(0)" style="color: #f5c242; font-weight:bold;" onclick="confirmTest6()">前往結帳</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="<%=request.getContextPath()%>/front-end/prod/checkout.jsp" style="color: #f5c242; font-weight:bold;">前往結帳</a></li>
+								</c:otherwise>
+							</c:choose>
 						</ul>
 					</li>
 					<li class="nav-item dropdown"><a id="pub_map" class="nav-link"

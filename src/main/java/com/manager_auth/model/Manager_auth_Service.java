@@ -13,7 +13,7 @@ public class Manager_auth_Service {
 		dao = new Manager_auth_DAO();
 	}
 
-	public Manager_auth_VO addManager_auth(Integer mng_no, Integer mng_authfunc_no) {
+	public void addManager_auth(Integer mng_no, Integer mng_authfunc_no) {
 
 		Manager_auth_VO manager_auth_VO = new Manager_auth_VO();
 
@@ -21,7 +21,7 @@ public class Manager_auth_Service {
 		manager_auth_VO.setMng_authfunc_no(mng_authfunc_no);
 		dao.insert(manager_auth_VO);
 
-		return manager_auth_VO;
+//		return manager_auth_VO;
 	}
 
 	public Manager_auth_VO updateManager_auth(Integer mng_no, Integer mng_authfunc_no) {
@@ -61,4 +61,5 @@ public class Manager_auth_Service {
 	public List<Manager_auth_VO> getAllManager_auth(Map<String, String[]> map) {
 		return dao.getAllManager_auth(map);
 	}
+
 }

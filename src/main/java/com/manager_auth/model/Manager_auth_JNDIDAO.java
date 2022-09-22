@@ -43,8 +43,7 @@ public class Manager_auth_JNDIDAO implements Manager_auth_DAO_interface {
 	private static final String UPDATE = 
 		"UPDATE manager_auth set mng_authfunc_no = ? where mng_no = ?";
 	private static final String GET_AUTHFUNC = 
-		"SELECT mng_authfunc_no, mng_no "
-		+ "FROM manager_auth WHERE mng_no = ?";
+		"SELECT mng_authfunc_no, mng_no FROM manager_auth WHERE mng_no = ?";
 
 
 	@Override
@@ -235,6 +234,7 @@ public class Manager_auth_JNDIDAO implements Manager_auth_DAO_interface {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_AUTHFUNC);
+			pstmt.setInt(1, mng_no);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {

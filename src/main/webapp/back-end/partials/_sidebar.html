@@ -212,10 +212,16 @@
       </a>
             <div class="collapse" id="mng">
         <ul class="nav flex-column sub-menu">
+          <li class="nav-item"><a id="mng_login" class="nav-link" href=""> 管理員登入&註冊 </a></li>
           <li class="nav-item"><a id="mng_list" class="nav-link" href=""> 管理員資料管理 </a></li>
+          <li class="nav-item"><a id="mng_auth" class="nav-link" href=""> 管理員權限管理 </a></li>
           <script>
             document.querySelector("#mng_list").setAttribute("href",
-            	getContextPath() + "/back-end/manager/selectPage.jsp");
+            	getContextPath() + "/back-end/manager/listAllMng.jsp");
+            document.querySelector("#mng_login").setAttribute("href",
+                getContextPath() + "/back-end/manager_login/mngLogin.jsp");
+            document.querySelector("#mng_auth").setAttribute("href",
+                getContextPath() + "/back-end/manager_auth/listAllMngAuth.jsp");
           </script>
         </ul>
       </div>

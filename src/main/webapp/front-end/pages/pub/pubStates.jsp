@@ -265,7 +265,8 @@ div.main_card:hover {
 									<script>setDivData(document.querySelector(`#open${loop.index}`))</script>
 									<div class="row" style="grid-row-start: 9; grid-row-end: 10;">
 										<button onclick="getdate(${pubList.pub_no})" type="button"
-											class="btn" data-toggle="modal" data-target="#staticBackdrop">查看詳情</button>
+											class="btn" data-toggle="modal" data-target="#staticBackdrop">修改資料</button>
+											<a href="<%=request.getContextPath()%>/lookbooking?pub_no=${pubList.pub_no}" class="btn">查看訂位</a>
 									</div>
 								</div>
 							</div>

@@ -62,4 +62,13 @@ public class Pub_Booking_DAOImpl implements Pub_Booking_DAO{
 	
 	}
 
+	@Override
+	public List<Pub_Booking> getListBypub(Integer pub_no) {
+		Long LongDay = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
+		Date today = new Date(LongDay);
+		final String sql = "FROM Pub_Booking WHERE pub_no= :pub_no and pub_booking_date>=:pub_booking_date";
+		return getSession().createQuery(sql, Pub_Booking.class).setParameter("pub_no", pub_no).setParameter("pub_booking_date", today).list();
+
+	}
+
 }

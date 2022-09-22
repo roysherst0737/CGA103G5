@@ -132,7 +132,24 @@ for (let i = 1; i < 8; i++) {
 	this['div' + i].appendChild(this['m' + i + '_div'], this['div' + i].lastChild);
 }
 
-
+//function lookbooking(pub_no) {
+//	window.location.href=res.url;
+//	let json = JSON.stringify({
+//		pub_no: pub_no,
+//	});
+//	fetch('lookbooking', {
+//		method: 'POST',
+//		headers: {
+//			'Content-Type': 'application/json',
+//		},
+//		redirect:'follow',
+//		body: json,
+//	}).then((res)=>{
+////		console.log(res);
+////		console.log(res.url);
+//		window.location.href=res.url;
+//	});
+//	};
 function getdate(pub_no) {
 	let json = JSON.stringify({
 		pub_no: pub_no,

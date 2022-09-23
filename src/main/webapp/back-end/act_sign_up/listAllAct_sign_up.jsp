@@ -101,7 +101,7 @@ pageContext.setAttribute("list", list);
 						<thead>
 							<tr>
 								<th>報名編號</th>
-								<th>活動編號</th>
+								<th>活動名稱</th>
 								<th>會員編號</th>
 								<th>報名時間</th>
 								<th>攜伴人數</th>
@@ -113,7 +113,7 @@ pageContext.setAttribute("list", list);
 							<c:forEach var="act_sign_upVO" items="${list}">
 								<tr>
 									<td>${act_sign_upVO.sign_up_no}</td>
-									<td>${act_sign_upVO.act_no}</td>
+									<td>${act_sign_upVO.actVO.act_name}</td>
 									<td>${act_sign_upVO.mem_no}</td>
 									<td>${act_sign_upVO.sign_up_time}</td>
 									<td>${act_sign_upVO.accompany_count}</td>
@@ -141,7 +141,7 @@ pageContext.setAttribute("list", list);
 						<tfoot>
 							<tr>
 								<th>報名編號</th>
-								<th>活動編號</th>
+								<th>活動名稱</th>
 								<th>會員編號</th>
 								<th>報名時間</th>
 								<th>攜伴人數</th>

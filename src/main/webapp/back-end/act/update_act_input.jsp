@@ -1,3 +1,4 @@
+<%@page import="org.hibernate.internal.build.AllowSysOut"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
@@ -5,6 +6,8 @@
 
 <%
 Act_VO actVO = (Act_VO) request.getAttribute("actVO");
+int act_status = actVO.getAct_status();
+pageContext.setAttribute("act_status", act_status);
 %>
 
 <!DOCTYPE html>
@@ -140,7 +143,8 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 												<tr>
 													<td>活動編號:</td>
 													<td><input type="TEXT" name="act_no" size="45"
-														value="<%=(actVO == null) ? "" : actVO.getAct_no()%>" /></td>
+														value="<%=(actVO == null) ? "" : actVO.getAct_no()%>"
+														disabled></td>
 												</tr>
 												<tr>
 													<td>酒吧編號:</td>
@@ -166,12 +170,14 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 												<tr>
 													<td>上架時間:</td>
 													<td><input name="act_launch_time" id="f_date1"
-														type="text" value="<%=(actVO == null) ? "" : actVO.getAct_launch_time()%>"></td>
+														type="text"
+														value="<%=(actVO == null) ? "" : actVO.getAct_launch_time()%>"></td>
 												</tr>
 												<tr>
 													<td>下架時間:</td>
 													<td><input name="act_off_time" id="f_date2"
-														type="text" value="<%=(actVO == null) ? "" : actVO.getAct_off_time()%>"></td>
+														type="text"
+														value="<%=(actVO == null) ? "" : actVO.getAct_off_time()%>"></td>
 												</tr>
 
 												<tr>
@@ -187,38 +193,54 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 												<tr>
 													<td>報名開始時間:</td>
 													<td><input name="sign_up_begin_time" id="f_date3"
-														type="text" value="<%=(actVO == null) ? "" : actVO.getSign_up_begin_time()%>"></td>
+														type="text"
+														value="<%=(actVO == null) ? "" : actVO.getSign_up_begin_time()%>"></td>
 												</tr>
 												<tr>
 													<td>報名結束時間:</td>
 													<td><input name="sign_up_end_time" id="f_date4"
-														type="text" value="<%=(actVO == null) ? "" : actVO.getSign_up_end_time()%>"></td>
+														type="text"
+														value="<%=(actVO == null) ? "" : actVO.getSign_up_end_time()%>"></td>
 												</tr>
 												<tr>
 													<td>活動開始時間:</td>
 													<td><input name="act_start_time" id="f_date5"
-														type="text" value="<%=(actVO == null) ? "" : actVO.getAct_start_time()%>"></td>
+														type="text"
+														value="<%=(actVO == null) ? "" : actVO.getAct_start_time()%>"></td>
 												</tr>
 												<tr>
 													<td>活動結束時間:</td>
 													<td><input name="act_end_time" id="f_date6"
-														type="text" value="<%=(actVO == null) ? "" : actVO.getAct_end_time()%>"></td>
+														type="text"
+														value="<%=(actVO == null) ? "" : actVO.getAct_end_time()%>"></td>
 												</tr>
 												<tr>
 													<td>活動狀態:</td>
-													<td><input type="TEXT" name="act_status" size="45"
-														value="<%=(actVO == null) ? "" : actVO.getAct_status()%>"></td>
+													<c:set var="act_status" value="${act_status}" />
+													<c:choose>
+														<c:when test="${act_status == 1}">
+															<td><input type="radio" name="act_status" size="45"
+																id="on" value=1 checked> <label for="on">上架</label>
+																<br> <input type="radio" name="act_status"
+																size="45" id="off" value=0> <label for="off"
+																style="color: red;">下架</label></td>
+														</c:when>
+														<c:otherwise>
+															<td><input type="radio" name="act_status" size="45"
+																id="on" value=1> <label for="on">上架</label> <br>
+																<input type="radio" name="act_status" size="45" id="off"
+																value=0 checked> <label for="off"
+																style="color: red;">下架</label></td>
+														</c:otherwise>
+													</c:choose>
 												</tr>
-
 											</table>
 
-											<br> 
-											
-											<input type="hidden" name="current_count" value="<%=actVO.getCurrent_count()%>">
-											<input type="hidden" name="action" value="update">
-											<input type="hidden" name="act_no"
-												value="<%=actVO.getAct_no()%>"> <input type="submit"
-												value="送出修改">
+											<br> <input type="hidden" name="current_count"
+												value="<%=actVO.getCurrent_count()%>"> <input
+												type="hidden" name="action" value="update"> <input
+												type="hidden" name="act_no" value="<%=actVO.getAct_no()%>">
+											<input type="submit" value="送出修改">
 										</FORM>
 									</div>
 								</div>

@@ -101,7 +101,7 @@ pageContext.setAttribute("list", list);
 						<thead>
 							<tr>
 								<th>題目編號</th>
-								<th>問題</th>
+								<th>問題內容</th>
 								<th>修改</th>
 								<th>刪除</th>
 							</tr>
@@ -135,7 +135,7 @@ pageContext.setAttribute("list", list);
 						<tfoot>
 							<tr>
 								<th>題目編號</th>
-								<th>問題</th>
+								<th>問題內容</th>
 								<th>修改</th>
 								<th>刪除</th>
 							</tr>

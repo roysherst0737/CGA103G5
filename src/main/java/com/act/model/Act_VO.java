@@ -160,6 +160,8 @@ public class Act_VO implements Serializable {
 	    com.act_pic.model.Act_pic_VO act_picVO = act_picSvc.getOneAct_pic(act_no);
 	    return act_picVO;
     }
+    
+ 
 	
 	
 }

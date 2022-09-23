@@ -27,6 +27,8 @@ Prod_Service prodSvc = new Prod_Service();
 List<Prod_VO> list = prodSvc.getAll();
 pageContext.setAttribute("list", list);
 
+String surveyUrl = request.getRequestURL().toString() + "?" + request.getQueryString();
+session.setAttribute("surveyUrl", surveyUrl);
 %>
 
 <!DOCTYPE html>
@@ -98,29 +100,29 @@ pageContext.setAttribute("list", list);
 						<table class="table">
 							<thead>
 								<tr>
-												<th>活動問卷</th>
-												
-												<th>填寫</th>
-											</tr>
+									<th>活動問卷</th>
+
+									<th>填寫</th>
+								</tr>
 							</thead>
 							<tbody>
 
 								<c:forEach var="set" items="${set}">
-												<tr>
-													<td>活動問卷<%=i++%></td>
-													
-													
-													<c:choose>
-														<c:when test="${set2.contains(set)}">
-															<td><input type="button" value="已填寫"></td>
-														</c:when>
-														<c:otherwise>
-															<td><input type="button" value="填寫"
-																onclick="location.href='<%=request.getContextPath()%>/front-end/act/writesurvey.jsp?${set}'"></td>
-														</c:otherwise>
-													</c:choose>
-												</tr>
-											</c:forEach>
+									<tr>
+										<td>活動問卷<%=i++%></td>
+
+
+										<c:choose>
+											<c:when test="${set2.contains(set)}">
+												<td><input type="button" value="已填寫"></td>
+											</c:when>
+											<c:otherwise>
+												<td><input type="button" value="填寫"
+													onclick="location.href='<%=request.getContextPath()%>/front-end/act/writesurvey.jsp?${set}'"></td>
+											</c:otherwise>
+										</c:choose>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
@@ -129,55 +131,59 @@ pageContext.setAttribute("list", list);
 
 
 
-		
+
 			<!-- !!!!!!此行以下都不要修改!!!!!!-->
-	<!-- Start Instagram Feed  -->
-	<div class="instagram-box">
-		<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
-	</div>
-	<!-- End Instagram Feed  -->
-	<!-- Start Footer  -->
-	<footer>
-		<%@ include file="/front-end/partials/_footer.jsp"%>
-	</footer>
-	<!-- End Footer  -->
+			<!-- Start Instagram Feed  -->
+			<div class="instagram-box">
+				<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
+			</div>
+			<!-- End Instagram Feed  -->
+			<!-- Start Footer  -->
+			<footer>
+				<%@ include file="/front-end/partials/_footer.jsp"%>
+			</footer>
+			<!-- End Footer  -->
 
-	<!-- Start copyright  -->
-	<div class="footer-copyright">
-		<p class="footer-company">
-			All Rights Reserved. &copy; 2022 <a href="#">LonelyBar</a> Design By
-			: <a href="https://html.design/">CGA103G5</a>
-		</p>
-	</div>
-	<!-- End copyright  -->
+			<!-- Start copyright  -->
+			<div class="footer-copyright">
+				<p class="footer-company">
+					All Rights Reserved. &copy; 2022 <a href="#">LonelyBar</a> Design
+					By : <a href="https://html.design/">CGA103G5</a>
+				</p>
+			</div>
+			<!-- End copyright  -->
 
-	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+			<a href="#" id="back-to-top" title="Back to top"
+				style="display: none;">&uarr;</a>
 
-	<!-- ALL JS FILES -->
-	<script src="<%=request.getContextPath()%>/front-end/js/popper.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-	<!-- ALL PLUGINS -->
-	<script
-		src="<%=request.getContextPath()%>/front-end/js/owl.carousel.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/front-end/js/form-validator.min.js"></script>
-	<script src="<%=request.getContextPath()%>/front-end/js/bootsnav.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/front-end/js/baguetteBox.min.js"></script>
-	<script src="<%=request.getContextPath()%>/front-end/js/inewsticker.js"></script>
-	<script src="<%=request.getContextPath()%>/front-end/js/isotope.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/front-end/js/jquery.superslides.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/front-end/js/bootstrap-select.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/front-end/js/images-loded.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/front-end/js/contact-form-script.js"></script>
-	<!-- 該文件需部屬較慢 -->
-	<script id="customjs"
-		src="<%=request.getContextPath()%>/front-end/js/custom.js"></script>
+			<!-- ALL JS FILES -->
+			<script
+				src="<%=request.getContextPath()%>/front-end/js/popper.min.js"></script>
+			<script
+				src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+			<!-- ALL PLUGINS -->
+			<script
+				src="<%=request.getContextPath()%>/front-end/js/owl.carousel.min.js"></script>
+			<script
+				src="<%=request.getContextPath()%>/front-end/js/form-validator.min.js"></script>
+			<script src="<%=request.getContextPath()%>/front-end/js/bootsnav.js"></script>
+			<script
+				src="<%=request.getContextPath()%>/front-end/js/baguetteBox.min.js"></script>
+			<script
+				src="<%=request.getContextPath()%>/front-end/js/inewsticker.js"></script>
+			<script
+				src="<%=request.getContextPath()%>/front-end/js/isotope.min.js"></script>
+			<script
+				src="<%=request.getContextPath()%>/front-end/js/jquery.superslides.min.js"></script>
+			<script
+				src="<%=request.getContextPath()%>/front-end/js/bootstrap-select.js"></script>
+			<script
+				src="<%=request.getContextPath()%>/front-end/js/images-loded.min.js"></script>
+			<script
+				src="<%=request.getContextPath()%>/front-end/js/contact-form-script.js"></script>
+			<!-- 該文件需部屬較慢 -->
+			<script id="customjs"
+				src="<%=request.getContextPath()%>/front-end/js/custom.js"></script>
 </body>
 
 </html>

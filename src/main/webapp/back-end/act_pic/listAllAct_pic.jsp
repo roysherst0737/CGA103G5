@@ -101,7 +101,7 @@ pageContext.setAttribute("list", list);
 						<thead>
 							<tr>
 								<th>活動照片編號</th>
-								<th>活動編號</th>
+								<th>活動名稱</th>
 								<th>活動照片</th>
 								<th>活動照片名稱</th>
 								<th>修改</th>
@@ -112,7 +112,7 @@ pageContext.setAttribute("list", list);
 							<c:forEach var="act_picVO" items="${list}">
 								<tr>
 									<td>${act_picVO.act_pic_no}</td>
-									<td>${act_picVO.act_no}</td>
+									<td>${act_picVO.actVO.act_name}</td>
 									<td><img
 										src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
 										width=150px height=100px></td>
@@ -141,7 +141,7 @@ pageContext.setAttribute("list", list);
 						<tfoot>
 							<tr>
 								<th>活動照片編號</th>
-								<th>活動編號</th>
+								<th>活動名稱</th>
 								<th>活動照片</th>
 								<th>活動照片名稱</th>
 								<th>修改</th>

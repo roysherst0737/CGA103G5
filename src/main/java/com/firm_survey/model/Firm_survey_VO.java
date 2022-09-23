@@ -41,5 +41,11 @@ public class Firm_survey_VO implements Serializable{
 	public void setSurvey_revise_time(Timestamp survey_revise_time) {
 		this.survey_revise_time = survey_revise_time;
 	}
+	
+	public com.act.model.Act_VO getActVO() {
+	    com.act.model.Act_Service actSvc = new com.act.model.Act_Service();
+	    com.act.model.Act_VO actVO = actSvc.getOneAct(act_no);
+	    return actVO;
+    }
 
 }

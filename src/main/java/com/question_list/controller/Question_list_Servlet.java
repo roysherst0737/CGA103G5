@@ -1,10 +1,11 @@
 package com.question_list.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +17,18 @@ import com.question_list.model.Question_list_VO;
 
 @WebServlet("/back-end/question_list/question_list.do")
 public class Question_list_Servlet extends HttpServlet {
+
+	public static Object[] ifRepeat2(int[] arr) {
+		List list = new ArrayList();
+		for (int i = 0; i < arr.length; i++) {
+			if (!list.contains(arr[i])) {
+				list.add(arr[i]);
+			}
+		}
+
+		Object[] newArr = list.toArray();
+		return newArr;
+	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);
@@ -228,6 +241,8 @@ public class Question_list_Servlet extends HttpServlet {
 			list[3] = question_no4;
 			list[4] = question_no5;
 
+			Object[] list2 = ifRepeat2(list);
+		
 			Question_list_VO question_listVO = new Question_list_VO();
 //			question_listVO.setQuestion_no(question_no);
 //			question_listVO.setFirm_survey_no(firm_survey_no);
@@ -243,9 +258,9 @@ public class Question_list_Servlet extends HttpServlet {
 			/*************************** 2.開始新增資料 ***************************************/
 			Question_list_Service question_listSvc = new Question_list_Service();
 
-			for (int i = 0; i < 5; i++) {
-				if (list[i] != 0) {
-					question_listVO = question_listSvc.addQuestion_list(list[i], firm_survey_no);
+			for (int i = 0; i < list2.length; i++) {
+				if ((int) list2[i] != 0) {
+					question_listVO = question_listSvc.addQuestion_list((int) list2[i], firm_survey_no);
 				}
 			}
 

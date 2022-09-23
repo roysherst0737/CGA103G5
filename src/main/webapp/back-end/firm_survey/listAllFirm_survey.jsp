@@ -101,7 +101,7 @@ pageContext.setAttribute("list", list);
 						<thead>
 							<tr>
 								<th>廠商問卷編號</th>
-								<th>活動編號</th>
+								<th>活動名稱</th>
 								<th>廠商問卷建立時間</th>
 								<th>廠商問卷修改時間</th>
 								<th>修改活動編號</th>
@@ -113,7 +113,7 @@ pageContext.setAttribute("list", list);
 							<c:forEach var="firm_surveyVO" items="${list}">
 								<tr>
 									<td>${firm_surveyVO.firm_survey_no}</td>
-									<td>${firm_surveyVO.act_no}</td>
+									<td>${firm_surveyVO.actVO.act_name}</td>
 									<td>${firm_surveyVO.survey_build_time}</td>
 									<td>${firm_surveyVO.survey_revise_time}</td>
 									<td>
@@ -148,7 +148,7 @@ pageContext.setAttribute("list", list);
 						<tfoot>
 							<tr>
 								<th>廠商問卷編號</th>
-								<th>活動編號</th>
+								<th>活動名稱</th>
 								<th>廠商問卷建立時間</th>
 								<th>廠商問卷修改時間</th>
 								<th>修改</th>

@@ -45,8 +45,8 @@ pageContext.setAttribute("list", list);
 </head>
 <style>
 .horizontal_style {
-    display: block;
-    overflow-x: auto;
+	display: block;
+	overflow-x: auto;
 }
 </style>
 
@@ -76,118 +76,125 @@ pageContext.setAttribute("list", list);
 				});
 			</script>
 			<!-- partial -->
-		
+
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<!--你要寫的頁面  -->
 					<div class="horizontal_style">
-					<table id="dataTables" class="stripe" style="width: 149%">
-					<div class="col-sm-6">
-							<div class="d-flex align-items-center justify-content-md-end">
-								<div class="mb-3 mb-xl-0 pr-1">
-									<div class="dropdown">
-										<button style="margin-right: 10px;">
-											<a href="listAllAct.jsp"><img src="./images/home.png"
-												width="30px" height="30px"></a>
-										</button>
-										<button style="margin-right: 10px;">
-											<a href='addAct.jsp'><img src="./images/plus.png"
-												width="30px" height="30px"></a>
-										</button>
-										<button style="margin-right: 10px;">
-											<a href="selectAct.jsp"><img src="./images/search2.png"
-												width="30px" height="30px"></a>
-										</button>
-									
+						<table id="dataTables" class="stripe" style="width: 149%">
+							<div class="col-sm-6">
+								<div class="d-flex align-items-center justify-content-md-end">
+									<div class="mb-3 mb-xl-0 pr-1">
+										<div class="dropdown">
+											<button style="margin-right: 10px;">
+												<a href="listAllAct.jsp"><img src="./images/home.png"
+													width="30px" height="30px"></a>
+											</button>
+											<button style="margin-right: 10px;">
+												<a href='addAct.jsp'><img src="./images/plus.png"
+													width="30px" height="30px"></a>
+											</button>
+											<button style="margin-right: 10px;">
+												<a href="selectAct.jsp"><img src="./images/search2.png"
+													width="30px" height="30px"></a>
+											</button>
+
+										</div>
 									</div>
 								</div>
-								</div>
-								</div>
-						<thead>
-							<tr>
-								<th>活動編號</th>
-								<th>酒吧編號</th>
-								<th>活動名稱</th>
-								<th>活動描述</th>
-								<th>活動地址</th>
-								<th>上架時間</th>
-								<th>下架時間</th>
-								<th>當前報名人數</th>
-								<th>容納人數上限</th>
-								<th>容納人數下限</th>
-								<th>報名開始時間</th>
-								<th>報名結束時間</th>
-								<th>活動開始時間</th>
-								<th>活動結束時間</th>
-								<th>活動狀態</th>
-								<th>修改時間</th>
-								<th>修改</th>
-								<th>刪除</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="actVO" items="${list}">
+							</div>
+							<thead>
 								<tr>
-									<td>${actVO.act_no}</td>
-									<td>${actVO.pub_no}</td>
-									<td>${actVO.act_name}</td>
-									<td>${actVO.act_detail}</td>
-									<td>${actVO.act_loc}</td>
-									<td>${actVO.act_launch_time}</td>
-									<td>${actVO.act_off_time}</td>
-									<td>${actVO.current_count}</td>
-									<td>${actVO.max_count}</td>
-									<td>${actVO.min_count}</td>
-									<td>${actVO.sign_up_begin_time}</td>
-									<td>${actVO.sign_up_end_time}</td>
-									<td>${actVO.act_start_time}</td>
-									<td>${actVO.act_end_time}</td>
-									<td>${actVO.act_status}</td>
-									<td>${actVO.revise_time}</td>
-									<td>
-										<FORM METHOD="post"
-											ACTION="<%=request.getContextPath()%>/back-end/act/act.do"
-											style="margin-bottom: 0px;">
-											<input type="submit" value="修改"> <input type="hidden"
-												name="act_no" value="${actVO.act_no}"> <input type="hidden"
-													name="action" value="getOne_For_Update">
-											</FORM>
-									</td>
-									<td>
-										<FORM METHOD="post"
-											ACTION="<%=request.getContextPath()%>/back-end/act/act.do"
-											style="margin-bottom: 0px;">
-											<input type="submit" value="刪除"> <input type="hidden"
-												name="act_no" value="${actVO.act_no}"> <input
-												type="hidden" name="action" value="delete">
-										</FORM>
-									</td>
+									<th>活動編號</th>
+									<th>酒吧編號</th>
+									<th>活動名稱</th>
+									<th>活動描述</th>
+									<th>活動地址</th>
+									<th>上架時間</th>
+									<th>下架時間</th>
+									<th>當前報名人數</th>
+									<th>容納人數上限</th>
+									<th>容納人數下限</th>
+									<th>報名開始時間</th>
+									<th>報名結束時間</th>
+									<th>活動開始時間</th>
+									<th>活動結束時間</th>
+									<th>活動狀態</th>
+									<th>修改時間</th>
+									<th>修改</th>
+									<th>刪除</th>
 								</tr>
-							</c:forEach>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th>活動編號</th>
-								<th>酒吧編號</th>
-								<th>活動名稱</th>
-								<th>活動描述</th>
-								<th>活動地址</th>
-								<th>上架時間</th>
-								<th>下架時間</th>
-								<th>當前報名人數</th>
-								<th>容納人數上限</th>
-								<th>容納人數下限</th>
-								<th>報名開始時間</th>
-								<th>報名結束時間</th>
-								<th>活動開始時間</th>
-								<th>活動結束時間</th>
-								<th>活動狀態</th>
-								<th>修改時間</th>
-								<th>修改</th>
-								<th>刪除</th>
-							</tr>
-						</tfoot>
-					</table>
+							</thead>
+							<tbody>
+								<c:forEach var="actVO" items="${list}">
+									<tr>
+										<td>${actVO.act_no}</td>
+										<td>${actVO.pub_no}</td>
+										<td>${actVO.act_name}</td>
+										<td>${actVO.act_detail}</td>
+										<td>${actVO.act_loc}</td>
+										<td>${actVO.act_launch_time}</td>
+										<td>${actVO.act_off_time}</td>
+										<td>${actVO.current_count}</td>
+										<td>${actVO.max_count}</td>
+										<td>${actVO.min_count}</td>
+										<td>${actVO.sign_up_begin_time}</td>
+										<td>${actVO.sign_up_end_time}</td>
+										<td>${actVO.act_start_time}</td>
+										<td>${actVO.act_end_time}</td>
+										<c:choose>
+											<c:when test="${actVO.act_status == 0}">
+												<td style="color: red;">下架中</td>
+											</c:when>
+											<c:otherwise>
+												<td>上架中</td>
+											</c:otherwise>
+										</c:choose>
+										<td>${actVO.revise_time}</td>
+										<td>
+											<FORM METHOD="post"
+												ACTION="<%=request.getContextPath()%>/back-end/act/act.do"
+												style="margin-bottom: 0px;">
+												<input type="submit" value="修改"> <input
+													type="hidden" name="act_no" value="${actVO.act_no}">
+												<input type="hidden" name="action" value="getOne_For_Update">
+											</FORM>
+										</td>
+										<td>
+											<FORM METHOD="post"
+												ACTION="<%=request.getContextPath()%>/back-end/act/act.do"
+												style="margin-bottom: 0px;">
+												<input type="submit" value="刪除"> <input
+													type="hidden" name="act_no" value="${actVO.act_no}">
+												<input type="hidden" name="action" value="delete">
+											</FORM>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>活動編號</th>
+									<th>酒吧編號</th>
+									<th>活動名稱</th>
+									<th>活動描述</th>
+									<th>活動地址</th>
+									<th>上架時間</th>
+									<th>下架時間</th>
+									<th>當前報名人數</th>
+									<th>容納人數上限</th>
+									<th>容納人數下限</th>
+									<th>報名開始時間</th>
+									<th>報名結束時間</th>
+									<th>活動開始時間</th>
+									<th>活動結束時間</th>
+									<th>活動狀態</th>
+									<th>修改時間</th>
+									<th>修改</th>
+									<th>刪除</th>
+								</tr>
+							</tfoot>
+						</table>
 					</div>
 
 					<script>

@@ -26,6 +26,11 @@ public class Mem_Coupon_VO implements java.io.Serializable{
 	public void setRemain_amount(Integer remain_amount) {
 		this.remain_amount = remain_amount;
 	}
-	
+	 // for join dname from act_picno
+    public com.coupon.model.Coupon_VO getCouponVO() {
+	    com.coupon.model.Coupon_Service couponSvc = new com.coupon.model.Coupon_Service();
+	    com.coupon.model.Coupon_VO couponVO = couponSvc.getOneCoupon(coupon_no);
+	    return couponVO;
+    }
 	
 }

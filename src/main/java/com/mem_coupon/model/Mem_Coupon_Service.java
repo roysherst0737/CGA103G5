@@ -48,4 +48,7 @@ public class Mem_Coupon_Service {
 	public List<Mem_Coupon_VO> getAll() {
 		return dao.getAll();
 	}
+	public void getOneMemCoupon(Integer mem_no) {
+		dao.getOneMemCoupon(mem_no);
+	}
 }

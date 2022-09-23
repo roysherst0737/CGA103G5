@@ -26,11 +26,11 @@ public class frontFilter extends HttpFilter{
 			HttpSession session = req.getSession();
 
 			Mem_VO user_account = (Mem_VO) session.getAttribute("user");
-			System.out.println(user_account);
+//			System.out.println(user_account);
 			if (user_account==null) {
 
 			Mem_VO mem_account = (Mem_VO) session.getAttribute("user");
-			System.out.println(mem_account);
+//			System.out.println(mem_account);
 			if (mem_account==null) {
 				//針對鎖定畫面功能做特殊處理(rate)
 				if(req.getServletPath().endsWith("PubRate")) {

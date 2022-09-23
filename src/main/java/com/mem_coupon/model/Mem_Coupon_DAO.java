@@ -35,7 +35,8 @@ public class Mem_Coupon_DAO implements Mem_Coupon_DAO_interface{
 		"DELETE FROM mem_coupon where mem_no = ? AND coupon_no = ?";
 	private static final String UPDATE = 
 		"UPDATE mem_coupon set remain_amount? where mem_no = ? AND coupon_no = ?";
-
+	private static final String GET_ONEMEM_STMT = 
+			"SELECT coupon_no, mem_no, remain_amount FROM mem_coupon where  mem_no = ? order by coupon_no ";
 	@Override
 	public void insert(Mem_Coupon_VO memCouponVO) {
 
@@ -272,4 +273,44 @@ public class Mem_Coupon_DAO implements Mem_Coupon_DAO_interface{
 		}
 		return list;
 	}
+
+	@Override
+	public void getOneMemCoupon(Integer mem_no) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONEMEM_STMT);
+
+			pstmt.setInt(1, mem_no);
+
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
+
 }

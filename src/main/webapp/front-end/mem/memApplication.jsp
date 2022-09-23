@@ -177,7 +177,16 @@ a.booking:hover {
 		<!-- 主內容 -->
 		<div class="main-panel">
 			<div class="content-wrapper">
-				<form class="forms-sample">
+			<%-- 錯誤表列 --%>
+			<c:if test="${not empty errorMsgs}">
+				<font style="color: red">請修正以下錯誤:</font>
+				<ul>
+					<c:forEach var="message" items="${errorMsgs}">
+						<li style="color: red">${message}</li>
+					</c:forEach>
+				</ul>
+			</c:if>
+				<form class="pt-3" action="MemUpdateServlet" method="post">
 					<div class="row">
 						<div class="col-md-6 grid-margin stretch-card">
 							<div class="card">
@@ -188,10 +197,12 @@ a.booking:hover {
 				                    <p class="card-description">
 									  管理你的檔案以保護你的帳戶
 				                    </p>
+				                    
 				                        <div class="form-group row">
 				                          <label class="col-sm-3 col-form-label">帳號</label>
 				                          <div class="col-sm-9">
                            					 <input type="text" class="form-control" disabled="disabled" value="${sessionScope.user.getMem_account()}">
+                          				  	 <input type="hidden" name="mem_account" value="${sessionScope.user.getMem_account()}">
                           				  </div>
 				                        </div>
 				                        <div class="form-group row">
@@ -233,32 +244,32 @@ a.booking:hover {
 				                              						<i class="input-helper"></i><i class="input-helper"></i></label>
 				                          				  </div>
 				                       				   </div>	
-				                       				   <input type="hidden" id ="gender_value"  value="${sessionScope.user.getMem_gender()}" >                      		
+				                       				   <input type="hidden" id ="gender_value"  value="${sessionScope.user.getMem_gender()}" name="mem_gender">                      		
 				                          			 </div>
 				                          </div>
 				                        </div>
 				                        <div class="form-group row">
 				                          <label class="col-sm-3 col-form-label">姓氏</label>
 				                          <div class="col-sm-9">
-                           					 <input type="text" class="form-control" value="${sessionScope.user.getMem_last_name()}">
+                           					 <input type="text" class="form-control" value="${sessionScope.user.getMem_last_name()}" name="mem_last_name">
                           				  </div>
 				                        </div>
 				                        <div class="form-group row">
 				                          <label class="col-sm-3 col-form-label">名字</label>
 				                          <div class="col-sm-9">
-                           					 <input type="text" class="form-control" value="${sessionScope.user.getMem_first_name()}">
+                           					 <input type="text" class="form-control" value="${sessionScope.user.getMem_first_name()}" name="mem_first_name">
                           				  </div>
 				                        </div>
 				                        <div class="form-group row">
 				                          <label class="col-sm-3 col-form-label">暱稱</label>
 				                          <div class="col-sm-9">
-                           					 <input type="text" class="form-control" value="${sessionScope.user.getMem_nickname()}">
+                           					 <input type="text" class="form-control" value="${sessionScope.user.getMem_nickname()}" name="mem_nickname">
                           				  </div>
 				                        </div>
 				                        <div class="form-group row">
 				                          <label class="col-sm-3 col-form-label">連絡電話</label>
 				                          <div class="col-sm-9">
-                           					 <input type="tel" class="form-control" value="${sessionScope.user.getMem_tel_no()}">
+                           					 <input type="tel" class="form-control" value="${sessionScope.user.getMem_tel_no()}" name="mem_tel_no">
                           				  </div>
 				                        </div>				                       				                        				                       			                   
 				                	</div>
@@ -271,46 +282,50 @@ a.booking:hover {
 									<div class="form-group row">
 			                          <label class="col-sm-3 col-form-label">手機號碼</label>
 			                          <div class="col-sm-9">
-                          				<input type="tel" class="form-control" value="${sessionScope.user.getMem_cel_no()}">
+                          				<input type="tel" class="form-control" value="${sessionScope.user.getMem_cel_no()}" name="mem_cel_no">
                          			  </div>
 				                    </div>
 									<div class="form-group row">
 			                          <label class="col-sm-3 col-form-label">電子郵件</label>
 			                          <div class="col-sm-9">
-                          				<input type="email" class="form-control" value="${sessionScope.user.getMem_email()}">
+                          				<input type="email" class="form-control" value="${sessionScope.user.getMem_email()}" name="mem_email">
                          			  </div>
 				                    </div>
 									<div class="form-group row">
 			                          <label class="col-sm-3 col-form-label">身分證字號</label>
 			                          <div class="col-sm-9">
-                          				<input type="text" class="form-control" value="${sessionScope.user.getMem_id()}">
+                          				<input type="text" class="form-control" value="${sessionScope.user.getMem_id()}" name="mem_id">
                          			  </div>
 				                    </div>
 									<div class="form-group row">
 			                          <label class="col-sm-3 col-form-label">生日</label>
 			                          <div class="col-sm-9">
-                          				<input type="date" class="form-control" value="${sessionScope.user.getMem_birth()}">
+                          				<input type="date" class="form-control" value="${sessionScope.user.getMem_birth()}" name="mem_birth">
                          			  </div>
 				                    </div>
 									<div class="form-group row">
 			                          <label class="col-sm-3 col-form-label">地址</label>
 			                          <div class="col-sm-9">
-                          				<input type="text" class="form-control" value="${sessionScope.user.getMem_addr()}">
+                          				<input type="text" class="form-control" value="${sessionScope.user.getMem_addr()}" name="mem_addr">
                          			  </div>
 				                    </div>
 									<div class="form-group row">
 			                          <label class="col-sm-3 col-form-label">權限</label>
 			                          <div class="col-sm-9">
                           				<input type="text" class="form-control"  id= "permission"  disabled="disabled">
-                          				<input type="hidden" id ="permission_value"  value="${sessionScope.user.getMem_permission()}" > 
+                          				<input type="hidden" id ="permission_value"  value="${sessionScope.user.getMem_permission()}"  name="mem_permission"> 
                          			  </div>
 				                    </div>								
-									<button id="btn" type="button" class="btn btn-primary mr-2">確認送出</button>
+									<button id="btn" type="submit" class="btn btn-primary mr-2">確認送出</button>
 									<button type="reset" class="btn btn-light">重填</button>
 								</div>
 							</div>
 						</div>
 					</div>
+					<input type="hidden" name="Update" value="Mem_Update">
+					<input type="hidden" name="status" value="${sessionScope.user.getStatus()}">
+					<input type="hidden" name="mem_no" value="${sessionScope.user.getMem_no()}">
+					<input type="hidden" name="mem_cert_status" value="${sessionScope.user.getMem_cert_status()}">
 				</form>
 
 

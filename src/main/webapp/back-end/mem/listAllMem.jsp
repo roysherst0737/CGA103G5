@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.mem.model.*"%>
-<%@ page import="com.prod_type.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
@@ -29,6 +28,8 @@ pageContext.setAttribute("list", list);
 	href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
 <link rel="stylesheet" type="text/css"
 	href="css/style.css" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />	
 <!-- endinject -->
 <!-- plugin css for this page -->
 <!-- End plugin css for this page -->
@@ -116,7 +117,7 @@ pageContext.setAttribute("list", list);
 											<h4 class="card-title">會員資料</h4>
 											
 											<div class="horizontal_style">
-												<table class="table table-striped">
+												<table id="dataTables" class="stripe" style="width: 100%">
 													<thead>
 														<tr>
 															<th>編號</th>
@@ -208,7 +209,14 @@ pageContext.setAttribute("list", list);
 															</tr>
 														</c:forEach>
 													</table>
-													
+													<script>
+														$(document).ready(function () {
+														    $('#dataTables').DataTable({
+														        scrollY: 300,
+														        scrollX: true,
+														    });
+														});
+														</script>
 													
 													<%@ include file="page2.file" %>
 											</div>
@@ -259,6 +267,8 @@ pageContext.setAttribute("list", list);
 	<!-- Custom js for this page-->
 
 	<script src="../js/dashboard.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>	
 	<!-- End custom js for this page-->
 </body>
 

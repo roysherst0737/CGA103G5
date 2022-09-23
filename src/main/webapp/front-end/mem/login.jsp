@@ -28,8 +28,8 @@
 String previous_page = request.getHeader("referer");
 String original_URL = request.getRequestURL().toString();
 String servlet_URL = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/front-end/mem/MemLoginServlet";
-
-if((!previous_page.equals(original_URL))&&(!previous_page.equals(servlet_URL))){
+String memUpdate_URL = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/front-end/mem/MemUpdateServlet";
+if((!previous_page.equals(original_URL))&&(!previous_page.equals(servlet_URL))&&(!previous_page.equals(memUpdate_URL))){
 	session.setAttribute("previous_page", previous_page);
 }
 

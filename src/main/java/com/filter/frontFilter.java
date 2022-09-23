@@ -29,13 +29,10 @@ public class frontFilter extends HttpFilter {
 		Mem_VO user_account = (Mem_VO) session.getAttribute("user");
 		System.out.println(user_account);
 		if (user_account == null) {
-
-			Mem_VO mem_account = (Mem_VO) session.getAttribute("user");
-			System.out.println(mem_account);
-			if (mem_account == null) {
+			
 				// 針對鎖定畫面功能做特殊處理(rate)
 				if (req.getServletPath().endsWith("PubRate")) {
-					Pub pub = new Pub();
+					Pub pub = new Pub();			
 					pub.setSuccessful(false);
 					writePojo2Json(res, pub);
 					return;
@@ -44,8 +41,5 @@ public class frontFilter extends HttpFilter {
 			} else {
 				chain.doFilter(req, res);
 			}
-		} else {
-			chain.doFilter(req, res);
 		}
 	}
-}

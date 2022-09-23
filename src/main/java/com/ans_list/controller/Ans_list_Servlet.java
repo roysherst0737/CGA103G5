@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ans_list.model.Ans_list_Service;
 import com.ans_list.model.Ans_list_VO;
@@ -25,7 +26,7 @@ public class Ans_list_Servlet extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-
+		HttpSession session = req.getSession();
 //		if ("getOne_For_Display".equals(action)) { // 來自select_page.jsp的請求
 //
 //			List<String> errorMsgs = new LinkedList<String>();
@@ -227,9 +228,10 @@ public class Ans_list_Servlet extends HttpServlet {
 			}
 
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-//			String url = "/back-end/act_sign_up/listAllAct_sign_up.jsp";
+			String url = (String) session.getAttribute("surveyUrl");
 //			RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
-//			successView.forward(req, res);
+//			successView.forward(req, res);			
+			res.sendRedirect(url);
 		}
 
 //		if ("delete".equals(action)) { // 來自listAllEmp.jsp

@@ -111,6 +111,7 @@ pageContext.setAttribute("list", list);
                                  
 										
 										<c:forEach var="actVO" items="${actList}">
+										<c:if test="${actVO.act_status == 1}">
 											<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
 												<div class="products-single fix">
 													<div class="box-img-hover">
@@ -133,6 +134,7 @@ pageContext.setAttribute("list", list);
 													</div>
 												</div>
 											</div>
+											 </c:if>
 										</c:forEach>
 										
 
@@ -142,6 +144,7 @@ pageContext.setAttribute("list", list);
 								
 								<div role="tabpanel" class="tab-pane fade" id="list-view">
 									<c:forEach var="actVO" items="${actList}">
+									<c:if test="${actVO.act_status == 1}">
 										<div class="list-view-box">
 											<div class="row">
 												<div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
@@ -171,6 +174,7 @@ pageContext.setAttribute("list", list);
 												</div>
 											</div>
 										</div>
+										 </c:if>
 									</c:forEach>
 								</div>
 							</div>

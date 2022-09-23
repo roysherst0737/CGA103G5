@@ -162,7 +162,14 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 												<td><%=actVO.getSign_up_end_time()%></td>
 												<td><%=actVO.getAct_start_time()%></td>
 												<td><%=actVO.getAct_end_time()%></td>
-												<td><%=actVO.getAct_status()%></td>
+												<c:choose>
+													<c:when test="${actVO.act_status == 0}">
+														<td style="color: red;">下架中</td>
+													</c:when>
+													<c:otherwise>
+														<td>上架中</td>
+													</c:otherwise>
+												</c:choose>
 												<td><%=actVO.getRevise_time()%></td>
 
 												<td>

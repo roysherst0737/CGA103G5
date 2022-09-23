@@ -24,6 +24,7 @@ int l = 1;
 
 Object Objuser = session.getAttribute("user");
 Mem_VO user = (Mem_VO) Objuser;
+
 %>
 
 

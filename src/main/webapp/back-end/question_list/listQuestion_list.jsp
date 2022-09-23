@@ -11,7 +11,7 @@ Question_list_Service question_listSvc = new Question_list_Service();
 List<Question_list_VO> list = question_listSvc.getAllFromFirmSurveyNo(Integer.parseInt(request.getQueryString()));
 pageContext.setAttribute("list", list);
 
-String selected_question_no = "";
+String selected_question_no = "?";
 for (int i = 0; i < list.size(); i++) {
 	Question_list_VO abc = list.get(i);
 	selected_question_no += (abc.getQuestion_no());
@@ -149,13 +149,16 @@ pageContext.setAttribute("url", url);
 										<input type="button" value="新增問題"
 											onclick="location.href='<%=url%>'">
 									</form>
+									<br>
+									<div>問卷編號<%=request.getQueryString()%></div>
+									<br>
 
 
 									<table id="dataTables" class="stripe table-hover"
 										style="width: 100%; font-size: 12px">
 										<thead style="width: 100%; font-size: 13px">
 											<tr>
-												<th>題目編號</th>
+												<th>已選題目編號</th>
 												<th>問題內容</th>
 												<th>刪除</th>
 											</tr>

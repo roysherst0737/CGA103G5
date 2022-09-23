@@ -338,7 +338,6 @@ CREATE TABLE `act_sign_up` (
     `mem_no` INT NOT NULL,
     `sign_up_time` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `accompany_count` INT NOT NULL,
-    `sign_up_status` TINYINT NOT NULL DEFAULT '0',
 
     CONSTRAINT `sign_up_no_PK` PRIMARY KEY (`sign_up_no`),
     CONSTRAINT `act_sign_up.act_no_FK` FOREIGN KEY (`act_no`)
@@ -470,7 +469,7 @@ CREATE TABLE `article_message_report` (
   `rpt_msg_content` varchar(1000) NOT NULL,
   `mng_no` int DEFAULT NULL,
   `msg_done_time` datetime DEFAULT CURRENT_TIMESTAMP,
-  `msg_states` tinyint NOT NULL DEFAULT '0',
+  `msg_status` tinyint NOT NULL DEFAULT '0',
   `msg_result` tinyint NOT NULL DEFAULT '0',
   `msg_note` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`art_msg_rpt`),
@@ -483,12 +482,12 @@ CREATE TABLE `article_message_report` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- 建立 最新消息 表格
-CREATE TABLE latest_news (
-  latest_news_no int NOT NULL AUTO_INCREMENT,
-  news_content varchar(1000) NOT NULL,
-  news_status tinyint NOT NULL DEFAULT '0',
-  news_time datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (latest_news_no)
+CREATE TABLE `latest_news` (
+  `latest_news_no` int NOT NULL AUTO_INCREMENT,
+  `news_content` varchar(1000) NOT NULL,
+  `news_status` tinyint NOT NULL DEFAULT '0',
+  `news_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`latest_news_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- 建立 會員優惠券 表格
@@ -1140,13 +1139,13 @@ VALUES(3, 3, 3, 3, 3, 3, 3, 1);
 -- 建立 活動 假資料
 INSERT INTO act(
 pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
-)values("1","調酒品嘗","先欣賞一下，看看雞尾酒的顏色與裝飾，猜想一下這杯調酒會有怎樣的口感？並在細聞香味後抱著迫不及待的心，品嘗一下酒在低溫時的口感。","桃園","2022-10-10 10:10:10","2022-11-11 11:11:11","60","20","2022-11-11 12:12:12","2022-11-11 13:13:13","2022-11-11 14:14:14","2022-11-11 15:15:15");
+)values("1","調酒品嘗","先欣賞一下，看看雞尾酒的顏色與裝飾，猜想一下這杯調酒會有怎樣的口感？並在細聞香味後抱著迫不及待的心，品嘗一下酒在低溫時的口感。","桃園","2022-10-10 12:00:00","2022-12-12 12:00:00","60","20","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00");
 INSERT INTO act(
 pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
-)values("2","調酒教學","教學自己在家就能動手做的4款調酒，還有隱藏版柯夢波丹雞尾酒教學！","台北","2023-10-10 10:10:10","2023-11-11 11:11:11","30","10","2023-11-11 12:12:12","2023-11-11 13:13:13","2023-11-11 14:14:14","2023-11-11 15:15:15");
+)values("2","調酒教學","教學自己在家就能動手做的4款調酒，還有隱藏版柯夢波丹雞尾酒教學！","台北","2022-10-10 12:00:00","2022-12-12 12:00:00","60","20","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00");
 INSERT INTO act(
 pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
-)values("3","花式調酒","花式調酒是由調酒師利用酒瓶以及任何調酒器具、杯具做出絢麗動作演變而來。","高雄","2024-10-10 10:10:10","2024-11-11 11:11:11","1000","1","2024-11-11 12:12:12","2024-11-11 13:13:13","2024-11-11 14:14:14","2024-11-11 15:15:15");
+)values("3","花式調酒","花式調酒是由調酒師利用酒瓶以及任何調酒器具、杯具做出絢麗動作演變而來。","高雄","2022-10-10 12:00:00","2022-12-12 12:00:00","60","20","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00");
 
 -- 建立 活動照片 假資料
 INSERT INTO act_pic(
@@ -1229,7 +1228,7 @@ INSERT INTO forum(
 frm_name_no,
 frm_status,
 frm_img
-)values("商品討論區",1, LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/pub10.jpeg"));
+)values("商品討論區",1, LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/pub-product2.jpeg"));
 
 -- 建立 討論區文章 假資料
 INSERT INTO forum_article(
@@ -1264,27 +1263,24 @@ frm_art_no,
 rpt_content,
 mng_no,
 rpt_status,
-rpt_result,
-rpt_note
-)values(1,1,"文章內容涉及歧視",1,"1","1","內容違反相關規範");
+rpt_result
+)values(1,1,"文章內容涉及歧視",1,"1","1");
 INSERT INTO forum_article_report(
 mem_no,
 frm_art_no,
 rpt_content,
 mng_no,
 rpt_status,
-rpt_result,
-rpt_note
-)values(2,2,"文章內容涉及性騷擾",1,"1","1","內容違反相關規範");
+rpt_result
+)values(2,2,"文章內容涉及性騷擾",1,"1","1");
 INSERT INTO forum_article_report(
 mem_no,
 frm_art_no,
 rpt_content,
 mng_no,
 rpt_status,
-rpt_result,
-rpt_note
-)values(3,3,"文章內容涉及暴力",1,"1","1","內容違反相關規範");
+rpt_result
+)values(3,3,"文章內容涉及暴力",1,"1","1");
 
 -- 建立 文章留言 假資料
 INSERT INTO article_message(
@@ -1309,28 +1305,25 @@ mem_no,
 art_msg_no,
 rpt_msg_content,
 mng_no,
-msg_states,
-msg_result,
-msg_note
-) VALUES (1,1,"涉及性騷擾",1,1,1,"符合檢舉");
+msg_status,
+msg_result
+) VALUES (1,1,"涉及性騷擾",1,1,1);
 INSERT INTO article_message_report(
 mem_no,
 art_msg_no,
 rpt_msg_content,
 mng_no,
-msg_states,
-msg_result,
-msg_note
-) VALUES (2,2,"涉及暴力",1,1,1,"符合檢舉");
+msg_status,
+msg_result
+) VALUES (2,2,"涉及暴力",1,1,1);
 INSERT INTO article_message_report(
 mem_no,
 art_msg_no,
 rpt_msg_content,
 mng_no,
-msg_states,
-msg_result,
-msg_note
-) VALUES (3,3,"垃圾訊息",1,1,1,"符合檢舉");
+msg_status,
+msg_result
+) VALUES (3,3,"垃圾訊息",1,1,1);
 
 INSERT INTO latest_news(
 news_content,

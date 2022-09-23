@@ -67,10 +67,19 @@
 		});
 	} 		
  		if($("#credit").is(":checked")){
- 			location.href='<%=request.getContextPath()%>/front-end/prod/PayWithCredit.jsp'
+ 			Swal.fire({
+ 				title : "前往信用卡結帳頁面",
+ 				showCancelButton : false
+ 			});
  		}
-	}		
-
+	}
+	
+	function confirmTest11() {
+		Swal.fire({
+			title : "訂單已取消！",
+			showCancelButton : false
+		});
+	}
 </script>
 
 

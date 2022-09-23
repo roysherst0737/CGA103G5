@@ -72,6 +72,7 @@ session.setAttribute("url", url);
 			font-size: 18px;
 			color: red;
 			margin-right: 14px;
+			float:left;
 			}			
 		#minus {
 			width: 20px;
@@ -173,26 +174,32 @@ session.setAttribute("url", url);
                                     <td id="price">
                                         <p>$${cartVO.getProd_VO().prod_price}</p>
                                     </td>
+                                    <FORM action="cart.do" method="post">
                                     <td id="minus">
-                                    	<FORM action="cart.do" method="post">
+                                    	
                                         	<input class="btn" id="minus" type="submit" value="-">
                                         	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
+                                        	<input type="hidden" name="prod_qty" value="${cartVO.prod_qty}">
                                         	<input type="hidden" name="mem_no" value="${user.mem_no}">
                                         	<input type="hidden" name="action" value="cartMinus">
-                                        </FORM>
+
                                     </td>
+                                    </FORM>
                                     <td id="qty">                                    	
-                                    	<p>${cartVO.prod_qty}</p>                                    	
+                                    	<input name="prod_qty" value="${cartVO.prod_qty}" style="text-align: center; border-style:none;" readonly>                                   	
 <%--                                     <input type="number" size="4" value="${cartVO.prod_qty}" min="0" max="${cartVO.getProd_VO().prod_stock}" class="c-input-text qty text"> --%>
                                     </td>
+                                    <FORM action="cart.do" method="post">
                                     <td id="plus">
-                                    	<FORM action="cart.do" method="post">
+
                                         	<input class="btn" id="plus" type="submit" value="+">
                                         	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
-                                        	<input type="hidden" name="mem_no" value="${user.mem_no}">
-                                        	<input type="hidden" name="action" value="cartPlus">
-                                        </FORM>
+                                        	<input type="hidden" name="prod_qty" value="${cartVO.prod_qty}">
+                                        	<input type="hidden" name="mem_no" value="${user.mem_no}">    	
+                                        	<input type="hidden" name="action" value="cartPlus">                                        
                                     </td>
+                                    </FORM>
+                                    
                                     <td id="total-price">
                                         <p>$${cartVO.getProd_VO().prod_price * cartVO.prod_qty}</p>
                                     </td>
@@ -268,7 +275,7 @@ session.setAttribute("url", url);
 <!--                         </div> -->
 <!--                         <hr> </div> -->
 <!--                 </div> -->
-                <div class="col-12 d-flex shopping-box">
+                <div class="col-12 d-flex shopping-box" id="GoToCheckout">
                 	<c:choose>
 						<c:when test="${empty sessionScope.user}">
 							<a href="<%=request.getContextPath()%>/front-end/mem/login.jsp" id="remind">【請點擊登入會員，以查看購物車】</a>								
@@ -279,18 +286,21 @@ session.setAttribute("url", url);
 									<a href="<%=request.getContextPath()%>/front-end/prod/shop.jsp" id="remind">【前往選購商品】</a>
 								</c:when>
 								<c:otherwise>
-                        		<a href="checkout.jsp" class="ml-auto btn hvr-hover" style="font-size: 28px">前往結帳</a>
+								<div id="deleteAll">
+                        		<FORM action="cart.do" method="post">
+                					<input class="btn btn-warning" id="deleteAll" type="submit" value="清空購物車"">
+                    				<input type="hidden" name="mem_no" value="${user.mem_no}">
+                    				<input type="hidden" name="action" value="deleteAll">
+              					 </FORM>
+              					</div> 
+                        		<a href="checkout.jsp" class="ml-auto btn hvr-hover" style="font-size: 20px; float:right;">前往結帳</a>                        		
                         		</c:otherwise>
                         	</c:choose> 
                         </c:otherwise>
                     </c:choose>                                	
                 </div>
-                <br>
-                <FORM action="cart.do" method="post">
-                	<input class="btn btn-warning" id="deleteAll" type="submit" value="清空購物車">
-                    <input type="hidden" name="mem_no" value="${user.mem_no}">
-                    <input type="hidden" name="action" value="deleteAll">
-               </FORM>   
+                
+                  
                 
 <!--             </div> -->
 <%--             </c:if> --%>

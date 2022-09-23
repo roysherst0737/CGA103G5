@@ -31,6 +31,8 @@ if (user != null) {
 
 String url = request.getRequestURL().toString() + "?" + request.getQueryString();
 session.setAttribute("url", url);
+
+int i = 1;
 %>
 
 <!DOCTYPE html>
@@ -63,6 +65,67 @@ session.setAttribute("url", url);
 <!-- Custom CSS -->
 <link rel="stylesheet" href="../css/custom.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+<script>
+	// 商品總額加總
+	(function($) {
+    	$(window).on('load', function() {
+        const total = document.querySelector("#amount");
+        const totalFinal = document.querySelector("#amountFinal");
+        let num = 0;
+        document.querySelectorAll(".totalPrice").forEach(e =>{
+        	num += parseInt(e.textContent);                                            				 
+        });
+        total.value = num;
+        totalFinal.value = num;
+    	});                                          
+	}(jQuery));
+</script>
+
+<script>
+	//使用優惠券
+	(function () {
+		$(window).on('load', function () {                    					
+        	$('#useCoupon').on('click', function () {
+            	let coupon_code=document.querySelector('#insertCoupon').value;
+                let disAmount=document.querySelector('#disAmount');
+                let amountFinal=document.querySelector('#amountFinal');                    						
+                let json = JSON.stringify({
+                	coupon_code: coupon_code,
+                });  
+                    					
+                if(coupon_code === ""){
+                	document.querySelector('#insertCoupon').classList.add('is-invalid');
+                    alert("請輸入優惠碼");
+                    return;
+                } else {
+                	document.querySelector('#insertCoupon').classList.remove('is-invalid');
+                }
+                fetch('Discount', {
+                	method: 'POST',
+                    headers: {
+                    	'Content-Type': 'application/json',
+                    },
+                body: json,
+                }).then(resp => resp.json())
+                  .then(e => {
+                  	if(e === null){
+                    	alert("請輸入正確優惠碼");
+                        	return;
+                    	}
+                    const { coupon_discount } = e;
+                    if (coupon_discount < 1){
+                    	disAmount.textContent = (coupon_discount*10) + "折";
+                    	amountFinal.value = amountFinal.value * coupon_discount;
+                    } else {
+                    	disAmount.textContent = "折抵" + coupon_discount + "元";
+                    	amountFinal.value = amountFinal.value - coupon_discount;
+                    }                    								                   								
+				});
+			});
+		});
+	}(jQuery));
+</script>
 
 <style>
 .btn {
@@ -108,6 +171,27 @@ session.setAttribute("url", url);
 }
 #boxCoupon {
 	margin-top: 12px;
+}
+#detail {
+	border-style: none;
+	margin-bottom: 2px;
+	font-weight: bold;
+	width: 60px;
+	background-color:transparent;
+}
+#detail1 {
+	border-style: none;
+	margin-bottom: 2px;
+	font-weight: bold;
+	width: 40px;
+	background-color:transparent;
+}
+#detail2 {
+	border-style: none;
+	margin-bottom: 2px;
+	font-weight: bold;
+	width: 15px;
+	background-color:transparent;
 }
 </style>
 
@@ -329,26 +413,24 @@ session.setAttribute("url", url);
 														href="<%=request.getContextPath()%>/front-end/prod/shop-detail.jsp?${cartVO.prod_no}">
 														${cartVO.getProd_VO().prod_name}</a>
 
+<!-- 													<div class="small text-muted" id="cartContent"> -->
+<!-- 														單價: $${cartVO.getProd_VO().prod_price} <span class="mx-2">|</span> -->
+<%-- 														數量: ${cartVO.prod_qty} <span class="mx-2">|</span> 總價: $ <span --%>
+<%-- 															class="totalPrice" style="color: black;">${cartVO.getProd_VO().prod_price * cartVO.prod_qty}</span> --%>
+													
 													<div class="small text-muted" id="cartContent">
-														單價: $${cartVO.getProd_VO().prod_price} <span class="mx-2">|</span>
-														數量: ${cartVO.prod_qty} <span class="mx-2">|</span> 總價: $ <span
-															class="totalPrice">${cartVO.getProd_VO().prod_price * cartVO.prod_qty}</span>
-														<script>
-                                            				(function($) {
-                                            		 			$(window).on('load', function() {
-                                            			 			const total = document.querySelector("#amount");
-                                            			 			const totalFinal = document.querySelector("#amountFinal");
-                                            			 			let num = 0;
-                                            			 			document.querySelectorAll(".totalPrice").forEach(e =>{
-                                            				 			num += parseInt(e.textContent);                                            				 
-                                            			 			});
-                                            			 			total.value = num;
-                                            			 			totalFinal.value = num;
-                                            		 			});                                          
-                                            				}(jQuery));
-                                            			</script>
-                                            			
-													<FORM action="cart.do" method="post" style="float: right; padding-bottom: 10px;">
+												<span>單價: $</span> <input name="prod_price"
+													value="${cartVO.getProd_VO().prod_price}" id="detail1"></input>
+													<input type="hidden" name="prod_no<%=i++%>" value="${cartVO.prod_no}" id="detail"></input>
+												<span class="mx-2">|</span> <span>數量: </span> <input
+													name="prod_qty" value="${cartVO.prod_qty}" id="detail2"></input>
+												<span class="mx-2">|</span> <span>總價: $</span> <span
+													class="totalPrice" style="color: black;">${cartVO.getProd_VO().prod_price * cartVO.prod_qty}</span>
+												<input type="hidden" name="prod_price_total"
+													value="${cartVO.getProd_VO().prod_price * cartVO.prod_qty}"
+													id="detail"></input>
+													
+													<FORM action="cart.do" method="post" style="float: right; padding-bottom: 10px;">	
 														<input class="btn" id="deleteCart" type="submit" value="X">
 														<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
 														<input type="hidden" name="action" value="deleteOneWhenCheckout">
@@ -357,6 +439,7 @@ session.setAttribute("url", url);
 													<FORM action="cart.do" method="post" style="float: right; padding-bottom: 10px;">
 														<input class="btn" id="plus" type="submit" value="+">
 														<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
+														<input type="hidden" name="prod_qty" value="${cartVO.prod_qty}">
 														<input type="hidden" name="mem_no" value="${user.mem_no}">
 														<input type="hidden" name="action" value="checkoutPlus">
 													</FORM>
@@ -364,6 +447,7 @@ session.setAttribute("url", url);
 													<FORM action="cart.do" method="post" style="float: right; padding-bottom: 10px;">
 														<input class="btn" id="minus" type="submit" value="-">
 														<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
+														<input type="hidden" name="prod_qty" value="${cartVO.prod_qty}">
 														<input type="hidden" name="mem_no" value="${user.mem_no}">
 														<input type="hidden" name="action" value="checkoutMinus">
 													</FORM>
@@ -383,52 +467,7 @@ session.setAttribute("url", url);
 										</div>
 									</div>
 								</div>
-
-								<script>
-                    			(function () {
-                    				$(window).on('load', function () {
-                    					
-                    					$('#useCoupon').on('click', function () {
-                    						let coupon_code=document.querySelector('#insertCoupon').value;
-                    						let disAmount=document.querySelector('#disAmount');
-                    						let amountFinal=document.querySelector('#amountFinal');
-                    						
-                    						let json = JSON.stringify({
-                    						coupon_code: coupon_code,
-                    					});  
-                    					
-                    					if(coupon_code === ""){
-                    						document.querySelector('#insertCoupon').classList.add('is-invalid');
-                    						alert("請輸入優惠碼");
-                    						return;
-                    					} else {
-                    						document.querySelector('#insertCoupon').classList.remove('is-invalid');
-                    					}
-                    					fetch('Discount', {
-                    						method: 'POST',
-                    						headers: {
-                    							'Content-Type': 'application/json',
-                    						},
-                    						body: json,
-                    					}).then(resp => resp.json())
-                    						.then(e => {
-                    							if(e === null){
-                            						alert("請輸入正確優惠碼");
-                            						return;
-                            					}
-                    							const { coupon_discount } = e;
-                    								if (coupon_discount < 1){
-                    									disAmount.textContent = (coupon_discount*10) + "折";
-                    									amountFinal.value = amountFinal.value * coupon_discount;
-                    								} else {
-                    									disAmount.textContent = "折抵" + coupon_discount + "元";
-                    									amountFinal.value = amountFinal.value - coupon_discount;
-                    								}                    								                   								
-                    						});
-                    					});
-                    				});
-                    			}(jQuery));
-                    			</script>
+								
 							</div>
 						</div>
 						<!-- 購物車結束 -->						
@@ -479,7 +518,8 @@ session.setAttribute("url", url);
 								
 								<input type="hidden" name="mem_no" value="${user.mem_no}">
 								<input type="hidden" name="coupon_no" value="${couponVO.coupon_no}">	
-								<input class="btn btn-warning" id="checkout" type="submit" value="下單">						
+								<input class="btn btn-warning" id="checkout" type="submit" value="下單" onclick="confirmTest9()">
+								<input type="hidden" name="prodAmount" value="<%=i-1%>">						
 						</div>
 						<!-- 結帳按鈕結束 -->						
 					</div>

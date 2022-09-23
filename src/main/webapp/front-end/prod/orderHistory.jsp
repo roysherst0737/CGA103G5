@@ -154,7 +154,7 @@ session.setAttribute("url", url);
 									<td>
 										<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/prod/detail.do"
 											style="margin-bottom: 0px;">
-											<input type="submit" value="取消" style="color:red;">
+											<input type="submit" value="取消" style="color:red;" onclick="confirmTest11()">
 											<input type="hidden" name="order_no" value="${orderVO.order_no}">
 											<input type="hidden" name="action" value="cancelOrder">
 										</FORM>

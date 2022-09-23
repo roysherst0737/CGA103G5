@@ -213,7 +213,7 @@ public class Cart_Servlet extends HttpServlet {
 				errorMsgs.add("商品編號請填數字");
 			}
 			
-			Integer prod_qty = 1;			
+			Integer prod_qty = Integer.valueOf(req.getParameter("prod_qty").trim());			
 
 			Cart_VO cartVO = new Cart_VO();			
 			cartVO.setMem_no(mem_no);
@@ -262,25 +262,31 @@ public class Cart_Servlet extends HttpServlet {
 				errorMsgs.add("商品編號請填數字");
 			}
 			
-			Integer prod_qty = 1;			
+			Integer prod_qty = Integer.valueOf(req.getParameter("prod_qty").trim());			
 
 			Cart_VO cartVO = new Cart_VO();			
 			cartVO.setMem_no(mem_no);
 			cartVO.setProd_no(prod_no);
 			cartVO.setProd_qty(prod_qty);
-
-			// Send the use back to the form, if there were errors
-			if (!errorMsgs.isEmpty()) {
-				req.setAttribute("cartVO", cartVO); // 含有輸入格式錯誤的empVO物件,也存入req
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/prod/shop.jsp");
-				failureView.forward(req, res);
-				return;
+			
+			if (prod_qty == 1) {
+				Cart_Service cartSvc = new Cart_Service();
+				cartSvc.deleteCartByProd(prod_no);
+			} else {
+				/*************************** 2.開始新增資料 ***************************************/
+				Cart_Service cartSvc = new Cart_Service();
+				cartVO = cartSvc.minusCart(mem_no, prod_no, prod_qty);
+				
 			}
 
-			/*************************** 2.開始新增資料 ***************************************/
-			Cart_Service cartSvc = new Cart_Service();
-			cartVO = cartSvc.minusCart(mem_no, prod_no, prod_qty);
-
+			// Send the use back to the form, if there were errors
+//			if (!errorMsgs.isEmpty()) {
+//				req.setAttribute("cartVO", cartVO); // 含有輸入格式錯誤的empVO物件,也存入req
+//				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/prod/shop.jsp");
+//				failureView.forward(req, res);
+//				return;
+//			}
+			
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 			String url = "cart.jsp";		
 			res.sendRedirect(url);
@@ -311,7 +317,7 @@ public class Cart_Servlet extends HttpServlet {
 				errorMsgs.add("商品編號請填數字");
 			}
 			
-			Integer prod_qty = 1;			
+			Integer prod_qty = Integer.valueOf(req.getParameter("prod_qty").trim());			
 
 			Cart_VO cartVO = new Cart_VO();			
 			cartVO.setMem_no(mem_no);
@@ -360,25 +366,30 @@ public class Cart_Servlet extends HttpServlet {
 				errorMsgs.add("商品編號請填數字");
 			}
 			
-			Integer prod_qty = 1;			
+			Integer prod_qty = Integer.valueOf(req.getParameter("prod_qty").trim());			
 
 			Cart_VO cartVO = new Cart_VO();			
 			cartVO.setMem_no(mem_no);
 			cartVO.setProd_no(prod_no);
 			cartVO.setProd_qty(prod_qty);
-
-			// Send the use back to the form, if there were errors
-			if (!errorMsgs.isEmpty()) {
-				req.setAttribute("cartVO", cartVO); // 含有輸入格式錯誤的empVO物件,也存入req
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/prod/shop.jsp");
-				failureView.forward(req, res);
-				return;
+			
+			if (prod_qty == 1) {
+				Cart_Service cartSvc = new Cart_Service();
+				cartSvc.deleteCartByProd(prod_no);
+			} else {
+				/*************************** 2.開始新增資料 ***************************************/
+				Cart_Service cartSvc = new Cart_Service();
+				cartVO = cartSvc.minusCart(mem_no, prod_no, prod_qty);
+				
 			}
 
-			/*************************** 2.開始新增資料 ***************************************/
-			Cart_Service cartSvc = new Cart_Service();
-			cartVO = cartSvc.minusCart(mem_no, prod_no, prod_qty);
-
+//			// Send the use back to the form, if there were errors
+//			if (!errorMsgs.isEmpty()) {
+//				req.setAttribute("cartVO", cartVO); // 含有輸入格式錯誤的empVO物件,也存入req
+//				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/prod/shop.jsp");
+//				failureView.forward(req, res);
+//				return;
+//			}
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 			String url = "checkout.jsp";		
 			res.sendRedirect(url);

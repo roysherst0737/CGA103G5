@@ -153,7 +153,7 @@
 															<div style="color: blue;">未出貨</div>
 														</c:if>
 														<c:if test="${orderVO.order_status == 1}">
-															<div style="color: yellow;">已出貨</div>
+															<div style="color: brown;">已出貨</div>
 														</c:if>
 														<c:if test="${orderVO.order_status == 2}">
 															<div style="color: green;">已完成</div>

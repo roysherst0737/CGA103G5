@@ -209,7 +209,9 @@ Mem_VO user = (Mem_VO) Objuser;
                   <ul class="dropdown-menu">
                     <li><a href="<%=request.getContextPath()%>/forum_article_report_Servlet?frm_art_rpt_no=${forum_article_report_VO.frm_art_rpt_no}">隱射或針對他人</a>
                     </li>
-                    <li><a href="shop-detail.html">不雅言論</a></li>
+                    <li>
+                    <input type="radio" name="tab" id="tab5" onclick="location.href='http://tw.yahoo.com'"/>
+                    <a href="shop-detail.html">不雅言論</a></li>
                     <li><a href="cart.html">圖文不符</a></li>
                     <li><a href="checkout.html">其他</a></li>
                   </ul>

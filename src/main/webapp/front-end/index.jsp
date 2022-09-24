@@ -96,7 +96,7 @@ pageContext.setAttribute("list", list);
 				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 					<div class="shop-cat-box">
 						<img class="img-fluid" src="images/cocktail.jpg" alt="" /> <a
-							class="btn hvr-hover" id="news" href="#">調 酒 故 事</a>
+							class="btn hvr-hover" id="news" href="<%=request.getContextPath()%>/front-end/story/storyIndex.jsp"">調 酒 故 事</a>
 					</div>
 				</div>
 			</div>

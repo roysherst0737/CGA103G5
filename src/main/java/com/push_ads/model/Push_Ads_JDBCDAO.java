@@ -194,7 +194,7 @@ public class Push_Ads_JDBCDAO implements Push_Ads_DAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo ¤]ºÙ¬° Domain objects
+				
 				pushAdsVO = new Push_Ads_VO();
 				pstmt.setInt(1, pushAdsVO.getAds_no());
 				pstmt.setString(2, pushAdsVO.getAds_content());
@@ -258,7 +258,7 @@ public class Push_Ads_JDBCDAO implements Push_Ads_DAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO ¤]ºÙ¬° Domain objects
+				// empVO ï¿½]ï¿½Ù¬ï¿½ Domain objects
 				pushAdsVO = new Push_Ads_VO();
 				pstmt.setInt(1, pushAdsVO.getAds_no());
 				pstmt.setString(2, pushAdsVO.getAds_content());
@@ -309,9 +309,9 @@ public class Push_Ads_JDBCDAO implements Push_Ads_DAO_interface{
 
 		Push_Ads_JDBCDAO dao = new Push_Ads_JDBCDAO();
 
-		// ·s¼W
+		// ï¿½sï¿½W
 		Push_Ads_VO pushAdsVO1 = new Push_Ads_VO();
-		pushAdsVO1.setAds_content("°Ó«~");
+		pushAdsVO1.setAds_content("ï¿½Ó«~");
 		pushAdsVO1.setProd_no(1);
 		pushAdsVO1.setAct_no(null);
 		pushAdsVO1.setPub_no(null);
@@ -320,9 +320,9 @@ public class Push_Ads_JDBCDAO implements Push_Ads_DAO_interface{
 
 		dao.insert(pushAdsVO1);
 
-		// ­×§ï
+		// ï¿½×§ï¿½
 		Push_Ads_VO pushAdsVO2 = new Push_Ads_VO();
-		pushAdsVO2.setAds_content("°Ó«~");
+		pushAdsVO2.setAds_content("ï¿½Ó«~");
 		pushAdsVO2.setProd_no(1);
 		pushAdsVO2.setAct_no(null);
 		pushAdsVO2.setPub_no(null);
@@ -332,10 +332,10 @@ public class Push_Ads_JDBCDAO implements Push_Ads_DAO_interface{
 		
 		dao.update(pushAdsVO2);
 
-		// §R°£
+		// ï¿½Rï¿½ï¿½
 		dao.delete(1);
 
-		// ¬d¸ß
+		// ï¿½dï¿½ï¿½
 		Push_Ads_VO Push_Ads_VO3 = dao.findByPrimaryKey(1);
 		System.out.print(Push_Ads_VO3.getAds_no() + ",");
 		System.out.print(Push_Ads_VO3.getAds_content() + ",");
@@ -347,7 +347,7 @@ public class Push_Ads_JDBCDAO implements Push_Ads_DAO_interface{
 
 		System.out.println("---------------------");
 
-		// ¬d¸ß
+		// ï¿½dï¿½ï¿½
 		List<Push_Ads_VO> list = dao.getAll();
 		for (Push_Ads_VO aEmp : list) {
 			System.out.print(aEmp.getAds_no() + ",");

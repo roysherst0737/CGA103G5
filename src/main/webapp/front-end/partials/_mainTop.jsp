@@ -254,7 +254,7 @@
 						</ul>
 					</li>
 					
-					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/gallery.html">討論園地</a></li>
+					<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/front-end/forum/forum.jsp">討論園地</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->

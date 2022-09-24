@@ -15,6 +15,8 @@ public interface Mem_DAO_interface {
     public void updatePassword(Mem_VO memVO);    
     public void enable_status(Integer mem_no);
     public void unable_status(Integer mem_no);
+    public Mem_VO findByEmail(String mem_email);
+    public void updatePasswordByEmail(String mem_email,String mem_password);
     //萬用複合查詢(傳入參數型態Map)(回傳 List)
 //  public List<EmpVO> getAll(Map<String, String[]> map); 
 }

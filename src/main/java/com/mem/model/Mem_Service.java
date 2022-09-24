@@ -37,15 +37,14 @@ public class Mem_Service {
 		return memVO;
 	}
 
-	public Mem_VO updateMem(String mem_account,String mem_password,Integer mem_gender,String mem_last_name,
+	public Mem_VO updateMem(String mem_account,Integer mem_gender,String mem_last_name,
 			String mem_first_name,String mem_nickname,String mem_tel_no,String mem_cel_no,String mem_email,
 			String mem_id,Date mem_birth,String mem_addr,Integer mem_permission,Integer status,
-			Timestamp mem_build_time,Integer mem_cert_status,Integer mem_no) {
+			Integer mem_cert_status,Integer mem_no) {
 
 		Mem_VO memVO = new Mem_VO();
 
 		memVO.setMem_account(mem_account);
-		memVO.setMem_password(mem_password);
 		memVO.setMem_gender(mem_gender);
 		memVO.setMem_last_name(mem_last_name);
 		memVO.setMem_first_name(mem_first_name);
@@ -58,7 +57,6 @@ public class Mem_Service {
 		memVO.setMem_addr(mem_addr);
 		memVO.setMem_permission(mem_permission);
 		memVO.setStatus(status);
-		memVO.setMem_build_time(mem_build_time);
 		memVO.setMem_cert_status(mem_cert_status);
 		memVO.setMem_no(mem_no);
 		dao.update(memVO);
@@ -103,5 +101,11 @@ public class Mem_Service {
 	  public void unable_status(Integer mem_no) {
 		  dao.unable_status(mem_no);
 	  }
+	  public Mem_VO find_by_email(String mem_email) {
+		  return dao.findByEmail(mem_email);
+	  }
+	  public void update_password_by_email(String mem_email,String mem_password) {
+			 dao.updatePasswordByEmail(mem_email,mem_password);
+		 }
 }
 

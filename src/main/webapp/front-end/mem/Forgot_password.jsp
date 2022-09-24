@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,12 +34,24 @@
               </div>
               <h5 class="mb-0">Forgot your password?</h5>
               <small class="font-weight-light">Enter your email and we'll send you a reset link.</small>
-              <form class="pt-3">
+              <div>
+             <%-- 錯誤表列 --%>
+					<c:if test="${not empty errorMsgs}">
+						<font style="color: red">請修正以下錯誤:</font>
+						<ul>
+							<c:forEach var="message" items="${errorMsgs}">
+								<li style="color: red">${message}</li>
+							</c:forEach>
+						</ul>
+					</c:if>
+				</div>
+              <form class="pt-3" method ="post" action = "MailServlet">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="email">
+                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="email" name ="mem_email">
                 </div>
                 <div class="mt-3">
-               <input class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit" value="Send reset link" />     
+               <input class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit" value="Send reset link" />
+                    
                 </div>
                 <div class="text-center mt-4 font-weight-light">
                   <a href="login.jsp" class="auth-link text-black ">Login</a>
@@ -46,7 +59,7 @@
                 <div class="text-center mt-4 font-weight-light">
                   Don't have an account? <a href="register.jsp" class="text-primary">Create</a>
                 </div>
-                
+                <input type = "hidden" name = "action" value = "findbyemail">
               </form>
             </div>
           </div>

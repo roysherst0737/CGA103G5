@@ -517,7 +517,15 @@ int i = 1;
 						
 						<!-- 結帳按鈕開始 -->
 						<div class="col-12 d-flex shopping-box">
-								
+								<%-- 錯誤表列 --%>
+								<c:if test="${not empty errorMsgs}">
+									<font style="color: red">請修正以下錯誤:</font>
+									<ul>
+										<c:forEach var="message" items="${errorMsgs}">
+											<li style="color: red">${message}</li>
+										</c:forEach>
+									</ul>
+								</c:if>
 								<input type="hidden" name="mem_no" value="${user.mem_no}">
 								<input type="hidden" name="coupon_no" value="${couponVO.coupon_no}">	
 								<input class="btn btn-warning" id="checkout" type="submit" value="下單" onclick="confirmTest9()">

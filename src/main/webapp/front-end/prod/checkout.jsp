@@ -193,6 +193,14 @@ int i = 1;
 	width: 15px;
 	background-color:transparent;
 }
+#goToCoupon {
+	font-size: 14px;
+	font-weight: bold;
+	color: #f5c242;
+}
+#goToCoupon:hover {
+	color:black;
+}
 </style>
 
 </head>
@@ -461,7 +469,9 @@ int i = 1;
 								</c:forEach>
 
 								<div class="coupon-box">
-									<div class="input-group input-group-sm" id="boxCoupon">
+								<br>
+									<a href="<%=request.getContextPath()%>/front-end/memcoupon/memcouponlist.jsp" id="goToCoupon">前往查詢優惠碼</a>
+									<div class="input-group input-group-sm" id="boxCoupon">										
 										<input name="discount" id="insertCoupon" class="form-control"
 											placeholder="輸入優惠碼" aria-label="Coupon code" type="text">
 										<div class="input-group-append">

@@ -56,6 +56,15 @@ pageContext.setAttribute("mCouponList", mCouponList);
 #view {
 	float: left;
 }
+
+#goToCheckout {
+	font-size: 24px;
+	font-weight: bold;
+	color: #f5c242;
+}
+#goToCheckout:hover {
+ color: black;
+}
 </style>
 
 </head>
@@ -80,11 +89,12 @@ pageContext.setAttribute("mCouponList", mCouponList);
 		</div>
 	</div>
 	<!-- End All Title Box -->
-
+	
 	<!-- Start Shop Page  -->
 	<div class="my-account-box-main">
         <div class="container">
             <div class="my-account-page">
+            <a href="<%=request.getContextPath()%>/front-end/prod/checkout.jsp" id="goToCheckout">前往結帳頁</a>
                 <div class="row">     
                   <c:forEach var="mCouponVO" items="${mCouponList}">
                     <div class="col-lg-4 col-md-12">

@@ -53,7 +53,7 @@ pageContext.setAttribute("list", list);
 			<!-- 引入sidebar 用JQ方式 -->
 			<script>
 				$(function() {
-					$("#sidebar").load("../partials/_sidebar.html");
+					$("#sidebar").load("../partials/_sidebar.jsp");
 				});
 			</script>
 			 <!-- partial -->
@@ -98,7 +98,7 @@ pageContext.setAttribute("list", list);
   			 name="form1" enctype="multipart/form-data">
   			 	  <div class="form-group">
   			 	  <label for="exampleInputEmail1">原管理員權限名稱: </label>
-						<select name="mng_authfunc_no" size="1">
+						<select name="mng_authfunc_no" size="1" style="text-align:center;">
 						<c:forEach var="manager_authfunc_VO" items="${list}">
 						<option value="${manager_authfunc_VO.mng_authfunc_no}">
 						${manager_authfunc_VO.mng_authfunc_name}

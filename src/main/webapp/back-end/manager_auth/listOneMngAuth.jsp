@@ -78,7 +78,7 @@
 			<!-- 引入sidebar 用JQ方式 -->
 			<script>
 				$(function() {
-					$("#sidebar").load("../partials/_sidebar.html");
+					$("#sidebar").load("../partials/_sidebar.jsp");
 				});
 			</script>
 			 <!-- partial -->

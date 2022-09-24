@@ -29,6 +29,7 @@ pageContext.setAttribute("list2", list2);
 <jsp:useBean id="mng_authfunc" scope="page"
 	class="com.manager_authfunc.model.Manager_authfunc_Service" />
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,7 +80,7 @@ pageContext.setAttribute("list2", list2);
 			<!-- 引入sidebar 用JQ方式 -->
 			<script>
 				$(function() {
-					$("#sidebar").load("<%=request.getContextPath()%>/back-end/partials/_sidebar.html");
+					$("#sidebar").load("../partials/_sidebar.jsp");
 				});
 			</script>
 			 <!-- partial -->
@@ -98,10 +99,10 @@ pageContext.setAttribute("list2", list2);
           <table class="table table-striped" style="text-align:center;">
             <thead>
        <tr>
-        <th>管理員<br>編號</th>
-		<th>管理員<br>姓名</th>
-		<th>權限名稱</th>
-		<th>增加權限</th>
+        <th nowrap="nowrap" style="padding: 8px">管理員編號</th>
+		<th nowrap="nowrap" style="padding: 8px">管理員姓名</th>
+		<th nowrap="nowrap" style="padding: 8px">權限名稱</th>
+		<th nowrap="nowrap" style="padding: 8px">增加權限</th>
        </tr>
             </thead>
             <tbody>

@@ -285,7 +285,7 @@ pageContext.setAttribute("list1", list1);
     <!-- End All Title Box -->
 
  <form class="" action="index.html" method="post">
-    <h2 class="card-title">最新資訊</h2>
+    <h2 class="card-title" style="color:white; margin-left:30px;">最新消息</h2>
     <div id="table-style" class="card" style="margin:30px;">
       <section class="my-container list-group-numbered">
         <div class="news-info-list-wrap">

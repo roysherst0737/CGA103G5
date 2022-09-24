@@ -56,7 +56,7 @@ public class ManagerLogin_dev1 extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("manager_VO", manager_VO); // 含有輸入格式錯誤的manager_VO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("mngLogin.jsp");
+							.getRequestDispatcher("back-end/manager_login/mngLogin.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -70,7 +70,7 @@ public class ManagerLogin_dev1 extends HttpServlet {
 				} else {
 					req.getSession().setAttribute("mng", mng_account);
 					System.out.println("not login");
-					res.sendRedirect("mngLogin.jsp");
+					res.sendRedirect("back-end/manager_login/mngLogin.jsp");
 					return;
 				}
 				

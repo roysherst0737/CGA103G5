@@ -16,7 +16,8 @@ import com.pub.entity.Pub;
 
 @WebFilter(urlPatterns = { "/PubApplication", "/PubBooking", "/PubRate", "/PubStates", "/front-end/mem/my-account.jsp",
 		"/front-end/mem/memApplication.jsp", "/front-end/prod/orderHistory.jsp", "/MemBookingGet",
-		"/front-end/act/my_sign_up.jsp", "/front-end/act/survey.jsp", "/front-end/act/writesurvey.jsp" })
+		"/front-end/act/my_sign_up.jsp", "/front-end/act/survey.jsp", "/front-end/act/writesurvey.jsp",
+		"/front-end/memcoupon/memcouponlist.jsp" })
 
 public class frontFilter extends HttpFilter {
 	private static final long serialVersionUID = 1L;
@@ -44,8 +45,5 @@ public class frontFilter extends HttpFilter {
 			} else {
 				chain.doFilter(req, res);
 			}
-		} else {
-			chain.doFilter(req, res);
 		}
 	}
-}

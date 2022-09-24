@@ -1,19 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.act.model.*"%>
-<%@ page import="com.prod.model.*"%>
+<%@ page import="com.mem_coupon.model.*"%>
+<%@ page import="com.mem.model.*"%>
+
 
 <%
-Act_Service actSvc = new Act_Service();
-List<Act_VO> actList = actSvc.getAll();
-pageContext.setAttribute("actList", actList);
+Object Objuser = session.getAttribute("user");
+Mem_VO user = (Mem_VO) Objuser;
 
+Mem_Coupon_Service mCouponSvc = new Mem_Coupon_Service();
+List<Mem_Coupon_VO> mCouponList = mCouponSvc.getOneMemCoupon(user.getMem_no());
+pageContext.setAttribute("mCouponList", mCouponList);
 
-
-Prod_Service prodSvc = new Prod_Service();
-List<Prod_VO> list = prodSvc.getAll();
-pageContext.setAttribute("list", list);
 
 %>
 
@@ -74,7 +73,7 @@ pageContext.setAttribute("list", list);
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h2>活動總覽</h2>
+					<h2>會員優惠券</h2>
 
 				</div>
 			</div>
@@ -86,7 +85,8 @@ pageContext.setAttribute("list", list);
 	<div class="my-account-box-main">
         <div class="container">
             <div class="my-account-page">
-                <div class="row"> <!-- 內容為會員優惠券內容 -->
+                <div class="row">     
+                  <c:forEach var="mCouponVO" items="${mCouponList}">
                     <div class="col-lg-4 col-md-12">
                         <div class="account-box">
                             <div class="service-box">
@@ -94,64 +94,14 @@ pageContext.setAttribute("list", list);
                                     <a href="#"> <i class="fa fa-credit-card"></i> </a>
                                 </div>
                                 <div class="service-desc">
-                                    <h4>Payment options</h4>
-                                    <p>Edit or add payment methods</p>
+                                    <h4>${mCouponVO.couponVO.coupon_name}</h4>
+                                    <span>優惠券代碼: </span><span>${mCouponVO.couponVO.coupon_code}</span>
+                                    <p class="text-danger">剩餘數量: ${mCouponVO.remain_amount}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="account-box">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <a href="#"> <i class="fab fa-paypal"></i> </a>
-                                </div>
-                                <div class="service-desc">
-                                    <h4>PayPal</h4>
-                                    <p>View benefits and payment settings</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="account-box">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <a href="#"> <i class="fab fa-amazon"></i> </a>
-                                </div>
-                                <div class="service-desc">
-                                    <h4>Amazon Pay balance</h4>
-                                    <p>Add money to your balance</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="account-box">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <a href="#"> <i class="fab fa-amazon"></i> </a>
-                                </div>
-                                <div class="service-desc">
-                                    <h4>Amazon Pay balance</h4>
-                                    <p>Add money to your balance</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="account-box">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <a href="#"> <i class="fab fa-amazon"></i> </a>
-                                </div>
-                                <div class="service-desc">
-                                    <h4>Amazon Pay balance</h4>
-                                    <p>Add money to your balance</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>              
             </div>
         </div>

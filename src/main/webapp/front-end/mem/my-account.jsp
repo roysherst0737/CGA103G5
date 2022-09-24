@@ -114,11 +114,11 @@ pageContext.setAttribute("list", list);
                         <div class="account-box">
                             <div class="service-box">
                                 <div class="service-icon">
-                                    <a href="#"> <i class="fa fa-credit-card"></i> </a>
+                                    <a href="<%=request.getContextPath()%>/front-end/memcoupon/memcouponlist.jsp"> <i class="fa fa-credit-card"></i> </a>
                                 </div>
                                 <div class="service-desc">
-                                    <h4>Payment options</h4>
-                                    <p>Edit or add payment methods</p>
+                                    <h4>會員優惠券</h4>
+                                    <p>查看會員擁有哪些優惠券能使用</p>
                                 </div>
                             </div>
                         </div>

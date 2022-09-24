@@ -138,9 +138,7 @@ public class MemRegisterServlet extends HttpServlet {
 					 mem_id, birthdate, mem_addr, permission);
 			
 			/***************************4.新增完成,準備轉交(Send the Success view)***********/
-			String url = "/front-end/index.jsp";
-			RequestDispatcher successView = request.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
-			successView.forward(request, response);		
+			response.sendRedirect("/CGA103G5ALL/front-end/index.jsp");	
 		}
 	}
 

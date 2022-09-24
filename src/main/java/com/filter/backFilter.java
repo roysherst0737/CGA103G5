@@ -23,7 +23,7 @@ public class backFilter extends HttpFilter {
 			throws IOException, ServletException {
 		HttpSession session = req.getSession();
 		String mng_account = (String) session.getAttribute("mng");
-		System.out.println(mng_account);
+//		System.out.println((String) session.getAttribute("mng"));
 		if (mng_account == null) {
 			res.sendRedirect("/CGA103G5ALL/back-end/manager_login/mngLogin.jsp");
 		} else {

@@ -6,6 +6,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
+
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
     <li class="nav-item">
@@ -25,24 +26,23 @@
                 return path + hostname + pathname;
               }
             }
-            <c:if test="${manager_VO.mng_no != null}">
+            <c:if test="${sessionScope.mng != null}">
             document.querySelector("#mem_img").setAttribute("src",
               getContextPath() + "/ManagerImage?mng_no=1")
               </c:if>
-            <c:if test="${manager_VO.mng_no == null}">
+            <c:if test="${sessionScope.mng == null}">
             document.querySelector("#mem_img").setAttribute("src",
               getContextPath() + "/ManagerImage?mng_no=")
               </c:if>
           </script>
         </div>
         <div class="sidebar-profile-name">
-        <c:if test="${manager_VO.mng_no != null}">
-          <p class="sidebar-name">${manager_VO.mng_name}</p>
+        <c:if test="${sessionScope.mng != null}">
+          <p class="sidebar-name">${sessionScope.mng !=null ? "醉拳甘迺迪" : ""}</p>
           <p class="sidebar-designation"> Welcome</p>
-          <p>${manager_VO.mng_name}</p>
           </c:if>
           
-          <c:if test="${manager_VO.mng_no == null}">
+          <c:if test="${sessionScope.mng == null}">
           <p class="sidebar-name">請登入</p>
           <p class="sidebar-designation"></p>
           </c:if>

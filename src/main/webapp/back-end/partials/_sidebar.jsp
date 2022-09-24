@@ -1,3 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@page import="com.manager.model.Manager_VO"%>
+<%@page import="com.manager.model.Manager_Service"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
   <ul class="nav">
     <li class="nav-item">
@@ -17,14 +25,27 @@
                 return path + hostname + pathname;
               }
             }
+            <c:if test="${manager_VO.mng_no != null}">
             document.querySelector("#mem_img").setAttribute("src",
               getContextPath() + "/ManagerImage?mng_no=1")
+              </c:if>
+            <c:if test="${manager_VO.mng_no == null}">
+            document.querySelector("#mem_img").setAttribute("src",
+              getContextPath() + "/ManagerImage?mng_no=")
+              </c:if>
           </script>
-          <span class="sidebar-status-indicator"></span>
         </div>
         <div class="sidebar-profile-name">
-          <p class="sidebar-name">醉拳甘迺迪</p>
-          <p class="sidebar-designation">Welcome</p>
+        <c:if test="${manager_VO.mng_no != null}">
+          <p class="sidebar-name">${manager_VO.mng_name}</p>
+          <p class="sidebar-designation"> Welcome</p>
+          <p>${manager_VO.mng_name}</p>
+          </c:if>
+          
+          <c:if test="${manager_VO.mng_no == null}">
+          <p class="sidebar-name">請登入</p>
+          <p class="sidebar-designation"></p>
+          </c:if>
         </div>
       </div>
       <p class="sidebar-menu-title">目錄</p>
@@ -124,13 +145,6 @@
             	getContextPath() + "/back-end/mem/listAllMem.jsp");
           </script>
         </ul>
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"><a id="mem_coupon_list" class="nav-link" href=""> 會員優惠券資料 </a></li>
-          <script>
-            document.querySelector("#mem_coupon_list").setAttribute("href",
-            	getContextPath() + "/back-end/mem_coupon/mem_coupon_list.jsp");
-          </script>
-        </ul>
       </div>
     </li>
     <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#coupon" aria-expanded="false"
@@ -207,7 +221,7 @@
       <div class="collapse" id="pub">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"><a id="pub_check" class="nav-link" href="pages/samples/login.html"> 酒吧審核 </a></li>
-          <li class="nav-item"><a id="pub_list" class="nav-link" href="/pages/samples/register.html"> 酒吧預約清單 </a></li>
+          <li class="nav-item"><a id="pub_list" class="nav-link" href="/pages/samples/register.html"> 酒吧清單 </a></li>
           <script>
             document.querySelector("#pub_list").setAttribute("href",
               getContextPath() + "/pub/getlist");

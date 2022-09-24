@@ -61,15 +61,15 @@ public class ManagerLogin_dev1 extends HttpServlet {
 					return;
 				}
 				Manager_DAO manager_dao=new Manager_DAO();
-				System.out.println(manager_VO.getMng_account());
-				System.out.println(mng_account);
+//				System.out.println(manager_VO.getMng_account());
+//				System.out.println(mng_account);
 				if (manager_dao.mngLogin(manager_VO)) {
 					HttpSession session = req.getSession();
 					 session.setAttribute("mng", mng_account);
 					res.sendRedirect("back");
 				} else {
 					req.getSession().setAttribute("mng", mng_account);
-					System.out.println("mng_p");
+					System.out.println("not login");
 					res.sendRedirect("mngLogin.jsp");
 					return;
 				}

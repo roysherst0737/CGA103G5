@@ -59,7 +59,7 @@
 			<!-- 引入sidebar 用JQ方式 -->
 			<script>
 				$(function() {
-					$("#sidebar").load("../partials/_sidebar.html");
+					$("#sidebar").load("../partials/_sidebar.jsp");
 				});
 			</script>
 			 <!-- partial -->
@@ -78,15 +78,15 @@
           <table class="table table-striped" style="text-align:center;">
             <thead>
        <tr>
-        <th>管理員編號</th>
-		<th>管理員帳號</th>
-		<th>管理員密碼</th>
-		<th>管理員姓名</th>
-		<th>管理員手機</th>
-		<th>管理員照片</th>
-		<th>管理員狀態</th>
-		<th>修改資料</th>
-		<th>刪除資料</th>
+        <th nowrap="nowrap" style="padding: 8px">管理員編號</th>
+		<th nowrap="nowrap" style="padding: 8px">管理員帳號</th>
+		<th nowrap="nowrap" style="padding: 8px">管理員密碼</th>
+		<th nowrap="nowrap" style="padding: 8px">管理員姓名</th>
+		<th nowrap="nowrap" style="padding: 8px">管理員手機</th>
+		<th nowrap="nowrap" style="padding: 8px">管理員照片</th>
+		<th nowrap="nowrap" style="padding: 8px">管理員狀態</th>
+		<th nowrap="nowrap" style="padding: 8px">修改資料</th>
+		<th nowrap="nowrap" style="padding: 8px">刪除資料</th>
        </tr>
             </thead>
             <tbody>

@@ -39,7 +39,7 @@ public class ManagerImage extends HttpServlet {
 				in.close();
 			} else {
 				//res.sendError(HttpServletResponse.SC_NOT_FOUND);
-				InputStream in = getServletContext().getResourceAsStream("/back-end/manager_login/NoData/none2.jpg");
+				InputStream in = getServletContext().getResourceAsStream("/back-end/manager_login/NoData/null2.jpg");
 				byte[] b = new byte[in.available()];
 				in.read(b);
 				out.write(b);
@@ -49,7 +49,7 @@ public class ManagerImage extends HttpServlet {
 			stmt.close();
 		} catch (Exception e) {
 			//System.out.println(e);
-			InputStream in = getServletContext().getResourceAsStream("/back-end/manager_login/NoData/null.jpg");
+			InputStream in = getServletContext().getResourceAsStream("/back-end/manager_login/NoData/null2.jpg");
 			byte[] b = new byte[in.available()];
 			in.read(b);
 			out.write(b);

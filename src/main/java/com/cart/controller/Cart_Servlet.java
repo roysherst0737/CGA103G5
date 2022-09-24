@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cart.model.*;
+import com.prod.model.Prod_Service;
+import com.prod.model.Prod_VO;
 
 public class Cart_Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -60,10 +62,17 @@ public class Cart_Servlet extends HttpServlet {
 				failureView.forward(req, res);
 				return;
 			}
+			
+			Integer prod_stock = Integer.valueOf(req.getParameter("prod_stock").trim()); 
+			Prod_VO prodVO = new Prod_VO();
+			prodVO.setProd_stock(prod_stock);
 
 			/*************************** 2.開始新增資料 ***************************************/
 			Cart_Service cartSvc = new Cart_Service();
 			cartVO = cartSvc.addCart(mem_no, prod_no, prod_qty);
+			
+			Prod_Service prodSvc = new Prod_Service();
+			prod_stock = prodSvc.stockMinus(prod_no);
 
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 			try {
@@ -116,9 +125,16 @@ public class Cart_Servlet extends HttpServlet {
 				return;
 			}
 
+			Integer prod_stock = Integer.valueOf(req.getParameter("prod_stock").trim()); 
+			Prod_VO prodVO = new Prod_VO();
+			prodVO.setProd_stock(prod_stock);
+
 			/*************************** 2.開始新增資料 ***************************************/
 			Cart_Service cartSvc = new Cart_Service();
 			cartVO = cartSvc.addCart(mem_no, prod_no, prod_qty);
+			
+			Prod_Service prodSvc = new Prod_Service();
+			prod_stock = prodSvc.stockMinus(prod_no);
 
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 			
@@ -172,9 +188,16 @@ public class Cart_Servlet extends HttpServlet {
 				return;
 			}
 
+			Integer prod_stock = Integer.valueOf(req.getParameter("prod_stock").trim()); 
+			Prod_VO prodVO = new Prod_VO();
+			prodVO.setProd_stock(prod_stock);
+
 			/*************************** 2.開始新增資料 ***************************************/
 			Cart_Service cartSvc = new Cart_Service();
 			cartVO = cartSvc.addCart(mem_no, prod_no, prod_qty);
+			
+			Prod_Service prodSvc = new Prod_Service();
+			prod_stock = prodSvc.stockMinus(prod_no);
 
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 			
@@ -228,9 +251,16 @@ public class Cart_Servlet extends HttpServlet {
 				return;
 			}
 
+			Integer prod_stock = Integer.valueOf(req.getParameter("prod_stock").trim()); 
+			Prod_VO prodVO = new Prod_VO();
+			prodVO.setProd_stock(prod_stock);
+
 			/*************************** 2.開始新增資料 ***************************************/
 			Cart_Service cartSvc = new Cart_Service();
 			cartVO = cartSvc.addCart(mem_no, prod_no, prod_qty);
+			
+			Prod_Service prodSvc = new Prod_Service();
+			prod_stock = prodSvc.stockMinus(prod_no);
 
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 			String url = "cart.jsp";		
@@ -273,9 +303,14 @@ public class Cart_Servlet extends HttpServlet {
 				Cart_Service cartSvc = new Cart_Service();
 				cartSvc.deleteCartByProd(prod_no);
 			} else {
+				Integer prod_stock = Integer.valueOf(req.getParameter("prod_stock").trim()); 
+				Prod_VO prodVO = new Prod_VO();
+				prodVO.setProd_stock(prod_stock);
 				/*************************** 2.開始新增資料 ***************************************/
 				Cart_Service cartSvc = new Cart_Service();
 				cartVO = cartSvc.minusCart(mem_no, prod_no, prod_qty);
+				Prod_Service prodSvc = new Prod_Service();
+				prod_stock = prodSvc.stockPlus(prod_no);
 				
 			}
 
@@ -332,9 +367,16 @@ public class Cart_Servlet extends HttpServlet {
 				return;
 			}
 
+			Integer prod_stock = Integer.valueOf(req.getParameter("prod_stock").trim()); 
+			Prod_VO prodVO = new Prod_VO();
+			prodVO.setProd_stock(prod_stock);
+
 			/*************************** 2.開始新增資料 ***************************************/
 			Cart_Service cartSvc = new Cart_Service();
 			cartVO = cartSvc.addCart(mem_no, prod_no, prod_qty);
+			
+			Prod_Service prodSvc = new Prod_Service();
+			prod_stock = prodSvc.stockMinus(prod_no);
 
 			/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 			String url = "checkout.jsp";		
@@ -377,9 +419,15 @@ public class Cart_Servlet extends HttpServlet {
 				Cart_Service cartSvc = new Cart_Service();
 				cartSvc.deleteCartByProd(prod_no);
 			} else {
+				Integer prod_stock = Integer.valueOf(req.getParameter("prod_stock").trim()); 
+				Prod_VO prodVO = new Prod_VO();
+				prodVO.setProd_stock(prod_stock);
 				/*************************** 2.開始新增資料 ***************************************/
 				Cart_Service cartSvc = new Cart_Service();
 				cartVO = cartSvc.minusCart(mem_no, prod_no, prod_qty);
+				
+				Prod_Service prodSvc = new Prod_Service();
+				prod_stock = prodSvc.stockPlus(prod_no);
 				
 			}
 

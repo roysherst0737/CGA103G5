@@ -27,10 +27,6 @@ public class frontFilter extends HttpFilter {
 			throws IOException, ServletException {
 		HttpSession session = req.getSession();
 
-		Mem_VO user_account = (Mem_VO) session.getAttribute("user");
-
-		if (user_account == null) {
-
 			Mem_VO mem_account = (Mem_VO) session.getAttribute("user");
 
 			if (mem_account == null) {
@@ -47,4 +43,3 @@ public class frontFilter extends HttpFilter {
 			}
 		}
 	}
-}	

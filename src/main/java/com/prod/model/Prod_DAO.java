@@ -43,6 +43,9 @@ public class Prod_DAO implements Prod_DAO_interface{
 	
 	private static final String GET_Prod_pics_ByProd_STMT = "SELECT prod_pic_no,prod_no,prod_pic,prod_pic_name FROM prod_pic where prod_no = ? order by prod_pic_no";
 	
+	private static final String STOCK_MINUS = "UPDATE prod set prod_stock = prod_stock - 1 where prod_no = ?";
+	private static final String STOCK_PLUS = "UPDATE prod set prod_stock = prod_stock + 1 where prod_no = ?";
+	
 	@Override
 	public void insert(Prod_VO prodVO) {
 		Connection con = null;
@@ -348,5 +351,81 @@ public class Prod_DAO implements Prod_DAO_interface{
 	public List<Prod_VO> getAll(Map<String, String[]> map) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Integer stockMinus(Integer prod_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(STOCK_MINUS);
+
+			pstmt.setInt(1, prod_no);
+
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return prod_no;		
+	}
+
+	@Override
+	public Integer stockPlus(Integer prod_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(STOCK_PLUS);
+
+			pstmt.setInt(1, prod_no);
+
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return prod_no;		
 	}
 }

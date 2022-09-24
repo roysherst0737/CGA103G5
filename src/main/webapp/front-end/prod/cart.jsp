@@ -185,6 +185,7 @@ System.out.println(i);
                                         	<input class="btn" id="minus" type="submit" value="-">
                                         	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
                                         	<input type="hidden" name="prod_qty" value="${cartVO.prod_qty}">
+                                        	<input type="hidden" name="prod_stock" value="${cartVO.getProd_VO().prod_stock}">
                                         	<input type="hidden" name="mem_no" value="${user.mem_no}">
                                         	<input type="hidden" name="action" value="cartMinus">
 
@@ -200,6 +201,7 @@ System.out.println(i);
                                         	<input class="btn" id="plus" type="submit" value="+">
                                         	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
                                         	<input type="hidden" name="prod_qty" value="${cartVO.prod_qty}">
+                                        	<input type="hidden" name="prod_stock" value="${cartVO.getProd_VO().prod_stock}">
                                         	<input type="hidden" name="mem_no" value="${user.mem_no}">    	
                                         	<input type="hidden" name="action" value="cartPlus">                                        
                                     </td>
@@ -213,6 +215,7 @@ System.out.println(i);
                                     	<FORM action="cart.do" method="post">
                                         	<input class="btn btn-warning" id="deleteCart" type="submit" value="X">
                                         	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
+                                        	<input type="hidden" name="prod_stock" value="${cartVO.getProd_VO().prod_stock}">
                                         	<input type="hidden" name="mem_no" value="${user.mem_no}">
                                         	<input type="hidden" name="action" value="deleteOne">
                                         </FORM>
@@ -296,6 +299,7 @@ System.out.println(i);
                         		<FORM action="cart.do" method="post">
                 					<input class="btn btn-warning" id="deleteAll" type="submit" value="清空購物車"">
                     				<input type="hidden" name="mem_no" value="${user.mem_no}">
+                    				<input type="hidden" name="prod_stock" value="${cartVO.getProd_VO().prod_stock}">
                     				<input type="hidden" name="action" value="deleteAll">
               					 </FORM>
               					</div> 

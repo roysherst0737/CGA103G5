@@ -66,4 +66,10 @@ public class Prod_Service {
 	public Set<Prod_pic_VO> getProd_picsByProd(Integer prod_no) {
 		return dao.getProd_picsByProd(prod_no);
 	}
+	public Integer stockMinus(Integer prod_no) {
+		return dao.stockMinus(prod_no);
+	}
+	public Integer stockPlus(Integer prod_no) {
+		return dao.stockPlus(prod_no);
+	}
 }

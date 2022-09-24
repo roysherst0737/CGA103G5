@@ -169,6 +169,7 @@ session.setAttribute("url", url);
 															</c:otherwise>
 														</c:choose>
 														<input type="hidden" name="prod_no" value="${prodVO.prod_no}">
+														<input type="hidden" name="prod_stock" value="${prodVO.prod_stock}">
                                                         <input type="hidden" name="mem_no" value="${user.mem_no}">
 														<input type="hidden" name="action" value="insert">	
 														</FORM>
@@ -222,6 +223,7 @@ session.setAttribute("url", url);
 														</c:otherwise>
 													</c:choose>
 													<input type="hidden" name="prod_no" value="${prodVO.prod_no}">
+													<input type="hidden" name="prod_stock" value="${prodVO.prod_stock}">
                                                     <input type="hidden" name="mem_no" value="${user.mem_no}">
 													<input type="hidden" name="action" value="insert">	
 													</FORM>

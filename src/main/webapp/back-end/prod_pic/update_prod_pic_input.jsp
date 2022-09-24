@@ -35,6 +35,59 @@
 
 </head>
 
+<style>
+
+	input[disabled]{
+        background-color: #eee;
+        cursor: not-allowed;
+      }
+
+	#preview{
+        border: 3px solid grey;
+        display: inline-block;
+        width: 150px;
+        min-height: 100px;
+        position: relative;
+      }
+      #preview span.text{
+        position: absolute;
+        display: inline-block;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        color: lightgray;
+      }
+      #preview img.preview_img{
+        width: 100%;
+      }
+      
+</style>
+
+<script>
+window.addEventListener("load", function(e){
+	var preview_el = document.getElementById("preview");
+    var p_file_el = document.getElementById("p_file");
+	var preview_img = function(file){
+        var reader = new FileReader(); // 用來讀取檔案
+        reader.readAsDataURL(file); // 讀取檔案
+        reader.addEventListener("load", function () {
+        	var img_str = '<img src="' + reader.result + '" class="preview_img">';
+            preview_el.innerHTML = img_str;
+
+        });
+	};
+	p_file_el.addEventListener("change", function(e){
+        if(this.files.length > 0){
+          preview_img(this.files[0]);
+        }else{
+          preview_el.innerHTML = '<span class="text">預覽圖</span>';
+        }
+      });
+});
+
+</script>
+
 <body>
 	<!-- 主頁面 -->
 	<div class="container-scroller">
@@ -99,7 +152,7 @@
 										<jsp:useBean id="prodSvc" scope="page" class="com.prod.model.Prod_Service" />
 										<FORM METHOD="post" ACTION="prod_pic.do" name="form1"
 											enctype="multipart/form-data">
-											<table class="table table-striped">
+											<table >
 												<tr>
 													<td>商品名稱:</td> 
 													<td>${prod_picVO.getProd_VO().prod_name}</td> 
@@ -108,7 +161,17 @@
 												<tr>
 													<td>商品照片:</td>
 													<td><input type="file" name="prod_pic" size="45"
-														value=null /></td>
+														value=null id="p_file" /></td>
+													<td>原圖:</td>
+													<td><img
+														src="<%=request.getContextPath()%>/Show_Prod_pic_Servlet?prod_pic_no=${prod_picVO.prod_pic_no}"
+														width=150px height=100px></td>
+													<td>更改為→→</td>
+													<td>
+														<div id="preview">
+															<span class="text">預覽圖</span>
+														</div>
+													</td>
 												</tr>
 												<tr>
 													<td>商品照片名稱:</td>

@@ -13,7 +13,8 @@ import javax.servlet.http.HttpSession;
 @WebFilter(urlPatterns = { "/pub/pub_check", "/back-end/prod/listAllProd.jsp", "/back-end/act/listAllAct.jsp",
 		"/back-end/act_pic/listAllAct_pic.jsp", "/back-end/act_sign_up/listAllAct_sign_up.jsp",
 		"/back-end/firm_survey/listAllFirm_survey.jsp", "/back-end/question/listAllQuestion.jsp", "/back-end/prod/listAllProd.jsp"
-		, "/back-end/prod/listAllProd_pic.jsp", "/back-end/prod/listAllProd_type.jsp", "/back-end/prod/listAllOrder.jsp"})
+		, "/back-end/prod/listAllProd_pic.jsp", "/back-end/prod/listAllProd_type.jsp", "/back-end/prod/listAllOrder.jsp", "/back-end/manager/listAllMng.jsp"
+		, "/back-end/manager_auth/listAllMngAuth.jsp", "/back-end/mem/listAllMem.jsp", "/back-end/mem_coupon/mem_coupon_list.jsp", "/back-end/coupon/listAllCoupon.jsp"})
 public class backFilter extends HttpFilter {
 	private static final long serialVersionUID = 1L;
 

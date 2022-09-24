@@ -128,10 +128,8 @@ session.setAttribute("surveyUrl", surveyUrl);
 					</div>
 				</div>
 			</div>
-
-
-
-
+		</div>
+	</div>
 			<!-- !!!!!!此行以下都不要修改!!!!!!-->
 			<!-- Start Instagram Feed  -->
 			<div class="instagram-box">

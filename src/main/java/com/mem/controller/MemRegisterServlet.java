@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.mem.model.Mem_Service;
 import com.mem.model.Mem_VO;
 
-@WebServlet("/MemRegisterServlest")
+@WebServlet("/MemRegisterServlet")
 public class MemRegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

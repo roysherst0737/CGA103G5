@@ -110,8 +110,6 @@ session.setAttribute("surveyUrl", surveyUrl);
 								<c:forEach var="set" items="${set}">
 									<tr>
 										<td>活動問卷<%=i++%></td>
-
-
 										<c:choose>
 											<c:when test="${set2.contains(set)}">
 												<td><input type="button" value="已填寫"></td>

@@ -267,6 +267,7 @@
 								width="28px" height="28px" /></a>
 							<ul class="dropdown-menu">
 							<li><a href="<%=request.getContextPath()%>/front-end/mem/memApplication.jsp" style="color: #f5c242; font-weight:bold;">個人資料</a></li>
+							<li><a href="<%=request.getContextPath()%>/front-end/memcoupon/memcouponlist.jsp" style="color: #f5c242; font-weight:bold;">會員優惠券</a></li>
 							<li><a href="<%=request.getContextPath()%>/front-end/prod/orderHistory.jsp" style="color: #f5c242; font-weight:bold;">歷史訂單</a></li>
 							<li><a href="<%=request.getContextPath()%>/MemBookingGet" style="color: #f5c242; font-weight:bold;">酒吧訂位查看</a></li>
 							<c:if test="${ not empty sessionScope.user}"> 

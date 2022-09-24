@@ -275,19 +275,31 @@ public class Mem_Coupon_DAO implements Mem_Coupon_DAO_interface{
 	}
 
 	@Override
-	public void getOneMemCoupon(Integer mem_no) {
+	public List<Mem_Coupon_VO> getOneMemCoupon(Integer mem_no) {
+		List<Mem_Coupon_VO> list = new ArrayList<Mem_Coupon_VO>();
+		Mem_Coupon_VO memCouponVO = null;
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
 		try {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_ONEMEM_STMT);
+			
+			pstmt.setInt(1, mem_no); 
+			rs = pstmt.executeQuery();
 
-			pstmt.setInt(1, mem_no);
+			while (rs.next()) {
+				// empVO �]�٬� Domain objects
+				memCouponVO = new Mem_Coupon_VO();
+				memCouponVO.setCoupon_no(rs.getInt("coupon_no"));
+				memCouponVO.setMem_no(rs.getInt("mem_no"));
+				memCouponVO.setRemain_amount(rs.getInt("Remain_amount"));
 
-			pstmt.executeUpdate();
+				list.add(memCouponVO); // Store the row in the list
+			}
 
 			// Handle any driver errors
 		} catch (SQLException se) {
@@ -295,6 +307,13 @@ public class Mem_Coupon_DAO implements Mem_Coupon_DAO_interface{
 					+ se.getMessage());
 			// Clean up JDBC resources
 		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
 			if (pstmt != null) {
 				try {
 					pstmt.close();
@@ -310,7 +329,7 @@ public class Mem_Coupon_DAO implements Mem_Coupon_DAO_interface{
 				}
 			}
 		}
-
+		return list;
 	}
 
 }

@@ -15,6 +15,8 @@ Firm_survey_Service firm_surveySvc = new Firm_survey_Service();
 Set<Integer> set = firm_surveySvc.getAll_from_act_no(Integer.parseInt(request.getQueryString()));
 pageContext.setAttribute("set", set);
 int i = 1;
+int j = set.size();
+pageContext.setAttribute("j", j);
 
 Object Objuser = session.getAttribute("user");
 Mem_VO user = (Mem_VO) Objuser;
@@ -67,6 +69,14 @@ session.setAttribute("surveyUrl", surveyUrl);
 	width: auto;
 	height: auto;
 }
+#remind {
+			color:#f5c242; 
+			font-size: 28px; 
+			font-weight:bold;
+			}
+		#remind:hover {	
+			color:black;
+			}			
 </style>
 
 </head>
@@ -106,6 +116,12 @@ session.setAttribute("surveyUrl", surveyUrl);
 								</tr>
 							</thead>
 							<tbody>
+                                 <c:if test="${j == 0 }">
+                                      <td>
+                                   <a href="<%=request.getContextPath()%>/front-end/act/my_sign_up.jsp" id="remind">活動方尚未新增問卷，點擊回上一頁</a>
+                                            </td>
+                                      </c:if>
+
 
 								<c:forEach var="set" items="${set}">
 									<tr>
@@ -121,6 +137,7 @@ session.setAttribute("surveyUrl", surveyUrl);
 										</c:choose>
 									</tr>
 								</c:forEach>
+								
 							</tbody>
 						</table>
 					</div>

@@ -4,11 +4,14 @@
 <%@ page import="com.question_list.model.*"%>
 <%@ page import="com.question.model.*"%>
 <%@ page import="com.mem.model.*"%>
+<%@ page import="com.firm_survey.model.*"%>
 
 <%
 Question_list_Service question_listSvc = new Question_list_Service();
 List<Question_list_VO> list = question_listSvc.getAllFromFirmSurveyNo(Integer.parseInt(request.getQueryString()));
 pageContext.setAttribute("list", list);
+
+
 
 int i = 1;
 int j = 1;
@@ -133,12 +136,25 @@ a.booking:hover {
 	color: #ffffff;
 }
 .box{
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-right: auto;
+  margin-left: auto;
   width: 450px;
   height: 80px;
   background: #ecd6c7;
-  margin: 0 auto;/*區塊置中*/
+  text-align: center;
+  line-height:80px;
 }
 
+#remind {
+			color:#f5c242; 
+			font-size: 28px; 
+			font-weight:bold;
+			}
+		#remind:hover {	
+			color:black;
+			}	
 </style>
 
 </head>
@@ -154,7 +170,7 @@ a.booking:hover {
 
 <c:when test="${k < 0}">
  <div class="box">
-    <font size="100" class="font">活動方尚未新增題目</font>
+    <a href="<%=request.getContextPath()%>/front-end/act/survey.jsp?" id="remind">活動方尚未新增題目</a>
   </div>
 
 </c:when>

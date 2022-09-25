@@ -68,7 +68,7 @@
 						<p class="m-b-40">覺得我們賣太貴？快點來搶優惠券A好康！</p>
 						<p>
 							<a class="btn hvr-hover" style="height: fit-content; width: fit-content;"
-								href="gallery.html">取得優惠</a>
+								href="<%=request.getContextPath()%>/front-end/coupon/couponlist.jsp">取得優惠</a>
 						</p>
 					</div>
 				</div>

@@ -8,9 +8,9 @@ public interface Mem_Coupon_DAO_interface {
     public void delete(Integer coupon_no,Integer mem_no);
     public Mem_Coupon_VO findByPrimaryKey(Integer coupon_no,Integer mem_no);
     public List<Mem_Coupon_VO> getAll();
-    public void getOneMemCoupon(Integer mem_no);
+    public List<Mem_Coupon_VO> getOneMemCoupon(Integer mem_no);
 
     
-    //�U�νƦX�d��(�ǤJ�Ѽƫ��AMap)(�^�� List)
+
 //  public List<EmpVO> getAll(Map<String, String[]> map); 
 }

@@ -39,6 +39,59 @@ Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
 </script>
 </head>
 
+<style>
+
+	input[disabled]{
+        background-color: #eee;
+        cursor: not-allowed;
+      }
+
+	#preview{
+        border: 3px solid grey;
+        display: inline-block;
+        width: 150px;
+        min-height: 100px;
+        position: relative;
+      }
+      #preview span.text{
+        position: absolute;
+        display: inline-block;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        color: lightgray;
+      }
+      #preview img.preview_img{
+        width: 100%;
+      }
+      
+</style>
+
+<script>
+window.addEventListener("load", function(e){
+	var preview_el = document.getElementById("preview");
+    var p_file_el = document.getElementById("p_file");
+	var preview_img = function(file){
+        var reader = new FileReader(); // 用來讀取檔案
+        reader.readAsDataURL(file); // 讀取檔案
+        reader.addEventListener("load", function () {
+        	var img_str = '<img src="' + reader.result + '" class="preview_img">';
+            preview_el.innerHTML = img_str;
+
+        });
+	};
+	p_file_el.addEventListener("change", function(e){
+        if(this.files.length > 0){
+          preview_img(this.files[0]);
+        }else{
+          preview_el.innerHTML = '<span class="text">預覽圖</span>';
+        }
+      });
+});
+
+</script>
+
 <body>
 	<!-- 主頁面 -->
 	<div class="container-scroller">
@@ -122,8 +175,13 @@ Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
 												</tr>
 												<tr>
 													<td>商品照片:</td>
-													<td><input type="file" name="prod_pic" size="45"/></td>
-
+													<td><input type="file" name="prod_pic" size="45" id="p_file"/></td>
+													<td>預覽圖:</td>
+													<td>
+														<div id="preview">
+															<span class="text">預覽圖</span>
+														</div>
+													</td>
 												</tr>
 												<tr>
 													<td>商品照片名稱:</td>
@@ -131,7 +189,6 @@ Prod_pic_VO prod_picVO = (Prod_pic_VO) request.getAttribute("prod_picVO");
 														value="<%=(prod_picVO == null) ? "" : prod_picVO.getProd_pic_name()%>" /></td>
 												</tr>
 											</table>
-
 											<br> <input type="hidden" name="action" value="insert">
 											<input type="submit" value="送出新增">
 										</FORM>

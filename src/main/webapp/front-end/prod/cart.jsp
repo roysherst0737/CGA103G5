@@ -19,6 +19,10 @@ Mem_VO user = (Mem_VO) Objuser;
 
 String url = request.getRequestURL().toString() + "?" + request.getQueryString();
 session.setAttribute("url", url);
+
+int i = 0;
+System.out.println(i);
+
 %>
 
 <!DOCTYPE html>
@@ -162,6 +166,7 @@ session.setAttribute("url", url);
                             </thead>
                             <c:forEach var="cartVO" items="${cartlist}">
                             <c:if test="${cartVO.mem_no == user.mem_no}">
+                            <%i++;%>
                             <tbody>
                                 <tr>
                                     <td id="pic">
@@ -180,6 +185,7 @@ session.setAttribute("url", url);
                                         	<input class="btn" id="minus" type="submit" value="-">
                                         	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
                                         	<input type="hidden" name="prod_qty" value="${cartVO.prod_qty}">
+                                        	<input type="hidden" name="prod_stock" value="${cartVO.getProd_VO().prod_stock}">
                                         	<input type="hidden" name="mem_no" value="${user.mem_no}">
                                         	<input type="hidden" name="action" value="cartMinus">
 
@@ -195,6 +201,7 @@ session.setAttribute("url", url);
                                         	<input class="btn" id="plus" type="submit" value="+">
                                         	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
                                         	<input type="hidden" name="prod_qty" value="${cartVO.prod_qty}">
+                                        	<input type="hidden" name="prod_stock" value="${cartVO.getProd_VO().prod_stock}">
                                         	<input type="hidden" name="mem_no" value="${user.mem_no}">    	
                                         	<input type="hidden" name="action" value="cartPlus">                                        
                                     </td>
@@ -208,6 +215,7 @@ session.setAttribute("url", url);
                                     	<FORM action="cart.do" method="post">
                                         	<input class="btn btn-warning" id="deleteCart" type="submit" value="X">
                                         	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
+                                        	<input type="hidden" name="prod_stock" value="${cartVO.getProd_VO().prod_stock}">
                                         	<input type="hidden" name="mem_no" value="${user.mem_no}">
                                         	<input type="hidden" name="action" value="deleteOne">
                                         </FORM>
@@ -276,13 +284,14 @@ session.setAttribute("url", url);
 <!--                         <hr> </div> -->
 <!--                 </div> -->
                 <div class="col-12 d-flex shopping-box" id="GoToCheckout">
+                <%pageContext.setAttribute("i", i);%>
                 	<c:choose>
 						<c:when test="${empty sessionScope.user}">
 							<a href="<%=request.getContextPath()%>/front-end/mem/login.jsp" id="remind">【請點擊登入會員，以查看購物車】</a>								
 						</c:when>
 						<c:otherwise>
 							<c:choose>
-								<c:when test="${empty cartlist}">
+								<c:when test="${i < 1}">
 									<a href="<%=request.getContextPath()%>/front-end/prod/shop.jsp" id="remind">【前往選購商品】</a>
 								</c:when>
 								<c:otherwise>
@@ -290,6 +299,7 @@ session.setAttribute("url", url);
                         		<FORM action="cart.do" method="post">
                 					<input class="btn btn-warning" id="deleteAll" type="submit" value="清空購物車"">
                     				<input type="hidden" name="mem_no" value="${user.mem_no}">
+                    				<input type="hidden" name="prod_stock" value="${cartVO.getProd_VO().prod_stock}">
                     				<input type="hidden" name="action" value="deleteAll">
               					 </FORM>
               					</div> 

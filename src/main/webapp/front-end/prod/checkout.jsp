@@ -193,6 +193,14 @@ int i = 1;
 	width: 15px;
 	background-color:transparent;
 }
+#goToCoupon {
+	font-size: 14px;
+	font-weight: bold;
+	color: #f5c242;
+}
+#goToCoupon:hover {
+	color:black;
+}
 </style>
 
 </head>
@@ -440,6 +448,7 @@ int i = 1;
 														<input class="btn" id="plus" type="submit" value="+">
 														<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
 														<input type="hidden" name="prod_qty" value="${cartVO.prod_qty}">
+														<input type="hidden" name="prod_stock" value="${cartVO.getProd_VO().prod_stock}">
 														<input type="hidden" name="mem_no" value="${user.mem_no}">
 														<input type="hidden" name="action" value="checkoutPlus">
 													</FORM>
@@ -448,6 +457,7 @@ int i = 1;
 														<input class="btn" id="minus" type="submit" value="-">
 														<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
 														<input type="hidden" name="prod_qty" value="${cartVO.prod_qty}">
+														<input type="hidden" name="prod_stock" value="${cartVO.getProd_VO().prod_stock}">
 														<input type="hidden" name="mem_no" value="${user.mem_no}">
 														<input type="hidden" name="action" value="checkoutMinus">
 													</FORM>
@@ -459,7 +469,9 @@ int i = 1;
 								</c:forEach>
 
 								<div class="coupon-box">
-									<div class="input-group input-group-sm" id="boxCoupon">
+								<br>
+									<a href="<%=request.getContextPath()%>/front-end/memcoupon/memcouponlist.jsp" id="goToCoupon">前往查詢優惠碼</a>
+									<div class="input-group input-group-sm" id="boxCoupon">										
 										<input name="discount" id="insertCoupon" class="form-control"
 											placeholder="輸入優惠碼" aria-label="Coupon code" type="text">
 										<div class="input-group-append">
@@ -515,7 +527,15 @@ int i = 1;
 						
 						<!-- 結帳按鈕開始 -->
 						<div class="col-12 d-flex shopping-box">
-								
+								<%-- 錯誤表列 --%>
+								<c:if test="${not empty errorMsgs}">
+									<font style="color: red">請修正以下錯誤:</font>
+									<ul>
+										<c:forEach var="message" items="${errorMsgs}">
+											<li style="color: red">${message}</li>
+										</c:forEach>
+									</ul>
+								</c:if>
 								<input type="hidden" name="mem_no" value="${user.mem_no}">
 								<input type="hidden" name="coupon_no" value="${couponVO.coupon_no}">	
 								<input class="btn btn-warning" id="checkout" type="submit" value="下單" onclick="confirmTest9()">

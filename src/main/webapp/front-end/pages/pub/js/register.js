@@ -220,7 +220,10 @@
 
 pub_img.addEventListener('change', function (e) {
 	var file_id = e.target.id;
+	if ($("#" + file_id).prop("files").length) {
 	file_check = check_multifile_logo($("#" + file_id).prop("files")[0]['name']);
+	setImg();
+	}
 	//    多檔案使用
 	//    for (i = 0; i < $("#" + file_id).prop("files").length; i++) {
 	if (file_check) {
@@ -230,7 +233,11 @@ pub_img.addEventListener('change', function (e) {
 	//    }
 });
 
-
+async function setImg() {
+	if (pub_img.files[0]) {
+		img_set.src = await convertBase64(pub_img.files[0])
+	}
+}
 function check_multifile_logo(file) {
 	var extension = file.substr((file.lastIndexOf('.') + 1))
 	if (extension === 'jpg' || extension === 'jpeg' || extension === 'gif' || extension === 'png' || extension === 'bmp') {

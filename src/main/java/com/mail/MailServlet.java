@@ -134,7 +134,7 @@ public class MailServlet extends HttpServlet{
 			MailServlet mailServlet = new MailServlet();
 			mailServlet.sendMail(to, subject, messageText);
 			
-			String url = "http://localhost:8081/CGA103G5ALL/front-end/index.jsp";
+			String url = "/CGA103G5ALL/front-end/index.jsp";
 			res.sendRedirect(url);
 		}
 		 

@@ -47,5 +47,11 @@ public class Firm_survey_VO implements Serializable{
 	    com.act.model.Act_VO actVO = actSvc.getOneAct(act_no);
 	    return actVO;
     }
+	
+	public com.act.model.Act_VO getActVO2() {
+	    com.act.model.Act_Service actSvc = new com.act.model.Act_Service();
+	    com.act.model.Act_VO actVO = actSvc.getOneAct(firm_survey_no);
+	    return actVO;
+    }
 
 }

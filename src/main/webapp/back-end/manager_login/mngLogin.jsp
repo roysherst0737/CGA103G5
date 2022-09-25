@@ -60,7 +60,7 @@
 			<!-- 引入sidebar 用JQ方式 -->
 			<script>
 				$(function() {
-					$("#sidebar").load("<%=request.getContextPath()%>/back-end/partials/_sidebar.jsp");
+					$("#sidebar").load("<%=request.getContextPath()%>/back-end/partials/_sidebar.html");
 				});
 			</script>
 			 <!-- partial -->

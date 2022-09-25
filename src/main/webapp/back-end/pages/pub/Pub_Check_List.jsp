@@ -244,31 +244,32 @@ div.col-sm-12>button.btn {
 										酒吧狀態 : <span id="span_pub_status"></span><span><button id ="status_b" class="btn btn-danger b1" style="display :none">上架</button></span>
 									</p>
 								</div>
-								<div class="form-floating mb-3">
+								<div class="form-floating mb-3"> <label for="fpub_name">酒吧名稱</label>
 									<input type="text" class="form-control" id="fpub_name" value=""
-										placeholder="請填寫酒吧名稱"> <label for="fpub_name">酒吧名稱</label>
+										placeholder="請填寫酒吧名稱">
 								</div>
-								<div class="form-floating mb-3">
+								<div class="form-floating mb-3"> <label for="fpub_nop">酒吧可接受預約人數</label>
 									<input type="number" class="form-control" id="fpub_nop"
-										value="" placeholder="請填寫可接受預約人數"> <label for="fpub_nop">酒吧可接受預約人數</label>
+										value="" placeholder="請填寫可接受預約人數">
 
 								</div>
 								<div class="form-floating mb-3">
-									<input type="text" class="form-control" id="fpub_address"
-										value="" placeholder="請填寫酒吧地址"> <label
+								 <label
 										for="fpub_address">酒吧地址</label>
+									<input type="text" class="form-control" id="fpub_address"
+										value="" placeholder="請填寫酒吧地址">
 								</div>
 
 								<div class="container px-4">
 									<div class="row gx-5">
-										<div class="col">
+										<div class="col"  style="display:none">
 											<div class="form-floating mb-3">
 												<input type="text" class="form-control" id="fpub_lng"
 													value="" placeholder="經度"> <label
 													for="fpub_lng">經度</label>
 											</div>
 										</div>
-										<div class="col">
+										<div class="col" style="display:none">
 											<div class="form-floating mb-3">
 												<input type="text" class="form-control" id="fpub_lat"
 													value="" placeholder="緯度"> <label

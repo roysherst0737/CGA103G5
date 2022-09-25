@@ -185,31 +185,31 @@ a.booking:hover {
 									<p class="card-description">酒吧基本資料</p>
 									<div class="form-floating mb-3">
 										<input type="text" class="form-control" id="fpub_name"
-											value="1" placeholder="pub_name"> <label
+											value="" placeholder="pub_name"> <label
 											for="fpub_name">酒吧名稱</label>
 									</div>
 									<div class="form-floating mb-3">
 										<input type="number" class="form-control" id="fpub_nop"
-											value="1" placeholder="pub_nop"> <label
+											value="" placeholder="pub_nop"> <label
 											for="fpub_nop">酒吧可接受預約人數</label>
 
 									</div>
 									<div class="form-floating mb-3">
 										<input type="text" class="form-control" id="fpub_address"
-											value="台北市" placeholder="pub_address"> <label
+											value="" placeholder="pub_address"> <label
 											for="fpub_address">酒吧地址</label>
 									</div>
 
 									<div class="container px-4">
 										<div class="row gx-5">
-											<div class="col">
-												<div class="form-floating mb-3">
+											<div class="col"  style="display:none">
+												<div class="form-floating mb-3" >
 													<input type="text" class="form-control" id="fpub_lng"
 														value="1" placeholder="pub_lng"> <label
 														for="fpub_lng">經度</label>
 												</div>
 											</div>
-											<div class="col">
+											<div class="col"  style="display:none">
 												<div class="form-floating mb-3">
 													<input type="text" class="form-control" id="fpub_lat"
 														value="2" placeholder="pub_lat"> <label
@@ -258,10 +258,14 @@ a.booking:hover {
 											</div>
 										</div>
 									</div>
-									<div class="form-group">
+									<div class="form-group" >
+									<div style="height: 300px; width: 100%; position: relative; margin: 10px;">
 										<label>酒吧圖片</label> <input id="pub_img" type="file"
 											name="img[]" class="file-upload-default"
 											accept="image/gif, image/jpeg, image/png">
+											<img id="img_set" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 240px; max-width: 300px;"
+													src=""></img>
+									</div>
 										<div class="input-group col-xs-12">
 											<input type="text" class="form-control file-upload-info"
 												disabled placeholder="Upload Image"> <span
@@ -273,7 +277,7 @@ a.booking:hover {
 									</div>
 									<div class="form-floating">
 										<textarea class="form-control" placeholder="pub_detail"
-											id="fpub_detail" style="height: 100px">detail</textarea>
+											id="fpub_detail" style="height: 100px"></textarea>
 										<label for="fpub_detail">酒吧描述</label>
 									</div>
 								</div>
@@ -288,35 +292,35 @@ a.booking:hover {
 									<div class="form-group row">
 										<label for="firm_name" class="col-sm-3 col-form-label">廠商名稱</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" value="酒吧"
+											<input type="text" class="form-control" value=""
 												id="firm_name" placeholder="廠商名稱">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="firm_addr" class="col-sm-3 col-form-label">廠商地址</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" value="台北111"
+											<input type="text" class="form-control" value=""
 												id="firm_addr" placeholder="廠商地址">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="firm_tel_no" class="col-sm-3 col-form-label">廠商電話</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" value="0111111111"
+											<input type="text" class="form-control" value=""
 												id="firm_tel_no" placeholder="廠商電話">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="firm_email" class="col-sm-3 col-form-label">廠商電子郵件</label>
 										<div class="col-sm-9">
-											<input type="email" class="form-control" value="0@a.a"
+											<input type="email" class="form-control" value=""
 												id="firm_email" placeholder="廠商電子郵件">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label for="firm_tax_id" class="col-sm-3 col-form-label">廠商統一編號</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" value="23225229"
+											<input type="text" class="form-control" value=""
 												id="firm_tax_id" placeholder="廠商統一編號">
 										</div>
 									</div>
@@ -467,117 +471,13 @@ a.booking:hover {
 	<!-- End Gallery  -->
 
 	<!-- Start Instagram Feed  -->
-	<div class="instagram-box">
-		<div class="main-instagram owl-carousel owl-theme">
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-01.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-02.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-03.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-04.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-05.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-06.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-07.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-08.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-09.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-			<div class="item">
-				<div class="ins-inner-box">
-					<img
-						src="<%=request.getContextPath()%>/front-end/images/instagram-img-05.jpg"
-						alt="" />
-					<div class="hov-in">
-						<a href="#"><i class="fab fa-instagram"></i></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 
 	<!-- End Instagram Feed  -->
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Footer  -->
-	<footer>
+		<footer>
 		<%@ include file="/front-end/partials/_footer.jsp"%>
 	</footer>
 	<!-- End Footer  -->
@@ -594,7 +494,7 @@ a.booking:hover {
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
 	<!-- ALL JS FILES -->
-	<script src="<%=request.getContextPath()%>/front-end/js/popper.min.js"></script>
+<%-- 	<script src="<%=request.getContextPath()%>/front-end/js/popper.min.js"></script> --%>
 	<script
 		src="<%=request.getContextPath()%>/front-end/js/bootstrap.min.js"></script>
 	<!-- ALL PLUGINS -->

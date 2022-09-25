@@ -14,4 +14,7 @@ public interface Prod_DAO_interface {
     public List<Prod_VO> getAll(Map<String, String[]> map);
     //查詢某商品的照片(一對多)(回傳 Set)
     public Set<Prod_pic_VO> getProd_picsByProd(Integer prod_no);
+    
+    public Integer stockMinus(Integer prod_no);
+    public Integer stockPlus(Integer prod_no);
 }

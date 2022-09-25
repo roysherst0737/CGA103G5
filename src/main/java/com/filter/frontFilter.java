@@ -16,7 +16,9 @@ import com.pub.entity.Pub;
 
 @WebFilter(urlPatterns = { "/PubApplication", "/PubBooking", "/PubRate", "/PubStates", "/front-end/mem/my-account.jsp",
 		"/front-end/mem/memApplication.jsp", "/front-end/prod/orderHistory.jsp", "/MemBookingGet",
-		"/front-end/act/my_sign_up.jsp", "/front-end/act/survey.jsp", "/front-end/act/writesurvey.jsp" })
+		"/front-end/act/my_sign_up.jsp", "/front-end/act/survey.jsp", "/front-end/act/writesurvey.jsp",
+		"/front-end/memcoupon/memcouponlist.jsp", 
+		"/front-end/act/my_sign_up.jsp", "/front-end/act/survey.jsp", "/front-end/act/writesurvey.jsp","/front-end/forum_article/new_frm_art.jsp" })
 
 public class frontFilter extends HttpFilter {
 	private static final long serialVersionUID = 1L;
@@ -25,10 +27,6 @@ public class frontFilter extends HttpFilter {
 	protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
 		HttpSession session = req.getSession();
-
-		Mem_VO user_account = (Mem_VO) session.getAttribute("user");
-
-		if (user_account == null) {
 
 			Mem_VO mem_account = (Mem_VO) session.getAttribute("user");
 
@@ -44,8 +42,5 @@ public class frontFilter extends HttpFilter {
 			} else {
 				chain.doFilter(req, res);
 			}
-		} else {
-			chain.doFilter(req, res);
 		}
 	}
-}

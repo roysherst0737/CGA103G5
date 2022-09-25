@@ -125,9 +125,12 @@
 						</c:when>
 
 						<c:otherwise> 
-							<button type="button" class="btn btn-dark text-decoration-none btn-hover-warning" id ="nickname">
-								你好!${sessionScope.user.mem_nickname}
-							</button>
+<!-- 							<button type="button" class="btn btn-dark text-decoration-none btn-hover-warning" id ="nickname"> -->
+<%-- 								你好!${sessionScope.user.mem_nickname} --%>
+<!-- 							</button> -->
+							<p style="color: white; font-weight: bold; float:right;">
+								你好！ ${sessionScope.user.mem_nickname}
+							</p>
 						</c:otherwise>
 
 					</c:choose>

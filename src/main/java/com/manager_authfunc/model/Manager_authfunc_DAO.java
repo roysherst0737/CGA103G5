@@ -8,7 +8,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.manager.model.Manager_JDBCDAO;
+import com.manager.model.Manager_DAO;
 import com.manager.model.Manager_VO;
 
 
@@ -383,7 +383,7 @@ public class Manager_authfunc_DAO implements Manager_authfunc_DAO_interface {
 				}
 				rs.close();
 				// 再同時新增員工
-				Manager_JDBCDAO dao = new Manager_JDBCDAO();
+				Manager_DAO dao = new Manager_DAO();
 				System.out.println("list.size()-A="+list.size());
 				for (Manager_VO aManager : list) {
 					aManager.setMng_authfunc_no(new Integer(next_mng_authfunc_no)) ;

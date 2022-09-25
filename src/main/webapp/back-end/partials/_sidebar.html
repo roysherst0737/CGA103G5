@@ -201,7 +201,8 @@
     </li>
 
     <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#pub" aria-expanded="false"
-        aria-controls="pub"> <i class="typcn typcn-user-add-outline menu-icon"></i> <span class="menu-title">酒吧管理</span>
+        aria-controls="pub"> <i class="typcn typcn-user-add-outline menu-icon"></i> 
+        <span class="menu-title">酒吧管理</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="pub">
@@ -219,39 +220,40 @@
       </div>
     </li>
     
-    <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#forum" aria-expanded="false"
-        aria-controls="forum"> <i class="typcn typcn-user-add-outline menu-icon"></i> <span class="menu-title">討論區管理</span>
+    <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#frm" aria-expanded="false"
+        aria-controls="frm"> <i class="typcn typcn-user-add-outline menu-icon"></i> 
+        <span class="menu-title">討論區管理</span>
         <i class="menu-arrow"></i>
       </a>
-      <div class="collapse" id="forum">
+      <div class="collapse" id="frm">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"><a id="forum" class="nav-link" href="pages/samples/login.html"> 討論區維護 </a></li>
-          <li class="nav-item"><a id="forum_article" class="nav-link" href="pages/samples/login.html"> 文章列表 </a></li>
-          <li class="nav-item"><a id="forum_article_report" class="nav-link" href="/pages/samples/register.html"> 文章檢舉維護 </a></li>
-          <li class="nav-item"><a id="article_message" class="nav-link" href="/pages/samples/register.html"> 留言列表 </a></li>
-          <li class="nav-item"><a id="article_message_report" class="nav-link" href="/pages/samples/register.html"> 留言檢舉維護 </a></li>
+          <li class="nav-item"><a id="forum" class="nav-link" href=""> 討論區維護 </a></li>
+          <li class="nav-item"><a id="forum_article" class="nav-link" href=""> 文章列表 </a></li>
+          <li class="nav-item"><a id="forum_article_report" class="nav-link" href=""> 文章檢舉維護 </a></li>
+          <li class="nav-item"><a id="article_message" class="nav-link" href=""> 留言列表 </a></li>
+          <li class="nav-item"><a id="article_message_report" class="nav-link" href=""> 留言檢舉維護 </a></li>
           <script>
-            document.querySelector("#frm").setAttribute("href",
-              getContextPath() + "/back-end/forum/select_page.jsp");
-            document.querySelector("#frm_art").setAttribute("href",
-              getContextPath() + "/back-end/forum_article/select_page.jsp");
-            document.querySelector("#art_rpt").setAttribute("href",
-              getContextPath() + "/back-end/forum_article_report/select_page.jsp");
-            document.querySelector("#art_msg").setAttribute("href",
-              getContextPath() + "/back-end/article_message/select_page.jsp");
-            document.querySelector("#msg_rpt").setAttribute("href",
-              getContextPath() + "/back-end/article_message_report/select_page.jsp");
-
+            document.querySelector("#forum").setAttribute("href",
+                    getContextPath() + "/back-end/forum/select_page.jsp");
+            document.querySelector("#forum_article").setAttribute("href",
+                    getContextPath() + "/back-end/forum_article/select_page.jsp");
+            document.querySelector("#forum_article_report").setAttribute("href",
+                    getContextPath() + "/back-end/forum_article_report/select_page.jsp");
+            document.querySelector("#article_message").setAttribute("href",
+                    getContextPath() + "/back-end/article_message/select_page.jsp");
+            document.querySelector("#article_message_report").setAttribute("href",
+                    getContextPath() + "/back-end/article_message_report/select_page.jsp");
           </script>
         </ul>
       </div>
     </li>
-     <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#latest_news" aria-expanded="false"
-        aria-controls="latest_news"> <i class="typcn typcn-user-add-outline menu-icon"></i> <span
+    
+     <li class="nav-item"><a class="nav-link" data-toggle="collapse" href="#lat_news" aria-expanded="false"
+        aria-controls="lat_news"> <i class="typcn typcn-user-add-outline menu-icon"></i> <span
           class="menu-title">最新消息管理</span>
         <i class="menu-arrow"></i>
       </a>
-            <div class="collapse" id="latest_news">
+       <div class="collapse" id="lat_news">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item"><a id="latest_news" class="nav-link" href=""> 消息維護</a></li>
           <script>

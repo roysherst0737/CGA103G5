@@ -25,6 +25,7 @@ public class ManagerLogout extends HttpServlet {
 		
 		request.getSession().removeAttribute("managerVO");
 		request.getSession().removeAttribute("mng");
+		request.getSession().removeAttribute("manager_VO");
 		String url = "/back-end/index_back.html";
 		RequestDispatcher successView = request.getRequestDispatcher(url);
 		successView.forward(request, response);

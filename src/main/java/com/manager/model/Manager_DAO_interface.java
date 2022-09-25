@@ -11,6 +11,6 @@ public interface Manager_DAO_interface {
     public List<Manager_VO> getAllManager();
     //萬用複合查詢(傳入參數型態Map)(回傳 List)
   public List<Manager_VO> getAllManager(Map<String, String[]> map);
-	public boolean mngLogin(Manager_VO manager_VO);
+	public Manager_VO mngLogin(Manager_VO manager_VO);
 	public void insert2 (Manager_VO manager_VO , java.sql.Connection con);
 }

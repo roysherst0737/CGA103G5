@@ -19,12 +19,24 @@
 							}
 						}
 						document.querySelector("#mem_img").setAttribute("src",
-								getContextPath() + "/ManagerImage?mng_no=1")
+								getContextPath() + "/ManagerImage2")
+						document.querySelector("#mem_img").setAttribute("src",
+								getContextPath() + "/ManagerImage2")
 					</script>
 					<span class="sidebar-status-indicator"></span>
 				</div>
 				<div class="sidebar-profile-name">
-					<p class="sidebar-name">醉拳甘迺迪</p>
+					<p class="sidebar-name">未登入</p>
+					<script>
+					fetch('.ManagerImage3', {
+						method: 'GET',
+					}).then((response) => response.json())
+					  .then((data) => {
+						  const{mng_name} = data;
+						  document.querySelector(".sidebar-name").innerHTML=mng_name;
+					  });
+						
+					</script>
 					<p class="sidebar-designation">Welcome</p>
 				</div>
 			</div>

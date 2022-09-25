@@ -9,8 +9,10 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import javax.sql.DataSource;
-@WebServlet("/ManagerImage")
-public class ManagerImage extends HttpServlet {
+
+import com.manager.model.Manager_VO;
+@WebServlet("/ManagerImage2")
+public class ManagerImage2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Connection con;
 
@@ -22,10 +24,11 @@ public class ManagerImage extends HttpServlet {
 
 		try {
 			Statement stmt = con.createStatement();
-			String mng_no = req.getParameter("mng_no").trim();
+			HttpSession session = req.getSession();
+			Manager_VO mng_vo = (Manager_VO) session.getAttribute("manager_VO");
 			ResultSet rs = stmt.executeQuery(
 //				"SELECT IMAGE FROM PICTURES WHERE PID = " + req.getParameter("PID"));
-				"SELECT mng_pic FROM manager WHERE mng_no = "+mng_no);
+				"SELECT mng_pic FROM manager WHERE mng_no = "+mng_vo.getMng_no());
 
 			if (rs.next()) {
 				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("mng_pic"));

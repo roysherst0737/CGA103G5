@@ -3,11 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.act_sign_up.model.*"%>
+<%@ page import="com.mem.model.*"%>
 
 <%
 Act_sign_up_Service act_sign_upSvc = new Act_sign_up_Service();
 List<Act_sign_up_VO> list = act_sign_upSvc.getAll();
 pageContext.setAttribute("list", list);
+int i = 1;
 %>
 
 
@@ -37,14 +39,83 @@ pageContext.setAttribute("list", list);
 <link rel="shortcut icon"
 	href="<%=request.getContextPath()%>/back-end/images/favicon.png" />
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script>
-	let path = window.location.pathname.substring(0, window.location.pathname
-			.lastIndexOf("/"));
-	path = path.substring(0, path.lastIndexOf("/"));
-</script>
+
 </head>
 
 
+<style>
+.wrap {
+  text-align: center;
+  padding-top: 20%;
+}
+.btn {
+  background-color: #FFB80C;
+  text-decoration: none;
+  color: #1e1e1e;
+  padding: 16px;
+  border-radius: 5px;
+}
+
+.popup-wrap {
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  content: '';
+  background: rgba(0, 0, 0, 0.85);
+}
+
+.popup-box {
+  width: 50%;
+  padding: 50px 75px;
+  transform: translate(-50%, -50%) scale(0.5);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  box-shadow: 0px 2px 16px rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  background: #fff;
+  text-align: center;
+}
+h2 {
+  font-size: 32px;
+  color: #1a1a1a;
+}
+
+.close-btn {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 100%;
+  background: #d75f70;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+  line-height: 40px;
+  font-size: 32px;
+}
+
+.transform-in, .transform-out {
+  display: block;
+  -webkit-transition: all ease 0.5s;
+  transition: all ease 0.5s;
+}
+
+.transform-in {
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.transform-out {
+  -webkit-transform: translate(-50%, -50%) scale(0.5);
+  transform: translate(-50%, -50%) scale(0.5);
+}
+</style>
 
 
 <body>
@@ -102,9 +173,11 @@ pageContext.setAttribute("list", list);
 							<tr>
 								<th>報名編號</th>
 								<th>活動名稱</th>
-								<th>會員編號</th>
+								<th>會員暱稱</th>
+								<th>會員信箱</th>
 								<th>報名時間</th>
 								<th>攜伴人數</th>
+								<th>寄送通知</th>
 								<th>修改</th>
 								<th>刪除</th>
 							</tr>
@@ -114,9 +187,27 @@ pageContext.setAttribute("list", list);
 								<tr>
 									<td>${act_sign_upVO.sign_up_no}</td>
 									<td>${act_sign_upVO.actVO.act_name}</td>
-									<td>${act_sign_upVO.mem_no}</td>
+									<td>${act_sign_upVO.memVO.mem_nickname}</td>
+									<td>${act_sign_upVO.memVO.mem_email}</td>
 									<td>${act_sign_upVO.sign_up_time}</td>
 									<td>${act_sign_upVO.accompany_count}</td>
+									<td><div class="wrap">
+											<a class="btn popup-btn" href="#letmeopen<%=i%>">寄送email</a>
+										</div>
+										<div class="popup-wrap" id="letmeopen<%=i++%>">
+											<div class="popup-box transform-out">
+												<h2>請輸入要寄送的內容</h2>
+												<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/mem/MailServlet"
+													style="margin-bottom: 0px;">
+													<textarea name="email_content" rows="8" cols="50"></textarea>
+													<input type="hidden" name="mem_email"
+														value="${act_sign_upVO.memVO.mem_email}"> 
+													<input type="hidden" name="action" value="sign_up_email">
+														<input type="submit" value="送出">
+												</FORM>
+												<a class="close-btn popup-close" href="#">x</a>
+											</div>
+										</div></td>
 									<td>
 										<FORM METHOD="post"
 											ACTION="<%=request.getContextPath()%>/back-end/act_sign_up/act_sign_up.do"
@@ -142,9 +233,11 @@ pageContext.setAttribute("list", list);
 							<tr>
 								<th>報名編號</th>
 								<th>活動名稱</th>
-								<th>會員編號</th>
+								<th>會員暱稱</th>
+								<th>會員信箱</th>
 								<th>報名時間</th>
 								<th>攜伴人數</th>
+								<th>寄送通知</th>
 								<th>修改</th>
 								<th>刪除</th>
 							</tr>
@@ -205,5 +298,28 @@ pageContext.setAttribute("list", list);
 		src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 	<!-- End custom js for this page-->
 </body>
+<script>
+	let path = window.location.pathname.substring(0, window.location.pathname
+			.lastIndexOf("/"));
+	path = path.substring(0, path.lastIndexOf("/"));
+	
+	$(".popup-btn").click(function() {
+		  var href = $(this).attr("href")
+		  $(href).fadeIn(250);
+		  $(href).children$("popup-box").removeClass("transform-out").addClass("transform-in");
+		  e.preventDefault();
+		});
 
+		$(".popup-close").click(function() {
+		  closeWindow();
+		});
+// 		$(".popup-wrap").click(function(){
+// 		  closeWindow();
+// 		})
+		function closeWindow(){
+		  $(".popup-wrap").fadeOut(200);
+		  $(".popup-box").removeClass("transform-in").addClass("transform-out");
+		  event.preventDefault();
+		}
+</script>
 </html>

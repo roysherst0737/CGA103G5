@@ -161,6 +161,12 @@ public class Act_VO implements Serializable {
 	    return act_picVO;
     }
     
+    public com.pub.model.Pub_VO getPubVO() {
+	    com.pub.model.Pub_DAO pubSvc = new com.pub.model.Pub_DAO();
+	    com.pub.model.Pub_VO pubVO = pubSvc.findByPrimaryKey(pub_no);
+	    return pubVO;
+    }
+    
  
 	
 	

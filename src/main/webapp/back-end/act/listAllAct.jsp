@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.act.model.*"%>
+<%@ page import="com.pub.model.*"%>
 
 <%
 Act_Service actSvc = new Act_Service();
@@ -106,7 +107,7 @@ pageContext.setAttribute("list", list);
 							<thead>
 								<tr>
 									<th>活動編號</th>
-									<th>酒吧編號</th>
+									<th>酒吧名稱</th>
 									<th>活動名稱</th>
 									<th>活動描述</th>
 									<th>活動地址</th>
@@ -129,7 +130,7 @@ pageContext.setAttribute("list", list);
 								<c:forEach var="actVO" items="${list}">
 									<tr>
 										<td>${actVO.act_no}</td>
-										<td>${actVO.pub_no}</td>
+										<td>${actVO.pubVO.pub_name}</td>
 										<td>${actVO.act_name}</td>
 										<td>${actVO.act_detail}</td>
 										<td>${actVO.act_loc}</td>
@@ -175,7 +176,7 @@ pageContext.setAttribute("list", list);
 							<tfoot>
 								<tr>
 									<th>活動編號</th>
-									<th>酒吧編號</th>
+									<th>酒吧名稱</th>
 									<th>活動名稱</th>
 									<th>活動描述</th>
 									<th>活動地址</th>

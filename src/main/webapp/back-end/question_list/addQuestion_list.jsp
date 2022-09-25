@@ -152,91 +152,26 @@ if (queryStringSplit.length > 1) {
 											<jsp:useBean id="questionSvc" scope="page"
 												class="com.question.model.Question_Service" />
 
-											<tr>
-												<td>選擇題目:</td>
-												<td><select size="1" name="question_no1">
-														<option value="不選擇">不選擇
-															<c:forEach var="questionVO" items="${questionSvc.all}">
-																<c:choose>
-																	<c:when
-																		test="${queryStringSplit.contains(questionVO.question_no.toString()) }">
-																	</c:when>
-																	<c:otherwise>
-																		<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
-																	</c:otherwise>
-																</c:choose>
-															</c:forEach>
-												</select></td>
-											</tr>
-											<tr>
-												<td>選擇題目:</td>
-												<td><select size="1" name="question_no2">
-														<option value="不選擇">不選擇
-															<c:forEach var="questionVO" items="${questionSvc.all}">
-																<c:choose>
-																	<c:when
-																		test="${queryStringSplit.contains(questionVO.question_no.toString()) }">
-																	</c:when>
-																	<c:otherwise>
-																		<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
-																	</c:otherwise>
-																</c:choose>
-															</c:forEach>
-												</select></td>
-											</tr>
-											<tr>
-												<td>選擇題目:</td>
-												<td><select size="1" name="question_no3">
-														<option value="不選擇">不選擇
-															<c:forEach var="questionVO" items="${questionSvc.all}">
-																<c:choose>
-																	<c:when
-																		test="${queryStringSplit.contains(questionVO.question_no.toString()) }">
-																	</c:when>
-																	<c:otherwise>
-																		<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
-																	</c:otherwise>
-																</c:choose>
-															</c:forEach>
-												</select></td>
-											</tr>
-											<tr>
-												<td>選擇題目:</td>
-												<td><select size="1" name="question_no4">
-														<option value="不選擇">不選擇
-															<c:forEach var="questionVO" items="${questionSvc.all}">
-																<c:choose>
-																	<c:when
-																		test="${queryStringSplit.contains(questionVO.question_no.toString()) }">
-																	</c:when>
-																	<c:otherwise>
-																		<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
-																	</c:otherwise>
-																</c:choose>
-															</c:forEach>
-												</select></td>
-											</tr>
-											<tr>
-												<td>選擇題目:</td>
-												<td><select size="1" name="question_no5">
-														<option value="不選擇">不選擇
-															<c:forEach var="questionVO" items="${questionSvc.all}">
-																<c:choose>
-																	<c:when
-																		test="${queryStringSplit.contains(questionVO.question_no.toString()) }">
-																	</c:when>
-																	<c:otherwise>
-																		<option value="${questionVO.question_no}">${questionVO.question_no}.${questionVO.que}
-																	</c:otherwise>
-																</c:choose>
-															</c:forEach>
-												</select></td>
-											</tr>
+
+
+
+
+											<div id="opts"></div>
+											<div class="row">
+												<div class="col-md-12 col-sm-12  col-xs-12">
+													<div class="form-group">
+
+														<button id="fat-btn" class="btn btn-primary" type="button">增加
+														</button>
+
+													</div>
+												</div>
+											</div>
 
 											<tr>
 												<td>問卷編號:</td>
 												<td><input type="TEXT" name="1" size="45"
-													value="<%=firm_survey_no%>" disabled /></td>
+													value="<%=firm_survey_no%>" disabled></td>
 											</tr>
 
 
@@ -250,11 +185,7 @@ if (queryStringSplit.length > 1) {
 											type="submit" value="送出新增">
 									</FORM>
 
-									<script>
-										$(document).ready(function() {
-											$('#dataTables').DataTable();
-										});
-									</script>
+
 								</div>
 								<!-- content-wrapper ends -->
 								<!-- partial:partials/_footer.html -->
@@ -311,24 +242,36 @@ if (queryStringSplit.length > 1) {
 					<!-- End custom js for this page-->
 </body>
 
-<!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
+<script>
+	let i = 1;
+	$(function() {
+		$("#fat-btn")
+				.click(
+						function() {
+							if ($(".number:last").val() == "") {
+								alert(1);
+							} else {
+								var htm = "";
 
-<!-- 參考網站: https://xdsoft.net/jqplugins/datetimepicker/ -->
+								htm += "    <tr>";
+								htm += "    <td>選擇題目:</td>";
+								htm += "    <td><select size='1' name='question_no" + i + "'>";
+								htm += "    <option value='不選擇'>不選擇";
+								htm += "    <c:forEach var='questionVO' items='${questionSvc.all}'>";
+								htm += "    <c:if test='${queryStringSplit.contains(questionVO.question_no.toString()) == false}'>";
+								htm += "    <option value='${questionVO.question_no}'>${questionVO.question_no}.${questionVO.que}";
+								htm += "    </c:if>";
+								htm += "    </c:forEach>";
+								htm += "    </select></td>";
+								htm += "    </tr>";
+								htm += "    <input type='hidden' name='question_amount[]' value='" + i + "'>";
+								i++;
 
-<link rel="stylesheet" type="text/css"
-	href="datetimepicker/jquery.datetimepicker.css" />
-<script src="datetimepicker/jquery.js"></script>
-<script src="datetimepicker/jquery.datetimepicker.full.js"></script>
-
-<style>
-.xdsoft_datetimepicker .xdsoft_datepicker {
-	width: 300px; /* width:  300px; */
-}
-
-.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
-	height: 151px; /* height:  151px; */
-}
-</style>
+								$("#opts").append(htm);
+							}
+						});
+	});
+</script>
 
 
 </html>

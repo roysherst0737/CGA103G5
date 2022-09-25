@@ -69,6 +69,7 @@
 		<servlet-name>CouponServlet</servlet-name>
 		<url-pattern>/back-end/coupon/coupon.do</url-pattern>
 	</servlet-mapping>
+
 	<!-- 商品 -->
 	<servlet>
 		<servlet-name>Cart_Servlet</servlet-name>
@@ -131,47 +132,55 @@
 
 	<!-- 討論區 -->
 	<servlet>
-        <servlet-name>Forum_Servlet</servlet-name>
-        <servlet-class>com.forum.controller.Forum_Servlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Forum_Servlet</servlet-name>
-        <url-pattern>/back-end/forum/forum.do</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>Forum_article_Servlet</servlet-name>
-        <servlet-class>com.forum_article.controller.Forum_article_Servlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Forum_article_Servlet</servlet-name>
-        <url-pattern>/back-end/forum_article/forum_article.do</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>Forum_article_report_Servlet</servlet-name>
-        <servlet-class>com.forum_article_report.controller.Forum_article_report_Servlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Forum_article_report_Servlet</servlet-name>
-        <url-pattern>/back-end/forum_article_report/forum_article_report.do</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>Article_message_Servlet</servlet-name>
-        <servlet-class>com.article_message.controller.Article_message_Servlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Article_message_Servlet</servlet-name>
-        <url-pattern>/back-end/article_message/article_message.do</url-pattern>
-    </servlet-mapping>
-    <servlet>
-        <servlet-name>Latest_news_Servlet</servlet-name>
-        <servlet-class>com.latest_news.controller.Latest_news_Servlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Latest_news_Servlet</servlet-name>
-        <url-pattern>/back-end/latest_news/latest_news.do</url-pattern>
-    </servlet-mapping>
-	
-	<!-- 管理員 -->	
+		<servlet-name>Forum_Servlet</servlet-name>
+		<servlet-class>com.forum.controller.Forum_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Forum_Servlet</servlet-name>
+		<url-pattern>/back-end/forum/forum.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Forum_article_Servlet</servlet-name>
+		<servlet-class>com.forum_article.controller.Forum_article_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Forum_article_Servlet</servlet-name>
+		<url-pattern>/back-end/forum_article/forum_article.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Forum_article_report_Servlet</servlet-name>
+		<servlet-class>com.forum_article_report.controller.Forum_article_report_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Forum_article_report_Servlet</servlet-name>
+		<url-pattern>/back-end/forum_article_report/forum_article_report.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Article_message_Servlet</servlet-name>
+		<servlet-class>com.article_message.controller.Article_message_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Article_message_Servlet</servlet-name>
+		<url-pattern>/back-end/article_message/article_message.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Latest_news_Servlet</servlet-name>
+		<servlet-class>com.latest_news.controller.Latest_news_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Latest_news_Servlet</servlet-name>
+		<url-pattern>/back-end/latest_news/latest_news.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>New_article</servlet-name>
+		<servlet-class>com.forum_article.controller.Forum_article_Servlet_front</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>New_article</servlet-name>
+		<url-pattern>/front-end/forum_article/new_article.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- 管理員 -->
 	<servlet>
 		<servlet-name>ManagerRegister</servlet-name>
 		<servlet-class>com.manager.controller.ManagerRegister</servlet-class>

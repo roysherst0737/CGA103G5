@@ -188,7 +188,7 @@ public class ManagerServlet extends HttpServlet {
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("manager_VO", manager_VO); // 資料庫update成功後,正確的的manager_VO物件,存入req
-				String url = "/back-end/manager/listOneMng.jsp";
+				String url = "/back-end/manager/listAllMng.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listAllMng.jsp
 				successView.forward(req, res);
 		}

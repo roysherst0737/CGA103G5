@@ -3,12 +3,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.forum.model.*"%>
 <%@ page import="com.forum_article.model.*"%>
-<%@ page import="com.prod.model.*"%>
 
 <%
-Prod_Service prodSvc = new Prod_Service();
-List<Prod_VO> list = prodSvc.getAll();
-pageContext.setAttribute("list", list);
 
 Forum_Service forum_Svc = new Forum_Service();
 List<Forum_VO> list1 = forum_Svc.getAll();
@@ -186,9 +182,6 @@ pageContext.setAttribute("set", set);
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->
-	<div class="instagram-box">
-		<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
-	</div>
 	<!-- End Instagram Feed  -->
 	<!-- Start Footer  -->
 	<footer>

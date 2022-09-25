@@ -147,9 +147,6 @@ pageContext.setAttribute("haveCoupon",haveCoupon);
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->
-	<div class="instagram-box">
-		<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
-	</div>
 	<!-- End Instagram Feed  -->
 	<!-- Start Footer  -->
 	<footer>

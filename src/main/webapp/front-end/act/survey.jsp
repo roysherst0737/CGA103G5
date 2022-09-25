@@ -7,7 +7,6 @@
 <%@ page import="com.question_list.model.*"%>
 <%@ page import="com.ans_list.model.*"%>
 <%@ page import="com.mem.model.*"%>
-<%@ page import="com.prod.model.*"%>
 
 
 <%
@@ -24,10 +23,6 @@ Mem_VO user = (Mem_VO) Objuser;
 Ans_list_Service ans_listSvc = new Ans_list_Service();
 Set<Integer> set2 = ans_listSvc.getAllfirm_survey_no((Integer) user.getMem_no());
 pageContext.setAttribute("set2", set2);
-
-Prod_Service prodSvc = new Prod_Service();
-List<Prod_VO> list = prodSvc.getAll();
-pageContext.setAttribute("list", list);
 
 String surveyUrl = request.getRequestURL().toString() + "?" + request.getQueryString();
 session.setAttribute("surveyUrl", surveyUrl);
@@ -147,9 +142,6 @@ session.setAttribute("surveyUrl", surveyUrl);
 	</div>
 			<!-- !!!!!!此行以下都不要修改!!!!!!-->
 			<!-- Start Instagram Feed  -->
-			<div class="instagram-box">
-				<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
-			</div>
 			<!-- End Instagram Feed  -->
 			<!-- Start Footer  -->
 			<footer>

@@ -48,7 +48,7 @@ public class ManagerImage extends HttpServlet {
 			rs.close();
 			stmt.close();
 		} catch (Exception e) {
-			//System.out.println(e);
+//			System.out.println(e);
 			InputStream in = getServletContext().getResourceAsStream("/back-end/manager_login/NoData/null2.jpg");
 			byte[] b = new byte[in.available()];
 			in.read(b);
@@ -60,7 +60,7 @@ public class ManagerImage extends HttpServlet {
 	public void init() throws ServletException {
 		try {
 			Context ctx = new javax.naming.InitialContext();
-			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB2");
+			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 			con = ds.getConnection();
 		} catch (NamingException e) {
 			e.printStackTrace();

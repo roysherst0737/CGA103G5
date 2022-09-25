@@ -88,7 +88,7 @@
 								<li>
 									<p>
 										<i class="fas fa-envelope" style="position: sticky;"></i>
-										Email: <a href="mailto:contactinfo@gmail.com">roysherst@gmail.com</a>
+										Email: <a href="mailto:roysherst@gmail.com">roysherst@gmail.com</a>
 									</p>
 								</li>
 								<li>

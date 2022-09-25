@@ -59,12 +59,12 @@ if((!previous_page.equals(original_URL))&&(!previous_page.equals(servlet_URL))&&
 							<form class="pt-3" action="<%=request.getContextPath()%>/front-end/mem/MemLoginServlet" method="post">
 								<div class="form-group">
 									帳號<input type="text" class="form-control form-control-lg"
-										id="exampleInputEmail1" placeholder="account"
+										id="exampleInputEmail1" placeholder="帳號"
 										name="mem_account">
 								</div>
 								<div class="form-group">
 									密碼<input type="password" class="form-control form-control-lg"
-										id="exampleInputPassword1" placeholder="password"
+										id="exampleInputPassword1" placeholder="密碼"
 										name="mem_password">
 								</div>
 								<div class="mt-3">
@@ -74,22 +74,21 @@ if((!previous_page.equals(original_URL))&&(!previous_page.equals(servlet_URL))&&
 									class="my-2 d-flex justify-content-between align-items-center">
 									<div class="form-check">
 										<label class="form-check-label text-muted"> <input
-											type="checkbox" class="form-check-input"> Keep me
-											signed in
+											type="checkbox" class="form-check-input"> 保持登入狀態
 										</label>
 									</div>
-									<a href="Forgot_password.jsp" class="auth-link text-black">Forgot password?</a>
+									<a href="Forgot_password.jsp" class="auth-link text-black">忘記密碼？</a>
 								</div>
-								<div class="mb-2">
-									<button type="button"
-										class="btn btn-block btn-facebook auth-form-btn">
-										<i class="typcn typcn-social-facebook-circular mr-2"></i>Connect
-										using facebook
-									</button>
-								</div>
+<!-- 								<div class="mb-2"> -->
+<!-- 									<button type="button" -->
+<!-- 										class="btn btn-block btn-facebook auth-form-btn"> -->
+<!-- 										<i class="typcn typcn-social-facebook-circular mr-2"></i>Connect -->
+<!-- 										using facebook -->
+<!-- 									</button> -->
+<!-- 								</div> -->
 								<div class="text-center mt-4 font-weight-light">
-									Don't have an account? <a href="register.jsp"
-										class="text-primary">Create</a>
+									還沒有帳號？ <a href="register.jsp"
+										class="text-primary">建立帳號</a>
 								</div>
 								<input type="hidden" name="Login" value="Mem_Login">
 							</form>

@@ -1,15 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.prod.model.*"%>
-<%@ page import="com.prod_type.model.*"%>
 <%@ page import="com.forum.model.*"%>
 
 <%
-Prod_Service prodSvc = new Prod_Service();
-List<Prod_VO> list = prodSvc.getAll();
-pageContext.setAttribute("list", list);
-
 Forum_Service forum_Svc = new Forum_Service();
 List<Forum_VO> list3 = forum_Svc.getAll();
 pageContext.setAttribute("list3", list3);
@@ -138,9 +132,6 @@ pageContext.setAttribute("list3", list3);
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->
-	<div class="instagram-box">
-		<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
-	</div>
 	<!-- End Instagram Feed  -->
 	<!-- Start Footer  -->
 	<footer>

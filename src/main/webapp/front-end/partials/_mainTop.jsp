@@ -268,14 +268,28 @@
 
 					<li class="dropdown"><a href="<%=request.getContextPath()%>/front-end/mem/my-account.jsp"><img id="user" src="<%=request.getContextPath()%>/front-end/images/user.png"
 								width="28px" height="28px" /></a>
-							<ul class="dropdown-menu" style="width: 50px">
-							<li><a href="<%=request.getContextPath()%>/front-end/mem/memApplication.jsp" style="color: #f5c242; font-weight:bold; float:right;">個人資料</a></li>
-							<li><a href="<%=request.getContextPath()%>/front-end/memcoupon/memcouponlist.jsp" style="color: #f5c242; font-weight:bold; float:right;">會員優惠券</a></li>
-							<li><a href="<%=request.getContextPath()%>/front-end/prod/orderHistory.jsp" style="color: #f5c242; font-weight:bold; float:right;">歷史訂單</a></li>
-							<li><a href="<%=request.getContextPath()%>/MemBookingGet" style="color: #f5c242; font-weight:bold; float:right;">酒吧訂位查看</a></li>
-							<c:if test="${ not empty sessionScope.user}"> 
-							<li><a href="<%=request.getContextPath()%>/front-end/MemLogoutServlet" style="color: brown; font-weight:bold; font-size: 22px; float:right;">登 出</a></li>
-							</c:if>
+							<ul class="dropdown-menu" style="width: 20px">
+							<c:choose>
+								<c:when test="${ not empty sessionScope.user}">
+									<li><a href="<%=request.getContextPath()%>/front-end/mem/memApplication.jsp" style="color: #f5c242; font-weight:bold; float:right;">個人資料</a></li>
+									<li><a href="<%=request.getContextPath()%>/front-end/prod/orderHistory.jsp" style="color: #f5c242; font-weight:bold; float:right;">歷史訂單</a></li>
+									<li><a href="<%=request.getContextPath()%>/front-end/memcoupon/memcouponlist.jsp" style="color: #f5c242; font-weight:bold; float:right;">會員優惠券</a></li>							
+									<li><a href="<%=request.getContextPath()%>/MemBookingGet" style="color: #f5c242; font-weight:bold; float:right;">已訂位酒吧</a></li>
+									<li><a href="<%=request.getContextPath()%>/front-end/act/my_sign_up.jsp"" style="color: #f5c242; font-weight:bold; float:right;">已報名活動</a></li>
+									<li><a href="<%=request.getContextPath()%>/front-end/MemLogoutServlet" style="color: brown; font-weight:bold; font-size: 22px; float:right;">登 出</a></li>								
+								</c:when>
+								<c:otherwise>
+									<li><a href="<%=request.getContextPath()%>/front-end/mem/login.jsp" style="color: #f5c242; font-weight:bold; font-size: 30px; float:right;">登 入</a></li>	
+								</c:otherwise>
+							</c:choose>
+<%-- 							<li><a href="<%=request.getContextPath()%>/front-end/mem/memApplication.jsp" style="color: #f5c242; font-weight:bold; float:right;">個人資料</a></li> --%>
+<%-- 							<li><a href="<%=request.getContextPath()%>/front-end/prod/orderHistory.jsp" style="color: #f5c242; font-weight:bold; float:right;">歷史訂單</a></li> --%>
+<%-- 							<li><a href="<%=request.getContextPath()%>/front-end/memcoupon/memcouponlist.jsp" style="color: #f5c242; font-weight:bold; float:right;">會員優惠券</a></li>							 --%>
+<%-- 							<li><a href="<%=request.getContextPath()%>/MemBookingGet" style="color: #f5c242; font-weight:bold; float:right;">酒吧訂位查看</a></li> --%>
+<%-- 							<li><a href="<%=request.getContextPath()%>/front-end/act/my_sign_up.jsp"" style="color: #f5c242; font-weight:bold; float:right;">已報名活動</a></li> --%>
+<%-- 							<c:if test="${ not empty sessionScope.user}">  --%>
+<%-- 							<li><a href="<%=request.getContextPath()%>/front-end/MemLogoutServlet" style="color: brown; font-weight:bold; font-size: 22px; float:right;">登 出</a></li> --%>
+<%-- 							</c:if> --%>
 						</ul>
 					</li>
 

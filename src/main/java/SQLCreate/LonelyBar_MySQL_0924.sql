@@ -411,18 +411,18 @@ CREATE TABLE `forum` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- 建立 討論區文章 表格
-CREATE TABLE `forum_article` (
-  `frm_art_no` int NOT NULL AUTO_INCREMENT,
-  `frm_no` int NOT NULL,
-  `mem_no` int NOT NULL,
-  `art_time` datetime DEFAULT CURRENT_TIMESTAMP,
-  `art_title` varchar(100) NOT NULL,
-  `art_content` varchar(1000) NOT NULL,
-  `art_img` blob,
-  `art_status` tinyint NOT NULL DEFAULT '1',
+CREATE TABLE forum_article (
+  frm_art_no int NOT NULL AUTO_INCREMENT,
+  frm_no int NOT NULL,
+  mem_no int NOT NULL,
+  art_time datetime DEFAULT CURRENT_TIMESTAMP,
+  art_title varchar(100) NOT NULL,
+  art_content varchar(1000) NOT NULL,
+  art_img longblob,
+  art_status tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`frm_art_no`),
-  KEY `frm_no_idx` (`frm_no`),
-  CONSTRAINT `frm_no_FK` FOREIGN KEY (`frm_no`) REFERENCES `forum` (`frm_no`)
+  KEY frm_no_idx (`frm_no`),
+  CONSTRAINT frm_no_FK FOREIGN KEY (`frm_no`) REFERENCES forum (`frm_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- 建立 討論區文章檢舉 表格
@@ -1024,7 +1024,7 @@ mng_name,
 mng_phone,
 mng_pic,
 mng_status)
-VALUES(1, "manager1", "1234", "醉拳甘迺迪", "0910000001", null, 1);
+VALUES(1, "manager1", "1234", "醉拳甘迺迪", "0910000001", LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/drunkKennedy.jpg"), 1);
 INSERT INTO manager(
 mng_no,
 mng_account,
@@ -1033,7 +1033,7 @@ mng_name,
 mng_phone,
 mng_pic,
 mng_status)
-VALUES(2, "manager2", "2234", "古拉格斯", "0920000002", null, 0);
+VALUES(2, "manager2", "2234", "古拉格斯", "0920000002", LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/gragas.jpg"), 0);
 INSERT INTO manager(
 mng_no,
 mng_account,
@@ -1042,7 +1042,7 @@ mng_name,
 mng_phone,
 mng_pic,
 mng_status)
-VALUES(3, "manager3", "3234", "龍舌蘭姑娘", "0930000003", null, 1);
+VALUES(3, "manager3", "3234", "龍舌蘭姑娘", "0930000003", LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/agavegirl.jpg"), 1);
 
 -- 建立 管理員權限 假資料
 INSERT INTO manager_authfunc(

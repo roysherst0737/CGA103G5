@@ -60,7 +60,7 @@ public class ManagerImage extends HttpServlet {
 	public void init() throws ServletException {
 		try {
 			Context ctx = new javax.naming.InitialContext();
-			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB2");
+			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
 			con = ds.getConnection();
 		} catch (NamingException e) {
 			e.printStackTrace();

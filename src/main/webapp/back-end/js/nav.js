@@ -33,7 +33,7 @@
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
             <ul class="navbar-nav mr-lg-2">
                 <li class="nav-item  d-none d-lg-flex">
-                    <a class="nav-link" href="`+path + hostname + pathname+`/front-end/">
+                    <a target="_blank" class="nav-link" href="`+path + hostname + pathname+`/front-end/">
                         前台首頁
                     </a>
                 </li>
@@ -44,10 +44,10 @@
                         <i class="typcn typcn-user-outline mr-0"></i>
                         <span class="nav-profile-name">設定</span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item">
+                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown" style="width: 14px">
+                        <a class="dropdown-item" href="/CGA103G5ALL/back-end/ManagerLogout">
                             <i class="typcn typcn-power text-primary"></i>
-                            Logout
+                            管理員登出
                         </a>
                     </div>
                 </li>

@@ -21,7 +21,7 @@ String url = request.getRequestURL().toString() + "?" + request.getQueryString()
 session.setAttribute("url", url);
 
 int i = 0;
-System.out.println(i);
+// System.out.println(i);
 
 %>
 

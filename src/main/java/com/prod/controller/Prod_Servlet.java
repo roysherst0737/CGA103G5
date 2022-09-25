@@ -236,12 +236,12 @@ public class Prod_Servlet extends HttpServlet{
 			}
 			
 			Timestamp off_time = null;
-			try {
-				off_time = java.sql.Timestamp.valueOf(req.getParameter("off_time").trim());
-			} catch (IllegalArgumentException e) {
-				off_time = new java.sql.Timestamp(System.currentTimeMillis());
-				errorMsgs.add("請輸入下架時間.");
-			}
+//			try {
+//				off_time = java.sql.Timestamp.valueOf(req.getParameter("off_time").trim());
+//			} catch (IllegalArgumentException e) {
+//				off_time = new java.sql.Timestamp(System.currentTimeMillis());
+//				errorMsgs.add("請輸入下架時間.");
+//			}
 			
 			String prod_detail = req.getParameter("prod_detail");
 			String prod_detailReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{10,200}$";

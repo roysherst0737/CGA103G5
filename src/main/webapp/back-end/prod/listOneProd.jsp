@@ -15,7 +15,7 @@ Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>朧醴 LonelyBar【後端】</title>
+<title>朧醴 LonelyBar【後台】</title>
 <!-- base:css -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/back-end/vendors/typicons.font/font/typicons.css">
@@ -110,7 +110,7 @@ Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 												<th>庫存數量</th>
 												<th>商品狀態</th>
 												<th>上架時間</th>
-												<th>下架時間</th>
+<!-- 												<th>下架時間</th> -->
 												<th>商品敘述</th>
 												<th>商品管理</th>
 											</tr>
@@ -134,14 +134,14 @@ Prod_VO prodVO = (Prod_VO) request.getAttribute("prodVO");
 													</c:if>
 												</td>
 												<td>${prodVO.launch_time}</td>
-												<td>
-													<c:if test="${empty prodVO.off_time}">
-														<div>暫無下架時間</div>
-													</c:if>
-													<c:if test="${not empty prodVO.off_time}">
-														<div>${prodVO.off_time}</div>
-													</c:if>
-												</td>
+<!-- 												<td> -->
+<%-- 													<c:if test="${empty prodVO.off_time}"> --%>
+<!-- 														<div>暫無下架時間</div> -->
+<%-- 													</c:if> --%>
+<%-- 													<c:if test="${not empty prodVO.off_time}"> --%>
+<%-- 														<div>${prodVO.off_time}</div> --%>
+<%-- 													</c:if> --%>
+<!-- 												</td> -->
 												<td style="max-width: 300px">${prodVO.prod_detail}</td>
 												<td>
 													<FORM METHOD="post"

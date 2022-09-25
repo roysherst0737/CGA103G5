@@ -15,7 +15,7 @@ Article_message_VO article_message_VO = (Article_message_VO) request.getAttribut
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>朧醴 LonelyBar【後端】</title>
+<title>朧醴 LonelyBar【後台】</title>
 <!-- base:css -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/back-end/vendors/typicons.font/font/typicons.css">

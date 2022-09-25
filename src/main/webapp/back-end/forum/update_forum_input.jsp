@@ -13,7 +13,7 @@ Forum_VO forum_VO = (Forum_VO) request.getAttribute("forum_VO");
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>朧醴 LonelyBar【後端】</title>
+<title>朧醴 LonelyBar【後台】</title>
 <!-- base:css -->
 <script type="text/javascript">
 	let path = window.location.pathname.substring(0, window.location.pathname

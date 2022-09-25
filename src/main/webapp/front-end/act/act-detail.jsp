@@ -8,6 +8,8 @@
 <%@ page import="com.act_sign_up.model.*"%>
 <%@ page import="com.mem.model.*"%>
 <%@ page import="com.prod.model.*"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.sql.Timestamp"%>
 
 
 <%
@@ -38,6 +40,27 @@ session.setAttribute("url", url);
 int i = 0;
 int j = 0;
 String[] numberArr = { "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth" };
+
+// actVO.getSign_up_begin_time();
+// actVO.getSign_up_end_time();
+
+Date date = new Date();
+// SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
+// System.out.println(dateFormat.format(date));
+
+int compareTime = 0;
+Timestamp timestamp = new Timestamp((new Date()).getTime());
+if (actVO.getSign_up_begin_time().compareTo(timestamp) > 0) {
+	compareTime = -1;
+} else {
+	compareTime = 0;
+}
+if (actVO.getSign_up_end_time().compareTo(timestamp) < 0) {
+	compareTime = 1;
+} else {
+	compareTime = 0;
+}
+pageContext.setAttribute("compareTime", compareTime);
 %>
 
 
@@ -221,7 +244,9 @@ String[] numberArr = { "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh",
 											<tr>
 												<td>攜伴人數：</td>
 												<td><input type="number" name="accompany_count"
-													size="45" min="0" max="20" value="0" /></td>
+													size="45" min="0"
+													max="<%=actVO.getMax_count() - actVO.getCurrent_count() - 1%>"
+													value="0" /></td>
 											</tr>
 										</table>
 
@@ -232,16 +257,21 @@ String[] numberArr = { "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh",
 
 
 										<c:choose>
-
-											<c:when test="${empty sessionScope.user}">
-												<input type="button" value="我要報名" onclick="confirmTest0()" />
+											<c:when test="${compareTime != 0}">
+												<input type="button" value="不在報名期間內" disabled>
 											</c:when>
 
+											<c:when test="${empty sessionScope.user}">
+												<input type="button" value="我要報名" onclick="confirmTest0()">
+											</c:when>
+											<c:when test="${actVO.current_count == actVO.max_count}">
+												<input type="button" value="報名已到上限" disabled>
+											</c:when>
 											<c:otherwise>
 
 												<c:choose>
 													<c:when test="${set.contains(actVO.getAct_no())}">
-														<input type="submit" value="已報名" disabled="disabled">
+														<input type="submit" value="已報名" disabled>
 													</c:when>
 													<c:otherwise>
 														<input id="sign_up" type="submit" value="我要報名"

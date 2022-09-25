@@ -24,6 +24,7 @@ public class ManagerLogout extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.getSession().removeAttribute("managerVO");
+		request.getSession().removeAttribute("manager_VO");
 		request.getSession().removeAttribute("mng");
 		request.getSession().removeAttribute("manager_VO");
 		String url = "/back-end/index_back.html";

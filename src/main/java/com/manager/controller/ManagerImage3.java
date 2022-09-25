@@ -18,11 +18,15 @@ public class ManagerImage3 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Connection con;
 
-	public void doGet(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+	
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 
-
-			HttpSession session = req.getSession();
+			HttpSession session = request.getSession();
 			Manager_VO mng_vo = (Manager_VO) session.getAttribute("manager_VO");
-			writePojo2Json(res, mng_vo);
+			System.out.println(mng_vo.getMng_no());
+			writePojo2Json(response, mng_vo);
 }}

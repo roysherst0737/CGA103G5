@@ -1,83 +1,48 @@
 package com.manager.controller;
 
+import static com.util.CommonUtil.writePojo2Json;
+
 import java.io.*;
 import java.sql.*;
+import java.util.Base64;
 
-import javax.naming.Context;
-import javax.naming.NamingException;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import javax.sql.DataSource;
-
 import com.manager.model.Manager_VO;
-@WebServlet("/ManagerImage2")
+@WebServlet("*.ManagerImage2")
 public class ManagerImage2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Connection con;
-
-	public void doGet(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException {
-
-		res.setContentType("image/gif");
-		ServletOutputStream out = res.getOutputStream();
-
-		try {
-			Statement stmt = con.createStatement();
-			HttpSession session = req.getSession();
-			Manager_VO mng_vo = (Manager_VO) session.getAttribute("manager_VO");
-			ResultSet rs = stmt.executeQuery(
-//				"SELECT IMAGE FROM PICTURES WHERE PID = " + req.getParameter("PID"));
-				"SELECT mng_pic FROM manager WHERE mng_no = "+mng_vo.getMng_no());
-
-			if (rs.next()) {
-				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("mng_pic"));
-				byte[] buf = in.readAllBytes();
-				out.write(buf);
-//				byte[] buf = new byte[4 * 1024]; // 4K buffer
-//				int len;
-//				while ((len = in.read(buf)) != -1) {
-//					out.write(buf, 0, len);
-//				}
-				in.close();
-			} else {
-				//res.sendError(HttpServletResponse.SC_NOT_FOUND);
-				InputStream in = getServletContext().getResourceAsStream("/back-end/manager_login/NoData/null2.jpg");
-				byte[] b = new byte[in.available()];
-				in.read(b);
-				out.write(b);
-				in.close();
-			}
-			rs.close();
-			stmt.close();
-		} catch (Exception e) {
-			System.out.println(e);
-			InputStream in = getServletContext().getResourceAsStream("/back-end/manager_login/NoData/null2.jpg");
-			byte[] b = new byte[in.available()];
-			in.read(b);
-			out.write(b);
-			in.close();
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+	
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		Manager_VO mng_vo = (Manager_VO) session.getAttribute("manager_VO");
+		MyVO myVO= new MyVO();
+		if(mng_vo!=null) {
+			myVO.setMng_name(mng_vo.getMng_name());
+			System.out.println(mng_vo.getMng_no());
+			myVO.setBase64("data:image/jpeg;base64,"+Base64.getEncoder().encodeToString( mng_vo.getMng_pic()));
+		}else {
+			myVO.setBase64(null);
+			myVO.setMng_name(null);
 		}
+		writePojo2Json(response, myVO);
+	}
+}
+class MyVO extends Manager_VO{
+	String base64;
+
+	public String getBase64() {
+		return base64;
 	}
 
-	public void init() throws ServletException {
-		try {
-			Context ctx = new javax.naming.InitialContext();
-			DataSource ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DBPool");
-			con = ds.getConnection();
-		} catch (NamingException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public void setBase64(String base64) {
+		this.base64 = base64;
 	}
-
-	public void destroy() {
-		try {
-			if (con != null) con.close();
-		} catch (SQLException e) {
-			System.out.println(e);
-		}
-	}
-
+	
 }

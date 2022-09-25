@@ -18,23 +18,28 @@
 								return path + hostname + pathname;
 							}
 						}
-						document.querySelector("#mem_img").setAttribute("src",
-								getContextPath() + "/ManagerImage2")
+						
 					</script>
 					<span class="sidebar-status-indicator"></span>
 				</div>
 				<div class="sidebar-profile-name">
 					<p class="sidebar-name">未登入</p>
 					<script>
-					fetch('.ManagerImage3', {
+					fetch('.ManagerImage2', {
 						method: 'GET',
 					}).then((response) => response.json())
 					  .then((data) => {
+						  console.log(data)
 						  const{mng_name} = data;
+						  const{base64} = data;
 						  console.log(mng_name);
 						  if (mng_name != null) {
+							document.querySelector("#mem_img").setAttribute("src",
+									base64)
 						  document.querySelector(".sidebar-name").innerHTML=mng_name;							  
 						  } else {
+							document.querySelector("#mem_img").setAttribute("src",
+									getContextPath()+"/back-end/manager_login/NoData/null2.jpg")
 						  document.querySelector(".sidebar-name").innerHTML="未登入";							  
 							  
 						  }

@@ -53,7 +53,7 @@ pageContext.setAttribute("list", list);
 			<!-- 引入sidebar 用JQ方式 -->
 			<script>
 				$(function() {
-					$("#sidebar").load("../partials/_sidebar.jsp");
+					$("#sidebar").load("../partials/_sidebar.html");
 				});
 			</script>
 			 <!-- partial -->

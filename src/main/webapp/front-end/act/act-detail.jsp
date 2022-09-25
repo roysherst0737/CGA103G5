@@ -7,7 +7,6 @@
 <%@ page import="com.act_pic.model.*"%>
 <%@ page import="com.act_sign_up.model.*"%>
 <%@ page import="com.mem.model.*"%>
-<%@ page import="com.prod.model.*"%>
 
 
 <%
@@ -27,10 +26,6 @@ if (user != null) {
 	Set<Integer> set = act_sign_upSvc.getAct_sign_up((Integer) user.getMem_no());
 	pageContext.setAttribute("set", set);
 }
-
-Prod_Service prodSvc = new Prod_Service();
-List<Prod_VO> list = prodSvc.getAll();
-pageContext.setAttribute("list", list);
 
 String url = request.getRequestURL().toString() + "?" + request.getQueryString();
 session.setAttribute("url", url);
@@ -299,9 +294,6 @@ String[] numberArr = { "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh",
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->
-	<div class="instagram-box">
-		<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
-	</div>
 	<!-- End Instagram Feed  -->
 	<!-- Start Footer  -->
 	<footer>

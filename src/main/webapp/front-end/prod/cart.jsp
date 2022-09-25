@@ -21,7 +21,7 @@ String url = request.getRequestURL().toString() + "?" + request.getQueryString()
 session.setAttribute("url", url);
 
 int i = 0;
-System.out.println(i);
+// System.out.println(i);
 
 %>
 
@@ -322,9 +322,9 @@ System.out.println(i);
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->
-	<div class="instagram-box">
-		<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
-	</div>
+<!-- 	<div class="instagram-box"> -->
+<%-- 		<%@ include file="/front-end/partials/_InstagramBox.jsp"%> --%>
+<!-- 	</div> -->
 	<!-- End Instagram Feed  -->
 	<!-- Start Footer  -->
 	<footer>

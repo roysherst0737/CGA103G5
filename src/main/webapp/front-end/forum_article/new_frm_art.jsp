@@ -7,7 +7,6 @@
 <%@ page import="com.mem.model.*"%>
 <%@ page import="com.article_message.model.*"%>
 <%@ page import="com.article_message_report.model.*"%>
-<%@ page import="com.prod.model.*"%>
 
 <%
 Forum_Service forum_Svc = new Forum_Service();
@@ -23,9 +22,6 @@ Integer mem_no = user.getMem_no();
 // Forum_article_Service fArticleSvc = new Forum_article_Service();
 // List<Forum_article_VO> list_fArticle = fArticleSvc.getAll();
 // int max =  Collections.max(list_fArticle);
-Prod_Service prodSvc = new Prod_Service();
-List<Prod_VO> list = prodSvc.getAll();
-pageContext.setAttribute("list", list);
 %>
 
 
@@ -193,9 +189,6 @@ pageContext.setAttribute("list", list);
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->
-	<div class="instagram-box">
-		<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
-	</div>
 	<!-- End Instagram Feed  -->
 	<!-- Start Footer  -->
 	<footer>

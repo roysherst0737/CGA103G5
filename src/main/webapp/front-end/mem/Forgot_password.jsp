@@ -7,8 +7,10 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>忘記密碼</title> 
+  <title>朧醴 LonelyBar</title> 
   <!-- base:css -->
+  <link rel="shortcut icon" href="<%=request.getContextPath()%>/front-end/images/favicon.ico"
+	type="image/x-icon">
   <link rel="stylesheet" href="<%=request.getContextPath()%>/back-end/vendors/typicons.font/font/typicons.css">
   <link rel="stylesheet" href="<%=request.getContextPath()%>/back-end/vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
@@ -32,8 +34,8 @@
 					<img src="<%=request.getContextPath()%>/front-end/images/Logo3.png" alt="logo">
 				</a>
               </div>
-              <h5 class="mb-0">Forgot your password?</h5>
-              <small class="font-weight-light">Enter your email and we'll send you a reset link.</small>
+              <h5 class="mb-0">忘記您的密碼？</h5>
+              <small class="font-weight-light">請輸入您的電子郵件，我們將寄送重置密碼的連結給您</small>
               <div>
              <%-- 錯誤表列 --%>
 					<c:if test="${not empty errorMsgs}">
@@ -47,17 +49,17 @@
 				</div>
               <form class="pt-3" method ="post" action = "MailServlet">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="email" name ="mem_email">
+                  <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="電子郵件" name ="mem_email">
                 </div>
                 <div class="mt-3">
-               <input class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit" value="Send reset link" />
+               <input class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit" value="寄送重置密碼連結" />
                     
                 </div>
                 <div class="text-center mt-4 font-weight-light">
-                  <a href="login.jsp" class="auth-link text-black ">Login</a>
+                  <a href="login.jsp" class="auth-link text-black ">登入</a>
                 </div>
                 <div class="text-center mt-4 font-weight-light">
-                  Don't have an account? <a href="register.jsp" class="text-primary">Create</a>
+                  還沒有帳號？ <a href="register.jsp" class="text-primary">建立帳號</a>
                 </div>
                 <input type = "hidden" name = "action" value = "findbyemail">
               </form>

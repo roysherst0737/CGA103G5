@@ -15,7 +15,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>朧醴 LonelyBar【後端】</title>
+<title>朧醴 LonelyBar【後台】</title>
 <!-- base:css -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/back-end/vendors/typicons.font/font/typicons.css">
@@ -137,11 +137,11 @@
 													<td><input type="TEXT" name="prod_stock" size="45"
 														value="<%=(prodVO == null) ? "" : prodVO.getProd_stock()%>" /></td>
 												</tr>
-												<tr>
-													<td>下架時間:</td>
-													<td><input name="off_time" size="45" id="offTime" type="text"
-														value="<%=(prodVO.getOff_time() == null) ? "暫無下架時間" : prodVO.getOff_time()%>" /></td>
-												</tr>
+<!-- 												<tr> -->
+<!-- 													<td>下架時間:</td> -->
+<!-- 													<td><input name="off_time" size="45" id="offTime" type="text" -->
+<%-- 														value="<%=(prodVO.getOff_time() == null) ? "暫無下架時間" : prodVO.getOff_time()%>" /></td> --%>
+<!-- 												</tr> -->
 												<tr>
 													<td>商品狀態:</td>
 													<td>

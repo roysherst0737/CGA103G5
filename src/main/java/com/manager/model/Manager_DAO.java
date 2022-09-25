@@ -294,7 +294,7 @@ public class Manager_DAO implements Manager_DAO_interface {
 			return null;
 		}
 		
-		public boolean mngLogin(Manager_VO manager_VO) {
+		public Manager_VO mngLogin(Manager_VO manager_VO) {
 			boolean status = false;
 
 			Connection con = null;
@@ -311,13 +311,24 @@ public class Manager_DAO implements Manager_DAO_interface {
 //				pstmt.executeUpdate();
 
 				ResultSet rs = pstmt.executeQuery();
-				status = rs.next();
+				while (rs.next()) {
+					status=true;
+					// manager_Vo 也稱為 Domain objects
+					manager_VO = new Manager_VO();
+					manager_VO.setMng_no(rs.getInt("mng_no"));
+					manager_VO.setMng_account(rs.getString("mng_account"));
+					manager_VO.setMng_password(rs.getString("mng_password"));
+					manager_VO.setMng_name(rs.getString("mng_name"));
+					manager_VO.setMng_phone(rs.getString("mng_phone"));
+					manager_VO.setMng_pic(rs.getBytes("mng_pic"));
+					manager_VO.setMng_status(rs.getInt("mng_status"));
+				}
 
 			} catch (SQLException e) {
 				// process sql exception
 				printSQLException(e);
 			}
-			return status;
+			return manager_VO;
 		}
 		
 		@Override

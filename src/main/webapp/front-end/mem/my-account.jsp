@@ -70,7 +70,20 @@ pageContext.setAttribute("list", list);
     <div class="my-account-box-main">
         <div class="container">
             <div class="my-account-page">
-                <div class="row">
+                <div class="row">                  
+                    <div class="col-lg-4 col-md-12">
+                        <div class="account-box">
+                            <div class="service-box">
+                                <div class="service-icon">
+                                    <a href="<%=request.getContextPath()%>/front-end/mem/memApplication.jsp"><i class="fa fa-lock"></i> </a>
+                                </div>
+                                <div class="service-desc">
+                                    <h4>個人資料管理</h4>
+                                    <p>查看及編輯自己的會員資料</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
                     <div class="col-lg-4 col-md-12">
                         <div class="account-box">
                             <div class="service-box">
@@ -88,15 +101,15 @@ pageContext.setAttribute("list", list);
                         <div class="account-box">
                             <div class="service-box">
                                 <div class="service-icon">
-                                    <a href="<%=request.getContextPath()%>/front-end/mem/memApplication.jsp"><i class="fa fa-lock"></i> </a>
+                                    <a href="<%=request.getContextPath()%>/front-end/memcoupon/memcouponlist.jsp"> <i class="fa fa-credit-card"></i> </a>
                                 </div>
                                 <div class="service-desc">
-                                    <h4>個人資料管理</h4>
-                                    <p>編輯自己的會員資料</p>
+                                    <h4>會員優惠券</h4>
+                                    <p>看看自己有哪些優惠券能搶好康</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>                   
                     <div class="col-lg-4 col-md-12">
                         <div class="account-box">
                             <div class="service-box">
@@ -110,15 +123,16 @@ pageContext.setAttribute("list", list);
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-lg-4 col-md-12">
                         <div class="account-box">
                             <div class="service-box">
                                 <div class="service-icon">
-                                    <a href="<%=request.getContextPath()%>/front-end/memcoupon/memcouponlist.jsp"> <i class="fa fa-credit-card"></i> </a>
+                                    <a href="<%=request.getContextPath()%>/front-end/act/my_sign_up.jsp"> <i class="fa fa-location-arrow"></i> </a>
                                 </div>
                                 <div class="service-desc">
-                                    <h4>會員優惠券</h4>
-                                    <p>查看會員擁有哪些優惠券能使用</p>
+                                    <h4>已報名活動</h4>
+                                    <p>抱過名的活動都在這，記得去參加！</p>
                                 </div>
                             </div>
                         </div>
@@ -127,113 +141,11 @@ pageContext.setAttribute("list", list);
                         <div class="account-box">
                             <div class="service-box">
                                 <div class="service-icon">
-                                    <a href="#"> <i class="fab fa-paypal"></i> </a>
+                                    <a href="<%=request.getContextPath()%>/front-end/contact-us.jsp"> <i class="fa fa-location-arrow"></i> </a>
                                 </div>
                                 <div class="service-desc">
-                                    <h4>PayPal</h4>
-                                    <p>View benefits and payment settings</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="account-box">
-                            <div class="service-box">
-                                <div class="service-icon">
-                                    <a href="#"> <i class="fab fa-amazon"></i> </a>
-                                </div>
-                                <div class="service-desc">
-                                    <h4>Amazon Pay balance</h4>
-                                    <p>Add money to your balance</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bottom-box">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-12">
-                            <div class="account-box">
-                                <div class="service-box">
-                                    <div class="service-desc">
-                                        <h4>Gold &amp; Diamond Jewellery</h4>
-                                        <ul>
-                                            <li> <a href="#">Apps and more</a> </li>
-                                            <li> <a href="#">Content and devices</a> </li>
-                                            <li> <a href="#">Music settings</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                            <div class="account-box">
-                                <div class="service-box">
-                                    <div class="service-desc">
-                                        <h4>Handloom &amp; Handicraft Store</h4>
-                                        <ul>
-                                            <li> <a href="#">Advertising preferences </a> </li>
-                                            <li> <a href="#">Communication preferences</a> </li>
-                                            <li> <a href="#">SMS alert preferences</a> </li>
-                                            <li> <a href="#">Message center</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                            <div class="account-box">
-                                <div class="service-box">
-                                    <div class="service-desc">
-                                        <h4>The Designer Boutique</h4>
-                                        <ul>
-                                            <li> <a href="#">Amazon Pay</a> </li>
-                                            <li> <a href="#">Bank accounts for refunds</a> </li>
-                                            <li> <a href="#">Coupons</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                            <div class="account-box">
-                                <div class="service-box">
-                                    <div class="service-desc">
-                                        <h4>Gift Boxes, Gift Tags, Greeting Cards</h4>
-                                        <ul>
-                                            <li> <a href="#">Leave delivery feedback</a> </li>
-                                            <li> <a href="#">Lists</a> </li>
-                                            <li> <a href="#">Photo ID proofs</a> </li>
-                                            <li> <a href="#">Profile</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                            <div class="account-box">
-                                <div class="service-box">
-                                    <div class="service-desc">
-                                        <h4>Other accounts</h4>
-                                        <ul>
-                                            <li> <a href="#">Amazon Business registration</a> </li>
-                                            <li> <a href="#">Seller account</a> </li>
-                                            <li> <a href="#">Amazon Web Services</a> </li>
-                                            <li> <a href="#">Login with Amazon</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                            <div class="account-box">
-                                <div class="service-box">
-                                    <div class="service-desc">
-                                        <h4>Shopping programs and rentals</h4>
-                                        <ul>
-                                            <li> <a href="#">Subscribe &amp; Save</a> </li>
-                                        </ul>
-                                    </div>
+                                    <h4>連絡我們</h4>
+                                    <p>有任何問題，請與我們聯繫！</p>
                                 </div>
                             </div>
                         </div>
@@ -246,9 +158,6 @@ pageContext.setAttribute("list", list);
     
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->
-	<div class="instagram-box">
-		<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
-	</div>
 	<!-- End Instagram Feed  -->
 	<!-- Start Footer  -->
 	<footer>

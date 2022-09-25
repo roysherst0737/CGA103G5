@@ -5,7 +5,6 @@
 <%@ page import="com.mem.model.*"%>
 <%@ page import="com.act_pic.model.*"%>
 <%@ page import="com.act_sign_up.model.*"%>
-<%@ page import="com.prod.model.*"%>
 
 
 <%
@@ -16,9 +15,6 @@ Act_sign_up_Service act_sign_upSvc = new Act_sign_up_Service();
 List<Act_sign_up_VO> my_sign_upList = act_sign_upSvc.getMy_act_sign_up(user.getMem_no());
 pageContext.setAttribute("my_sign_upList", my_sign_upList);
 
-Prod_Service prodSvc = new Prod_Service();
-List<Prod_VO> list = prodSvc.getAll();
-pageContext.setAttribute("list", list);
 String url = request.getRequestURL().toString() + "?" + request.getQueryString();
 session.setAttribute("url", url);
 
@@ -145,9 +141,6 @@ session.setAttribute("url", url);
 		
 			<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->
-	<div class="instagram-box">
-		<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
-	</div>
 	<!-- End Instagram Feed  -->
 	<!-- Start Footer  -->
 	<footer>

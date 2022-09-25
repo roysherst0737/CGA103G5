@@ -2,18 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.act.model.*"%>
-<%@ page import="com.prod.model.*"%>
 
 <%
 Act_Service actSvc = new Act_Service();
 List<Act_VO> actList = actSvc.getAll();
 pageContext.setAttribute("actList", actList);
-
-
-
-Prod_Service prodSvc = new Prod_Service();
-List<Prod_VO> list = prodSvc.getAll();
-pageContext.setAttribute("list", list);
 
 %>
 
@@ -193,9 +186,6 @@ pageContext.setAttribute("list", list);
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->
-	<div class="instagram-box">
-		<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
-	</div>
 	<!-- End Instagram Feed  -->
 	<!-- Start Footer  -->
 	<footer>

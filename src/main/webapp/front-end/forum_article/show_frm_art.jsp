@@ -7,12 +7,8 @@
 <%@ page import="com.mem.model.*"%>
 <%@ page import="com.article_message.model.*"%>
 <%@ page import="com.article_message_report.model.*"%>
-<%@ page import="com.prod.model.*"%>
 
 <%
-Prod_Service prodSvc = new Prod_Service();
-List<Prod_VO> list = prodSvc.getAll();
-pageContext.setAttribute("list", list);
 //討論版
 Forum_Service forum_Svc = new Forum_Service();
 Forum_VO forum_VO = forum_Svc.getOneForum(Integer.parseInt(request.getQueryString()));
@@ -277,9 +273,6 @@ Mem_VO user = (Mem_VO) Objuser;
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->
-	<div class="instagram-box">
-		<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
-	</div>
 	<!-- End Instagram Feed  -->
 	<!-- Start Footer  -->
 	<footer>

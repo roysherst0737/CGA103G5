@@ -13,7 +13,7 @@ Coupon_VO couponVO = (Coupon_VO) request.getAttribute("couponVO");
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>朧醴 LonelyBar【後端】</title>
+<title>朧醴 LonelyBar【後台】</title>
 <!-- base:css -->
 <script type="text/javascript">
 	let path = window.location.pathname.substring(0, window.location.pathname
@@ -69,18 +69,6 @@ Coupon_VO couponVO = (Coupon_VO) request.getAttribute("couponVO");
 										<a href="listAllProd_pic.jsp"><img src="./images/home.png" width="30px" height="30px"></a>
 										</button>
 									</div>
-								</div>
-								<div class="pr-1 mb-3 mr-2 mb-xl-0">
-									<button type="button"
-										class="btn btn-sm bg-white btn-icon-text border">
-										<i class="typcn typcn-arrow-forward-outline mr-2"></i>Export
-									</button>
-								</div>
-								<div class="pr-1 mb-3 mb-xl-0">
-									<button type="button"
-										class="btn btn-sm bg-white btn-icon-text border">
-										<i class="typcn typcn-info-large-outline mr-2"></i>info
-									</button>
 								</div>
 							</div>
 						</div>

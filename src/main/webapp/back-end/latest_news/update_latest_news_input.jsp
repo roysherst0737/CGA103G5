@@ -13,7 +13,7 @@ Latest_news_VO latest_news_VO = (Latest_news_VO) request.getAttribute("latest_ne
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>朧醴 LonelyBar【後端】</title>
+<title>朧醴 LonelyBar【後台】</title>
 <!-- base:css -->
 <script type="text/javascript">
 	let path = window.location.pathname.substring(0, window.location.pathname

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.manager.model.Manager_VO;
 
+@WebServlet("/back-end/ManagerLogout")
 @MultipartConfig
 public class ManagerLogout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,9 +22,12 @@ public class ManagerLogout extends HttpServlet {
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		request.getSession().removeAttribute("managerVO");
-		String url = "/back-end/index.jsp";
+		request.getSession().removeAttribute("manager_VO");
+		request.getSession().removeAttribute("mng");
+		request.getSession().removeAttribute("manager_VO");
+		String url = "/back-end/index_back.html";
 		RequestDispatcher successView = request.getRequestDispatcher(url);
 		successView.forward(request, response);
 	}

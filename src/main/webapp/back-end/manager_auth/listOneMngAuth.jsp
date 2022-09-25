@@ -39,15 +39,15 @@
 <title>朧醴 LonelyBar【後端】</title>
 <!-- base:css -->
 
-<link rel="stylesheet" href="../vendors/typicons.font/font/typicons.css">
-<link rel="stylesheet" href="../vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/back-end/vendors/typicons.font/font/typicons.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/back-end/vendors/css/vendor.bundle.base.css">
 <!-- endinject -->
 <!-- plugin css for this page -->
 <!-- End plugin css for this page -->
 <!-- inject:css -->
-<link rel="stylesheet" href="../css/vertical-layout-light/style.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/back-end/css/vertical-layout-light/style.css">
 <!-- endinject -->
-<link rel="shortcut icon" href="../images/favicon.png" />
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/back-end/images/favicon.png" />
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 
@@ -66,19 +66,19 @@
 <!-- 主頁面 -->
 	<div class="container-scroller">
 		<!-- 引入nav(頂部含廣告) -->
-		<script src="../js/nav.js"></script>
+		<script src="<%=request.getContextPath()%>/back-end/js/nav.js"></script>
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_settings-panel.html -->
 			<!-- 引入浮動視窗 -->
-			<script src="../js/floating_window.js"></script>
+			<script src="<%=request.getContextPath()%>/back-end/js/floating_window.js"></script>
 			<!-- partial -->
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar"></nav>
 			<!-- 引入sidebar 用JQ方式 -->
 			<script>
 				$(function() {
-					$("#sidebar").load("../partials/_sidebar.jsp");
+					$("#sidebar").load("<%=request.getContextPath()%>/back-end/partials/_sidebar.jsp");
 				});
 			</script>
 			 <!-- partial -->
@@ -177,7 +177,7 @@
 				<footer class="footer"></footer>
 				<script>
 					$(function() {
-						$(".footer").load("../partials/_footer.html");
+						$(".footer").load("<%=request.getContextPath()%>/back-end/partials/_footer.html");
 					});
 				</script>
 				<!-- partial -->
@@ -198,24 +198,24 @@
 		return path+hostname+pathname;
 	}
 	</script>
-	<script src="../vendors/js/vendor.bundle.base.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/vendors/js/vendor.bundle.base.js"></script>
 	<!-- endinject -->
 	<!-- Plugin js for this page-->
 	<!-- End plugin js for this page-->
 	<!-- inject:js -->
-	<script src="../js/off-canvas.js"></script>
-	<script src="../js/hoverable-collapse.js"></script>
-	<script src="../js/template.js"></script>
-	<script src="../js/settings.js"></script>
-	<script src="../js/todolist.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/off-canvas.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/hoverable-collapse.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/template.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/settings.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/todolist.js"></script>
 	<!-- endinject -->
 	<!-- plugin js for this page -->
-	<script src="../vendors/progressbar.js/progressbar.min.js"></script>
-	<script src="../vendors/chart.js/Chart.min.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/vendors/progressbar.js/progressbar.min.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/vendors/chart.js/Chart.min.js"></script>
 	<!-- End plugin js for this page -->
 	<!-- Custom js for this page-->
 
-	<script src="../js/dashboard.js"></script>
+	<script src="<%=request.getContextPath()%>/back-end/js/dashboard.js"></script>
 	<!-- End custom js for this page-->
 </body>
 

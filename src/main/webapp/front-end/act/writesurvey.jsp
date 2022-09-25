@@ -61,6 +61,12 @@ Mem_VO user = (Mem_VO) Objuser;
 <!-- Custom CSS -->
 <link rel="stylesheet" href="../css/custom.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+function goBack() {
+	history.back();
+}
+
+</script>
 
 <style>
 button.b1 {
@@ -170,7 +176,7 @@ a.booking:hover {
 
 <c:when test="${k < 0}">
  <div class="box">
-    <a href="<%=request.getContextPath()%>/front-end/act/survey.jsp?" id="remind">活動方尚未新增題目</a>
+    <a id="remind" onclick="goBack()" href="#">活動方尚未新增題目</a>
   </div>
 
 </c:when>

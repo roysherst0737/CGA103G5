@@ -118,6 +118,7 @@ div.col-sm-12>button.btn {
 
 .modal-content {
 	background-color: aliceblue;
+	width:1000px;
 }
 
 .modal-body {
@@ -246,7 +247,7 @@ div.main_card:hover {
 							</div>
 						</div>
 						<div class="col-md-8 container">
-							<div class="card-body row container" style="height: 100%;">
+							<div class="card-body row container" style= height: 100%;">
 								<div class="col" style="display: grid;">
 									<div class="card-title row">${pubList.pub_name}</div>
 									<div class="row">狀態： ${pubList.pub_status?"上架":"下架"}</div>
@@ -278,7 +279,7 @@ div.main_card:hover {
 			<div class="modal fade " id="staticBackdrop" data-backdrop="static"
 				data-keyboard="false" tabindex="-1"
 				aria-labelledby="staticBackdropLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg">
+				<div class="modal-dialog modal-lg" style="display:flex ;justify-content: center;">
 					<div class="modal-content">
 						<div class="modal-header">
 							<h5 class="modal-title" id="staticBackdropLabel">設定</h5>
@@ -288,8 +289,8 @@ div.main_card:hover {
 						</div>
 						<div class="modal-body">
 							<div class=" grid-margin stretch-card">
-								<div class="card">
-									<div class="card-body">
+								<div class="card" style="margin:10px">
+									<div class="card-body" style="width:400px;">
 										<h4 class="card-title">酒吧基本資料</h4>
 										<div style="display: flex; justify-content: space-around;">
 											<p class="card-description">
@@ -304,32 +305,33 @@ div.main_card:hover {
 														style="display: none">上架</button></span>
 											</p>
 										</div>
-										<div class="form-floating mb-3">
-											<input type="text" class="form-control" id="fpub_name"
-												value="" placeholder="請填寫酒吧名稱"> <label
+										<div class="form-floating mb-3"> <label
 												for="fpub_name">酒吧名稱</label>
+											<input type="text" class="form-control" id="fpub_name"
+												value="" placeholder="請填寫酒吧名稱">
 										</div>
-										<div class="form-floating mb-3">
-											<input type="number" class="form-control" id="fpub_nop"
-												value="" placeholder="請填寫可接受預約人數"> <label
+										<div class="form-floating mb-3"> <label
 												for="fpub_nop">酒吧可接受預約人數</label>
+											<input type="number" class="form-control" id="fpub_nop"
+												value="" placeholder="請填寫可接受預約人數">
 
 										</div>
 										<div class="form-floating mb-3">
-											<input type="text" class="form-control" id="fpub_address"
-												value="" placeholder="請填寫酒吧地址"> <label
+										<label
 												for="fpub_address">酒吧地址</label>
+											<input type="text" class="form-control" id="fpub_address"
+												value="" placeholder="請填寫酒吧地址"> 
 										</div>
 
 										<div class="container px-4">
 											<div class="row gx-5">
-												<div class="col">
-													<div class="form-floating mb-3">
+												<div class="col"  style="display:none">
+													<div class="form-floating mb-3" >
 														<input type="text" class="form-control" id="fpub_lng"
 															value="" placeholder="經度"> <label for="fpub_lng">經度</label>
 													</div>
 												</div>
-												<div class="col">
+												<div class="col"  style="display:none">
 													<div class="form-floating mb-3">
 														<input type="text" class="form-control" id="fpub_lat"
 															value="" placeholder="緯度"> <label for="fpub_lat">緯度</label>
@@ -384,14 +386,14 @@ div.main_card:hover {
 										</div>
 										<div class="form-group">
 											<div
-												style="height: 240px; width: 100%; position: relative; margin: 10px;">
+												style="height: 300px; width: 100%; position: relative; margin: 10px;">
 												<label>酒吧圖片</label> <img id="img_set"
 													style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); height: 240px; max-width: 300px;"
 													src="<%=request.getContextPath()%>/back-end/images/noPic.png"></img>
 											</div>
 											<input id="pub_img" type="file" name="img[]"
 												class="file-upload-default"
-												accept="image/gif, image/jpeg, image/png">
+												accept="image/gif, image/jpeg, image/png" style="display:none">
 											<div class="input-group col-xs-12">
 												<input type="text" class="form-control file-upload-info"
 													disabled placeholder="Upload Image"> <span
@@ -410,8 +412,8 @@ div.main_card:hover {
 								</div>
 							</div>
 							<div class=" grid-margin stretch-card">
-								<div class="card">
-									<div class="card-body">
+								<div class="card" style="margin:10px">
+									<div class="card-body" style="width:500px;">
 										<h4 class="card-title"></h4>
 										<p class="card-description">廠商基本資料</p>
 

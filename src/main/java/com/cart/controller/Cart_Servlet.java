@@ -124,7 +124,9 @@ public class Cart_Servlet extends HttpServlet {
 				failureView.forward(req, res);
 				return;
 			}
-
+			
+			Integer url = Integer.valueOf(req.getParameter("url").trim());
+			
 			Integer prod_stock = Integer.valueOf(req.getParameter("prod_stock").trim()); 
 			Prod_VO prodVO = new Prod_VO();
 			prodVO.setProd_stock(prod_stock);
@@ -144,8 +146,8 @@ public class Cart_Servlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			String url = "shopByType.jsp?" + 1;		
-			res.sendRedirect(url);
+			String toUrl = "shopByType.jsp?" + url;		
+			res.sendRedirect(toUrl);
 		}
 		
 		if ("insertByDetail".equals(action)) {

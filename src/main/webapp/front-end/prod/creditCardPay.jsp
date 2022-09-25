@@ -97,8 +97,6 @@
         </div>
             <p></p>
             <input type="submit" class="button" style="font-weight:bold;" onclick="location.href='<%=request.getContextPath()%>/front-end/prod/orderHistory.jsp'" value="完成付款">
-<%--             <a href="<%=request.getContextPath()%>/front-end/prod/orderHistory.jsp" style="color: black; text-decoration:none;"></a> --%>
-            </input>
           </form>
         </div>
       </div>

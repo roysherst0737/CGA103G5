@@ -6,14 +6,13 @@ import org.hibernate.Session;
 
 import com.pub.entity.Pub;
 
-public class Pub_DAO_H_impl_forWEB implements Pub_DAO_H  {
+public class Pub_DAO_impl implements Pub_DAO  {
 
 @Override
 public int insert(Pub pojo) {
 	getSession().save(pojo);
 	return 1;
 }
-
 
 
 @Override

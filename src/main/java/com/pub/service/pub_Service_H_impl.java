@@ -3,7 +3,7 @@ package com.pub.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.pub.dao.Pub_DAO_H_impl_forWEB;
+import com.pub.dao.Pub_DAO_impl;
 import com.pub.entity.Pub;
 import com.pub.model.pub_Service_H;
 import com.pub_pics.dao.Pub_pics_DAO_H_impl;
@@ -11,10 +11,10 @@ import com.pub_pics.entity.Pub_pics;
 import com.pub_reservation.dao.Pub_Reservation_DAOImpl;
 
 public class pub_Service_H_impl implements pub_Service_H{
-	private Pub_DAO_H_impl_forWEB dao;
+	private Pub_DAO_impl dao;
 	private Pub_pics_DAO_H_impl pic_dao;
 	public pub_Service_H_impl() {
-		dao = new Pub_DAO_H_impl_forWEB();
+		dao = new Pub_DAO_impl();
 		pic_dao = new Pub_pics_DAO_H_impl();
 	}
 	@Override

@@ -195,7 +195,7 @@ session.setAttribute("url", url);
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="list-view">
                                 <c:forEach var="prodVO" items="${set}">
-                                <c:if test="${prodVO.prod_status == 1}">
+                                <c:if test="${prodVO.prod_status == 1 && prodVO.prod_stock>=1}">
                                     <div class="list-view-box">                                    
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">

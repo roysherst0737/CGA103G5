@@ -7,11 +7,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import com.pub.dao.Pub_DAO_H;
+import com.pub.dao.Pub_DAO;
 import com.pub.entity.Pub;
 import com.util.HibernateUtil;
 
-public class Pub_DAO_H_impl implements Pub_DAO_H  {
+public class Pub_DAO_H_impl implements Pub_DAO  {
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
 
 

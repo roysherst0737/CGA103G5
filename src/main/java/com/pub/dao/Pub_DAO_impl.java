@@ -6,7 +6,7 @@ import org.hibernate.Session;
 
 import com.pub.entity.Pub;
 
-public class Pub_DAO_H_impl_forWEB implements Pub_DAO_H  {
+public class Pub_DAO_impl implements Pub_DAO  {
 
 @Override
 public int insert(Pub pojo) {
@@ -14,19 +14,9 @@ public int insert(Pub pojo) {
 	return 1;
 }
 
-@Override
-public int deleteById(Integer id) {
-	Pub pub = new Pub();
-	pub.setPub_no(id);
-	getSession().remove(pub);
-	return 1;
-}
 
 @Override
 public int update(Pub pojo) {
-	System.out.println(pojo.getPub_no()+"pubno");
-	System.out.println(pojo.getPub_open()+"=pubOpen");
-	System.out.println(pojo.getPub_open().length()+"=pubOpen.l");
 	getSession().update(pojo);
 	return 1;
 }
@@ -55,7 +45,10 @@ public List<Pub> getAllbyOpen() {
 	session.close();
 	return list;
 }
-
+@Override
+public int deleteById(Integer id) {
+	return 1;
+}
 //	@Override
 //	public void updateRate(Integer pub_no, Integer pub_rate_sum, Integer pub_ratetotal) {
 //		try (Connection con = ds.getConnection(); PreparedStatement pstmt = con.prepareStatement(UPDATE_RATE);) {

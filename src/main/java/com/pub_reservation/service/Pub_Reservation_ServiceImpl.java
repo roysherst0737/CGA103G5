@@ -5,16 +5,16 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
-import com.pub.dao.Pub_DAO_H_impl_forWEB;
+import com.pub.dao.Pub_DAO_impl;
 import com.pub.entity.Pub;
 import com.pub_reservation.dao.Pub_Reservation_DAOImpl;
 import com.pub_reservation.entity.Pub_Reservation;
 
 public class Pub_Reservation_ServiceImpl implements Pub_Reservation_Service{
-	private Pub_DAO_H_impl_forWEB PubDao;
+	private Pub_DAO_impl PubDao;
 	private Pub_Reservation_DAOImpl reserveDao;
 	public Pub_Reservation_ServiceImpl(){
-		PubDao = new Pub_DAO_H_impl_forWEB();
+		PubDao = new Pub_DAO_impl();
 		reserveDao = new Pub_Reservation_DAOImpl();
 	}
 

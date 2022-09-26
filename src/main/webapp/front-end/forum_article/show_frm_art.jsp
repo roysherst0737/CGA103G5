@@ -23,23 +23,25 @@ Forum_article_VO forum_article_VO = forum_article_Svc.getOneForum_article(Intege
 request.setAttribute("forum_article_VO", forum_article_VO);
 
 //留言列標
-// Article_message_Service article_message_Svc = new Article_message_Service();
-// Article_message_VO article_message_VO = article_message_Svc.getOneArticle_message(Integer.parseInt(request.getQueryString()));
-// request.setAttribute("article_message_VO", article_message_VO);
+Article_message_Service article_message_Svc = new Article_message_Service();
+Article_message_VO article_message_VO = article_message_Svc
+		.getOneArticle_message(Integer.parseInt(request.getQueryString()));
+request.setAttribute("article_message_VO", article_message_VO);
 
 // Set<Article_message_VO> set = forum_article_Svc.getArticle_messageByForum_article(forum_article_VO.getFrm_art_no());
 // pageContext.setAttribute("set", set);
 
 //留言顯示
 
-Article_message_Service article_message_Svc = new Article_message_Service();
+// Article_message_Service article_message_Svc = new Article_message_Service();
 List<Article_message_VO> list1 = article_message_Svc.getAllfromfrm_art_no(forum_article_VO.getFrm_art_no());
 pageContext.setAttribute("list1", list1);
-
 
 //登入會員
 Object Objuser = session.getAttribute("user");
 Mem_VO user = (Mem_VO) Objuser;
+
+// Integer mem_no = user.getMem_no();
 %>
 
 
@@ -75,84 +77,83 @@ Mem_VO user = (Mem_VO) Objuser;
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <style>
-    /* .mydiv {
+/* .mydiv {
       display: flex;
       justify-content: space-between;
       border: 1px solid;
       top: 10px;
     } */
-    .mydiv {
-      /* border: 1px solid; */
-      height: 1px;
-      /* top: 100px; */
-    }
+.mydiv {
+	/* border: 1px solid; */
+	height: 1px;
+	/* top: 100px; */
+}
 
-    #content-out {
-      padding: 30px;
-    }
+#content-out {
+	padding: 30px;
+}
 
-    #content {
-      padding: 10px;
-      height: 50px;
-    }
+#content {
+	padding: 10px;
+	height: 50px;
+}
 
-
-    /* h2 {
+/* h2 {
       text-align: center;
       width: 100%;
       font-weight: bold;
       margin-top: 30px;
     } */
+table {
+	border-collapse: collapse;
+	width: 60%;
+}
 
-    table {
-      border-collapse: collapse;
-      width: 60%;
-    }
+tr {
+	height: 50px;
+}
 
-    tr {
-      height: 50px;
-    }
+div.forum-socialtool-box, div.forum-socialtool-box-v {
+	width: 100%;
+	min-width: 600px;
+	text-align: center;
+	clear: both;
+	font-size: 12px;
+	line-height: 12px;
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-o-border-radius: 5px;
+}
 
-    div.forum-socialtool-box,
-    div.forum-socialtool-box-v {
-      width: 100%;
-      min-width: 600px;
-      text-align: center;
-      clear: both;
-      font-size: 12px;
-      line-height: 12px;
-      font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-      border-radius: 5px;
-      -webkit-border-radius: 5px;
-      -o-border-radius: 5px;
-    }
+.forum-socialtool-box, .quote_result {
+	position: relative;
+}
 
-    .forum-socialtool-box,
-    .quote_result {
-      position: relative;
-    }
+h2 {
+	top: 40px;
+	left: 160px;
+}
 
-    h2 {
-      top: 40px;
-      left: 160px;
-    }
+#rpt-btn {
+	bottom: 88px;
+	width: 80px;
+	left: 95%;
+}
 
-    #rpt-btn {
-      bottom: 88px;
-      width: 80px;
-      left: 95%;
-    }
+#text {
+	width: 80%;
+}
 
-    #text {
-      width: 80%;
+#message {
+	padding: 100px;
+	left: 70px;
+}
 
-    }
-
-    #message {
-      padding: 100px;
-      left: 70px;
-    }
-   
+#btn-rpt {
+	background-color: transparent;
+	border-style: none;
+}
 </style>
 
 </head>
@@ -170,116 +171,233 @@ Mem_VO user = (Mem_VO) Objuser;
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-<!-- 					<h2>購物商城</h2> -->
-<!-- 					<ul class="breadcrumb"> -->
-<!-- 						<li class="breadcrumb-item"><a -->
-<%-- 							href="<%=request.getContextPath()%>/front-end/prod/shop.jsp">回商城</a></li> --%>
-<!-- 						<li class="breadcrumb-item active">總覽</li> -->
-<!-- 					</ul> -->
+					<!-- 					<h2>購物商城</h2> -->
+					<!-- 					<ul class="breadcrumb"> -->
+					<!-- 						<li class="breadcrumb-item"><a -->
+					<%-- 							href="<%=request.getContextPath()%>/front-end/prod/shop.jsp">回商城</a></li> --%>
+					<!-- 						<li class="breadcrumb-item active">總覽</li> -->
+					<!-- 					</ul> -->
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- End All Title Box -->
 
-  <div class="" style="border:1px solid;">
-    <div class="" id="title">
-      <h2 class="title">
-<%--       ${forum_VO.frm_name_no} --%>
-        <!-- 討論區超連結 -->
-<!--         <a class="title">>> -->
-          <a href="#">${forum_article_VO.art_title}</a>
-<!--         </a> -->
-      </h2>
-    </div>
-    <table class="table table-bordered" style="width: 950px;margin:auto; margin-top:40px; margin-bottom:40px;">
-      <tbody style="width:700px;" class="table-light">
-        <div class="">
-          <tr>
-            <div class="forum-socialtool-box">
-            </div>
-            <td rowspan="7" style="width:18%;background: #B8CDF3;">
-              <div class="">${forum_article_VO.mem_no}</div>
-            </td>
-            <td rowspan="7" id="content-out">
-              <div class="mydiv">
-                <div class="" id="content">${forum_article_VO.art_content}</div>
-                <div class="dropdown" id="rpt-btn">
-                  <a href="#" class="nav-link dropdown" data-toggle="dropdown" style="font-weight: 1000;">[檢舉]</a>
-                  <ul class="dropdown-menu">
-                    <li><a href="<%=request.getContextPath()%>/forum_article_report_Servlet?frm_art_rpt_no=${forum_article_report_VO.frm_art_rpt_no}">隱射或針對他人</a>
-                    </li>
-                    <li>
-                    <input type="radio" name="tab" id="tab5" onclick="location.href='http://tw.yahoo.com'"/>
-                    <a href="shop-detail.html">不雅言論</a></li>
-                    <li><a href="cart.html">圖文不符</a></li>
-                    <li><a href="checkout.html">其他</a></li>
-                  </ul>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr></tr>
-          <tr></tr>
-          <tr></tr>
-          <tr></tr>
-          <tr></tr>
-          <tr></tr>
-        </div>
-      </tbody>
-      <tr>
-        <td COLSPAN=2>
-          <div class="">
-          
-          <c:forEach var="article_message_VO" items="${list1}">
-			<c:if test="${article_message_VO.article_message_report_VO.msg_result==1}">
-        	  <span id="idnamber">
-            	  ${article_message_VO.mem_no}<a>：</a>
-           	 </span>
-          	  <span class="" style="width:82%; float:right;">
-           	   ${article_message_VO.msg_content}
-          	  </span>
-           	 <span>
-           	   <div class=" dropdown" id="rpt-btn2" style="left:870px; bottom:35px;">
-           	     <a href="#" class="nav-link dropdown" data-toggle="dropdown" style="font-weight: 1000;">[檢舉]</a>
-           	     <ul class="dropdown-menu">
-           	       <li><a href="<%=request.getContextPath()%>/forum_article_report_Servlet?frm_art_rpt_no=${forum_article_report_VO.frm_art_rpt_no}">隱射或針對他人</a>
-           	       </li>
-           	       <li><a href="shop-detail.html">不雅言論</a></li>
-           	       <li><a href="cart.html">辱罵他人</a></li>
-           	       <li><a href="checkout.html">其他</a></li>
-           	      </ul>
-           	    </div>
-           	  </span>
-           	  </c:if>
-           </c:forEach>
-           </div>
-         </td>
-  </div>
-  </td>
-  </tr>
-  <tr>
-    <td COLSPAN=2>
-      <form class="message">
-        <div style="text-align:right;">
-          <span>
-            ${user.mem_no}<span>：</span>
-          </span>
-          <input type="text" name="欄位名稱" id="text" style="width:82%; float:right;">
-        </div>
-      </form>
-    </td>
-  </tr>
+	<div class="" style="border: 1px solid;">
+		<div class="" id="title">
+			<h2 class="title">
+				<%--       ${forum_VO.frm_name_no} --%>
+				<!-- 討論區超連結 -->
+				<!--         <a class="title">>> -->
+				<a href="#">${forum_article_VO.art_title}</a>
+				<!--         </a> -->
+			</h2>
+		</div>
+		<div class="main">
+			<table class="table table-bordered"
+				style="width: 950px; margin: auto; margin-top: 40px; margin-bottom: 40px;">
+				<tbody style="width: 700px;" class="table-light">
+					<div class="">
+						<tr>
+							<div class="forum-socialtool-box"></div>
+							<td rowspan="7" style="width: 18%; background: #B8CDF3;">
+								<div class="">${forum_article_VO.mem_no}</div>
+							</td>
+							<td rowspan="7" id="content-out">
+								<div class="mydiv">
+									<div class="" id="content">${forum_article_VO.art_content}</div>
+									<div class="dropdown" id="rpt-btn">
+										<a class="nav-link dropdown" data-toggle="dropdown"
+											style="font-weight: 1000;">[檢舉]</a>
+										<FORM METHOD="post"
+											ACTION="<%=request.getContextPath()%>/back-end/forum_article_report/forum_article_report.do"
+											style="margin-bottom: 0px;">
+											<ul class="dropdown-menu">
+												<li><a> <input type="submit" value="隱射或針對他人"
+														class="button" id="btn-rpt"> <input type="hidden"
+														name="url"
+														value="<%=Integer.parseInt(request.getQueryString())%>">
+														<input type="hidden" name="action" value="insert">
+														<input type="hidden" name="mem_no" value="${user.mem_no}">
+														<input type="hidden" name="frm_art_no"
+														value="${forum_article_VO.frm_art_no}"> <input
+														type="hidden" name="rpt_time"
+														value="${forum_article_report_VO.rpt_time}"> <input
+														type="hidden" name="art_status"
+														value="${forum_article_VO.art_status}"> <input
+														type="hidden" name="rpt_content"
+														value="${forum_article_report_VO.rpt_content}隱射或針對他人">
+												</a></li>
+												<li><a> <input type="hidden" name="url"
+														value="<%=Integer.parseInt(request.getQueryString())%>">
+														<input type="hidden" name="action" value="insert">
+														<input type="hidden" name="mem_no" value="${user.mem_no}">
+														<input type="hidden" name="frm_art_no"
+														value="${forum_article_VO.frm_art_no}"> <input
+														type="hidden" name="rpt_time"
+														value="${forum_article_report_VO.rpt_time}"> <input
+														type="hidden" name="rpt_content"
+														value="${forum_article_report_VO.rpt_content}不雅言語">
+														<input type="hidden" name="art_status"
+														value="${forum_article_VO.art_status}"> <input
+														type="submit" value="不雅言語" class="button" id="btn-rpt">
+												</a></li>
+												<li><a> <input type="hidden" name="url"
+														value="<%=Integer.parseInt(request.getQueryString())%>">
+														<input type="hidden" name="action" value="insert">
+														<input type="hidden" name="mem_no" value="${user.mem_no}">
+														<input type="hidden" name="frm_art_no"
+														value="${forum_article_VO.frm_art_no}"> <input
+														type="hidden" name="rpt_time"
+														value="${forum_article_report_VO.rpt_time}"> <input
+														type="hidden" name="rpt_content"
+														value="${forum_article_report_VO.rpt_content}圖文不符">
+														<input type="hidden" name="art_status"
+														value="${forum_article_VO.art_status}"> <input
+														type="submit" value="圖文不符" class="button" id="btn-rpt">
+												</a></li>
+												<li><a> <input type="hidden" name="url"
+														value="<%=Integer.parseInt(request.getQueryString())%>">
+														<input type="hidden" name="action" value="insert">
+														<input type="hidden" name="mem_no" value="${user.mem_no}">
+														<input type="hidden" name="frm_art_no"
+														value="${forum_article_VO.frm_art_no}"> <input
+														type="hidden" name="rpt_time"
+														value="${forum_article_report_VO.rpt_time}"> <input
+														type="hidden" name="rpt_content"
+														value="${forum_article_report_VO.rpt_content}其他">
+														<input type="hidden" name="art_status"
+														value="${forum_article_VO.art_status}"> <input
+														type="submit" value="其他" class="button" id="btn-rpt">
+												</a></li>
+										</FORM>
+										</ul>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+						<tr></tr>
+					</div>
+				</tbody>
+				<tr>
+					<td COLSPAN=2>
+						<div class="">
 
-  </table>
-  </div>
+							<c:forEach var="article_message_VO" items="${list1}">
+								<%-- 								<c:if --%>
+								<%-- 									test="${article_message_VO.article_message_report_VO.msg_result==1}"> --%>
+								<span id="idnamber"> ${article_message_VO.mem_no}<a>：</a>
+								</span>
+								<span class="" style="width: 82%; float: right;">
+									${article_message_VO.msg_content} </span>
+								<span>
+									<div class=" dropdown" id="rpt-btn2"
+										style="left: 870px; bottom: 35px;">
+										<a class="nav-link dropdown" data-toggle="dropdown"
+											style="font-weight: 1000;">[檢舉]</a>
+										<ul class="dropdown-menu">
+											<FORM METHOD="post"
+												ACTION="<%=request.getContextPath()%>/back-end/article_message_report/article_message_report.do"
+												style="margin-bottom: 0px;">
+												<li><a> <input type="hidden" name="action"
+														value="insert"> <input type="hidden" name="url"
+														value="<%=Integer.parseInt(request.getQueryString())%>">
+														<input type="hidden" name="mem_no" value="${user.mem_no}">
+														<input type="hidden" name="art_msg_no"
+														value="${article_message_VO.art_msg_no}"> <input
+														type="hidden" name="rpt_time"
+														value="${article_message_report_VO.rpt_time}"> <input
+														type="hidden" name="rpt_msg_content"
+														value="${article_message_report_VO.rpt_msg_content}隱射或針對他人">
+														<input type="submit" value="隱射或針對他人" class="button"
+														id="btn-rpt">
+												</a></li>
+												<li><a> <input type="hidden" name="action"
+														value="insert"> <input type="hidden" name="url"
+														value="<%=Integer.parseInt(request.getQueryString())%>">
+														<input type="hidden" name="mem_no" value="${user.mem_no}">
+														<input type="hidden" name="art_msg_no"
+														value="${article_message_VO.art_msg_no}"> <input
+														type="hidden" name="frm_art_no"
+														value="${article_message_VO.frm_art_no}"> <input
+														type="hidden" name="msg_time"
+														value="${article_message_VO.msg_time}"> <input
+														type="hidden" name="msg_content"
+														value="${article_message_VO.msg_content}不雅言語"> <input
+														type="submit" value="不雅言語" class="button" id="btn-rpt">
+												</a></li>
+												<li><a> <input type="hidden" name="action"
+														value="insert"> <input type="hidden" name="url"
+														value="<%=Integer.parseInt(request.getQueryString())%>">
+														<input type="hidden" name="mem_no" value="${user.mem_no}">
+														<input type="hidden" name="art_msg_no"
+														value="${article_message_VO.art_msg_no}"> <input
+														type="hidden" name="frm_art_no"
+														value="${article_message_VO.frm_art_no}"> <input
+														type="hidden" name="msg_time"
+														value="${article_message_VO.msg_time}"> <input
+														type="hidden" name="msg_content"
+														value="${article_message_VO.msg_content}辱罵他人"> <input
+														type="submit" value="辱罵他人" class="button" id="btn-rpt">
+												</a></li>
+												<li><a> <input type="hidden" name="action"
+														value="insert"> <input type="hidden" name="url"
+														value="<%=Integer.parseInt(request.getQueryString())%>">
+														<input type="hidden" name="mem_no" value="${user.mem_no}">
+														<input type="hidden" name="art_msg_no"
+														value="${article_message_VO.art_msg_no}"> <input
+														type="hidden" name="frm_art_no"
+														value="${article_message_VO.frm_art_no}"> <input
+														type="hidden" name="msg_time"
+														value="${article_message_VO.msg_time}"> <input
+														type="hidden" name="msg_content"
+														value="${article_message_VO.msg_content}其他"> <input
+														type="submit" value="其他" class="button" id="btn-rpt">
+												</a></li>
+											</FORM>
+										</ul>
+									</div>
+								</span>
+								<%-- 								</c:if> --%>
+							</c:forEach>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td COLSPAN=2>
+						<FORM action="new_msg.do" METHOD="post" name="form1"
+							style="margin-bottom: 0px;">
+							<div style="text-align: right;">
+								<span> ${user.mem_no}<span>：</span>
+								</span> <input type="text" name="msg_content" value=""
+									style="width: 82%; float: right;" id="text"> <input
+									type="hidden" name="mem_no" value="${user.mem_no}"> <input
+									type="hidden" name="frm_art_no"
+									value="${article_message_VO.frm_art_no}"> <input
+									type="hidden" name="msg_time"
+									value="${article_message_VO.msg_time}"> <input
+									type="hidden" name="action" value="insert"> <input
+									type="submit" value="送出" class="button">
+							</div>
+						</FORM>
+					</td>
+				</tr>
+
+			</table>
+		</div>
+	</div>
 
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->
-	<div class="instagram-box">
-		<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
-	</div>
+	<!-- 		<div class="instagram-box"> -->
+	<%-- 			<%@ include file="/front-end/partials/_InstagramBox.jsp"%> --%>
+	<!-- 		</div> -->
 	<!-- End Instagram Feed  -->
 	<!-- Start Footer  -->
 	<footer>

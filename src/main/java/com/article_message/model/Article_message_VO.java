@@ -53,7 +53,11 @@ public class Article_message_VO implements java.io.Serializable{
 		return article_message_report_VO;
 	
 	}
-	
+	public Mem_VO getMem_VO() {
+		Mem_Service mem_Svc = new Mem_Service();
+		Mem_VO mem_VO = mem_Svc.getOneMem(mem_no);
+		return mem_VO;
+	}
 	
 	
 	

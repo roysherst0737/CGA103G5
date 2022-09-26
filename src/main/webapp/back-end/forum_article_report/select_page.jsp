@@ -76,10 +76,6 @@
 											<a href="listAllForum_article_report.jsp"><img
 												src="./images/home.png" width="30px" height="30px"></a>
 										</button>
-<!-- 										<button style="margin-right: 10px;"> -->
-<!-- 											<a href='addForum_article_report.jsp'><img -->
-<!-- 												src="./images/plus.png" width="30px" height="30px"></a> -->
-<!-- 										</button> -->
 										<button style="margin-right: 10px;">
 											<a href="select_page.jsp"><img src="./images/search2.png"
 												width="30px" height="30px"></a>
@@ -112,9 +108,9 @@
 													items="${forum_article_report_Svc.all}">
 													<option value="${forum_article_report_VO.frm_art_rpt_no}">${forum_article_report_VO.frm_art_rpt_no}
 												</c:forEach>
-											</select> <input type="hidden" name="action"
-												value="getOne_For_Display"> <input type="submit"
-												value="送出">
+											</select>
+												<input type="hidden" name="action"value="getOne_For_Display">
+												<input type="submit" value="送出">
 										</FORM>
 
 
@@ -134,9 +130,6 @@
 									</div>
 									<div>
 										<h4 class="card-title">討論區文章檢舉維護</h4>
-<!-- 										<FORM METHOD="post" ACTION="forum_article_report.do"> -->
-<!-- 											<a href='addForum_article_report.jsp' class="button">新增</a> -->
-<!-- 										</FORM> -->
 										<FORM METHOD="post" ACTION="forum_article_report.do">
 											<a href='listAllForum_article_report.jsp' class="button">檢舉清單</a>
 										</FORM>

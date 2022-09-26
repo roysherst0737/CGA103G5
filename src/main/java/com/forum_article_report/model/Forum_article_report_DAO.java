@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -27,7 +28,7 @@ public class Forum_article_report_DAO implements Forum_article_report_DAO_interf
 	
 	}
 	private static final String INSERT_STMT = 
-		"INSERT INTO forum_article_report (mem_no,frm_art_no,rpt_time,rpt_content,mng_no,rpt_done_time,rpt_status,rpt_result,rpt_note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		"INSERT INTO forum_article_report (mem_no,frm_art_no,rpt_time,rpt_content) VALUES (?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
 		"SELECT frm_art_rpt_no,mem_no,frm_art_no,rpt_time,rpt_content,mng_no,rpt_done_time,rpt_status,rpt_result,rpt_note FROM forum_article_report order by frm_art_rpt_no";
 	private static final String GET_ONE_STMT = 
@@ -54,11 +55,11 @@ public class Forum_article_report_DAO implements Forum_article_report_DAO_interf
 			pstmt.setInt(2, forum_article_report_VO.getFrm_art_no());
 			pstmt.setTimestamp(3, forum_article_report_VO.getRpt_time());
 			pstmt.setString(4, forum_article_report_VO.getRpt_content());
-			pstmt.setInt(5, forum_article_report_VO.getMng_no());
-			pstmt.setTimestamp(6, forum_article_report_VO.getRpt_done_time());
-			pstmt.setInt(7, forum_article_report_VO.getRpt_status());
-			pstmt.setInt(8, forum_article_report_VO.getRpt_result());
-			pstmt.setString(9, forum_article_report_VO.getRpt_note());
+//			pstmt.setInt(5, forum_article_report_VO.getMng_no());
+//			pstmt.setTimestamp(6, forum_article_report_VO.getRpt_done_time());
+//			pstmt.setInt(7, forum_article_report_VO.getRpt_status());
+//			pstmt.setInt(8, forum_article_report_VO.getRpt_result());
+//			pstmt.setString(9, forum_article_report_VO.getRpt_note());
 
 			pstmt.executeUpdate();
 
@@ -345,5 +346,6 @@ public class Forum_article_report_DAO implements Forum_article_report_DAO_interf
 			
 		
 	}
+
 	
 }

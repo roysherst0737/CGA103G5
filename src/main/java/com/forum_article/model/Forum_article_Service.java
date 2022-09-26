@@ -65,4 +65,7 @@ public class Forum_article_Service {
 		public Set<Article_message_VO> getArticle_messageByForum_article(Integer frm_art_no) {
 			return dao.getArticle_messageByForum_article(frm_art_no);
 		}
+		public Integer ChangeStatus(Integer frm_art_no) {
+			return dao.ChangeStatus(frm_art_no);
+		}
 	}

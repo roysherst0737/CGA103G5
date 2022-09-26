@@ -15,7 +15,7 @@ public class Article_message_report_Servlet extends HttpServlet {
 			throws ServletException, IOException {
 		doPost(req, res);
 	}
-
+	
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 
@@ -56,7 +56,6 @@ public class Article_message_report_Servlet extends HttpServlet {
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
-				
 				/***************************2.開始查詢資料*****************************************/
 				Article_message_report_Service article_message_report_Svc = new Article_message_report_Service();
 				Article_message_report_VO article_message_report_VO = article_message_report_Svc.getOneArticle_message_report(art_msg_rpt);
@@ -110,46 +109,17 @@ public class Article_message_report_Servlet extends HttpServlet {
 		
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 			Integer art_msg_rpt = Integer.valueOf(req.getParameter("art_msg_rpt").trim());
-				
-//			Integer mem_no = Integer.valueOf(req.getParameter("mem_no").trim());
-//			
-//			Integer art_msg_no = Integer.valueOf(req.getParameter("art_msg_no").trim());
-//			
-//			java.sql.Timestamp rpt_time = null;
-//			try {
-//				rpt_time = java.sql.Timestamp.valueOf(req.getParameter("rpt_time").trim());
-//			} catch (IllegalArgumentException e) {
-//				rpt_time=new java.sql.Timestamp(System.currentTimeMillis());
-//				errorMsgs.add("請輸入日期!");
-//			}
-//			
-//			String rpt_msg_content = req.getParameter("rpt_msg_content").trim();
-//				if (rpt_msg_content == null || rpt_msg_content.trim().length() == 0) {
-//					errorMsgs.add("檢舉留言內容請勿空白");
-//				}	
-			
-//			Integer mng_no = Integer.valueOf(req.getParameter("mng_no").trim());
 			
 			java.sql.Timestamp msg_done_time = new Timestamp(System.currentTimeMillis());
 			
-			
-//			Integer msg_status = Integer.valueOf(req.getParameter("msg_status"));
-			//處理狀況  放這裡
-			
 			Integer msg_result = Integer.valueOf(req.getParameter("msg_result"));
-			//處理結果  放這裡
-			
-			
+
 			String msg_note = req.getParameter("msg_note").trim();
 				
 				
 
 				Article_message_report_VO article_message_report_VO = new Article_message_report_VO();
 				article_message_report_VO.setArt_msg_rpt(art_msg_rpt);
-//				article_message_report_VO.setMem_no(mem_no);
-//				article_message_report_VO.setArt_msg_no(art_msg_no);
-//				article_message_report_VO.setRpt_time(rpt_time);
-//				article_message_report_VO.setRpt_msg_content(rpt_msg_content);
 				article_message_report_VO.setMng_no(1);
 				article_message_report_VO.setMsg_done_time(msg_done_time);
 				article_message_report_VO.setMsg_status(0);
@@ -177,9 +147,9 @@ public class Article_message_report_Servlet extends HttpServlet {
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 		}
-
+		
         if ("insert".equals(action)) { // 來自addEmp.jsp的請求  
-			
+		System.out.println("789");	
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -187,6 +157,8 @@ public class Article_message_report_Servlet extends HttpServlet {
 
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 			Integer mem_no = Integer.valueOf(req.getParameter("mem_no").trim());
+			
+			Integer url = Integer.valueOf(req.getParameter("url").trim());
 			
 			Integer art_msg_no = Integer.valueOf(req.getParameter("art_msg_no").trim());
 			
@@ -203,22 +175,7 @@ public class Article_message_report_Servlet extends HttpServlet {
 					errorMsgs.add("檢舉留言內容請勿空白");
 				}	
 			
-			Integer mng_no = Integer.valueOf(req.getParameter("mng_no").trim());
-			
-			java.sql.Timestamp msg_done_time = null;
-			try {
-				msg_done_time = java.sql.Timestamp.valueOf(req.getParameter("msg_done_time").trim());
-			} catch (IllegalArgumentException e) {
-				msg_done_time=new java.sql.Timestamp(System.currentTimeMillis());
-				errorMsgs.add("請輸入日期!");
-			}
-			Integer msg_status = Integer.valueOf(req.getParameter("msg_status").trim());
-			//處理狀況  放這裡
-			Integer msg_result = Integer.valueOf(req.getParameter("msg_result").trim());
-			//處理結果  放這裡
-			
-			
-			String msg_note = req.getParameter("msg_note").trim();
+
 				
 
 
@@ -231,30 +188,27 @@ public class Article_message_report_Servlet extends HttpServlet {
 				article_message_report_VO.setArt_msg_no(art_msg_no);
 				article_message_report_VO.setRpt_time(rpt_time);
 				article_message_report_VO.setRpt_msg_content(rpt_msg_content);
-				article_message_report_VO.setMng_no(mng_no);
-				article_message_report_VO.setMsg_done_time(msg_done_time);
-				article_message_report_VO.setMsg_status(msg_status);
-				article_message_report_VO.setMsg_result(msg_result);
-				article_message_report_VO.setMsg_note(msg_note);
+
 
 				// Send the use back to the form, if there were errors
-				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("article_message_report_VO", article_message_report_VO); // 含有輸入格式錯誤的empVO物件,也存入req
-					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/article_message_report/addArticle_message_report.jsp");
-					failureView.forward(req, res);
-					return;
-				}
-				
+//				if (!errorMsgs.isEmpty()) {
+//					req.setAttribute("article_message_report_VO", article_message_report_VO); // 含有輸入格式錯誤的empVO物件,也存入req
+//					RequestDispatcher failureView = req
+//							.getRequestDispatcher("/back-end/article_message_report/addArticle_message_report.jsp");
+//					failureView.forward(req, res);
+//					return;
+//				}
+				System.out.println("456");
 				/***************************2.開始新增資料***************************************/
 				Article_message_report_Service article_message_report_Svc = new Article_message_report_Service();
 //				forum_article_report_Svc.checkForum_article_report(forum_article_report_VO);
-//				article_message_report_VO = article_message_report_Svc.addArticle_message_report(mem_no, art_msg_no, rpt_time, rpt_msg_content,mng_no, msg_done_time, msg_states, msg_result, msg_note);
+				article_message_report_VO = article_message_report_Svc.addArticle_message_report(mem_no, art_msg_no, rpt_time, rpt_msg_content);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/back-end/article_message_report/listAllArticle_message_report.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
-				successView.forward(req, res);				
+				String url1 = "/CGA103G5ALL/front-end/forum_article/show_frm_art.jsp?" + url;
+				res.sendRedirect(url1);
+//				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+//				successView.forward(req, res);				
 		}
 		
 		

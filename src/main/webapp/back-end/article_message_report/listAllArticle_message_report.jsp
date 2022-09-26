@@ -141,7 +141,7 @@ pageContext.setAttribute("list", list);
 													<td>${article_message_report_VO.rpt_msg_content}</td>
 													<td>${article_message_report_VO.mng_no}</td>
 													<td>${article_message_report_VO.msg_done_time}</td>
-													<td>${article_message_report_VO.msg_status==0 ? "已處理" : "未處理"}</td>
+													<td>${article_message_report_VO.msg_status==0 ? "已處理" : "待處理"}</td>
 <%-- 													<td>${article_message_report_VO.msg_result}</td> --%>
 <%-- 													<td><input type="text" value="${article_message_report_VO.msg_note}" name="msg_note"> </td> --%>
 													<td>
@@ -158,27 +158,11 @@ pageContext.setAttribute("list", list);
 													</td>
 													
 													<td>
-														<input type="submit" value="送出" class="button">
+														<input type="submit" value="審核" class="button">
 														<input type="hidden" name="art_msg_rpt"value="${article_message_report_VO.art_msg_rpt}">
 														<input type="hidden" name="action" value="update">
 													</td>
-<!-- 													<td> -->
-<!-- 														<input type="radio" name="msg_result" value="1" checked> -->
-<!-- 													</td> -->
-<!-- 													<td> -->
-<!-- 														<input type="radio" name="msg_result" value="0"> -->
-<!-- 													</td> -->
 												</FORM>
-<!-- 												<td> -->
-<!-- 													<FORM METHOD="post" -->
-<%-- 														ACTION="<%=request.getContextPath()%>/back-end/article_message_report/article_message_report.do" --%>
-<!-- 														style="margin-bottom: 0px;"> -->
-<!-- 														<input type="submit" value="刪除" class="button"> <input -->
-<!-- 															type="hidden" name="art_msg_rpt" -->
-<%-- 															value="${article_message_report_VO.art_msg_rpt}"> <input --%>
-<!-- 															type="hidden" name="action" value="delete"> -->
-<!-- 													</FORM> -->
-<!-- 												</td> -->
 											</tr>
 										</c:forEach>
 									</table>

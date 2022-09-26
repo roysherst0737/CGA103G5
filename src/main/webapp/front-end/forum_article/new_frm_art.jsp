@@ -178,8 +178,8 @@ pageContext.setAttribute("list", list);
 	                <th></th>
 	                <td>
 	                  <input type="hidden" name="action" value="insert">
-	                   <input type="hidden" name="mem_no" value="<%=mem_no%>">
-	                    <input type="submit" value="送出新增" class="form-control input" style="width:70%; font-size:18px; color: #FFB326; font-weight:bold">
+	                  <input type="hidden" name="mem_no" value="<%=mem_no%>">
+	                   <input type="submit" value="送出新增" class="form-control input" style="width:70%; font-size:18px; color: #FFB326; font-weight:bold">
 	                  
 	       </td>
 	              </tr>
@@ -193,9 +193,9 @@ pageContext.setAttribute("list", list);
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->
-	<div class="instagram-box">
-		<%@ include file="/front-end/partials/_InstagramBox.jsp"%>
-	</div>
+<!-- 	<div class="instagram-box"> -->
+<%-- 		<%@ include file="/front-end/partials/_InstagramBox.jsp"%> --%>
+<!-- 	</div> -->
 	<!-- End Instagram Feed  -->
 	<!-- Start Footer  -->
 	<footer>

@@ -8,7 +8,7 @@ import javax.servlet.http.*;
 
 import com.article_message.model.*;
 
-public class Article_message_Servlet extends HttpServlet {
+public class Article_message_Servlet_front extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
@@ -156,13 +156,12 @@ public class Article_message_Servlet extends HttpServlet {
 			
 		}
 				
-        if ("insert".equals(action)) { // 來自addEmp.jsp的請求  
-			
+        if ("insert".equals(action)) { // 來自addEmp.jsp的請求
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-
+			
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 
 			
@@ -206,15 +205,16 @@ public class Article_message_Servlet extends HttpServlet {
 					failureView.forward(req, res);
 					return;
 				}
-				
+
 				/***************************2.開始新增資料***************************************/
 				Article_message_Service article_message_Svc = new Article_message_Service();
 				article_message_VO = article_message_Svc.addArticle_message(mem_no, frm_art_no, msg_time, msg_content);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/back-end/article_message/listAllArticle_message.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
-				successView.forward(req, res);				
+				String url = "/CGA103G5ALL/front-end/forum_article/show_frm_art.jsp?" + frm_art_no;
+				res.sendRedirect(url);
+//				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+//				successView.forward(req, res);				
 		}
 		
 		

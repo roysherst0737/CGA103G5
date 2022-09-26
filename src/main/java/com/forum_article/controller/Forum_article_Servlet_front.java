@@ -113,19 +113,15 @@ public class Forum_article_Servlet_front extends HttpServlet {
 			java.sql.Timestamp art_time = new Timestamp(System.currentTimeMillis());
 
 			String art_title = req.getParameter("art_title");
-			String art_titleReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,30}$";
+//			String art_titleReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,30}$";
 			if (art_title == null || art_title.trim().length() == 0) {
 				errorMsgs.add("文章主旨: 請勿空白");
-			} else if (!art_title.trim().matches(art_titleReg)) { // 以下練習正則(規)表示式(regular-expression)
-				errorMsgs.add("文章主旨: 只能是中、英文字母、數字和_ , 且長度必需在2到30之間");
 			}
 
 			String art_content = req.getParameter("art_content");
-			String art_contentReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,1000}$";
+//			String art_contentReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,1000}$";
 			if (art_content == null || art_content.trim().length() == 0) {
 				errorMsgs.add("文章內容: 請勿空白");
-			} else if (!art_content.trim().matches(art_contentReg)) { // 以下練習正則(規)表示式(regular-expression)
-				errorMsgs.add("文章內容: 只能是中、英文字母、數字和_ , 且長度必需在2到1000之間");
 			}
 
 			byte[] art_img = req.getPart("art_img").getInputStream().readAllBytes();
@@ -181,7 +177,7 @@ public class Forum_article_Servlet_front extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-
+			
 			/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 			Integer frm_no = Integer.valueOf(req.getParameter("frm_no").trim());
 
@@ -189,20 +185,16 @@ public class Forum_article_Servlet_front extends HttpServlet {
 
 
 			String art_title = req.getParameter("art_title");
-			String art_titleReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,20}$";
+//			String art_titleReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,20}$";
 			if (art_title == null || art_title.trim().length() == 0) {
 				errorMsgs.add("文章主旨: 請勿空白");
-			} else if (!art_title.trim().matches(art_titleReg)) { // 以下練習正則(規)表示式(regular-expression)
-				errorMsgs.add("文章主旨: 只能是中、英文字母、數字和_ , 且長度必需在2到20之間");
 			}
-
+			
 			String art_content = req.getParameter("art_content");
-			String art_contentReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,1000}$";
+//			String art_contentReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,1000}$";
 			if (art_content == null || art_content.trim().length() == 0) {
 				errorMsgs.add("文章內容: 請勿空白");
-			} else if (!art_content.trim().matches(art_contentReg)) { // 以下練習正則(規)表示式(regular-expression)
-				errorMsgs.add("文章內容: 只能是中、英文字母、數字和_ , 且長度必需在2到1000之間");
-			}
+			} 
 
 			byte[] art_img = req.getPart("art_img").getInputStream().readAllBytes();
 			if (art_img.length == 0) {
@@ -225,6 +217,8 @@ public class Forum_article_Servlet_front extends HttpServlet {
 				return;
 			}
 
+			
+			
 			/*************************** 2.開始新增資料 ***************************************/
 			Forum_article_Service forum_article_Svc = new Forum_article_Service();
 			forum_article_VO = forum_article_Svc.addForum_article(frm_no, mem_no, art_title, art_content, art_img);

@@ -12,4 +12,5 @@ public interface Forum_article_DAO_interface{
 	public Forum_article_VO findByPrimaryKey(Integer frm_art_no);
 	public List<Forum_article_VO> getAll();
 	public Set<Article_message_VO> getArticle_messageByForum_article(Integer frm_art_no);
+	public Integer ChangeStatus(Integer frm_art_no);
 }

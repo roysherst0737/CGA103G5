@@ -179,6 +179,14 @@
 		<servlet-name>New_article</servlet-name>
 		<url-pattern>/front-end/forum_article/new_article.do</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>New_message</servlet-name>
+		<servlet-class>com.article_message.controller.Article_message_Servlet_front</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>New_message</servlet-name>
+		<url-pattern>/front-end/forum_article/new_msg.do</url-pattern>
+	</servlet-mapping>
 
 	<!-- 管理員 -->
 	<servlet>

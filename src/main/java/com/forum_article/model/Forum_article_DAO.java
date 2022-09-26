@@ -45,6 +45,11 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 	private static final String GET_Article_message_ByForum_article_STMT =
 		"SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content FROM article_message where frm_art_no = ? order by art_msg_no";
 	
+	private static final String ChangeStatus = 
+		"UPDATE forum_article set art_status = art_status -1 where frm_art_no = ?";
+	
+//	private static final String GET_Art_status =
+//			"SELECT frm_art_no FROM forum_article where art_status = ?";
 	@Override
 	public void insert(Forum_article_VO forum_article_VO) {
 		Connection con = null;
@@ -132,10 +137,8 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 				}
 			}
 		}
-
-		
-		
 	}
+		
 
 	@Override
 	public void delete(Integer frm_art_no) {
@@ -354,6 +357,44 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 		return set;
 	}
 
+	@Override
+	public Integer ChangeStatus(Integer frm_art_no) {
+		
+		Connection con = null;
+        PreparedStatement pstmt = null;
+
+        try {
+
+            con = ds.getConnection();
+            pstmt = con.prepareStatement(ChangeStatus);
+
+            pstmt.setInt(1, frm_art_no);
+
+            pstmt.executeUpdate();
+
+            // Handle any driver errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return frm_art_no;
+    }
 
 
 }

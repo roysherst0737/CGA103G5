@@ -104,21 +104,18 @@
 										<jsp:useBean id="article_message_report_Svc" scope="page"
 											class="com.article_message_report.model.Article_message_report_Service" />
 										<FORM METHOD="post" ACTION="article_message_report.do">
-											<b>選擇檢舉留言編號 :</b> <select size="1" name="art_msg_rpt">
+											<b>選擇檢舉留言檢舉編號 :</b> <select size="1" name="art_msg_rpt">
 												<c:forEach var="article_message_report_VO"
 													items="${article_message_report_Svc.all}">
 													<option value="${article_message_report_VO.art_msg_rpt}">${article_message_report_VO.art_msg_rpt}
 												</c:forEach>
-											</select> <input type="hidden" name="action"
-												value="getOne_For_Display"> <input type="submit"
-												value="送出">
+											</select> 
+												<input type="hidden" name="action" value="getOne_For_Display">
+												<input type="submit" value="送出">
 										</FORM>
 									</div>
 									<div>
 										<h4 class="card-title">文章留言檢舉維護</h4>
-<!-- 										<FORM METHOD="post" ACTION="article_message_report.do"> -->
-<!-- 											<a href='addArticle_message_report.jsp' class="button">新增</a> -->
-<!-- 										</FORM> -->
 										<FORM METHOD="post" ACTION="article_message_report.do">
 											<a href='listAllArticle_message_report.jsp' class="button">檢舉清單</a>
 										</FORM>

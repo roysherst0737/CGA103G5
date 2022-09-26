@@ -176,8 +176,7 @@ pageContext.setAttribute("prod_stock_int", prod_stock_int);
     <!-- End All Title Box -->
 
     <!-- Start Cart  -->   
-    <FORM action="cart.do" method="post">
-    <input type="hidden" name="action" value="deleteAll">
+    
     <div class="cart-box-main">
         <div class="container">
             <div class="row">
@@ -263,8 +262,11 @@ pageContext.setAttribute("prod_stock_int", prod_stock_int);
                     </div>
                 </div>
             </div>
+            <FORM action="cart.do" method="post">
+    								<input type="hidden" name="action" value="deleteAll">
                 <div class="col-12 d-flex shopping-box" id="GoToCheckout">
                 <%pageContext.setAttribute("i", i);%>
+                	
                 	<c:choose>
 						<c:when test="${empty sessionScope.user}">
 							<a href="<%=request.getContextPath()%>/front-end/mem/login.jsp" id="remind">【請點擊登入會員，以查看購物車】</a>								
@@ -276,10 +278,8 @@ pageContext.setAttribute("prod_stock_int", prod_stock_int);
 								</c:when>
 								<c:otherwise>
 								<div id="deleteAll">
-									
-    									
-    								<input class="btn btn-warning" id="deleteAll" type="submit" value="清空購物車">
-                        		
+									   								
+    								<input class="btn btn-warning" id="deleteAll" type="submit" value="清空購物車">                        		
                     				<input type="hidden" name="prod_no_int" value="${prod_no_int}">
                                    	<input type="hidden" name="prod_qty_int" value="${prod_qty_int}">
                                    	<input type="hidden" name="prod_stock_int" value="${prod_stock_int}">
@@ -289,10 +289,12 @@ pageContext.setAttribute("prod_stock_int", prod_stock_int);
                         		</c:otherwise>
                         	</c:choose> 
                         </c:otherwise>
-                    </c:choose>                                	
+                    </c:choose>                                                    	
                 </div>
-        </div>						
-         </FORM>        					
+                </FORM>
+        </div>
+        						
+                 					
                 					
     </div>
     <!-- End Cart -->

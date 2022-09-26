@@ -90,6 +90,7 @@ public class Article_message_report_VO implements java.io.Serializable{
 		Manager_VO manager_VO = manager_Svc.getOneManager(mng_no);
 		return manager_VO;
 	}
+	
 	public Mem_VO getMem_VO() {
 		Mem_Service mem_Svc = new Mem_Service();
 		Mem_VO mem_VO = mem_Svc.getOneMem(mem_no);

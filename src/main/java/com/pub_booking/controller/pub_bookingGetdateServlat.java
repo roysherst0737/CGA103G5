@@ -36,7 +36,6 @@ public class pub_bookingGetdateServlat extends HttpServlet{
 				return;
 		}
 		writePojo2Json(response, booking);
-		request.setAttribute("booking", booking);
 		return;
 	}
 }

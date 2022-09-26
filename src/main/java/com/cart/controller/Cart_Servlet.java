@@ -473,7 +473,6 @@ public class Cart_Servlet extends HttpServlet {
 				prodVO = prodSvc.stockUpdateWhenCartClear(prod_no, prod_stock+prod_qty);
 				prodVO.setProd_no(prod_no);
 				prodVO.setProd_stock(prod_stock+prod_qty);
-				System.out.println(prod_stock+prod_qty);
 				/***************************2.開始刪除資料***************************************/
 				Cart_Service cartSvc = new Cart_Service();
 				cartSvc.deleteCartByProd(prod_no);
@@ -492,6 +491,15 @@ public class Cart_Servlet extends HttpServlet {
 	
 				/***************************1.接收請求參數***************************************/
 				Integer prod_no = Integer.valueOf(req.getParameter("prod_no"));
+				
+				/***************************增加商品庫存***************************************/
+				Integer prod_qty = Integer.valueOf(req.getParameter("prod_qty"));
+				Integer prod_stock = Integer.valueOf(req.getParameter("prod_stock"));
+				Prod_VO prodVO = new Prod_VO();
+				Prod_Service prodSvc = new Prod_Service();
+				prodVO = prodSvc.stockUpdateWhenCartClear(prod_no, prod_stock+prod_qty);
+				prodVO.setProd_no(prod_no);
+				prodVO.setProd_stock(prod_stock+prod_qty);
 				
 				/***************************2.開始刪除資料***************************************/
 				Cart_Service cartSvc = new Cart_Service();

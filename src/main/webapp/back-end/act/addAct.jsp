@@ -87,10 +87,10 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 											<a href="selectAct.jsp"><img src="./images/search2.png"
 												width="30px" height="30px"></a>
 										</button>
-										
+
 									</div>
 								</div>
-							
+
 							</div>
 						</div>
 					</div>

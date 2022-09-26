@@ -34,7 +34,7 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 
 	private static final String GET_ACT_SIGN_UP = "SELECT act_no FROM act_sign_up where mem_no = ?";
 	private static final String GET_MY_ACT_SIGN_UP = "SELECT sign_up_no, act_no, mem_no, sign_up_time, accompany_count FROM act_sign_up where mem_no = ?";
-	
+
 	@Override
 	public void insert(Act_sign_up_VO act_sign_up_VO) {
 		Connection con = null;
@@ -263,13 +263,10 @@ public class Act_sign_up_DAO implements Act_sign_up_DAO_interface {
 		}
 		return list;
 	}
-	
-
 
 	@Override
 	public Set<Integer> getAct_sign_up(Integer mem_no) {
 		Set<Integer> set = new HashSet<Integer>();
-		
 
 		Connection con = null;
 		PreparedStatement pstmt = null;

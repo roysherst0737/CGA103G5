@@ -160,6 +160,7 @@
           <li class="nav-item"><a id="act_sign_up" class="nav-link" href=""> 活動報名管理 </a></li>
           <li class="nav-item"><a id="firm_survey" class="nav-link" href=""> 活動問卷管理 </a></li>
           <li class="nav-item"><a id="question" class="nav-link" href=""> 問卷問題管理 </a></li>
+          <li class="nav-item"><a id="survey_ans" class="nav-link" href=""> 問卷回答查看 </a></li>
           <script>
             document.querySelector("#act_list").setAttribute("href",
             	getContextPath() + "/back-end/act/listAllAct.jsp");
@@ -171,6 +172,8 @@
                 	getContextPath() + "/back-end/firm_survey/listAllFirm_survey.jsp");
             document.querySelector("#question").setAttribute("href",
                 	getContextPath() + "/back-end/question/listAllQuestion.jsp");
+            document.querySelector("#survey_ans").setAttribute("href",
+                	getContextPath() + "/back-end/ans_list/listAllAns_list.jsp");
           </script>
         </ul>
       </div>

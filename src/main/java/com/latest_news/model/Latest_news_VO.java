@@ -1,6 +1,9 @@
 package com.latest_news.model;
 
 import java.sql.Timestamp;
+import java.util.List;
+
+import com.mem.model.Mem_VO;
 
 public class Latest_news_VO implements java.io.Serializable{
 	
@@ -33,5 +36,12 @@ public class Latest_news_VO implements java.io.Serializable{
 	public void setNews_time(Timestamp news_time) {
 		this.news_time = news_time;
 	}
+	
+	 // for join dname from mem
+    public List<com.mem.model.Mem_VO> getMemAll() {
+	    com.mem.model.Mem_Service memSvc = new com.mem.model.Mem_Service();
+	    List<com.mem.model.Mem_VO> memVO = memSvc.getAll();
+	    return memVO;
+    }
 	
 }

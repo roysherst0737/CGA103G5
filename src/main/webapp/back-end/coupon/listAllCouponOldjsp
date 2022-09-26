@@ -91,88 +91,96 @@ pageContext.setAttribute("list", list);
 								</div>
 							</div>
 						</div>
-					</div>					
-						<h4 class="card-title">優惠券資料</h4>
+					</div>
+					<div class="row  mt-3">
+						<div class="col-lg-12 grid-margin stretch-card">
+							<div class="card">
+										<div class="card-body">
+											<h4 class="card-title">優惠券資料</h4>
 
-						<div class="horizontal_style">
-							<table id="dataTables" class="table table-striped">
-								<thead>
-									<tr>
-										<th>編號</th>
-										<th>名稱</th>
-										<th>代碼</th>
-										<th>內容</th>
-										<th>折扣</th>
-										<th>使用數量</th>
-										<th>有效期間開始日期</th>
-										<th>有效期間結束日期</th>
-										<th>建立時間</th>
-										<th>狀態</th>															
-										<th>修改</th>															
-									</tr>
-								</thead>	
-								<tbody>											
-									<c:forEach var="couponVO" items="${list}">
-										
-										<tr>
-											<td>${couponVO.coupon_no}</td>
-											<td>${couponVO.coupon_name}</td>
-											<td>${couponVO.coupon_code}</td>																
-											<td>${couponVO.coupon_content}</td>
-											<td>${couponVO.coupon_discount}</td> 
-											<td>${couponVO.coupon_amount}</td>
-											<td>${couponVO.launch_time}</td>
-											<td>${couponVO.off_time}</td>
-											<td>${couponVO.coupon_build_time}</td>																													
-											<c:choose>
-									   			<c:when test="${couponVO.status==0}">
-									   				<td>啟用</td>
-									  			 </c:when>
-									  			<c:otherwise>
-									   				<td>停用</td>
-									  			</c:otherwise>
-											</c:choose>
-											<td>
-											  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/coupon/coupon.do" style="margin-bottom: 0px;">
-											     <input type="submit" class="btn btn-outline-secondary btn-sm" value="修改">
-											     <input type="hidden" name="coupon_no"  value="${couponVO.coupon_no}">
-											     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
-											</td>
+											<div class="horizontal_style">
+												<table id="dataTables" class="table table-striped">
+													<thead>
+														<tr>
+															<th>編號</th>
+															<th>名稱</th>
+															<th>代碼</th>
+															<th>內容</th>
+															<th>折扣</th>
+															<th>使用數量</th>
+															<th>有效期間開始日期</th>
+															<th>有效期間結束日期</th>
+															<th>建立時間</th>
+															<th>狀態</th>															
+															<th>修改</th>															
+														</tr>
+													</thead>	
+													<tbody>											
+														<c:forEach var="couponVO" items="${list}">
+															
+															<tr>
+																<td>${couponVO.coupon_no}</td>
+																<td>${couponVO.coupon_name}</td>
+																<td>${couponVO.coupon_code}</td>																
+																<td>${couponVO.coupon_content}</td>
+																<td>${couponVO.coupon_discount}</td> 
+																<td>${couponVO.coupon_amount}</td>
+																<td>${couponVO.launch_time}</td>
+																<td>${couponVO.off_time}</td>
+																<td>${couponVO.coupon_build_time}</td>																													
+																<c:choose>
+														   			<c:when test="${couponVO.status==0}">
+														   				<td>啟用</td>
+														  			 </c:when>
+														  			<c:otherwise>
+														   				<td>停用</td>
+														  			</c:otherwise>
+																</c:choose>
+																<td>
+																  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/coupon/coupon.do" style="margin-bottom: 0px;">
+																     <input type="submit" class="btn btn-outline-secondary btn-sm" value="修改">
+																     <input type="hidden" name="coupon_no"  value="${couponVO.coupon_no}">
+																     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
+																</td>
 <!-- 																<td> -->
 <%-- 																  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/coupon/coupon.do" style="margin-bottom: 0px;"> --%>
 <!-- 																     <input type="submit" class="btn btn-outline-primary btn-sm" value="刪除"> -->
 <%-- 																     <input type="hidden" name="coupon_no"  value="${couponVO.coupon_no}"> --%>
 <!-- 																     <input type="hidden" name="action" value="delete"></FORM> -->
 <!-- 																</td> -->
-										</tr>
-									</c:forEach>
-									</tbody>
-									<tfoot>
-									<tr>
-										<th>編號</th>
-										<th>名稱</th>
-										<th>代碼</th>
-										<th>內容</th>
-										<th>折扣</th>
-										<th>使用數量</th>
-										<th>有效期間開始日期</th>
-										<th>有效期間結束日期</th>
-										<th>建立時間</th>
-										<th>狀態</th>															
-										<th>修改</th>
-									</tr>
-								</tfoot>
-								</table>
-								<script>
-								$(document).ready(function () {
-								    $('#dataTables').DataTable({
-								        scrollY: 300,
-								        scrollX: true,
-								    });
-								});
-								</script>
+															</tr>
+														</c:forEach>
+														</tbody>
+														<tfoot>
+														<tr>
+															<th>編號</th>
+															<th>名稱</th>
+															<th>代碼</th>
+															<th>內容</th>
+															<th>折扣</th>
+															<th>使用數量</th>
+															<th>有效期間開始日期</th>
+															<th>有效期間結束日期</th>
+															<th>建立時間</th>
+															<th>狀態</th>															
+															<th>修改</th>
+														</tr>
+													</tfoot>
+													</table>
+													<script>
+													$(document).ready(function () {
+													    $('#dataTables').DataTable({
+													        scrollY: 300,
+													        scrollX: true,
+													    });
+													});
+													</script>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-				</div>
 
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->

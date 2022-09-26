@@ -29,7 +29,7 @@ pageContext.setAttribute("list", list);
 <link rel="stylesheet" type="text/css"
 	href="css/style.css" />
 <link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />	
+	href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
 <!-- endinject -->
 <!-- plugin css for this page -->
 <!-- End plugin css for this page -->
@@ -76,143 +76,151 @@ pageContext.setAttribute("list", list);
 					<div class="row">
 						<div class="col-sm-6">
 							<h3 class="mb-0 font-weight-bold">會員資料管理</h3>
+
 						</div>
 						<div class="col-sm-6">
 							<div class="d-flex align-items-center justify-content-md-end">
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
-										<button style="margin-right: 10px;">
-											<a href="listAllProd_type.jsp"><img
-												src="./images/home.png" width="30px" height="30px"></a>
-										</button>
-										<button style="margin-right: 10px;">
-											<a href='addProd_type.jsp'><img src="./images/plus.png"
-												width="30px" height="30px"></a>
-										</button>
-										<button style="margin-right: 10px;">
-											<a href="selectProd_type.jsp"><img
-												src="./images/search2.png" width="30px" height="30px"></a>
-										</button>									
+										<button style="margin-right:10px;">
+										<a href="<%=request.getContextPath()%>/back-end/index_back.html"><img src="./images/home.png" width="30px" height="30px"></a>
+										</button>										
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row  mt-3">
-						<div class="col-lg-12 grid-margin stretch-card">
-							<div class="card">
-										<div class="card-body">
-											<h4 class="card-title">會員資料</h4>
-											
-											<div class="horizontal_style">
-												<table id="dataTables" class="stripe" style="width: 100%">
-													<thead>
-														<tr>
-															<th>編號</th>
-															<th>帳號</th>
-															<th>密碼</th>
-															<th>性別</th>
-															<th>姓氏</th>
-															<th>名字</th>
-															<th>暱稱</th>
-															<th>連絡電話</th>
-															<th>手機號碼</th>
-															<th>電子郵件</th>
-															<th>身分證字號</th>
-															<th>生日</th>
-															<th>地址</th>
-															<th>權限</th>
-															<th>狀態</th>
-															<th>創建日期</th>
-															<th>認證狀態</th>
-														</tr>
-													</thead>
-													<%@ include file="page1.file" %> 
-														<c:forEach var="memVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-															
-															<tr>
-																<td>${memVO.mem_no}</td>
-																<td>${memVO.mem_account}</td>
-																<td>${memVO.mem_password}</td>			
-																<c:choose>
-														   			<c:when test="${memVO.mem_gender==1}">
-														   				<td>男</td>
-														  			 </c:when>
-														  			 
-														   			<c:when test="${memVO.mem_gender==0}">
-														   				<td>女</td>
-														   			</c:when>
-														   			
-														  			<c:otherwise>
-														   				<td>多元性別</td>
-														  			</c:otherwise>
-																</c:choose>
-																<td>${memVO.mem_last_name}</td>
-																<td>${memVO.mem_first_name}</td> 
-																<td>${memVO.mem_nickname}</td>
-																<td>${memVO.mem_tel_no}</td>
-																<td>${memVO.mem_cel_no}</td>
-																<td>${memVO.mem_email}</td>
-																<td>${memVO.mem_id}</td> 
-																<td>${memVO.mem_birth}</td>
-																<td>${memVO.mem_addr}</td>
-																<c:choose>
-														   			<c:when test="${memVO.mem_permission==0}">
-														   				<td>一般會員</td>
-														  			 </c:when>
-														  			<c:otherwise>
-														   				<td>廠商會員</td>
-														  			</c:otherwise>
-																</c:choose>
-																<c:choose>
-														   			<c:when test="${memVO.status==0}">
-														   				<td>啟用</td>
-														  			 </c:when>
-														  			<c:otherwise>
-														   				<td>停用</td>
-														  			</c:otherwise>
-																</c:choose>
-																<td>${memVO.mem_build_time}</td> 
-																<c:choose>
-														   			<c:when test="${memVO.mem_cert_status==0}">
-														   				<td>待認證</td>
-														  			 </c:when>	   			
-														  			<c:otherwise>
-														   				<td>認證通過</td>
-														  			</c:otherwise>
-																</c:choose>
-																<td>
-																  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mem/changeMemStatus" style="margin-bottom: 0px;">
-																     <input type="submit" class="btn btn-outline-secondary btn-sm" value="啟用">
-																     <input type="hidden" name="mem_no"  value="${memVO.mem_no}">
-																     <input type="hidden" name="action"	value="enable_status"></FORM>
-																</td>
-																<td>
-																  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mem/changeMemStatus" style="margin-bottom: 0px;">				     
-														   			 <input type="submit" class="btn btn-outline-primary btn-sm" value="停用">													  			
-																     <input type="hidden" name="mem_no"  value="${memVO.mem_no}">
-																     <input type="hidden" name="action" value="unable_status">
-																   </FORM>
-																</td>
-															</tr>
-														</c:forEach>
-													</table>
-													<script>
-														$(document).ready(function () {
-														    $('#dataTables').DataTable({
-														        scrollY: 300,
-														        scrollX: true,
-														    });
-														});
-														</script>
-													
-													<%@ include file="page2.file" %>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+					</div>					
+						<h4 class="card-title">會員資料</h4>
+
+						<div class="horizontal_style">
+							<table id="dataTables" class="table table-striped">
+								<thead>
+									<tr>
+										<th>編號</th>
+										<th>帳號</th>
+										<th>密碼</th>
+										<th>性別</th>
+										<th>姓氏</th>
+										<th>名字</th>
+										<th>暱稱</th>
+										<th>連絡電話</th>
+										<th>手機號碼</th>
+										<th>電子郵件</th>
+										<th>身分證字號</th>
+										<th>生日</th>
+										<th>地址</th>
+										<th>權限</th>
+										<th>狀態</th>
+										<th>創建日期</th>
+										<th>認證狀態</th>
+										<th>啟用</th>
+										<th>停用</th>															
+									</tr>
+								</thead>	
+								<tbody>											
+									<c:forEach var="memVO" items="${list}">
+										
+										<tr>
+											<td>${memVO.mem_no}</td>
+											<td>${memVO.mem_account}</td>
+											<td>${memVO.mem_password}</td>			
+											<c:choose>
+									   			<c:when test="${memVO.mem_gender==1}">
+									   				<td>男性</td>
+									  			 </c:when>
+									  			 
+									   			<c:when test="${memVO.mem_gender==0}">
+									   				<td>女性</td>
+									   			</c:when>
+									   			
+									  			<c:otherwise>
+									   				<td>多元性別</td>
+									  			</c:otherwise>
+											</c:choose>
+											<td>${memVO.mem_last_name}</td>
+											<td>${memVO.mem_first_name}</td> 
+											<td>${memVO.mem_nickname}</td>
+											<td>${memVO.mem_tel_no}</td>
+											<td>${memVO.mem_cel_no}</td>
+											<td>${memVO.mem_email}</td>
+											<td>${memVO.mem_id}</td> 
+											<td>${memVO.mem_birth}</td>
+											<td>${memVO.mem_addr}</td>
+											<c:choose>
+									   			<c:when test="${memVO.mem_permission==0}">
+									   				<td>一般會員</td>
+									  			 </c:when>
+									  			<c:otherwise>
+									   				<td>廠商會員</td>
+									  			</c:otherwise>
+											</c:choose>
+											<c:choose>
+									   			<c:when test="${memVO.status==0}">
+									   				<td>啟用</td>
+									  			 </c:when>
+									  			<c:otherwise>
+									   				<td>停用</td>
+									  			</c:otherwise>
+											</c:choose>
+											<td>${memVO.mem_build_time}</td> 
+											<c:choose>
+									   			<c:when test="${memVO.mem_cert_status==0}">
+									   				<td>待認證</td>
+									  			 </c:when>	   			
+									  			<c:otherwise>
+									   				<td>認證通過</td>
+									  			</c:otherwise>
+											</c:choose>
+											<td>
+											  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mem/changeMemStatus" style="margin-bottom: 0px;">
+											     <input type="submit" class="btn btn-outline-secondary btn-sm" value="啟用">
+											     <input type="hidden" name="mem_no"  value="${memVO.mem_no}">
+											     <input type="hidden" name="action"	value="enable_status"></FORM>
+											</td>
+											<td>
+											  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mem/changeMemStatus" style="margin-bottom: 0px;">				     
+									   			 <input type="submit" class="btn btn-outline-primary btn-sm" value="停用">													  			
+											     <input type="hidden" name="mem_no"  value="${memVO.mem_no}">
+											     <input type="hidden" name="action" value="unable_status">
+											   </FORM>
+											</td>
+										</tr>
+									</c:forEach>
+									</tbody>
+									<tfoot>
+									<tr>
+										<th>編號</th>
+										<th>帳號</th>
+										<th>密碼</th>
+										<th>性別</th>
+										<th>姓氏</th>
+										<th>名字</th>
+										<th>暱稱</th>
+										<th>連絡電話</th>
+										<th>手機號碼</th>
+										<th>電子郵件</th>
+										<th>身分證字號</th>
+										<th>生日</th>
+										<th>地址</th>
+										<th>權限</th>
+										<th>狀態</th>
+										<th>創建日期</th>
+										<th>認證狀態</th>
+										<th>啟用</th>
+										<th>停用</th>
+									</tr>
+								</tfoot>
+								</table>
+								<script>
+								$(document).ready(function () {
+								    $('#dataTables').DataTable({
+								        scrollY: 300,
+								        scrollX: true,
+								    });
+								});
+								</script>
 						</div>
+			</div>
 
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->
@@ -256,7 +264,7 @@ pageContext.setAttribute("list", list);
 
 	<script src="../js/dashboard.js"></script>
 	<script
-		src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>	
+		src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 	<!-- End custom js for this page-->
 </body>
 

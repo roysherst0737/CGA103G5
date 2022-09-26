@@ -3,6 +3,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.mem_coupon.model.*"%>
 <%@ page import="com.mem.model.*"%>
+<%@ page import="java.text.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <%
@@ -11,8 +13,8 @@ Mem_VO user = (Mem_VO) Objuser;
 
 Mem_Coupon_Service mCouponSvc = new Mem_Coupon_Service();
 List<Mem_Coupon_VO> mCouponList = mCouponSvc.getOneMemCoupon(user.getMem_no());
-pageContext.setAttribute("mCouponList", mCouponList);
 
+pageContext.setAttribute("mCouponList", mCouponList);
 
 %>
 
@@ -96,7 +98,7 @@ pageContext.setAttribute("mCouponList", mCouponList);
             <div class="my-account-page">
             <a href="<%=request.getContextPath()%>/front-end/prod/checkout.jsp" id="goToCheckout">前往結帳頁</a>
                 <div class="row">     
-                  <c:forEach var="mCouponVO" items="${mCouponList}">
+                  <c:forEach var="mCouponVO" items="${mCouponList}" >
                     <div class="col-lg-4 col-md-12">
                         <div class="account-box">
                             <div class="service-box">
@@ -107,6 +109,8 @@ pageContext.setAttribute("mCouponList", mCouponList);
                                     <h4>${mCouponVO.couponVO.coupon_name}</h4>
                                     <span>優惠券代碼: </span><span>${mCouponVO.couponVO.coupon_code}</span>
                                     <p class="text-danger">剩餘數量: ${mCouponVO.remain_amount}</p>
+                                    <span>有效期間:</span><fmt:formatDate value="${mCouponVO.couponVO.launch_time}" type="both" pattern="yyyy/MM/dd,HH:mm ~"/>
+                                    <fmt:formatDate value="${mCouponVO.couponVO.off_time}" type="both" pattern="yyyy/MM/dd,HH:mm"/>
                                 </div>
                             </div>
                         </div>

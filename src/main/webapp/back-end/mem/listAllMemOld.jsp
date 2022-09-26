@@ -2,15 +2,20 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.mem_coupon.model.*"%>
+<%@ page import="com.mem.model.*"%>
 <!DOCTYPE html>
 <html lang="zh">
 <%
-Mem_Coupon_Service memcouponSvc = new Mem_Coupon_Service();
-List<Mem_Coupon_VO> list = memcouponSvc.getAll();
+Mem_Service memSvc = new Mem_Service();
+List<Mem_VO> list = memSvc.getAll();
 pageContext.setAttribute("list", list);
 %>
-
+<style>
+div.dataTables_wrapper {
+        width: 900px;
+        margin: 0 auto;
+    }
+</style>
 
 <head>
 <!-- Required meta tags -->
@@ -69,69 +74,126 @@ pageContext.setAttribute("list", list);
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<!--你要寫的頁面  -->
-					<div class="row">
-						<div class="col-sm-6">
-							<h3 class="mb-0 font-weight-bold">會員優惠券管理</h3>
-
-						</div>
-						<div class="col-sm-6">
-							<div class="d-flex align-items-center justify-content-md-end">
-								<div class="mb-3 mb-xl-0 pr-1">
-									<div class="dropdown">
-										<button style="margin-right:10px;">
-										<a href="<%=request.getContextPath()%>/back-end/index_back.html"><img src="./images/home.png" width="30px" height="30px"></a>
-										</button>										
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>	
-					<h4 class="card-title">會員優惠券資料</h4>
+					<h2 class="mb-0 font-weight-bold">會員資料管理</h2>
 					<div class="horizontal_style">
-						<table id="dataTables" class="table table-striped">
-							<thead>
+					<table id="dataTables" class="table table-striped" >
+						<thead>
+							<tr>
+								<th>編號</th>
+								<th>帳號</th>
+								<th>密碼</th>
+								<th>性別</th>
+								<th>姓氏</th>
+								<th>名字</th>
+								<th>暱稱</th>
+								<th>連絡電話</th>
+								<th>手機號碼</th>
+								<th>電子郵件</th>
+								<th>身分證字號</th>
+								<th>生日</th>
+								<th>地址</th>
+								<th>權限</th>
+								<th>狀態</th>
+								<th>創建日期</th>
+								<th>認證狀態</th>
+								<th>啟用</th>
+								<th>停用</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="memVO" items="${list}">
 								<tr>
-									<th>會員編號</th>
-									<th>優惠券編號</th>
-									<th>優惠名稱</th>
-									<th>優惠代碼</th>
-									<th>優惠券內容</th>
-									<th>優惠折扣</th>
-									<th>有效期間開始日期</th>
-									<th>有效期間結束日期</th>
-									<th>優惠券剩餘數量</th>
+									<td>${memVO.mem_no}</td>
+									<td>${memVO.mem_account}</td>
+									<td>${memVO.mem_password}</td>			
+									<c:choose>
+							   			<c:when test="${memVO.mem_gender==1}">
+							   				<td>男性</td>
+							  			 </c:when>
+							  			 
+							   			<c:when test="${memVO.mem_gender==0}">
+							   				<td>女性</td>
+							   			</c:when>
+							   			
+							  			<c:otherwise>
+							   				<td>多元性別</td>
+							  			</c:otherwise>
+									</c:choose>
+									<td>${memVO.mem_last_name}</td>
+									<td>${memVO.mem_first_name}</td> 
+									<td>${memVO.mem_nickname}</td>
+									<td>${memVO.mem_tel_no}</td>
+									<td>${memVO.mem_cel_no}</td>
+									<td>${memVO.mem_email}</td>
+									<td>${memVO.mem_id}</td> 
+									<td>${memVO.mem_birth}</td>
+									<td>${memVO.mem_addr}</td>
+									<c:choose>
+							   			<c:when test="${memVO.mem_permission==0}">
+							   				<td>一般會員</td>
+							  			 </c:when>
+							  			<c:otherwise>
+							   				<td>廠商會員</td>
+							  			</c:otherwise>
+									</c:choose>
+									<c:choose>
+							   			<c:when test="${memVO.status==0}">
+							   				<td>啟用</td>
+							  			 </c:when>
+							  			<c:otherwise>
+							   				<td>停用</td>
+							  			</c:otherwise>
+									</c:choose>
+									<td>${memVO.mem_build_time}</td> 
+									<c:choose>
+							   			<c:when test="${memVO.mem_cert_status==0}">
+							   				<td>待認證</td>
+							  			 </c:when>	   			
+							  			<c:otherwise>
+							   				<td>認證通過</td>
+							  			</c:otherwise>
+									</c:choose>
+									<td>
+									  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mem/changeMemStatus" style="margin-bottom: 0px;">
+									     <input type="submit" class="btn btn-outline-secondary btn-sm" value="啟用">
+									     <input type="hidden" name="mem_no"  value="${memVO.mem_no}">
+									     <input type="hidden" name="action"	value="enable_status"></FORM>
+									</td>
+									<td>
+									  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mem/changeMemStatus" style="margin-bottom: 0px;">				     
+							   			 <input type="submit" class="btn btn-outline-primary btn-sm" value="停用">													  			
+									     <input type="hidden" name="mem_no"  value="${memVO.mem_no}">
+									     <input type="hidden" name="action" value="unable_status">
+									   </FORM>
+									</td>
 								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="memcouponVO" items="${list}">
-									<tr>
-										<td>${memcouponVO.mem_no}</td>
-										<td>${memcouponVO.coupon_no}</td>
-										<td>${memcouponVO.couponVO.coupon_name}</td>
-										<td>${memcouponVO.couponVO.coupon_code}</td>
-										<td>${memcouponVO.couponVO.coupon_content}</td>
-										<td>${memcouponVO.couponVO.coupon_discount}</td>
-										<td>${memcouponVO.couponVO.launch_time}</td>
-										<td>${memcouponVO.couponVO.off_time}</td>
-										<td>${memcouponVO.remain_amount}</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-							<tfoot>
+							</c:forEach>
+						</tbody>
+						<tfoot>
 								<tr>
-									<th>會員編號</th>
-									<th>優惠券編號</th>
-									<th>優惠名稱</th>
-									<th>優惠代碼</th>
-									<th>優惠券內容</th>
-									<th>優惠折扣</th>
-									<th>有效期間開始日期</th>
-									<th>有效期間結束日期</th>
-									<th>優惠券剩餘數量</th>
+								<th>編號</th>
+								<th>帳號</th>
+								<th>密碼</th>
+								<th>性別</th>
+								<th>姓氏</th>
+								<th>名字</th>
+								<th>暱稱</th>
+								<th>連絡電話</th>
+								<th>手機號碼</th>
+								<th>電子郵件</th>
+								<th>身分證字號</th>
+								<th>生日</th>
+								<th>地址</th>
+								<th>權限</th>
+								<th>狀態</th>
+								<th>創建日期</th>
+								<th>認證狀態</th>
+								<th>啟用</th>
+								<th>停用</th>
 								</tr>
 							</tfoot>
-						</table>
-					</div>
+					</table>
+					
 					<script>
 					$(document).ready(function () {
 					    $('#dataTables').DataTable({
@@ -140,6 +202,8 @@ pageContext.setAttribute("list", list);
 					    });
 					});
 					</script>
+					</div>>
+					
 				</div>
 				<!-- content-wrapper ends -->
 				<!-- partial:partials/_footer.html -->

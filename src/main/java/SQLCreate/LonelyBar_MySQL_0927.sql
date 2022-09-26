@@ -453,6 +453,7 @@ CREATE TABLE `article_message` (
   `frm_art_no` int NOT NULL,
   `msg_time` datetime DEFAULT CURRENT_TIMESTAMP,
   `msg_content` varchar(1000) NOT NULL,
+  `msg_status` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`art_msg_no`),
   KEY `mem_no_FK_idx` (`mem_no`),
   KEY `frm_art_no_FK_idx` (`frm_art_no`),
@@ -1274,7 +1275,7 @@ art_title,
 art_content,
 art_img,
 art_status
-)values(1,1,"夏日調酒節","XXXXXXXXXXXXXX","null",1);
+)values(1,1,"夏日調酒節","10/7，地點:台北世貿一館，活動:國際夏日調酒節","null",1);
 INSERT INTO forum_article(
 frm_no,
 mem_no,
@@ -1282,7 +1283,7 @@ art_title,
 art_content,
 art_img,
 art_status
-)values(2,2,"春天調酒節","XXXXXXXXXXXXXX","null",1);
+)values(2,2,"單身男女揪團不LONEY","星期六晚上8點，地點:LonelyBar，各位朋友不見不散","null",1);
 INSERT INTO forum_article(
 frm_no,
 mem_no,
@@ -1290,89 +1291,81 @@ art_title,
 art_content,
 art_img,
 art_status
-)values(3,3,"秋冬調酒節","XXXXXXXXXXXXXX","null",1);
+)values(3,3,"推薦!!!!","推薦大家購買長島冰茶調酒組合，很適合想一杯就醉的~","null",1);
 
 -- 建立 討論區文章檢舉 假資料
 INSERT INTO forum_article_report(
 mem_no,
 frm_art_no,
 rpt_content,
-mng_no,
-rpt_status,
-rpt_result
-)values(1,1,"文章內容涉及歧視",1,"1","1");
+mng_no
+)values(1,1,"這活動真的很爛，尤其那個主持人很醜",1);
 INSERT INTO forum_article_report(
 mem_no,
 frm_art_no,
 rpt_content,
-mng_no,
-rpt_status,
-rpt_result
-)values(2,2,"文章內容涉及性騷擾",1,"1","1");
+mng_no
+)values(2,2,"揪團一起喝酒，醜男不要來，只要美女",1);
 INSERT INTO forum_article_report(
 mem_no,
 frm_art_no,
 rpt_content,
-mng_no,
-rpt_status,
-rpt_result
-)values(3,3,"文章內容涉及暴力",1,"1","1");
+mng_no
+)values(3,3,"這商品又貴又爛，不知道商家有沒有腦選這樣的東西來賣",1);
 
 -- 建立 文章留言 假資料
 INSERT INTO article_message(
 mem_no,
 frm_art_no,
-msg_content
-) VALUES (1,1,"這個活動的小姐身材好好");
+msg_content,
+msg_status
+) VALUES (1,1,"這活動真心推薦大家下次可以再來參加!",1);
 INSERT INTO article_message(
 mem_no,
 frm_art_no,
-msg_content
-) VALUES (2,2,"好好玩");
+msg_content,
+msg_status
+) VALUES (2,2,"揪團+1",1);
 INSERT INTO article_message(
 mem_no,
 frm_art_no,
-msg_content
-) VALUES (3,3,"我好帥");
+msg_content,
+msg_status
+) VALUES (3,3,"這商品很不錯，非常的棒一杯就倒!",1);
 
 -- 建立 文章留言檢舉 假資料
 INSERT INTO article_message_report(
 mem_no,
 art_msg_no,
 rpt_msg_content,
-mng_no,
-msg_status,
-msg_result
-) VALUES (1,1,"涉及性騷擾",1,1,1);
+mng_no
+) VALUES (1,1,"妳是活動裡的那個女生嗎?可以給我妳的手機嗎?",1);
 INSERT INTO article_message_report(
 mem_no,
 art_msg_no,
 rpt_msg_content,
-mng_no,
-msg_status,
-msg_result
-) VALUES (2,2,"涉及暴力",1,1,1);
+mng_no
+) VALUES (2,2,"你不就是那天一起喝酒的醜男嗎?",1);
 INSERT INTO article_message_report(
 mem_no,
 art_msg_no,
 rpt_msg_content,
-mng_no,
-msg_status,
-msg_result
-) VALUES (3,3,"垃圾訊息",1,1,1);
+mng_no
+) VALUES (3,3,"這家的調酒器又貴又難用大家不要來買。",1);
 
+-- 建立 最新消息 假資料
 INSERT INTO latest_news(
 news_content,
 news_status
-) VALUES ('揪團柬埔寨喝酒活動', 1);
+) VALUES ('夏季大特價，全館商品87折!', 1);
 INSERT INTO latest_news(
 news_content,
 news_status
-) VALUES ('爸爸媽媽動起來', 1);
+) VALUES ('輸入優惠卷號碼，結帳免運費，再享95折', 1);
 INSERT INTO latest_news(
 news_content,
 news_status
-) VALUES ('搖起來搖起來', 1);
+) VALUES ('10/7因應TibaMe學生結業，全館商品不用錢，大家買酒喝到爆!!!!', 1);
 
 -- 建立 推播廣告 假資料
 insert into push_ads (`prod_no`, `ads_content`, `ads_pic`, `weights`)

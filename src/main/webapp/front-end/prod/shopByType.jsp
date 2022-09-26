@@ -152,7 +152,8 @@ session.setAttribute("url", url);
                                 <div role="tabpanel" class="tab-pane fade show active" id="grid-view">                                
                                     <div class="row">
                                     <c:forEach var="prodVO" items="${set}">
-                                    <c:if test="${prodVO.prod_status == 1}">
+                                    <!-- 暴力式判斷庫存 -->
+                                    <c:if test="${prodVO.prod_status == 1 && prodVO.prod_stock>=1}">
                                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                             <div class="products-single fix">
                                                 <div class="box-img-hover">

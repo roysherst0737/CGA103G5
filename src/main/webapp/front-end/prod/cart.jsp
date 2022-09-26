@@ -229,13 +229,14 @@ pageContext.setAttribute("prod_stock_int", prod_stock_int);
                                     </td>
                                     <FORM action="cart.do" method="post">
                                     <td id="plus">
-
+										<c:if test="${cartVO.getProd_VO().prod_status == 1 && cartVO.getProd_VO().prod_stock>=1}">
                                         	<input class="btn" id="plus" type="submit" value="+">
                                         	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
                                         	<input type="hidden" name="prod_qty" value="${cartVO.prod_qty}">
                                         	<input type="hidden" name="prod_stock" value="${cartVO.getProd_VO().prod_stock}">
                                         	<input type="hidden" name="mem_no" value="${user.mem_no}">    	
-                                        	<input type="hidden" name="action" value="cartPlus">                                        
+                                        	<input type="hidden" name="action" value="cartPlus">
+                                        </c:if>                                        
                                     </td>
                                     </FORM>
                                     

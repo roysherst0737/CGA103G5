@@ -45,6 +45,7 @@ public class Prod_DAO implements Prod_DAO_interface{
 	
 	private static final String STOCK_MINUS = "UPDATE prod set prod_stock = prod_stock - 1 where prod_no = ?";
 	private static final String STOCK_PLUS = "UPDATE prod set prod_stock = prod_stock + 1 where prod_no = ?";
+	private static final String STOCK_UPDATE = "UPDATE prod set prod_stock = ? where prod_no = ?";
 	
 	@Override
 	public void insert(Prod_VO prodVO) {
@@ -427,5 +428,43 @@ public class Prod_DAO implements Prod_DAO_interface{
 			}
 		}
 		return prod_no;		
+	}
+
+	@Override
+	public void stockUpdateWhenCartClear(Prod_VO prodVO) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(STOCK_UPDATE);
+
+			pstmt.setInt(1, prodVO.getProd_stock());
+			pstmt.setInt(2, prodVO.getProd_no());
+
+			pstmt.executeUpdate();
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}			
 	}
 }

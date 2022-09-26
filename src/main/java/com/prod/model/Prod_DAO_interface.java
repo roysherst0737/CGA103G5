@@ -17,4 +17,5 @@ public interface Prod_DAO_interface {
     
     public Integer stockMinus(Integer prod_no);
     public Integer stockPlus(Integer prod_no);
+    public void stockUpdateWhenCartClear(Prod_VO prodVO);
 }

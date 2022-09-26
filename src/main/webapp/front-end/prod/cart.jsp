@@ -14,6 +14,7 @@ Cart_Service cartSvc = new Cart_Service();
 List<Cart_VO> cartlist = cartSvc.getAll();
 pageContext.setAttribute("cartlist", cartlist);
 
+
 Object Objuser = session.getAttribute("user");
 Mem_VO user = (Mem_VO) Objuser;
 
@@ -23,6 +24,35 @@ session.setAttribute("url", url);
 int i = 0;
 // System.out.println(i);
 
+List<Cart_VO> cartlist2 = cartSvc.getByMem_no(user.getMem_no());
+Iterator<Cart_VO> iter = cartlist2.iterator();
+
+// int [] prod_no_int = new int[cartlist2.size()]; 
+// int [] prod_qty_int = new int[cartlist2.size()];
+// int [] prod_stock_int = new int[cartlist2.size()]; 
+String prod_no_int = "";
+String prod_qty_int = "";
+String prod_stock_int = ""; 
+
+for (int j =0; j<cartlist2.size() ; j++) {	
+	prod_no_int += cartlist2.get(j).getProd_no().toString()+ ","; 
+	prod_qty_int += cartlist2.get(j).getProd_qty().toString()+ ","; 
+	prod_stock_int += cartlist2.get(j).getProd_VO().getProd_stock().toString()+ ","; 
+// 	System.out.println(list.get(j).getProd_no());
+//        Cart_VO cartVO = (Cart_VO) iter.next();
+//        System.out.println(cartVO.getProd_no());
+//        System.out.println(cartVO.getProd_qty());
+//        System.out.println(cartVO.getProd_VO().getProd_stock());
+}
+// System.out.println(prod_no_int);
+// System.out.println(prod_qty_int);
+// System.out.println(prod_stock_int);
+
+pageContext.setAttribute("cartlist2", cartlist2);
+
+pageContext.setAttribute("prod_no_int", prod_no_int);
+pageContext.setAttribute("prod_qty_int", prod_qty_int);
+pageContext.setAttribute("prod_stock_int", prod_stock_int);
 %>
 
 <!DOCTYPE html>
@@ -145,7 +175,9 @@ int i = 0;
     </div>
     <!-- End All Title Box -->
 
-    <!-- Start Cart  -->
+    <!-- Start Cart  -->   
+    <FORM action="cart.do" method="post">
+    <input type="hidden" name="action" value="deleteAll">
     <div class="cart-box-main">
         <div class="container">
             <div class="row">
@@ -164,8 +196,8 @@ int i = 0;
                                     <th id="remove-cart"></th>
                                 </tr>
                             </thead>
-                            <c:forEach var="cartVO" items="${cartlist}">
-                            <c:if test="${cartVO.mem_no == user.mem_no}">
+                            <c:forEach var="cartVO" items="${cartlist2}">
+<%--                             <c:if test="${cartVO.mem_no == user.mem_no}"> --%>
                             <%i++;%>
                             <tbody>
                                 <tr>
@@ -191,8 +223,9 @@ int i = 0;
 
                                     </td>
                                     </FORM>
-                                    <td id="qty">                                    	
-                                    	<input name="prod_qty" value="${cartVO.prod_qty}" style="text-align: center; border-style:none;" readonly>                                   	
+                                    <td id="qty"> 
+                                    	<p>${cartVO.prod_qty}</p>                                   	
+<%--                                     	<input name="prod_qty" value="${cartVO.prod_qty}" style="text-align: center; border-style:none;" readonly>                                   	 --%>
 <%--                                     <input type="number" size="4" value="${cartVO.prod_qty}" min="0" max="${cartVO.getProd_VO().prod_stock}" class="c-input-text qty text"> --%>
                                     </td>
                                     <FORM action="cart.do" method="post">
@@ -215,6 +248,7 @@ int i = 0;
                                     	<FORM action="cart.do" method="post">
                                         	<input class="btn btn-warning" id="deleteCart" type="submit" value="X">
                                         	<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
+                                        	<input type="hidden" name="prod_qty" value="${cartVO.prod_qty}">
                                         	<input type="hidden" name="prod_stock" value="${cartVO.getProd_VO().prod_stock}">
                                         	<input type="hidden" name="mem_no" value="${user.mem_no}">
                                         	<input type="hidden" name="action" value="deleteOne">
@@ -223,66 +257,12 @@ int i = 0;
                                     
                                 </tr>                                                                
                             </tbody>
-                            </c:if>
+<%--                             </c:if> --%>
                             </c:forEach>
                         </table>
                     </div>
                 </div>
             </div>
-
-<!--             <div class="row my-5"> -->
-<!--                 <div class="col-lg-6 col-sm-6"> -->
-<!--                     <div class="coupon-box"> -->
-<!--                         <div class="input-group input-group-sm"> -->
-<%--                         	<c:choose> --%>
-<%-- 							<c:when test="${empty sessionScope.user}"> --%>
-<%-- 								<a href="<%=request.getContextPath()%>/front-end/mem/login.jsp" id="remind">【請點擊登入會員，以查看購物車】</a> --%>
-<%-- 							</c:when> --%>
-<%-- 							<c:otherwise>                            	 --%>
-<%--                             </c:otherwise> --%>
-<%--                             </c:choose>  --%>
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<!--                 <div class="col-lg-6 col-sm-6"> -->
-<!--                     <div class="update-box"> -->
-<%--                     	<c:choose> --%>
-<%-- 							<c:when test="${empty sessionScope.user}">								 --%>
-<%-- 							</c:when> --%>
-<%-- 							<c:otherwise> --%>
-<%--                         	</c:otherwise> --%>
-<%--                     	</c:choose>  --%>
-<!--                     </div> -->
-<!--                 </div> -->
-<!--             </div> -->
-			
-<%-- 			<c:forEach var="cartVO" items="${cartlist}"> --%>
-<%--             <c:if test="${cartVO.mem_no == user.mem_no}"> --%>
-<!--             <div class="row my-5"> -->
-<!--                 <div class="col-lg-8 col-sm-12"></div> -->
-<!--                 <div class="col-lg-4 col-sm-12"> -->
-<!--                     <div class="order-box"> -->
-<!--                         <h3>購物車內容</h3> -->
-<!--                         <div class="d-flex"> -->
-<!--                             <h4>消費金額</h4> -->
-<!--                             <div class="ml-auto font-weight-bold"> $${cartVO.getProd_VO().prod_price * cartVO.prod_qty} </div> -->
-<!--                         </div> -->
-<!--                         <hr class="my-1"> -->
-<!--                         <div class="d-flex"> -->
-<!--                             <h4>優惠碼折抵</h4> -->
-<!--                             <div class="ml-auto font-weight-bold"> $ 10 </div> -->
-<!--                         </div> -->
-<!--                         <div class="d-flex"> -->
-<!--                             <h4>運費</h4> -->
-<!--                             <div class="ml-auto font-weight-bold"> Free </div> -->
-<!--                         </div> -->
-<!--                         <hr> -->
-<!--                         <div class="d-flex gr-total"> -->
-<!--                             <h5>訂單總金額</h5> -->
-<!--                             <div class="ml-auto h5"> $${cartVO.getProd_VO().prod_price * cartVO.prod_qty} </div> -->
-<!--                         </div> -->
-<!--                         <hr> </div> -->
-<!--                 </div> -->
                 <div class="col-12 d-flex shopping-box" id="GoToCheckout">
                 <%pageContext.setAttribute("i", i);%>
                 	<c:choose>
@@ -296,12 +276,14 @@ int i = 0;
 								</c:when>
 								<c:otherwise>
 								<div id="deleteAll">
-                        		<FORM action="cart.do" method="post">
-                					<input class="btn btn-warning" id="deleteAll" type="submit" value="清空購物車"">
-                    				<input type="hidden" name="mem_no" value="${user.mem_no}">
-                    				<input type="hidden" name="prod_stock" value="${cartVO.getProd_VO().prod_stock}">
-                    				<input type="hidden" name="action" value="deleteAll">
-              					 </FORM>
+									
+    									
+    								<input class="btn btn-warning" id="deleteAll" type="submit" value="清空購物車">
+                        		
+                    				<input type="hidden" name="prod_no_int" value="${prod_no_int}">
+                                   	<input type="hidden" name="prod_qty_int" value="${prod_qty_int}">
+                                   	<input type="hidden" name="prod_stock_int" value="${prod_stock_int}">
+                                   	<input type="hidden" name="mem_no" value="${user.mem_no}">
               					</div> 
                         		<a href="checkout.jsp" class="ml-auto btn hvr-hover" style="font-size: 20px; float:right;">前往結帳</a>                        		
                         		</c:otherwise>
@@ -309,14 +291,9 @@ int i = 0;
                         </c:otherwise>
                     </c:choose>                                	
                 </div>
-                
-                  
-                
-<!--             </div> -->
-<%--             </c:if> --%>
-<%--             </c:forEach> --%>
-
-        </div>
+        </div>						
+         </FORM>        					
+                					
     </div>
     <!-- End Cart -->
 

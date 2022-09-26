@@ -414,6 +414,7 @@ int i = 1;
 								</div>
 								<c:forEach var="cartVO" items="${cartlist}">
 									<c:if test="${cartVO.mem_no == user.mem_no}">
+										
 										<div class="rounded p-2 bg-light">
 											<div class="media mb-2 border-bottom">
 												<div class="media-body">
@@ -438,12 +439,16 @@ int i = 1;
 													value="${cartVO.getProd_VO().prod_price * cartVO.prod_qty}"
 													id="detail"></input>
 													
-													<FORM action="cart.do" method="post" style="float: right; padding-bottom: 10px;">	
-														<input class="btn" id="deleteCart" type="submit" value="X">
-														<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
-														<input type="hidden" name="action" value="deleteOneWhenCheckout">
+<!-- 													<FORM action="cart.do" method="post" style="float: right; padding-bottom: 10px;">	 -->
+<!-- 														<input class="btn" id="deleteCart" type="submit" value="X"> -->
+<%-- 														<input type="hidden" name="prod_no" value="${cartVO.prod_no}"> --%>
+<%-- 														<input type="hidden" name="prod_qty" value="${cartVO.prod_qty}"> --%>
+<%-- 														<input type="hidden" name="prod_stock" value="${cartVO.getProd_VO().prod_stock}"> --%>
+<%-- 														<input type="hidden" name="mem_no" value="${user.mem_no}"> --%>
+<!-- 														<input type="hidden" name="action" value="deleteOneWhenCheckout"> -->
+<!-- 													</FORM> -->
+													<FORM action="cart.do" method="post" style="float: right; padding-bottom: 10px;">
 													</FORM>
-
 													<FORM action="cart.do" method="post" style="float: right; padding-bottom: 10px;">
 														<input class="btn" id="plus" type="submit" value="+">
 														<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
@@ -452,7 +457,6 @@ int i = 1;
 														<input type="hidden" name="mem_no" value="${user.mem_no}">
 														<input type="hidden" name="action" value="checkoutPlus">
 													</FORM>
-
 													<FORM action="cart.do" method="post" style="float: right; padding-bottom: 10px;">
 														<input class="btn" id="minus" type="submit" value="-">
 														<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
@@ -461,10 +465,12 @@ int i = 1;
 														<input type="hidden" name="mem_no" value="${user.mem_no}">
 														<input type="hidden" name="action" value="checkoutMinus">
 													</FORM>
+													
 													</div>
 												</div>
 											</div>
 										</div>
+										
 									</c:if>
 								</c:forEach>
 

@@ -120,6 +120,10 @@ div.col-sm-12>button.btn {
 	background-color: aliceblue;
 	width:1000px;
 }
+.mycontent {
+	background-color: aliceblue;
+	width:500px;
+}
 
 .modal-body {
 	display: flex;

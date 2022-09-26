@@ -46,13 +46,13 @@ int i = 1;
 <style>
 .wrap {
   text-align: center;
-  padding-top: 20%;
+  padding-top: 5%;
 }
 .btn {
   background-color: #FFB80C;
   text-decoration: none;
   color: #1e1e1e;
-  padding: 16px;
+  padding: 5px;
   border-radius: 5px;
 }
 
@@ -68,8 +68,8 @@ int i = 1;
 }
 
 .popup-box {
-  width: 50%;
-  padding: 50px 75px;
+  width: 95%;
+  padding: 100px 175px;
   transform: translate(-50%, -50%) scale(0.5);
   position: absolute;
   top: 50%;
@@ -80,7 +80,7 @@ int i = 1;
   text-align: center;
 }
 h2 {
-  font-size: 32px;
+  font-size: 45px;
   color: #1a1a1a;
 }
 
@@ -196,14 +196,14 @@ h2 {
 										</div>
 										<div class="popup-wrap" id="letmeopen<%=i++%>">
 											<div class="popup-box transform-out">
-												<h2>請輸入要寄送的內容</h2>
+<!-- 												<h2>請輸入要寄送的內容</h2> -->
 												<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/mem/MailServlet"
 													style="margin-bottom: 0px;">
-													<textarea name="email_content" rows="8" cols="50"></textarea>
+													<textarea name="email_content" rows="8" cols="50" placeholder="請輸入要寄送的內容" style="font-size:30px;width:950px;left:100px;"></textarea>
 													<input type="hidden" name="mem_email"
 														value="${act_sign_upVO.memVO.mem_email}"> 
 													<input type="hidden" name="action" value="sign_up_email">
-														<input type="submit" value="送出">
+														<input type="submit" value="寄送" style="width:150px;height:75px;font-size:30px;">
 												</FORM>
 												<a class="close-btn popup-close" href="#">x</a>
 											</div>

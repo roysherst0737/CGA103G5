@@ -38,6 +38,8 @@ public class Cart_DAO implements Cart_DAO_interface {
 	
 	private static final String SELECT_BY_MEM_and_PROD = "SELECT *  FROM cart where mem_no = ? AND prod_no = ?";
 	
+	private static final String GET_BY_MEM_NO = "SELECT mem_no,prod_no,prod_qty FROM cart where mem_no = ?";
+	
 	@Override
 	public void insert(Cart_VO cartVO) {
 		
@@ -456,5 +458,64 @@ public class Cart_DAO implements Cart_DAO_interface {
 			}
 		}
 		return set;
+	}
+	
+	@Override
+	public List<Cart_VO> getByMem_no(Integer mem_no) {
+		List<Cart_VO> list = new ArrayList<Cart_VO>();
+		Cart_VO cartVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_BY_MEM_NO);
+			
+			pstmt.setInt(1, mem_no);
+			
+			rs = pstmt.executeQuery();
+						
+			while (rs.next()) {
+
+				cartVO = new Cart_VO();
+				cartVO.setMem_no(rs.getInt("mem_no"));
+				cartVO.setProd_no(rs.getInt("prod_no"));
+				cartVO.setProd_qty(rs.getInt("prod_qty"));
+				
+				list.add(cartVO); // Store the row in the list
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
 	}
 }

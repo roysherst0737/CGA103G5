@@ -14,4 +14,6 @@ public interface Cart_DAO_interface {
     public Set<Integer> getCart_Minus(Integer mem_no);
     
     public Cart_VO selectByMem_noAndProd_no(Integer mem_no, Integer prod_no );
+    
+    public List<Cart_VO> getByMem_no(Integer mem_no);
 }

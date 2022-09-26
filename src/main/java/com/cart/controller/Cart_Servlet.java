@@ -302,6 +302,11 @@ public class Cart_Servlet extends HttpServlet {
 			cartVO.setProd_qty(prod_qty);
 			
 			if (prod_qty == 1) {
+				Integer prod_stock = Integer.valueOf(req.getParameter("prod_stock").trim()); 
+				Prod_VO prodVO = new Prod_VO();
+				prodVO.setProd_stock(prod_stock);
+				Prod_Service prodSvc = new Prod_Service();
+				prod_stock = prodSvc.stockPlus(prod_no);
 				Cart_Service cartSvc = new Cart_Service();
 				cartSvc.deleteCartByProd(prod_no);
 			} else {
@@ -418,6 +423,11 @@ public class Cart_Servlet extends HttpServlet {
 			cartVO.setProd_qty(prod_qty);
 			
 			if (prod_qty == 1) {
+				Integer prod_stock = Integer.valueOf(req.getParameter("prod_stock").trim()); 
+				Prod_VO prodVO = new Prod_VO();
+				prodVO.setProd_stock(prod_stock);
+				Prod_Service prodSvc = new Prod_Service();
+				prod_stock = prodSvc.stockPlus(prod_no);
 				Cart_Service cartSvc = new Cart_Service();
 				cartSvc.deleteCartByProd(prod_no);
 			} else {
@@ -455,6 +465,15 @@ public class Cart_Servlet extends HttpServlet {
 				/***************************1.接收請求參數***************************************/
 				Integer prod_no = Integer.valueOf(req.getParameter("prod_no"));
 				
+				/***************************增加商品庫存***************************************/
+				Integer prod_qty = Integer.valueOf(req.getParameter("prod_qty"));
+				Integer prod_stock = Integer.valueOf(req.getParameter("prod_stock"));
+				Prod_VO prodVO = new Prod_VO();
+				Prod_Service prodSvc = new Prod_Service();
+				prodVO = prodSvc.stockUpdateWhenCartClear(prod_no, prod_stock+prod_qty);
+				prodVO.setProd_no(prod_no);
+				prodVO.setProd_stock(prod_stock+prod_qty);
+				System.out.println(prod_stock+prod_qty);
 				/***************************2.開始刪除資料***************************************/
 				Cart_Service cartSvc = new Cart_Service();
 				cartSvc.deleteCartByProd(prod_no);
@@ -492,6 +511,34 @@ public class Cart_Servlet extends HttpServlet {
 	
 				/***************************1.接收請求參數***************************************/
 				Integer mem_no = Integer.valueOf(req.getParameter("mem_no"));
+				
+				/***************************清空購物車時把庫存加回***************************************/
+				
+				String prod_no = (req.getParameter("prod_no_int"));
+				String[] prod_no_array = prod_no.split(",");
+				int[] prod_no_Final = new int[prod_no_array.length];
+				for(int i = 0;i<prod_no_array.length;i++){
+					prod_no_Final[i] = Integer.parseInt(prod_no_array[i]);
+					System.out.println("a"+prod_no_Final[i]);
+				}
+				String prod_qty = (req.getParameter("prod_qty_int"));
+				String[] prod_qty_array = prod_qty.split(",");
+				int[] prod_qty_Final = new int[prod_qty_array.length];
+				for(int i = 0;i<prod_qty_array.length;i++){
+					prod_qty_Final[i] = Integer.parseInt(prod_qty_array[i]);
+					System.out.println("b"+prod_qty_Final[i]);
+				}
+				String prod_stock = (req.getParameter("prod_stock_int"));
+				String[] prod_stock_array = prod_stock.split(",");
+				int[] prod_stock_Final = new int[prod_stock_array.length];
+				for(int i = 0;i<prod_stock_array.length;i++){
+					prod_stock_Final[i] = Integer.parseInt(prod_stock_array[i]);
+					System.out.println("c"+prod_stock_Final[i]);
+				}
+				Prod_Service prodSvc = new Prod_Service();
+				for(int i = 0;i<prod_stock_array.length;i++){
+				prodSvc.stockUpdateWhenCartClear(prod_no_Final[i], prod_stock_Final[i]+prod_qty_Final[i]);
+				}
 				
 				/***************************2.開始刪除資料***************************************/
 				Cart_Service cartSvc = new Cart_Service();

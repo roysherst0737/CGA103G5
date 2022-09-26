@@ -111,7 +111,7 @@ public class ManagerRegister extends HttpServlet {
 					manager_VO = manager_Svc.addManager(mng_account, mng_password, mng_name, mng_phone, mng_pic, mng_status);
 					
 					/***************************3.新增完成,準備轉交(Send the Success view)***********/
-					String url = "/back-end/manager/listAllManager.jsp";
+					String url = "/back-end/manager/listAllMng.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllManager.jsp
 					successView.forward(req, res);				
 			}

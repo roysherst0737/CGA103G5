@@ -184,42 +184,21 @@ public class Question_list_Servlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 
 			/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
-
-			Integer question_no1 = null;
-			try {
-				question_no1 = Integer.valueOf(req.getParameter("question_no1").trim());
-			} catch (NumberFormatException e) {
-				question_no1 = 0;
+			
+			String[] question_amountArray = req.getParameterValues("question_amount[]");
+			int question_amount = Integer.parseInt(question_amountArray[question_amountArray.length - 1]);
+			
+			int[] question_nolist = new int[question_amount];
+			
+			for (int i = 0; i < question_amount; i++) {
+				try {
+				question_nolist[i] = Integer.valueOf(req.getParameter("question_no" + (i + 1)).trim());
+				}catch (NumberFormatException e) {
+					question_nolist[i] = 0;
+				}
+				
 			}
-
-			Integer question_no2 = null;
-			try {
-				question_no2 = Integer.valueOf(req.getParameter("question_no2").trim());
-			} catch (NumberFormatException e) {
-				question_no2 = 0;
-			}
-
-			Integer question_no3 = null;
-			try {
-				question_no3 = Integer.valueOf(req.getParameter("question_no3").trim());
-			} catch (NumberFormatException e) {
-				question_no3 = 0;
-			}
-
-			Integer question_no4 = null;
-			try {
-				question_no4 = Integer.valueOf(req.getParameter("question_no4").trim());
-			} catch (NumberFormatException e) {
-				question_no4 = 0;
-			}
-
-			Integer question_no5 = null;
-			try {
-				question_no5 = Integer.valueOf(req.getParameter("question_no5").trim());
-			} catch (NumberFormatException e) {
-				question_no5 = 0;
-			}
-
+		
 			Integer firm_survey_no = null;
 			try {
 				firm_survey_no = Integer.valueOf(req.getParameter("firm_survey_no").trim());
@@ -234,26 +213,11 @@ public class Question_list_Servlet extends HttpServlet {
 				queryString = 0;
 			}
 
-			int[] list = new int[5];
-			list[0] = question_no1;
-			list[1] = question_no2;
-			list[2] = question_no3;
-			list[3] = question_no4;
-			list[4] = question_no5;
 
-			Object[] list2 = ifRepeat2(list);
+			Object[] list2 = ifRepeat2(question_nolist);
 		
 			Question_list_VO question_listVO = new Question_list_VO();
-//			question_listVO.setQuestion_no(question_no);
-//			question_listVO.setFirm_survey_no(firm_survey_no);
-//
-//			// Send the use back to the form, if there were errors
-//			if (!errorMsgs.isEmpty()) {
-//				req.setAttribute("question_listVO", question_listVO); // 含有輸入格式錯誤的empVO物件,也存入req
-//				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/question_list/addQuestion_list.jsp");
-//				failureView.forward(req, res);
-//				return;
-//			}
+
 
 			/*************************** 2.開始新增資料 ***************************************/
 			Question_list_Service question_listSvc = new Question_list_Service();

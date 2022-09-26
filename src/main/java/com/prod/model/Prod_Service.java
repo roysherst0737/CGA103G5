@@ -72,4 +72,14 @@ public class Prod_Service {
 	public Integer stockPlus(Integer prod_no) {
 		return dao.stockPlus(prod_no);
 	}
+	public Prod_VO stockUpdateWhenCartClear(Integer prod_no, Integer prod_stock) {
+
+		Prod_VO prodVO = new Prod_VO();
+		prodVO.setProd_no(prod_no);
+		prodVO.setProd_stock(prod_stock);
+
+		dao.stockUpdateWhenCartClear(prodVO);
+
+		return dao.findByPrimaryKey(prod_no);
+	}
 }

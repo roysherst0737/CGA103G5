@@ -80,7 +80,7 @@ pageContext.setAttribute("list2", list2);
 			<!-- 引入sidebar 用JQ方式 -->
 			<script>
 				$(function() {
-					$("#sidebar").load("<%=request.getContextPath()%>/back-end/partials/_sidebar.html");
+					$("#sidebar").load("<%=request.getContextPath()%>/back-end/partials/_sidebar.jsp");
 				});
 			</script>
 			 <!-- partial -->

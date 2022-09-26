@@ -2,18 +2,18 @@ package com.pub_rank.service;
 
 import java.util.List;
 
-import com.pub.dao.Pub_DAO_H_impl_forWEB;
+import com.pub.dao.Pub_DAO_impl;
 import com.pub.entity.Pub;
 import com.pub_rank.dao.Pub_Rank_DAOImpl;
 import com.pub_rank.entity.Pub_Rank;
 
 public class Pub_Rank_ServiceImpl implements Pub_Rank_Service{
 	private Pub_Rank_DAOImpl dao;
-	private Pub_DAO_H_impl_forWEB Pubdao;
+	private Pub_DAO_impl Pubdao;
 	private Double sum;
 	public Pub_Rank_ServiceImpl() {
 		dao=new Pub_Rank_DAOImpl();
-		Pubdao=new Pub_DAO_H_impl_forWEB();
+		Pubdao=new Pub_DAO_impl();
 		sum=0.0;
 	}
 

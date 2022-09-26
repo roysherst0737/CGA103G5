@@ -128,12 +128,13 @@ public class Prod_Servlet extends HttpServlet{
 				}
 						
 				String prod_name = req.getParameter("prod_name");
-				String prod_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+//				String prod_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (prod_name == null ||prod_name.trim().length() == 0) {
 					errorMsgs.add("商品名稱: 請勿空白");
-				} else if(!prod_name.trim().matches(prod_nameReg)) {
-					errorMsgs.add("商品名稱: 只能是中、英文字母、數字和底線, 且長度必需在2到10之間");
-	            }
+				} 
+//				else if(!prod_name.trim().matches(prod_nameReg)) {
+//					errorMsgs.add("商品名稱: 只能是中、英文字母、數字和底線, 且長度必需在2到10之間");
+//	            }
 				
 				Integer prod_price = null;
 				try {
@@ -212,12 +213,13 @@ public class Prod_Servlet extends HttpServlet{
 			}
 					
 			String prod_name = req.getParameter("prod_name");
-			String prod_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+//			String prod_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 			if (prod_name == null ||prod_name.trim().length() == 0) {
 				errorMsgs.add("商品名稱: 請勿空白");
-			} else if(!prod_name.trim().matches(prod_nameReg)) {
-				errorMsgs.add("商品名稱: 只能是中、英文字母、數字和底線, 且長度必需在2到10之間");
-            }
+			} 
+//			else if(!prod_name.trim().matches(prod_nameReg)) {
+//				errorMsgs.add("商品名稱: 只能是中、英文字母、數字和底線, 且長度必需在2到10之間");
+//            }
 			
 			Integer prod_price = null;
 			try {
@@ -244,12 +246,13 @@ public class Prod_Servlet extends HttpServlet{
 //			}
 			
 			String prod_detail = req.getParameter("prod_detail");
-			String prod_detailReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{10,200}$";
+//			String prod_detailReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{10,200}$";
 			if (prod_detail == null ||prod_detail.trim().length() == 0) {
 				errorMsgs.add("商品敘述: 請勿空白");
-			} else if(!prod_detail.trim().matches(prod_detailReg)) {
-				errorMsgs.add("商品敘述: 只能是中、英文字母、數字和底線, 且長度必需在20到200之間");
-            }
+			} 
+//			else if(!prod_detail.trim().matches(prod_detailReg)) {
+//				errorMsgs.add("商品敘述: 只能是中、英文字母、數字和底線, 且長度必需在20到200之間");
+//            }
 
 				Prod_VO prodVO = new Prod_VO();
 				prodVO.setProd_type_no(prod_type_no);

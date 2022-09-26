@@ -32,7 +32,7 @@ for (let i = 1; i < 8; i++) {
 					aria-hidden="true">
 					<div class="modal-dialog" style="position: absolute;top: 50%;left: 50%;
 					transform: translate(-50%, -50%);" role="document">
-						<div class="modal-content ">
+						<div class="modal-content mycontent ">
 							<div class="modal-header">
 								<h5 class="modal-title" id="exampleModalLabel`+ i + `">編輯營業時間</h5>
 								<button type="button" class="close"  onclick="close_dialog()"

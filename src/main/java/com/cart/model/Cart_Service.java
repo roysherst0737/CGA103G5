@@ -99,4 +99,8 @@ public class Cart_Service {
 	public Set<Integer> getAdd_to_Cart(Integer mem_no) {
 		return dao.getAdd_to_Cart(mem_no);
 	}
+	
+	public List<Cart_VO> getByMem_no(Integer mem_no) {
+		return dao.getByMem_no(mem_no);
+	}
 }

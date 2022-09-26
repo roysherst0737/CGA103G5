@@ -411,18 +411,18 @@ CREATE TABLE `forum` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- 建立 討論區文章 表格
-CREATE TABLE forum_article (
-  frm_art_no int NOT NULL AUTO_INCREMENT,
-  frm_no int NOT NULL,
-  mem_no int NOT NULL,
-  art_time datetime DEFAULT CURRENT_TIMESTAMP,
-  art_title varchar(100) NOT NULL,
-  art_content varchar(1000) NOT NULL,
-  art_img longblob,
-  art_status tinyint NOT NULL DEFAULT '1',
+CREATE TABLE `forum_article` (
+  `frm_art_no` int NOT NULL AUTO_INCREMENT,
+  `frm_no` int NOT NULL,
+  `mem_no` int NOT NULL,
+  `art_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `art_title` varchar(100) NOT NULL,
+  `art_content` varchar(1000) NOT NULL,
+  `art_img` longblob,
+  `art_status` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`frm_art_no`),
-  KEY frm_no_idx (`frm_no`),
-  CONSTRAINT frm_no_FK FOREIGN KEY (`frm_no`) REFERENCES forum (`frm_no`)
+  KEY `frm_no_idx` (`frm_no`),
+  CONSTRAINT `frm_no_FK` FOREIGN KEY (`frm_no`) REFERENCES `forum` (`frm_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- 建立 討論區文章檢舉 表格
@@ -434,8 +434,8 @@ CREATE TABLE `forum_article_report` (
   `rpt_content` varchar(1000) NOT NULL,
   `mng_no` int DEFAULT NULL,
   `rpt_done_time` datetime DEFAULT CURRENT_TIMESTAMP,
-  `rpt_status` tinyint DEFAULT '0',
-  `rpt_result` tinyint DEFAULT '0',
+  `rpt_status` tinyint DEFAULT '1',
+  `rpt_result` tinyint DEFAULT '1',
   `rpt_note` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`frm_art_rpt_no`),
   KEY `mem_no_FK_idx` (`mem_no`),
@@ -469,8 +469,8 @@ CREATE TABLE `article_message_report` (
   `rpt_msg_content` varchar(1000) NOT NULL,
   `mng_no` int DEFAULT NULL,
   `msg_done_time` datetime DEFAULT CURRENT_TIMESTAMP,
-  `msg_status` tinyint NOT NULL DEFAULT '0',
-  `msg_result` tinyint NOT NULL DEFAULT '0',
+  `msg_status` tinyint NOT NULL DEFAULT '1',
+  `msg_result` tinyint NOT NULL DEFAULT '1',
   `msg_note` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`art_msg_rpt`),
   KEY `mem_no_idx` (`mem_no`),
@@ -538,7 +538,7 @@ insert into mem ( `mem_account`, `mem_password`, `mem_gender`,
  `mem_last_name`, `mem_first_name`, `mem_nickname`, `mem_tel_no`,
  `mem_cel_no`, `mem_email`, `mem_id`, `mem_birth`, `mem_addr`, `mem_permission`,
  `status`, `mem_cert_status`)
- values ('ee4225jpgj','gwklgj3532',2,'張','祐書','甲甲','02-47658769','0924678945','yuyaraza@altmails.com'
+ values ('ee4225jpgj','gwklgj3532',2,'張','祐書','胖虎','02-47658769','0924678945','yuyaraza@altmails.com'
  ,'M190161355','1990-04-26','宜蘭縣宜蘭市東港路2段128巷10號',0,1,1);
  
 -- 建立 優惠券 假資料
@@ -1138,25 +1138,61 @@ VALUES(3, 3, 3, 3, 3, 3, 3, 1);
 
 -- 建立 活動 假資料
 INSERT INTO act(
-pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
-)values("1","調酒品嘗","先欣賞一下，看看雞尾酒的顏色與裝飾，猜想一下這杯調酒會有怎樣的口感？並在細聞香味後抱著迫不及待的心，品嘗一下酒在低溫時的口感。","桃園","2022-10-10 12:00:00","2022-12-12 12:00:00","60","20","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00");
+pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status
+)values("1","調酒品嘗","先欣賞一下，看看雞尾酒的顏色與裝飾，猜想一下這杯調酒會有怎樣的口感？並在細聞香味後抱著迫不及待的心，品嘗一下酒在低溫時的口感。","桃園","2022-10-10 12:00:00","2022-12-12 12:00:00","60","20","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00", 1);
 INSERT INTO act(
 pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
 )values("2","調酒教學","教學自己在家就能動手做的4款調酒，還有隱藏版柯夢波丹雞尾酒教學！","台北","2022-10-10 12:00:00","2022-12-12 12:00:00","60","20","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00");
 INSERT INTO act(
+pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status
+)values("3","花式調酒","花式調酒是由調酒師利用酒瓶以及任何調酒器具、杯具做出絢麗動作演變而來。","高雄","2022-10-10 12:00:00","2022-12-12 12:00:00","60","20","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00", 1);
+INSERT INTO act(
 pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
-)values("3","花式調酒","花式調酒是由調酒師利用酒瓶以及任何調酒器具、杯具做出絢麗動作演變而來。","高雄","2022-10-10 12:00:00","2022-12-12 12:00:00","60","20","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00");
+)values("1","風城酒精巴士","上班上到懷疑人生？快來酒精巴士跟親朋好友一起醉到不省人事，忘卻一切煩憂！","新竹","2022-10-10 12:00:00","2022-12-12 12:00:00","30","10","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00");
+INSERT INTO act(
+pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status
+)values("2","台中酒吧大集合","台中所有知名酒吧齊聚一堂，讓你一次喝到所有厲害的調酒！","台中","2022-10-10 12:00:00","2022-12-12 12:00:00","80","50","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00", 1);
+INSERT INTO act(
+pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
+)values("3","原民風小米酒大賞","沉浸在大自然，跟台東在地原民長老一起體驗傳統原民生活點滴。","台東","2022-10-10 12:00:00","2022-12-12 12:00:00","35","10","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00");
+INSERT INTO act(
+pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status
+)values("1","雨都主題調酒","利用變化多端的天氣當作靈感，基隆在地調酒師將帶給您一場截然不同的調酒體驗！","基隆","2022-10-10 12:00:00","2022-12-12 12:00:00","20","5","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00", 1);
+INSERT INTO act(
+pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
+)values("2","古城威士忌大賞","身處在古風洋溢的赤崁樓之中，當地威士忌大師將親自分享許多知名威士忌不為人知的秘密，還有現場免費試喝體驗等你來！","台南","2022-10-10 12:00:00","2022-12-12 12:00:00","50","20","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00");
+INSERT INTO act(
+pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status
+)values("3","海洋 X 伏特加","清澈蔚藍的海，清澈透明的伏特加，兩個碰在一起會出現怎樣的火花呢？等你來一探究竟。","墾丁","2022-10-10 12:00:00","2022-12-12 12:00:00","100","35","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00", 1);
 
 -- 建立 活動照片 假資料
 INSERT INTO act_pic(
 act_no, act_pic, act_pic_name
-)values(1,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/1.png"),"調酒品嘗圖片1");
+)values(1,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/1.jpg"),"調酒品嘗圖片1");
 INSERT INTO act_pic(
 act_no, act_pic, act_pic_name
 )values(2,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/2.png"),"調酒教學圖片1");
 INSERT INTO act_pic(
 act_no, act_pic, act_pic_name
-)values(3,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/3.png"),"花式調酒圖片1");
+)values(3,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/3.jpg"),"花式調酒圖片1");
+INSERT INTO act_pic(
+act_no, act_pic, act_pic_name
+)values(4,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/pub4.jpeg"),"風城酒精巴士圖片1");
+INSERT INTO act_pic(
+act_no, act_pic, act_pic_name
+)values(5,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/pub8.jpeg"),"台中酒吧大集合圖片1");
+INSERT INTO act_pic(
+act_no, act_pic, act_pic_name
+)values(6,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/pub-activity.jpeg"),"原民風小米酒大賞圖片1");
+INSERT INTO act_pic(
+act_no, act_pic, act_pic_name
+)values(7,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/pub-product.jpeg"),"雨都主題調酒圖片1");
+INSERT INTO act_pic(
+act_no, act_pic, act_pic_name
+)values(8,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/pub9.jpeg"),"古城威士忌大賞圖片1");
+INSERT INTO act_pic(
+act_no, act_pic, act_pic_name
+)values(9,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/pub6.jpeg"),"海洋 X 伏特加圖片1");
 
 -- 建立 活動報名 假資料
 INSERT INTO act_sign_up(

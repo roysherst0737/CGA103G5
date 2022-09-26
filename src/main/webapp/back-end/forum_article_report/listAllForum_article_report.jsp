@@ -2,11 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.forum_article_report.model.*"%>
+<%@ page import="com.forum_article.model.*"%>
 
 <%
 Forum_article_report_Service forum_article_report_Svc = new Forum_article_report_Service();
 List<Forum_article_report_VO> list = forum_article_report_Svc.getAll();
 pageContext.setAttribute("list", list);
+
+Forum_article_VO forum_article_VO = (Forum_article_VO) request.getAttribute("forum_article_VO");
+
+
+Forum_article_report_VO forum_article_report_VO = (Forum_article_report_VO) request.getAttribute("forum_article_report_VO");
 %>
 
 <!DOCTYPE html>
@@ -129,9 +135,9 @@ pageContext.setAttribute("list", list);
 											begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 											<br>
 											<tr>
-													<FORM METHOD="post"
-														ACTION="<%=request.getContextPath()%>/back-end/forum_article_report/forum_article_report.do"
-														style="margin-bottom: 0px;">
+												<FORM METHOD="post"
+													ACTION="<%=request.getContextPath()%>/back-end/forum_article_report/forum_article_report.do"
+													style="margin-bottom: 0px;">
 												<td>${forum_article_report_VO.frm_art_rpt_no}</td>
 												<td>${forum_article_report_VO.mem_no}</td>
 												<td>${forum_article_report_VO.frm_art_no}</td>
@@ -157,27 +163,12 @@ pageContext.setAttribute("list", list);
 												<td>
 														<input type="submit" value="審核" class="button"> 
 														<input type="hidden" name="frm_art_rpt_no" value="${forum_article_report_VO.frm_art_rpt_no}"> 
+														<input type="hidden" name="art_status" value="${forum_article_report_VO.getForum_article_VO().art_status}">
+														<input type="hidden" name="frm_art_no" value="${forum_article_report_VO.frm_art_no}">
 														<input type="hidden" name="action" value="update">
 															
 												</td>
-												
-<!-- 												<td> -->
-<!-- 														<input type="radio" name="rpt_result" value="1" checked> -->
-<!-- 												</td> -->
-<!-- 												<td> -->
-<!-- 														<input type="radio" name="rpt_result" value="0"> -->
-<!-- 												</td> -->
 													</FORM>
-<!-- 												<td> -->
-<!-- 													<FORM METHOD="post" -->
-<%-- 														ACTION="<%=request.getContextPath()%>/back-end/forum_article_report/forum_article_report.do" --%>
-<!-- 														style="margin-bottom: 0px;"> -->
-<!-- 														<input type="submit" value="刪除" class="button"> <input -->
-<!-- 															type="hidden" name="frm_art_rpt_no" -->
-<%-- 															value="${forum_article_report_VO.frm_art_rpt_no}"> <input --%>
-<!-- 															type="hidden" name="action" value="delete"> -->
-<!-- 													</FORM> -->
-<!-- 												</td> -->
 											</tr>
 										</c:forEach>
 									</table>

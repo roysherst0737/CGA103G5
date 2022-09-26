@@ -27,7 +27,7 @@ public class Article_message_report_DAO implements Article_message_report_DAO_in
 	
 	}
 	private static final String INSERT_STMT = 
-		"INSERT INTO article_message_report (mem_no,art_msg_no,rpt_time,rpt_msg_content,mng_no,msg_done_time,msg_status,msg_result,msg_note) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		"INSERT INTO article_message_report (mem_no,art_msg_no,rpt_time,rpt_msg_content) VALUES (?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = 
 		"SELECT art_msg_rpt,mem_no,art_msg_no,rpt_time,rpt_msg_content,mng_no,msg_done_time,msg_status,msg_result,msg_note FROM article_message_report order by art_msg_rpt";
 	private static final String GET_ONE_STMT = 
@@ -54,11 +54,11 @@ public class Article_message_report_DAO implements Article_message_report_DAO_in
 			pstmt.setInt(2, article_message_report_VO.getArt_msg_no());
 			pstmt.setTimestamp(3, article_message_report_VO.getRpt_time());
 			pstmt.setString(4, article_message_report_VO.getRpt_msg_content());
-			pstmt.setInt(5, article_message_report_VO.getMng_no());
-			pstmt.setTimestamp(6, article_message_report_VO.getMsg_done_time());
-			pstmt.setInt(7, article_message_report_VO.getMsg_status());
-			pstmt.setInt(8, article_message_report_VO.getMsg_result());
-			pstmt.setString(9, article_message_report_VO.getMsg_note());
+//			pstmt.setInt(5, article_message_report_VO.getMng_no());
+//			pstmt.setTimestamp(6, article_message_report_VO.getMsg_done_time());
+//			pstmt.setInt(7, article_message_report_VO.getMsg_status());
+//			pstmt.setInt(8, article_message_report_VO.getMsg_result());
+//			pstmt.setString(9, article_message_report_VO.getMsg_note());
 			
 
 			pstmt.executeUpdate();

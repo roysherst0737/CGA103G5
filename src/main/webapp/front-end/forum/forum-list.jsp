@@ -4,6 +4,8 @@
 <%@ page import="com.forum.model.*"%>
 <%@ page import="com.forum_article.model.*"%>
 
+<%@ page import="com.prod.model.*"%>
+<%@ page import="com.forum_article_report.model.*"%>
 <%
 
 Forum_Service forum_Svc = new Forum_Service();
@@ -15,6 +17,8 @@ request.setAttribute("forum_VO", forum_VO);
 
 Set<Forum_article_VO> set = forum_Svc.getForum_articleByForum(forum_VO.getFrm_no());
 pageContext.setAttribute("set", set);
+
+
 %>
 
 
@@ -132,14 +136,10 @@ pageContext.setAttribute("set", set);
 								<th>文章內容</th>
 								<th width="300px">發布日期</th>
 							</tr>
-							<c:forEach var="forum_article_VO" items="${set}"> 	
-<!-- 							<tr> -->
-<%-- 								<td>${forum_article_VO.art_title}</td> --%>
-<%-- 								<td>${forum_article_VO.art_content}</td> --%>
-<%-- 								<td>${forum_article_VO.art_time}</td> --%>
-<!-- 							</tr> -->
+							<c:forEach var="forum_article_VO" items="${set}">
 							<c:choose>
 									<c:when test="${forum_article_VO.art_status==1}">
+<%-- 									${forum_article_VO.forum_article_report_VO.rpt_result==1} --%>
 										<tr>
 											<td><a href="<%=request.getContextPath()%>/front-end/forum_article/show_frm_art.jsp?${forum_article_VO.frm_art_no}">${forum_article_VO.art_title}</td>
 											<td><a href="<%=request.getContextPath()%>/front-end/forum_article/show_frm_art.jsp?${forum_article_VO.frm_art_no}">${forum_article_VO.art_content}</td>
@@ -182,6 +182,9 @@ pageContext.setAttribute("set", set);
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->
+<!-- 	<div class="instagram-box"> -->
+<%-- 		<%@ include file="/front-end/partials/_InstagramBox.jsp"%> --%>
+<!-- 	</div> -->
 	<!-- End Instagram Feed  -->
 	<!-- Start Footer  -->
 	<footer>

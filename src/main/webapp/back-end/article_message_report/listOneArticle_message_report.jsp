@@ -93,7 +93,7 @@ Article_message_report_VO article_message_report_VO = (Article_message_report_VO
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">文章留言檢舉詳情</h4>
+									<h4 class="card-title">文章留言檢舉(處理/註記)</h4>
 									<table id="dataTables" class="table stripe table-hover"
 										style="width: 100%">
 
@@ -106,7 +106,6 @@ Article_message_report_VO article_message_report_VO = (Article_message_report_VO
 											<th>管理員編號</th>
 											<th>處理完成時間</th>
 											<th>處理狀況</th>
-<!-- 											<th>處理結果</th> -->
 											<th>處理註記</th>
 										</tr>
 										<tr>

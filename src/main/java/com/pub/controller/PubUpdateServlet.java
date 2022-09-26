@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.pub.entity.Pub;
-@WebServlet(urlPatterns = {"/pub/PubUpdate","/PubUpdate"})
+@WebServlet(urlPatterns = {"/pub/PubUpdate","/PubUpdate","/back-end/pages/pub/PubUpdate"})
 public class PubUpdateServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

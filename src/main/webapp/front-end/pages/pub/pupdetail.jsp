@@ -186,7 +186,7 @@ div.col-sm-12>button.btn-warning:hover {
 								</c:forEach>
 
 							</div>
-							<div style="padding:10px">
+							<div style="padding:10px ;width:500px">
 								<p>可接受預約人數:${pub.pub_nop}</p>
 								<p>${pub.pub_detail}</p>
 								<p>評分:${pub.pub_rate_sum} &#9;&#9;評價人數:${pub.pub_ratetotal}</p>

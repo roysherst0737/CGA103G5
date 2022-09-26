@@ -38,7 +38,7 @@
 		.then(resp => resp.json())
 		.then(body => {
 			body.forEach((e, index) => {
-				const div=document.querySelector('.day_'+e.pub_booking_date.split("-")[2]).parentElement.parentElement;
+				const div=document.querySelector('.day_'+parseInt(e.pub_booking_date.split("-")[2])).parentElement.parentElement;
 				const div2=document.createElement('div');
 				div2.classList.add("booking_div");
 				div2.innerHTML=`<div class="mem`+e.mem_no+`"></div><div>`+getDate(e.pub_booking_time)+`</div>`;

@@ -31,7 +31,8 @@ public class BookingGetByPubServlet extends HttpServlet{
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		List<Pub_Booking> bookList = SERVICE.getAll();
+		Pub pub = json2Pojo(request, Pub.class);
+		List<Pub_Booking> bookList = SERVICE.getPubALL(pub.getPub_no());
 		writePojo2Json(response, bookList);
 		return;
 	}

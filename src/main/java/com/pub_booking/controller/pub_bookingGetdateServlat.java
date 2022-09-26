@@ -30,13 +30,12 @@ public class pub_bookingGetdateServlat extends HttpServlet{
 		Pub_Booking booking= SERVICE.getBooking(pub.getMem_no(), pub.getPub_no());
 		if(booking==null) {
 			booking = new Pub_Booking();
-				pub.setMessage("無定位資訊");
+				pub.setMessage("無訂位資訊");
 				pub.setSuccessful(true);
 				writePojo2Json(response, pub);
 				return;
 		}
 		writePojo2Json(response, booking);
-		request.setAttribute("booking", booking);
 		return;
 	}
 }

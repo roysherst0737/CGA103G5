@@ -103,6 +103,9 @@ Act_pic_VO act_picVO = (Act_pic_VO) request.getAttribute("act_picVO");
 											</c:forEach>
 										</ul>
 									</c:if>
+									
+									<jsp:useBean id="actSvc" scope="page"
+											class="com.act.model.Act_Service" />
 									<h4 class="card-title">新增活動圖片</h4>
 									<table id="dataTables" class="stripe table-hover"
 										style="width: 100%">
@@ -111,8 +114,11 @@ Act_pic_VO act_picVO = (Act_pic_VO) request.getAttribute("act_picVO");
 											<table>
 												<tr>
 													<td>活動編號:</td>
-													<td><input type="TEXT" name="act_no" size="45"
-														value="<%=(act_picVO == null) ? "" : act_picVO.getAct_no()%>" /></td>
+													<td><select size="1" name="act_no">
+												<c:forEach var="actVO" items="${actSvc.all}">
+													<option value="${actVO.act_no}">${actVO.act_no}
+												</c:forEach>
+											</select></td>
 												</tr>
 												<tr>
 													<td>活動照片:</td>

@@ -22,14 +22,13 @@ public class ManagerLogout extends HttpServlet {
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.getSession().removeAttribute("managerVO");
+		System.out.println(111);
 		request.getSession().removeAttribute("manager_VO");
-		request.getSession().removeAttribute("mng");
-		request.getSession().removeAttribute("manager_VO");
+//		request.getSession().removeAttribute("manager_VO0");
+//		request.getSession().removeAttribute("mng1");
+//		request.getSession().removeAttribute("manager_VO1");
 		String url = "/back-end/index_back.html";
-		RequestDispatcher successView = request.getRequestDispatcher(url);
-		successView.forward(request, response);
+		response.sendRedirect("index_back.html");	
 	}
 
 }

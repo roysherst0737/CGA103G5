@@ -112,7 +112,7 @@ pageContext.setAttribute("list", list);
 										<th>權限</th>
 										<th>狀態</th>
 										<th>創建日期</th>
-										<th>認證狀態</th>
+<!-- 										<th>認證狀態</th> -->
 										<th>啟用</th>
 										<th>停用</th>															
 									</tr>
@@ -121,7 +121,7 @@ pageContext.setAttribute("list", list);
 									<c:forEach var="memVO" items="${list}">
 										
 										<tr>
-											<td>${memVO.mem_no}</td>
+											<td>${memVO.mem_no}號</td>
 											<td>${memVO.mem_account}</td>
 											<td>${memVO.mem_password}</td>			
 											<c:choose>
@@ -163,14 +163,14 @@ pageContext.setAttribute("list", list);
 									  			</c:otherwise>
 											</c:choose>
 											<td>${memVO.mem_build_time}</td> 
-											<c:choose>
-									   			<c:when test="${memVO.mem_cert_status==0}">
-									   				<td>待認證</td>
-									  			 </c:when>	   			
-									  			<c:otherwise>
-									   				<td>認證通過</td>
-									  			</c:otherwise>
-											</c:choose>
+<%-- 											<c:choose> --%>
+<%-- 									   			<c:when test="${memVO.mem_cert_status==0}"> --%>
+<!-- 									   				<td>待認證</td> -->
+<%-- 									  			 </c:when>	   			 --%>
+<%-- 									  			<c:otherwise> --%>
+<!-- 									   				<td>認證通過</td> -->
+<%-- 									  			</c:otherwise> --%>
+<%-- 											</c:choose> --%>
 											<td>
 											  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/mem/changeMemStatus" style="margin-bottom: 0px;">
 											     <input type="submit" class="btn btn-outline-secondary btn-sm" value="啟用">
@@ -205,7 +205,7 @@ pageContext.setAttribute("list", list);
 										<th>權限</th>
 										<th>狀態</th>
 										<th>創建日期</th>
-										<th>認證狀態</th>
+<!-- 										<th>認證狀態</th> -->
 										<th>啟用</th>
 										<th>停用</th>
 									</tr>

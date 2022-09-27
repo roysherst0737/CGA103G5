@@ -103,7 +103,7 @@ pageContext.setAttribute("list", list);
 										<th>代碼</th>
 										<th>內容</th>
 										<th>折扣</th>
-										<th>使用數量</th>
+<!-- 										<th>使用數量</th> -->
 										<th>有效期間開始日期</th>
 										<th>有效期間結束日期</th>
 										<th>建立時間</th>
@@ -115,12 +115,12 @@ pageContext.setAttribute("list", list);
 									<c:forEach var="couponVO" items="${list}">
 										
 										<tr>
-											<td>${couponVO.coupon_no}</td>
+											<td>${couponVO.coupon_no}號</td>
 											<td>${couponVO.coupon_name}</td>
 											<td>${couponVO.coupon_code}</td>																
 											<td>${couponVO.coupon_content}</td>
 											<td>${couponVO.coupon_discount}</td> 
-											<td>${couponVO.coupon_amount}</td>
+<%-- 											<td>${couponVO.coupon_amount}</td> --%>
 											<td>${couponVO.launch_time}</td>
 											<td>${couponVO.off_time}</td>
 											<td>${couponVO.coupon_build_time}</td>																													
@@ -154,7 +154,7 @@ pageContext.setAttribute("list", list);
 										<th>代碼</th>
 										<th>內容</th>
 										<th>折扣</th>
-										<th>使用數量</th>
+<!-- 										<th>使用數量</th> -->
 										<th>有效期間開始日期</th>
 										<th>有效期間結束日期</th>
 										<th>建立時間</th>

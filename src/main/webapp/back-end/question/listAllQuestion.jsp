@@ -100,7 +100,7 @@ pageContext.setAttribute("list", list);
 								<th>題目編號</th>
 								<th>問題內容</th>
 								<th>修改</th>
-								<th>刪除</th>
+<!-- 								<th>刪除</th> -->
 							</tr>
 						</thead>
 						<tbody>
@@ -117,15 +117,15 @@ pageContext.setAttribute("list", list);
 											<input type="hidden" name="action" value="getOne_For_Update">
 										</FORM>
 									</td>
-									<td>
-										<FORM METHOD="post"
-											ACTION="<%=request.getContextPath()%>/back-end/question/question.do"
-											style="margin-bottom: 0px;">
-											<input type="submit" value="刪除"> <input type="hidden"
-												name="question_no" value="${questionVO.question_no}">
-											<input type="hidden" name="action" value="delete">
-										</FORM>
-									</td>
+<!-- 									<td> -->
+<!-- 										<FORM METHOD="post" -->
+<%-- 											ACTION="<%=request.getContextPath()%>/back-end/question/question.do" --%>
+<!-- 											style="margin-bottom: 0px;"> -->
+<!-- 											<input type="submit" value="刪除"> <input type="hidden" -->
+<%-- 												name="question_no" value="${questionVO.question_no}"> --%>
+<!-- 											<input type="hidden" name="action" value="delete"> -->
+<!-- 										</FORM> -->
+<!-- 									</td> -->
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -134,7 +134,7 @@ pageContext.setAttribute("list", list);
 								<th>題目編號</th>
 								<th>問題內容</th>
 								<th>修改</th>
-								<th>刪除</th>
+<!-- 								<th>刪除</th> -->
 							</tr>
 						</tfoot>
 					</table>

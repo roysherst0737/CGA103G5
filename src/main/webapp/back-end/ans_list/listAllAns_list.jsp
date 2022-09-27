@@ -41,15 +41,9 @@ int i = 1;
 <link rel="shortcut icon"
 	href="<%=request.getContextPath()%>/back-end/images/favicon.png" />
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script>
-	let path = window.location.pathname.substring(0, window.location.pathname
-			.lastIndexOf("/"));
-	path = path.substring(0, path.lastIndexOf("/"));
-</script>
+
 </head>
 <style>
-
-
 .wrap {
   text-align: center;
   padding-top: 5%;

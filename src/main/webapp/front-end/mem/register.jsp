@@ -43,6 +43,14 @@ Mem_VO memVO = (Mem_VO) request.getAttribute("memVO");
 							</div>
 							<h4>還不是會員？</h4>
 							<h6 class="font-weight-light">註冊加入我們！只需要幾秒時間即可享有我們的服務！</h6>
+							<c:if test="${not empty errorMsgs}">
+								<font style="color: red">請修正以下錯誤:</font>
+								<ul>
+									<c:forEach var="message" items="${errorMsgs}">
+										<li style="color: red">${message}</li>
+									</c:forEach>
+								</ul>
+							</c:if>
 							<form class="pt-3" action="MemRegisterServlet" method="post">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-lg"
@@ -175,14 +183,7 @@ Mem_VO memVO = (Mem_VO) request.getAttribute("memVO");
 								</div>
 								<input type="hidden" name="Register" value="Mem_Register">
 							</form>
-							<c:if test="${not empty errorMsgs}">
-								<font style="color: red">請修正以下錯誤:</font>
-								<ul>
-									<c:forEach var="message" items="${errorMsgs}">
-										<li style="color: red">${message}</li>
-									</c:forEach>
-								</ul>
-							</c:if>
+							
 						</div>
 					</div>
 				</div>

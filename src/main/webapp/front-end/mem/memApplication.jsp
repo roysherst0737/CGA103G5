@@ -317,7 +317,7 @@ a.booking:hover {
                          			  </div>
 				                    </div>
 				                     <div class="form-group row">
-				                          <label class="col-sm-3 col-form-label">使用狀態</label>
+				                          <label class="col-sm-4 col-form-label">Email寄送通知:</label>
 				                          <div class="col-sm-9">
 <!-- 				                            <select class="form-control"> -->
 <!-- 				                              <option>男</option> -->

@@ -130,7 +130,6 @@
 												</c:forEach>
 											</ul>
 										</c:if>
-
 										<jsp:useBean id="article_message_Svc" scope="page"
 											class="com.article_message.model.Article_message_Service" />
 										<FORM METHOD="post" ACTION="article_message.do">
@@ -142,12 +141,6 @@
 											</select> <input type="hidden" name="action"
 												value="getOne_For_Display"> <input type="submit"
 												value="送出">
-										</FORM>
-										<FORM METHOD="post" ACTION="article_message.do">
-											<b>輸入留言編號 :</b> <input type="text" name="art_msg_no"
-												value="${param.art_msg_no}"><font color=red>${errorMsgs.art_msg_no}</font>
-											<input type="hidden" name="action" value="getOne_For_Display">
-											<input type="submit" value="送出">
 										</FORM>
 									</div>
 									<div>

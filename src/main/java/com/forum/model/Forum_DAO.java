@@ -97,8 +97,7 @@ public class Forum_DAO implements Forum_DAO_interface{
 			
 			pstmt.setString(1, forum_VO.getFrm_name_no());
 			pstmt.setInt(2, forum_VO.getFrm_status());
-//			pstmt.setBytes(3, forum_VO.getFrm_img());
-			pstmt.setInt(3, forum_VO.getFrm_no());//刪
+			pstmt.setInt(3, forum_VO.getFrm_no());
 			
 			pstmt.executeUpdate();
 

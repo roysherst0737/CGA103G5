@@ -13,6 +13,7 @@
 Forum_Service forum_Svc = new Forum_Service();
 List<Forum_VO> list2 = forum_Svc.getAll();
 pageContext.setAttribute("list2", list2);
+
 Forum_article_VO forum_article_VO = (Forum_article_VO) request.getAttribute("forum_article_VO");
 //登入會員
 Object Objuser = session.getAttribute("user");
@@ -143,7 +144,7 @@ pageContext.setAttribute("list", list);
 	          <table class="table">
 	            <tbody>
 	              <tr>
-	                <th>討論區</th>
+	                <th style="color: #FFB326;">討論區</th>
 	                	<td>
 	                		<select name="frm_no" id="allianceSelection" style="width:30%; margin:1%;">
 	                 		<c:forEach var="forum_VO" items="${list2}">
@@ -154,7 +155,7 @@ pageContext.setAttribute("list", list);
 	                  	</td>
 	              </tr>
 	              <tr>
-	                <th>標題</th>
+	                <th style="color: #FFB326;">標題</th>
 	                <td><input type="text" name="art_title" maxlength="50" value="" style="width:70%; margin:1%;" /></td>
 	              </tr>
 	              <%-- 錯誤表列 --%>
@@ -167,11 +168,11 @@ pageContext.setAttribute("list", list);
 				</ul>
 			</c:if>
 	              <tr>
-	                <th>內容</th>
+	                <th style="color: #FFB326;">內容</th>
 	                <td><textarea name="art_content" value=""rows="6" cols="40" required style="width:70%; margin:1%;color: #FFB326;" /></textarea></td>
 	              </tr>
 	              <tr>
-	                <th>上傳圖片</th>
+	                <th style="color: #FFB326;">上傳圖片</th>
 	                <td><input name="art_img" type="file"></td>
 	              </tr>
 	              <tr>

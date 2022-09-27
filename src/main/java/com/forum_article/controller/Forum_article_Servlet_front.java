@@ -134,7 +134,7 @@ public class Forum_article_Servlet_front extends HttpServlet {
 
 			//// 文章狀態放這裡
 
-			Integer mng_no = Integer.valueOf(req.getParameter("mng_no").trim());
+//			Integer mng_no = Integer.valueOf(req.getParameter("mng_no").trim());
 
 //				String job = req.getParameter("job").trim();
 //				if (job == null || job.trim().length() == 0) {

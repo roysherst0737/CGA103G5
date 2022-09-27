@@ -160,6 +160,8 @@ pageContext.setAttribute("list", list);
 													<td>
 														<input type="submit" value="審核" class="button">
 														<input type="hidden" name="art_msg_rpt"value="${article_message_report_VO.art_msg_rpt}">
+														<input type="hidden" name="art_msg_no"value="${article_message_report_VO.art_msg_no}">
+														<input type="hidden" name="msg_status"value="${article_message_report_VO.msg_status}">
 														<input type="hidden" name="action" value="update">
 													</td>
 												</FORM>

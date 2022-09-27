@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.latest_news.model.*"%>
+<%@ page import="com.mem.model.*"%>
 
 <%
 Latest_news_Service latest_news_Svc = new Latest_news_Service();
@@ -120,6 +121,7 @@ pageContext.setAttribute("list", list);
 												<th>消息狀態</th>
 												<th>修改</th>
 												<th>刪除</th>
+												<th>發送Email</th>
 											</tr>
 										</thead>
 										<%@ include file="page1.file"%>
@@ -149,6 +151,16 @@ pageContext.setAttribute("list", list);
 															type="hidden" name="latest_news_no"
 															value="${latest_news_VO.latest_news_no}"> <input
 															type="hidden" name="action" value="delete">
+													</FORM>
+												</td>
+												<td>
+													<FORM METHOD="post"
+														ACTION="<%=request.getContextPath()%>/front-end/mem/MailServlet"
+														style="margin-bottom: 0px;">
+														<input type="submit" value="發送" class="button"> 
+														<input type="hidden" name="mem_email_list" value="${latest_news_VO.getMemAll()}"> 
+														<input type="hidden" name="news_content" value="${latest_news_VO.news_content}"> 
+														<input type="hidden" name="action" value="latest_news_notice">
 													</FORM>
 												</td>
 											</tr>

@@ -86,7 +86,8 @@ session.setAttribute("url", url);
 	</div>
 
 	<!-- !!!!!! 從以下開始修改到Start Instagram Feed" !!!!!!-->
-
+	
+	
     <!-- Start All Title Box -->
     <div class="all-title-box">
         <div class="container">
@@ -104,8 +105,11 @@ session.setAttribute("url", url);
     <!-- End All Title Box -->
 
     <!-- Start Shop Detail  -->
+    
     <div class="shop-detail-box-main">
         <div class="container">
+        <!-- 暴力式判斷庫存 -->
+        <c:if test="${prodVO.prod_status==1}">
             <div class="row">
                 <div class="col-xl-5 col-lg-5 col-md-6">
                     <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
@@ -167,23 +171,18 @@ session.setAttribute("url", url);
                 </div>
                 <div class="col-xl-7 col-lg-7 col-md-6">
                     <div class="single-product-details">
+                    
                         <h2>${prodVO.prod_name}</h2>
                         <h5>$${prodVO.prod_price}</h5>
-                        <p class="available-stock"><span> 現有庫存： <span style="color: red;">${prodVO.prod_stock}</span></span><p>
+                        <p class="available-stock"><span> 現有庫存： <span style="color: #f5c242; font-weight:bold;">${prodVO.prod_stock}</span></span><p>
 						<h4>商品詳情：</h4>
 						<p>${prodVO.prod_detail}</p>
-<!-- 						<ul> -->
-<!-- 							<li> -->
-<!-- 								<div class="form-group quantity-box"> -->
-<!-- 									<label class="control-label">購買數量</label> -->
-<%-- 									<input class="form-control" value="0" min="1" max="${prodVO.prod_stock}" type="number"> --%>
-<!-- 								</div> -->
-<!-- 							</li> -->
-<!-- 						</ul> -->
 
 						<div class="price-box-bar">
 							<div class="cart-and-bay-btn">
-							
+								
+								<c:choose>
+								<c:when test="${prodVO.prod_status == 1 && prodVO.prod_stock>=1}">
 								<FORM name="cart" action="cart.do" method="post">
 								<c:choose>
 									<c:when test="${empty sessionScope.user}">
@@ -199,13 +198,22 @@ session.setAttribute("url", url);
                                 <input type="hidden" name="mem_no" value="${user.mem_no}">
 								<input type="hidden" name="action" value="insertByDetail">	
 								</FORM>
+								</c:when>
+									<c:otherwise>									
+										<input disabled class="btn btn-warning" id="cart2" type="submit" value="目前無庫存">
+									</c:otherwise>
+								</c:choose>
+								
 							</div>
 						</div>
+						
                     </div>
                 </div>
             </div>
+            </c:if>
         </div>
     </div>
+    
     <!-- End Cart -->
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->

@@ -7,7 +7,11 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import com.article_message.model.Article_message_Service;
+import com.article_message.model.Article_message_VO;
 import com.article_message_report.model.*;
+import com.forum_article.model.Forum_article_Service;
+import com.forum_article.model.Forum_article_VO;
 
 public class Article_message_report_Servlet extends HttpServlet {
 
@@ -134,11 +138,20 @@ public class Article_message_report_Servlet extends HttpServlet {
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
+				Integer art_msg_no = Integer.valueOf(req.getParameter("art_msg_no").trim());
 				
+				Integer msg_status = Integer.valueOf(req.getParameter("msg_status").trim());
+				
+				Article_message_VO article_message_VO = new Article_message_VO();
+				
+				article_message_VO.setMsg_status(msg_status);
 				/***************************2.開始修改資料*****************************************/
 				Article_message_report_Service article_message_report_Svc = new Article_message_report_Service();
 				article_message_report_Svc.checkArticle_message_report(article_message_report_VO);
 //				article_message_report_VO = article_message_report_Svc.updateArticle_message_report(art_msg_rpt, mem_no, art_msg_no, rpt_time, rpt_msg_content,mng_no, msg_done_time, msg_states, msg_result, msg_note);
+				
+				Article_message_Service article_message_Svc = new Article_message_Service();
+				msg_status = article_message_Svc.ChangeStatus(art_msg_no);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				article_message_report_VO = article_message_report_Svc.getOneArticle_message_report(art_msg_rpt);

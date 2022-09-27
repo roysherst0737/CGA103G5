@@ -182,7 +182,6 @@ public class Forum_Servlet extends HttpServlet {
 			byte[] frm_img = req.getPart("frm_img").getInputStream().readAllBytes();      
 			if(frm_img.length==0) {
 				frm_img = null;
-				System.out.println(123);
 			}	
 			
 				Forum_VO forum_VO = new Forum_VO();

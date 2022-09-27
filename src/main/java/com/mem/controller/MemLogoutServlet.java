@@ -25,6 +25,6 @@ public class MemLogoutServlet extends HttpServlet {
 
 			session.removeAttribute("user");
 
-			response.sendRedirect("http://localhost:8081/CGA103G5ALL/front-end/index.jsp");			
+			response.sendRedirect("index.jsp");			
 	}
 }

@@ -12,7 +12,6 @@ import javax.servlet.http.*;
 import com.forum_article.model.*;
 
 @MultipartConfig
-
 public class Forum_article_Servlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
@@ -145,7 +144,7 @@ public class Forum_article_Servlet extends HttpServlet {
 				
 				////文章狀態放這裡
 				
-				Integer mng_no = Integer.valueOf(req.getParameter("mng_no").trim());
+//				Integer mng_no = Integer.valueOf(req.getParameter("mng_no").trim());
 				
 //				String job = req.getParameter("job").trim();
 //				if (job == null || job.trim().length() == 0) {
@@ -186,7 +185,7 @@ public class Forum_article_Servlet extends HttpServlet {
 		}
 
 		if ("insert".equals(action)) { // 來自addEmp.jsp的請求  
-			System.out.println("123");
+
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.

@@ -147,6 +147,7 @@ session.setAttribute("url", url);
                                 <div role="tabpanel" class="tab-pane fade show active" id="grid-view">                                                                                               
                                     <div class="row">
                                     <c:forEach var="prodVO" items="${list}">
+                                    <!-- 暴力式判斷庫存 -->
                                     <c:if test="${prodVO.prod_status == 1}">
                                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                             <div class="products-single fix">
@@ -159,6 +160,8 @@ session.setAttribute("url", url);
                                                             	data-toggle="tooltip" data-placement="right" title="查看詳情"><i class="fas fa-eye"></i></a></li>
                                                         </ul>
                                                         
+                                                        <c:choose>
+                                                        <c:when  test="${prodVO.prod_status == 1 && prodVO.prod_stock>=1}">
                                             			<FORM name="cart" action="cart.do" method="post">             
                                                         <c:choose>
 															<c:when test="${empty sessionScope.user}">
@@ -173,12 +176,18 @@ session.setAttribute("url", url);
                                                         <input type="hidden" name="mem_no" value="${user.mem_no}">
 														<input type="hidden" name="action" value="insert">	
 														</FORM>
+														</c:when>
+															<c:otherwise>
+																<input disabled id="cart" type="submit" value="目前無庫存">
+															</c:otherwise>
+														</c:choose>
 														 																
                                                     </div>
                                                 </div>
                                                 <div class="why-text">
                                                     <h4>${prodVO.prod_name}</h4>
                                                     <h5>$${prodVO.prod_price}</h5>
+                                                    <p style="display: inline-block; float:right; color:#f5c242; font-weight:bold;">${prodVO.prod_stock}</p><p style="display: inline-block; float:right;"> 庫存：</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -211,8 +220,11 @@ session.setAttribute("url", url);
                                                 <div class="why-text full-width">
                                                     <h4>${prodVO.prod_name}</h4>
                                                     <h5>$${prodVO.prod_price}</h5>
+                                                    <span style="line-height:3px;"> 庫存：</span><span style="color:#f5c242; display: inline-block; font-weight:bold;">${prodVO.prod_stock}</span>
                                                     <p>${prodVO.prod_detail}</p>
                                                     
+                                                    <c:choose> 
+                                                    <c:when  test="${prodVO.prod_status == 1 && prodVO.prod_stock>=1}">                                                  
                                                     <FORM name="cart" action="cart.do" method="post">
                                                     <c:choose>
 														<c:when test="${empty sessionScope.user}">
@@ -227,6 +239,11 @@ session.setAttribute("url", url);
                                                     <input type="hidden" name="mem_no" value="${user.mem_no}">
 													<input type="hidden" name="action" value="insert">	
 													</FORM>
+													</c:when>
+														<c:otherwise>
+															<input disabled class="btn btn-warning" id="cart2" type="submit" value="目前無庫存">
+														</c:otherwise>
+													</c:choose>
 													
                                                 </div>
                                             </div>

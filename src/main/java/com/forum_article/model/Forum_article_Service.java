@@ -23,7 +23,6 @@ public class Forum_article_Service {
 			
 			forum_article_VO.setFrm_no(frm_no);
 			forum_article_VO.setMem_no(mem_no);
-//			forum_article_VO.setArt_time(art_time);
 			forum_article_VO.setArt_title(art_title);
 			forum_article_VO.setArt_content(art_content);
 			forum_article_VO.setArt_img(art_img);

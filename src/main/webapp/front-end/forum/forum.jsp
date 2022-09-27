@@ -56,7 +56,7 @@ pageContext.setAttribute("list3", list3);
 		#pic {
 			
 		}
-		h2 {
+		h1 {
        	text-align: center;
 		display: -webkit-box;
     	display: -ms-flexbox;
@@ -92,7 +92,7 @@ pageContext.setAttribute("list3", list3);
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 id="title">討論區</h2>
+                    <h1 id="title">討論園地</h1>
 <!--                     <ul class="breadcrumb"> -->
 <%--                         <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/front-end/prod/shop.jsp">回商城</a></li> --%>
 <!--                         <li class="breadcrumb-item active">總覽</li> -->

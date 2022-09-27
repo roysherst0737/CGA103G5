@@ -33,6 +33,8 @@ String url = request.getRequestURL().toString() + "?" + request.getQueryString()
 session.setAttribute("url", url);
 
 int i = 1;
+int j = 1;
+int k = 1;
 %>
 
 <!DOCTYPE html>
@@ -190,7 +192,7 @@ int i = 1;
 	border-style: none;
 	margin-bottom: 2px;
 	font-weight: bold;
-	width: 15px;
+	width: 20px;
 	background-color:transparent;
 }
 #goToCoupon {
@@ -233,7 +235,7 @@ int i = 1;
 	<!-- Start Checkout  -->
 	<div class="cart-box-main">
 	<FORM name="orderCreate" action="detail.do" method="post">
-								<input type="hidden" name="action" value="createOrder">
+	<input type="hidden" name="action" value="createOrder">
 		<div class="container">
 			<!-- 會員登入欄位開始 -->
 			<div class="row new-account-login">
@@ -428,11 +430,11 @@ int i = 1;
 <%-- 															class="totalPrice" style="color: black;">${cartVO.getProd_VO().prod_price * cartVO.prod_qty}</span> --%>
 													
 													<div class="small text-muted" id="cartContent">
-												<span>單價: $</span> <input name="prod_price"
+												<span>單價: $</span> <input name="prod_price<%=j++%>"
 													value="${cartVO.getProd_VO().prod_price}" id="detail1"></input>
 													<input type="hidden" name="prod_no<%=i++%>" value="${cartVO.prod_no}" id="detail"></input>
 												<span class="mx-2">|</span> <span>數量: </span> <input
-													name="prod_qty" value="${cartVO.prod_qty}" id="detail2"></input>
+													name="prod_qty<%=k++%>" value="${cartVO.prod_qty}" id="detail2"></input>
 												<span class="mx-2">|</span> <span>總價: $</span> <span
 													class="totalPrice" style="color: black;">${cartVO.getProd_VO().prod_price * cartVO.prod_qty}</span>
 												<input type="hidden" name="prod_price_total"
@@ -452,12 +454,14 @@ int i = 1;
 													</FORM>
 													
 													<FORM action="cart.do" method="post" style="float: right; padding-bottom: 10px;">
+														<c:if test="${cartVO.getProd_VO().prod_status == 1 && cartVO.getProd_VO().prod_stock>=1}">
 														<input class="btn" id="plus" type="submit" value="+">
 														<input type="hidden" name="prod_no" value="${cartVO.prod_no}">
 														<input type="hidden" name="prod_qty" value="${cartVO.prod_qty}">
 														<input type="hidden" name="prod_stock" value="${cartVO.getProd_VO().prod_stock}">
 														<input type="hidden" name="mem_no" value="${user.mem_no}">
 														<input type="hidden" name="action" value="checkoutPlus">
+														</c:if>
 													</FORM>
 													<FORM action="cart.do" method="post" style="float: right; padding-bottom: 10px;">
 														<input class="btn" id="minus" type="submit" value="-">
@@ -547,7 +551,9 @@ int i = 1;
 								<input type="hidden" name="mem_no" value="${user.mem_no}">
 								<input type="hidden" name="coupon_no" value="${couponVO.coupon_no}">	
 								<input class="btn btn-warning" id="checkout" type="submit" value="下單" onclick="confirmTest9()">
-								<input type="hidden" name="prodAmount" value="<%=i-1%>">						
+								<input type="hidden" name="prodAmount" value="<%=i-1%>">
+<%-- 								<input type="hidden" name="prodPriceAmount" value="<%=i-1%>"> --%>
+<%-- 								<input type="hidden" name="prodQtyAmount" value="<%=i-1%>">						 --%>
 						</div>
 						<!-- 結帳按鈕結束 -->						
 					</div>

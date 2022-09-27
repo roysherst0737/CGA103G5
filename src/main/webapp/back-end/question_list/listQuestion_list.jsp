@@ -87,7 +87,7 @@ pageContext.setAttribute("url", url);
 					<div class="row">
 						<div class="col-sm-6">
 							<h3 class="mb-0 font-weight-bold">活動管理員</h3>
-							<p>上次登入：21小時前</p>
+							
 						</div>
 						<div class="col-sm-6">
 							<div class="d-flex align-items-center justify-content-md-end">
@@ -101,37 +101,11 @@ pageContext.setAttribute("url", url);
 											<a href="<%=request.getContextPath()%>/back-end/firm_survey/addFirm_survey.jsp"><img src="./images/plus.png"
 												width="30px" height="30px"></a>
 										</button>
-										<button style="margin-right: 10px;">
-											<a href="<%=request.getContextPath()%>/back-end/firm_survey/selectFirm_survey.jsp"><img
-												src="./images/search2.png" width="30px" height="30px"></a>
-										</button>
-										<button
-											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
-											type="button" id="dropdownMenu3" data-toggle="dropdown"
-											aria-haspopup="true" aria-expanded="false">
-											<i class="typcn typcn-calendar-outline mr-2"></i>Last 7 days
-										</button>
-										<div class="dropdown-menu"
-											aria-labelledby="dropdownMenuSizeButton3"
-											data-x-placement="top-start">
-											<h6 class="dropdown-header">Last 14 days</h6>
-											<a class="dropdown-item" href="#">Last 21 days</a> <a
-												class="dropdown-item" href="#">Last 28 days</a>
-										</div>
+
+										
 									</div>
 								</div>
-								<div class="pr-1 mb-3 mr-2 mb-xl-0">
-									<button type="button"
-										class="btn btn-sm bg-white btn-icon-text border">
-										<i class="typcn typcn-arrow-forward-outline mr-2"></i>Export
-									</button>
-								</div>
-								<div class="pr-1 mb-3 mb-xl-0">
-									<button type="button"
-										class="btn btn-sm bg-white btn-icon-text border">
-										<i class="typcn typcn-info-large-outline mr-2"></i>info
-									</button>
-								</div>
+				
 							</div>
 						</div>
 					</div>
@@ -160,7 +134,7 @@ pageContext.setAttribute("url", url);
 											<tr>
 												<th>已選題目編號</th>
 												<th>問題內容</th>
-												<th>刪除</th>
+<!-- 												<th>刪除</th> -->
 											</tr>
 										</thead>
 										<tbody>
@@ -171,21 +145,21 @@ pageContext.setAttribute("url", url);
 													<td>${question_listVO.question_no}</td>
 													<td>${question_listVO.questionVO.que}</td>
 
-													<td>
-														<FORM METHOD="post"
-															ACTION="<%=request.getContextPath()%>/back-end/question_list/question_list.do"
-															style="margin-bottom: 0px;">
-															<input type="submit" value="刪除"> <input
-																type="hidden" name="question_no"
-																value="${question_listVO.question_no}"> <input
-																type="hidden" name="firm_survey_no"
-																value="${question_listVO.firm_survey_no}"> <input
-																type="hidden" name="queryString"
-																value="<%=Integer.parseInt(request.getQueryString())%>">
+<!-- 													<td> -->
+<!-- 														<FORM METHOD="post" -->
+<%-- 															ACTION="<%=request.getContextPath()%>/back-end/question_list/question_list.do" --%>
+<!-- 															style="margin-bottom: 0px;"> -->
+<!-- 															<input type="submit" value="刪除"> <input -->
+<!-- 																type="hidden" name="question_no" -->
+<%-- 																value="${question_listVO.question_no}"> <input --%>
+<!-- 																type="hidden" name="firm_survey_no" -->
+<%-- 																value="${question_listVO.firm_survey_no}"> <input --%>
+<!-- 																type="hidden" name="queryString" -->
+<%-- 																value="<%=Integer.parseInt(request.getQueryString())%>"> --%>
 
-															<input type="hidden" name="action" value="delete">
-														</FORM>
-													</td>
+<!-- 															<input type="hidden" name="action" value="delete"> -->
+<!-- 														</FORM> -->
+<!-- 													</td> -->
 												</tr>
 											</c:forEach>
 									</table>

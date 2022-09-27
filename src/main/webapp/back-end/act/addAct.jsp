@@ -2,9 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.act.model.*"%>
+<%@ page import="com.pub.entity.*"%>
 
 <%
 Act_VO actVO = (Act_VO) request.getAttribute("actVO");
+List<Pub> publist = com.pub.service.PubConstants.SERVICE.getAll();
+request.setAttribute("publist",publist);
 %>
 
 <!DOCTYPE html>
@@ -69,7 +72,7 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 					<div class="row">
 						<div class="col-sm-6">
 							<h3 class="mb-0 font-weight-bold">活動管理員</h3>
-							<p>上次登入：21小時前</p>
+							
 						</div>
 						<div class="col-sm-6">
 							<div class="d-flex align-items-center justify-content-md-end">
@@ -83,14 +86,11 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 											<a href='addAct.jsp'><img src="./images/plus.png"
 												width="30px" height="30px"></a>
 										</button>
-										<button style="margin-right: 10px;">
-											<a href="selectAct.jsp"><img src="./images/search2.png"
-												width="30px" height="30px"></a>
-										</button>
-										
+
+
 									</div>
 								</div>
-							
+
 							</div>
 						</div>
 					</div>
@@ -116,8 +116,16 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 
 											<tr>
 												<td>酒吧編號:</td>
-												<td><input type="TEXT" name="pub_no" size="45"
-													value="<%=(actVO == null) ? "" : actVO.getPub_no()%>" /></td>
+												<td>
+												<select size="1" name="pub_no">
+													<c:forEach var="pubVO" items="${publist}">
+														<option value="${pubVO.pub_no}">${pubVO.pub_no}
+													</c:forEach>
+												</select>
+												
+<!-- 												<input type="TEXT" name="pub_no" size="45" -->
+<%-- 													value="<%=(actVO == null) ? "" : actVO.getPub_no()%>" /> --%>
+													</td>
 											</tr>
 											<tr>
 												<td>活動名稱:</td>

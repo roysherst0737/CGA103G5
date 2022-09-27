@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.mem_coupon.model.*"%>
-<%@ page import="com.coupon.model.*"%>
 <!DOCTYPE html>
 <html lang="zh">
 <%
@@ -70,39 +69,69 @@ pageContext.setAttribute("list", list);
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<!--你要寫的頁面  -->
+					<div class="row">
+						<div class="col-sm-6">
+							<h3 class="mb-0 font-weight-bold">會員優惠券管理</h3>
 
-					<table id="dataTables" class="stripe" style="width: 100%">
-						<thead>
-							<tr>
-								<th>會員編號</th>
-								<th>優惠券編號</th>
-								<th>優惠名稱</th>
-								<th>優惠代碼</th>
-								<th>優惠券內容</th>
-								<th>優惠折扣</th>
-								<th>有效期間開始日期</th>
-								<th>有效期間結束日期</th>
-								<th>優惠券剩餘數量</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="memcouponVO" items="${list}">
+						</div>
+						<div class="col-sm-6">
+							<div class="d-flex align-items-center justify-content-md-end">
+								<div class="mb-3 mb-xl-0 pr-1">
+									<div class="dropdown">
+										<button style="margin-right:10px;">
+										<a href="<%=request.getContextPath()%>/back-end/index_back.html"><img src="./images/home.png" width="30px" height="30px"></a>
+										</button>										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>	
+					<h4 class="card-title">會員優惠券資料</h4>
+					<div class="horizontal_style">
+						<table id="dataTables" class="table table-striped">
+							<thead>
 								<tr>
-									<td>${memcouponVO.mem_no}</td>
-									<td>${memcouponVO.coupon_no}</td>
-									<td>${memcouponVO.couponVO.coupon_name}</td>
-									<td>${memcouponVO.couponVO.coupon_code}</td>
-									<td>${memcouponVO.couponVO.coupon_content}</td>
-									<td>${memcouponVO.couponVO.coupon_discount}</td>
-									<td>${memcouponVO.couponVO.launch_time}</td>
-									<td>${memcouponVO.couponVO.off_time}</td>
-									<td>${memcouponVO.remain_amount}</td>
+									<th>會員編號</th>
+									<th>優惠券編號</th>
+									<th>優惠名稱</th>
+									<th>優惠代碼</th>
+									<th>優惠券內容</th>
+									<th>優惠折扣</th>
+									<th>有效期間開始日期</th>
+									<th>有效期間結束日期</th>
+									<th>優惠券剩餘數量</th>
 								</tr>
-							</c:forEach>
-						</tbody>
-						
-					</table>
-
+							</thead>
+							<tbody>
+								<c:forEach var="memcouponVO" items="${list}">
+									<tr>
+										<td>${memcouponVO.mem_no}號</td>
+										<td>${memcouponVO.coupon_no}號券</td>
+										<td>${memcouponVO.couponVO.coupon_name}</td>
+										<td>${memcouponVO.couponVO.coupon_code}</td>
+										<td>${memcouponVO.couponVO.coupon_content}</td>
+										<td>${memcouponVO.couponVO.coupon_discount}</td>
+										<td>${memcouponVO.couponVO.launch_time}</td>
+										<td>${memcouponVO.couponVO.off_time}</td>
+										<td>${memcouponVO.remain_amount}張</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>會員編號</th>
+									<th>優惠券編號</th>
+									<th>優惠名稱</th>
+									<th>優惠代碼</th>
+									<th>優惠券內容</th>
+									<th>優惠折扣</th>
+									<th>有效期間開始日期</th>
+									<th>有效期間結束日期</th>
+									<th>優惠券剩餘數量</th>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
 					<script>
 					$(document).ready(function () {
 					    $('#dataTables').DataTable({

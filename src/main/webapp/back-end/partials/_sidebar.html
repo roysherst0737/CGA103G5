@@ -115,6 +115,8 @@
 						href=""> 活動問卷管理 </a></li>
 					<li class="nav-item"><a id="question" class="nav-link" href="">
 							問卷問題管理 </a></li>
+					<li class="nav-item"><a id="survey_ans" class="nav-link" href=""> 問卷回答查看 </a></li>
+
 					<script>
 						document.querySelector("#act_list").setAttribute(
 								"href",
@@ -144,6 +146,9 @@
 										"href",
 										getContextPath()
 												+ "/back-end/question/listAllQuestion.jsp");
+						
+						document.querySelector("#survey_ans").setAttribute("href",
+			                    getContextPath() + "/back-end/ans_list/listAllAns_list.jsp");
 					</script>
 				</ul>
 			</div></li>

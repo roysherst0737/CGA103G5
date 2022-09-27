@@ -133,7 +133,7 @@ public class Act_Servlet extends HttpServlet {
 				errorMsgs.add("活動地址請勿空白");
 			}
 
-			Timestamp act_launch_time = null;
+			Timestamp act_launch_time;
 			try {
 				act_launch_time = java.sql.Timestamp.valueOf(req.getParameter("act_launch_time").trim());
 			} catch (IllegalArgumentException e) {
@@ -141,7 +141,7 @@ public class Act_Servlet extends HttpServlet {
 				errorMsgs.add("請輸入上架時間!");
 			}
 
-			Timestamp act_off_time = null;
+			Timestamp act_off_time;
 			try {
 				act_off_time = java.sql.Timestamp.valueOf(req.getParameter("act_off_time").trim());
 			} catch (IllegalArgumentException e) {
@@ -167,7 +167,7 @@ public class Act_Servlet extends HttpServlet {
 				errorMsgs.add("容納人數下限請填數字");
 			}
 
-			Timestamp sign_up_begin_time = null;
+			Timestamp sign_up_begin_time;
 			try {
 				sign_up_begin_time = java.sql.Timestamp.valueOf(req.getParameter("sign_up_begin_time").trim());
 			} catch (IllegalArgumentException e) {
@@ -175,7 +175,7 @@ public class Act_Servlet extends HttpServlet {
 				errorMsgs.add("請輸入報名開始時間!");
 			}
 
-			Timestamp sign_up_end_time = null;
+			Timestamp sign_up_end_time;
 			try {
 				sign_up_end_time = java.sql.Timestamp.valueOf(req.getParameter("sign_up_end_time").trim());
 			} catch (IllegalArgumentException e) {
@@ -183,7 +183,7 @@ public class Act_Servlet extends HttpServlet {
 				errorMsgs.add("請輸入報名結束時間!");
 			}
 
-			Timestamp act_start_time = null;
+			Timestamp act_start_time;
 			try {
 				act_start_time = java.sql.Timestamp.valueOf(req.getParameter("act_start_time").trim());
 			} catch (IllegalArgumentException e) {
@@ -191,7 +191,7 @@ public class Act_Servlet extends HttpServlet {
 				errorMsgs.add("請輸入活動開始時間!");
 			}
 
-			Timestamp act_end_time = null;
+			Timestamp act_end_time;
 			try {
 				act_end_time = java.sql.Timestamp.valueOf(req.getParameter("act_end_time").trim());
 			} catch (IllegalArgumentException e) {
@@ -208,7 +208,7 @@ public class Act_Servlet extends HttpServlet {
 			}
 
 			java.sql.Timestamp revise_time = new java.sql.Timestamp(System.currentTimeMillis());
-			Integer current_count = Integer.valueOf(req.getParameter("current_count").trim());;
+			
 
 			Act_VO actVO = new Act_VO();
 			actVO.setAct_no(act_no);
@@ -241,7 +241,7 @@ public class Act_Servlet extends HttpServlet {
 					act_end_time, act_status, act_no);
 
 			actVO.setRevise_time(revise_time);		
-			actVO.setCurrent_count(current_count);
+			
 
 			/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 			req.setAttribute("actVO", actVO); // 資料庫update成功後,正確的的empVO物件,存入req

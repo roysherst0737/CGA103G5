@@ -3,11 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.act.model.*"%>
+<%@ page import="com.pub.entity.*"%>
 
 <%
 Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 int act_status = actVO.getAct_status();
 pageContext.setAttribute("act_status", act_status);
+List<Pub> publist = com.pub.service.PubConstants.SERVICE.getAll();
+request.setAttribute("publist",publist);
 %>
 
 <!DOCTYPE html>
@@ -72,7 +75,7 @@ pageContext.setAttribute("act_status", act_status);
 					<div class="row">
 						<div class="col-sm-6">
 							<h3 class="mb-0 font-weight-bold">活動管理員</h3>
-							<p>上次登入：21小時前</p>
+							
 						</div>
 						<div class="col-sm-6">
 							<div class="d-flex align-items-center justify-content-md-end">
@@ -86,37 +89,11 @@ pageContext.setAttribute("act_status", act_status);
 											<a href='addAct.jsp'><img src="./images/plus.png"
 												width="30px" height="30px"></a>
 										</button>
-										<button style="margin-right: 10px;">
-											<a href="selectAct.jsp"><img src="./images/search2.png"
-												width="30px" height="30px"></a>
-										</button>
-										<button
-											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
-											type="button" id="dropdownMenu3" data-toggle="dropdown"
-											aria-haspopup="true" aria-expanded="false">
-											<i class="typcn typcn-calendar-outline mr-2"></i>Last 7 days
-										</button>
-										<div class="dropdown-menu"
-											aria-labelledby="dropdownMenuSizeButton3"
-											data-x-placement="top-start">
-											<h6 class="dropdown-header">Last 14 days</h6>
-											<a class="dropdown-item" href="#">Last 21 days</a> <a
-												class="dropdown-item" href="#">Last 28 days</a>
-										</div>
+
+					
 									</div>
 								</div>
-								<div class="pr-1 mb-3 mr-2 mb-xl-0">
-									<button type="button"
-										class="btn btn-sm bg-white btn-icon-text border">
-										<i class="typcn typcn-arrow-forward-outline mr-2"></i>Export
-									</button>
-								</div>
-								<div class="pr-1 mb-3 mb-xl-0">
-									<button type="button"
-										class="btn btn-sm bg-white btn-icon-text border">
-										<i class="typcn typcn-info-large-outline mr-2"></i>info
-									</button>
-								</div>
+				
 							</div>
 						</div>
 					</div>
@@ -124,7 +101,7 @@ pageContext.setAttribute("act_status", act_status);
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">商品清單管理</h4>
+									<h4 class="card-title">活動管理</h4>
 									<div class="table-responsive">
 										<%-- 錯誤表列 --%>
 										<c:if test="${not empty errorMsgs}">
@@ -148,8 +125,11 @@ pageContext.setAttribute("act_status", act_status);
 												</tr>
 												<tr>
 													<td>酒吧編號:</td>
-													<td><input type="TEXT" name="pub_no" size="45"
-														value="<%=(actVO == null) ? "" : actVO.getPub_no()%>" /></td>
+													<td><select size="1" name="pub_no">
+													<c:forEach var="pubVO" items="${publist}">
+														<option value="${pubVO.pub_no}">${pubVO.pub_no}
+													</c:forEach>
+												</select></td>
 												</tr>
 												<tr>
 													<td>活動名稱:</td>
@@ -237,7 +217,7 @@ pageContext.setAttribute("act_status", act_status);
 											</table>
 
 											<br> <input type="hidden" name="current_count"
-												value="<%=actVO.getCurrent_count()%>"> <input
+												value="<%=(actVO == null) ? "" : actVO.getCurrent_count()%>"> <input
 												type="hidden" name="action" value="update"> <input
 												type="hidden" name="act_no" value="<%=actVO.getAct_no()%>">
 											<input type="submit" value="送出修改">

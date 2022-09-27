@@ -1,0 +1,320 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@page import="com.manager.model.Manager_VO"%>
+<%@page import="com.manager.model.Manager_Service"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
+
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+	<ul class="nav">
+		<li class="nav-item">
+			<div class="d-flex sidebar-profile">
+				<div class="sidebar-profile-image">
+
+					<img src="" alt="image" id="mem_img">
+					<script>
+						try {
+							getContextPath()
+						} catch (error) {
+							function getContextPath() {
+								let path = "http://";
+								let hostname = window.location.host;
+								let pathname = window.location.pathname
+										.substring(0, window.location.pathname
+												.indexOf('/', 2));
+								return path + hostname + pathname;
+							}
+						}
+						
+					</script>
+					<span class="sidebar-status-indicator"></span>
+				</div>
+				<div class="sidebar-profile-name">
+					<p class="sidebar-name">未登入</p>
+					<script>
+					fetch('.ManagerImage2', {
+						method: 'GET',
+					}).then((response) => response.json())
+					  .then((data) => {
+						  console.log(data)
+						  const{mng_name} = data;
+						  const{base64} = data;
+						  console.log(mng_name);
+						  if (mng_name != null) {
+							document.querySelector("#mem_img").setAttribute("src",
+									base64)
+						  document.querySelector(".sidebar-name").innerHTML=mng_name;							  
+						  } else {
+							document.querySelector("#mem_img").setAttribute("src",
+									getContextPath()+"/back-end/manager_login/NoData/null2.jpg")
+						  document.querySelector(".sidebar-name").innerHTML="未登入";							  
+							  
+						  }
+					  });
+						
+					</script>
+					<p class="sidebar-designation">Welcome</p>
+				</div>
+			</div>
+			<p class="sidebar-menu-title">目錄</p>
+		</li>
+
+		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
+			href="#mem" aria-expanded="false" aria-controls="mem"> <i
+				class="typcn typcn-briefcase menu-icon"></i> <span
+				class="menu-title">會員管理</span> <i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="mem">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a id="mem_list" class="nav-link" href="">
+							會員資料管理 </a></li>
+					<script>
+						document.querySelector("#mem_list").setAttribute(
+								"href",
+								getContextPath()
+										+ "/back-end/mem/listAllMem.jsp");
+					</script>
+				</ul>
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a id="mem_coupon_list" class="nav-link"
+						href=""> 會員優惠券資料 </a></li>
+					<script>
+						document
+								.querySelector("#mem_coupon_list")
+								.setAttribute(
+										"href",
+										getContextPath()
+												+ "/back-end/mem_coupon/mem_coupon_list.jsp");
+					</script>
+				</ul>
+			</div></li>
+		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
+			href="#coupon" aria-expanded="false" aria-controls="coupon"> <i
+				class="typcn typcn-film menu-icon"></i> <span class="menu-title">優惠券管理</span>
+				<i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="coupon">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a id="coupon_list" class="nav-link"
+						href=""> 優惠券資料管理 </a></li>
+					<script>
+						document.querySelector("#coupon_list").setAttribute(
+								"href",
+								getContextPath()
+										+ "/back-end/coupon/listAllCoupon.jsp");
+					</script>
+				</ul>
+			</div></li>
+		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
+			href="#act" aria-expanded="false" aria-controls="act"> <i
+				class="typcn typcn-globe-outline menu-icon"></i> <span
+				class="menu-title">活動管理</span> <i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="act">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a id="act_list" class="nav-link" href="">
+							活動資料管理 </a></li>
+					<li class="nav-item"><a id="act_pic" class="nav-link" href="">
+							活動圖片管理 </a></li>
+					<li class="nav-item"><a id="act_sign_up" class="nav-link"
+						href=""> 活動報名管理 </a></li>
+					<li class="nav-item"><a id="firm_survey" class="nav-link"
+						href=""> 活動問卷管理 </a></li>
+					<li class="nav-item"><a id="question" class="nav-link" href="">
+							問卷問題管理 </a></li>
+					<li class="nav-item"><a id="survey_ans" class="nav-link" href=""> 問卷回答查看 </a></li>
+
+					<script>
+						document.querySelector("#act_list").setAttribute(
+								"href",
+								getContextPath()
+										+ "/back-end/act/listAllAct.jsp");
+						document
+								.querySelector("#act_pic")
+								.setAttribute(
+										"href",
+										getContextPath()
+												+ "/back-end/act_pic/listAllAct_pic.jsp");
+						document
+								.querySelector("#act_sign_up")
+								.setAttribute(
+										"href",
+										getContextPath()
+												+ "/back-end/act_sign_up/listAllAct_sign_up.jsp");
+						document
+								.querySelector("#firm_survey")
+								.setAttribute(
+										"href",
+										getContextPath()
+												+ "/back-end/firm_survey/listAllFirm_survey.jsp");
+						document
+								.querySelector("#question")
+								.setAttribute(
+										"href",
+										getContextPath()
+												+ "/back-end/question/listAllQuestion.jsp");
+						
+						document.querySelector("#survey_ans").setAttribute("href",
+			                    getContextPath() + "/back-end/ans_list/listAllAns_list.jsp");
+					</script>
+				</ul>
+			</div></li>
+		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
+			href="#prod" aria-expanded="false" aria-controls="prod"> <i
+				class="typcn typcn-th-small-outline menu-icon"></i> <span
+				class="menu-title">商品管理</span> <i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="prod">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a id="prod_list" class="nav-link"
+						href=""> 商品清單管理 </a></li>
+					<li class="nav-item"><a id="prod_type" class="nav-link"
+						href=""> 商品類別管理 </a></li>
+					<li class="nav-item"><a id="prod_pic" class="nav-link" href="">
+							商品圖片管理 </a></li>
+					<li class="nav-item"><a id="order_list" class="nav-link"
+						href=""> 商品訂單明細 </a></li>
+					<script>
+						document.querySelector("#prod_list").setAttribute(
+								"href",
+								getContextPath()
+										+ "/back-end/prod/listAllProd.jsp");
+						document
+								.querySelector("#prod_type")
+								.setAttribute(
+										"href",
+										getContextPath()
+												+ "/back-end/prod_type/listAllProd_type.jsp");
+						document
+								.querySelector("#prod_pic")
+								.setAttribute(
+										"href",
+										getContextPath()
+												+ "/back-end/prod_pic/listAllProd_pic.jsp");
+						document.querySelector("#order_list").setAttribute(
+								"href",
+								getContextPath()
+										+ "/back-end/order/listAllOrder.jsp");
+					</script>
+				</ul>
+			</div></li>
+
+		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
+			href="#pub" aria-expanded="false" aria-controls="pub"> <i
+				class="typcn typcn-compass menu-icon"></i> <span class="menu-title">酒吧管理</span>
+				<i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="pub">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a id="pub_check" class="nav-link"
+						href="pages/samples/login.html"> 酒吧審核 </a></li>
+					<li class="nav-item"><a id="pub_list" class="nav-link"
+						href="/pages/samples/register.html"> 酒吧預約清單 </a></li>
+					<script>
+						document.querySelector("#pub_list").setAttribute(
+								"href", getContextPath() + "/pub/getlist");
+						document.querySelector("#pub_check").setAttribute(
+								"href", getContextPath() + "/pub/pub_check");
+					</script>
+				</ul>
+			</div></li>
+
+		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
+			href="#frm" aria-expanded="false" aria-controls="frm"> <i
+				class="typcn typcn-user-add-outline menu-icon"></i> <span
+				class="menu-title">討論區管理</span> <i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="frm">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a id="forum" class="nav-link" href="">
+							討論區維護 </a></li>
+					<li class="nav-item"><a id="forum_article" class="nav-link"
+						href=""> 文章列表 </a></li>
+					<li class="nav-item"><a id="forum_article_report"
+						class="nav-link" href=""> 文章檢舉維護 </a></li>
+					<li class="nav-item"><a id="article_message" class="nav-link"
+						href=""> 留言列表 </a></li>
+					<li class="nav-item"><a id="article_message_report"
+						class="nav-link" href=""> 留言檢舉維護 </a></li>
+					<script>
+						document.querySelector("#forum").setAttribute(
+								"href",
+								getContextPath()
+										+ "/back-end/forum/select_page.jsp");
+						document
+								.querySelector("#forum_article")
+								.setAttribute(
+										"href",
+										getContextPath()
+												+ "/back-end/forum_article/select_page.jsp");
+						document
+								.querySelector("#forum_article_report")
+								.setAttribute(
+										"href",
+										getContextPath()
+												+ "/back-end/forum_article_report/select_page.jsp");
+						document
+								.querySelector("#article_message")
+								.setAttribute(
+										"href",
+										getContextPath()
+												+ "/back-end/article_message/select_page.jsp");
+						document
+								.querySelector("#article_message_report")
+								.setAttribute(
+										"href",
+										getContextPath()
+												+ "/back-end/article_message_report/select_page.jsp");
+					</script>
+				</ul>
+			</div></li>
+		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
+			href="#lat_news" aria-expanded="false" aria-controls="lat_news">
+				<i class="typcn typcn-user-add-outline menu-icon"></i> <span
+				class="menu-title">最新消息管理</span> <i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="lat_news">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a id="latest_news" class="nav-link"
+						href=""> 消息維護</a></li>
+					<script>
+						document
+								.querySelector("#latest_news")
+								.setAttribute(
+										"href",
+										getContextPath()
+												+ "/back-end/latest_news/select_page.jsp");
+					</script>
+				</ul>
+			</div></li>
+
+		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
+			href="#mng" aria-expanded="false" aria-controls="mng"> <i
+				class="typcn typcn-device-desktop menu-icon"></i> <span
+				class="menu-title">管理員管理</span> <i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="mng">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a id="mng_list" class="nav-link" href="">
+							管理員資料管理 </a></li>
+					<li class="nav-item"><a id="mng_auth" class="nav-link" href="">
+							管理員權限管理 </a></li>
+					<script>
+						document.querySelector("#mng_list").setAttribute(
+								"href",
+								getContextPath()
+										+ "/back-end/manager/listAllMng.jsp");
+						document
+								.querySelector("#mng_auth")
+								.setAttribute(
+										"href",
+										getContextPath()
+												+ "/back-end/manager_auth/listAllMngAuth.jsp");
+					</script>
+				</ul>
+			</div></li>
+
+	</ul>
+</nav>

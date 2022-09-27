@@ -59,7 +59,7 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<h3 class="mb-0 font-weight-bold">活動管理員</h3>
-							<p>上次登入：21小時前</p>
+							
 						</div>
 						<div class="col-sm-6">
 							<div class="d-flex align-items-center justify-content-md-end">
@@ -71,36 +71,11 @@
 										<button style="margin-right:10px;">
 										<a href='addAct_pic.jsp'><img src="./images/plus.png" width="30px" height="30px"></a>
 										</button>
-										<button style="margin-right:10px;">
-										<a href="selectAct_pic.jsp"><img src="./images/search2.png" width="30px" height="30px"></a>
-										</button>
-										<button
-											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
-											type="button" id="dropdownMenu3" data-toggle="dropdown"
-											aria-haspopup="true" aria-expanded="false">
-											<i class="typcn typcn-calendar-outline mr-2"></i>Last 7 days
-										</button>
-										<div class="dropdown-menu"
-											aria-labelledby="dropdownMenuSizeButton3"
-											data-x-placement="top-start">
-											<h6 class="dropdown-header">Last 14 days</h6>
-											<a class="dropdown-item" href="#">Last 21 days</a> <a
-												class="dropdown-item" href="#">Last 28 days</a>
-										</div>
+
+				
 									</div>
 								</div>
-								<div class="pr-1 mb-3 mr-2 mb-xl-0">
-									<button type="button"
-										class="btn btn-sm bg-white btn-icon-text border">
-										<i class="typcn typcn-arrow-forward-outline mr-2"></i>Export
-									</button>
-								</div>
-								<div class="pr-1 mb-3 mb-xl-0">
-									<button type="button"
-										class="btn btn-sm bg-white btn-icon-text border">
-										<i class="typcn typcn-info-large-outline mr-2"></i>info
-									</button>
-								</div>
+		
 							</div>
 						</div>
 					</div>
@@ -119,6 +94,8 @@
 												</c:forEach>
 											</ul>
 										</c:if>
+<jsp:useBean id="actSvc" scope="page"
+											class="com.act.model.Act_Service" />
 
 										<FORM METHOD="post" ACTION="act_pic.do" name="form1"
 											enctype="multipart/form-data">
@@ -126,8 +103,11 @@
 
 												<tr>
 													<td>活動編號:</td>
-													<td><input type="TEXT" name="act_no" size="45"
-														value="<%=(act_picVO == null) ? "3" : act_picVO.getAct_no()%>" /></td>
+													<td><select size="1" name="act_no">
+												<c:forEach var="actVO" items="${actSvc.all}">
+													<option value="${actVO.act_no}">${actVO.act_no}
+												</c:forEach>
+											</select></td>
 												</tr>
 												<tr>
 													<td>活動照片:</td>

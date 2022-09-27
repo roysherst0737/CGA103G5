@@ -17,6 +17,8 @@ public class Article_message_VO implements java.io.Serializable{
 	private Integer frm_art_no;
 	private Timestamp msg_time;
 	private String msg_content;
+	private Integer msg_status;
+	
 	public Integer getArt_msg_no() {
 		return art_msg_no;
 	}
@@ -47,18 +49,24 @@ public class Article_message_VO implements java.io.Serializable{
 	public void setMsg_content(String msg_content) {
 		this.msg_content = msg_content;
 	}
-	public Article_message_report_VO getArticle_message_report_VO() {
-		Article_message_report_Service article_message_report_Svc = new Article_message_report_Service();
-		Article_message_report_VO article_message_report_VO = article_message_report_Svc.getOneArticle_message_report(art_msg_no);
-		return article_message_report_VO;
-	
+	public Integer getMsg_status() {
+		return msg_status;
 	}
+	public void setMsg_status(Integer msg_status) {
+		this.msg_status = msg_status;
+	}
+	
 	public Mem_VO getMem_VO() {
 		Mem_Service mem_Svc = new Mem_Service();
 		Mem_VO mem_VO = mem_Svc.getOneMem(mem_no);
 		return mem_VO;
 	}
 	
-	
+	public Article_message_report_VO getArticle_message_report_VO() {
+		Article_message_report_Service article_message_report_Svc = new Article_message_report_Service();
+		Article_message_report_VO article_message_report_VO = article_message_report_Svc.getOneArticle_message_report(art_msg_no);
+		return article_message_report_VO;
+		
+	}
 	
 }

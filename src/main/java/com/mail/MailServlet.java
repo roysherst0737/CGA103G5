@@ -1,6 +1,7 @@
 package com.mail;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -154,6 +155,40 @@ public class MailServlet extends HttpServlet {
 			mailServlet.sendMail(to, subject, messageText);
 
 			String url = "/CGA103G5ALL/back-end/act_sign_up/listAllAct_sign_up.jsp";
+			res.sendRedirect(url);
+		}
+		if ("latest_news_notice".equals(action)) {
+			
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+			
+			/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+			String email = req.getParameter("news_content");
+			
+			
+			
+			/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+			Mem_Service memSvc = new Mem_Service();
+			List <Mem_VO> memVO = memSvc.getAll();
+			
+			MailServlet mailServlet = new MailServlet();
+			memVO.forEach((e) -> {
+				if(e.getStatus()==0) {
+				String to = e.getMem_email();
+				
+				String subject = "最新消息";
+				
+				String messageText = email.toString();
+				
+				
+				mailServlet.sendMail(to, subject, messageText);
+				}
+	        });
+			
+			
+			String url = "/CGA103G5ALL/back-end/latest_news/listAllLatest_news.jsp";
 			res.sendRedirect(url);
 		}
 

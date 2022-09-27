@@ -89,10 +89,7 @@ pageContext.setAttribute("list", list);
 											<a href='addFirm_survey.jsp'><img src="./images/plus.png"
 												width="30px" height="30px"></a>
 										</button>
-										<button style="margin-right: 10px;">
-											<a href="selectFirm_survey.jsp"><img
-												src="./images/search2.png" width="30px" height="30px"></a>
-										</button>
+
 
 									</div>
 								</div>
@@ -101,59 +98,62 @@ pageContext.setAttribute("list", list);
 						<thead>
 							<tr>
 								<th>廠商問卷編號</th>
+								<th>活動編號</th>
 								<th>活動名稱</th>
 								<th>廠商問卷建立時間</th>
 								<th>廠商問卷修改時間</th>
-								<th>修改活動編號</th>
+<!-- 								<th>修改活動編號</th> -->
 								<th>選擇題目</th>
-								<th>刪除</th>
+<!-- 								<th>刪除</th> -->
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="firm_surveyVO" items="${list}">
 								<tr>
 									<td>${firm_surveyVO.firm_survey_no}</td>
+									<td>${firm_surveyVO.actVO.act_no}</td>
 									<td>${firm_surveyVO.actVO.act_name}</td>
 									<td>${firm_surveyVO.survey_build_time}</td>
 									<td>${firm_surveyVO.survey_revise_time}</td>
-									<td>
-										<FORM METHOD="post"
-											ACTION="<%=request.getContextPath()%>/back-end/firm_survey/firm_survey.do"
-											style="margin-bottom: 0px;">
-											<input type="submit" value="修改"> <input type="hidden"
-												name="firm_survey_no"
-												value="${firm_surveyVO.firm_survey_no}"> <input
-												type="hidden" name="action" value="getOne_For_Update">
-										</FORM>
-									</td>
+<!-- 									<td> -->
+<!-- 										<FORM METHOD="post" -->
+<%-- 											ACTION="<%=request.getContextPath()%>/back-end/firm_survey/firm_survey.do" --%>
+<!-- 											style="margin-bottom: 0px;"> -->
+<!-- 											<input type="submit" value="修改"> <input type="hidden" -->
+<!-- 												name="firm_survey_no" -->
+<%-- 												value="${firm_surveyVO.firm_survey_no}"> <input --%>
+<!-- 												type="hidden" name="action" value="getOne_For_Update"> -->
+<!-- 										</FORM> -->
+<!-- 									</td> -->
 
 									<td><a
 										href="<%=request.getContextPath()%>/back-end/question_list/listQuestion_list.jsp?${firm_surveyVO.firm_survey_no}">
 											<input type="submit" value="問卷題目管理">
 									</a></td>
 
-									<td>
-										<FORM METHOD="post"
-											ACTION="<%=request.getContextPath()%>/back-end/firm_survey/firm_survey.do"
-											style="margin-bottom: 0px;">
-											<input type="submit" value="刪除"> <input type="hidden"
-												name="firm_survey_no"
-												value="${firm_surveyVO.firm_survey_no}"> <input
-												type="hidden" name="action" value="delete">
-										</FORM>
-									</td>
+<!-- 									<td> -->
+<!-- 										<FORM METHOD="post" -->
+<%-- 											ACTION="<%=request.getContextPath()%>/back-end/firm_survey/firm_survey.do" --%>
+<!-- 											style="margin-bottom: 0px;"> -->
+<!-- 											<input type="submit" value="刪除"> <input type="hidden" -->
+<!-- 												name="firm_survey_no" -->
+<%-- 												value="${firm_surveyVO.firm_survey_no}"> <input --%>
+<!-- 												type="hidden" name="action" value="delete"> -->
+<!-- 										</FORM> -->
+<!-- 									</td> -->
 								</tr>
 							</c:forEach>
 						</tbody>
 						<tfoot>
 							<tr>
 								<th>廠商問卷編號</th>
+								<th>活動編號</th>
 								<th>活動名稱</th>
 								<th>廠商問卷建立時間</th>
 								<th>廠商問卷修改時間</th>
-								<th>修改</th>
+<!-- 								<th>修改</th> -->
 								<th>選擇題目</th>
-								<th>刪除</th>
+<!-- 								<th>刪除</th> -->
 							</tr>
 						</tfoot>
 					</table>

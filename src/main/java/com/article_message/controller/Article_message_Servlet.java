@@ -127,13 +127,14 @@ public class Article_message_Servlet extends HttpServlet {
 					errorMsgs.add("留言內容請勿空白");
 				}	
 				
-
+				Integer msg_status = Integer.valueOf(req.getParameter("msg_status").trim());
 				Article_message_VO article_message_VO = new Article_message_VO();
 				article_message_VO.setArt_msg_no(art_msg_no);
 				article_message_VO.setMem_no(mem_no);
 				article_message_VO.setFrm_art_no(frm_art_no);
 				article_message_VO.setMsg_time(msg_time);
 				article_message_VO.setMsg_content(msg_content);
+				article_message_VO.setMsg_status(msg_status);
 
 
 				// Send the use back to the form, if there were errors
@@ -147,7 +148,7 @@ public class Article_message_Servlet extends HttpServlet {
 				
 				/***************************2.開始修改資料*****************************************/
 				Article_message_Service article_message_Svc = new Article_message_Service();
-				article_message_VO = article_message_Svc.updateArticle_message(art_msg_no, mem_no, frm_art_no, msg_time, msg_content);
+				article_message_VO = article_message_Svc.updateArticle_message(art_msg_no, mem_no, frm_art_no, msg_time, msg_content,msg_status);
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("article_message_VO", article_message_VO); // 資料庫update成功後,正確的的empVO物件,存入req
 				String url = "/back-end/article_message/listOneArticle_message.jsp";
@@ -170,13 +171,13 @@ public class Article_message_Servlet extends HttpServlet {
 			
 			Integer frm_art_no = Integer.valueOf(req.getParameter("frm_art_no").trim());
 			
-			java.sql.Timestamp msg_time = null;
-			try {
-				msg_time = java.sql.Timestamp.valueOf(req.getParameter("msg_time").trim());
-			} catch (IllegalArgumentException e) {
-				msg_time=new java.sql.Timestamp(System.currentTimeMillis());
-				errorMsgs.add("請輸入日期!");
-			}
+//			java.sql.Timestamp msg_time = null;
+//			try {
+//				msg_time = java.sql.Timestamp.valueOf(req.getParameter("msg_time").trim());
+//			} catch (IllegalArgumentException e) {
+//				msg_time=new java.sql.Timestamp(System.currentTimeMillis());
+//				errorMsgs.add("請輸入日期!");
+//			}
 				
 //String msg_content = req.getParameter("msg_content");
 //				String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
@@ -195,7 +196,7 @@ public class Article_message_Servlet extends HttpServlet {
 				Article_message_VO article_message_VO = new Article_message_VO();
 				article_message_VO.setMem_no(mem_no);
 				article_message_VO.setFrm_art_no(frm_art_no);
-				article_message_VO.setMsg_time(msg_time);
+//				article_message_VO.setMsg_time(msg_time);
 				article_message_VO.setMsg_content(msg_content);
 
 				// Send the use back to the form, if there were errors
@@ -209,7 +210,7 @@ public class Article_message_Servlet extends HttpServlet {
 				
 				/***************************2.開始新增資料***************************************/
 				Article_message_Service article_message_Svc = new Article_message_Service();
-				article_message_VO = article_message_Svc.addArticle_message(mem_no, frm_art_no, msg_time, msg_content);
+				article_message_VO = article_message_Svc.addArticle_message(mem_no, frm_art_no, msg_content);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				String url = "/back-end/article_message/listAllArticle_message.jsp";

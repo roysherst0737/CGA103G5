@@ -471,7 +471,8 @@ div.col-sm-12>button.btn {
 	}
 	document.querySelector('.dataTables_length>label').innerHTML=document.querySelector('.dataTables_length>label').innerHTML.replace("Show","顯示");
 	document.querySelector('.dataTables_length>label').innerHTML=document.querySelector('.dataTables_length>label').innerHTML.replace("entries","項");
-	document.querySelector('.dataTables_filter>label').innerHTML=document.querySelector('.dataTables_filter>label').innerHTML.replace("Search","全局搜尋");
+// 	document.querySelector('.dataTables_filter>label').innerHTML=document.querySelector('.dataTables_filter>label').innerHTML.replace("Search","全局搜尋");
+// 	document.querySelector('.dataTables_filter>label').innerHTML=document.querySelector('.dataTables_filter>label').textContent="全局搜尋";
 	document.querySelector('#dataTables_info').innerHTML=document.querySelector('#dataTables_info').innerHTML.replace("Showing","總共");
 	document.querySelector('#dataTables_info').innerHTML=document.querySelector('#dataTables_info').innerHTML.replace("entries","項");
 	document.querySelector('#dataTables_previous').innerHTML=document.querySelector('#dataTables_previous').innerHTML.replace("Previous","前一頁");

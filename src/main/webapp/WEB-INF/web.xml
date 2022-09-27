@@ -187,6 +187,22 @@
 		<servlet-name>New_message</servlet-name>
 		<url-pattern>/front-end/forum_article/new_msg.do</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Article_message_report_Servlet</servlet-name>
+		<servlet-class>com.article_message_report.controller.Article_message_report_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Article_message_report_Servlet</servlet-name>
+		<url-pattern>/back-end/article_message_report/article_message_report.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Frm_status_Servlet</servlet-name>
+		<servlet-class>com.forum.controller.Forum_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Frm_status_Servlet</servlet-name>
+		<url-pattern>/back-end/forum/forum1.do</url-pattern>
+	</servlet-mapping>
 
 	<!-- 管理員 -->
 	<servlet>

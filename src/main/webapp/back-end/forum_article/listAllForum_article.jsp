@@ -82,7 +82,6 @@ pageContext.setAttribute("list", list);
 					<div class="row">
 						<div class="col-sm-6">
 							<h3 class="mb-0 font-weight-bold">討論區管理員</h3>
-							<p>上次登入：21小時前</p>
 						</div>
 						<div class="col-sm-6">
 							<div class="d-flex align-items-center justify-content-md-end">

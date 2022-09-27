@@ -102,7 +102,7 @@ pageContext.setAttribute("list", list);
 								<th>活動名稱</th>
 								<th>廠商問卷建立時間</th>
 								<th>廠商問卷修改時間</th>
-								<th>修改活動編號</th>
+<!-- 								<th>修改活動編號</th> -->
 								<th>選擇題目</th>
 <!-- 								<th>刪除</th> -->
 							</tr>
@@ -115,16 +115,16 @@ pageContext.setAttribute("list", list);
 									<td>${firm_surveyVO.actVO.act_name}</td>
 									<td>${firm_surveyVO.survey_build_time}</td>
 									<td>${firm_surveyVO.survey_revise_time}</td>
-									<td>
-										<FORM METHOD="post"
-											ACTION="<%=request.getContextPath()%>/back-end/firm_survey/firm_survey.do"
-											style="margin-bottom: 0px;">
-											<input type="submit" value="修改"> <input type="hidden"
-												name="firm_survey_no"
-												value="${firm_surveyVO.firm_survey_no}"> <input
-												type="hidden" name="action" value="getOne_For_Update">
-										</FORM>
-									</td>
+<!-- 									<td> -->
+<!-- 										<FORM METHOD="post" -->
+<%-- 											ACTION="<%=request.getContextPath()%>/back-end/firm_survey/firm_survey.do" --%>
+<!-- 											style="margin-bottom: 0px;"> -->
+<!-- 											<input type="submit" value="修改"> <input type="hidden" -->
+<!-- 												name="firm_survey_no" -->
+<%-- 												value="${firm_surveyVO.firm_survey_no}"> <input --%>
+<!-- 												type="hidden" name="action" value="getOne_For_Update"> -->
+<!-- 										</FORM> -->
+<!-- 									</td> -->
 
 									<td><a
 										href="<%=request.getContextPath()%>/back-end/question_list/listQuestion_list.jsp?${firm_surveyVO.firm_survey_no}">
@@ -151,7 +151,7 @@ pageContext.setAttribute("list", list);
 								<th>活動名稱</th>
 								<th>廠商問卷建立時間</th>
 								<th>廠商問卷修改時間</th>
-								<th>修改</th>
+<!-- 								<th>修改</th> -->
 								<th>選擇題目</th>
 <!-- 								<th>刪除</th> -->
 							</tr>

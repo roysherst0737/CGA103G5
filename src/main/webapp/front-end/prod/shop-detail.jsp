@@ -181,7 +181,8 @@ session.setAttribute("url", url);
 						<div class="price-box-bar">
 							<div class="cart-and-bay-btn">
 								
-								<c:if test="${prodVO.prod_status == 1 && prodVO.prod_stock>=1}">
+								<c:choose>
+								<c:when test="${prodVO.prod_status == 1 && prodVO.prod_stock>=1}">
 								<FORM name="cart" action="cart.do" method="post">
 								<c:choose>
 									<c:when test="${empty sessionScope.user}">
@@ -197,7 +198,11 @@ session.setAttribute("url", url);
                                 <input type="hidden" name="mem_no" value="${user.mem_no}">
 								<input type="hidden" name="action" value="insertByDetail">	
 								</FORM>
-								</c:if>
+								</c:when>
+									<c:otherwise>									
+										<input disabled class="btn btn-warning" id="cart2" type="submit" value="目前無庫存">
+									</c:otherwise>
+								</c:choose>
 								
 							</div>
 						</div>

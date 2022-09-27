@@ -315,7 +315,36 @@ a.booking:hover {
                           				<input type="text" class="form-control"  id= "permission"  disabled="disabled">
                           				<input type="hidden" id ="permission_value"  value="${sessionScope.user.getMem_permission()}"  name="mem_permission"> 
                          			  </div>
-				                    </div>								
+				                    </div>
+				                     <div class="form-group row">
+				                          <label class="col-sm-3 col-form-label">使用狀態</label>
+				                          <div class="col-sm-9">
+<!-- 				                            <select class="form-control"> -->
+<!-- 				                              <option>男</option> -->
+<!-- 				                              <option>女</option> -->
+<!-- 				                              <option>多元性別</option> -->
+<!-- 				                            </select> -->
+												<div class="form-group row">
+				                           			  <div class="col-sm-4">
+				                           				 <div class="form-check">
+				                           				   <label class="form-check-label">
+				                              				  <input type="radio" class="form-check-input" name="status" id="statusRadios0" value="0" >
+				                                				啟用
+				                             					 <i class="input-helper"></i><i class="input-helper"></i></label>
+				                            			</div>
+				                          			 </div>
+				                          			 <div class="col-sm-4">
+				                           				 <div class="form-check">
+				                           				   <label class="form-check-label">
+				                            				   <input type="radio" class="form-check-input" name="status" id="statusRadios1" value="1" title="停用後將不會收到最新消息通知">
+				                              					  停用
+				                              						<i class="input-helper"></i><i class="input-helper"></i></label>
+				                          				  </div>
+				                       				   </div>			                          			
+				                       				   <input type="hidden" id ="status_value"  value="${sessionScope.user.getStatus()}" name="mem_status"> 				                       				                        	
+				                          			 </div>
+				                          </div>
+				                        </div>								
 									<button id="btn" type="submit" class="btn btn-primary mr-2">確認送出</button>
 									<button type="reset" class="btn btn-light">重填</button>
 								</div>
@@ -323,7 +352,6 @@ a.booking:hover {
 						</div>
 					</div>
 					<input type="hidden" name="Update" value="Mem_Update">
-					<input type="hidden" name="status" value="${sessionScope.user.getStatus()}">
 					<input type="hidden" name="mem_no" value="${sessionScope.user.getMem_no()}">
 					<input type="hidden" name="mem_cert_status" value="${sessionScope.user.getMem_cert_status()}">
 				</form>

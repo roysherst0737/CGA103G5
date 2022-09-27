@@ -1,7 +1,9 @@
 package com.order.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -123,10 +125,15 @@ public class Order_Front_Servlet extends HttpServlet {
 				Mem_Coupon_Service memcouponSvc = new Mem_Coupon_Service();
 				Mem_Coupon_VO nowUseCoupon = memcouponSvc.getOneCoupon(couponVO.getCoupon_no(), user.getMem_no());
 				if(couponVO!=null) {
+					
+					Timestamp timestamp = new Timestamp((new Date()).getTime());
 					if((nowUseCoupon.getRemain_amount()-1)<0) {
 						errorMsgs.add("會員優惠券已用完");
+					}else {
+						if ((nowUseCoupon.getCouponVO().getLaunch_time().compareTo(timestamp) > 0) || (nowUseCoupon.getCouponVO().getOff_time().compareTo(timestamp) < 0)) {
+							errorMsgs.add("不在優惠券使用期間!");
+						}
 					}
-					
 					if (!errorMsgs.isEmpty()) {
 						req.setAttribute("orderVO", orderVO);
 						RequestDispatcher failureView = req

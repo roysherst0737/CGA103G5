@@ -402,11 +402,11 @@ CREATE TABLE `ans_list` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- 建立 討論區 表格
-CREATE TABLE `forum` (
-  `frm_no` int NOT NULL AUTO_INCREMENT,
-  `frm_name_no` varchar(200) DEFAULT NULL,
-  `frm_status` tinyint NOT NULL DEFAULT '1',
-  `frm_img` longblob, 
+CREATE TABLE forum (
+  frm_no int NOT NULL AUTO_INCREMENT,
+  frm_name_no varchar(200) DEFAULT NULL,
+  frm_status tinyint NOT NULL DEFAULT '1',
+  frm_img longblob, 
   PRIMARY KEY (`frm_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -1140,19 +1140,19 @@ VALUES(3, 3, 3, 3, 3, 3, 3, 1);
 -- 建立 活動 假資料
 INSERT INTO act(
 pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status
-)values("1","調酒品嘗","先欣賞一下，看看雞尾酒的顏色與裝飾，猜想一下這杯調酒會有怎樣的口感？並在細聞香味後抱著迫不及待的心，品嘗一下酒在低溫時的口感。","桃園","2022-10-10 12:00:00","2022-12-12 12:00:00","60","20","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00", 1);
+)values("1","調酒品嘗","先欣賞一下，看看雞尾酒的顏色與裝飾，猜想一下這杯調酒會有怎樣的口感？並在細聞香味後抱著迫不及待的心，品嘗一下酒在低溫時的口感。","桃園","2020-10-10 12:00:00","2022-12-12 12:00:00","60","20","2020-10-20 12:00:00","2022-11-11 12:00:00","2021-11-20 12:00:00","2022-11-20 18:00:00", 1);
 INSERT INTO act(
 pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
 )values("2","調酒教學","教學自己在家就能動手做的4款調酒，還有隱藏版柯夢波丹雞尾酒教學！","台北","2022-10-10 12:00:00","2022-12-12 12:00:00","60","20","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00");
 INSERT INTO act(
 pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status
-)values("3","花式調酒","花式調酒是由調酒師利用酒瓶以及任何調酒器具、杯具做出絢麗動作演變而來。","高雄","2022-10-10 12:00:00","2022-12-12 12:00:00","60","20","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00", 1);
+)values("3","花式調酒","花式調酒是由調酒師利用酒瓶以及任何調酒器具、杯具做出絢麗動作演變而來。","高雄","2020-10-10 12:00:00","2022-12-12 12:00:00","60","20","2020-10-15 12:00:00","2022-11-11 12:00:00","2021-11-20 12:00:00","2022-11-20 18:00:00", 1);
 INSERT INTO act(
 pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
 )values("1","風城酒精巴士","上班上到懷疑人生？快來酒精巴士跟親朋好友一起醉到不省人事，忘卻一切煩憂！","新竹","2022-10-10 12:00:00","2022-12-12 12:00:00","30","10","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00");
 INSERT INTO act(
 pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time, act_status
-)values("2","台中酒吧大集合","台中所有知名酒吧齊聚一堂，讓你一次喝到所有厲害的調酒！","台中","2022-10-10 12:00:00","2022-12-12 12:00:00","80","50","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00", 1);
+)values("2","台中酒吧大集合","台中所有知名酒吧齊聚一堂，讓你一次喝到所有厲害的調酒！","台中","2020-10-10 12:00:00","2022-12-12 12:00:00","80","50","2020-10-15 12:00:00","2022-11-11 12:00:00","2021-11-20 12:00:00","2022-11-20 18:00:00", 1);
 INSERT INTO act(
 pub_no, act_name, act_detail, act_loc, act_launch_time, act_off_time, max_count, min_count, sign_up_begin_time, sign_up_end_time, act_start_time, act_end_time
 )values("3","原民風小米酒大賞","沉浸在大自然，跟台東在地原民長老一起體驗傳統原民生活點滴。","台東","2022-10-10 12:00:00","2022-12-12 12:00:00","35","10","2022-10-10 12:00:00","2022-11-11 12:00:00","2022-11-20 12:00:00","2022-11-20 18:00:00");
@@ -1190,21 +1190,21 @@ act_no, act_pic, act_pic_name
 )values(7,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/pub-product.jpeg"),"雨都主題調酒圖片1");
 INSERT INTO act_pic(
 act_no, act_pic, act_pic_name
-)values(8,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/pub9.jpeg"),"古城威士忌大賞圖片1");
+)values(1,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/pub9.jpeg"),"古城威士忌大賞圖片1");
 INSERT INTO act_pic(
 act_no, act_pic, act_pic_name
-)values(9,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/pub6.jpeg"),"海洋 X 伏特加圖片1");
+)values(1,LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/pub6.jpeg"),"海洋 X 伏特加圖片1");
 
 -- 建立 活動報名 假資料
-INSERT INTO act_sign_up(
-act_no, mem_no, accompany_count
-)values(1,1,0);
-INSERT INTO act_sign_up(
-act_no, mem_no, accompany_count
-)values(2,2,0);
-INSERT INTO act_sign_up(
-act_no, mem_no, accompany_count
-)values(3,3,0);
+-- INSERT INTO act_sign_up(
+-- act_no, mem_no, accompany_count
+-- )values(1,1,0);
+-- INSERT INTO act_sign_up(
+-- act_no, mem_no, accompany_count
+-- )values(2,2,0);
+-- INSERT INTO act_sign_up(
+-- act_no, mem_no, accompany_count
+-- )values(3,3,0);
 
 -- 建立 廠商問卷 假資料
 INSERT INTO firm_survey(
@@ -1226,12 +1226,33 @@ que
 )values("對本活動有任何感想嗎?");
 INSERT INTO question(
 que
+)values("對本次活動時間安排是否有建議?");
+INSERT INTO question(
+que
 )values("1~10分給本活動幾分?");
+INSERT INTO question(
+que
+)values("對服務人員的滿意程度如何?");
+INSERT INTO question(
+que
+)values("從什麼渠道得知此活動?");
+INSERT INTO question(
+que
+)values("此次活動是否有攜伴?");
+INSERT INTO question(
+que
+)values("下次還會來參加此類活動嗎??");
 
 -- 建立 題目清單 假資料
 INSERT INTO question_list(
 question_no, firm_survey_no
 )values(1,1);
+INSERT INTO question_list(
+question_no, firm_survey_no
+)values(5,1);
+INSERT INTO question_list(
+question_no, firm_survey_no
+)values(7,1);
 INSERT INTO question_list(
 question_no, firm_survey_no
 )values(2,2);
@@ -1240,15 +1261,15 @@ question_no, firm_survey_no
 )values(3,3);
 
 -- 建立 答案清單 假資料
-INSERT INTO ans_list(
-question_no, firm_survey_no, mem_no, ans
-)values(1,1,1,"還好");
-INSERT INTO ans_list(
-question_no, firm_survey_no, mem_no, ans
-)values(2,2,2,"時間安排再加強");
-INSERT INTO ans_list(
-question_no, firm_survey_no, mem_no, ans
-)values(3,3,3,"10分");
+-- INSERT INTO ans_list(
+-- question_no, firm_survey_no, mem_no, ans
+-- )values(1,1,1,"還好");
+-- INSERT INTO ans_list(
+-- question_no, firm_survey_no, mem_no, ans
+-- )values(2,2,2,"時間安排再加強");
+-- INSERT INTO ans_list(
+-- question_no, firm_survey_no, mem_no, ans
+-- )values(3,3,3,"10分");
 
 -- 建立 討論區 假資料
 INSERT INTO forum(
@@ -1275,7 +1296,7 @@ art_title,
 art_content,
 art_img,
 art_status
-)values(1,1,"夏日調酒節","10/7，地點:台北世貿一館，活動:國際夏日調酒節","null",1);
+)values(1,1,"夏日調酒節","10/7，地點:台北世貿一館，活動:國際夏日調酒節",LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/strainer3.jpg"),1);
 INSERT INTO forum_article(
 frm_no,
 mem_no,
@@ -1283,7 +1304,7 @@ art_title,
 art_content,
 art_img,
 art_status
-)values(2,2,"單身男女揪團不LONEY","星期六晚上8點，地點:LonelyBar，各位朋友不見不散","null",1);
+)values(2,2,"單身男女揪團不LONEY","星期六晚上8點，地點:LonelyBar，各位朋友不見不散",LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/pub5.webp"),1);
 INSERT INTO forum_article(
 frm_no,
 mem_no,
@@ -1291,7 +1312,7 @@ art_title,
 art_content,
 art_img,
 art_status
-)values(3,3,"推薦!!!!","推薦大家購買長島冰茶調酒組合，很適合想一杯就醉的~","null",1);
+)values(3,3,"推薦!!!!","推薦大家購買長島冰茶調酒組合，很適合想一杯就醉的~",LOAD_FILE("C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/pub-product.jpeg"),1);
 
 -- 建立 討論區文章檢舉 假資料
 INSERT INTO forum_article_report(
@@ -1299,13 +1320,13 @@ mem_no,
 frm_art_no,
 rpt_content,
 mng_no
-)values(1,1,"這活動真的很爛，尤其那個主持人很醜",1);
+)values(1,1,"這活動真的很爛，尤其那個主持人很討厭又很醜",1);
 INSERT INTO forum_article_report(
 mem_no,
 frm_art_no,
 rpt_content,
 mng_no
-)values(2,2,"揪團一起喝酒，醜男不要來，只要美女",1);
+)values(2,2,"揪團一起喝酒，醜男不要來，只要美女相伴",1);
 INSERT INTO forum_article_report(
 mem_no,
 frm_art_no,
@@ -1339,13 +1360,13 @@ mem_no,
 art_msg_no,
 rpt_msg_content,
 mng_no
-) VALUES (1,1,"妳是活動裡的那個女生嗎?可以給我妳的手機嗎?",1);
+) VALUES (1,1,"妳是那天參加活動的那個女生嗎?可以給我妳的手機嗎?",1);
 INSERT INTO article_message_report(
 mem_no,
 art_msg_no,
 rpt_msg_content,
 mng_no
-) VALUES (2,2,"你不就是那天一起喝酒的醜男嗎?",1);
+) VALUES (2,2,"你不就是那天一起喝酒，長的很抱歉的醜男嗎?",1);
 INSERT INTO article_message_report(
 mem_no,
 art_msg_no,
@@ -1353,7 +1374,6 @@ rpt_msg_content,
 mng_no
 ) VALUES (3,3,"這家的調酒器又貴又難用大家不要來買。",1);
 
--- 建立 最新消息 假資料
 INSERT INTO latest_news(
 news_content,
 news_status
@@ -1361,7 +1381,7 @@ news_status
 INSERT INTO latest_news(
 news_content,
 news_status
-) VALUES ('輸入優惠卷號碼，結帳免運費，再享95折', 1);
+) VALUES ('輸入優惠卷號碼:TiBaMe520，結帳免運費，再享95折', 1);
 INSERT INTO latest_news(
 news_content,
 news_status

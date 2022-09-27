@@ -27,18 +27,21 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 	
 	}
 	private static final String INSERT_STMT = 
-			"INSERT INTO article_message (mem_no,frm_art_no,msg_time,msg_content) VALUES (?, ?, ?, ?)";
+			"INSERT INTO article_message (mem_no,frm_art_no,msg_content) VALUES (?,?, ?)";
 		private static final String GET_ALL_STMT = 
-			"SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content FROM article_message order by art_msg_no";
+			"SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content,msg_status FROM article_message order by art_msg_no";
 		private static final String GET_ONE_STMT = 
-			"SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content FROM article_message where art_msg_no = ?";
+			"SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content,msg_status FROM article_message where art_msg_no = ?";
 		private static final String DELETE = 
 			"DELETE FROM article_message where art_msg_no = ?";
 		private static final String UPDATE = 
-			"UPDATE article_message set art_msg_no = ?,mem_no = ?,frm_art_no = ?,msg_time = ?,msg_content = ? where art_msg_no = ?";
+			"UPDATE article_message set art_msg_no = ?,msg_status = ?,frm_art_no = ? where art_msg_no = ?";
 		
 		private static final String GET_ALL_from_frm_art_no = 
-			"SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content FROM article_message where  frm_art_no=?";
+			"SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content,msg_status FROM article_message where  frm_art_no=?";
+		
+		private static final String ChangeStatus = 
+			"UPDATE article_message set msg_status = msg_status -1 where art_msg_no = ?";
 
 	@Override
 	public void insert(Article_message_VO article_message_VO) {
@@ -53,8 +56,9 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 			
 			pstmt.setInt(1, article_message_VO.getMem_no());
 			pstmt.setInt(2, article_message_VO.getFrm_art_no());
-			pstmt.setTimestamp(3, article_message_VO.getMsg_time());
-			pstmt.setString(4, article_message_VO.getMsg_content());
+			pstmt.setString(3, article_message_VO.getMsg_content());
+//			pstmt.setTimestamp(3, article_message_VO.getMsg_time());
+//			pstmt.setInt(4, article_message_VO.getMsg_status());
 			
 
 			pstmt.executeUpdate();
@@ -94,11 +98,9 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			pstmt.setInt(1, article_message_VO.getMem_no());
-			pstmt.setInt(2, article_message_VO.getFrm_art_no());
-			pstmt.setTimestamp(3, article_message_VO.getMsg_time());
-			pstmt.setString(4, article_message_VO.getMsg_content());
-			pstmt.setInt(5, article_message_VO.getArt_msg_no());
+			pstmt.setInt(1, article_message_VO.getArt_msg_no());
+			pstmt.setInt(2, article_message_VO.getMsg_status());
+			pstmt.setInt(3, article_message_VO.getFrm_art_no());
 			
 
 			pstmt.executeUpdate();
@@ -192,6 +194,7 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 				article_message_VO.setFrm_art_no(rs.getInt("frm_art_no"));
 				article_message_VO.setMsg_time(rs.getTimestamp("msg_time"));
 				article_message_VO.setMsg_content(rs.getString("msg_content"));
+				article_message_VO.setMsg_status(rs.getInt("msg_status"));
 				
 			}
 
@@ -248,6 +251,7 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 				article_message_VO.setFrm_art_no(rs.getInt("frm_art_no"));
 				article_message_VO.setMsg_time(rs.getTimestamp("msg_time"));
 				article_message_VO.setMsg_content(rs.getString("msg_content"));
+				article_message_VO.setMsg_status(rs.getInt("msg_status"));
 				
 				list.add(article_message_VO); 
 			}
@@ -306,6 +310,7 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 				article_message_VO.setFrm_art_no(rs.getInt("frm_art_no"));
 				article_message_VO.setMsg_time(rs.getTimestamp("msg_time"));
 				article_message_VO.setMsg_content(rs.getString("msg_content"));
+				article_message_VO.setMsg_status(rs.getInt("msg_status"));
 				
 				list.add(article_message_VO); 
 			}
@@ -340,5 +345,45 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 		}
 		return list;
 	}
+	
+	@Override
+	public Integer ChangeStatus(Integer art_msg_no) {
+		
+		Connection con = null;
+        PreparedStatement pstmt = null;
+
+        try {
+
+            con = ds.getConnection();
+            pstmt = con.prepareStatement(ChangeStatus);
+
+            pstmt.setInt(1, art_msg_no);
+
+            pstmt.executeUpdate();
+
+            // Handle any driver errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return art_msg_no;
+    }
+
 	
 }

@@ -67,7 +67,6 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<h3 class="mb-0 font-weight-bold">討論區管理員</h3>
-							<p>上次登入：21小時前</p>
 						</div>
 						<div class="col-sm-6">
 							<div class="d-flex align-items-center justify-content-md-end">
@@ -101,11 +100,6 @@
 												</c:forEach>
 											</ul>
 										</c:if>
-
-
-										
-
-
 										<jsp:useBean id="forum_article_Svc" scope="page"
 											class="com.forum_article.model.Forum_article_Service" />
 
@@ -120,9 +114,6 @@
 												value="getOne_For_Display"> <input type="submit"
 												value="送出" class="button">
 										</FORM>
-
-
-
 										<FORM METHOD="post" ACTION="forum_article.do">
 											<b>選擇討論區編號 :</b> <select size="1" name="frm_art_no">
 												<c:forEach var="forum_article_VO"

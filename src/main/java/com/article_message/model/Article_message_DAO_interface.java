@@ -11,5 +11,5 @@ public interface Article_message_DAO_interface{
 	
 	public List<Article_message_VO> getAllfromfrm_art_no(Integer frm_art_no);
 	
-	
+	public Integer ChangeStatus(Integer art_msg_no);
 }

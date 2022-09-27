@@ -70,7 +70,7 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 					<div class="row">
 						<div class="col-sm-6">
 							<h3 class="mb-0 font-weight-bold">活動管理員</h3>
-							<p>上次登入：21小時前</p>
+							
 						</div>
 						<div class="col-sm-6">
 							<div class="d-flex align-items-center justify-content-md-end">
@@ -132,7 +132,6 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 												<th>活動地址</th>
 												<th>上架時間</th>
 												<th>下架時間</th>
-												<th>當前報名人數</th>
 												<th>容納人數上限</th>
 												<th>容納人數下限</th>
 												<th>報名開始時間</th>
@@ -152,7 +151,6 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 												<td><%=actVO.getAct_loc()%></td>
 												<td><%=actVO.getAct_launch_time()%></td>
 												<td><%=actVO.getAct_off_time()%></td>
-												<td><%=actVO.getCurrent_count()%></td>
 												<td><%=actVO.getMax_count()%></td>
 												<td><%=actVO.getMin_count()%></td>
 												<td><%=actVO.getSign_up_begin_time()%></td>

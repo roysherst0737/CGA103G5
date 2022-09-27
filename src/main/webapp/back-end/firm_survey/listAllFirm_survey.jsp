@@ -98,18 +98,20 @@ pageContext.setAttribute("list", list);
 						<thead>
 							<tr>
 								<th>廠商問卷編號</th>
+								<th>活動編號</th>
 								<th>活動名稱</th>
 								<th>廠商問卷建立時間</th>
 								<th>廠商問卷修改時間</th>
 								<th>修改活動編號</th>
 								<th>選擇題目</th>
-								<th>刪除</th>
+<!-- 								<th>刪除</th> -->
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="firm_surveyVO" items="${list}">
 								<tr>
 									<td>${firm_surveyVO.firm_survey_no}</td>
+									<td>${firm_surveyVO.actVO.act_no}</td>
 									<td>${firm_surveyVO.actVO.act_name}</td>
 									<td>${firm_surveyVO.survey_build_time}</td>
 									<td>${firm_surveyVO.survey_revise_time}</td>
@@ -129,28 +131,29 @@ pageContext.setAttribute("list", list);
 											<input type="submit" value="問卷題目管理">
 									</a></td>
 
-									<td>
-										<FORM METHOD="post"
-											ACTION="<%=request.getContextPath()%>/back-end/firm_survey/firm_survey.do"
-											style="margin-bottom: 0px;">
-											<input type="submit" value="刪除"> <input type="hidden"
-												name="firm_survey_no"
-												value="${firm_surveyVO.firm_survey_no}"> <input
-												type="hidden" name="action" value="delete">
-										</FORM>
-									</td>
+<!-- 									<td> -->
+<!-- 										<FORM METHOD="post" -->
+<%-- 											ACTION="<%=request.getContextPath()%>/back-end/firm_survey/firm_survey.do" --%>
+<!-- 											style="margin-bottom: 0px;"> -->
+<!-- 											<input type="submit" value="刪除"> <input type="hidden" -->
+<!-- 												name="firm_survey_no" -->
+<%-- 												value="${firm_surveyVO.firm_survey_no}"> <input --%>
+<!-- 												type="hidden" name="action" value="delete"> -->
+<!-- 										</FORM> -->
+<!-- 									</td> -->
 								</tr>
 							</c:forEach>
 						</tbody>
 						<tfoot>
 							<tr>
 								<th>廠商問卷編號</th>
+								<th>活動編號</th>
 								<th>活動名稱</th>
 								<th>廠商問卷建立時間</th>
 								<th>廠商問卷修改時間</th>
 								<th>修改</th>
 								<th>選擇題目</th>
-								<th>刪除</th>
+<!-- 								<th>刪除</th> -->
 							</tr>
 						</tfoot>
 					</table>

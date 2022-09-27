@@ -175,8 +175,8 @@ h2 {
 								<th>報名時間</th>
 								<th>攜伴人數</th>
 								<th>寄送通知</th>
-								<th>修改</th>
-								<th>刪除</th>
+<!-- 								<th>修改</th> -->
+<!-- 								<th>刪除</th> -->
 							</tr>
 						</thead>
 						<tbody>
@@ -205,24 +205,24 @@ h2 {
 												<a class="close-btn popup-close" href="#">x</a>
 											</div>
 										</div></td>
-									<td>
-										<FORM METHOD="post"
-											ACTION="<%=request.getContextPath()%>/back-end/act_sign_up/act_sign_up.do"
-											style="margin-bottom: 0px;">
-											<input type="submit" value="修改"> <input type="hidden"
-												name="sign_up_no" value="${act_sign_upVO.sign_up_no}">
-											<input type="hidden" name="action" value="getOne_For_Update">
-										</FORM>
-									</td>
-									<td>
-										<FORM METHOD="post"
-											ACTION="<%=request.getContextPath()%>/back-end/act_sign_up/act_sign_up.do"
-											style="margin-bottom: 0px;">
-											<input type="submit" value="刪除"> <input type="hidden"
-												name="sign_up_no" value="${act_sign_upVO.sign_up_no}">
-											<input type="hidden" name="action" value="delete">
-										</FORM>
-									</td>
+<!-- 									<td> -->
+<!-- 										<FORM METHOD="post" -->
+<%-- 											ACTION="<%=request.getContextPath()%>/back-end/act_sign_up/act_sign_up.do" --%>
+<!-- 											style="margin-bottom: 0px;"> -->
+<!-- 											<input type="submit" value="修改"> <input type="hidden" -->
+<%-- 												name="sign_up_no" value="${act_sign_upVO.sign_up_no}"> --%>
+<!-- 											<input type="hidden" name="action" value="getOne_For_Update"> -->
+<!-- 										</FORM> -->
+<!-- 									</td> -->
+<!-- 									<td> -->
+<!-- 										<FORM METHOD="post" -->
+<%-- 											ACTION="<%=request.getContextPath()%>/back-end/act_sign_up/act_sign_up.do" --%>
+<!-- 											style="margin-bottom: 0px;"> -->
+<!-- 											<input type="submit" value="刪除"> <input type="hidden" -->
+<%-- 												name="sign_up_no" value="${act_sign_upVO.sign_up_no}"> --%>
+<!-- 											<input type="hidden" name="action" value="delete"> -->
+<!-- 										</FORM> -->
+<!-- 									</td> -->
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -235,8 +235,8 @@ h2 {
 								<th>報名時間</th>
 								<th>攜伴人數</th>
 								<th>寄送通知</th>
-								<th>修改</th>
-								<th>刪除</th>
+<!-- 								<th>修改</th> -->
+<!-- 								<th>刪除</th> -->
 							</tr>
 						</tfoot>
 					</table>

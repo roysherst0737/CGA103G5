@@ -179,7 +179,8 @@ session.setAttribute("url", url);
 														<input type="hidden" name="prod_no" value="${prodVO.prod_no}">
 														<input type="hidden" name="prod_stock" value="${prodVO.prod_stock}">
                                                         <input type="hidden" name="mem_no" value="${user.mem_no}">
-														<input type="hidden" name="action" value="insert">	
+                                                        <input type="hidden" name="url" value="<%=Integer.parseInt(request.getQueryString())%>">
+														<input type="hidden" name="action" value="insertByType">	
 														</FORM>
 														</c:when>
 															<c:otherwise>
@@ -240,7 +241,8 @@ session.setAttribute("url", url);
 													<input type="hidden" name="prod_no" value="${prodVO.prod_no}">
 													<input type="hidden" name="prod_stock" value="${prodVO.prod_stock}">
                                                     <input type="hidden" name="mem_no" value="${user.mem_no}">
-													<input type="hidden" name="action" value="insert">	
+                                                    <input type="hidden" name="url" value="<%=Integer.parseInt(request.getQueryString())%>">
+													<input type="hidden" name="action" value="insertByType">	
 													</FORM>
 													</c:when>
 														<c:otherwise>

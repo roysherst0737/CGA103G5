@@ -104,7 +104,7 @@ Firm_survey_VO firm_surveyVO = (Firm_survey_VO) request.getAttribute("firm_surve
 											</c:forEach>
 										</ul>
 									</c:if>
-
+<jsp:useBean id="actSvc" scope="page" class="com.act.model.Act_Service" />
 									<h4 class="card-title">新增活動問卷</h4>
 									<table id="dataTables" class="stripe table-hover"
 										style="width: 100%">
@@ -112,8 +112,11 @@ Firm_survey_VO firm_surveyVO = (Firm_survey_VO) request.getAttribute("firm_surve
 											<table>
 												<tr>
 													<td>活動編號:</td>
-													<td><input type="TEXT" name="act_no" size="45"
-														value="<%=(firm_surveyVO == null) ? "" : firm_surveyVO.getAct_no()%>" /></td>
+													<td><select size="1" name="act_no">
+														<c:forEach var="actVO" items="${actSvc.all}">
+															<option value="${actVO.act_no}">${actVO.act_no}
+														</c:forEach>
+													</select></td>
 												</tr>
 											</table>
 											

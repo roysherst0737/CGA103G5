@@ -40,4 +40,16 @@ public class Ans_list_VO implements Serializable{
 	public void setAns(String ans) {
 		this.ans = ans;
 	}
+	
+	public com.question.model.Question_VO getQuestionVO() {
+	    com.question.model.Question_Service questionSvc = new com.question.model.Question_Service();
+	    com.question.model.Question_VO questionVO = questionSvc.getOneQuestion(question_no);
+	    return questionVO;
+    }
+	
+	public com.mem.model.Mem_VO getMemVO() {
+	    com.mem.model.Mem_Service memSvc = new com.mem.model.Mem_Service();
+	    com.mem.model.Mem_VO memVO = memSvc.getOneMem(mem_no);
+	    return memVO;
+    }
 }

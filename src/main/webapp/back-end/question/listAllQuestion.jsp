@@ -89,10 +89,7 @@ pageContext.setAttribute("list", list);
 											<a href='addQuestion.jsp'><img src="./images/plus.png"
 												width="30px" height="30px"></a>
 										</button>
-										<button style="margin-right: 10px;">
-											<a href="selectQuestion.jsp"><img
-												src="./images/search2.png" width="30px" height="30px"></a>
-										</button>
+
 
 									</div>
 								</div>

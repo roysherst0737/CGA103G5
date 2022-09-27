@@ -41,21 +41,13 @@ String[] numberArr = { "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh",
 // actVO.getSign_up_end_time();
 
 Date date = new Date();
-// SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
-// System.out.println(dateFormat.format(date));
 
 int compareTime = 0;
 Timestamp timestamp = new Timestamp((new Date()).getTime());
-if (actVO.getSign_up_begin_time().compareTo(timestamp) > 0) {
+if (actVO.getSign_up_begin_time().compareTo(timestamp) > 0 || actVO.getSign_up_end_time().compareTo(timestamp) < 0) {
 	compareTime = -1;
-} else {
-	compareTime = 0;
 }
-if (actVO.getSign_up_end_time().compareTo(timestamp) < 0) {
-	compareTime = 1;
-} else {
-	compareTime = 0;
-}
+
 pageContext.setAttribute("compareTime", compareTime);
 %>
 
@@ -233,8 +225,11 @@ pageContext.setAttribute("compareTime", compareTime);
 								<div class="form-group quantity-box">
 
 
-
 									<FORM METHOD="post" ACTION="my_sign_up.do" name="form1">
+										<input type="hidden" name="sign_up_begin_time"
+											value="<%=actVO.getSign_up_begin_time()%>"> <input
+											type="hidden" name="sign_up_end_time"
+											value="<%=actVO.getSign_up_end_time()%>">
 										<table>
 
 											<tr>
@@ -281,36 +276,19 @@ pageContext.setAttribute("compareTime", compareTime);
 										</c:choose>
 
 									</FORM>
+									<c:if test="${not empty errorMsgs}">
+										<ul>
+											<c:forEach var="message" items="${errorMsgs}">
+												<li style="color: red">${message}</li>
+											</c:forEach>
+										</ul>
+									</c:if>
 
 								</div>
 							</li>
 						</ul>
 
-						<div class="price-box-bar">
-							<div class="cart-and-bay-btn">
-								<a class="btn hvr-hover" data-fancybox-close="" href="#">Buy
-									New</a> <a class="btn hvr-hover" data-fancybox-close="" href="#">Add
-									to cart</a>
-							</div>
-						</div>
-
-						<div class="add-to-btn">
-							<div class="add-comp">
-								<a class="btn hvr-hover" href="#"><i class="fas fa-heart"></i>
-									Add to wishlist</a> <a class="btn hvr-hover" href="#"><i
-									class="fas fa-sync-alt"></i> Add to Compare</a>
-							</div>
-							<div class="share-bar">
-								<a class="btn hvr-hover" href="#"><i class="fab fa-facebook"
-									aria-hidden="true"></i></a> <a class="btn hvr-hover" href="#"><i
-									class="fab fa-google-plus" aria-hidden="true"></i></a> <a
-									class="btn hvr-hover" href="#"><i class="fab fa-twitter"
-									aria-hidden="true"></i></a> <a class="btn hvr-hover" href="#"><i
-									class="fab fa-pinterest-p" aria-hidden="true"></i></a> <a
-									class="btn hvr-hover" href="#"><i class="fab fa-whatsapp"
-									aria-hidden="true"></i></a>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>

@@ -83,10 +83,7 @@ Firm_survey_VO firm_surveyVO = (Firm_survey_VO) request.getAttribute("firm_surve
 											<a href='addFirm_survey.jsp'><img src="./images/plus.png"
 												width="30px" height="30px"></a>
 										</button>
-										<button style="margin-right: 10px;">
-											<a href="selectFirm_survey.jsp"><img src="./images/search2.png"
-												width="30px" height="30px"></a>
-										</button>
+
 										<button
 											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
 											type="button" id="dropdownMenu3" data-toggle="dropdown"

@@ -2,12 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.act_sign_up.model.*"%>
+<%@ page import="com.ans_list.model.*"%>
+<%@ page import="com.question.model.*"%>
 <%@ page import="com.mem.model.*"%>
 
+
 <%
-Act_sign_up_Service act_sign_upSvc = new Act_sign_up_Service();
-List<Act_sign_up_VO> list = act_sign_upSvc.getAll();
+Ans_list_Service ans_listSvc = new Ans_list_Service();
+List<Ans_list_VO> list = ans_listSvc.getAll();
 pageContext.setAttribute("list", list);
 int i = 1;
 %>
@@ -21,7 +23,7 @@ int i = 1;
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>朧醴 LonelyBar【後台】</title>
+<title>朧醴 LonelyBar【後端】</title>
 <!-- base:css -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/back-end/vendors/typicons.font/font/typicons.css">
@@ -39,11 +41,15 @@ int i = 1;
 <link rel="shortcut icon"
 	href="<%=request.getContextPath()%>/back-end/images/favicon.png" />
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-
+<script>
+	let path = window.location.pathname.substring(0, window.location.pathname
+			.lastIndexOf("/"));
+	path = path.substring(0, path.lastIndexOf("/"));
+</script>
 </head>
-
-
 <style>
+
+
 .wrap {
   text-align: center;
   padding-top: 5%;
@@ -118,6 +124,7 @@ h2 {
 </style>
 
 
+
 <body>
 	<!-- 主頁面 -->
 	<div class="container-scroller">
@@ -146,49 +153,34 @@ h2 {
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<!--你要寫的頁面  -->
-
-					<table id="dataTables" class="stripe" style="width: 100%">
-						<div class="col-sm-6">
-							<div class="d-flex align-items-center justify-content-md-end">
-								<div class="mb-3 mb-xl-0 pr-1">
-									<div class="dropdown">
-										<button style="margin-right: 10px;">
-											<a href="listAllAct_sign_up.jsp"><img
-												src="./images/home.png" width="30px" height="30px"></a>
-										</button>
-										<button style="margin-right: 10px;">
-											<a href='addAct_sign_up.jsp'><img src="./images/plus.png"
-												width="30px" height="30px"></a>
-										</button>
-
-
+					<div class="horizontal_style">
+						<table id="dataTables" class="stripe" style="width: 100%">
+							<div class="col-sm-6">
+								<div class="d-flex align-items-center justify-content-md-end">
+									<div class="mb-3 mb-xl-0 pr-1">
+										<div class="dropdown"></div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<thead>
-							<tr>
-								<th>報名編號</th>
-								<th>活動名稱</th>
-								<th>會員暱稱</th>
-								<th>會員信箱</th>
-								<th>報名時間</th>
-								<th>攜伴人數</th>
-								<th>寄送通知</th>
-								<th>修改</th>
-								<th>刪除</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="act_sign_upVO" items="${list}">
+							<thead>
 								<tr>
-									<td>${act_sign_upVO.sign_up_no}</td>
-									<td>${act_sign_upVO.actVO.act_name}</td>
-									<td>${act_sign_upVO.memVO.mem_nickname}</td>
-									<td>${act_sign_upVO.memVO.mem_email}</td>
-									<td>${act_sign_upVO.sign_up_time}</td>
-									<td>${act_sign_upVO.accompany_count}</td>
-									<td><div class="wrap">
+									<th>問卷編號</th>
+									<th>會員編號</th>
+									<th>會員暱稱</th>
+									<th>題目</th>
+									<th>回答</th>
+									<th>寄送通知</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="ans_listVO" items="${list}">
+									<tr>
+										<td>${ans_listVO.firm_survey_no}</td>
+										<td>${ans_listVO.mem_no}</td>
+										<td>${ans_listVO.memVO.mem_nickname}</td>
+										<td>${ans_listVO.questionVO.que}</td>
+										<td>${ans_listVO.ans}</td>
+										<td><div class="wrap">
 											<a class="btn popup-btn" href="#letmeopen<%=i%>">寄送email</a>
 										</div>
 										<div class="popup-wrap" id="letmeopen<%=i++%>">
@@ -198,49 +190,28 @@ h2 {
 													style="margin-bottom: 0px;">
 													<textarea name="email_content" rows="8" cols="50" placeholder="請輸入要寄送的內容" style="font-size:30px;width:950px;left:100px;"></textarea>
 													<input type="hidden" name="mem_email"
-														value="${act_sign_upVO.memVO.mem_email}"> 
+														value="${ans_listVO.memVO.mem_email}"> 
 													<input type="hidden" name="action" value="sign_up_email">
 														<input type="submit" value="寄送" style="width:150px;height:75px;font-size:30px;">
 												</FORM>
 												<a class="close-btn popup-close" href="#">x</a>
 											</div>
 										</div></td>
-									<td>
-										<FORM METHOD="post"
-											ACTION="<%=request.getContextPath()%>/back-end/act_sign_up/act_sign_up.do"
-											style="margin-bottom: 0px;">
-											<input type="submit" value="修改"> <input type="hidden"
-												name="sign_up_no" value="${act_sign_upVO.sign_up_no}">
-											<input type="hidden" name="action" value="getOne_For_Update">
-										</FORM>
-									</td>
-									<td>
-										<FORM METHOD="post"
-											ACTION="<%=request.getContextPath()%>/back-end/act_sign_up/act_sign_up.do"
-											style="margin-bottom: 0px;">
-											<input type="submit" value="刪除"> <input type="hidden"
-												name="sign_up_no" value="${act_sign_upVO.sign_up_no}">
-											<input type="hidden" name="action" value="delete">
-										</FORM>
-									</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+							<tfoot>
+								<tr>
+									<th>問卷編號</th>
+									<th>會員編號</th>
+									<th>會員暱稱</th>
+									<th>題目</th>
+									<th>回答</th>
+									<th>寄送通知</th>
 								</tr>
-							</c:forEach>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th>報名編號</th>
-								<th>活動名稱</th>
-								<th>會員暱稱</th>
-								<th>會員信箱</th>
-								<th>報名時間</th>
-								<th>攜伴人數</th>
-								<th>寄送通知</th>
-								<th>修改</th>
-								<th>刪除</th>
-							</tr>
-						</tfoot>
-					</table>
-
+							</tfoot>
+						</table>
+					</div>
 
 					<script>
 						$(document).ready(function() {
@@ -295,6 +266,7 @@ h2 {
 		src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 	<!-- End custom js for this page-->
 </body>
+
 <script>
 	let path = window.location.pathname.substring(0, window.location.pathname
 			.lastIndexOf("/"));
@@ -319,4 +291,5 @@ h2 {
 		  event.preventDefault();
 		}
 </script>
+
 </html>

@@ -128,7 +128,7 @@ session.setAttribute("url", url);
                                      
                                  
                                      
-                                      </FORM>
+                                      
 									</tr>
 								</c:forEach>
 							</tbody>

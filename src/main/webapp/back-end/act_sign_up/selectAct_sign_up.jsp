@@ -79,10 +79,7 @@
 											<a href='addAct_sign_up.jsp'><img src="./images/plus.png"
 												width="30px" height="30px"></a>
 										</button>
-										<button style="margin-right: 10px;">
-											<a href="selectAct_sign_up.jsp"><img
-												src="./images/search2.png" width="30px" height="30px"></a>
-										</button>
+
 										<button
 											class="btn bg-white btn-sm dropdown-toggle btn-icon-text border mr-2"
 											type="button" id="dropdownMenu3" data-toggle="dropdown"

@@ -112,7 +112,7 @@ Act_pic_VO act_picVO = (Act_pic_VO) request.getAttribute("act_picVO");
 												<tr>
 													<td>活動編號:</td>
 													<td><input type="TEXT" name="act_no" size="45"
-														value="<%=(act_picVO == null) ? "3" : act_picVO.getAct_no()%>" /></td>
+														value="<%=(act_picVO == null) ? "" : act_picVO.getAct_no()%>" /></td>
 												</tr>
 												<tr>
 													<td>活動照片:</td>

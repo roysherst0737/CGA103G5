@@ -109,7 +109,7 @@ session.setAttribute("url", url);
     <div class="shop-detail-box-main">
         <div class="container">
         <!-- 暴力式判斷庫存 -->
-        <c:if test="${prodVO.prod_status == 1 && prodVO.prod_stock>=1}">
+        <c:if test="${prodVO.prod_status==1}">
             <div class="row">
                 <div class="col-xl-5 col-lg-5 col-md-6">
                     <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
@@ -174,13 +174,14 @@ session.setAttribute("url", url);
                     
                         <h2>${prodVO.prod_name}</h2>
                         <h5>$${prodVO.prod_price}</h5>
-                        <p class="available-stock"><span> 現有庫存： <span style="color: red;">${prodVO.prod_stock}</span></span><p>
+                        <p class="available-stock"><span> 現有庫存： <span style="color: #f5c242; font-weight:bold;">${prodVO.prod_stock}</span></span><p>
 						<h4>商品詳情：</h4>
 						<p>${prodVO.prod_detail}</p>
 
 						<div class="price-box-bar">
 							<div class="cart-and-bay-btn">
-							
+								
+								<c:if test="${prodVO.prod_status == 1 && prodVO.prod_stock>=1}">
 								<FORM name="cart" action="cart.do" method="post">
 								<c:choose>
 									<c:when test="${empty sessionScope.user}">
@@ -196,6 +197,8 @@ session.setAttribute("url", url);
                                 <input type="hidden" name="mem_no" value="${user.mem_no}">
 								<input type="hidden" name="action" value="insertByDetail">	
 								</FORM>
+								</c:if>
+								
 							</div>
 						</div>
 						

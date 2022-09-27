@@ -153,7 +153,7 @@ session.setAttribute("url", url);
                                     <div class="row">
                                     <c:forEach var="prodVO" items="${set}">
                                     <!-- 暴力式判斷庫存 -->
-                                    <c:if test="${prodVO.prod_status == 1 && prodVO.prod_stock>=1}">
+                                    <c:if test="${prodVO.prod_status==1}">
                                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                                             <div class="products-single fix">
                                                 <div class="box-img-hover">
@@ -165,6 +165,7 @@ session.setAttribute("url", url);
                                                             	data-toggle="tooltip" data-placement="right" title="查看詳情"><i class="fas fa-eye"></i></a></li>
                                                         </ul>
                                                         
+                                                        <c:if test="${prodVO.prod_status == 1 && prodVO.prod_stock>=1}">
                                                         <FORM name="cart" action="cart.do" method="post">
                                                         <c:choose>
 															<c:when test="${empty sessionScope.user}">
@@ -180,13 +181,14 @@ session.setAttribute("url", url);
                                                         <input type="hidden" name="url" value="<%=Integer.parseInt(request.getQueryString())%>">
 														<input type="hidden" name="action" value="insertByType">	
 														</FORM>
+														</c:if>
 														
                                                     </div>
                                                 </div>
                                                 <div class="why-text">
                                                     <h4>${prodVO.prod_name}</h4>
                                                     <h5>$${prodVO.prod_price}</h5>
-                                                    <p style="display: inline-block; float:right; color:#f5c242">${prodVO.prod_stock}</p><p style="display: inline-block; float:right;"> 庫存：</p>
+                                                    <p style="display: inline-block; float:right; color:#f5c242; font-weight:bold;">${prodVO.prod_stock}</p><p style="display: inline-block; float:right;"> 庫存：</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -196,7 +198,7 @@ session.setAttribute("url", url);
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="list-view">
                                 <c:forEach var="prodVO" items="${set}">
-                                <c:if test="${prodVO.prod_status == 1 && prodVO.prod_stock>=1}">
+                                <c:if test="${prodVO.prod_status == 1}">
                                     <div class="list-view-box">                                    
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
@@ -217,8 +219,10 @@ session.setAttribute("url", url);
                                                 <div class="why-text full-width">
                                                     <h4>${prodVO.prod_name}</h4>
                                                     <h5>$${prodVO.prod_price}</h5>
-                                                    <span style="line-height:3px;"> 庫存：</span><span style="color:#f5c242; display: inline-block;">${prodVO.prod_stock}</span>
+                                                    <span style="line-height:3px;"> 庫存：</span><span style="color:#f5c242; display: inline-block; font-weight:bold;">${prodVO.prod_stock}</span>
                                                     <p>${prodVO.prod_detail}</p>
+                                                    
+                                                    <c:if test="${prodVO.prod_status == 1 && prodVO.prod_stock>=1}">
                                                     <FORM name="cart" action="cart.do" method="post">
                                                     <c:choose>
 														<c:when test="${empty sessionScope.user}">
@@ -234,6 +238,7 @@ session.setAttribute("url", url);
                                                     <input type="hidden" name="mem_no" value="${user.mem_no}">
 													<input type="hidden" name="action" value="insertByType">	
 													</FORM>
+													</c:if>
 													
                                                 </div>
                                             </div>

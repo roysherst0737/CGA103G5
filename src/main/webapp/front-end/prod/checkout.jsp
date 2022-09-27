@@ -190,7 +190,7 @@ int i = 1;
 	border-style: none;
 	margin-bottom: 2px;
 	font-weight: bold;
-	width: 15px;
+	width: 20px;
 	background-color:transparent;
 }
 #goToCoupon {

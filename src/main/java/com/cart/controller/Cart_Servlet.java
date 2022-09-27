@@ -527,21 +527,21 @@ public class Cart_Servlet extends HttpServlet {
 				int[] prod_no_Final = new int[prod_no_array.length];
 				for(int i = 0;i<prod_no_array.length;i++){
 					prod_no_Final[i] = Integer.parseInt(prod_no_array[i]);
-					System.out.println("a"+prod_no_Final[i]);
+//					System.out.println("a"+prod_no_Final[i]);
 				}
 				String prod_qty = (req.getParameter("prod_qty_int"));
 				String[] prod_qty_array = prod_qty.split(",");
 				int[] prod_qty_Final = new int[prod_qty_array.length];
 				for(int i = 0;i<prod_qty_array.length;i++){
 					prod_qty_Final[i] = Integer.parseInt(prod_qty_array[i]);
-					System.out.println("b"+prod_qty_Final[i]);
+//					System.out.println("b"+prod_qty_Final[i]);
 				}
 				String prod_stock = (req.getParameter("prod_stock_int"));
 				String[] prod_stock_array = prod_stock.split(",");
 				int[] prod_stock_Final = new int[prod_stock_array.length];
 				for(int i = 0;i<prod_stock_array.length;i++){
 					prod_stock_Final[i] = Integer.parseInt(prod_stock_array[i]);
-					System.out.println("c"+prod_stock_Final[i]);
+//					System.out.println("c"+prod_stock_Final[i]);
 				}
 				Prod_Service prodSvc = new Prod_Service();
 				for(int i = 0;i<prod_stock_array.length;i++){

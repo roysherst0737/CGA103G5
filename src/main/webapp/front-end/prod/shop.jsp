@@ -180,6 +180,7 @@ session.setAttribute("url", url);
                                                 <div class="why-text">
                                                     <h4>${prodVO.prod_name}</h4>
                                                     <h5>$${prodVO.prod_price}</h5>
+                                                    <p style="display: inline-block; float:right; color:#f5c242">${prodVO.prod_stock}</p><p style="display: inline-block; float:right;"> 庫存：</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -212,8 +213,9 @@ session.setAttribute("url", url);
                                                 <div class="why-text full-width">
                                                     <h4>${prodVO.prod_name}</h4>
                                                     <h5>$${prodVO.prod_price}</h5>
+                                                    <span style="line-height:3px;"> 庫存：</span><span style="color:#f5c242; display: inline-block;">${prodVO.prod_stock}</span>
                                                     <p>${prodVO.prod_detail}</p>
-                                                    
+                                                                                                       
                                                     <FORM name="cart" action="cart.do" method="post">
                                                     <c:choose>
 														<c:when test="${empty sessionScope.user}">

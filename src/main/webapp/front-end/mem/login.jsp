@@ -73,11 +73,7 @@ if((!previous_page.equals(original_URL))&&(!previous_page.equals(servlet_URL))&&
 								</div>
 								<div
 									class="my-2 d-flex justify-content-between align-items-center">
-									<div class="form-check">
-										<label class="form-check-label text-muted"> <input
-											type="checkbox" class="form-check-input"> 保持登入狀態
-										</label>
-									</div>
+
 									<a href="Forgot_password.jsp" class="auth-link text-black">忘記密碼？</a>
 								</div>
 <!-- 								<div class="mb-2"> -->

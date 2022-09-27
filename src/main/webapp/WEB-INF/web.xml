@@ -195,6 +195,14 @@
 		<servlet-name>Article_message_report_Servlet</servlet-name>
 		<url-pattern>/back-end/article_message_report/article_message_report.do</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Frm_status_Servlet</servlet-name>
+		<servlet-class>com.forum.controller.Forum_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Frm_status_Servlet</servlet-name>
+		<url-pattern>/back-end/forum/forum1.do</url-pattern>
+	</servlet-mapping>
 
 	<!-- 管理員 -->
 	<servlet>

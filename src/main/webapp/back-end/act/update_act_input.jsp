@@ -3,12 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.act.model.*"%>
-<%@ page import="com.pub.model.*"%>
+<%@ page import="com.pub.entity.*"%>
 
 <%
 Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 int act_status = actVO.getAct_status();
 pageContext.setAttribute("act_status", act_status);
+List<Pub> publist = com.pub.service.PubConstants.SERVICE.getAll();
+request.setAttribute("publist",publist);
 %>
 
 <!DOCTYPE html>
@@ -123,8 +125,11 @@ pageContext.setAttribute("act_status", act_status);
 												</tr>
 												<tr>
 													<td>酒吧編號:</td>
-													<td><input type="TEXT" name="pub_no" size="45"
-														value="<%=(actVO == null) ? "" : actVO.getPub_no()%>" /></td>
+													<td><select size="1" name="pub_no">
+													<c:forEach var="pubVO" items="${publist}">
+														<option value="${pubVO.pub_no}">${pubVO.pub_no}
+													</c:forEach>
+												</select></td>
 												</tr>
 												<tr>
 													<td>活動名稱:</td>

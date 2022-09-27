@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.act.model.*"%>
+<%@ page import="com.pub.model.*"%>
 
 <%
 Act_VO actVO = (Act_VO) request.getAttribute("actVO");

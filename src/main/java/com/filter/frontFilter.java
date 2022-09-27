@@ -18,7 +18,8 @@ import com.pub.entity.Pub;
 		"/front-end/mem/memApplication.jsp", "/front-end/prod/orderHistory.jsp", "/MemBookingGet",
 		"/front-end/act/my_sign_up.jsp", "/front-end/act/survey.jsp", "/front-end/act/writesurvey.jsp",
 		"/front-end/memcoupon/memcouponlist.jsp", 
-		"/front-end/act/my_sign_up.jsp", "/front-end/act/survey.jsp", "/front-end/act/writesurvey.jsp","/front-end/forum_article/new_frm_art.jsp" })
+		"/front-end/act/my_sign_up.jsp", "/front-end/act/survey.jsp", "/front-end/act/writesurvey.jsp","/front-end/forum_article/new_frm_art.jsp"
+		,"/front-end/coupon/couponlist.jsp" })
 
 public class frontFilter extends HttpFilter {
 	private static final long serialVersionUID = 1L;

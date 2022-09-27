@@ -105,15 +105,15 @@ pageContext.setAttribute("list", list);
 							<tbody>
 								<c:forEach var="memcouponVO" items="${list}">
 									<tr>
-										<td>${memcouponVO.mem_no}</td>
-										<td>${memcouponVO.coupon_no}</td>
+										<td>${memcouponVO.mem_no}號</td>
+										<td>${memcouponVO.coupon_no}號券</td>
 										<td>${memcouponVO.couponVO.coupon_name}</td>
 										<td>${memcouponVO.couponVO.coupon_code}</td>
 										<td>${memcouponVO.couponVO.coupon_content}</td>
 										<td>${memcouponVO.couponVO.coupon_discount}</td>
 										<td>${memcouponVO.couponVO.launch_time}</td>
 										<td>${memcouponVO.couponVO.off_time}</td>
-										<td>${memcouponVO.remain_amount}</td>
+										<td>${memcouponVO.remain_amount}張</td>
 									</tr>
 								</c:forEach>
 							</tbody>

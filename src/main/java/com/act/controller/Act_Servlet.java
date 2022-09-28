@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.act.model.Act_Service;
 import com.act.model.Act_VO;
+import com.pub.entity.Pub;
 
 @WebServlet("/back-end/act/act.do")
 public class Act_Servlet extends HttpServlet {
@@ -251,7 +252,7 @@ public class Act_Servlet extends HttpServlet {
 		}
 
 		if ("insert".equals(action)) { // 來自addEmp.jsp的請求
-
+			
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.

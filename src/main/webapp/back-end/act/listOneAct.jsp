@@ -97,13 +97,13 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 							<div class="card">
 								<div class="card-body">
 
-									<h4 class="card-title">商品清單管理</h4>
+									<h4 class="card-title">活動管理</h4>
 									<table id="dataTables" class="stripe table-hover"
 										style="width: 100%; font-size: 12px">
 										<thead style="width: 100%; font-size: 13px">
 											<tr>
 												<th>活動編號</th>
-												<th>酒吧編號</th>
+												<th>酒吧名稱</th>
 												<th>活動名稱</th>
 												<th>活動描述</th>
 												<th>活動地址</th>
@@ -122,7 +122,7 @@ Act_VO actVO = (Act_VO) request.getAttribute("actVO");
 										<tbody>
 											<tr>
 												<td><%=actVO.getAct_no()%></td>
-												<td><%=actVO.getPub_no()%></td>
+												<td><%=actVO.getPubVO().getPub_name()%></td>
 												<td><%=actVO.getAct_name()%></td>
 												<td style="max-width: 300px"><%=actVO.getAct_detail()%></td>
 												<td><%=actVO.getAct_loc()%></td>

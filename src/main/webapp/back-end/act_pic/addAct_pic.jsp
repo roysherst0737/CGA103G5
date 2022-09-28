@@ -39,6 +39,34 @@ Act_pic_VO act_picVO = (Act_pic_VO) request.getAttribute("act_picVO");
 </script>
 </head>
 
+<style>
+input[disabled] {
+	background-color: #eee;
+	cursor: not-allowed;
+}
+
+#preview {
+	border: 3px solid grey;
+	display: inline-block;
+	width: 150px;
+	min-height: 100px;
+	position: relative;
+}
+
+#preview span.text {
+	position: absolute;
+	display: inline-block;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: -1;
+	color: lightgray;
+}
+
+#preview img.preview_img {
+	width: 100%;
+}
+</style>
 <body>
 	<!-- 主頁面 -->
 	<div class="container-scroller">
@@ -68,25 +96,25 @@ Act_pic_VO act_picVO = (Act_pic_VO) request.getAttribute("act_picVO");
 					<div class="row">
 						<div class="col-sm-6">
 							<h3 class="mb-0 font-weight-bold">活動管理員</h3>
-							
+
 						</div>
 						<div class="col-sm-6">
 							<div class="d-flex align-items-center justify-content-md-end">
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
 										<button style="margin-right: 10px;">
-											<a href="listAllAct_pic.jsp"><img
-												src="./images/home.png" width="30px" height="30px"></a>
+											<a href="listAllAct_pic.jsp"><img src="./images/home.png"
+												width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right: 10px;">
 											<a href='addAct_pic.jsp'><img src="./images/plus.png"
 												width="30px" height="30px"></a>
 										</button>
 
-				
+
 									</div>
 								</div>
-			
+
 							</div>
 						</div>
 					</div>
@@ -103,9 +131,9 @@ Act_pic_VO act_picVO = (Act_pic_VO) request.getAttribute("act_picVO");
 											</c:forEach>
 										</ul>
 									</c:if>
-									
+
 									<jsp:useBean id="actSvc" scope="page"
-											class="com.act.model.Act_Service" />
+										class="com.act.model.Act_Service" />
 									<h4 class="card-title">新增活動圖片</h4>
 									<table id="dataTables" class="stripe table-hover"
 										style="width: 100%">
@@ -115,15 +143,21 @@ Act_pic_VO act_picVO = (Act_pic_VO) request.getAttribute("act_picVO");
 												<tr>
 													<td>活動編號:</td>
 													<td><select size="1" name="act_no">
-												<c:forEach var="actVO" items="${actSvc.all}">
-													<option value="${actVO.act_no}">${actVO.act_no}
-												</c:forEach>
-											</select></td>
+															<c:forEach var="actVO" items="${actSvc.all}">
+																<option value="${actVO.act_no}">${actVO.act_name}
+															</c:forEach>
+													</select></td>
 												</tr>
 												<tr>
 													<td>活動照片:</td>
-													<td><input type="file" name="act_pic" size="45"></td>
-
+													<td><input type="file" name="act_pic" size="45"
+														id="file" /></td>
+													<td>預覽圖:</td>
+													<td>
+														<div id="preview">
+															<span class="text">預覽圖</span>
+														</div>
+													</td>
 												</tr>
 												<tr>
 													<td>活動照片名稱:</td>
@@ -146,8 +180,11 @@ Act_pic_VO act_picVO = (Act_pic_VO) request.getAttribute("act_picVO");
 				<footer class="footer"></footer>
 				<script>
 					$(function() {
-						$(".footer").load(window.location.pathname.substring(0, window.location.pathname.indexOf('/', 2))
-							+ "/back-end/partials/_footer.html");
+						$(".footer").load(
+								window.location.pathname.substring(0,
+										window.location.pathname
+												.indexOf('/', 2))
+										+ "/back-end/partials/_footer.html");
 					});
 				</script>
 				<!-- partial -->
@@ -160,12 +197,11 @@ Act_pic_VO act_picVO = (Act_pic_VO) request.getAttribute("act_picVO");
 	<!-- base:js -->
 
 	<script>
-							function getContextPath() {
-								return window.location.pathname.substring(0,
-										window.location.pathname
-												.indexOf('/', 2));
-							}
-						</script>
+		function getContextPath() {
+			return window.location.pathname.substring(0,
+					window.location.pathname.indexOf('/', 2));
+		}
+	</script>
 	<script src="../vendors/js/vendor.bundle.base.js"></script>
 	<!-- endinject -->
 	<!-- Plugin js for this page-->
@@ -186,5 +222,37 @@ Act_pic_VO act_picVO = (Act_pic_VO) request.getAttribute("act_picVO");
 	<script src="../js/dashboard.js"></script>
 	<!-- End custom js for this page-->
 </body>
+
+<script>
+	window
+			.addEventListener(
+					"load",
+					function(e) {
+						var preview_el = document.getElementById("preview");
+						var p_file_el = document.getElementById("file");
+						var preview_img = function(file) {
+							var reader = new FileReader(); // 用來讀取檔案
+							reader.readAsDataURL(file); // 讀取檔案
+							reader
+									.addEventListener(
+											"load",
+											function() {
+												var img_str = '<img src="' + reader.result + '" class="preview_img">';
+												preview_el.innerHTML = img_str;
+
+											});
+						};
+						p_file_el
+								.addEventListener(
+										"change",
+										function(e) {
+											if (this.files.length > 0) {
+												preview_img(this.files[0]);
+											} else {
+												preview_el.innerHTML = '<span class="text">預覽圖</span>';
+											}
+										});
+					});
+</script>
 
 </html>

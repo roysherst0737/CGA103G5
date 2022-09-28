@@ -3,7 +3,7 @@
 <%@ page import="com.act_pic.model.*"%>
 
 <%
-	Act_pic_VO act_picVO = (Act_pic_VO) request.getAttribute("act_picVO");
+Act_pic_VO act_picVO = (Act_pic_VO) request.getAttribute("act_picVO");
 %>
 
 <html lang="zh">
@@ -33,7 +33,34 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 </head>
+<style>
+input[disabled] {
+	background-color: #eee;
+	cursor: not-allowed;
+}
 
+#preview {
+	border: 3px solid grey;
+	display: inline-block;
+	width: 150px;
+	min-height: 100px;
+	position: relative;
+}
+
+#preview span.text {
+	position: absolute;
+	display: inline-block;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: -1;
+	color: lightgray;
+}
+
+#preview img.preview_img {
+	width: 100%;
+}
+</style>
 <body>
 	<!-- 主頁面 -->
 	<div class="container-scroller">
@@ -58,8 +85,7 @@
 				<div class="content-wrapper">
 					<div class="row">
 						<div class="col-sm-6">
-							<h3 class="mb-0 font-weight-bold">活動管理員</h3>
-							
+							<h3 class="mb-0 font-weight-bold">商品管理員</h3>
 						</div>
 						<div class="col-sm-6">
 							<div class="d-flex align-items-center justify-content-md-end">
@@ -71,11 +97,9 @@
 										<button style="margin-right:10px;">
 										<a href='addAct_pic.jsp'><img src="./images/plus.png" width="30px" height="30px"></a>
 										</button>
-
-				
+										
 									</div>
 								</div>
-		
 							</div>
 						</div>
 					</div>
@@ -94,34 +118,41 @@
 												</c:forEach>
 											</ul>
 										</c:if>
-<jsp:useBean id="actSvc" scope="page"
-											class="com.act.model.Act_Service" />
-
+										
+										
 										<FORM METHOD="post" ACTION="act_pic.do" name="form1"
 											enctype="multipart/form-data">
-											<table class="table table-striped">
-
+											<table >
 												<tr>
-													<td>活動編號:</td>
-													<td><select size="1" name="act_no">
-												<c:forEach var="actVO" items="${actSvc.all}">
-													<option value="${actVO.act_no}">${actVO.act_no}
-												</c:forEach>
-											</select></td>
+													<td>活動名稱:</td> 
+													<td>${act_picVO.getActVO().act_name}</td> 
 												</tr>
+
 												<tr>
 													<td>活動照片:</td>
 													<td><input type="file" name="act_pic" size="45"
-														value=null /></td>
+														value=null id="file" /></td>
+													<td>原圖:</td>
+													<td><img
+														src="<%=request.getContextPath()%>/Show_Act_pic_Servlet?act_pic_no=${act_picVO.act_pic_no}"
+														width=150px height=100px></td>
+													<td>更改為→→</td>
+													<td>
+														<div id="preview">
+															<span class="text">預覽圖</span>
+														</div>
+													</td>
 												</tr>
 												<tr>
 													<td>活動照片名稱:</td>
-													<td><input type="TEXT" name="act_pic_name" size="45"
+													<td><input type="TEXT" name="act_pic_name" size="25"
 														value="<%=(act_picVO == null) ? "" : act_picVO.getAct_pic_name()%>" /></td>
 												</tr>
 											</table>
 
 											<br> <input type="hidden" name="action" value="update">
+											<input type="hidden" name="act_no"
+												value="<%=act_picVO.getAct_no()%>">
 											<input type="hidden" name="act_pic_no"
 												value="<%=act_picVO.getAct_pic_no()%>"> <input
 												type="submit" value="送出修改">
@@ -176,5 +207,36 @@
 	<script src="../js/dashboard.js"></script>
 	<!-- End custom js for this page-->
 </body>
+<script>
+	window
+			.addEventListener(
+					"load",
+					function(e) {
+						var preview_el = document.getElementById("preview");
+						var p_file_el = document.getElementById("file");
+						var preview_img = function(file) {
+							var reader = new FileReader(); // 用來讀取檔案
+							reader.readAsDataURL(file); // 讀取檔案
+							reader
+									.addEventListener(
+											"load",
+											function() {
+												var img_str = '<img src="' + reader.result + '" class="preview_img">';
+												preview_el.innerHTML = img_str;
+
+											});
+						};
+						p_file_el
+								.addEventListener(
+										"change",
+										function(e) {
+											if (this.files.length > 0) {
+												preview_img(this.files[0]);
+											} else {
+												preview_el.innerHTML = '<span class="text">預覽圖</span>';
+											}
+										});
+					});
+</script>
 
 </html>

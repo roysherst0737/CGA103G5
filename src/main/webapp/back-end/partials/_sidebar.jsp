@@ -119,7 +119,7 @@
 					<li class="nav-item"><a id="act_pic" class="nav-link" href="">
 							活動圖片管理 </a></li>
 					<li class="nav-item"><a id="act_sign_up" class="nav-link"
-						href=""> 活動報名管理 </a></li>
+						href=""> 活動報名查看 </a></li>
 					<li class="nav-item"><a id="firm_survey" class="nav-link"
 						href=""> 活動問卷管理 </a></li>
 					<li class="nav-item"><a id="question" class="nav-link" href="">

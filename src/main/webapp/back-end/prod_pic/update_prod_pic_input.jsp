@@ -181,6 +181,8 @@ window.addEventListener("load", function(e){
 											</table>
 
 											<br> <input type="hidden" name="action" value="update">
+											<input type="hidden" name="prod_no"
+												value="${prod_picVO.getProd_VO().prod_no}">
 											<input type="hidden" name="prod_pic_no"
 												value="<%=prod_picVO.getProd_pic_no()%>"> <input
 												type="submit" value="送出修改">

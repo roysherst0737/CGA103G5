@@ -615,7 +615,6 @@ function aa(open) {
 			} else {
 				
 				if (m.indexOf(0, i) ==-1) {
-					str += "24:00";
 					b1 = 24;
 					break;
 				} else {

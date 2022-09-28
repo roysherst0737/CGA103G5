@@ -367,6 +367,43 @@ div.col-sm-12>button.btn-warning:hover {
 	<script src="<%=request.getContextPath()%>/back-end/js/template.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/front-end/pages/pub/js/table.js"></script>
+		<script>
+			fetch('.PubStatesCheck', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: "",
+			})
+				.then(resp => resp.json()).then(body => {
+					const { successful } = body;
+					const { pub } = body;
+					if(successful){
+						document.querySelector('#states').style.display="";
+					}else{
+						document.querySelector('#states').style.display="none";
+					}
+				
+				});
+			fetch('.BookingStatesCheck', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: "",
+			})
+				.then(resp => resp.json()).then(body => {
+					const { successful } = body;
+					const { pub } = body;
+					if(successful){
+						document.querySelector('#booking').style.display="";
+					}else{
+						document.querySelector('#booking').style.display="none";
+					}
+				
+				});
+			
+		</script>
 
 </body>
 

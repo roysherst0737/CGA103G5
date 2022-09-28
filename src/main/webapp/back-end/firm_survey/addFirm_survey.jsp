@@ -111,10 +111,10 @@ Firm_survey_VO firm_surveyVO = (Firm_survey_VO) request.getAttribute("firm_surve
 										<FORM METHOD="post" ACTION="firm_survey.do" name="form1">
 											<table>
 												<tr>
-													<td>活動編號:</td>
+													<td>活動名稱:</td>
 													<td><select size="1" name="act_no">
 														<c:forEach var="actVO" items="${actSvc.all}">
-															<option value="${actVO.act_no}">${actVO.act_no}
+															<option value="${actVO.act_no}">${actVO.act_name}
 														</c:forEach>
 													</select></td>
 												</tr>

@@ -103,24 +103,24 @@ session.setAttribute("url", url);
 						<table id="dataTables" class="stripe table-hover" style="width: 100%; font-size: 12px">
 							<thead>																
 								<tr style="font-size:20px">
-									<th>訂單編號</th>
-									<th>商品名稱</th>
-									<th>商品照片</th>											
-									<th>商品數量</th>
-									<th>商品單價</th>
-									<th>商品總額</th>
+									<th style="text-align: center;">訂單編號</th>
+									<th style="text-align: center;">商品名稱</th>
+									<th style="text-align: center;">商品照片</th>											
+									<th style="text-align: center;">商品數量</th>
+									<th style="text-align: center;">商品單價</th>
+									<th style="text-align: center;">商品總額</th>
 								</tr>
 							</thead>
 							<c:forEach var="order_detailVO" items="${listFrontOrder_details}" >
 								<tr>
-									<td>${order_detailVO.order_no}</td>
-									<td>${order_detailVO.getProd_VO().prod_name}</td>
-									<td><img
+									<td style="text-align: center;">${order_detailVO.order_no}</td>
+									<td style="text-align: center;">${order_detailVO.getProd_VO().prod_name}</td>
+									<td style="text-align: center;"><img
 										src="<%=request.getContextPath()%>/ShowProd_picForProd?prod_no=${order_detailVO.getProd_pic_VO().prod_pic_no}"
 										width=200px height=120px></td>
-									<td>${order_detailVO.prod_qty}</td>
-									<td>${order_detailVO.prod_price}</td>
-									<td>${order_detailVO.prod_qty * order_detailVO.prod_price}</td>
+									<td style="text-align: center;">${order_detailVO.prod_qty}</td>
+									<td style="text-align: center;">${order_detailVO.prod_price}</td>
+									<td style="text-align: center;">${order_detailVO.prod_qty * order_detailVO.prod_price}</td>
 							</c:forEach>
 						</table>
                     </div>

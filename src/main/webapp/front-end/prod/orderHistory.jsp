@@ -58,6 +58,19 @@ session.setAttribute("url", url);
 		.btn {
     		width: auto;
     		height: auto;
+			}
+		
+		#btn1{
+    		background-color: #ffc107;
+    		width: 52px;
+   		 	height: 33.5px;
+    		padding: 0px;
+    		font-size: 16px;
+    		font-weight: bolder
+		}
+		#btn1:hover {
+			cursor: pointer;
+			color: white;
 			}		
 	
 	</style>
@@ -97,25 +110,25 @@ session.setAttribute("url", url);
 						<table id="dataTables" class="stripe table-hover" style="width: 100%; font-size: 12px">
 							<thead>
 								<tr style="font-size:16px">
-									<th>訂單編號</th>
-									<th>訂單建立時間</th>
-									<th>支付金額</th>
-									<th>訂單狀態</th>
-									<th>運費</th>
-									<th>取貨人姓名</th>
-									<th>取貨人地址</th>
-									<th>取貨人電話</th>
-									<th>訂單明細</th>
-									<th>取消訂單</th>
+									<th style="text-align: center;">訂單編號</th>
+									<th style="text-align: center;">訂單建立時間</th>
+									<th style="text-align: center;">支付金額</th>
+									<th style="text-align: center;">訂單狀態</th>
+									<th style="text-align: center;">運費</th>
+									<th style="text-align: center;">取貨人姓名</th>
+									<th style="text-align: center;">取貨人地址</th>
+									<th style="text-align: center;">取貨人電話</th>
+									<th style="text-align: center;">訂單明細</th>
+									<th style="text-align: center;">取消訂單</th>
 								</tr>
 							</thead>
 							<c:forEach var="orderVO" items="${orderlist}">
 							<c:if test="${orderVO.mem_no == user.mem_no}">
 								<tr>
-									<td>${orderVO.order_no}</td>
-									<td>${orderVO.order_time}</td>
-									<td>${orderVO.dis_price_total}</td>
-									<td>
+									<td style="text-align: center;">${orderVO.order_no}</td>
+									<td style="text-align: center;">${orderVO.order_time}</td>
+									<td style="text-align: center;">${orderVO.dis_price_total}</td>
+									<td style="text-align: center;">
 										<c:if test="${orderVO.order_status == 0}">
 											<div>未出貨</div>
 										</c:if>
@@ -129,7 +142,7 @@ session.setAttribute("url", url);
 											<div>取消</div>
 										</c:if>
 									</td>
-									<td>
+									<td style="text-align: center;">
 										<c:if test="${orderVO.shipping_fee == 0}">
 											<div>免運</div>
 										</c:if>
@@ -140,21 +153,21 @@ session.setAttribute("url", url);
 											<div>宅配100元</div>
 										</c:if>
 									</td>
-									<td>${orderVO.receiver_name}</td>
-									<td>${orderVO.receiver_address}</td>
-									<td>${orderVO.receiver_phone}</td>
-									<td>
+									<td style="text-align: center;">${orderVO.receiver_name}</td>
+									<td style="text-align: center;">${orderVO.receiver_address}</td>
+									<td style="text-align: center;">${orderVO.receiver_phone}</td>
+									<td style="text-align: center;">
 										<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/prod/detail.do"
 											style="margin-bottom: 0px;">
-											<input type="submit" value="查詢">
+											<input id="btn1" type="submit" value="查詢">
 											<input type="hidden" name="order_no" value="${orderVO.order_no}">
 											<input type="hidden" name="action" value="listFrontOrder_details">
 										</FORM>
 									</td>
-									<td>
+									<td style="text-align: center;">
 										<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/front-end/prod/detail.do"
 											style="margin-bottom: 0px;">
-											<input type="submit" value="取消" style="color:red;" onclick="confirmTest11()">
+											<input id="btn1" type="submit" value="取消" style="color:red;" onclick="confirmTest11()">
 											<input type="hidden" name="order_no" value="${orderVO.order_no}">
 											<input type="hidden" name="action" value="cancelOrder">
 										</FORM>

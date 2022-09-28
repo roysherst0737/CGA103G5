@@ -88,7 +88,7 @@ session.setAttribute("surveyUrl", surveyUrl);
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<h2>我的報名</h2>
+					<h2>查看問卷</h2>
 
 				</div>
 			</div>
@@ -123,7 +123,7 @@ session.setAttribute("surveyUrl", surveyUrl);
 										<td>活動問卷<%=i++%></td>
 										<c:choose>
 											<c:when test="${set2.contains(set)}">
-												<td><input type="button" value="已填寫"></td>
+												<td><input type="button" value="已填寫" disabled></td>
 											</c:when>
 											<c:otherwise>
 												<td><input type="button" value="填寫"

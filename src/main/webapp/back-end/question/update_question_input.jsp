@@ -95,7 +95,7 @@ Question_VO questionVO = (Question_VO) request.getAttribute("questionVO");
 						<div class="col-lg-12 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">活動題目管理</h4>
+									<h4 class="card-title">修改題目</h4>
 									<div class="table-responsive">
 										<%-- 錯誤表列 --%>
 										<c:if test="${not empty errorMsgs}">

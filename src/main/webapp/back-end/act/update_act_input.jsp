@@ -124,10 +124,10 @@ request.setAttribute("publist",publist);
 														disabled></td>
 												</tr>
 												<tr>
-													<td>酒吧編號:</td>
+													<td>酒吧名稱:</td>
 													<td><select size="1" name="pub_no">
 													<c:forEach var="pubVO" items="${publist}">
-														<option value="${pubVO.pub_no}">${pubVO.pub_no}
+														<option value="${pubVO.pub_no}">${pubVO.pub_name}
 													</c:forEach>
 												</select></td>
 												</tr>

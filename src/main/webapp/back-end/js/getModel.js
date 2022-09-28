@@ -561,54 +561,33 @@ function aa(open) {
 			document.querySelector('#oc' + index).style.display = '';
 			let a = checkOpenTime(m);
 			document.querySelector('#open_' + index).value = a[0];
-			document.querySelector('#close_' + index).value = a[1];
 			select(document.querySelector('#open_' + index), index);
+			document.querySelector('#close_' + index).value = a[1];
 			btnCheck(index);
 		}
 	}
 
 	function checkOpenTime(m) {
 		//		暫時不會有多時段
-		let str = "";
 		let check = true;
 		let a1 = 0;//起時
 		let b1 = 0;//末時
-		lable: for (let i = 0; i < 25; i++) {
+		for (let i = 0; i < 25; i++) {
 			if (check) {
-				if (i == 0 && m.indexOf(1, i) == -1) {
-					str = "未營業";
-					break lable;
-				}
-				if (m.indexOf(1, i) !== -1) {
-					i = m.indexOf(1, i)
-				} else {
-					break lable;
-				}
-
-				if (i < 10) {
-					str += "0" + (i) + ":00~";
+				i=m.indexOf(1);
 					a1 = i;
-				} else {
-					a1 = i;
-					str += i + ":00~";
-				}
 				check = !check;
+				
 			} else {
-				if (m.indexOf(0, i) == -1) {
-					str += "24:00";
-					b1 = i;
-					break lable;
+				
+				if (m.indexOf(0, i) ==-1) {
+					b1 = 24;
+					break;
 				} else {
 					i = m.indexOf(0, i)
+					b1=i;
+					break;
 				}
-				if (i < 10) {
-					str += "0" + (i) + ":00  \\  ";
-					b1 = i;
-				} else {
-					str += (i) + ":00  \\  ";
-					b1 = i;
-				}
-				check = !check;
 			}
 		}
 		//        return str.trim().lastIndexOf('\\') + 1 == str.trim().length ? str.substring(0, str.length - 5) : str;

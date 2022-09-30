@@ -61,10 +61,10 @@
 						<div class="footer-link">
 							<h4>Information</h4>
 							<ul>
-								<li><a href="about.html">● 關 於 我 們</a></li>
+								<li><a href="about.jsp">● 關 於 我 們</a></li>
 								<li><a href="#">● 客 服 連 結</a></li>
-								<li><a href="#">● 網 站 規 劃 資 訊</a></li>
-								<li><a href="https://github.com/roysherst0737/CGA103G5.git">●
+								<li><a href="https://drive.google.com/drive/folders/1_pPNTP3gm5tmtTrGLCvfZ1NZkNhoI6j5?usp=sharing" target="_blank">● 網 站 規 劃 資 訊</a></li>
+								<li><a href="https://github.com/roysherst0737/CGA103G5.git" target="_blank">●
 										G i t H u b 連 結</a></li>
 							</ul>
 						</div>

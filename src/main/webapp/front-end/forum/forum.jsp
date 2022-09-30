@@ -1,15 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-<%@ page import="com.prod.model.*"%>
-<%@ page import="com.prod_type.model.*"%>
 <%@ page import="com.forum.model.*"%>
 
 <%
-Prod_Service prodSvc = new Prod_Service();
-List<Prod_VO> list = prodSvc.getAll();
-pageContext.setAttribute("list", list);
-
 Forum_Service forum_Svc = new Forum_Service();
 List<Forum_VO> list3 = forum_Svc.getAll();
 pageContext.setAttribute("list3", list3);
@@ -98,11 +92,11 @@ pageContext.setAttribute("list3", list3);
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 id="title">討論園地</h1>
-<!--                     <ul class="breadcrumb"> -->
-<%--                         <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/front-end/prod/shop.jsp">回商城</a></li> --%>
-<!--                         <li class="breadcrumb-item active">總覽</li> -->
-<!--                     </ul> -->
+                    <h2 id="title">討論園地</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/front-end/index.jsp">回首頁</a></li>
+                        <li class="breadcrumb-item active">總覽</li>
+                    </ul>
                 </div>
             </div>
         </div>

@@ -7,12 +7,8 @@
 <%@ page import="com.mem.model.*"%>
 <%@ page import="com.article_message.model.*"%>
 <%@ page import="com.article_message_report.model.*"%>
-<%@ page import="com.prod.model.*"%>
 
 <%
-Prod_Service prodSvc = new Prod_Service();
-List<Prod_VO> list = prodSvc.getAll();
-pageContext.setAttribute("list", list);
 //討論版
 Forum_Service forum_Svc = new Forum_Service();
 Forum_VO forum_VO = forum_Svc.getOneForum(Integer.parseInt(request.getQueryString()));
@@ -172,11 +168,11 @@ h2 {
 			<div class="row">
 				<div class="col-lg-12">
 					<!-- 					<h2>購物商城</h2> -->
-					<!-- 					<ul class="breadcrumb"> -->
-					<!-- 						<li class="breadcrumb-item"><a -->
-					<%-- 							href="<%=request.getContextPath()%>/front-end/prod/shop.jsp">回商城</a></li> --%>
-					<!-- 						<li class="breadcrumb-item active">總覽</li> -->
-					<!-- 					</ul> -->
+										<ul class="breadcrumb">
+											<li class="breadcrumb-item"><a
+												href="<%=request.getContextPath()%>/front-end/forum/forum.jsp">討論區</a></li>
+											<li class="breadcrumb-item active">總覽</li>
+										</ul>
 				</div>
 			</div>
 		</div>
@@ -400,9 +396,12 @@ h2 {
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->
+<<<<<<< HEAD
+=======
 	<!-- 		<div class="instagram-box"> -->
 	<%-- 			<%@ include file="/front-end/partials/_InstagramBox.jsp"%> --%>
 	<!-- 		</div> -->
+>>>>>>> origin/WEI_10
 	<!-- End Instagram Feed  -->
 	<!-- Start Footer  -->
 	<footer>

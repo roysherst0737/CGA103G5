@@ -3,12 +3,10 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.forum.model.*"%>
 <%@ page import="com.forum_article.model.*"%>
+
 <%@ page import="com.prod.model.*"%>
 <%@ page import="com.forum_article_report.model.*"%>
 <%
-Prod_Service prodSvc = new Prod_Service();
-List<Prod_VO> list = prodSvc.getAll();
-pageContext.setAttribute("list", list);
 
 Forum_Service forum_Svc = new Forum_Service();
 List<Forum_VO> list1 = forum_Svc.getAll();
@@ -105,11 +103,11 @@ pageContext.setAttribute("set", set);
 			<div class="row">
 				<div class="col-lg-12">
 <!-- 					<h2>購物商城</h2> -->
-<!-- 					<ul class="breadcrumb"> -->
-<!-- 						<li class="breadcrumb-item"><a -->
-<%-- 							href="<%=request.getContextPath()%>/front-end/prod/shop.jsp">回商城</a></li> --%>
-<!-- 						<li class="breadcrumb-item active">總覽</li> -->
-<!-- 					</ul> -->
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a
+							href="<%=request.getContextPath()%>/front-end/forum/forum.jsp">討掄區</a></li>
+						<li class="breadcrumb-item active">總覽</li>
+					</ul>
 				</div>
 			</div>
 		</div>

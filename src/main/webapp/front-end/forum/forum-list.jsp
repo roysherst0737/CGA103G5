@@ -103,11 +103,11 @@ pageContext.setAttribute("set", set);
 			<div class="row">
 				<div class="col-lg-12">
 <!-- 					<h2>購物商城</h2> -->
-<!-- 					<ul class="breadcrumb"> -->
-<!-- 						<li class="breadcrumb-item"><a -->
-<%-- 							href="<%=request.getContextPath()%>/front-end/prod/shop.jsp">回商城</a></li> --%>
-<!-- 						<li class="breadcrumb-item active">總覽</li> -->
-<!-- 					</ul> -->
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a
+							href="<%=request.getContextPath()%>/front-end/forum/forum.jsp">討掄區</a></li>
+						<li class="breadcrumb-item active">總覽</li>
+					</ul>
 				</div>
 			</div>
 		</div>

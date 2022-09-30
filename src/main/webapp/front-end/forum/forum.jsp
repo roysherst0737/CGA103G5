@@ -92,11 +92,11 @@ pageContext.setAttribute("list3", list3);
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 id="title">討論園地</h1>
-<!--                     <ul class="breadcrumb"> -->
-<%--                         <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/front-end/prod/shop.jsp">回商城</a></li> --%>
-<!--                         <li class="breadcrumb-item active">總覽</li> -->
-<!--                     </ul> -->
+                    <h2 id="title">討論園地</h2>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/front-end/index.jsp">回首頁</a></li>
+                        <li class="breadcrumb-item active">總覽</li>
+                    </ul>
                 </div>
             </div>
         </div>

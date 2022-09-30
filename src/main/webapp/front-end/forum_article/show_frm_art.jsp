@@ -197,7 +197,7 @@ h2 {
 						<tr>
 							<div class="forum-socialtool-box"></div>
 							<td rowspan="7" style="width: 18%; background: #B8CDF3;">
-								<div class="">${forum_article_VO.mem_no}</div>
+								<div class="">${forum_article_VO.getMem_VO().mem_nickname}</div>
 							</td>
 							<td rowspan="7" id="content-out">
 								<div class="mydiv">
@@ -288,7 +288,7 @@ h2 {
 							<c:forEach var="article_message_VO" items="${list1}">
 									<c:if test="${article_message_VO.msg_status==1}">
 									<div style="margin-left:30px">						
-									<span id="idnamber" style="margin-left:70px"> ${article_message_VO.mem_no}<a>：</a></span>
+									<span id="idnamber" style="margin-left:70px"> ${article_message_VO.getMem_VO().mem_nickname}<a>：</a></span>
 									</div>
 									<span class="" style="width: 82%; float: right;">${article_message_VO.msg_content} </span>
 									<span>
@@ -367,12 +367,12 @@ h2 {
 						<FORM action="new_msg.do" METHOD="post" name="form1"
 							style="margin-bottom: 0px;">
 							<div style="text-align: right;">
-								<span> ${user.mem_no}<span>：</span>
+								<span> ${user.mem_nickname}<span>：</span>
 								</span> <input type="text" name="msg_content" value=""
 									style="width: 82%; float: right;" id="text"> <input
 									type="hidden" name="mem_no" value="${user.mem_no}"> <input
 									type="hidden" name="frm_art_no"
-									value="${article_message_VO.frm_art_no}"> <input
+									value="${forum_article_VO.frm_art_no}"> <input
 									type="hidden" name="msg_time"
 									value="${article_message_VO.msg_time}"> 
 									<input

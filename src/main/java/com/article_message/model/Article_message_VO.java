@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 
 import com.article_message_report.model.Article_message_report_Service;
 import com.article_message_report.model.Article_message_report_VO;
+import com.forum_article.model.Forum_article_Service;
+import com.forum_article.model.Forum_article_VO;
 import com.mem.model.Mem_Service;
 import com.mem.model.Mem_VO;
 
@@ -68,5 +70,12 @@ public class Article_message_VO implements java.io.Serializable{
 		return article_message_report_VO;
 		
 	}
+	
+	public Forum_article_VO getForum_article_VO() {
+		Forum_article_Service forum_article_Svc = new Forum_article_Service();
+		Forum_article_VO forum_article_VO = forum_article_Svc.getOneForum_article(frm_art_no);
+		return forum_article_VO;		
+	}
+
 	
 }

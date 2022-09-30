@@ -372,7 +372,7 @@ h2 {
 									style="width: 82%; float: right;" id="text"> <input
 									type="hidden" name="mem_no" value="${user.mem_no}"> <input
 									type="hidden" name="frm_art_no"
-									value="${article_message_VO.frm_art_no}"> <input
+									value="${forum_article_VO.frm_art_no}"> <input
 									type="hidden" name="msg_time"
 									value="${article_message_VO.msg_time}"> 
 									<input

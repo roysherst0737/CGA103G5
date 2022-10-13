@@ -88,7 +88,7 @@ pageContext.setAttribute("list", list);
 					</div>	
 					<h4 class="card-title">會員優惠券資料</h4>
 					<div class="horizontal_style">
-						<table id="dataTables" class="table table-striped">
+						<table id="dataTables" class="table table-striped" style = "width:100%;">
 							<thead>
 								<tr>
 									<th>會員編號</th>

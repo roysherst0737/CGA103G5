@@ -259,6 +259,7 @@ public class Push_Ads_JDBCDAO implements Push_Ads_DAO_interface{
 
 			while (rs.next()) {
 				// empVO �]�٬� Domain objects
+				
 				pushAdsVO = new Push_Ads_VO();
 				pstmt.setInt(1, pushAdsVO.getAds_no());
 				pstmt.setString(2, pushAdsVO.getAds_content());

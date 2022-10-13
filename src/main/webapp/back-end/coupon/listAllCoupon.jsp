@@ -94,8 +94,8 @@ pageContext.setAttribute("list", list);
 					</div>					
 						<h4 class="card-title">優惠券資料</h4>
 
-						<div class="horizontal_style">
-							<table id="dataTables" class="table table-striped">
+						<div class="horizontal_style" >
+							<table id="dataTables" class="table table-striped" style = "width:100%;">
 								<thead>
 									<tr>
 										<th>編號</th>
@@ -103,7 +103,6 @@ pageContext.setAttribute("list", list);
 										<th>代碼</th>
 										<th>內容</th>
 										<th>折扣</th>
-<!-- 										<th>使用數量</th> -->
 										<th>有效期間開始日期</th>
 										<th>有效期間結束日期</th>
 										<th>建立時間</th>
@@ -120,7 +119,6 @@ pageContext.setAttribute("list", list);
 											<td>${couponVO.coupon_code}</td>																
 											<td>${couponVO.coupon_content}</td>
 											<td>${couponVO.coupon_discount}</td> 
-<%-- 											<td>${couponVO.coupon_amount}</td> --%>
 											<td>${couponVO.launch_time}</td>
 											<td>${couponVO.off_time}</td>
 											<td>${couponVO.coupon_build_time}</td>																													

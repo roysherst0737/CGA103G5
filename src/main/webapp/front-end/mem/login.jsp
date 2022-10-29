@@ -50,24 +50,26 @@ if((!previous_page.equals(original_URL))&&(!previous_page.equals(servlet_URL))&&
 							</div>
 							<h1>登入</h1>
 								<c:if test="${not empty errorMsgs}">
-								<font style="color: red">請修正以下錯誤:</font>
+<!-- 								<font style="color: red">請修正以下錯誤:</font> -->
 								<ul>
 									<c:forEach var="message" items="${errorMsgs}">
 										<li style="color: red">${message.value}</li>
 									</c:forEach>
 								</ul>
 								</c:if>
-							<form class="pt-3" action="<%=request.getContextPath()%>/front-end/mem/MemLoginServlet" method="post">
-								<div class="form-group">
+							<form class="pt-3" action="<%=request.getContextPath()%>/front-end/mem/MemLoginServlet" method="post" id="form" onSubmit="return check()">
+								<div class="form-group" >
 									帳號<input type="text" class="form-control form-control-lg"
-										id="exampleInputEmail1" placeholder="帳號"
+										id="exampleInputAccount1" placeholder="帳號"
 										name="mem_account">
 								</div>
-								<div class="form-group">
+								<h2 id="account" style="color: #f00;"></h2>
+								<div class="form-group" >
 									密碼<input type="password" class="form-control form-control-lg"
 										id="exampleInputPassword1" placeholder="密碼"
 										name="mem_password">
 								</div>
+								<h2 id="result" style="color: #f00;"></h2>
 								<div class="mt-3">
 								<input class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" type="submit" value="登入" />
 								</div>
@@ -108,6 +110,7 @@ if((!previous_page.equals(original_URL))&&(!previous_page.equals(servlet_URL))&&
 	<script src="<%=request.getContextPath()%>/back-end/js/template.js"></script>
 	<script src="<%=request.getContextPath()%>/back-end/js/settings.js"></script>
 	<script src="<%=request.getContextPath()%>/back-end/js/todolist.js"></script>
+	<script src="<%=request.getContextPath()%>/front-end/mem/js/login.js"></script>
 	<!-- endinject -->
 </body>
 

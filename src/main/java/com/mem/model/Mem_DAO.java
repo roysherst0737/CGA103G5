@@ -92,7 +92,7 @@ public class Mem_DAO implements Mem_DAO_interface{
 			pstmt.setDate(11, memVO.getMem_birth());
 			pstmt.setString(12, memVO.getMem_addr());
 			pstmt.setInt(13, memVO.getMem_permission());
-
+			
 			pstmt.executeUpdate();
 
 			// Handle any SQL errors

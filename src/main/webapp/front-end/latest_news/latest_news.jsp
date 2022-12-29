@@ -265,8 +265,9 @@ h2 {
 												class="date">${latest_news_VO.news_time}</span>
 										</div>
 									</c:when>
-
-<<<<<<< HEAD
+								</c:choose>
+							</c:forEach>
+									
  <form class="" action="index.html" method="post">
     <h2 class="card-title" style="color:white; margin-left:30px;">最新消息</h2>
     <div id="table-style" class="card" style="margin:30px;">
@@ -282,10 +283,8 @@ h2 {
                 				<span class="date">${latest_news_VO.news_time}</span>
               				</div>
 						</c:when>
-=======
 									<c:otherwise>
 										<!-- 否則下架 -->
->>>>>>> origin/WEI_10
 
 									</c:otherwise>
 

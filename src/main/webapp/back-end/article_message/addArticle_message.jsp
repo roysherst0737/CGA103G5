@@ -91,10 +91,6 @@ Article_message_VO article_message_VO = (Article_message_VO) request.getAttribut
 											<a href="listAllArticle_message.jsp"><img
 												src="./images/home.png" width="30px" height="30px"></a>
 										</button>
-<!-- 										<button style="margin-right: 10px;"> -->
-<!-- 											<a href='addArticle_message.jsp'><img -->
-<!-- 												src="./images/plus.png" width="30px" height="30px"></a> -->
-<!-- 										</button> -->
 										<button style="margin-right: 10px;">
 											<a href="select_page.jsp"><img src="./images/search2.png"
 												width="30px" height="30px"></a>
@@ -147,15 +143,6 @@ Article_message_VO article_message_VO = (Article_message_VO) request.getAttribut
 										style="width: 100%">
 										<FORM METHOD="post" ACTION="article_message.do" name="form1">
 											<table>
-												<!-- 												<tr> -->
-												<!-- 													<td>留言編號:</td> -->
-												<!-- 													<td><input type="TEXT" name="art_msg_no" size="45" -->
-												<%-- 														value="<%=article_message_VO.getArt_msg_no()%>" /></td> --%>
-<!-- 																								</tr> -->
-<!-- 												<tr> -->
-<!-- 													<td>留言發布時間:</td> -->
-<!-- 													<td><input name="msg_time" id="f_date1" type="text"></td> -->
-<!-- 												</tr> -->
 												<jsp:useBean id="forum_article_Svc" scope="page"
 														class="com.forum_article.model.Forum_article_Service" />
 												<tr>
@@ -173,20 +160,6 @@ Article_message_VO article_message_VO = (Article_message_VO) request.getAttribut
 													<td><input type="TEXT" name="msg_content" size="45"
 														value="<%=(article_message_VO == null)? "" : article_message_VO.getMsg_content()%>" /></td>
 												</tr>
-
-
-<%-- 												<jsp:useBean id="mem_Svc" scope="page" --%>
-<%-- 													class="com.mem.model.Mem_Service" /> --%>
-<!-- 												<tr> -->
-<!-- 													<td>會員編號:<font color=red><b>*</b></font></td> -->
-<!-- 													<td><select size="1" name="mem_no"> -->
-<%-- 															<c:forEach var="mem_VO" items="${memSvc.all}"> --%>
-<%-- 																<option value="${mem_VO.mem_no}" --%>
-<%-- 																	${(article_message_VO.mem_no==mem_VO.mem_no)?'selected':'' }>${mem_VO.mem_account} --%>
-<%-- 															</c:forEach> --%>
-<!-- 													</select></td> -->
-<!-- 												</tr> -->
-
 											</table>
 
 											<br> <input type="hidden" name="action" value="insert">

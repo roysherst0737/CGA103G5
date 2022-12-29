@@ -10,12 +10,11 @@ public class Article_message_report_Service {
 		dao = new Article_message_report_DAO();
 	}
 
-	public Article_message_report_VO addArticle_message_report(Integer mem_no, Integer art_msg_no,Timestamp rpt_time,
+	public Article_message_report_VO addArticle_message_report(Integer mem_no, Integer art_msg_no, Timestamp rpt_time,
 			String rpt_msg_content) {
 
 		Article_message_report_VO article_message_report_VO = new Article_message_report_VO();
 
-		
 		article_message_report_VO.setMem_no(mem_no);
 		article_message_report_VO.setArt_msg_no(art_msg_no);
 		article_message_report_VO.setRpt_time(rpt_time);
@@ -25,9 +24,9 @@ public class Article_message_report_Service {
 		return article_message_report_VO;
 	}
 
-	public Article_message_report_VO updateArticle_message_report(Integer art_msg_rpt,Integer mem_no, Integer art_msg_no,Timestamp rpt_time,
-			String rpt_msg_content, Integer mng_no, Timestamp msg_done_time, Integer msg_status,
-			Integer msg_result,String msg_note) {
+	public Article_message_report_VO updateArticle_message_report(Integer art_msg_rpt, Integer mem_no,
+			Integer art_msg_no, Timestamp rpt_time, String rpt_msg_content, Integer mng_no, Timestamp msg_done_time,
+			Integer msg_status, Integer msg_result, String msg_note) {
 
 		Article_message_report_VO article_message_report_VO = new Article_message_report_VO();
 
@@ -45,11 +44,10 @@ public class Article_message_report_Service {
 
 		return article_message_report_VO;
 	}
-	
+
 	public void updateArticle_message_report(Article_message_report_VO article_message_report_VO) {
 		dao.update(article_message_report_VO);
 	}
-
 
 	public void deleteArticle_message_report(Integer art_msg_rpt) {
 		dao.delete(art_msg_rpt);
@@ -65,7 +63,7 @@ public class Article_message_report_Service {
 
 	public void checkArticle_message_report(Article_message_report_VO article_message_report_VO) {
 		dao.check(article_message_report_VO);
-		
+
 	}
 
 }

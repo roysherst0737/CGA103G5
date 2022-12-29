@@ -121,16 +121,6 @@
 												value="getOne_For_Display"> <input type="submit"
 												value="送出" class="button">
 										</FORM>
-<!-- 										<FORM METHOD="post" ACTION="latest_news.do"> -->
-<!-- 											<b>選擇消息內容 :</b> <select size="1" name="latest_news_no"> -->
-<%-- 												<c:forEach var="latest_news_VO" --%>
-<%-- 													items="${latest_news_Svc.all}"> --%>
-<%-- 													<option value="${latest_news_VO.latest_news_no}">${latest_news_VO.news_content} --%>
-<%-- 												</c:forEach> --%>
-<!-- 											</select> <input type="hidden" name="action" -->
-<!-- 												value="getOne_For_Display"> <input type="submit" -->
-<!-- 												value="送出" class="button"> -->
-<!-- 										</FORM> -->
 										<div>
 										<h4 class="card-title">最新消息維護</h4>
 										<FORM METHOD="post" ACTION="forum.do">

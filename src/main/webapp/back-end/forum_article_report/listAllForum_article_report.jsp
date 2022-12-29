@@ -119,8 +119,9 @@ Forum_article_report_VO forum_article_report_VO = (Forum_article_report_VO) requ
 												<th>檢舉編號</th>
 												<th>會員編號</th>
 												<th>文章編號</th>
-												<th>檢舉時間</th>
 												<th>檢舉內容</th>
+												<th>檢舉時間</th>
+												<th>檢舉原因</th>
 												<th>管理員編號</th>
 												<th>處理時間</th>
 												<th>處理狀態</th>
@@ -141,6 +142,7 @@ Forum_article_report_VO forum_article_report_VO = (Forum_article_report_VO) requ
 												<td>${forum_article_report_VO.frm_art_rpt_no}</td>
 												<td>${forum_article_report_VO.mem_no}</td>
 												<td>${forum_article_report_VO.frm_art_no}</td>
+												<td>${forum_article_report_VO.getForum_article_VO().art_content}</td>
 												<td>${forum_article_report_VO.rpt_time}</td>
 												<td>${forum_article_report_VO.rpt_content}</td>
 												<td>${forum_article_report_VO.mng_no}</td>

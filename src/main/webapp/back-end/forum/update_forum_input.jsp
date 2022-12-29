@@ -75,10 +75,6 @@ Forum_VO forum_VO = (Forum_VO) request.getAttribute("forum_VO");
 							<div class="d-flex align-items-center justify-content-md-end">
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
-<!-- 										<button style="margin-right: 10px;"> -->
-<!-- 											<a href="listAllForum.jsp"><img -->
-<!-- 												src="./images/home.png" width="30px" height="30px"></a> -->
-<!-- 										</button> -->
 										<button style="margin-right: 10px;">
 											<a href='addForum.jsp'><img src="./images/plus.png"
 												width="30px" height="30px"></a>
@@ -108,24 +104,19 @@ Forum_VO forum_VO = (Forum_VO) request.getAttribute("forum_VO");
 											</ul>
 										</c:if>
 
-										<FORM METHOD="post" ACTION="forum1.do" name="form1">
+										<FORM METHOD="post" ACTION="forum.do" name="form1">
 											<table class="table table-striped">
 												<tr>
 													<td>討論區名稱 :</td>
 													<td><input type="TEXT" name="frm_name_no" size="45"
 														value="<%=(forum_VO == null) ? "" : forum_VO.getFrm_name_no()%>" /></td>
 												</tr>
-<!-- 												<tr> -->
-<!-- 													<td>討論區狀態 :</td> -->
-<!-- 													<td><input type="TEXT" name="frm_status" size="45" -->
-<%-- 														value="<%=(forum_VO == null) ? "1" : forum_VO.getFrm_status()%>" /></td> --%>
-<!-- 												</tr> -->
 												<tr>
 													<td>討論區狀態 :</td>
 													<td>
 														<select size="1" name="frm_status" value="<%=(forum_VO == null) ? "" : forum_VO.getFrm_status()%>">
-          														<option>0</option>
-          														<option>1</option>
+          														<option value="0" selected="forum_VO.frm_status==0">0</option>
+          														<option value="1" selected="forum_VO.frm_status==1">1</option>
        													</select>	
        												</td>
        											</tr>

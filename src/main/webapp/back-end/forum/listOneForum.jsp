@@ -75,10 +75,6 @@ Forum_VO forum_VO = (Forum_VO) request.getAttribute("forum_VO");
 							<div class="d-flex align-items-center justify-content-md-end">
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
-<!-- 										<button style="margin-right: 10px;"> -->
-<!-- 											<a href="listAllForum.jsp"><img src="./images/home.png" -->
-<!-- 												width="30px" height="30px"></a> -->
-<!-- 										</button> -->
 										<button style="margin-right: 10px;">
 											<a href='addForum.jsp'><img src="./images/plus.png"
 												width="30px" height="30px"></a>

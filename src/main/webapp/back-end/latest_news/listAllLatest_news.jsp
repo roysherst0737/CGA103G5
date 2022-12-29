@@ -137,20 +137,20 @@ pageContext.setAttribute("list", list);
 													<FORM METHOD="post"
 														ACTION="<%=request.getContextPath()%>/back-end/latest_news/latest_news.do"
 														style="margin-bottom: 0px;">
-														<input type="submit" value="修改" class="button"> <input
-															type="hidden" name="latest_news_no"
-															value="${latest_news_VO.latest_news_no}"> <input
-															type="hidden" name="action" value="getOne_For_Update">
+														<input type="submit" value="修改" class="button"> 
+														<input type="hidden" name="latest_news_no"
+															value="${latest_news_VO.latest_news_no}">
+														<input type="hidden" name="action" value="getOne_For_Update">
 													</FORM>
 												</td>
 												<td>
 													<FORM METHOD="post"
 														ACTION="<%=request.getContextPath()%>/back-end/latest_news/latest_news.do"
 														style="margin-bottom: 0px;">
-														<input type="submit" value="刪除" class="button"> <input
-															type="hidden" name="latest_news_no"
-															value="${latest_news_VO.latest_news_no}"> <input
-															type="hidden" name="action" value="delete">
+														<input type="submit" value="刪除" class="button"> 
+														<input type="hidden" name="latest_news_no"
+															value="${latest_news_VO.latest_news_no}"> 
+														<input type="hidden" name="action" value="delete">
 													</FORM>
 												</td>
 												<td>

@@ -122,13 +122,11 @@ Latest_news_VO latest_news_VO = (Latest_news_VO) request.getAttribute("latest_ne
 											<table>
 												<tr>
 													<td>消息內容 :<font color=red><b>*</b></font></td>
-													<td><input type="TEXT" name="news_content" size="45"
+													<td><input type="TEXT" name="news_content" size="45" required
 														value="<%=(latest_news_VO == null) ? "" : latest_news_VO.getNews_content()%>" /></td>
 												</tr>
 												<tr>
 													<td>消息狀態 :<font color=red><b>*</b></font></td>
-<!-- 													<td><input type="TEXT" name="news_status" size="45" -->
-<%-- 														value="<%=(latest_news_VO == null) ? "" : latest_news_VO.getNews_status()%>" /></td> --%>
 													<td>
 														<select size="1" name="news_status" value="<%=(latest_news_VO == null) ? "" : latest_news_VO.getNews_status()%>">
           													<option>0</option>

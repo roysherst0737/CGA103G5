@@ -3,11 +3,10 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.forum.model.*"%>
 <%@ page import="com.forum_article.model.*"%>
-
 <%@ page import="com.prod.model.*"%>
 <%@ page import="com.forum_article_report.model.*"%>
-<%
 
+<%
 Forum_Service forum_Svc = new Forum_Service();
 List<Forum_VO> list1 = forum_Svc.getAll();
 pageContext.setAttribute("list1", list1);
@@ -17,7 +16,6 @@ request.setAttribute("forum_VO", forum_VO);
 
 Set<Forum_article_VO> set = forum_Svc.getForum_articleByForum(forum_VO.getFrm_no());
 pageContext.setAttribute("set", set);
-
 
 %>
 
@@ -67,24 +65,25 @@ pageContext.setAttribute("set", set);
 	padding: 2px;
 	font-size: 20px;
 }
-		h2 {
-       	text-align: center;
-		display: -webkit-box;
-    	display: -ms-flexbox;
-    	display: flex;
-    	margin: 5% 20% 10px 15%;
-    	text-shadow: 0 0 48px #000000;
-    	font-family: 微軟正黑體;
-    	font-size: 3vw;
-    	font-weight: bolder;
-    	font-stretch: normal;
-    	font-style: normal;
-    	line-height: 1.32;
-    	letter-spacing: -2.72px;
-     	color: #ffffff; 
-    	width: 70%;
-     	text-align: justify; 
-    	}
+
+h2 {
+	text-align: center;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	margin: 5% 20% 10px 15%;
+	text-shadow: 0 0 48px #000000;
+	font-family: 微軟正黑體;
+	font-size: 3vw;
+	font-weight: bolder;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.32;
+	letter-spacing: -2.72px;
+	color: #ffffff;
+	width: 70%;
+	text-align: justify;
+}
 </style>
 
 </head>
@@ -102,10 +101,10 @@ pageContext.setAttribute("set", set);
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-<!-- 					<h2>購物商城</h2> -->
+					<!-- 					<h2>購物商城</h2> -->
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a
-							href="<%=request.getContextPath()%>/front-end/forum/forum.jsp">討掄區</a></li>
+							href="<%=request.getContextPath()%>/front-end/forum/forum.jsp">討論區</a></li>
 						<li class="breadcrumb-item active">總覽</li>
 					</ul>
 				</div>
@@ -116,47 +115,60 @@ pageContext.setAttribute("set", set);
 
 	<form id="table-style" class="frm" action="index.html" method="post">
 		<table class="table table-bordered table-hover"
-			style="border: 3px #cccccc solid; border-width: 3px 6px; padding: 5px;"
+			style="max-width: 1300px; border: 3px #cccccc solid; border-width: 3px 6px; padding: 5px; margin-left: 70px;"
 			cellpadding="50" border='10'>
 			<div class="container">
-				<div class="">
-					<div class="card-body">
-						<h2>${forum_VO.frm_name_no}</h2>
-						<thead id="btn-style">
-							<div class="" style="position: relative;" id="btn-style">
-								<div class="btn btn-warning btn:hover"
-								style="margin-bottom: 10px height:100%; position: absolute; bottom: 10px; right: 10px;">
-								<a href="<%=request.getContextPath()%>/front-end/forum_article/new_frm_art.jsp">新增文章</a>
+				<c:choose>
+
+					<c:when test="${forum_VO.frm_status==1}">
+						<div class="">
+							<div class="card-body">
+								<div class="title-left"
+									style="margin: 50px; width: 1100px; margin-left: 10px;">
+									<h2>${forum_VO.frm_name_no}</h2>
 								</div>
+
+								<thead id="btn-style">
+									<div class="well" style="position: relative;" id="btn-style">
+										<p class="text-right">
+										<div class="btn btn-warning btn:hover"
+											style="margin-bottom: 10px height:100%; position: absolute; bottom: 10px; right: 60px;">
+											<a
+												href="<%=request.getContextPath()%>/front-end/forum_article/new_frm_art.jsp">新增文章</a>
+										</div>
+										</p>
+
+									</div>
+								</thead>
+								<tbody class="tby">
+									<tr>
+										<th width="300px">標題</th>
+										<th>文章內容</th>
+										<th width="300px">發布日期</th>
+									</tr>
+									<c:forEach var="forum_article_VO" items="${set}">
+										<c:if test="${forum_article_VO.art_status==1}">
+											<tr>
+												<td><a
+													href="<%=request.getContextPath()%>/front-end/forum_article/show_frm_art.jsp?${forum_article_VO.frm_art_no}">${forum_article_VO.art_title}</td>
+												<td><a
+													href="<%=request.getContextPath()%>/front-end/forum_article/show_frm_art.jsp?${forum_article_VO.frm_art_no}">${forum_article_VO.art_content}</td>
+												<td><a
+													href="<%=request.getContextPath()%>/front-end/forum_article/show_frm_art.jsp?${forum_article_VO.frm_art_no}">${forum_article_VO.art_time}</td>
+											</tr>
+										</c:if>
+									</c:forEach>
+								</tbody>
 							</div>
-						</thead>
-						<tbody class="tby" >
-							<tr>
-								<th width="300px">標題</th>
-								<th>文章內容</th>
-								<th width="300px">發布日期</th>
-							</tr>
-							<c:forEach var="forum_article_VO" items="${set}">
-							<c:choose>
-									<c:when test="${forum_article_VO.art_status==1}">
-<%-- 									${forum_article_VO.forum_article_report_VO.rpt_result==1} --%>
-										<tr>
-											<td><a href="<%=request.getContextPath()%>/front-end/forum_article/show_frm_art.jsp?${forum_article_VO.frm_art_no}">${forum_article_VO.art_title}</td>
-											<td><a href="<%=request.getContextPath()%>/front-end/forum_article/show_frm_art.jsp?${forum_article_VO.frm_art_no}">${forum_article_VO.art_content}</td>
-											<td><a href="<%=request.getContextPath()%>/front-end/forum_article/show_frm_art.jsp?${forum_article_VO.frm_art_no}">${forum_article_VO.art_time}</td>
-										</tr>
-					
-									</c:when>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div style="text-align: center;">
+							<h1 style="color: red">此討論區不存在</h1>
+						</div>
+					</c:otherwise>
 
-							<c:otherwise><!-- 否則下架 -->
-
-							</c:otherwise>
-				
-							</c:choose>
-							</c:forEach>
-						</tbody>				
-					</div>
-				</div>
+				</c:choose>
 		</table>
 		<tfoot>
 			<nav aria-label="Page navigation example"
@@ -167,8 +179,6 @@ pageContext.setAttribute("set", set);
 							<span class="sr-only">Previous</span>
 					</a></li>
 					<li class="page-item"><a class="page-link" href="#!">1</a></li>
-					<li class="page-item"><a class="page-link" href="#!">2</a></li>
-					<li class="page-item"><a class="page-link" href="#!">3</a></li>
 					<li class="page-item"><a class="page-link" href="#!"
 						aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
 							class="sr-only">Next</span>
@@ -182,9 +192,9 @@ pageContext.setAttribute("set", set);
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->
-<!-- 	<div class="instagram-box"> -->
-<%-- 		<%@ include file="/front-end/partials/_InstagramBox.jsp"%> --%>
-<!-- 	</div> -->
+	<!-- 	<div class="instagram-box"> -->
+	<%-- 		<%@ include file="/front-end/partials/_InstagramBox.jsp"%> --%>
+	<!-- 	</div> -->
 	<!-- End Instagram Feed  -->
 	<!-- Start Footer  -->
 	<footer>

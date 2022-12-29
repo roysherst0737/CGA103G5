@@ -72,10 +72,6 @@
 							<div class="d-flex align-items-center justify-content-md-end">
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
-<!-- 										<button style="margin-right: 10px;"> -->
-<!-- 											<a href="listAllForum.jsp"><img src="./images/home.png" -->
-<!-- 												width="30px" height="30px"></a> -->
-<!-- 										</button> -->
 										<button style="margin-right: 10px;">
 											<a href='addForum.jsp'><img src="./images/plus.png"
 												width="30px" height="30px"></a>
@@ -95,7 +91,6 @@
 								<div class="card card-body">
 									<h4 class="card-title">討論區查詢</h4>
 									<div>
-										<%-- 錯誤表列 --%>
 										<c:if test="${not empty errorMsgs}">
 											<font style="color: red">請修正以下錯誤:</font>
 											<ul>
@@ -107,16 +102,7 @@
 
 										<jsp:useBean id="forum_Svc" scope="page"
 											class="com.forum.model.Forum_Service" />
-<!-- 										<FORM METHOD="post" ACTION="forum.do"> -->
-<!-- 											<b>輸入討論區編號 :</b> <select size="1" name="frm_no"> -->
-<%-- 												<c:forEach var="forum_VO" items="${forum_Svc.all}"> --%>
-<%-- 													<option value="${forum_VO.frm_no}">${forum_VO.frm_no} --%>
-<%-- 												</c:forEach> --%>
-<!-- 											</select> <input type="hidden" name="action" -->
-<!-- 												value="getOne_For_Display"> <input type="submit" -->
-<!-- 												value="送出" class="button"> -->
-<!-- 										</FORM> -->
-
+											
 										<FORM METHOD="post" ACTION="forum.do">
 											<b>選擇討論區編號 :</b> <select size="1" name="frm_no">
 												<c:forEach var="forum_VO" items="${forum_Svc.all}">
@@ -126,8 +112,7 @@
 												value="getOne_For_Display"> <input type="submit"
 												value="送出" class="button">
 										</FORM>
-									
-
+									 
 									</div>
 									<div>
 										<h4 class="card-title">討論區維護</h4>

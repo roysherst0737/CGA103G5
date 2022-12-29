@@ -118,7 +118,7 @@ pageContext.setAttribute("list3", list3);
 							</div>
 						</div>
 					
-					</c:when>
+					</c:when >
 
 				<c:otherwise><!-- 否則下架 -->
 

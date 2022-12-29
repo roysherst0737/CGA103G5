@@ -20,9 +20,6 @@ Mem_VO user = (Mem_VO) Objuser;
 
 Integer mem_no = user.getMem_no();
 
-// Forum_article_Service fArticleSvc = new Forum_article_Service();
-// List<Forum_article_VO> list_fArticle = fArticleSvc.getAll();
-// int max =  Collections.max(list_fArticle);
 %>
 
 
@@ -58,52 +55,41 @@ Integer mem_no = user.getMem_no();
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
 <style>
-    .btn {
-      width: auto;
-      height: auto;
-    }
+.btn {
+	width: auto;
+	height: auto;
+}
 
-    tbody.tby {
-      text-align: center;
-      font-family: Verdana;
-      font-weight: 400;
-      color: #404040;
-      width: 964px;
-      font-size: 13px;
-      border-collapse: collapse;
-    }
+tbody.tby {
+	text-align: center;
+	font-family: Verdana;
+	font-weight: 400;
+	color: #404040;
+	width: 964px;
+	font-size: 13px;
+	border-collapse: collapse;
+}
 
-    h2 {
-      text-align: center;
-      color: #FFB326;
+h2 {
+	text-align: center;
+	color: #FFB326;
+}
 
-    }
+th {
+	text-align: center;
+}
 
-    th {
-      text-align: center;
-
-    }
-
-    #form-style {
-      padding: 90px;
-      color: #696969;
-    }
-  </style>
- 	<script type="text/javascript">
-    function setsubmit() {
-      if (mylink.value == 0)
-        window.location = '#';
-      if (mylink.value == frm - act)
-        window.location = '#';
-      if (mylink.value == frm - grp)
-        window.location = '#';
-      if (mylink.value == frm - pub - eva)
-        window.location = '#';
-      if (mylink.value == frm - prd - eva)
-        window.location = '#';
-    }
- 	 </script>
-
+#form-style {
+	padding: 90px;
+	color: #696969;
+}
+</style>
+<!-- <script>alert(1)</script>
+<script>alert(233)</script>
+	< : &lt
+	> : &gt
+	&
+	 -->
 </head>
 
 <body>
@@ -119,7 +105,7 @@ Integer mem_no = user.getMem_no();
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-<!-- 					<h2>購物商城</h2> -->
+					<!-- 					<h2>購物商城</h2> -->
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a
 							href="<%=request.getContextPath()%>/front-end/forum/forum.jsp">討論區</a></li>
@@ -131,68 +117,76 @@ Integer mem_no = user.getMem_no();
 	</div>
 	<!-- End All Title Box -->
 
-	  <h1></h1>
-	  <h1></h1>
-	  <div class="container" id="form-style">
-	    <div class="card" style="border:1px solid;">
-	      <form action="new_article.do" method="post" enctype="multipart/form-data" name="form1">
-	        <h2 class="card-title" style="font-weight:bold;margin:10px; margin-top:30px;">發表文章</h3>
-	          <table class="table">
-	            <tbody>
-	              <tr>
-	                <th style="color: #FFB326;">討論區</th>
-	                	<td>
-	                		<select name="frm_no" id="allianceSelection" style="width:30%; margin:1%;">
-	                 		<c:forEach var="forum_VO" items="${list2}">
-	                    	<option value="${forum_VO.frm_no}">${forum_VO.frm_name_no}</option>
+	<h1></h1>
+	<h1></h1>
+	<div class="container" id="form-style">
+		<div class="card" style="border: 1px solid;">
+			<form action="new_article.do" method="post"
+				enctype="multipart/form-data" name="form1">
+				<h2 class="card-title"
+					style="font-weight: bold; margin: 10px; margin-top: 30px;">
+					發表文章
+					</h3>
+					<table class="table">
+						<tbody>
+							<tr>
+								<th style="color: #FFB326;">
+									<p style="margin-top: 4px;">討論區</p>
+								</th>
+								<td><select name="frm_no" id="allianceSelection"
+									style="width: 30%; margin: 1%;">
+										<c:forEach var="forum_VO" items="${list2}">
+											<option value="${forum_VO.frm_no}">${forum_VO.frm_name_no}</option>
 
-	                        </c:forEach>	
-	                  		</select>
-	                  	</td>
-	              </tr>
-	              <tr>
-	                <th style="color: #FFB326;">標題</th>
-	                <td><input type="text" name="art_title" maxlength="50" value="" style="width:70%; margin:1%;" /></td>
-	              </tr>
-	              <%-- 錯誤表列 --%>
-			<c:if test="${not empty errorMsgs}">
-				<font style="color: red">請修正以下錯誤:</font>
-				<ul>
-					<c:forEach var="message" items="${errorMsgs}">
-						<li style="color: red">${message}</li>
-					</c:forEach>
-				</ul>
-			</c:if>
-	              <tr>
-	                <th style="color: #FFB326;">內容</th>
-	                <td><textarea name="art_content" value=""rows="6" cols="40" required style="width:70%; margin:1%;color: #FFB326;" /></textarea></td>
-	              </tr>
-	              <tr>
-	                <th style="color: #FFB326;">上傳圖片</th>
-	                <td><input name="art_img" type="file"></td>
-	              </tr>
-	              <tr>
-	                <th></th>
-	                <td>
-	                  <input type="hidden" name="action" value="insert">
-	                  <input type="hidden" name="mem_no" value="<%=mem_no%>">
-	                   <input type="submit" value="送出新增" class="form-control input" style="width:70%; font-size:18px; color: #FFB326; font-weight:bold">
-	                  
-	       </td>
-	              </tr>
-	            </tbody>
-	          </table>
-	      </form>
+										</c:forEach>
+								</select></td>
+							</tr>
+							<tr>
+								<th style="color: #FFB326;">
+									<p style="margin-top: 8px;">標題</p>
+								</th>
+								<td><input type="text" name="art_title" maxlength="50"
+									value="" required style="width: 70%; margin: 1%;" /></td>
+							</tr>
+							<%-- 錯誤表列 --%>
+							<c:if test="${not empty errorMsgs}">
+								<font style="color: red">請修正以下錯誤:</font>
+								<ul>
+									<c:forEach var="message" items="${errorMsgs}">
+										<li style="color: red">${message}</li>
+									</c:forEach>
+								</ul>
+							</c:if>
+							<tr>
+								<th style="color: #FFB326;">
+									<p style="margin-top: 70px;">內容</p>
+								</th>
+								<td><textarea name="art_content" value="" rows="6"
+										cols="40" required
+										style="width: 70%; margin: 1%; color: #FFB326;" /></textarea></td>
+							</tr>
+							<tr>
+								<th></th>
+								<td><input type="hidden" name="action" value="insert">
+									<input type="hidden" name="mem_no" value="<%=mem_no%>">
+									<input type="submit" value="送出新增" class="form-control input"
+									style="width: 70%; font-size: 18px; color: #FFB326; font-weight: bold">
 
-	    </div>
-	  </div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+			</form>
+
+		</div>
+	</div>
 
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->
-<!-- 	<div class="instagram-box"> -->
-<%-- 		<%@ include file="/front-end/partials/_InstagramBox.jsp"%> --%>
-<!-- 	</div> -->
+	<!-- 	<div class="instagram-box"> -->
+	<%-- 		<%@ include file="/front-end/partials/_InstagramBox.jsp"%> --%>
+	<!-- 	</div> -->
 	<!-- End Instagram Feed  -->
 	<!-- Start Footer  -->
 	<footer>

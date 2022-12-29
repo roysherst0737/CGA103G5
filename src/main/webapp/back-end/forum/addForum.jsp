@@ -85,10 +85,6 @@ Forum_VO forum_VO = (Forum_VO) request.getAttribute("forum_VO");
 							<div class="d-flex align-items-center justify-content-md-end">
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
-<!-- 										<button style="margin-right: 10px;"> -->
-<!-- 											<a href="listAllForum.jsp"><img src="./images/home.png" -->
-<!-- 												width="30px" height="30px"></a> -->
-<!-- 										</button> -->
 										<button style="margin-right: 10px;">
 											<a href='addForum.jsp'><img src="./images/plus.png"
 												width="30px" height="30px"></a>
@@ -122,7 +118,7 @@ Forum_VO forum_VO = (Forum_VO) request.getAttribute("forum_VO");
 											<table class="table stripe table-hover">
 												<tr>
 													<td>討論區名稱 :</td>
-													<td><input type="TEXT" name="frm_name_no" size="30"
+													<td><input type="TEXT" name="frm_name_no" size="30" required
 														value="<%=(forum_VO == null) ? "" : forum_VO.getFrm_name_no()%>" /></td>
 												</tr>
 												<tr>

@@ -32,15 +32,13 @@ public class Latest_news_Servlet extends HttpServlet {
 
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				String str = req.getParameter("latest_news_no");
-				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("請輸入最新消息編號");
-				}
+
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/back-end/latest_news/select_page.jsp");
 					failureView.forward(req, res);
-					return;//程式中斷
+					return;
 				}
 				
 				Integer latest_news_no = null;
@@ -54,7 +52,7 @@ public class Latest_news_Servlet extends HttpServlet {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/back-end/latest_news/select_page.jsp");
 					failureView.forward(req, res);
-					return;//程式中斷
+					return;
 				}
 				
 				/***************************2.開始查詢資料*****************************************/
@@ -68,7 +66,7 @@ public class Latest_news_Servlet extends HttpServlet {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/back-end/latest_news/select_page.jsp");
 					failureView.forward(req, res);
-					return;//程式中斷
+					return;
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
@@ -110,22 +108,11 @@ public class Latest_news_Servlet extends HttpServlet {
 		
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 			Integer latest_news_no = Integer.valueOf(req.getParameter("latest_news_no").trim());
-				
-//			String news_content = req.getParameter("news_content");
-//				String news_contentReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
-//				if (news_content == null || news_content.trim().length() == 0) {
-//					errorMsgs.add("消息內容: 請勿空白");
-//				} else if(!news_content.trim().matches(news_contentReg)) { //以下練習正則(規)表示式(regular-expression)
-//					errorMsgs.add("消息內容: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
-//	            }
-				
+					
 			String news_content = req.getParameter("news_content").trim();
-				if (news_content == null || news_content.trim().length() == 0) {
-					errorMsgs.add("消息內容請勿空白");
-				}	
+	
 				
 			Integer news_status = Integer.valueOf(req.getParameter("news_status").trim());
-			//消息狀態  放這裡
 			
 			java.sql.Timestamp news_time = new Timestamp(System.currentTimeMillis());
 
@@ -142,7 +129,7 @@ public class Latest_news_Servlet extends HttpServlet {
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/back-end/latest_news/update_latest_news_input.jsp");
 					failureView.forward(req, res);
-					return; //程式中斷
+					return; 
 				}
 				
 				/***************************2.開始修改資料*****************************************/
@@ -164,20 +151,15 @@ public class Latest_news_Servlet extends HttpServlet {
 			req.setAttribute("errorMsgs", errorMsgs);
 
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
-//			Integer latest_news_no = Integer.valueOf(req.getParameter("latest_news_no").trim());
 			
 			String news_content = req.getParameter("news_content").trim();
-			if (news_content == null || news_content.trim().length() == 0) {
-				errorMsgs.add("消息內容請勿空白");
-			}	
+
 			
 			Integer news_status = Integer.valueOf(req.getParameter("news_status").trim());
-		//消息狀態  放這裡
 			
 			java.sql.Timestamp news_time = new Timestamp(System.currentTimeMillis());
 
 			Latest_news_VO latest_news_VO = new Latest_news_VO();
-//			latest_news_VO.setLatest_news_no(latest_news_no);
 			latest_news_VO.setNews_content(news_content);
 			latest_news_VO.setNews_status(news_status);
 			latest_news_VO.setNews_time(news_time);

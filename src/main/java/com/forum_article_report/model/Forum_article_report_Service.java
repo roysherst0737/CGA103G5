@@ -10,9 +10,8 @@ public class Forum_article_report_Service {
 		dao = new Forum_article_report_DAO();
 	}
 
-	public Forum_article_report_VO addForum_article_report(Integer mem_no, Integer frm_art_no,
-			Timestamp rpt_time, String rpt_content) {
-
+	public Forum_article_report_VO addForum_article_report(Integer mem_no, Integer frm_art_no, Timestamp rpt_time,
+			String rpt_content) {
 
 		Forum_article_report_VO forum_article_report_VO = new Forum_article_report_VO();
 
@@ -21,13 +20,13 @@ public class Forum_article_report_Service {
 		forum_article_report_VO.setRpt_time(rpt_time);
 		forum_article_report_VO.setRpt_content(rpt_content);
 		dao.insert(forum_article_report_VO);
-		
+
 		return forum_article_report_VO;
 	}
 
-	public Forum_article_report_VO updateForum_article_report(Integer frm_art_rpt_no, Integer mem_no, Integer frm_art_no,
-			Timestamp rpt_time, String rpt_content, Integer mng_no, Timestamp rpt_done_time, Integer rpt_status,
-			Integer rpt_result, String rpt_note) {
+	public Forum_article_report_VO updateForum_article_report(Integer frm_art_rpt_no, Integer mem_no,
+			Integer frm_art_no, Timestamp rpt_time, String rpt_content, Integer mng_no, Timestamp rpt_done_time,
+			Integer rpt_status, Integer rpt_result, String rpt_note) {
 
 		Forum_article_report_VO forum_article_report_VO = new Forum_article_report_VO();
 
@@ -45,16 +44,14 @@ public class Forum_article_report_Service {
 
 		return forum_article_report_VO;
 	}
-	
+
 	public void checkForum_article_report(Forum_article_report_VO forum_article_report_VO) {
 		dao.check(forum_article_report_VO);
 	}
-	
+
 	public void updateForum_article_report(Forum_article_report_VO forum_article_report_VO) {
 		dao.update(forum_article_report_VO);
 	}
-
-
 
 	public void deleteForum_article_report(Integer frm_art_rpt_no) {
 		dao.delete(frm_art_rpt_no);

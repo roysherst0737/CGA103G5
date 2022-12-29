@@ -15,244 +15,212 @@ pageContext.setAttribute("list1", list1);
 <!-- Basic(head都不用動) -->
 
 <head>
-    <meta charset="utf-8">
+<meta charset="utf-8">
 
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Mobile Metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Site Metas -->
-    <title>朧醴 LonelyBar</title>
-    <meta name="keywords" content="LonelyBar Index">
-    <meta name="description" content="This is template from Theme Wagon.">
-    <meta name="author" content="Theme Wagon">
+<!-- Site Metas -->
+<title>朧醴 LonelyBar</title>
+<meta name="keywords" content="LonelyBar Index">
+<meta name="description" content="This is template from Theme Wagon.">
+<meta name="author" content="Theme Wagon">
 
-    <!-- Site Icons -->
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
-    <link rel="lonelybar-icon" href="../images/Logo2.png">
+<!-- Site Icons -->
+<link rel="shortcut icon" href="../images/favicon.ico"
+	type="image/x-icon">
+<link rel="lonelybar-icon" href="../images/Logo2.png">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <!-- Site CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="../css/responsive.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/custom.css">
-	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<!-- Site CSS -->
+<link rel="stylesheet" href="../css/style.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="../css/responsive.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="../css/custom.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
-	<style>
-		.btn {
-    		width: auto;
-    		height: auto;
-			}
-			
-		#view {
-			float:left;
-			}
-		
-		#type {
-			padding:2px;
-			font-size:20px;
-			}
-		  .btn {
-      width: auto;
-      height: auto;
-    }
+<style>
+.btn {
+	width: auto;
+	height: auto;
+}
 
-    tbody.tby {
-      text-align: center;
-      font-family: Verdana;
-      font-weight: 400;
-      color: #404040;
-      width: 964px;
-      font-size: 13px;
-      border-collapse: collapse;
-    }
+#view {
+	float: left;
+}
 
-    table.td {
-      table-hover;
-    }
+#type {
+	padding: 2px;
+	font-size: 20px;
+}
 
+.btn {
+	width: auto;
+	height: auto;
+}
 
-    h2 {
-       	text-align: center; 
-/*       width: 100%; */
-/*       font-weight: bold; */
-/*       margin-top: 30px; */
-        color: #A1A1A1;
-/*       padding-bottom: 4%; */
-		display: -webkit-box;
-    	display: -ms-flexbox;
-    	display: flex;
-    	margin: 5% 20% 10px 15%;
-    	text-shadow: 0 0 48px #000000;
-    	font-family: 微軟正黑體;
-    	font-size: 3vw;
-    	font-weight: bolder;
-    	font-stretch: normal;
-    	font-style: normal;
-    	line-height: 1.32;
-    	letter-spacing: -2.72px;
-/*     	color: #ffffff; */
-    	width: 70%;
-/*     	text-align: justify; */
-    }
+tbody.tby {
+	text-align: center;
+	font-family: Verdana;
+	font-weight: 400;
+	color: #404040;
+	width: 964px;
+	font-size: 13px;
+	border-collapse: collapse;
+}
 
-    #page-select {
-      padding: 20px;
-    }
-
-    #table-style {
-      padding: 20px;
-    }
-
-    .tab-list li .wrap,
-    .tab-list li a {
-      padding: 10px;
-    }
-
-    .tab-list li .wrap,
-    .tab-list li a {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      padding: 10px;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-      -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-      justify-content: space-between;
-      position: relative;
-      cursor: pointer;
-    }
-
-    @media (max-width: 992px) {
-
-      .tab-list li .wrap,
-      .tab-list li a {
-        padding: 15px;
-      }
-    }
-
-    .tab-list li .wrap,
-    .tab-list li a {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      padding: 10px;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-      -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-      justify-content: space-between;
-      position: relative;
-      cursor: pointer;
-    }
-
-    *,
-    ::after,
-    ::before {
-      box-sizing: border-box;
-    }
-
-    .tab-list li .wrap i.news-label-1,
-    .tab-list li a i.news-label-1 {
-      background-color: #8c101f;
-    }
-
-    .tab-list li .wrap i.news-label-1,
-    .tab-list li a i.news-label-1 {
-      background-color: #8c101f;
-    }
-
-    @media (max-width: 992px) {
-
-      .tab-list li .wrap i,
-      .tab-list li a i {
-        font-size: 12px;
-        min-width: 35px;
-        height: 20px;
-      }
-    }
-
-    .tab-list li .wrap i,
-    .tab-list li a i {
-      display: flex;
-      color: rgb(255, 255, 255);
-      width: 60px;
-      height: 30px;
-      font-family: 微軟正黑體;
-      font-size: 10px;
-      font-weight: 600;
-      font-style: normal;
-      -webkit-box-align: center;
-      align-items: center;
-      -webkit-box-pack: center;
-      justify-content: center;
-      border-radius: 2px;
-    }
-
-    @media (max-width: 992px) {
-
-      .tab-list li .wrap i,
-      .tab-list li a i {
-        font-size: 12px;
-        min-width: 35px;
-        height: 20px;
-      }
-    }
-
-    .tab-list li .wrap i,
-    .tab-list li a i {
-      display: flex;
-      color: rgb(255, 255, 255);
-      width: 40px;
-      height: 20px;
-      font-family: 微軟正黑體;
-      font-size: 12px;
-      font-weight: 600;
-      font-style: normal;
-      -webkit-box-align: center;
-      align-items: center;
-      -webkit-box-pack: center;
-      justify-content: center;
-      border-radius: 2px;
-    }
-
-    @media (max-width: 992px) {
-
-      .tab-list li .wrap:after,
-      .tab-list li a:after {
-        left: 10px;
-        width: calc(100% - 20px)
-      }
-    }
-
-
-    .tab-list li .wrap:after,
-    .tab-list li a:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 20px;
-      height: 1px;
-      width: calc(100% - 40px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-      color: black;
-    }
-
-    *,
-    ::after,
-    ::before {
-      box-sizing: border-box;
-    }
-    #bottom-line{
-    	border-bottom: 1px solid #dee2e6 !important;
-    }
-	</style>
+table.td {table-hover;
 	
+}
+
+h2 {
+	text-align: center;
+	color: #FF1C1C;
+	margin: 3%;
+	margin: 1em auto;
+	margin-left: 8%;
+	font-family: 微軟正黑體;
+	font-size: 3vw;
+	width: 80%;
+}
+
+#page-select {
+	padding: 20px;
+}
+
+#table-style {
+	padding: 20px;
+}
+
+.tab-list li .wrap, .tab-list li a {
+	padding: 10px;
+}
+
+.tab-list li .wrap, .tab-list li a {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	padding: 10px;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	position: relative;
+	cursor: pointer;
+}
+
+@media ( max-width : 992px) {
+	.tab-list li .wrap, .tab-list li a {
+		padding: 15px;
+	}
+}
+
+.tab-list li .wrap, .tab-list li a {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	padding: 10px;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	position: relative;
+	cursor: pointer;
+}
+
+*, ::after, ::before {
+	box-sizing: border-box;
+}
+
+.tab-list li .wrap i.news-label-1, .tab-list li a i.news-label-1 {
+	background-color: #8c101f;
+}
+
+.tab-list li .wrap i.news-label-1, .tab-list li a i.news-label-1 {
+	background-color: #8c101f;
+}
+
+@media ( max-width : 992px) {
+	.tab-list li .wrap i, .tab-list li a i {
+		font-size: 12px;
+		min-width: 35px;
+		height: 20px;
+	}
+}
+
+.tab-list li .wrap i, .tab-list li a i {
+	display: flex;
+	color: rgb(255, 255, 255);
+	width: 60px;
+	height: 30px;
+	font-family: 微軟正黑體;
+	font-size: 10px;
+	font-weight: 600;
+	font-style: normal;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+	border-radius: 2px;
+}
+
+@media ( max-width : 992px) {
+	.tab-list li .wrap i, .tab-list li a i {
+		font-size: 12px;
+		min-width: 35px;
+		height: 20px;
+	}
+}
+
+.tab-list li .wrap i, .tab-list li a i {
+	display: flex;
+	color: rgb(255, 255, 255);
+	width: 40px;
+	height: 20px;
+	font-family: 微軟正黑體;
+	font-size: 12px;
+	font-weight: 600;
+	font-style: normal;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+	border-radius: 2px;
+}
+
+@media ( max-width : 992px) {
+	.tab-list li .wrap:after, .tab-list li a:after {
+		left: 10px;
+		width: calc(100% - 20px)
+	}
+}
+
+.tab-list li .wrap:after, .tab-list li a:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 20px;
+	height: 1px;
+	width: calc(100% - 40px);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+	color: black;
+}
+
+*, ::after, ::before {
+	box-sizing: border-box;
+}
+
+#bottom-line {
+	border-bottom: 1px solid #dee2e6 !important;
+}
+</style>
+
 </head>
 
 <body>
@@ -263,22 +231,43 @@ pageContext.setAttribute("list1", list1);
 
 	<!-- !!!!!! 從以下開始修改到Start Instagram Feed" !!!!!!-->
 
-    <!-- Start All Title Box -->
-    <div class="all-title-box">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-<!--                     <h2>購物商城</h2> -->
-<!--                     <ul class="breadcrumb"> -->
-<%--                         <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/front-end/prod/shop.jsp">回商城</a></li> --%>
-<!--                         <li class="breadcrumb-item active">總覽</li> -->
-<!--                     </ul> -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End All Title Box -->
-
+	<!-- Start All Title Box -->
+	<div class="all-title-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<!--                     <h2>購物商城</h2> -->
+					<!--                     <ul class="breadcrumb"> -->
+					<%--                         <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/front-end/prod/shop.jsp">回商城</a></li> --%>
+					<!--                         <li class="breadcrumb-item active">總覽</li> -->
+					<!--                     </ul> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Title Box -->
+	<div class="title-all text-center">
+		<h2>最新資訊</h2>
+	</div>
+	<form class="" action="index.html" method="post">
+		<div id="table-style" class="card" style="margin: 4%;">
+			<section class="my-container list-group-numbered">
+				<div class="news-info-list-wrap">
+					<ul class="news-info-list tab-list">
+						<li onclick="getBullentin(1784)" data-toggle="modal"
+							data-target="#newsModal"><c:forEach var="latest_news_VO"
+								items="${list1}">
+								<c:choose>
+									<c:when test="${latest_news_VO.news_status==1}">
+										<div class="wrap" id="bottom-line">
+											<i class="news-label-1" id="height">NEW</i> <span
+												class="content">${latest_news_VO.news_content}</span> <span
+												class="date">${latest_news_VO.news_time}</span>
+										</div>
+									</c:when>
+								</c:choose>
+							</c:forEach>
+									
  <form class="" action="index.html" method="post">
     <h2 class="card-title" style="color:white; margin-left:30px;">最新消息</h2>
     <div id="table-style" class="card" style="margin:30px;">
@@ -294,18 +283,16 @@ pageContext.setAttribute("list1", list1);
                 				<span class="date">${latest_news_VO.news_time}</span>
               				</div>
 						</c:when>
+									<c:otherwise>
+										<!-- 否則下架 -->
 
-						<c:otherwise><!-- 否則下架 -->
+									</c:otherwise>
 
-						</c:otherwise>
-
-					</c:choose>
-              	</c:forEach>
-             
-            </li>
-        </div>
-      </section>
-      <nav aria-label="Page navigation example"
+								</c:choose>
+							</c:forEach></li>
+				</div>
+			</section>
+			<nav aria-label="Page navigation example"
 				style="width: 15%; margin: 0 auto;">
 				<ul class=" pagination" id="page-select">
 					<li class="page-item"><a class="page-link" href="#!"
@@ -321,8 +308,8 @@ pageContext.setAttribute("list1", list1);
 					</a></li>
 				</ul>
 			</nav>
-    </div>
-  </form>
+		</div>
+	</form>
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->

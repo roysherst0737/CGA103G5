@@ -12,10 +12,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+public class Article_message_DAO implements Article_message_DAO_interface {
 
-
-public class Article_message_DAO implements Article_message_DAO_interface{
-	
 	private static DataSource ds = null;
 	static {
 		try {
@@ -24,24 +22,17 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
-	
+
 	}
-	private static final String INSERT_STMT = 
-			"INSERT INTO article_message (mem_no,frm_art_no,msg_content) VALUES (?,?, ?)";
-		private static final String GET_ALL_STMT = 
-			"SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content,msg_status FROM article_message order by art_msg_no";
-		private static final String GET_ONE_STMT = 
-			"SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content,msg_status FROM article_message where art_msg_no = ?";
-		private static final String DELETE = 
-			"DELETE FROM article_message where art_msg_no = ?";
-		private static final String UPDATE = 
-			"UPDATE article_message set art_msg_no = ?,msg_status = ?,frm_art_no = ? where art_msg_no = ?";
-		
-		private static final String GET_ALL_from_frm_art_no = 
-			"SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content,msg_status FROM article_message where  frm_art_no=?";
-		
-		private static final String ChangeStatus = 
-			"UPDATE article_message set msg_status = msg_status -1 where art_msg_no = ?";
+	private static final String INSERT_STMT = "INSERT INTO article_message (mem_no,frm_art_no,msg_content) VALUES (?,?, ?)";
+	private static final String GET_ALL_STMT = "SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content,msg_status FROM article_message order by art_msg_no";
+	private static final String GET_ONE_STMT = "SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content,msg_status FROM article_message where art_msg_no = ?";
+	private static final String DELETE = "DELETE FROM article_message where art_msg_no = ?";
+	private static final String UPDATE = "UPDATE article_message set art_msg_no = ?,msg_status = ?,frm_art_no = ? where art_msg_no = ?";
+
+	private static final String GET_ALL_from_frm_art_no = "SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content,msg_status FROM article_message where  frm_art_no=?";
+
+	private static final String ChangeStatus = "UPDATE article_message set msg_status = msg_status -1 where art_msg_no = ?";
 
 	@Override
 	public void insert(Article_message_VO article_message_VO) {
@@ -49,25 +40,19 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 		PreparedStatement pstmt = null;
 
 		try {
-		
+
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
-			
-			
+
 			pstmt.setInt(1, article_message_VO.getMem_no());
 			pstmt.setInt(2, article_message_VO.getFrm_art_no());
 			pstmt.setString(3, article_message_VO.getMsg_content());
-//			pstmt.setTimestamp(3, article_message_VO.getMsg_time());
-//			pstmt.setInt(4, article_message_VO.getMsg_status());
-			
 
 			pstmt.executeUpdate();
 
-	
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-			
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -85,7 +70,6 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 			}
 		}
 
-		
 	}
 
 	@Override
@@ -101,15 +85,12 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 			pstmt.setInt(1, article_message_VO.getArt_msg_no());
 			pstmt.setInt(2, article_message_VO.getMsg_status());
 			pstmt.setInt(3, article_message_VO.getFrm_art_no());
-			
 
 			pstmt.executeUpdate();
 
-	
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-			
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -127,8 +108,6 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 			}
 		}
 
-		
-		
 	}
 
 	@Override
@@ -145,11 +124,9 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 
 			pstmt.executeUpdate();
 
-		
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-		
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -167,7 +144,6 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 			}
 		}
 
-		
 	}
 
 	@Override
@@ -187,7 +163,7 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-			
+
 				article_message_VO = new Article_message_VO();
 				article_message_VO.setArt_msg_no(rs.getInt("art_msg_no"));
 				article_message_VO.setMem_no(rs.getInt("mem_no"));
@@ -195,14 +171,12 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 				article_message_VO.setMsg_time(rs.getTimestamp("msg_time"));
 				article_message_VO.setMsg_content(rs.getString("msg_content"));
 				article_message_VO.setMsg_status(rs.getInt("msg_status"));
-				
+
 			}
 
-			
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-		
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
 		} finally {
 			if (rs != null) {
 				try {
@@ -252,15 +226,13 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 				article_message_VO.setMsg_time(rs.getTimestamp("msg_time"));
 				article_message_VO.setMsg_content(rs.getString("msg_content"));
 				article_message_VO.setMsg_status(rs.getInt("msg_status"));
-				
-				list.add(article_message_VO); 
+
+				list.add(article_message_VO);
 			}
 
-			
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-		
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
 		} finally {
 			if (rs != null) {
 				try {
@@ -311,15 +283,13 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 				article_message_VO.setMsg_time(rs.getTimestamp("msg_time"));
 				article_message_VO.setMsg_content(rs.getString("msg_content"));
 				article_message_VO.setMsg_status(rs.getInt("msg_status"));
-				
-				list.add(article_message_VO); 
+
+				list.add(article_message_VO);
 			}
 
-			
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-		
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
 		} finally {
 			if (rs != null) {
 				try {
@@ -345,45 +315,43 @@ public class Article_message_DAO implements Article_message_DAO_interface{
 		}
 		return list;
 	}
-	
+
 	@Override
 	public Integer ChangeStatus(Integer art_msg_no) {
-		
+
 		Connection con = null;
-        PreparedStatement pstmt = null;
+		PreparedStatement pstmt = null;
 
-        try {
+		try {
 
-            con = ds.getConnection();
-            pstmt = con.prepareStatement(ChangeStatus);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(ChangeStatus);
 
-            pstmt.setInt(1, art_msg_no);
+			pstmt.setInt(1, art_msg_no);
 
-            pstmt.executeUpdate();
+			pstmt.executeUpdate();
 
-            // Handle any driver errors
-        } catch (SQLException se) {
-            throw new RuntimeException("A database error occured. "
-                    + se.getMessage());
-            // Clean up JDBC resources
-        } finally {
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                    e.printStackTrace(System.err);
-                }
-            }
-        }
-        return art_msg_no;
-    }
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return art_msg_no;
+	}
 
-	
 }

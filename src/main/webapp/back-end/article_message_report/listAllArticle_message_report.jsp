@@ -2,11 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.article_message_report.model.*"%>
+<%@ page import="com.article_message.model.*"%>
 
 <%
 Article_message_report_Service article_message_report_Svc = new Article_message_report_Service();
 List<Article_message_report_VO> list = article_message_report_Svc.getAll();
 pageContext.setAttribute("list", list);
+
+
 %>
 
 <!DOCTYPE html>
@@ -113,12 +116,12 @@ pageContext.setAttribute("list", list);
 												<th>留言檢舉編號</th>
 												<th>會員編號</th>
 												<th>留言編號</th>
+												<th>檢舉內容</th>
 												<th>檢舉時間</th>
-												<th>檢舉留言內容</th>
+												<th>檢舉原因</th>
 												<th>管理員編號</th>
-												<th>處理完成時間</th>
+												<th>處理時間</th>
 												<th>處理狀況</th>
-<!-- 												<th>處理結果</th> -->
 												<th>處理註記</th>
 												<th>違規/合格</th>
 												<th>審核</th>
@@ -137,13 +140,12 @@ pageContext.setAttribute("list", list);
 													<td>${article_message_report_VO.art_msg_rpt}</td>
 													<td>${article_message_report_VO.mem_no}</td>
 													<td>${article_message_report_VO.art_msg_no}</td>
+													<td>${article_message_report_VO.getArticle_message_VO().msg_content}</td>
 													<td>${article_message_report_VO.rpt_time}</td>
 													<td>${article_message_report_VO.rpt_msg_content}</td>
 													<td>${article_message_report_VO.mng_no}</td>
 													<td>${article_message_report_VO.msg_done_time}</td>
 													<td>${article_message_report_VO.msg_status==0 ? "已處理" : "待處理"}</td>
-<%-- 													<td>${article_message_report_VO.msg_result}</td> --%>
-<%-- 													<td><input type="text" value="${article_message_report_VO.msg_note}" name="msg_note"> </td> --%>
 													<td>
 														<select size="1" name="msg_note">
           													<option>無違規</option>

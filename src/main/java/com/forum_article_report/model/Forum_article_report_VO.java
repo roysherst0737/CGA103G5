@@ -105,18 +105,20 @@ public class Forum_article_report_VO implements java.io.Serializable {
 		this.rpt_note = rpt_note;
 	}
 
-	//join frm_art_rpt from mng_no
+	// join frm_art_rpt from mng_no
 	public Manager_VO getManager_VO() {
 		Manager_Service manager_Svc = new Manager_Service();
 		Manager_VO manager_VO = manager_Svc.getOneManager(mng_no);
 		return manager_VO;
 	}
-	//join frm_art_rpt from mem_no
+
+	// join frm_art_rpt from mem_no
 	public Mem_VO getMem_VO() {
 		Mem_Service mem_Svc = new Mem_Service();
 		Mem_VO mem_VO = mem_Svc.getOneMem(mem_no);
 		return mem_VO;
 	}
+
 	public Forum_article_VO getForum_article_VO() {
 		Forum_article_Service forum_article_Svc = new Forum_article_Service();
 		Forum_article_VO forum_article_VO = forum_article_Svc.getOneForum_article(frm_art_no);

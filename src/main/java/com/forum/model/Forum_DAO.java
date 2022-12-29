@@ -16,11 +16,8 @@ import javax.sql.DataSource;
 
 import com.forum_article.model.Forum_article_VO;
 
+public class Forum_DAO implements Forum_DAO_interface {
 
-
-
-public class Forum_DAO implements Forum_DAO_interface{
-	
 	private static DataSource ds = null;
 	static {
 		try {
@@ -29,21 +26,15 @@ public class Forum_DAO implements Forum_DAO_interface{
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
-	
+
 	}
-	private static final String INSERT_STMT = 
-		"INSERT INTO forum (frm_name_no,frm_status,frm_img) VALUES (?, ?, ?)";
-	private static final String GET_ALL_STMT = 
-		"SELECT frm_no,frm_name_no,frm_status,frm_img FROM forum order by frm_no";
-	private static final String GET_ONE_STMT = 
-		"SELECT frm_no,frm_name_no,frm_status,frm_img FROM forum where frm_no = ?";
-	private static final String DELETE = 
-		"DELETE FROM forum where frm_no = ?";
-	private static final String UPDATE = 
-		"UPDATE forum set frm_name_no = ?,frm_status = ? where frm_no = ?";
-	private static final String GET_Forum_article_ByForum_STMT =
-		"SELECT frm_art_no,frm_no,mem_no,art_time,art_title,art_content,art_img,art_status FROM forum_article where frm_no = ? order by frm_art_no";
-	
+	private static final String INSERT_STMT = "INSERT INTO forum (frm_name_no,frm_status,frm_img) VALUES (?, ?, ?)";
+	private static final String GET_ALL_STMT = "SELECT frm_no,frm_name_no,frm_status,frm_img FROM forum order by frm_no";
+	private static final String GET_ONE_STMT = "SELECT frm_no,frm_name_no,frm_status,frm_img FROM forum where frm_no = ?";
+	private static final String DELETE = "DELETE FROM forum where frm_no = ?";
+	private static final String UPDATE = "UPDATE forum set frm_name_no = ?,frm_status = ? where frm_no = ?";
+	private static final String GET_Forum_article_ByForum_STMT = "SELECT frm_art_no,frm_no,mem_no,art_time,art_title,art_content,art_img,art_status FROM forum_article where frm_no = ? order by frm_art_no";
+
 	@Override
 	public void insert(Forum_VO forum_VO) {
 		Connection con = null;
@@ -59,11 +50,9 @@ public class Forum_DAO implements Forum_DAO_interface{
 
 			pstmt.executeUpdate();
 
-	
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-			
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -81,7 +70,6 @@ public class Forum_DAO implements Forum_DAO_interface{
 			}
 		}
 
-		
 	}
 
 	@Override
@@ -94,18 +82,15 @@ public class Forum_DAO implements Forum_DAO_interface{
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(UPDATE);
 
-			
 			pstmt.setString(1, forum_VO.getFrm_name_no());
 			pstmt.setInt(2, forum_VO.getFrm_status());
 			pstmt.setInt(3, forum_VO.getFrm_no());
-			
+
 			pstmt.executeUpdate();
 
-	
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-			
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -123,7 +108,6 @@ public class Forum_DAO implements Forum_DAO_interface{
 			}
 		}
 
-		
 	}
 
 	@Override
@@ -140,11 +124,9 @@ public class Forum_DAO implements Forum_DAO_interface{
 
 			pstmt.executeUpdate();
 
-		
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-		
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -162,7 +144,6 @@ public class Forum_DAO implements Forum_DAO_interface{
 			}
 		}
 
-		
 	}
 
 	@Override
@@ -182,21 +163,18 @@ public class Forum_DAO implements Forum_DAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				
+
 				forum_VO = new Forum_VO();
 				forum_VO.setFrm_no(rs.getInt("frm_no"));
 				forum_VO.setFrm_name_no(rs.getString("frm_name_no"));
 				forum_VO.setFrm_status(rs.getInt("frm_status"));
 				forum_VO.setFrm_img(rs.getBytes("frm_img"));
-				
+
 			}
-		
-			
 
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-		
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
 		} finally {
 			if (rs != null) {
 				try {
@@ -244,14 +222,12 @@ public class Forum_DAO implements Forum_DAO_interface{
 				forum_VO.setFrm_name_no(rs.getString("frm_name_no"));
 				forum_VO.setFrm_status(rs.getInt("frm_status"));
 				forum_VO.setFrm_img(rs.getBytes("frm_img"));
-				list.add(forum_VO); 
+				list.add(forum_VO);
 			}
 
-			
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-		
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
 		} finally {
 			if (rs != null) {
 				try {
@@ -282,18 +258,18 @@ public class Forum_DAO implements Forum_DAO_interface{
 	public Set<Forum_article_VO> getForum_articleByForum(Integer frm_no) {
 		Set<Forum_article_VO> set = new LinkedHashSet<Forum_article_VO>();
 		Forum_article_VO forum_article_VO = null;
-	
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-	
+
 		try {
-	
+
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_Forum_article_ByForum_STMT);
 			pstmt.setInt(1, frm_no);
 			rs = pstmt.executeQuery();
-	
+
 			while (rs.next()) {
 				forum_article_VO = new Forum_article_VO();
 				forum_article_VO.setFrm_art_no(rs.getInt("frm_art_no"));
@@ -304,14 +280,13 @@ public class Forum_DAO implements Forum_DAO_interface{
 				forum_article_VO.setArt_content(rs.getString("art_content"));
 				forum_article_VO.setArt_img(rs.getBytes("art_img"));
 				forum_article_VO.setArt_status(rs.getInt("art_status"));
-				
+
 				set.add(forum_article_VO); // Store the row in the vector
 			}
-	
+
 			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {
 			if (rs != null) {
 				try {
@@ -338,6 +313,4 @@ public class Forum_DAO implements Forum_DAO_interface{
 		return set;
 	}
 
-	
-	
 }

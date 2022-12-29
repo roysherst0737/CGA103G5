@@ -18,10 +18,8 @@ import javax.sql.DataSource;
 import com.article_message.model.Article_message_VO;
 import com.forum_article_report.model.Forum_article_report_VO;
 
+public class Forum_article_DAO implements Forum_article_DAO_interface {
 
-
-public class Forum_article_DAO implements Forum_article_DAO_interface{
-	
 	private static DataSource ds = null;
 	static {
 		try {
@@ -30,33 +28,24 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
-	
+
 	}
-	private static final String INSERT_STMT = 
-		"INSERT INTO forum_article (frm_no,mem_no, art_title,art_content,art_img) VALUES (?, ?, ?, ?, ?)";
-	private static final String GET_ALL_STMT = 
-		"SELECT frm_art_no,mem_no,frm_no,art_time,art_title,art_content,art_img,art_status FROM forum_article order by frm_art_no";
-	private static final String GET_ONE_STMT = 
-		"SELECT frm_art_no,mem_no,frm_no,art_time,art_title,art_content,art_img,art_status FROM forum_article where frm_art_no = ?";
-	private static final String DELETE = 
-		"DELETE FROM forum_article where frm_art_no = ?";
-	private static final String UPDATE = 
-		"UPDATE forum set frm_no = ?,mem_no = ?,art_title = ?,art_content = ?,art_img = ?,art_status = ?  where frm_art_no = ?";
-	private static final String GET_Article_message_ByForum_article_STMT =
-		"SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content FROM article_message where frm_art_no = ? order by art_msg_no";
-	
-	private static final String ChangeStatus = 
-		"UPDATE forum_article set art_status = art_status -1 where frm_art_no = ?";
-	
-//	private static final String GET_Art_status =
-//			"SELECT frm_art_no FROM forum_article where art_status = ?";
+	private static final String INSERT_STMT = "INSERT INTO forum_article (frm_no,mem_no, art_title,art_content,art_img) VALUES (?, ?, ?, ?, ?)";
+	private static final String GET_ALL_STMT = "SELECT frm_art_no,mem_no,frm_no,art_time,art_title,art_content,art_img,art_status FROM forum_article order by frm_art_no";
+	private static final String GET_ONE_STMT = "SELECT frm_art_no,mem_no,frm_no,art_time,art_title,art_content,art_img,art_status FROM forum_article where frm_art_no = ?";
+	private static final String DELETE = "DELETE FROM forum_article where frm_art_no = ?";
+	private static final String UPDATE = "UPDATE forum set frm_no = ?,mem_no = ?,art_title = ?,art_content = ?,art_img = ?,art_status = ?  where frm_art_no = ?";
+	private static final String GET_Article_message_ByForum_article_STMT = "SELECT art_msg_no,mem_no,frm_art_no,msg_time,msg_content FROM article_message where frm_art_no = ? order by art_msg_no";
+
+	private static final String ChangeStatus = "UPDATE forum_article set art_status = art_status -1 where frm_art_no = ?";
+
 	@Override
 	public void insert(Forum_article_VO forum_article_VO) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
-		
+
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(INSERT_STMT);
 
@@ -66,16 +55,11 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 			pstmt.setString(4, forum_article_VO.getArt_content());
 			pstmt.setBytes(5, forum_article_VO.getArt_img());
 
-			
-			
-
 			pstmt.executeUpdate();
 
-	
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-			
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -93,7 +77,6 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 			}
 		}
 
-		
 	}
 
 	@Override
@@ -116,11 +99,9 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 			pstmt.setInt(7, forum_article_VO.getFrm_art_no());
 			pstmt.executeUpdate();
 
-	
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-			
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -138,7 +119,6 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 			}
 		}
 	}
-		
 
 	@Override
 	public void delete(Integer frm_art_no) {
@@ -154,11 +134,9 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 
 			pstmt.executeUpdate();
 
-		
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-		
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -176,7 +154,6 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 			}
 		}
 
-		
 	}
 
 	@Override
@@ -196,7 +173,7 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-			
+
 				forum_article_VO = new Forum_article_VO();
 				forum_article_VO.setFrm_art_no(rs.getInt("frm_art_no"));
 				forum_article_VO.setFrm_no(rs.getInt("frm_no"));
@@ -206,15 +183,12 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 				forum_article_VO.setArt_content(rs.getString("art_content"));
 				forum_article_VO.setArt_img(rs.getBytes("art_img"));
 				forum_article_VO.setArt_status(rs.getInt("art_status"));
-				
-				
+
 			}
 
-			
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-		
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
 		} finally {
 			if (rs != null) {
 				try {
@@ -266,15 +240,13 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 				forum_article_VO.setArt_content(rs.getString("art_content"));
 				forum_article_VO.setArt_img(rs.getBytes("art_img"));
 				forum_article_VO.setArt_status(rs.getInt("art_status"));
-				
-				list.add(forum_article_VO); 
+
+				list.add(forum_article_VO);
 			}
 
-			
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-		
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+
 		} finally {
 			if (rs != null) {
 				try {
@@ -300,22 +272,23 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 		}
 		return list;
 	}
+
 	@Override
 	public Set<Article_message_VO> getArticle_messageByForum_article(Integer frm_art_no) {
 		Set<Article_message_VO> set = new LinkedHashSet<Article_message_VO>();
 		Article_message_VO article_message_VO = null;
-	
+
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-	
+
 		try {
-	
+
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GET_Article_message_ByForum_article_STMT);
 			pstmt.setInt(1, frm_art_no);
 			rs = pstmt.executeQuery();
-	
+
 			while (rs.next()) {
 				article_message_VO = new Article_message_VO();
 				article_message_VO.setArt_msg_no(rs.getInt("art_msg_no"));
@@ -323,14 +296,13 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 				article_message_VO.setFrm_art_no(rs.getInt("frm_art_no"));
 				article_message_VO.setMsg_time(rs.getTimestamp("msg_time"));
 				article_message_VO.setMsg_content(rs.getString("msg_content"));
-				
+
 				set.add(article_message_VO); // Store the row in the vector
 			}
-	
+
 			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 		} finally {
 			if (rs != null) {
 				try {
@@ -359,42 +331,40 @@ public class Forum_article_DAO implements Forum_article_DAO_interface{
 
 	@Override
 	public Integer ChangeStatus(Integer frm_art_no) {
-		
+
 		Connection con = null;
-        PreparedStatement pstmt = null;
+		PreparedStatement pstmt = null;
 
-        try {
+		try {
 
-            con = ds.getConnection();
-            pstmt = con.prepareStatement(ChangeStatus);
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(ChangeStatus);
 
-            pstmt.setInt(1, frm_art_no);
+			pstmt.setInt(1, frm_art_no);
 
-            pstmt.executeUpdate();
+			pstmt.executeUpdate();
 
-            // Handle any driver errors
-        } catch (SQLException se) {
-            throw new RuntimeException("A database error occured. "
-                    + se.getMessage());
-            // Clean up JDBC resources
-        } finally {
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                    e.printStackTrace(System.err);
-                }
-            }
-        }
-        return frm_art_no;
-    }
-
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return frm_art_no;
+	}
 
 }

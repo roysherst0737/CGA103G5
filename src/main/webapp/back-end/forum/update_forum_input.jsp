@@ -115,8 +115,8 @@ Forum_VO forum_VO = (Forum_VO) request.getAttribute("forum_VO");
 													<td>討論區狀態 :</td>
 													<td>
 														<select size="1" name="frm_status" value="<%=(forum_VO == null) ? "" : forum_VO.getFrm_status()%>">
-          														<option value="0" selected="forum_VO.frm_status==0">0</option>
-          														<option value="1" selected="forum_VO.frm_status==1">1</option>
+          														<option value="0" <c:if test="${'0' eq forum_VO.getFrm_status()}">selected</c:if>>下架</option>
+          														<option value="1" <c:if test="${'1' eq forum_VO.getFrm_status()}">selected</c:if>>上架</option>
        													</select>	
        												</td>
        											</tr>

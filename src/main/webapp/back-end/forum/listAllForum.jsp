@@ -41,14 +41,14 @@ pageContext.setAttribute("list", list);
 </script>
 <style>
 .button {
-    text-decoration: none;           /* 去除下底線 */
-    display: inline-block;           /* 變成行內區塊 */
-    font-size: 10px;                 /* 文字大小 */
-    color: white;                    /* 文字顏色 */
-    background: gray;                /* 按鈕背景顏色 */
-    padding: 5px 10px 5px 10px;      /* 文字到邊框的間距 */
-    border: 1px solid black;         /* 邊框設定 */
-    border-radius: 5px;              /* 邊框圓角設定 */
+	text-decoration: none; /* 去除下底線 */
+	display: inline-block; /* 變成行內區塊 */
+	font-size: 10px; /* 文字大小 */
+	color: white; /* 文字顏色 */
+	background: gray; /* 按鈕背景顏色 */
+	padding: 5px 10px 5px 10px; /* 文字到邊框的間距 */
+	border: 1px solid black; /* 邊框設定 */
+	border-radius: 5px; /* 邊框圓角設定 */
 }
 </style>
 </head>
@@ -87,17 +87,17 @@ pageContext.setAttribute("list", list);
 							<div class="d-flex align-items-center justify-content-md-end">
 								<div class="mb-3 mb-xl-0 pr-1">
 									<div class="dropdown">
-<!-- 										<button style="margin-right: 10px;"> -->
-<!-- 											<a href="listAllForum.jsp"><img src="./images/home.png" -->
-<!-- 												width="30px" height="30px"></a> -->
-<!-- 										</button> -->
+										<!-- 										<button style="margin-right: 10px;"> -->
+										<!-- 											<a href="listAllForum.jsp"><img src="./images/home.png" -->
+										<!-- 												width="30px" height="30px"></a> -->
+										<!-- 										</button> -->
 										<button style="margin-right: 10px;">
 											<a href='addForum.jsp'><img src="./images/plus.png"
 												width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right: 10px;">
-											<a href="select_page.jsp"><img
-												src="./images/search2.png" width="30px" height="30px"></a>
+											<a href="select_page.jsp"><img src="./images/search2.png"
+												width="30px" height="30px"></a>
 										</button>
 									</div>
 								</div>
@@ -127,18 +127,25 @@ pageContext.setAttribute("list", list);
 											<tr>
 												<td>${forum_VO.frm_no}</td>
 												<td>${forum_VO.frm_name_no}</td>
-												<td>${forum_VO.frm_status}</td>
+												<td>
+													<c:if test="${forum_VO.frm_status == 0}">
+														<div>下架</div>
+													</c:if> 
+													<c:if test="${forum_VO.frm_status == 1}">
+														<div>上架</div>
+													</c:if>
+												</td>
 												<td><img
-														src="<%=request.getContextPath()%>/Show_Forum_Servlet?frm_no=${forum_VO.frm_no}"
-														width=150px height=100px></td>
+													src="<%=request.getContextPath()%>/Show_Forum_Servlet?frm_no=${forum_VO.frm_no}"
+													width=150px height=100px></td>
 												<td>
 													<FORM METHOD="post"
 														ACTION="<%=request.getContextPath()%>/back-end/forum/forum.do"
 														style="margin-bottom: 0px;">
 														<input type="submit" value="修改" class="button"> <input
-															type="hidden" name="frm_no"
-															value="${forum_VO.frm_no}"> <input
-															type="hidden" name="action" value="getOne_For_Update">
+															type="hidden" name="frm_no" value="${forum_VO.frm_no}">
+														<input type="hidden" name="action"
+															value="getOne_For_Update">
 													</FORM>
 												</td>
 											</tr>

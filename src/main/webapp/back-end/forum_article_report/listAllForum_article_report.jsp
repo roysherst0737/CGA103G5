@@ -151,15 +151,15 @@ Forum_article_report_VO forum_article_report_VO = (Forum_article_report_VO) requ
 <%-- 												<td>${forum_article_report_VO.rpt_result==1 ? "違規" : "合格"}</td> --%>
 <%-- 												<td><input type="text" value="${forum_article_report_VO.rpt_note}" name="rpt_note"> </td> --%>
 												<td>
-														<select size="1" name="rpt_note">
-          													<option>無違規</option>
-          													<option>違反規章</option>
+														<select size="1" name="rpt_note" value="<%=(forum_article_report_VO == null) ? "" : forum_article_report_VO.getRpt_result()%>">
+          													<option value="無違規" <c:if test="${'1' eq forum_article_report_VO.getRpt_result()}">selected</c:if>>無違規</option>
+          													<option value="違反規章" <c:if test="${'0' eq forum_article_report_VO.getRpt_result()}">selected</c:if>>違反規章</option>
        													</select>	
 												</td>
 												<td>
-														<select size="1" name="rpt_result">
-          													<option value="1">合格</option>
-          													<option value="0">違規</option>
+														<select size="1" name="rpt_result" value="<%=(forum_article_report_VO == null) ? "" : forum_article_report_VO.getRpt_result()%>">
+          													<option value="1" <c:if test="${'1' eq forum_article_report_VO.getRpt_result()}">selected</c:if>>合格</option>
+          													<option value="0" <c:if test="${'0' eq forum_article_report_VO.getRpt_result()}">selected</c:if>>違規</option>
        													</select>	
 												</td>
 												<td>

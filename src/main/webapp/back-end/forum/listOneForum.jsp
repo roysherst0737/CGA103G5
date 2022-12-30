@@ -105,7 +105,14 @@ Forum_VO forum_VO = (Forum_VO) request.getAttribute("forum_VO");
 										<tr>
 											<td>${forum_VO.frm_no}</td>
 											<td>${forum_VO.frm_name_no}</td>
-											<td>${forum_VO.frm_status}</td>
+											<td>
+												<c:if test="${forum_VO.frm_status == 0}">
+															<div>下架</div>
+												</c:if>
+												<c:if test="${forum_VO.frm_status == 1}">
+															<div>上架</div>
+												</c:if>
+											</td>
 											<td><img
 												src="<%=request.getContextPath()%>/Show_Forum_Servlet?frm_no=${forum_VO.frm_no}"
 												width=150px height=100px></td>

@@ -9,7 +9,7 @@ Article_message_report_Service article_message_report_Svc = new Article_message_
 List<Article_message_report_VO> list = article_message_report_Svc.getAll();
 pageContext.setAttribute("list", list);
 
-
+Article_message_report_VO article_message_report_VO = (Article_message_report_VO) request.getAttribute("article_message_report_VO");
 %>
 
 <!DOCTYPE html>
@@ -147,15 +147,15 @@ pageContext.setAttribute("list", list);
 													<td>${article_message_report_VO.msg_done_time}</td>
 													<td>${article_message_report_VO.msg_status==0 ? "已處理" : "待處理"}</td>
 													<td>
-														<select size="1" name="msg_note">
-          													<option>無違規</option>
-          													<option>違反規章</option>
+														<select size="1" name="msg_note" value="<%=(article_message_report_VO == null) ? "" : article_message_report_VO.getMsg_result()%>">
+          													<option value="無違規" <c:if test="${'1' eq article_message_report_VO.getMsg_result()}">selected</c:if>>無違規</option>
+          													<option value="違反規章" <c:if test="${'0' eq article_message_report_VO.getMsg_result()}">selected</c:if>>違反規章</option>
        													</select>	
 													</td>
 													<td>
-														<select size="1" name="msg_result">
-          													<option value="1">合格</option>
-          													<option value="0">違規</option>
+														<select size="1" name="msg_result" value="<%=(article_message_report_VO == null) ? "" : article_message_report_VO.getMsg_result()%>">
+          													<option value="1" <c:if test="${'1' eq article_message_report_VO.getMsg_result()}">selected</c:if>>合格</option>
+          													<option value="0" <c:if test="${'0' eq article_message_report_VO.getMsg_result()}">selected</c:if>>違規</option>
        													</select>	
 													</td>
 													

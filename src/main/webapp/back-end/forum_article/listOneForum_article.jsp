@@ -80,8 +80,8 @@ Forum_article_VO forum_article_VO = (Forum_article_VO) request.getAttribute("for
 												src="./images/home.png" width="30px" height="30px"></a>
 										</button>
 										<button style="margin-right: 10px;">
-											<a href="select_page.jsp"><img
-												src="./images/search2.png" width="30px" height="30px"></a>
+											<a href="select_page.jsp"><img src="./images/search2.png"
+												width="30px" height="30px"></a>
 										</button>
 									</div>
 								</div>
@@ -113,10 +113,16 @@ Forum_article_VO forum_article_VO = (Forum_article_VO) request.getAttribute("for
 											<td>${forum_article_VO.art_title}</td>
 											<td>${forum_article_VO.art_content}</td>
 											<td><img
-														src="<%=request.getContextPath()%>/Show_Forum_Article_Servlet?frm_art_no=${forum_article_VO.frm_art_no}"
-														width=150px height=100px>
+												src="<%=request.getContextPath()%>/Show_Forum_Article_Servlet?frm_art_no=${forum_article_VO.frm_art_no}"
+												width=150px height=100px></td>
+											<td>
+												<c:if test="${forum_article_VO.art_status == 0}">
+													<div>下架</div>
+												</c:if> 
+												<c:if test="${forum_article_VO.art_status == 1}">
+													<div>上架</div>
+												</c:if>
 											</td>
-											<td>${forum_article_VO.art_status}</td>
 										</tr>
 									</table>
 								</div>

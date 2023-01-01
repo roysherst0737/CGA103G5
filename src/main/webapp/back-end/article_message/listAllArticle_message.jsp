@@ -158,25 +158,6 @@ pageContext.setAttribute("list", list);
 												<td>${article_message_VO.frm_art_no}</td>
 												<td>${article_message_VO.msg_time}</td>
 												<td>${article_message_VO.msg_content}</td>
-<!-- 												<td> -->
-<!-- 													<FORM METHOD="post" -->
-<%-- 														ACTION="<%=request.getContextPath()%>/back-end/article_message/article_message.do" --%>
-<!-- 														style="margin-bottom: 0px;"> -->
-<!-- 														<input type="submit" value="修改" class="button"> <input -->
-<%-- 															type="hidden" name="art_msg_no" value="${article_message_VO.art_msg_no}"> --%>
-<!-- 														<input type="hidden" name="action" -->
-<!-- 															value="getOne_For_Update"> -->
-<!-- 													</FORM> -->
-<!-- 												</td> -->
-<!-- 												<td> -->
-<!-- 													<FORM METHOD="post" -->
-<%-- 														ACTION="<%=request.getContextPath()%>/back-end/article_message/article_message.do" --%>
-<!-- 														style="margin-bottom: 0px;"> -->
-<!-- 														<input type="submit" value="刪除" class="button"> <input -->
-<%-- 															type="hidden" name="art_msg_no" value="${article_message_VO.art_msg_no}"> --%>
-<!-- 														<input type="hidden" name="action" value="delete"> -->
-<!-- 													</FORM> -->
-<!-- 												</td> -->
 											</tr>
 										</c:forEach>
 									</table>

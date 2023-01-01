@@ -117,7 +117,6 @@ Article_message_report_VO article_message_report_VO = (Article_message_report_VO
 											<td>${article_message_report_VO.mng_no}</td>
 											<td>${article_message_report_VO.msg_done_time}</td>
 											<td>${article_message_report_VO.msg_status==0?"已處裡":"待處理"}</td>
-<%-- 											<td>${article_message_report_VO.msg_result==1?"無違反規章":"違規"}</td> --%>
 											<td>${article_message_report_VO.msg_note}</td>
 									</table>
 								</div>

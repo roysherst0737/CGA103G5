@@ -134,7 +134,14 @@ pageContext.setAttribute("list", list);
 														src="<%=request.getContextPath()%>/Show_Forum_Article_Servlet?frm_art_no=${forum_article_VO.frm_art_no}"
 														width=150px height=100px>
 												</td>
-												<td>${forum_article_VO.art_status}</td>	
+												<td>
+													<c:if test="${forum_article_VO.art_status == 0}">
+															<div>下架</div>
+													</c:if>
+													<c:if test="${forum_article_VO.art_status == 1}">
+															<div>上架</div>
+													</c:if>
+												</td>	
 											</tr>
 										</c:forEach>
 									</table>

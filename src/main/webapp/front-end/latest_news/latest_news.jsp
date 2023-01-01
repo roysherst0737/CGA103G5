@@ -236,11 +236,6 @@ h2 {
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
-					<!--                     <h2>購物商城</h2> -->
-					<!--                     <ul class="breadcrumb"> -->
-					<%--                         <li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/front-end/prod/shop.jsp">回商城</a></li> --%>
-					<!--                         <li class="breadcrumb-item active">總覽</li> -->
-					<!--                     </ul> -->
 				</div>
 			</div>
 		</div>
@@ -255,7 +250,8 @@ h2 {
 				<div class="news-info-list-wrap">
 					<ul class="news-info-list tab-list">
 						<li onclick="getBullentin(1784)" data-toggle="modal"
-							data-target="#newsModal"><c:forEach var="latest_news_VO"
+							data-target="#newsModal">
+							<c:forEach var="latest_news_VO"
 								items="${list1}">
 								<c:choose>
 									<c:when test="${latest_news_VO.news_status==1}">

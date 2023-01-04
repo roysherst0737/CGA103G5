@@ -246,9 +246,13 @@ h2 {
 		</div>
 	</div>
 	<!-- End All Title Box -->
-	<div class="title-all text-center">
+	
+	<!-- 標題 -->
+	<div class="title-left text-center" style="margin: 50px; width: 1200px; margin-left: 100px;">
 		<h2>最新資訊</h2>
 	</div>
+	
+	<!-- 最新消息欄位 -->
 	<form class="" action="index.html" method="post">
 		<div id="table-style" class="card" style="margin: 4%;">
 			<section class="my-container list-group-numbered">

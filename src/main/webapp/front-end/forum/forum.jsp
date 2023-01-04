@@ -107,14 +107,19 @@ pageContext.setAttribute("list3", list3);
 		<div class="container">
 			<div class="row">
 			<c:forEach var="forum_VO" items="${list3}">
+				<!-- 判斷討論區上下架顯示 -->
 				<c:choose>
 					<c:when test="${forum_VO.frm_status==1}">
 						<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 							<div class="shop-cat-box" id="pic">
+							
+								<!-- 抓取個別討論區的圖檔 -->
 								<img src="<%=request.getContextPath()%>
-								/Show_Forum_Servlet?frm_no=${forum_VO.frm_no}"
-								>
-								<a class="btn hvr-hover" href="<%=request.getContextPath()%>/front-end/forum/forum-list.jsp?${forum_VO.frm_no}">${forum_VO.frm_name_no}</a>
+								/Show_Forum_Servlet?frm_no=${forum_VO.frm_no}"/>
+								
+								<!-- 點擊進入個別討論區 -->
+								<a class="btn hvr-hover" href="<%=request.getContextPath()%>
+								/front-end/forum/forum-list.jsp?${forum_VO.frm_no}">${forum_VO.frm_name_no}</a>
 							</div>
 						</div>
 					

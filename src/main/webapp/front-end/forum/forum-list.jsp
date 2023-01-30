@@ -118,8 +118,8 @@ h2 {
 			style="max-width: 1300px; border: 3px #cccccc solid; border-width: 3px 6px; padding: 5px; margin-left: 70px;"
 			cellpadding="50" border='10'>
 			<div class="container">
+				<!-- 判斷討論區上下架 -->
 				<c:choose>
-
 					<c:when test="${forum_VO.frm_status==1}">
 						<div class="">
 							<div class="card-body">
@@ -147,6 +147,7 @@ h2 {
 										<th width="300px">發布日期</th>
 									</tr>
 									<c:forEach var="forum_article_VO" items="${set}">
+										<!-- 判斷文章上下架顯示 -->
 										<c:if test="${forum_article_VO.art_status==1}">
 											<tr>
 												<td><a
@@ -163,7 +164,7 @@ h2 {
 						</div>
 					</c:when>
 					<c:otherwise>
-						<div style="text-align: center;">
+						<div class="alert alert-danger" style="text-align: center; margin:60px;">
 							<h1 style="color: red">此討論區不存在</h1>
 						</div>
 					</c:otherwise>
@@ -189,6 +190,12 @@ h2 {
 
 	</form>
 
+	<script>
+		var alertList = document.querySelectorAll('.alert')
+		alertList.forEach(function(alert) {
+			new bootstrap.Alert(alert)
+		})
+	</script>
 
 	<!-- !!!!!!此行以下都不要修改!!!!!!-->
 	<!-- Start Instagram Feed  -->

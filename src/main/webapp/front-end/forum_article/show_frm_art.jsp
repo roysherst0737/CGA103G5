@@ -392,7 +392,7 @@ h2 {
 		</c:when>
 		
 		<c:otherwise>
-			<div style="text-align: center;">
+			<div class="alert alert-danger"style="text-align: center; margin: 60px;">
 				<h1 style="color: red">此文章不存在</h1>
 			</div>
 		</c:otherwise>
